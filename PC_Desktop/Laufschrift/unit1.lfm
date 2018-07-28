@@ -1,0 +1,52 @@
+object Form1: TForm1
+  Left = 691
+  Height = 335
+  Top = 0
+  Width = 1564
+  Caption = 'Form1'
+  ClientHeight = 335
+  ClientWidth = 1564
+  Font.Quality = fqNonAntialiased
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '1.7'
+  object Button1: TButton
+    Left = 115
+    Height = 25
+    Top = 233
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 425
+    Height = 11
+    Top = 258
+    Width = 25
+    Caption = 'Label1'
+    Color = clWhite
+    Font.Color = clBlack
+    Font.Height = 8
+    Font.Pitch = fpFixed
+    Font.Quality = fqNonAntialiased
+    ParentColor = False
+    ParentFont = False
+    Transparent = False
+  end
+  object Button2: TButton
+    Left = 240
+    Height = 25
+    Top = 232
+    Width = 75
+    Caption = 'Button2'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object Timer1: TTimer
+    Interval = 50
+    OnTimer = Timer1Timer
+    Left = 489
+    Top = 92
+  end
+end

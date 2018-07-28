@@ -1,0 +1,166 @@
+object Form1: TForm1
+  Left = 281
+  Height = 584
+  Top = 59
+  Width = 1001
+  AllowDropFiles = True
+  Caption = 'Form1'
+  ClientHeight = 584
+  ClientWidth = 1001
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '1.6.4.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 584
+    Top = 0
+    Width = 1001
+    ActivePage = TabSheet2
+    Align = alClient
+    TabIndex = 1
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+      ClientHeight = 549
+      ClientWidth = 995
+      object HelloWorldBtn: TButton
+        Left = 64
+        Height = 25
+        Top = 80
+        Width = 96
+        Caption = 'Hello World'
+        OnClick = HelloWorldBtnClick
+        TabOrder = 0
+      end
+      object BackLight: TToggleBox
+        Left = 64
+        Height = 25
+        Top = 128
+        Width = 96
+        Caption = 'BackLight'
+        Checked = True
+        OnChange = BackLightChange
+        State = cbChecked
+        TabOrder = 1
+      end
+      object LCDCursor: TToggleBox
+        Left = 64
+        Height = 25
+        Top = 168
+        Width = 96
+        Caption = 'LCDCursor'
+        OnChange = LCDCursorChange
+        TabOrder = 2
+      end
+      object Clear: TButton
+        Left = 230
+        Height = 25
+        Top = 154
+        Width = 75
+        Caption = 'Clear'
+        OnClick = ClearClick
+        TabOrder = 3
+      end
+      object Home: TButton
+        Left = 230
+        Height = 25
+        Top = 192
+        Width = 75
+        Caption = 'Home'
+        OnClick = HomeClick
+        TabOrder = 4
+      end
+      object Display: TToggleBox
+        Left = 64
+        Height = 25
+        Top = 208
+        Width = 96
+        Caption = 'Display'
+        Checked = True
+        OnChange = DisplayChange
+        State = cbChecked
+        TabOrder = 5
+      end
+      object Blink: TToggleBox
+        Left = 64
+        Height = 25
+        Top = 248
+        Width = 96
+        Caption = 'Blink'
+        OnChange = BlinkChange
+        TabOrder = 6
+      end
+      object Button1: TButton
+        Left = 230
+        Height = 25
+        Top = 80
+        Width = 75
+        Caption = 'Button1'
+        OnClick = Button1Click
+        TabOrder = 7
+      end
+      object LeftBtn: TButton
+        Left = 208
+        Height = 25
+        Top = 248
+        Width = 24
+        Caption = 'L'
+        OnClick = LeftBtnClick
+        TabOrder = 8
+      end
+      object RightBtn: TButton
+        Left = 240
+        Height = 25
+        Top = 248
+        Width = 27
+        Caption = 'R'
+        Color = clForm
+        OnClick = RightBtnClick
+        TabOrder = 9
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TabSheet2'
+      ClientHeight = 549
+      ClientWidth = 995
+      object Memo1: TMemo
+        Left = 16
+        Height = 322
+        Top = 24
+        Width = 288
+        Lines.Strings = (
+          'Memo1'
+        )
+        TabOrder = 0
+      end
+      object Memo2: TMemo
+        Left = 320
+        Height = 322
+        Top = 24
+        Width = 294
+        Lines.Strings = (
+          'Memo2'
+        )
+        TabOrder = 1
+      end
+      object BtnSendEEPROM: TButton
+        Left = 72
+        Height = 25
+        Top = 400
+        Width = 115
+        Caption = 'BtnSendEEPROM'
+        OnClick = BtnSendEEPROMClick
+        TabOrder = 2
+      end
+      object BtnLoadEEPROM: TButton
+        Left = 416
+        Height = 25
+        Top = 400
+        Width = 75
+        Caption = 'BtnLoadEEPROM'
+        OnClick = BtnLoadEEPROMClick
+        TabOrder = 3
+      end
+    end
+  end
+end
