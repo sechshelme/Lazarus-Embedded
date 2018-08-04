@@ -2,17 +2,6 @@ program Project1;
 
 {$O-}
 
-  procedure mysleep(t: int32);
-  var
-    i: Int32;
-  begin
-    for i := 0 to t do begin
-      asm
-               Nop;
-      end;
-    end;
-  end;
-
   procedure ModePortB(Pin: byte; Value: boolean);
   begin
     if Value then begin
@@ -52,26 +41,17 @@ type
     dw: boolean;
     i: int8;
   begin
+    // bit 15                              0 = DAC_A                 1 = DAC_B
+    // bit 14 Vref input buffer control    0 = unbuffered(default)   1 = buffered
+    // bit 13 Output Gain selection        0 = 2x                    1 = 1x
+    // bit 12 Output shutdown control bit  0 = Shutdown the device   1 = Active mode operation
+
     WritePortB(fSlaveSelect, False);
 
-    // bit 15
-    // 0 write to DAC_A
-    // 1 write to DAC_B
-    sendBit(fDAC);
-    // bit 14 Vref input buffer control
-    // 0 unbuffered
-    // 1 buffered
-    sendBit(False);
-    // bit 13 Output Gain selection
-    // 0 2x
-    // 1 1x
-    sendBit(fGain);
-    // bit 12 Output shutdown control bit
-    // 0 Shutdown the device
-    // 1 Active mode operation *
-    sendBit(True);
-
-    Value:=%10101010101;
+    sendBit(fDAC);   // Bit 15
+    sendBit(False);  // Bit 14
+    sendBit(fGain);  // Bit 13
+    sendBit(True);   // Bit 12
 
     for i := 11 downto 0 do begin
       dw := (Value and (UInt16(1) shl i)) <> 0;

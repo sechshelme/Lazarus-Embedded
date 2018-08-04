@@ -39,6 +39,7 @@ type
   private
     fDataOut, fSPIClock, fSlaveSelect: byte;
     fDAC, fGain: boolean;
+    procedure SPI_Write(p: PByte; len: byte);
     procedure WriteDataSoftSPI(val: UInt16);
     procedure WriteDataHardSPI(val: UInt16);
   public
@@ -61,33 +62,42 @@ type
     ModePortB(fSlaveSelect, True);
   end;
 
+  procedure TMCP4922.SPI_Write(p: PByte; len: byte);
+  var
+    i: byte;
+  begin
+    WritePortB(fSlaveSelect, False);
+    for i := len - 1 downto 0 do begin
+      SPDR := p[i];
+      while (SPSR and (1 shl SPIF)) = 0 do begin
+      end;
+    end;
+    WritePortB(fSlaveSelect, True);
+  end;
+
   procedure TMCP4922.sendValue(Value: UInt16);
   var
     Data: UInt16;
-  const
-    z : UInt16=0;
   begin
-    //Data := Value;
-    //
-    //// bit 15                              0 = DAC_A                 1 = DAC_B
-    //// bit 14 Vref input buffer control    0 = unbuffered(default)   1 = buffered
-    //// bit 13 Output Gain selection        0 = 2x                    1 = 1x
-    //// bit 12 Output shutdown control bit  0 = Shutdown the device   1 = Active mode operation
-    //
-    //if fDAC then begin
-    //  Data := Data or (UInt16(1) shl 15);
-    //end;
-    //Data := Data and not (UInt16(1) shl 14);
-    //if fGain then begin
-    //  Data := Data or (UInt16(1) shl 13);
-    //end;
-    //Data := Data or (UInt16(1) shl 12);
+    Data := Value;
 
-    Inc(z);
-    Data:=z;
+    // bit 15                              0 = DAC_A                 1 = DAC_B
+    // bit 14 Vref input buffer control    0 = unbuffered(default)   1 = buffered
+    // bit 13 Output Gain selection        0 = 2x                    1 = 1x
+    // bit 12 Output shutdown control bit  0 = Shutdown the device   1 = Active mode operation
 
-//    WriteDataSoftSPI(Data);
-    WriteDataHardSPI(Data);
+    if fDAC then begin
+      Data := Data or (UInt16(1) shl 15);
+    end;
+    Data := Data and not (UInt16(1) shl 14);
+    if fGain then begin
+      Data := Data or (UInt16(1) shl 13);
+    end;
+    Data := Data or (UInt16(1) shl 12);
+
+    //    WriteDataSoftSPI(Data);
+//    WriteDataHardSPI(Data);
+    SPI_Write(@Data, 2);
   end;
 
   procedure TMCP4922.WriteDataSoftSPI(val: UInt16);
@@ -109,15 +119,8 @@ type
 
   procedure TMCP4922.WriteDataHardSPI(val: UInt16);
   begin
-    WritePortB(fSlaveSelect, False);
-    SPDR := val shr 8;
-    while (SPSR and (1 shl SPIF)) = 0 do begin
-    end;
 
-    SPDR := val;
-    while (SPSR and (1 shl SPIF)) = 0 do begin
-    end;
-    WritePortB(fSlaveSelect, True);
+    SPI_Write(@val, 2);
   end;
 
 var
@@ -134,8 +137,8 @@ begin
   ModePortB(3, True);
   repeat
     for i := 0 to 4095 do begin
-//            mysleep(1000);
-      //      MCP4922_A.sendValue(4095 - i);
+      //            mysleep(1000);
+      MCP4922_A.sendValue(4095 - i);
       MCP4922_B.sendValue(i);
     end;
   until 1 = 2;
