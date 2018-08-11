@@ -28,7 +28,7 @@ type
   private
     fDataOut, fSPIClock, fSlaveSelect: byte;
     fDAC, fGain: boolean;
-    procedure sendBit(Value:Boolean);
+    procedure sendBit(Value: boolean);
   public
     constructor Create(SDI, SCK, CS: byte; DAC, GAIN: boolean);
     procedure sendValue(Value: UInt16);
@@ -36,9 +36,8 @@ type
 
   { TMCP4922 }
 
-    procedure TMCP4922.sendValue(Value: UInt16);
+  procedure TMCP4922.sendValue(Value: UInt16);
   var
-    dw: boolean;
     i: int8;
   begin
     // bit 15                              0 = DAC_A                 1 = DAC_B
@@ -54,14 +53,13 @@ type
     sendBit(True);   // Bit 12
 
     for i := 11 downto 0 do begin
-      dw := (Value and (UInt16(1) shl i)) <> 0;
-      sendBit(dw);
+      sendBit((Value and (UInt16(1) shl i)) <> 0);
     end;
 
     WritePortB(fSlaveSelect, True);
   end;
 
-    procedure TMCP4922.sendBit(Value: Boolean);
+  procedure TMCP4922.sendBit(Value: boolean);
   begin
     WritePortB(fDataOut, Value);
     WritePortB(fSPIClock, True);
