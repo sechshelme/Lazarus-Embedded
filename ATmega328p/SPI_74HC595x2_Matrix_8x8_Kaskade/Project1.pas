@@ -48,7 +48,7 @@ var
   p,
   Zaehler,
   Zahl: integer;
-  Data: array[0..1] of byte;
+  Data: array[0..3] of byte;
 
 begin
   SPI_DDR.DataOut := True;
@@ -60,7 +60,7 @@ begin
 
   repeat
     Inc(Zaehler);
-    if Zaehler >= 6000 then begin
+    if Zaehler >= 26000 then begin
       Zaehler := 0;
     end;
 
@@ -78,7 +78,9 @@ begin
 
     Data[0] := 1 shl p;
     Data[1] := Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5);
+    Data[2] := 1 shl p;
+    Data[3] := (Ziffern[(Zahl + 4) mod 10, p]) or ((Ziffern[(Zahl + 6) mod 10, p]) shr 5);
 
-    SPIWriteData(@Data, 2);
+    SPIWriteData(@Data, 4);
   until 1 = 2;
 end.

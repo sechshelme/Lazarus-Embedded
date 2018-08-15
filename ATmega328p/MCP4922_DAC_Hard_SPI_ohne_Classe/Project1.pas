@@ -11,34 +11,18 @@ var
   SPI_Port: TSPIGPIO absolute PORTB;
   SPI_DDR: TSPIGPIO absolute DDRB;
 
-type
-
-  { TMCP4922 }
-
-  TMCP4922 = object
-  private
-    fDataOut, fSPIClock, fSlaveSelect: byte;
-    fDAC, fGain: boolean;
-    procedure sendValue2(Value: UInt16);
-    procedure SPI_Write(p: PByte; len: byte);
-  public
-    constructor Create(DAC, GAIN: boolean);
-    procedure sendValue(Value: UInt16);
-  end;
-
-  { TMCP4922 }
-
-  constructor TMCP4922.Create(DAC, GAIN: boolean);
+  procedure SPIInit;
   begin
-    fDAC := DAC;
-    fGain := GAIN;
-
+    // SPI-Port auf Ausgabe
     SPI_DDR.DataOut := True;
     SPI_DDR.Clock := True;
     SPI_DDR.SlaveSelect := True;
+
+    SPCR := ((1 shl SPE) or (0 shl SPIE) or (0 shl DORD) or (1 shl MSTR) or (0 shl CPOL) or (0 shl CPHA) or (%01 shl SPR));
+    SPSR := (1 shl SPI2X);  // SCK x 2 auf 1 MHZ
   end;
 
-  procedure TMCP4922.SPI_Write(p: PByte; len: byte);
+  procedure SPIWrite(p: PByte; len: byte);
   var
     i: byte;
   begin
@@ -52,14 +36,14 @@ type
   end;
 
 
-  procedure TMCP4922.sendValue(Value: UInt16);
+  procedure MCP4922sendValue(Value: UInt16; Channel: Byte);
   type
     TADC = bitpacked record
-      Value: 0..2048;
+      Value: 0..4095;
       ShutDown,
       Gain,
       VRef,
-      Dac: boolean;
+      Dac: 0..1;
     end;
 
   begin
@@ -70,19 +54,19 @@ type
     // bit 15                              0 = DAC_A                 1 = DAC_B
 
     with TADC(Value) do begin
-      ShutDown := True;
-      Gain := fGain;
-      VRef := False;
-      Dac := fDAC;
+      ShutDown := 1;
+      Gain := 1;
+      VRef := 0;
+      Dac := Channel;
     end;
 
-    SPI_Write(@Value, 2);
+    SPIWrite(@Value, 2);
   end;
 
 
-  procedure TMCP4922.sendValue2(Value: UInt16);
+  procedure TMCP4922sendValue2(Value: UInt16; Channel: Byte);
   var
-    Data: bitpacked array[0..15] of boolean absolute Value;
+    Data: bitpacked array[0..15] of 0..1 absolute Value;
   begin
     // bit 0-11 Analog Value
     // bit 12 Output shutdown control bit  0 = Shutdown the device   1 = Active mode operation
@@ -90,29 +74,24 @@ type
     // bit 14 Vref input buffer control    0 = unbuffered(default)   1 = buffered
     // bit 15                              0 = DAC_A                 1 = DAC_B
 
-    Data[12] := True;
-    Data[13] := fGain;
-    Data[14] := False;
-    Data[15] := fDAC;
+    Data[12] := 1;
+    Data[13] := 1;
+    Data[14] := 0;
+    Data[15] := Channel;
 
-    SPI_Write(@Data, 2);
+    SPIWrite(@Data, 2);
   end;
 
 var
-  i: Int16;
-  MCP4922_A, MCP4922_B: TMCP4922;
+  z: Int16;
 
 begin
-  MCP4922_A.Create(False, True);
-  MCP4922_B.Create(True, True);
-
-  SPCR := ((1 shl SPE) or (0 shl SPIE) or (0 shl DORD) or (1 shl MSTR) or (0 shl CPOL) or (0 shl CPHA) or (%01 shl SPR));
-  SPSR := (1 shl SPI2X);  // SCK x 2 auf 1 MHZ
+  SPIInit;
 
   repeat
-    for i := 0 to 4095 do begin
-      MCP4922_A.sendValue(4095 - i);
-      MCP4922_B.sendValue(i);
+    for z := 0 to 4095 do begin
+      MCP4922sendValue(4095 - z, 0);
+      MCP4922sendValue(z, 1);
     end;
   until 1 = 2;
 end.
