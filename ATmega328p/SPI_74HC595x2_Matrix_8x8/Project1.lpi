@@ -55,7 +55,7 @@
     <Other>
       <CustomOptions Value="-WpATMEGA328P"/>
       <ExecuteAfter>
-        <Command Value="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude  -v -patmega328p -cusbasp -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

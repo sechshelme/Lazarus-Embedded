@@ -64,24 +64,6 @@ var
   end;
 
 
-  procedure TMCP4922sendValue2(Value: UInt16; Channel: Byte);
-  var
-    Data: bitpacked array[0..15] of 0..1 absolute Value;
-  begin
-    // bit 0-11 Analog Value
-    // bit 12 Output shutdown control bit  0 = Shutdown the device   1 = Active mode operation
-    // bit 13 Output Gain selection        0 = 2x                    1 = 1x
-    // bit 14 Vref input buffer control    0 = unbuffered(default)   1 = buffered
-    // bit 15                              0 = DAC_A                 1 = DAC_B
-
-    Data[12] := 1;
-    Data[13] := 1;
-    Data[14] := 0;
-    Data[15] := Channel;
-
-    SPIWrite(@Data, 2);
-  end;
-
 var
   z: Int16;
 

@@ -2,6 +2,9 @@ program Project1;
 
 {$O-}
 
+uses
+  intrinsics;
+
 type
   TMaske = array[0..7] of byte;
 
@@ -30,7 +33,6 @@ var
   SPI_DDR: TSPIGPIO absolute DDRB;
 
 
-
   procedure SPIWriteData(p: PByte; len: byte);
   var
     i: byte;
@@ -44,23 +46,48 @@ var
     SPI_Port.SlaveSelect := True;
   end;
 
+
 var
   p,
   Zaehler,
   Zahl: integer;
   Data: array[0..3] of byte;
 
+procedure Timer0_Interrupt; public Name 'TIMER2_OVF_ISR'; interrupt;
+begin
+  Inc(p);
+  if p >= 8 then begin
+    p := 0;
+  end;
+
+  Data[0] := 1 shl p;
+  Data[1] := Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5);
+  Data[2] := 1 shl p;
+  Data[3] := (Ziffern[(Zahl + 4) mod 10, p]) or ((Ziffern[(Zahl + 6) mod 10, p]) shr 5);
+
+  SPIWriteData(@Data, Length(Data));
+end;
+
+
+
 begin
   SPI_DDR.DataOut := True;
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
 
+  // Timer 2
+  TCCR2A := %00;               // Normaler Timer
+  TCCR2B := %010;              // Clock / 1024
+  TIMSK2 := (1 shl TOIE2);     // Enable Timer2 Interrupt.
+  avr_sei;
+
+  // SPI
   SPCR := (1 shl SPE) or (1 shl MSTR) or (%00 shl SPR);
   SPSR := (1 shl SPI2X);  // SCK x 2 auf 1 MHZ
 
   repeat
     Inc(Zaehler);
-    if Zaehler >= 26000 then begin
+    if Zaehler >= 2600 then begin
       Zaehler := 0;
     end;
 
@@ -71,16 +98,5 @@ begin
       end;
     end;
 
-    Inc(p);
-    if p >= 8 then begin
-      p := 0;
-    end;
-
-    Data[0] := 1 shl p;
-    Data[1] := Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5);
-    Data[2] := 1 shl p;
-    Data[3] := (Ziffern[(Zahl + 4) mod 10, p]) or ((Ziffern[(Zahl + 6) mod 10, p]) shr 5);
-
-    SPIWriteData(@Data, 4);
   until 1 = 2;
 end.
