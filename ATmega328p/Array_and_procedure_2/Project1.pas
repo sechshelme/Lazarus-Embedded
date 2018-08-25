@@ -34,14 +34,11 @@ const
     end;
   end;
 
-type
-  TPara = array[0..3] of Byte;
-
 var
-  ar1: TPara = (1,2,3,4);
-  ar2: TPara = (5,6,7,8);
+  ar1: array[10..13] of Byte = (1,2,3,4);
+  ar2: array[3..7] of Byte = (5,6,7,8,9);
 
-  procedure Test(p: TPara);
+  procedure Test(var p: array of Byte);
   var
     i: Int16;
     s: ShortString = '';

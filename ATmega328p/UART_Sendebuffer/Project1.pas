@@ -36,8 +36,6 @@ var
   begin
     UBRR0 := teiler;
     UCSR0A := (0 shl U2X0);
-    //    UCSR0B := (1 shl TXEN0) or (1 shl RXEN0) or (1 shl TXCIE0);
-//    UCSR0B := (1 shl TXEN0) or (1 shl RXEN0) or (1 shl UDRIE0);
     UCSR0B := (1 shl TXEN0) or (1 shl RXEN0);
     UCSR0C := %011 shl UCSZ0;
   end;

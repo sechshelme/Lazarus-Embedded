@@ -1,6 +1,8 @@
 program Project1;
 
 {$H-}
+{$O-}
+
 
 const
   CPU_Clock = 16000000; // Taktfrequenz Arduino, default 16MHz.
@@ -45,8 +47,12 @@ var
   i: UInt16;
   b: UInt8;
   s: string;
+  a:array[0..7] of Char;
 begin
   UARTInit;
+
+  for i:=0 to 7 do UARTSendChar(a[i]);
+
 
   b := 8;
   i := 1 shl b;
@@ -55,6 +61,7 @@ begin
   i := UInt16(1) shl b;  // '1' ist 16Bit
   str(i: 8, s);
   UARTSendString(s);
+
 
   repeat
     if UARTReadChar = #32 then begin

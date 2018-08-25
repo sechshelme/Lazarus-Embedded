@@ -49,12 +49,13 @@ var
 
 var
   p,
-  Zaehler,
   Zahl: integer;
-  Data: array[0..3] of byte;
+  Zaehler:UInt16;
+  Data: array[0..127] of byte;
 
 procedure Timer0_Interrupt; public Name 'TIMER2_OVF_ISR'; interrupt;
 begin
+  TCNT2 := 70;
   Inc(p);
   if p >= 8 then begin
     p := 0;
@@ -77,7 +78,7 @@ begin
 
   // Timer 2
   TCCR2A := %00;               // Normaler Timer
-  TCCR2B := %010;              // Clock / 1024
+  TCCR2B := %101;              // Clock / 1024
   TIMSK2 := (1 shl TOIE2);     // Enable Timer2 Interrupt.
   avr_sei;
 
@@ -87,7 +88,7 @@ begin
 
   repeat
     Inc(Zaehler);
-    if Zaehler >= 2600 then begin
+    if Zaehler >= 60600 then begin
       Zaehler := 0;
     end;
 
