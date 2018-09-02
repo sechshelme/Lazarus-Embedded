@@ -8,16 +8,13 @@ unit AVR_Package;
 interface
 
 uses
-  PJSDsgnRegister, PJSDsgnOptsFrame, frmpas2jsbrowserprojectoptions, 
-  PJSDsgnOptions, frmpas2jsnodejsprojectoptions, pjscontroller, 
-  frmpas2jswebservers, strpas2jsdesign, pjsprojectoptions, AVR_IDE_Options, 
-  AVR_Project_Options, LazarusPackageIntf;
+  AVR_Register, AVR_IDE_Options, AVR_Project_Options, LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
-  RegisterUnit('PJSDsgnRegister', @PJSDsgnRegister.Register);
+  RegisterUnit('AVR_Register', @AVR_Register.Register);
 end;
 
 initialization

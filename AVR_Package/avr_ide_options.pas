@@ -5,7 +5,7 @@ unit AVR_IDE_Options;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls,      Dialogs,
+  Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
   IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf;
 
 const
@@ -118,7 +118,7 @@ end;
 
 class function TAVR_IDE_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
 begin
-  Result:=IDEEditorGroups.GetByIndex(GroupEnvironment)^.GroupClass;
+  Result := IDEEditorGroups.GetByIndex(GroupEnvironment)^.GroupClass;
   //Result := TAbstractIDEProjectOptions;
 end;
 

@@ -18,56 +18,20 @@
     <Description Value="Add AVR-Project"/>
     <License Value="GPL-2"/>
     <Version Release="1"/>
-    <Files Count="12">
+    <Files Count="3">
       <Item1>
-        <Filename Value="pjsdsgnregister.pas"/>
+        <Filename Value="avr_register.pas"/>
         <HasRegisterProc Value="True"/>
-        <UnitName Value="PJSDsgnRegister"/>
+        <UnitName Value="avr_register"/>
       </Item1>
       <Item2>
-        <Filename Value="pjsdsgnoptsframe.pas"/>
-        <UnitName Value="PJSDsgnOptsFrame"/>
-      </Item2>
-      <Item3>
-        <Filename Value="frmpas2jsbrowserprojectoptions.pp"/>
-        <UnitName Value="frmpas2jsbrowserprojectoptions"/>
-      </Item3>
-      <Item4>
-        <Filename Value="pjsdsgnoptions.pas"/>
-        <UnitName Value="PJSDsgnOptions"/>
-      </Item4>
-      <Item5>
-        <Filename Value="frmpas2jsnodejsprojectoptions.pp"/>
-        <UnitName Value="frmpas2jsnodejsprojectoptions"/>
-      </Item5>
-      <Item6>
-        <Filename Value="pjscontroller.pp"/>
-        <UnitName Value="pjscontroller"/>
-      </Item6>
-      <Item7>
-        <Filename Value="frmpas2jswebservers.pp"/>
-        <UnitName Value="frmpas2jswebservers"/>
-      </Item7>
-      <Item8>
-        <Filename Value="strpas2jsdesign.pp"/>
-        <UnitName Value="strpas2jsdesign"/>
-      </Item8>
-      <Item9>
-        <Filename Value="pjsprojectoptions.pp"/>
-        <UnitName Value="pjsprojectoptions"/>
-      </Item9>
-      <Item10>
         <Filename Value="avr_ide_options.pas"/>
         <UnitName Value="AVR_IDE_Options"/>
-      </Item10>
-      <Item11>
+      </Item2>
+      <Item3>
         <Filename Value="avr_project_options.pas"/>
-        <UnitName Value="avr_project_options"/>
-      </Item11>
-      <Item12>
-        <Filename Value="avr_project_options.pas"/>
-        <UnitName Value="avr_project_options"/>
-      </Item12>
+        <UnitName Value="AVR_Project_Options"/>
+      </Item3>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

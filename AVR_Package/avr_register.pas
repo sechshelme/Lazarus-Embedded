@@ -1,4 +1,4 @@
-unit PJSDsgnRegister;
+unit AVR_Register;
 
 {$mode objfpc}{$H+}
 
@@ -7,34 +7,17 @@ interface
 uses
   Classes, SysUtils,
   // LCL
-  Forms, Controls, StdCtrls,
+  Forms, Controls, StdCtrls, Dialogs,   ExtCtrls,
   // LazUtils
   LazLoggerBase,
   // IdeIntf
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf,
-  // Pas2js
-  PJSDsgnOptions, PJSDsgnOptsFrame,
 
+  // AVR
   AVR_IDE_Options, AVR_Project_Options;
-
-const
-  ProjDescNamePas2JSWebApp = 'Web Application';
-  ProjDescNamePas2JSNodeJSApp = 'NodeJS Application';
 
 
 type
-
-  { TProjectPas2JSWebApp }
-  TBrowserApplicationOption = (baoCreateHtml,        // Create template HTML page
-    baoMaintainHTML,      // Maintain the template HTML page
-    baoRunOnReady,        // Run in document.onReady
-    baoUseBrowserApp,     // Use browser app object
-    baoUseBrowserConsole, // use browserconsole unit to display Writeln()
-    baoStartServer,       // Start simple server
-    baoUseURL             // Use this URL to run/show project in browser
-    );
-  TBrowserApplicationOptions = set of TBrowserApplicationOption;
-
   { TProjectAVRApp }
 
   TProjectAVRApp = class(TProjectDescriptor)
@@ -47,15 +30,10 @@ type
     function DoInitDescriptor: TModalResult; override;
   end;
 
-
-
-
 var
   AVROptionsFrameID: integer = 1000;
-  JSOptionsFrameID: integer = 1001;
 
 const
-  // Position in project options dialog.
   AVROptionsIndex = ProjectOptionsMisc + 100;
 
 procedure Register;
@@ -63,40 +41,35 @@ procedure Register;
 implementation
 
 uses
-  frmpas2jswebservers,
-  pjsprojectoptions,
-  pjscontroller, strpas2jsdesign, MenuIntf;
+  MenuIntf;
 
 procedure ShowServerDialog(Sender: TObject);
+var
+  f:TForm;
 begin
-  TPasJSWebserverProcessesForm.Instance.Show;
-  TPasJSWebserverProcessesForm.Instance.BringToFront;
+  f:=TForm.Create(nil);
+  f.Show;
+  f.Color:=$FF00;
 end;
 
 procedure Register;
 
 begin
-  PJSOptions := TPas2jsOptions.Create;
-  PJSOptions.Load;
-
-  TPJSController.Instance.Hook;
   // === AVR
 
   AVR_Options:=TAVR_Options.Create;
   AVR_Options.Load;
 
   RegisterProjectDescriptor(TProjectAVRApp.Create);
-  // add IDE options frame
+
+  // IDE Option
   AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment, TAVR_IDE_Options_Frame,  AVROptionsFrameID)^.Index;
+
+  // Project Option
   RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
-
-  // add IDE options frame
-//  AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment, TPas2jsOptionsFrame,  JSOptionsFrameID)^.Index;
-//  RegisterIdeMenuCommand(itmViewDebugWindows, 'Pas2JSWebservers', SPasJSWebserversCaption, nil, @ShowServerDialog);
-
-  // Add project options frame
-//  RegisterIDEOptionsEditor(GroupProject, TPas2JSProjectOptionsFrame, AVROptionsIndex);
+  // Menu
+  RegisterIdeMenuCommand(itmViewDebugWindows, 'Serial Monitor', 'Serial Monitor', nil, @ShowServerDialog);
 end;
 
 { TProjectAVRApp }
