@@ -18,7 +18,7 @@
     <Description Value="Add AVR-Project"/>
     <License Value="GPL-2"/>
     <Version Release="1"/>
-    <Files Count="10">
+    <Files Count="12">
       <Item1>
         <Filename Value="pjsdsgnregister.pas"/>
         <HasRegisterProc Value="True"/>
@@ -58,8 +58,16 @@
       </Item9>
       <Item10>
         <Filename Value="avr_ide_options.pas"/>
-        <UnitName Value="avr_ide_options"/>
+        <UnitName Value="AVR_IDE_Options"/>
       </Item10>
+      <Item11>
+        <Filename Value="avr_project_options.pas"/>
+        <UnitName Value="avr_project_options"/>
+      </Item11>
+      <Item12>
+        <Filename Value="avr_project_options.pas"/>
+        <UnitName Value="avr_project_options"/>
+      </Item12>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

@@ -36,6 +36,7 @@ type
     procedure CBMaintainHTMLFileChange(Sender: TObject);
     procedure CBUseHTTPServerChange(Sender: TObject);
     procedure CBWebProjectChange(Sender: TObject);
+    procedure FrameClick(Sender: TObject);
     procedure RBStartServerAtChange(Sender: TObject);
     procedure RBUseURLChange(Sender: TObject);
   private
@@ -146,6 +147,11 @@ end;
 procedure TPas2JSProjectOptionsFrame.CBWebProjectChange(Sender: TObject);
 begin
   CheckAllControls(CBWebProject.Checked);
+end;
+
+procedure TPas2JSProjectOptionsFrame.FrameClick(Sender: TObject);
+begin
+
 end;
 
 procedure TPas2JSProjectOptionsFrame.RBStartServerAtChange(Sender: TObject);

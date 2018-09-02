@@ -32,9 +32,9 @@ var
 type
 
 
-  { TAVR_Options_Frame }
+  { TAVR_IDE_Options_Frame }
 
-  TAVR_Options_Frame = class(TAbstractIDEOptionsEditor)
+  TAVR_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
     ComboBox1: TComboBox;
     Label1: TLabel;
   private
@@ -93,30 +93,30 @@ begin
   Modified := False;
 end;
 
-{ TAVR_Options_Frame }
+{ TAVR_IDE_Options_Frame }
 
-function TAVR_Options_Frame.GetTitle: string;
+function TAVR_IDE_Options_Frame.GetTitle: string;
 begin
   Result := 'AVR Optionen';
 end;
 
-procedure TAVR_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
+procedure TAVR_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
   ComboBox1.Text := '/usr/bin/avrdude';
 end;
 
-procedure TAVR_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
+procedure TAVR_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 begin
   SetComboBoxText(ComboBox1, AVR_Options.avrdudePfad, cstFilename, 30);
 end;
 
-procedure TAVR_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
+procedure TAVR_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
 begin
   AVR_Options.avrdudePfad := ComboBox1.Text;
   AVR_Options.Save;
 end;
 
-class function TAVR_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
+class function TAVR_IDE_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
 begin
   Result:=IDEEditorGroups.GetByIndex(GroupEnvironment)^.GroupClass;
   //Result := TAbstractIDEProjectOptions;

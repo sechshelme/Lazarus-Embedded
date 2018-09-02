@@ -1,4 +1,4 @@
-object AVR_Options_Frame: TAVR_Options_Frame
+object AVR_IDE_Options_Frame: TAVR_IDE_Options_Frame
   Left = 0
   Height = 240
   Top = 0

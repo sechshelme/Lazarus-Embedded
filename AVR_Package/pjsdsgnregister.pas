@@ -15,7 +15,7 @@ uses
   // Pas2js
   PJSDsgnOptions, PJSDsgnOptsFrame,
 
-  AVR_IDE_Options;
+  AVR_IDE_Options, AVR_Project_Options;
 
 const
   ProjDescNamePas2JSWebApp = 'Web Application';
@@ -56,7 +56,7 @@ var
 
 const
   // Position in project options dialog.
-  Pas2JSOptionsIndex = ProjectOptionsMisc + 100;
+  AVROptionsIndex = ProjectOptionsMisc + 100;
 
 procedure Register;
 
@@ -87,7 +87,8 @@ begin
 
   RegisterProjectDescriptor(TProjectAVRApp.Create);
   // add IDE options frame
-  AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment, TAVR_Options_Frame,  AVROptionsFrameID)^.Index;
+  AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment, TAVR_IDE_Options_Frame,  AVROptionsFrameID)^.Index;
+  RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
 
   // add IDE options frame
@@ -95,7 +96,7 @@ begin
 //  RegisterIdeMenuCommand(itmViewDebugWindows, 'Pas2JSWebservers', SPasJSWebserversCaption, nil, @ShowServerDialog);
 
   // Add project options frame
-  RegisterIDEOptionsEditor(GroupProject, TPas2JSProjectOptionsFrame, Pas2JSOptionsIndex);
+//  RegisterIDEOptionsEditor(GroupProject, TPas2JSProjectOptionsFrame, AVROptionsIndex);
 end;
 
 { TProjectAVRApp }

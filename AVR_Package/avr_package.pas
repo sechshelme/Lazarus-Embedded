@@ -11,7 +11,7 @@ uses
   PJSDsgnRegister, PJSDsgnOptsFrame, frmpas2jsbrowserprojectoptions, 
   PJSDsgnOptions, frmpas2jsnodejsprojectoptions, pjscontroller, 
   frmpas2jswebservers, strpas2jsdesign, pjsprojectoptions, AVR_IDE_Options, 
-  LazarusPackageIntf;
+  AVR_Project_Options, LazarusPackageIntf;
 
 implementation
 

@@ -1,0 +1,19 @@
+object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
+  TabOrder = 0
+  DesignLeft = 532
+  DesignTop = 494
+  object Label1: TLabel
+    Left = 48
+    Height = 17
+    Top = 48
+    Width = 37
+    Caption = 'Label1'
+    ParentColor = False
+  end
+end
