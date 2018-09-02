@@ -43,7 +43,7 @@
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="AVR5"/>
+      <TargetProcessor Value="AVR25"/>
       <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>
@@ -53,9 +53,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATMEGA328P"/>
+      <CustomOptions Value="-WpATTINY2313A
+-al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -patmega328p -cusbasp -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -pattiny2313 -cusbasp -Uflash:w:Project1.hex:i "/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

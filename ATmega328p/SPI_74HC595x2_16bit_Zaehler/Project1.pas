@@ -4,7 +4,7 @@ program Project1;
 
 type
   TSPIGPIO = bitpacked record
-    p0, p1, SlaveSelect, DataOut, DataIn, Clock, p6, p7: boolean;
+    p0, p1, SlaveSelect, MOSI, MISO, Clock, p6, p7: boolean;
   end;
 
 var
@@ -19,7 +19,7 @@ var
     SPI_Port.SlaveSelect := False;
     for j := 0 to len - 1 do begin
       for i := 7 downto 0 do begin
-        SPI_Port.DataOut := (p[j] and (1 shl i)) <> 0;
+        SPI_Port.MOSI := (p[j] and (1 shl i)) <> 0;
 
         SPI_Port.Clock := True;
         SPI_Port.Clock := False;
@@ -45,7 +45,7 @@ var
 var
   z: UInt16 = 0;
 begin
-  SPI_DDR.DataOut := True;
+  SPI_DDR.MOSI := True;
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
 

@@ -25,7 +25,7 @@ const
 
 type
   TSPIGPIO = bitpacked record
-    p0, p1, SlaveSelect, DataOut, DataIn, Clock, p6, p7: boolean;
+    p0, p1, SlaveSelect, MOSI, MISO, Clock, p6, p7: boolean;
   end;
 
 var
@@ -72,7 +72,7 @@ end;
 
 
 begin
-  SPI_DDR.DataOut := True;
+  SPI_DDR.MOSI := True;
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
 

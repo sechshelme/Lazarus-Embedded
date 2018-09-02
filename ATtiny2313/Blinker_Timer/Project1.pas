@@ -3,16 +3,6 @@ program Project1;
 uses
   intrinsics;
 
-  //procedure cli; assembler; inline; // Interrupt aus
-  //asm
-  //         Cli
-  //end;
-  //
-  //procedure sei; assembler; inline; // Interrupt ein
-  //asm
-  //         Sei
-  //end;
-
   procedure Timer0_Interrupt; public Name 'TIMER0_COMPA_ISR'; interrupt;
   const
     t = 10;         // LED sollte nur bei jedem 10. Durchlauf umschalten.
