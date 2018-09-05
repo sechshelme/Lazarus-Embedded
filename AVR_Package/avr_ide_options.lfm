@@ -6,24 +6,40 @@ object AVR_IDE_Options_Frame: TAVR_IDE_Options_Frame
   ClientHeight = 240
   ClientWidth = 320
   TabOrder = 0
-  DesignLeft = 410
-  DesignTop = 643
+  DesignLeft = 658
+  DesignTop = 626
   object Label1: TLabel
-    Left = 24
+    Left = 16
     Height = 17
-    Top = 16
+    Top = 24
     Width = 79
     Caption = 'AVRdude-Pfad'
     ParentColor = False
   end
-  object ComboBox1: TComboBox
-    Left = 24
+  object ComboBoxAVRdude: TComboBox
+    Left = 16
     Height = 29
-    Top = 48
+    Top = 56
     Width = 280
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 0
-    Text = '/usr/bin/avrdude'
+  end
+  object ComboBoxAVRdudeConf: TComboBox
+    Left = 16
+    Height = 29
+    Top = 136
+    Width = 280
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
+    TabOrder = 1
+  end
+  object Label2: TLabel
+    Left = 20
+    Height = 17
+    Top = 104
+    Width = 119
+    Caption = 'AVRdude-Config-Pfad'
+    ParentColor = False
   end
 end

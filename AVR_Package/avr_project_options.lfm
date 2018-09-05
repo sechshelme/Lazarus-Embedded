@@ -1,35 +1,83 @@
 object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   Left = 0
-  Height = 240
+  Height = 404
   Top = 0
-  Width = 320
-  ClientHeight = 240
-  ClientWidth = 320
+  Width = 396
+  ClientHeight = 404
+  ClientWidth = 396
   TabOrder = 0
-  DesignLeft = 532
-  DesignTop = 494
+  DesignLeft = 576
+  DesignTop = 317
   object Label1: TLabel
-    Left = 48
+    Left = 16
     Height = 17
-    Top = 48
-    Width = 37
-    Caption = 'Label1'
+    Top = 189
+    Width = 138
+    Caption = 'Serial-Monitor COM-Port'
     ParentColor = False
   end
-  object Edit1: TEdit
-    Left = 40
+  object SerialMonitorPort_ComboBox: TComboBox
+    Left = 16
     Height = 29
-    Top = 88
-    Width = 80
+    Top = 213
+    Width = 365
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
     TabOrder = 0
-    Text = 'Edit1'
+    Text = 'SerialMonitorPort_ComboBox'
   end
-  object Edit2: TEdit
-    Left = 40
+  object Label2: TLabel
+    Left = 16
+    Height = 17
+    Top = 261
+    Width = 29
+    Caption = 'Baud'
+    ParentColor = False
+  end
+  object SerialMonitorBaud_ComboBox: TComboBox
+    Left = 16
     Height = 29
-    Top = 144
-    Width = 80
+    Top = 285
+    Width = 365
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
     TabOrder = 1
-    Text = 'Edit2'
+    Text = 'SerialMonitorBaud_ComboBox'
+  end
+  object Label3: TLabel
+    Left = 64
+    Height = 17
+    Top = 360
+    Width = 37
+    Caption = 'Label3'
+    ParentColor = False
+  end
+  object avrdude_ComboBox1: TComboBox
+    Left = 16
+    Height = 29
+    Top = 56
+    Width = 365
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
+    TabOrder = 2
+    Text = 'avrdude_ComboBox1'
+  end
+  object Label4: TLabel
+    Left = 29
+    Height = 17
+    Top = 32
+    Width = 88
+    Caption = 'AVRdude Aufruf'
+    ParentColor = False
+  end
+  object Memo1: TMemo
+    Left = 176
+    Height = 90
+    Top = 96
+    Width = 150
+    Lines.Strings = (
+      'Memo1'
+    )
+    TabOrder = 3
   end
 end
