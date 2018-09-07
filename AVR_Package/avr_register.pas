@@ -35,7 +35,8 @@ var
 
 
 const
-  AVROptionsIndex = ProjectOptionsMisc + 100;
+  //  AVROptionsIndex = ProjectOptionsMisc + 100;
+  AVROptionsIndex = 50;
 
 procedure Register;
 
@@ -54,17 +55,19 @@ begin
   Randomize;
   f.Color := Random($FFFFFF);
 
-    LazProject := LazarusIDE.ActiveProject;
+  LazProject := LazarusIDE.ActiveProject;
 
-  ProjectOptions.CompilerSettings:=IntToStr(f.Color);
+  ProjectOptions.CompilerSettings := IntToStr(f.Color);
   ProjectOptions.Save(LazProject);
+
+  //  ProjectOptions.SaveAfter( LazProject.MainFile.Filename, '-test');
+  ProjectOptions.SaveAfter('/n4800/avr_test/Project1.lpi', '-test');
+
 end;
 
 procedure Register;
 
 begin
-  // === AVR
-
   AVR_Options := TAVR_Options.Create;
   AVR_Options.Load;
 
@@ -79,7 +82,7 @@ begin
   RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
   // Menu
-//  RegisterIdeMenuCommand(itmViewDebugWindows, 'Serial Monitor', 'Serial Monitor', nil, @ShowServerDialog);
+  //  RegisterIdeMenuCommand(itmViewDebugWindows, 'Serial Monitor', 'Serial Monitor', nil, @ShowServerDialog);
   RegisterIdeMenuCommand(mnuProject, 'Serial Monitor', 'Serial Monitor', nil, @ShowServerDialog);
 end;
 
@@ -143,9 +146,11 @@ begin
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
 
-  AProject.LazCompilerOptions.CompilerPath:='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-  AProject.LazCompilerOptions.BuildMacros.Add('bbbbbbbbbbbbbbbbbbbbbbb');
+  AProject.LazCompilerOptions.CompilerPath := 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+  //  AProject.LazCompilerOptions.SetAlternativeCompile('bbbbbbbbbbbbbbbbbbbbbbb', True);
+  AProject.LazCompilerOptions.SetAlternativeCompile('vorher', True);
 
+  //  ProjectOptions.SaveAfter( AProject.MainFile.Filename, '-test');
 
 
   ProjectOptions.Save(AProject);

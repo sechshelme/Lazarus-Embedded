@@ -6,7 +6,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
-  LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
+  LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, IDEExternToolIntf,
+
+  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
+
   AVR_IDE_Options;
 
 const
@@ -23,6 +26,8 @@ type
     SerialMonitorPort,
     SerialMonitorBaud: string;
     procedure Save(AProject: TLazProject);
+
+    function SaveAfter(const APathToLPI, ACommand: string): boolean;
   end;
 
 var
@@ -50,26 +55,11 @@ type
     procedure ReadSettings(AOptions: TAbstractIDEOptions); override;
     procedure WriteSettings(AOptions: TAbstractIDEOptions); override;
     class function SupportedOptionsClass: TAbstractIDEOptionsClass; override;
-
-    //    class procedure Save(AProject: TLazProject);
   end;
 
 implementation
 
 {$R *.lfm}
-
-procedure ShowLazProject(AProject: TLazProject);
-var
-  sl: TStringList;
-begin
-  sl := TStringList.Create;
-
-  sl.Add(AProject.LazCompilerOptions.CustomOptions);
-
-  ShowMessage(sl.Text);
-
-  sl.Free;
-end;
 
 { TProjectOptions }
 
@@ -81,6 +71,29 @@ begin
   AProject.LazCompilerOptions.CustomOptions := ProjectOptions.CompilerSettings;
 end;
 
+function TProjectOptions.SaveAfter(const APathToLPI, ACommand: string): boolean;
+var
+  XML: TXMLConfig;
+begin
+  ShowMessage('pfad: ' + APathToLPI);
+
+  Result := False;
+  if not FileExists(APathToLPI) then begin
+    ShowMessage('nicht gefunden');
+  end;
+  Exit;
+  XML := TXMLConfig.Create(APathToLPI);
+  try
+    try
+      XML.SetValue('CompilerOptions/Other/ExecuteAfter/Command/Value', ACommand);
+      XML.Flush;
+      Result := True;
+    except
+    end;
+  finally
+    XML.Free;
+  end;
+end;
 
 { TAVR_Project_Options_Frame }
 
@@ -108,14 +121,9 @@ begin
   SerialMonitorBaud_ComboBox.Text := ProjectOptions.SerialMonitorBaud;
   Memo1.Text := ProjectOptions.CompilerSettings;
 
-  //  ShowLazProject(LazProject);
-
   //  avrdude_ComboBox1.Text:=LazProject.;
 
   Label3.Caption := AVR_Options.avrdudePfad;
-
-
-//  LazProject.befor;
 end;
 
 procedure TAVR_Project_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
