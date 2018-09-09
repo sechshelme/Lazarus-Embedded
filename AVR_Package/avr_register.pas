@@ -139,7 +139,6 @@ begin
 
 
   AProject.LazCompilerOptions.CompilerPath := 'Compiler Pfad';
-
   AProject.LazCompilerOptions.SetAlternativeCompile('Vorher...', True);
   AProject.LazCompilerOptions.SetAlternativeCompile('Nachher... mit avrdude', True, True);
 

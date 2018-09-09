@@ -24,10 +24,10 @@ begin
 end;
 
 // neu
-    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After:Boolen); override;
+    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After:Boolean); override;
 .....
 procedure TBaseCompilerOptions.SetAlternativeCompile(const Command: string;
-  ScanFPCMsgs: boolean; After: Boolen);
+  ScanFPCMsgs: boolean; After: Boolean);
 begin
   CompilerPath:='';
 
