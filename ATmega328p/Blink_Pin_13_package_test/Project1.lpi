@@ -27,7 +27,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <LaunchingApplication Use="True" PathPlusParams="/usr/bin/xterm"/>
+        <LaunchingApplication Use="True" PathPlusParams="/usr/bin/xterm -e &quot;ls / -R&quot;"/>
       </local>
     </RunParams>
     <Units Count="1">
@@ -60,7 +60,6 @@
       <CustomOptions Value="-WpATMEGA328P
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

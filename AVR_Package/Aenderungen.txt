@@ -1,0 +1,71 @@
+// === Lazarus 1.9.0 r58920M ===
+
+// components/ideintf/compoptsintf.pas: Zeile 454
+// alt
+    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean); virtual; abstract; // disable normal compile and call this instead
+// neu
+    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After: Boolean = False); virtual; abstract; // disable normal compile and call this instead
+
+
+// ide/compileroptions.pp: Zeile 499 + 3695
+
+// alt
+    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean); override;
+.....
+procedure TBaseCompilerOptions.SetAlternativeCompile(const Command: string;
+  ScanFPCMsgs: boolean);
+begin
+  CompilerPath:='';
+  ExecuteBefore.Command:=Command;
+  if ScanFPCMsgs then
+    ExecuteBefore.Parsers.Text:=SubToolFPC+LineEnding+SubToolMake
+  else
+    ExecuteBefore.Parsers.Clear;
+end;
+
+// neu
+    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After:Boolen); override;
+.....
+procedure TBaseCompilerOptions.SetAlternativeCompile(const Command: string;
+  ScanFPCMsgs: boolean; After: Boolen);
+begin
+  CompilerPath:='';
+
+  if After then begin
+    ExecuteAfter.Command:=Command;
+    if ScanFPCMsgs then
+      ExecuteAfter.Parsers.Text := SubToolFPC + LineEnding + SubToolMake
+    else
+      ExecuteAfter.Parsers.Clear;
+  end else begin
+    ExecuteBefore.Command:=Command;
+    if ScanFPCMsgs then
+      ExecuteBefore.Parsers.Text := SubToolFPC + LineEnding + SubToolMake
+    else
+      ExecuteBefore.Parsers.Clear;
+  end;
+end;
+
+// ide/project.pp: Zeile 551 + 6255
+
+// alt
+    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean); override;
+.....
+procedure TProjectCompilerOptions.SetAlternativeCompile(const Command: string;
+  ScanFPCMsgs: boolean);
+begin
+  inherited SetAlternativeCompile(Command, ScanFPCMsgs);
+  CompileReasons:=[];
+end;
+
+// neu
+    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After:Boolean); override;
+.....
+procedure TProjectCompilerOptions.SetAlternativeCompile(const Command: string;
+  ScanFPCMsgs: boolean; After: Boolean);
+begin
+  inherited SetAlternativeCompile(Command, ScanFPCMsgs, After);
+  CompileReasons:=[];
+end;
+
+

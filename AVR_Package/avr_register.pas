@@ -16,7 +16,6 @@ uses
   // AVR
   AVR_IDE_Options, AVR_Project_Options;
 
-
 type
   { TProjectAVRApp }
 
@@ -76,14 +75,16 @@ begin
   RegisterProjectDescriptor(TProjectAVRApp.Create);
 
   // IDE Option
-  AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment, TAVR_IDE_Options_Frame, AVROptionsFrameID)^.Index;
+  AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment,
+    TAVR_IDE_Options_Frame, AVROptionsFrameID)^.Index;
 
   // Project Option
   RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
   // Menu
   //  RegisterIdeMenuCommand(itmViewDebugWindows, 'Serial Monitor', 'Serial Monitor', nil, @ShowServerDialog);
-  RegisterIdeMenuCommand(mnuProject, 'Serial Monitor', 'Serial Monitor', nil, @ShowServerDialog);
+  RegisterIdeMenuCommand(mnuProject, 'Serial Monitor', 'Serial Monitor',
+    nil, @ShowServerDialog);
 end;
 
 { TProjectAVRApp }
@@ -107,22 +108,12 @@ end;
 
 function TProjectAVRApp.InitProject(AProject: TLazProject): TModalResult;
 const
-  ProjectText = 'program Project1;' + LineEnding +
-    LineEnding +
-    '{$H-}' + LineEnding +
-    '{$O-}' + LineEnding +
-    LineEnding +
-    'uses' + LineEnding +
-    '  intrinsics;' + LineEnding +
-    LineEnding +
-    'begin' + LineEnding +
-    '  // Setup' + LineEnding +
-    '  repeat' + LineEnding +
-    '    // Loop;' + LineEnding +
-    '  until 1 = 2;' + LineEnding +
-    'end;' + LineEnding +
-    LineEnding +
-    'end.';
+  ProjectText = 'program Project1;' + LineEnding + LineEnding +
+    '{$H-}' + LineEnding + '{$O-}' + LineEnding + LineEnding +
+    'uses' + LineEnding + '  intrinsics;' + LineEnding + LineEnding +
+    'begin' + LineEnding + '  // Setup' + LineEnding + '  repeat' +
+    LineEnding + '    // Loop;' + LineEnding + '  until 1 = 2;' +
+    LineEnding + 'end;' + LineEnding + LineEnding + 'end.';
 
 var
   MainFile: TLazProjectFile;
@@ -139,19 +130,18 @@ begin
   AProject.MainFileID := 0;
 
   AProject.LazCompilerOptions.Win32GraphicApp := False;
-  AProject.LazCompilerOptions.UnitOutputDirectory := 'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
+  AProject.LazCompilerOptions.UnitOutputDirectory :=
+    'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
 
   AProject.LazCompilerOptions.TargetCPU := 'avr';
   AProject.LazCompilerOptions.TargetOS := 'embedded';
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
 
-  AProject.LazCompilerOptions.CompilerPath := 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
-  //  AProject.LazCompilerOptions.SetAlternativeCompile('bbbbbbbbbbbbbbbbbbbbbbb', True);
-  AProject.LazCompilerOptions.SetAlternativeCompile('vorher', True);
+  AProject.LazCompilerOptions.CompilerPath := 'Compiler Pfad';
 
-  //  ProjectOptions.SaveAfter( AProject.MainFile.Filename, '-test');
-
+  AProject.LazCompilerOptions.SetAlternativeCompile('Vorher...', True);
+  AProject.LazCompilerOptions.SetAlternativeCompile('Nachher... mit avrdude', True, True);
 
   ProjectOptions.Save(AProject);
 
@@ -164,8 +154,8 @@ end;
 
 function TProjectAVRApp.CreateStartFiles(AProject: TLazProject): TModalResult;
 begin
-  Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename, -1, -1,
-    [ofProjectLoading, ofRegularFile]);
+  Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename,
+    -1, -1, [ofProjectLoading, ofRegularFile]);
 end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
@@ -179,7 +169,8 @@ begin
   Form.Position := poDesktopCenter;
 
   Frame := TAVR_Project_Options_Frame.Create(Form);
-  with Frame do begin
+  with Frame do
+  begin
     Anchors := [akTop, akLeft, akRight];
     Parent := Form;
 
@@ -188,7 +179,8 @@ begin
   end;
 
   OkButton := TButton.Create(Form);
-  with OkButton do begin
+  with OkButton do
+  begin
     Left := 30;
     Top := Form.Height - 30;
     Anchors := [akTop, akLeft];
@@ -199,12 +191,12 @@ begin
 
   Frame.SerialMonitorPort_ComboBox.Text := '/dev/ttyUSB0';
   Frame.SerialMonitorBaud_ComboBox.Text := '9600';
-  Frame.Memo1.Text := '-WpATMEGA328P' + LineEnding +
-    '-al';
+  Frame.Memo1.Text := '-WpATMEGA328P' + LineEnding + '-al';
 
   Result := Form.ShowModal;
 
-  if Result = mrOk then begin
+  if Result = mrOk then
+  begin
     ProjectOptions.SerialMonitorPort := Frame.SerialMonitorPort_ComboBox.Text;
     ProjectOptions.SerialMonitorBaud := Frame.SerialMonitorBaud_ComboBox.Text;
 
