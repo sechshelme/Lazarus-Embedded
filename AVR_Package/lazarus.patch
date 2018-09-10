@@ -1,0 +1,91 @@
+diff -up fpcupdeluxe_avrpackage_original/lazarus/components/ideintf/compoptsintf.pas fpcupdeluxe_avrpackage/lazarus/components/ideintf/compoptsintf.pas
+--- fpcupdeluxe_avrpackage_original/lazarus/components/ideintf/compoptsintf.pas	2018-09-10 18:15:26.506559000 +0200
++++ fpcupdeluxe_avrpackage/lazarus/components/ideintf/compoptsintf.pas	2018-09-10 18:36:05.387209507 +0200
+@@ -451,7 +451,7 @@ type
+ 
+     // execute
+     property CompilerPath: String read GetCompilerPath write SetCompilerPath;
+-    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean); virtual; abstract; // disable normal compile and call this instead
++    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After: Boolean = False); virtual; abstract; // disable normal compile and call this instead
+   end;
+ 
+ implementation
+Gemeinsame Unterverzeichnisse: fpcupdeluxe_avrpackage_original/lazarus/components/ideintf/docs und fpcupdeluxe_avrpackage/lazarus/components/ideintf/docs.
+Gemeinsame Unterverzeichnisse: fpcupdeluxe_avrpackage_original/lazarus/components/ideintf/images und fpcupdeluxe_avrpackage/lazarus/components/ideintf/images.
+Gemeinsame Unterverzeichnisse: fpcupdeluxe_avrpackage_original/lazarus/components/ideintf/languages und fpcupdeluxe_avrpackage/lazarus/components/ideintf/languages.
+Gemeinsame Unterverzeichnisse: fpcupdeluxe_avrpackage_original/lazarus/components/ideintf/units und fpcupdeluxe_avrpackage/lazarus/components/ideintf/units.
+diff -up fpcupdeluxe_avrpackage_original/lazarus/ide/compileroptions.pp fpcupdeluxe_avrpackage/lazarus/ide/compileroptions.pp
+--- fpcupdeluxe_avrpackage_original/lazarus/ide/compileroptions.pp	2018-09-10 18:15:32.050603000 +0200
++++ fpcupdeluxe_avrpackage/lazarus/ide/compileroptions.pp	2018-09-10 18:37:30.035699518 +0200
+@@ -496,7 +496,7 @@ type
+     function CreateDiff(CompOpts: TBaseCompilerOptions;
+                         Tool: TCompilerDiffTool = nil): boolean; virtual;// true if differ
+ 
+-    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean); override;
++    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After:Boolean); override;
+ 
+     function MakeOptionsString(Flags: TCompilerCmdLineOptions): String; virtual;
+     function GetSyntaxOptionsString(Kind: TPascalCompiler): string; virtual;
+@@ -3693,14 +3693,23 @@ begin
+ end;
+ 
+ procedure TBaseCompilerOptions.SetAlternativeCompile(const Command: string;
+-  ScanFPCMsgs: boolean);
++  ScanFPCMsgs: boolean; After: Boolean);
+ begin
+   CompilerPath:='';
+-  ExecuteBefore.Command:=Command;
+-  if ScanFPCMsgs then
+-    ExecuteBefore.Parsers.Text:=SubToolFPC+LineEnding+SubToolMake
+-  else
+-    ExecuteBefore.Parsers.Clear;
++
++  if After then begin
++    ExecuteAfter.Command:=Command;
++    if ScanFPCMsgs then
++      ExecuteAfter.Parsers.Text := SubToolFPC + LineEnding + SubToolMake
++    else
++      ExecuteAfter.Parsers.Clear;
++  end else begin
++    ExecuteBefore.Command:=Command;
++    if ScanFPCMsgs then
++      ExecuteBefore.Parsers.Text := SubToolFPC + LineEnding + SubToolMake
++    else
++      ExecuteBefore.Parsers.Clear;
++  end;
+ end;
+ 
+ 
+Gemeinsame Unterverzeichnisse: fpcupdeluxe_avrpackage_original/lazarus/ide/frames und fpcupdeluxe_avrpackage/lazarus/ide/frames.
+Gemeinsame Unterverzeichnisse: fpcupdeluxe_avrpackage_original/lazarus/ide/include und fpcupdeluxe_avrpackage/lazarus/ide/include.
+diff -up fpcupdeluxe_avrpackage_original/lazarus/ide/project.pp fpcupdeluxe_avrpackage/lazarus/ide/project.pp
+--- fpcupdeluxe_avrpackage_original/lazarus/ide/project.pp	2018-09-10 18:15:32.930610000 +0200
++++ fpcupdeluxe_avrpackage/lazarus/ide/project.pp	2018-09-10 19:54:31.664725965 +0200
+@@ -548,7 +548,7 @@ type
+     function CreateDiff(CompOpts: TBaseCompilerOptions;
+                         Tool: TCompilerDiffTool = nil): boolean; override; // true if differ
+     procedure InvalidateOptions;
+-    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean); override;
++    procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean; After:Boolean); override;  
+   public
+     property LazProject: TProject read FProject;
+     property BuildMode: TProjectBuildMode read FBuildMode;
+@@ -6252,9 +6252,9 @@ begin
+ end;
+ 
+ procedure TProjectCompilerOptions.SetAlternativeCompile(const Command: string;
+-  ScanFPCMsgs: boolean);
++  ScanFPCMsgs: boolean; After: Boolean);
+ begin
+-  inherited SetAlternativeCompile(Command, ScanFPCMsgs);
++  inherited SetAlternativeCompile(Command, ScanFPCMsgs, After);
+   CompileReasons:=[];
+ end;
+ 
+diff -up fpcupdeluxe_avrpackage_original/lazarus/ide/revision.inc fpcupdeluxe_avrpackage/lazarus/ide/revision.inc
+--- fpcupdeluxe_avrpackage_original/lazarus/ide/revision.inc	2018-09-10 18:17:13.987416000 +0200
++++ fpcupdeluxe_avrpackage/lazarus/ide/revision.inc	2018-09-10 18:42:04.241454879 +0200
+@@ -1,2 +1,2 @@
+ // Created by Svn2RevisionInc
+-const RevisionStr = '58931';
++const RevisionStr = '58931M';

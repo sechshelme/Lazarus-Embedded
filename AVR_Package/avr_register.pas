@@ -143,7 +143,14 @@ begin
 
 //  AProject.LazCompilerOptions.CompilerPath := 'Compiler Pfad';
 //  AProject.LazCompilerOptions.SetAlternativeCompile('Vorher...', True);
-  AProject.LazCompilerOptions.SetAlternativeCompile('avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i', True, True);
+//  AProject.LazCompilerOptions.SetAlternativeCompile('avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i', True, True);
+
+AProject.LazCompilerOptions.SetExecuteBeforeCommand('Vorher....');
+AProject.LazCompilerOptions.SetExecuteAfterCommand('Nachher....');
+
+AProject.LazCompilerOptions.SetExecuteBeforeCompileReasons([crCompile]);
+AProject.LazCompilerOptions.SetExecuteAfterCompileReasons([crRun]);
+
 
   ProjectOptions.Save(AProject);
 
