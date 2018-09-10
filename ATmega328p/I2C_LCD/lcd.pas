@@ -109,7 +109,7 @@ const
   var
     i: Integer;
   begin
-    for i := 1 to 4 do asm nop end;
+    for i := 1 to 1000 do asm nop end;
   end;
 
 begin

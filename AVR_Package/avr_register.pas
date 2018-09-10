@@ -137,10 +137,13 @@ begin
   AProject.LazCompilerOptions.TargetOS := 'embedded';
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
+  //  AProject.LazCompilerOptions.ObjectPath:='Project1';
+//    AProject.LazCompilerOptions.Namespaces:='Project1';
 
-  AProject.LazCompilerOptions.CompilerPath := 'Compiler Pfad';
-  AProject.LazCompilerOptions.SetAlternativeCompile('Vorher...', True);
-  AProject.LazCompilerOptions.SetAlternativeCompile('Nachher... mit avrdude', True, True);
+
+//  AProject.LazCompilerOptions.CompilerPath := 'Compiler Pfad';
+//  AProject.LazCompilerOptions.SetAlternativeCompile('Vorher...', True);
+  AProject.LazCompilerOptions.SetAlternativeCompile('avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i', True, True);
 
   ProjectOptions.Save(AProject);
 

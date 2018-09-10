@@ -2,18 +2,23 @@ program Project1;
 
 {$H-}
 
-uses twi, lcd;
+uses
+  twi,
+  lcd;
 
 const
   CPU_Clock = 16000000; // Taktfrequenz Arduino, default 16MHz.
   Baud = 9600;          // Baudrate
 
-procedure Sleep;
-var
-  i: Integer;
-begin
-  for i := 1 to 30000 do asm nop end;
-end;
+  procedure Sleep;
+  var
+    i: integer;
+  begin
+    for i := 1 to 30000 do begin
+      asm
+               Nop end;
+    end;
+  end;
 
 
   // === UART-Schnittstelle
@@ -52,8 +57,9 @@ end;
   end;
 
 var
-  Mylcd:TLCD;
-  p:byte;
+  MyLcd2,
+  Mylcd4: TLCD;
+  p: byte;
 const
   herz: TCharMap = (%00000, %01010, %11111, %11111, %01110, %00100, %00000, %00000);
 
@@ -64,25 +70,39 @@ begin
   asm
            Sei
   end;
+  Mylcd2.Create($3F);
+  Mylcd2.Clear;
 
-  Mylcd.Create($3F);
-  Mylcd.Clear;
-  Mylcd.createChar(3, herz);
+  Mylcd2.setCursor(0, 0);
+  Mylcd2.Write('Hello LCD klein ! ');
+  Mylcd2.setCursor(0, 1);
+  Mylcd2.Write('Hello World !');
 
-  Mylcd.cursor(True);
-  Mylcd.blink(True);
 
-  Mylcd.setCursor(0,0 );
-  Mylcd.Write(#3 +' Hello Doom ! ' + #3);
-  Mylcd.setCursor(0,1 );
-  Mylcd.Write('Hello Welt !');
+  Mylcd4.Create($27);
+  Mylcd4.Clear;
+  Mylcd4.createChar(3, herz);
+
+  Mylcd4.cursor(True);
+  Mylcd4.blink(True);
+
+  Mylcd4.setCursor(0, 0);
+  Mylcd4.Write(#3 + ' Hello LCD gross ! ' + #3);
+  Mylcd4.setCursor(0, 1);
+  Mylcd4.Write('Hello World !');
+  Mylcd4.setCursor(0, 2);
+  Mylcd4.Write('Hello Lazarus !');
+  Mylcd4.setCursor(0, 3);
+  Mylcd4.Write('Hello AVR !');
 
   repeat
-    inc(p);
-    if p > 16 then p := 0;
-    Mylcd.setCursor(p, 1);
+    Inc(p);
+    if p > 16 then begin
+      p := 0;
+    end;
+    //    Mylcd4.setCursor(p, 1);
     Sleep;
     Sleep;
-    UARTSendChar('A');
+    //    UARTSendChar('A');
   until 1 = 2;
 end.
