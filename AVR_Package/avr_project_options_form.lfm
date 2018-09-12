@@ -6,7 +6,6 @@ object ProjectOptionsForm: TProjectOptionsForm
   Caption = 'ProjectOptionsForm'
   ClientHeight = 523
   ClientWidth = 405
-  OnCreate = FormCreate
   LCLVersion = '1.9.0.0'
   object Button1: TButton
     Left = 304
@@ -16,6 +15,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
     ModalResult = 1
+    OnClick = Button1Click
     TabOrder = 0
   end
   inline AVR_Project_Options_Frame1: TAVR_Project_Options_Frame

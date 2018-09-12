@@ -11,10 +11,10 @@ uses
   // LazUtils
   LazLoggerBase,
   // IdeIntf
-  ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf,
+  ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
 
   // AVR
-  AVR_IDE_Options,AVR_Project_Options_Frame, avr_project_options_Form;
+  AVR_IDE_Options, AVR_Project_Options_Frame, avr_project_options_Form;
 
 type
   { TProjectAVRApp }
@@ -32,17 +32,13 @@ type
 var
   AVROptionsFrameID: integer = 1000;
 
-
 const
-  //  AVROptionsIndex = ProjectOptionsMisc + 100;
-  AVROptionsIndex = 50;
+  AVROptionsIndex = ProjectOptionsMisc + 100;
+//  AVROptionsIndex = 50;
 
 procedure Register;
 
 implementation
-
-uses
-  MenuIntf;
 
 procedure ShowAVRDialog(Sender: TObject);
 var
@@ -51,17 +47,15 @@ var
 begin
   f := TProjectOptionsForm.Create(nil);
   f.Show;
-//  Randomize;
-//  f.Color := Random($FFFFFF);
 
   LazProject := LazarusIDE.ActiveProject;
 
-  f.AVR_Project_Options_Frame1.Label3.Caption:= LazProject.LazCompilerOptions.ExecuteBeforeCommand +
-    LineEnding + LazProject.LazCompilerOptions.ExecuteAfterCommand;;
+  f.AVR_Project_Options_Frame1.Label3.Caption :=
+    LazProject.LazCompilerOptions.ExecuteBeforeCommand + LineEnding +
+    LazProject.LazCompilerOptions.ExecuteAfterCommand;
 
-  ProjectOptions.CompilerSettings := IntToStr(f.Color);
+
   ProjectOptions.Save(LazProject);
-
 end;
 
 procedure Register;
@@ -82,7 +76,8 @@ begin
   RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'Serial Monitor', 'Serial Monitor', nil, @ShowAVRDialog);
+  RegisterIdeMenuCommand(mnuProject, 'Serial Monitor', 'Serial Monitor',
+    nil, @ShowAVRDialog);
 end;
 
 { TProjectAVRApp }
@@ -136,17 +131,19 @@ begin
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
   //  AProject.LazCompilerOptions.ObjectPath:='Project1';
-//    AProject.LazCompilerOptions.Namespaces:='Project1';
+  //    AProject.LazCompilerOptions.Namespaces:='Project1';
 
 
-//  AProject.LazCompilerOptions.CompilerPath := 'Compiler Pfad';
-AProject.LazCompilerOptions.ExecuteBeforeCommand := 'Vorher....';
-AProject.LazCompilerOptions.ExecuteAfterCommand:='avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
+  //  AProject.LazCompilerOptions.CompilerPath := 'Compiler Pfad';
+  AProject.LazCompilerOptions.ExecuteBeforeCommand := 'Vorher....';
+  AProject.LazCompilerOptions.ExecuteAfterCommand :=
+    'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
 
 
-//AProject.LazCompilerOptions.SetExecuteBeforeCompileReasons([crCompile]);
-//AProject.LazCompilerOptions.SetExecuteAfterCompileReasons([crRun]);
+  //AProject.LazCompilerOptions.SetExecuteBeforeCompileReasons([crCompile]);
+  //AProject.LazCompilerOptions.SetExecuteAfterCompileReasons([crRun]);
 
+  ProjectOptions.CompilerSettings := '-WpATMEGA328P' + LineEnding + '-al';
   ProjectOptions.Save(AProject);
 
   AProject.MainFile.SetSourceText(ProjectText, True);
@@ -162,53 +159,24 @@ end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
 var
-//  Form: TAVR_Project_Options_Form;
   f: TProjectOptionsForm;
 begin
   f := TProjectOptionsForm.Create(nil);
-//  f.Show;
-//   avr
 
-//  Form := TAVR_Project_Options_Form.Create(nil);
-//  Form.Position := poDesktopCenter;
-//
-//  Frame := TAVR_Project_Options_Frame.Create(Form);
-//  with Frame do  begin
-//    Anchors := [akTop, akLeft, akRight];
-//    Parent := Form;
-//
-//    Form.Width := Width + 130;
-//    Form.ClientHeight := Height + 30;
-//  end;
-  //
-  //OkButton := TButton.Create(Form);
-  //with OkButton do
-  //begin
-  //  Left := 30;
-  //  Top := Form.Height - 30;
-  //  Anchors := [akTop, akLeft];
-  //  Caption := '&Ok';
-  //  ModalResult := mrOk;
-  //  Parent := Form;
-  //end;
-  //
-  //Frame.SerialMonitorPort_ComboBox.Text := '/dev/ttyUSB0';
-  //Frame.SerialMonitorBaud_ComboBox.Text := '9600';
-  //Frame.Memo1.Text := '-WpATMEGA328P' + LineEnding + '-al';
+  with f.AVR_Project_Options_Frame1 do begin
+    SerialMonitorPort_ComboBox.Text := '/dev/ttyUSB0';
+    SerialMonitorBaud_ComboBox.Text := '9600';
+    Memo1.Text := '-WpATMEGA328P' + LineEnding + '-al';
 
-//  Result := Form.ShowModal;
-//
-//  if Result = mrOk then
-//  begin
-//    ProjectOptions.SerialMonitorPort := Frame.SerialMonitorPort_ComboBox.Text;
-//    ProjectOptions.SerialMonitorBaud := Frame.SerialMonitorBaud_ComboBox.Text;
-//
-//    ProjectOptions.CompilerSettings := Frame.Memo1.Text;
-//  end;
+    Result := f.ShowModal;
+    if Result = mrOk then begin
+      ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
+      ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
 
-//  Form.Free;
+      ProjectOptions.CompilerSettings := Memo1.Text;
+    end;
+  end;
 
-  Result:=f.ShowModal;
   f.Free;
 end;
 

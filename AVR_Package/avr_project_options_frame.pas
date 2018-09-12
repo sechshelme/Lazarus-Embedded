@@ -95,8 +95,6 @@ begin
   SerialMonitorBaud_ComboBox.Text := ProjectOptions.SerialMonitorBaud;
   Memo1.Text := ProjectOptions.CompilerSettings;
 
-  //  avrdude_ComboBox1.Text:=LazProject.;
-
   //   Label3.Caption := AVR_Options.avrdudePfad;
 
   Label3.Caption := LazProject.LazCompilerOptions.ExecuteBeforeCommand +

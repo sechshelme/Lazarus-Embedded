@@ -19,8 +19,8 @@ AVR_IDE_Options, AVR_Project_Options_Frame;
     AVR_Project_Options_Frame1: TAVR_Project_Options_Frame;
     Button1: TButton;
     Button2: TButton;
+    procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -34,18 +34,16 @@ implementation
 
 {$R *.lfm}
 
-
-
 { TProjectOptionsForm }
-
-procedure TProjectOptionsForm.FormCreate(Sender: TObject);
-begin
-  Close;
-end;
 
 procedure TProjectOptionsForm.Button2Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TProjectOptionsForm.Button1Click(Sender: TObject);
+begin
+//  Close;
 end;
 
 end.
