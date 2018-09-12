@@ -8,7 +8,8 @@ unit AVR_Package;
 interface
 
 uses
-  AVR_Register, AVR_IDE_Options, AVR_Project_Options, LazarusPackageIntf;
+  AVR_Register, AVR_IDE_Options, avr_project_options_Form, 
+  AVR_Project_Options_Frame, LazarusPackageIntf;
 
 implementation
 

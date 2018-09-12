@@ -1,4 +1,4 @@
-unit AVR_Project_Options;
+unit AVR_Project_Options_Frame;
 
 {$mode objfpc}{$H+}
 
@@ -26,8 +26,6 @@ type
     SerialMonitorPort,
     SerialMonitorBaud: string;
     procedure Save(AProject: TLazProject);
-
-    function SaveAfter(const APathToLPI, ACommand: string): boolean;
   end;
 
 var
@@ -71,31 +69,6 @@ begin
   AProject.LazCompilerOptions.CustomOptions := ProjectOptions.CompilerSettings;
 end;
 
-// Nur Test ???????????
-function TProjectOptions.SaveAfter(const APathToLPI, ACommand: string): boolean;
-var
-  XML: TXMLConfig;
-begin
-  ShowMessage('pfad: ' + APathToLPI);
-
-  Result := False;
-  if not FileExists(APathToLPI) then begin
-    ShowMessage('nicht gefunden');
-  end;
-  Exit;
-  XML := TXMLConfig.Create(APathToLPI);
-  try
-    try
-      XML.SetValue('CompilerOptions/Other/ExecuteAfter/Command/Value', ACommand);
-      XML.Flush;
-      Result := True;
-    except
-    end;
-  finally
-    XML.Free;
-  end;
-end;
-
 { TAVR_Project_Options_Frame }
 
 function TAVR_Project_Options_Frame.GetTitle: string;
@@ -124,7 +97,10 @@ begin
 
   //  avrdude_ComboBox1.Text:=LazProject.;
 
-  Label3.Caption := AVR_Options.avrdudePfad;
+  //   Label3.Caption := AVR_Options.avrdudePfad;
+
+  Label3.Caption := LazProject.LazCompilerOptions.ExecuteBeforeCommand +
+    LineEnding + LazProject.LazCompilerOptions.ExecuteAfterCommand;
 end;
 
 procedure TAVR_Project_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);

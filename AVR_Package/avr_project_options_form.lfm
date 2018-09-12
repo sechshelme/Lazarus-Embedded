@@ -1,0 +1,50 @@
+object ProjectOptionsForm: TProjectOptionsForm
+  Left = 439
+  Height = 523
+  Top = 654
+  Width = 405
+  Caption = 'ProjectOptionsForm'
+  ClientHeight = 523
+  ClientWidth = 405
+  OnCreate = FormCreate
+  LCLVersion = '1.9.0.0'
+  object Button1: TButton
+    Left = 304
+    Height = 25
+    Top = 480
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    ModalResult = 1
+    TabOrder = 0
+  end
+  inline AVR_Project_Options_Frame1: TAVR_Project_Options_Frame
+    Height = 439
+    Width = 405
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ClientHeight = 439
+    ClientWidth = 405
+    TabOrder = 1
+    inherited SerialMonitorPort_ComboBox: TComboBox
+      Width = 374
+    end
+    inherited SerialMonitorBaud_ComboBox: TComboBox
+      Width = 374
+    end
+    inherited avrdude_ComboBox1: TComboBox
+      Width = 374
+    end
+  end
+  object Button2: TButton
+    Left = 200
+    Height = 25
+    Top = 480
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    ModalResult = 2
+    OnClick = Button2Click
+    TabOrder = 2
+  end
+end
