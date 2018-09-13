@@ -21,6 +21,7 @@ type
   { TProjectOptions }
 
   TProjectOptions = class
+    AvrdudeCommand,
     CompilerSettings,
 
     SerialMonitorPort,
@@ -50,8 +51,8 @@ type
   public
     function GetTitle: string; override;
     procedure Setup({%H-}ADialog: TAbstractOptionsEditorDialog); override;
-    procedure ReadSettings(AOptions: TAbstractIDEOptions); override;
-    procedure WriteSettings(AOptions: TAbstractIDEOptions); override;
+    procedure ReadSettings({%H-}AOptions: TAbstractIDEOptions); override;
+    procedure WriteSettings({%H-}AOptions: TAbstractIDEOptions); override;
     class function SupportedOptionsClass: TAbstractIDEOptionsClass; override;
   end;
 
@@ -63,10 +64,11 @@ implementation
 
 procedure TProjectOptions.Save(AProject: TLazProject);
 begin
+  AProject.LazCompilerOptions.CustomOptions:=ProjectOptions.CompilerSettings;
+  AProject.LazCompilerOptions.ExecuteAfterCommand := ProjectOptions.AvrdudeCommand;
+
   AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitorPort;
   AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitorBaud;
-
-  AProject.LazCompilerOptions.CustomOptions := ProjectOptions.CompilerSettings;
 end;
 
 { TAVR_Project_Options_Frame }
@@ -87,15 +89,14 @@ var
 begin
   LazProject := LazarusIDE.ActiveProject;
 
+  ProjectOptions.CompilerSettings := LazProject.LazCompilerOptions.CustomOptions;
+
   ProjectOptions.SerialMonitorPort := LazProject.CustomData[Key_SerialMonitorPort];
   ProjectOptions.SerialMonitorBaud := LazProject.CustomData[Key_SerialMonitorBaud];
-  ProjectOptions.CompilerSettings := LazProject.LazCompilerOptions.CustomOptions;
 
   SerialMonitorPort_ComboBox.Text := ProjectOptions.SerialMonitorPort;
   SerialMonitorBaud_ComboBox.Text := ProjectOptions.SerialMonitorBaud;
   Memo1.Text := ProjectOptions.CompilerSettings;
-
-  //   Label3.Caption := AVR_Options.avrdudePfad;
 
   Label3.Caption := LazProject.LazCompilerOptions.ExecuteBeforeCommand +
     LineEnding + LazProject.LazCompilerOptions.ExecuteAfterCommand;

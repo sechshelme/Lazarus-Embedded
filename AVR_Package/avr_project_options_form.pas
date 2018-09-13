@@ -1,17 +1,18 @@
-unit avr_project_options_Form;
+unit Avr_Project_Options_Form;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
-LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
-IDEExternToolIntf,
-Laz2_XMLCfg, // Für direkte *.lpi Zugriff
+  Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
+  LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
+  IDEExternToolIntf,
+  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
-AVR_IDE_Options, AVR_Project_Options_Frame;
-                                type
+  AVR_IDE_Options, AVR_Project_Options_Frame;
+
+type
 
   { TProjectOptionsForm }
 
@@ -43,8 +44,7 @@ end;
 
 procedure TProjectOptionsForm.Button1Click(Sender: TObject);
 begin
-//  Close;
+  //  Close;
 end;
 
 end.
-
