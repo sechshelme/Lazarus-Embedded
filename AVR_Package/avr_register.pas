@@ -121,17 +121,17 @@ var
 begin
   inherited InitProject(AProject);
 
-  MainFile := AProject.CreateProjectFile('Project1.lpr');
+  MainFile := AProject.CreateProjectFile('Project1.pas');
   MainFile.IsPartOfProject := True;
 
   //  AProject.AddPackageDependency('AVRLaz');
   AProject.AddFile(MainFile, False);
   AProject.MainFileID := 0;
 
-  //  AProject.LazCompilerOptions.ObjectPath:='Project1';
-  //    AProject.LazCompilerOptions.Namespaces:='Project1';
-
+  AProject.LazCompilerOptions.TargetFilename:='Project1';
   AProject.LazCompilerOptions.Win32GraphicApp := False;
+  AProject.LazCompilerOptions.GenerateDebugInfo:=False;
+
   AProject.LazCompilerOptions.UnitOutputDirectory := 'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
 
   AProject.LazCompilerOptions.TargetCPU := 'avr';
