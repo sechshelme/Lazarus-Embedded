@@ -55,7 +55,7 @@ implementation
 
 const
   Key_Avrdude_Pfad = 'averdude_pfad/value';
-  Default_Avrdude_Pfad = '/usr/bin/averdude';
+  Default_Avrdude_Pfad = '/usr/bin/avrdude';
 
   Key_Avrdude_Conf_Pfad = 'averdude_conf_pfad/value';
   Default_Avrdude_Conf_Pfad = '/etc/averdude.conf';
@@ -89,8 +89,8 @@ end;
 
 procedure TAVR_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
-  ComboBoxAVRdude.Text := '/usr/bin/avrdude';
-  ComboBoxAVRdudeConf.Text := '/etc/avrdude.conf';
+  ComboBoxAVRdude.Text := Default_Avrdude_Pfad;
+  ComboBoxAVRdudeConf.Text := Default_Avrdude_Conf_Pfad;
 end;
 
 procedure TAVR_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);

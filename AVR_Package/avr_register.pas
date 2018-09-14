@@ -128,9 +128,9 @@ begin
   AProject.AddFile(MainFile, False);
   AProject.MainFileID := 0;
 
-  AProject.LazCompilerOptions.TargetFilename:='Project1';
+  AProject.LazCompilerOptions.TargetFilename := 'Project1';
   AProject.LazCompilerOptions.Win32GraphicApp := False;
-  AProject.LazCompilerOptions.GenerateDebugInfo:=False;
+  AProject.LazCompilerOptions.GenerateDebugInfo := False;
 
   AProject.LazCompilerOptions.UnitOutputDirectory := 'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
 
@@ -155,28 +155,49 @@ end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
 var
-  f: TProjectOptionsForm;
+  Form: TProjectOptionsForm;
 begin
-  f := TProjectOptionsForm.Create(nil);
+  Form := TProjectOptionsForm.Create(nil);
 
-  with f.AVR_Project_Options_Frame1 do begin
-    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
-    Memo1.Text := '-WpATMEGA328P' + LineEnding + '-al';
+  with Form.AVR_Project_Options_Frame1 do begin
+//    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
+
+    with avrdudePathComboBox do begin
+      Items.Add('avrdude');
+      Items.Add('/usr/bin/avrdude');
+      Text := AVR_Options.avrdudePfad;
+    end;
+
+    with ProgrammerComboBox do begin
+      Items.Add('arduino');
+      Items.Add('usbasp');
+      Items.Add('stk500v1');
+      Text := 'arduino';
+    end;
+
+    with AVR_Typ_ComboBox do begin
+      Items.Add('WpATMEGA328P');
+      Text := 'WpATMEGA328P';
+    end;
 
     SerialMonitorPort_ComboBox.Text := '/dev/ttyUSB0';
     SerialMonitorBaud_ComboBox.Text := '9600';
 
-    Result := f.ShowModal;
+    Result := Form.ShowModal;
     if Result = mrOk then begin
-      ProjectOptions.AvrdudeCommand := avrdude_ComboBox1.Text;
-      ProjectOptions.CompilerSettings := Memo1.Text;
+      ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
+      ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
+
+      ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
+      ProjectOptions.HexFile:=HexFile_CheckBox.Checked;
+
 
       ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
       ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
     end;
   end;
 
-  f.Free;
+  Form.Free;
 end;
 
 end.

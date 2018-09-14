@@ -1,26 +1,26 @@
 object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   Left = 0
-  Height = 404
+  Height = 549
   Top = 0
-  Width = 396
-  ClientHeight = 404
-  ClientWidth = 396
+  Width = 357
+  ClientHeight = 549
+  ClientWidth = 357
   TabOrder = 0
-  DesignLeft = 365
-  DesignTop = 337
+  DesignLeft = 1690
+  DesignTop = 51
   object Label1: TLabel
     Left = 16
     Height = 17
-    Top = 189
-    Width = 138
-    Caption = 'Serial-Monitor COM-Port'
+    Top = 320
+    Width = 141
+    Caption = 'Serial-Monitor COM-Port:'
     ParentColor = False
   end
   object SerialMonitorPort_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 213
-    Width = 365
+    Top = 344
+    Width = 326
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 0
@@ -29,55 +29,89 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object Label2: TLabel
     Left = 16
     Height = 17
-    Top = 261
-    Width = 29
-    Caption = 'Baud'
+    Top = 392
+    Width = 32
+    Caption = 'Baud:'
     ParentColor = False
   end
   object SerialMonitorBaud_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 285
-    Width = 365
+    Top = 416
+    Width = 326
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 1
     Text = 'SerialMonitorBaud_ComboBox'
   end
   object Label3: TLabel
-    Left = 64
+    Left = 72
     Height = 17
-    Top = 360
+    Top = 472
     Width = 37
     Caption = 'Label3'
     ParentColor = False
   end
-  object avrdude_ComboBox1: TComboBox
+  object avrdudePathComboBox: TComboBox
     Left = 16
     Height = 29
     Top = 56
-    Width = 365
+    Width = 326
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
-    Text = 'avrdude_ComboBox1'
+    Text = 'avrdudePathComboBox'
   end
   object Label4: TLabel
-    Left = 29
+    Left = 24
     Height = 17
     Top = 32
-    Width = 88
-    Caption = 'AVRdude Aufruf'
+    Width = 91
+    Caption = 'AVRdude Aufruf:'
     ParentColor = False
   end
-  object Memo1: TMemo
-    Left = 176
-    Height = 90
-    Top = 96
-    Width = 150
-    Lines.Strings = (
-      'Memo1'
-    )
+  object Label5: TLabel
+    Left = 24
+    Height = 17
+    Top = 208
+    Width = 48
+    Caption = 'AVR Typ:'
+    ParentColor = False
+  end
+  object AVR_Typ_ComboBox: TComboBox
+    Left = 16
+    Height = 29
+    Top = 232
+    Width = 326
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
     TabOrder = 3
+    Text = 'AVR_Typ_ComboBox'
+  end
+  object HexFile_CheckBox: TCheckBox
+    Left = 16
+    Height = 23
+    Top = 280
+    Width = 122
+    Caption = 'HexFile_CheckBox'
+    TabOrder = 4
+  end
+  object Label6: TLabel
+    Left = 16
+    Height = 17
+    Top = 104
+    Width = 75
+    Caption = 'Programmer:'
+    ParentColor = False
+  end
+  object ProgrammerComboBox: TComboBox
+    Left = 16
+    Height = 29
+    Top = 128
+    Width = 326
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
+    TabOrder = 5
+    Text = 'ProgrammerComboBox'
   end
 end

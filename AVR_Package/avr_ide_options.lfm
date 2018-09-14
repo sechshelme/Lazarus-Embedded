@@ -6,8 +6,8 @@ object AVR_IDE_Options_Frame: TAVR_IDE_Options_Frame
   ClientHeight = 240
   ClientWidth = 320
   TabOrder = 0
-  DesignLeft = 658
-  DesignTop = 626
+  DesignLeft = 1451
+  DesignTop = 172
   object Label1: TLabel
     Left = 16
     Height = 17

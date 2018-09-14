@@ -21,11 +21,14 @@ type
   { TProjectOptions }
 
   TProjectOptions = class
-    AvrdudeCommand,
-    CompilerSettings,
-
+    AvrdudeCommand: record
+      Path,
+      Programmer: string;
+    end;
+    AVRType,
     SerialMonitorPort,
     SerialMonitorBaud: string;
+    HexFile: boolean;
     procedure Save(AProject: TLazProject);
   end;
 
@@ -38,14 +41,18 @@ type
   { TAVR_Project_Options_Frame }
 
   TAVR_Project_Options_Frame = class(TAbstractIDEOptionsEditor)
+    ProgrammerComboBox: TComboBox;
+    AVR_Typ_ComboBox: TComboBox;
+    HexFile_CheckBox: TCheckBox;
     Label3: TLabel;
     Label4: TLabel;
-    Memo1: TMemo;
+    Label5: TLabel;
+    Label6: TLabel;
     SerialMonitorPort_ComboBox: TComboBox;
     SerialMonitorBaud_ComboBox: TComboBox;
     Label1: TLabel;
     Label2: TLabel;
-    avrdude_ComboBox1: TComboBox;
+    avrdudePathComboBox: TComboBox;
   private
 
   public
@@ -64,8 +71,21 @@ implementation
 
 procedure TProjectOptions.Save(AProject: TLazProject);
 begin
-  AProject.LazCompilerOptions.CustomOptions:=ProjectOptions.CompilerSettings;
-  AProject.LazCompilerOptions.ExecuteAfterCommand := ProjectOptions.AvrdudeCommand;
+  with AProject.LazCompilerOptions do begin
+    CustomOptions := '-' + ProjectOptions.AVRType;
+    if ProjectOptions.HexFile then begin
+      CustomOptions := CustomOptions + LineEnding + '-al';
+    end;
+  end;
+
+  AProject.LazCompilerOptions.ExecuteAfterCommand := ProjectOptions.AvrdudeCommand.Path + ' -v ' +
+    '-patmega328p ' +
+    '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ' +
+    ' -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
+
+  //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
+
+  //  AProject.LazCompilerOptions.ExecuteAfterCommand := ProjectOptions.AvrdudeCommand;
 
   AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitorPort;
   AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitorBaud;
@@ -89,14 +109,14 @@ var
 begin
   LazProject := LazarusIDE.ActiveProject;
 
-  ProjectOptions.CompilerSettings := LazProject.LazCompilerOptions.CustomOptions;
+  ProjectOptions.AVRType := LazProject.LazCompilerOptions.CustomOptions;
 
   ProjectOptions.SerialMonitorPort := LazProject.CustomData[Key_SerialMonitorPort];
   ProjectOptions.SerialMonitorBaud := LazProject.CustomData[Key_SerialMonitorBaud];
 
   SerialMonitorPort_ComboBox.Text := ProjectOptions.SerialMonitorPort;
   SerialMonitorBaud_ComboBox.Text := ProjectOptions.SerialMonitorBaud;
-  Memo1.Text := ProjectOptions.CompilerSettings;
+  AVR_Typ_ComboBox.Text := ProjectOptions.AVRType;
 
   Label3.Caption := LazProject.LazCompilerOptions.ExecuteBeforeCommand +
     LineEnding + LazProject.LazCompilerOptions.ExecuteAfterCommand;
@@ -110,7 +130,7 @@ begin
 
   ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
   ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
-  ProjectOptions.CompilerSettings := Memo1.Text;
+  ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
 
   ProjectOptions.Save(LazProject);
 end;
