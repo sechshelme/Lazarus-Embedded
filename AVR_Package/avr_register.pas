@@ -34,26 +34,49 @@ var
 
 const
   AVROptionsIndex = ProjectOptionsMisc + 100;
-//  AVROptionsIndex = 50;
 
 procedure Register;
 
 implementation
 
-procedure ShowAVRDialog(Sender: TObject);
+procedure ShowAVROptionsDialog(Sender: TObject);
 var
   LazProject: TLazProject;
   f: TProjectOptionsForm;
+  s: string;
 begin
   f := TProjectOptionsForm.Create(nil);
   f.Show;
 
   LazProject := LazarusIDE.ActiveProject;
 
-  f.AVR_Project_Options_Frame1.Label3.Caption :=
-    LazProject.LazCompilerOptions.ExecuteBeforeCommand + LineEnding +
-    LazProject.LazCompilerOptions.ExecuteAfterCommand;
+  //f.AVR_Project_Options_Frame1.Label3.Caption :=
+  //  LazProject.LazCompilerOptions.ExecuteBeforeCommand + LineEnding +
+  //  LazProject.LazCompilerOptions.ExecuteAfterCommand;
 
+  s := 'Before: ';
+  if crCompile in LazProject.LazCompilerOptions.ExecuteBeforeCompileReasons then begin
+    s += 'compile ';
+  end;
+  if crBuild in LazProject.LazCompilerOptions.ExecuteBeforeCompileReasons then begin
+    s += 'build ';
+  end;
+  if crRun in LazProject.LazCompilerOptions.ExecuteBeforeCompileReasons then begin
+    s += 'run ';
+  end;
+
+  s += LineEnding + 'After: ';
+  if crCompile in LazProject.LazCompilerOptions.ExecuteAfterCompileReasons then begin
+    s += 'compile ';
+  end;
+  if crBuild in LazProject.LazCompilerOptions.ExecuteAfterCompileReasons then begin
+    s += 'build ';
+  end;
+  if crRun in LazProject.LazCompilerOptions.ExecuteAfterCompileReasons then begin
+    s += 'run ';
+  end;
+
+  f.AVR_Project_Options_Frame1.Label3.Caption := s;
 
   ProjectOptions.Save(LazProject);
 end;
@@ -77,7 +100,7 @@ begin
 
   // Menu
   RegisterIdeMenuCommand(mnuProject, 'Serial Monitor', 'Serial Monitor',
-    nil, @ShowAVRDialog);
+    nil, @ShowAVROptionsDialog);
 end;
 
 { TProjectAVRApp }
@@ -138,8 +161,8 @@ begin
   AProject.LazCompilerOptions.TargetOS := 'embedded';
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
-  //AProject.LazCompilerOptions.SetExecuteBeforeCompileReasons([crCompile]);
-  //AProject.LazCompilerOptions.SetExecuteAfterCompileReasons([crRun]);
+//  AProject.LazCompilerOptions.ExecuteBeforeCompileReasons := [crCompile] + [crRun];
+  AProject.LazCompilerOptions.ExecuteAfterCompileReasons := [crRun];
 
   AProject.MainFile.SetSourceText(ProjectText, True);
 
@@ -159,8 +182,19 @@ var
 begin
   Form := TProjectOptionsForm.Create(nil);
 
+  ProjectOptions.AvrdudeCommand.Path := AVR_Options.avrdudePfad;
+  ProjectOptions.AvrdudeCommand.Programmer := 'arduino';
+  ProjectOptions.AvrdudeCommand.COM_Port := '/dev/ttyUSB0';
+
+  ProjectOptions.AVRType := 'WpATMEGA328P';
+  ProjectOptions.AsmFile := False;
+
+  ProjectOptions.SerialMonitorPort := '/dev/ttyUSB0';
+  ProjectOptions.SerialMonitorBaud := '9600';
+
+
   with Form.AVR_Project_Options_Frame1 do begin
-//    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
+    //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
 
     with avrdudePathComboBox do begin
       Items.Add('avrdude');
@@ -172,25 +206,45 @@ begin
       Items.Add('arduino');
       Items.Add('usbasp');
       Items.Add('stk500v1');
-      Text := 'arduino';
+      Text := ProjectOptions.AvrdudeCommand.Programmer;
+    end;
+
+    HexFile_CheckBox.Checked := ProjectOptions.AsmFile;
+
+    with COMPortComboBox do begin
+      Items.Add('/dev/ttyUSB0');
+      Items.Add('/dev/ttyUSB1');
+      Items.Add('/dev/ttyUSB2');
+      Text := ProjectOptions.AvrdudeCommand.COM_Port;
     end;
 
     with AVR_Typ_ComboBox do begin
       Items.Add('WpATMEGA328P');
-      Text := 'WpATMEGA328P';
+      Text := ProjectOptions.AVRType;
     end;
 
-    SerialMonitorPort_ComboBox.Text := '/dev/ttyUSB0';
-    SerialMonitorBaud_ComboBox.Text := '9600';
+    with SerialMonitorPort_ComboBox do begin
+      Items.Add('/dev/ttyUSB0');
+      Items.Add('/dev/ttyUSB1');
+      Items.Add('/dev/ttyUSB2');
+      Text := ProjectOptions.SerialMonitorPort;
+    end;
+
+    with SerialMonitorBaud_ComboBox do begin
+      Items.Add('4800');
+      Items.Add('9600');
+      Items.Add('19200');
+      Text := ProjectOptions.SerialMonitorBaud;
+    end;
 
     Result := Form.ShowModal;
     if Result = mrOk then begin
       ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
       ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
+      ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
 
       ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
-      ProjectOptions.HexFile:=HexFile_CheckBox.Checked;
-
+      ProjectOptions.AsmFile := HexFile_CheckBox.Checked;
 
       ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
       ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;

@@ -1,16 +1,16 @@
 object ProjectOptionsForm: TProjectOptionsForm
   Left = 452
-  Height = 589
+  Height = 629
   Top = 595
   Width = 416
   Caption = 'ProjectOptionsForm'
-  ClientHeight = 589
+  ClientHeight = 629
   ClientWidth = 416
   LCLVersion = '1.9.0.0'
   object Button1: TButton
     Left = 315
     Height = 25
-    Top = 546
+    Top = 586
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -21,7 +21,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object Button2: TButton
     Left = 211
     Height = 25
-    Top = 546
+    Top = 586
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Cancel'
@@ -30,10 +30,10 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 1
   end
   inline AVR_Project_Options_Frame1: TAVR_Project_Options_Frame
-    Height = 504
+    Height = 568
     Width = 416
     Align = alTop
-    ClientHeight = 504
+    ClientHeight = 568
     ClientWidth = 416
     TabOrder = 2
     inherited SerialMonitorPort_ComboBox: TComboBox

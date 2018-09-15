@@ -8,8 +8,6 @@ uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
   LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, IDEExternToolIntf,
 
-  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
-
   AVR_IDE_Options;
 
 const
@@ -23,13 +21,15 @@ type
   TProjectOptions = class
     AvrdudeCommand: record
       Path,
-      Programmer: string;
+      Programmer,
+      COM_Port: string;
     end;
     AVRType,
     SerialMonitorPort,
     SerialMonitorBaud: string;
-    HexFile: boolean;
+    AsmFile: boolean;
     procedure Save(AProject: TLazProject);
+    procedure Load(AProject: TLazProject);
   end;
 
 var
@@ -41,6 +41,7 @@ type
   { TAVR_Project_Options_Frame }
 
   TAVR_Project_Options_Frame = class(TAbstractIDEOptionsEditor)
+    Label7: TLabel;
     ProgrammerComboBox: TComboBox;
     AVR_Typ_ComboBox: TComboBox;
     HexFile_CheckBox: TCheckBox;
@@ -48,6 +49,7 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
+    COMPortComboBox: TComboBox;
     SerialMonitorPort_ComboBox: TComboBox;
     SerialMonitorBaud_ComboBox: TComboBox;
     Label1: TLabel;
@@ -73,7 +75,7 @@ procedure TProjectOptions.Save(AProject: TLazProject);
 begin
   with AProject.LazCompilerOptions do begin
     CustomOptions := '-' + ProjectOptions.AVRType;
-    if ProjectOptions.HexFile then begin
+    if ProjectOptions.AsmFile then begin
       CustomOptions := CustomOptions + LineEnding + '-al';
     end;
   end;
@@ -81,7 +83,8 @@ begin
   AProject.LazCompilerOptions.ExecuteAfterCommand := ProjectOptions.AvrdudeCommand.Path + ' -v ' +
     '-patmega328p ' +
     '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ' +
-    ' -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
+    '-P' + ProjectOptions.AvrdudeCommand.COM_Port +
+    ' -b57600 -D -Uflash:w:Project1.hex:i';
 
   //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
 
@@ -89,6 +92,20 @@ begin
 
   AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitorPort;
   AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitorBaud;
+end;
+
+procedure TProjectOptions.Load(AProject: TLazProject);
+var
+  s: string;
+  p:Integer;
+begin
+  s := AProject.LazCompilerOptions.CustomOptions;
+  ProjectOptions.AsmFile := pos(s, '-al') > 0;
+
+  p:=pos(s, '-Wp');
+  if p>0 then begin
+
+  end;
 end;
 
 { TAVR_Project_Options_Frame }
@@ -117,9 +134,6 @@ begin
   SerialMonitorPort_ComboBox.Text := ProjectOptions.SerialMonitorPort;
   SerialMonitorBaud_ComboBox.Text := ProjectOptions.SerialMonitorBaud;
   AVR_Typ_ComboBox.Text := ProjectOptions.AVRType;
-
-  Label3.Caption := LazProject.LazCompilerOptions.ExecuteBeforeCommand +
-    LineEnding + LazProject.LazCompilerOptions.ExecuteAfterCommand;
 end;
 
 procedure TAVR_Project_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);

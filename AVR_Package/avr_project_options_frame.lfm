@@ -1,17 +1,17 @@
 object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   Left = 0
-  Height = 549
+  Height = 655
   Top = 0
-  Width = 357
-  ClientHeight = 549
-  ClientWidth = 357
+  Width = 401
+  ClientHeight = 655
+  ClientWidth = 401
   TabOrder = 0
-  DesignLeft = 1690
-  DesignTop = 51
+  DesignLeft = 1681
+  DesignTop = 54
   object Label1: TLabel
     Left = 16
     Height = 17
-    Top = 320
+    Top = 384
     Width = 141
     Caption = 'Serial-Monitor COM-Port:'
     ParentColor = False
@@ -19,8 +19,8 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object SerialMonitorPort_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 344
-    Width = 326
+    Top = 408
+    Width = 370
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 0
@@ -29,7 +29,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object Label2: TLabel
     Left = 16
     Height = 17
-    Top = 392
+    Top = 456
     Width = 32
     Caption = 'Baud:'
     ParentColor = False
@@ -37,26 +37,28 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object SerialMonitorBaud_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 416
-    Width = 326
+    Top = 480
+    Width = 370
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 1
     Text = 'SerialMonitorBaud_ComboBox'
   end
   object Label3: TLabel
-    Left = 72
+    Left = 32
     Height = 17
-    Top = 472
-    Width = 37
+    Top = 520
+    Width = 40
     Caption = 'Label3'
+    Font.Style = [fsBold]
     ParentColor = False
+    ParentFont = False
   end
   object avrdudePathComboBox: TComboBox
     Left = 16
     Height = 29
     Top = 56
-    Width = 326
+    Width = 370
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
@@ -73,7 +75,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object Label5: TLabel
     Left = 24
     Height = 17
-    Top = 208
+    Top = 272
     Width = 48
     Caption = 'AVR Typ:'
     ParentColor = False
@@ -81,8 +83,8 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object AVR_Typ_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 232
-    Width = 326
+    Top = 296
+    Width = 370
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 3
@@ -91,7 +93,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object HexFile_CheckBox: TCheckBox
     Left = 16
     Height = 23
-    Top = 280
+    Top = 344
     Width = 122
     Caption = 'HexFile_CheckBox'
     TabOrder = 4
@@ -108,10 +110,28 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     Left = 16
     Height = 29
     Top = 128
-    Width = 326
+    Width = 370
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 5
     Text = 'ProgrammerComboBox'
+  end
+  object COMPortComboBox: TComboBox
+    Left = 16
+    Height = 29
+    Top = 208
+    Width = 370
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
+    TabOrder = 6
+    Text = 'COMPortComboBox'
+  end
+  object Label7: TLabel
+    Left = 16
+    Height = 17
+    Top = 184
+    Width = 58
+    Caption = 'COM-Port:'
+    ParentColor = False
   end
 end

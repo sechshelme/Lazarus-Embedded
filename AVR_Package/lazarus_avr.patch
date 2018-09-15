@@ -1,0 +1,107 @@
+--- fpcupdeluxe_avr_original_2/lazarus/components/ideintf/compoptsintf.pas	2018-09-10 22:22:00.100508000 +0200
++++ fpcupdeluxe_avrpackage/lazarus/components/ideintf/compoptsintf.pas	2018-09-12 17:26:39.233993945 +0200
+@@ -288,6 +288,10 @@ type
+     function GetSrcPath: string; virtual; abstract;
+     function GetUnitOutputDir: string; virtual; abstract;
+     function GetUnitPaths: String; virtual; abstract;
++
++    function GetExecuteBeforeCommand: string; virtual; abstract;
++    function GetExecuteAfterCommand: string; virtual; abstract;
++
+     procedure SetCompilerPath(const AValue: String); virtual; abstract;
+     procedure SetConditionals(AValue: string); virtual; abstract;
+     procedure SetCustomOptions(const AValue: string); virtual; abstract;
+@@ -306,6 +310,12 @@ type
+     procedure SetTargetProc(const AValue: string); virtual; abstract;
+     procedure SetUnitOutputDir(const AValue: string); virtual; abstract;
+     procedure SetUnitPaths(const AValue: String); virtual; abstract;
++
++    procedure SetExecuteBeforeCommand(const ACommand: string); virtual; abstract;
++    procedure SetExecuteAfterCommand(const ACommand: string); virtual; abstract;
++    // geht nicht
++    procedure SetExecuteBeforeCompileReasons(ACompileReasons: TCompileReasons); virtual; abstract;
++    procedure SetExecuteAfterCompileReasons(ACompileReasons: TCompileReasons); virtual; abstract;
+   public
+     constructor Create(const TheOwner: TObject); virtual;
+     destructor Destroy; override;
+@@ -451,6 +461,10 @@ type
+ 
+     // execute
+     property CompilerPath: String read GetCompilerPath write SetCompilerPath;
++
++    property  ExecuteBeforeCommand: String read GetExecuteBeforeCommand write SetExecuteBeforeCommand;
++    property  ExecuteAfterCommand: String read GetExecuteAfterCommand write SetExecuteAfterCommand;
++
+     procedure SetAlternativeCompile(const Command: string; ScanFPCMsgs: boolean); virtual; abstract; // disable normal compile and call this instead
+   end;
+ 
+--- fpcupdeluxe_avr_original_2/lazarus/ide/compileroptions.pp	2018-09-10 22:22:04.788510000 +0200
++++ fpcupdeluxe_avrpackage/lazarus/ide/compileroptions.pp	2018-09-12 16:59:56.205749651 +0200
+@@ -453,6 +453,10 @@ type
+     function GetSrcPath: string; override;
+     function GetUnitOutputDir: string; override;
+     function GetUnitPaths: String; override;
++
++    function GetExecuteBeforeCommand: string; override;
++    function GetExecuteAfterCommand: string; override;
++
+     procedure SetBaseDirectory(AValue: string);
+     procedure SetCompilerPath(const AValue: String); override;
+     procedure SetConditionals(AValue: string); override;
+@@ -471,6 +475,12 @@ type
+     procedure SetTargetOS(const AValue: string); override;
+     procedure SetTargetFileExt(const AValue: String); override;
+     procedure SetTargetFilename(const AValue: String); override;
++
++    procedure SetExecuteBeforeCommand(const ACommand: string); override;
++    procedure SetExecuteAfterCommand(const ACommand: string); override;
++    procedure SetExecuteBeforeCompileReasons(ACompileReasons: TCompileReasons); override;
++    procedure SetExecuteAfterCompileReasons(ACompileReasons: TCompileReasons); override;
++
+   protected
+     function GetModified: boolean; override;
+     procedure SetModified(const AValue: boolean); override;
+@@ -3703,6 +3713,43 @@ begin
+     ExecuteBefore.Parsers.Clear;
+ end;
+ 
++function TBaseCompilerOptions.GetExecuteBeforeCommand: string;
++begin
++  Result := ExecuteBefore.Command;
++end;
++
++function TBaseCompilerOptions.GetExecuteAfterCommand: string;
++begin
++  Result := ExecuteAfter.Command;
++end;
++
++procedure TBaseCompilerOptions.SetExecuteBeforeCommand(const ACommand: string);
++begin
++  ExecuteBefore.Command := ACommand;
++  IncreaseChangeStamp;
++end;
++
++procedure TBaseCompilerOptions.SetExecuteAfterCommand(const ACommand: string);
++begin
++  ExecuteAfter.Command := ACommand;
++  IncreaseChangeStamp;
++end;
++
++procedure TBaseCompilerOptions.SetExecuteBeforeCompileReasons(
++  ACompileReasons: TCompileReasons);
++begin
++  ExecuteBefore.Parsers.Text := SubToolFPC; /// ????????????
++  /// ????????????
++end;
++
++procedure TBaseCompilerOptions.SetExecuteAfterCompileReasons(
++  ACompileReasons: TCompileReasons);
++begin
++  ExecuteAfter.Parsers.Text :=SubToolFPC; /// ????????????
++end;
++
++
++
+ 
+ { TAdditionalCompilerOptions }
+ 
