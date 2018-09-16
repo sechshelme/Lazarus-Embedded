@@ -63,6 +63,9 @@ type
     procedure ReadSettings({%H-}AOptions: TAbstractIDEOptions); override;
     procedure WriteSettings({%H-}AOptions: TAbstractIDEOptions); override;
     class function SupportedOptionsClass: TAbstractIDEOptionsClass; override;
+
+    procedure LoadDefaultMask;
+    procedure ProjectOptionsToMask;
   end;
 
 implementation
@@ -74,7 +77,7 @@ implementation
 procedure TProjectOptions.Save(AProject: TLazProject);
 begin
   with AProject.LazCompilerOptions do begin
-    CustomOptions := '-' + ProjectOptions.AVRType;
+    CustomOptions := '-Wp' + ProjectOptions.AVRType;
     if ProjectOptions.AsmFile then begin
       CustomOptions := CustomOptions + LineEnding + '-al';
     end;
@@ -96,16 +99,23 @@ end;
 
 procedure TProjectOptions.Load(AProject: TLazProject);
 var
-  s: string;
-  p:Integer;
+//  s: string;
+  sa:TStringArray;
+  p, Index:Integer;
+  sl:TStringList;
 begin
-  s := AProject.LazCompilerOptions.CustomOptions;
-  ProjectOptions.AsmFile := pos(s, '-al') > 0;
+  sl:=TStringList.Create;
+  sl.Text := AProject.LazCompilerOptions.CustomOptions;
+  ProjectOptions.AsmFile :=sl.Find('-a', Index);
 
-  p:=pos(s, '-Wp');
-  if p>0 then begin
+//  ProjectOptions.AsmFile := pos('-al', sl.Text) > 0;
 
-  end;
+  //p:=pos('-Wp', s);
+  //if p>0 then begin
+  //  sa:=Copy(s, p+3).Split(' ');
+  //  if Length(sa)>0 then ProjectOptions.AVRType:=sa[0];
+  //end;
+  sl.Free;
 end;
 
 { TAVR_Project_Options_Frame }
@@ -152,6 +162,93 @@ end;
 class function TAVR_Project_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
 begin
   Result := TAbstractIDEProjectOptions;
+end;
+
+procedure TAVR_Project_Options_Frame.LoadDefaultMask;
+begin
+  //ProjectOptions.AvrdudeCommand.Path := AVR_Options.avrdudePfad;
+  //ProjectOptions.AvrdudeCommand.Programmer := 'arduino';
+  //ProjectOptions.AvrdudeCommand.COM_Port := '/dev/ttyUSB0';
+  //
+  //ProjectOptions.AVRType := 'WpATMEGA328P';
+  //ProjectOptions.AsmFile := False;
+  //
+  //ProjectOptions.SerialMonitorPort := '/dev/ttyUSB0';
+  //ProjectOptions.SerialMonitorBaud := '9600';
+
+    with avrdudePathComboBox do begin
+      Items.Add('avrdude');
+      Items.Add('/usr/bin/avrdude');
+      Text := AVR_Options.avrdudePfad;
+    end;
+
+    with ProgrammerComboBox do begin
+      Items.Add('arduino');
+      Items.Add('usbasp');
+      Items.Add('stk500v1');
+      Text := 'arduino';
+    end;
+
+    with COMPortComboBox do begin
+      Items.Add('/dev/ttyUSB0');
+      Items.Add('/dev/ttyUSB1');
+      Items.Add('/dev/ttyUSB2');
+      Text := '/dev/ttyUSB0';
+    end;
+
+    with AVR_Typ_ComboBox do begin
+      Items.Add('ATMEGA328P');
+      Text := 'ATMEGA328P';
+    end;
+
+    HexFile_CheckBox.Checked := False;
+
+    with SerialMonitorPort_ComboBox do begin
+      Items.Add('/dev/ttyUSB0');
+      Items.Add('/dev/ttyUSB1');
+      Items.Add('/dev/ttyUSB2');
+      Text := '/dev/ttyUSB0';
+    end;
+
+    with SerialMonitorBaud_ComboBox do begin
+      Items.Add('4800');
+      Items.Add('9600');
+      Items.Add('19200');
+      Text := '9600';
+    end;
+
+end;
+
+procedure TAVR_Project_Options_Frame.ProjectOptionsToMask;
+begin
+
+  with avrdudePathComboBox do begin
+    Text := ProjectOptions.AvrdudeCommand.Path;
+  end;
+
+  with ProgrammerComboBox do begin
+    Text := ProjectOptions.AvrdudeCommand.Programmer;
+  end;
+
+  with COMPortComboBox do begin
+    Text := ProjectOptions.AvrdudeCommand.COM_Port;
+  end;
+
+  with AVR_Typ_ComboBox do begin
+    Text := ProjectOptions.AVRType;
+  end;
+
+  HexFile_CheckBox.Checked := ProjectOptions.AsmFile;
+
+  with SerialMonitorPort_ComboBox do begin
+    Text := ProjectOptions.SerialMonitorPort;
+  end;
+
+  with SerialMonitorBaud_ComboBox do begin
+    Text := ProjectOptions.SerialMonitorBaud;
+  end;
+
+
 end;
 
 end.

@@ -42,17 +42,20 @@ implementation
 procedure ShowAVROptionsDialog(Sender: TObject);
 var
   LazProject: TLazProject;
-  f: TProjectOptionsForm;
+  Form: TProjectOptionsForm;
   s: string;
 begin
-  f := TProjectOptionsForm.Create(nil);
-  f.Show;
+  Form := TProjectOptionsForm.Create(nil);
 
   LazProject := LazarusIDE.ActiveProject;
 
-  //f.AVR_Project_Options_Frame1.Label3.Caption :=
-  //  LazProject.LazCompilerOptions.ExecuteBeforeCommand + LineEnding +
-  //  LazProject.LazCompilerOptions.ExecuteAfterCommand;
+  ProjectOptions.Load(LazProject);
+
+  Form.AVR_Project_Options_Frame1.LoadDefaultMask;
+  Form.AVR_Project_Options_Frame1.ProjectOptionsToMask;
+
+  Form.Show;
+
 
   s := 'Before: ';
   if crCompile in LazProject.LazCompilerOptions.ExecuteBeforeCompileReasons then begin
@@ -76,7 +79,7 @@ begin
     s += 'run ';
   end;
 
-  f.AVR_Project_Options_Frame1.Label3.Caption := s;
+  Form.AVR_Project_Options_Frame1.Label3.Caption := s;
 
   ProjectOptions.Save(LazProject);
 end;
@@ -161,7 +164,7 @@ begin
   AProject.LazCompilerOptions.TargetOS := 'embedded';
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
-//  AProject.LazCompilerOptions.ExecuteBeforeCompileReasons := [crCompile] + [crRun];
+  //  AProject.LazCompilerOptions.ExecuteBeforeCompileReasons := [crCompile] + [crRun];
   AProject.LazCompilerOptions.ExecuteAfterCompileReasons := [crRun];
 
   AProject.MainFile.SetSourceText(ProjectText, True);
@@ -182,63 +185,11 @@ var
 begin
   Form := TProjectOptionsForm.Create(nil);
 
-  ProjectOptions.AvrdudeCommand.Path := AVR_Options.avrdudePfad;
-  ProjectOptions.AvrdudeCommand.Programmer := 'arduino';
-  ProjectOptions.AvrdudeCommand.COM_Port := '/dev/ttyUSB0';
+  Form.AVR_Project_Options_Frame1.LoadDefaultMask;
 
-  ProjectOptions.AVRType := 'WpATMEGA328P';
-  ProjectOptions.AsmFile := False;
-
-  ProjectOptions.SerialMonitorPort := '/dev/ttyUSB0';
-  ProjectOptions.SerialMonitorBaud := '9600';
-
-
-  with Form.AVR_Project_Options_Frame1 do begin
-    //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
-
-    with avrdudePathComboBox do begin
-      Items.Add('avrdude');
-      Items.Add('/usr/bin/avrdude');
-      Text := AVR_Options.avrdudePfad;
-    end;
-
-    with ProgrammerComboBox do begin
-      Items.Add('arduino');
-      Items.Add('usbasp');
-      Items.Add('stk500v1');
-      Text := ProjectOptions.AvrdudeCommand.Programmer;
-    end;
-
-    HexFile_CheckBox.Checked := ProjectOptions.AsmFile;
-
-    with COMPortComboBox do begin
-      Items.Add('/dev/ttyUSB0');
-      Items.Add('/dev/ttyUSB1');
-      Items.Add('/dev/ttyUSB2');
-      Text := ProjectOptions.AvrdudeCommand.COM_Port;
-    end;
-
-    with AVR_Typ_ComboBox do begin
-      Items.Add('WpATMEGA328P');
-      Text := ProjectOptions.AVRType;
-    end;
-
-    with SerialMonitorPort_ComboBox do begin
-      Items.Add('/dev/ttyUSB0');
-      Items.Add('/dev/ttyUSB1');
-      Items.Add('/dev/ttyUSB2');
-      Text := ProjectOptions.SerialMonitorPort;
-    end;
-
-    with SerialMonitorBaud_ComboBox do begin
-      Items.Add('4800');
-      Items.Add('9600');
-      Items.Add('19200');
-      Text := ProjectOptions.SerialMonitorBaud;
-    end;
-
-    Result := Form.ShowModal;
-    if Result = mrOk then begin
+  Result := Form.ShowModal;
+  if Result = mrOk then begin
+    with Form.AVR_Project_Options_Frame1 do begin
       ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
       ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
       ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
