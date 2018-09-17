@@ -18,10 +18,10 @@ type
 
   TProjectOptionsForm = class(TForm)
     AVR_Project_Options_Frame1: TAVR_Project_Options_Frame;
-    Button1: TButton;
-    Button2: TButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    OkButton: TButton;
+    CancelButton: TButton;
+    procedure OkButtonClick(Sender: TObject);
+    procedure CancelButtonClick(Sender: TObject);
   private
 
   public
@@ -37,12 +37,12 @@ implementation
 
 { TProjectOptionsForm }
 
-procedure TProjectOptionsForm.Button2Click(Sender: TObject);
+procedure TProjectOptionsForm.CancelButtonClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TProjectOptionsForm.Button1Click(Sender: TObject);
+procedure TProjectOptionsForm.OkButtonClick(Sender: TObject);
 begin
   //  Close;
 end;

@@ -43,7 +43,6 @@ procedure ShowAVROptionsDialog(Sender: TObject);
 var
   LazProject: TLazProject;
   Form: TProjectOptionsForm;
-  s: string;
 begin
   Form := TProjectOptionsForm.Create(nil);
 
@@ -54,34 +53,15 @@ begin
   Form.AVR_Project_Options_Frame1.LoadDefaultMask;
   Form.AVR_Project_Options_Frame1.ProjectOptionsToMask;
 
-  Form.Show;
-
-
-  s := 'Before: ';
-  if crCompile in LazProject.LazCompilerOptions.ExecuteBeforeCompileReasons then begin
-    s += 'compile ';
-  end;
-  if crBuild in LazProject.LazCompilerOptions.ExecuteBeforeCompileReasons then begin
-    s += 'build ';
-  end;
-  if crRun in LazProject.LazCompilerOptions.ExecuteBeforeCompileReasons then begin
-    s += 'run ';
+  if Form.ShowModal = mrOk then begin
+    Form.AVR_Project_Options_Frame1.MaskToProjectOptions;
+    ProjectOptions.Save(LazProject);
+//    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
+LazProject.IncreaseChangeStamp;
+//    ShowMessage(BoolToStr(LazProject.Modified));
   end;
 
-  s += LineEnding + 'After: ';
-  if crCompile in LazProject.LazCompilerOptions.ExecuteAfterCompileReasons then begin
-    s += 'compile ';
-  end;
-  if crBuild in LazProject.LazCompilerOptions.ExecuteAfterCompileReasons then begin
-    s += 'build ';
-  end;
-  if crRun in LazProject.LazCompilerOptions.ExecuteAfterCompileReasons then begin
-    s += 'run ';
-  end;
-
-  Form.AVR_Project_Options_Frame1.Label3.Caption := s;
-
-  ProjectOptions.Save(LazProject);
+  Form.Free;
 end;
 
 procedure Register;
@@ -102,7 +82,7 @@ begin
   RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'Serial Monitor', 'Serial Monitor',
+  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen', 'AVR-Optionen',
     nil, @ShowAVROptionsDialog);
 end;
 
@@ -125,6 +105,35 @@ begin
   Result := 'Erstellt ein AVR-Project ( Arduino )';
 end;
 
+function TProjectAVRApp.DoInitDescriptor: TModalResult;
+var
+  Form: TProjectOptionsForm;
+begin
+  Form := TProjectOptionsForm.Create(nil);
+
+  Form.AVR_Project_Options_Frame1.LoadDefaultMask;
+
+  Result := Form.ShowModal;
+  if Result = mrOk then begin
+    Form.AVR_Project_Options_Frame1.MaskToProjectOptions;
+
+    //with Form.AVR_Project_Options_Frame1 do begin
+    //  ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
+    //  ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
+    //  ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
+    //  ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
+    //
+    //  ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
+    //  ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
+    //
+    //  ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
+    //  ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
+    //end;
+  end;
+
+  Form.Free;
+end;
+
 function TProjectAVRApp.InitProject(AProject: TLazProject): TModalResult;
 const
   ProjectText =
@@ -142,32 +151,29 @@ const
 
 var
   MainFile: TLazProjectFile;
-  CompOpts: TLazCompilerOptions;
 
 begin
   inherited InitProject(AProject);
 
   MainFile := AProject.CreateProjectFile('Project1.pas');
   MainFile.IsPartOfProject := True;
-
-  //  AProject.AddPackageDependency('AVRLaz');
   AProject.AddFile(MainFile, False);
+
   AProject.MainFileID := 0;
+  AProject.MainFile.SetSourceText(ProjectText, True);
 
   AProject.LazCompilerOptions.TargetFilename := 'Project1';
   AProject.LazCompilerOptions.Win32GraphicApp := False;
   AProject.LazCompilerOptions.GenerateDebugInfo := False;
-
   AProject.LazCompilerOptions.UnitOutputDirectory := 'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
 
   AProject.LazCompilerOptions.TargetCPU := 'avr';
   AProject.LazCompilerOptions.TargetOS := 'embedded';
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
-  //  AProject.LazCompilerOptions.ExecuteBeforeCompileReasons := [crCompile] + [crRun];
-  AProject.LazCompilerOptions.ExecuteAfterCompileReasons := [crRun];
-
-  AProject.MainFile.SetSourceText(ProjectText, True);
+  //    AProject.LazCompilerOptions.ExecuteBefore.CompileReasons := [crCompile] + [crRun];
+  //    AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crBuild];
+  AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
   ProjectOptions.Save(AProject);
 
@@ -177,32 +183,6 @@ end;
 function TProjectAVRApp.CreateStartFiles(AProject: TLazProject): TModalResult;
 begin
   Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename, -1, -1, [ofProjectLoading, ofRegularFile]);
-end;
-
-function TProjectAVRApp.DoInitDescriptor: TModalResult;
-var
-  Form: TProjectOptionsForm;
-begin
-  Form := TProjectOptionsForm.Create(nil);
-
-  Form.AVR_Project_Options_Frame1.LoadDefaultMask;
-
-  Result := Form.ShowModal;
-  if Result = mrOk then begin
-    with Form.AVR_Project_Options_Frame1 do begin
-      ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
-      ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
-      ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
-
-      ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
-      ProjectOptions.AsmFile := HexFile_CheckBox.Checked;
-
-      ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
-      ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
-    end;
-  end;
-
-  Form.Free;
 end;
 
 end.

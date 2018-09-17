@@ -21,6 +21,7 @@ type
   TProjectOptions = class
     AvrdudeCommand: record
       Path,
+      ConfigPath,
       Programmer,
       COM_Port: string;
     end;
@@ -41,11 +42,11 @@ type
   { TAVR_Project_Options_Frame }
 
   TAVR_Project_Options_Frame = class(TAbstractIDEOptionsEditor)
+    avrdudeConfigPathComboBox: TComboBox;
     Label7: TLabel;
     ProgrammerComboBox: TComboBox;
     AVR_Typ_ComboBox: TComboBox;
-    HexFile_CheckBox: TCheckBox;
-    Label3: TLabel;
+    AsmFile_CheckBox: TCheckBox;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -66,6 +67,7 @@ type
 
     procedure LoadDefaultMask;
     procedure ProjectOptionsToMask;
+    procedure MaskToProjectOptions;
   end;
 
 implementation
@@ -83,15 +85,15 @@ begin
     end;
   end;
 
-  AProject.LazCompilerOptions.ExecuteAfterCommand := ProjectOptions.AvrdudeCommand.Path + ' -v ' +
+  AProject.LazCompilerOptions.ExecuteAfter.Command := ProjectOptions.AvrdudeCommand.Path + ' ' +
+    '-C' + ProjectOptions.AvrdudeCommand.ConfigPath + ' ' +
+    '-v ' +
     '-patmega328p ' +
     '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ' +
-    '-P' + ProjectOptions.AvrdudeCommand.COM_Port +
-    ' -b57600 -D -Uflash:w:Project1.hex:i';
+    '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
+    '-b57600 -D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
   //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
-
-  //  AProject.LazCompilerOptions.ExecuteAfterCommand := ProjectOptions.AvrdudeCommand;
 
   AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitorPort;
   AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitorBaud;
@@ -99,23 +101,37 @@ end;
 
 procedure TProjectOptions.Load(AProject: TLazProject);
 var
-//  s: string;
-  sa:TStringArray;
-  p, Index:Integer;
-  sl:TStringList;
+  s: string;
+
+  function Find(const Source, v: string): string;
+  var
+    p, Index: integer;
+  begin
+    p := pos(v, Source);
+    p += Length(v);
+    Result := '';
+    if p > 0 then begin
+      Index := p;
+      while (Index <= Length(Source)) and (s[Index] > #32) do begin
+        Result += Source[Index];
+        Inc(Index);
+      end;
+    end;
+  end;
+
 begin
-  sl:=TStringList.Create;
-  sl.Text := AProject.LazCompilerOptions.CustomOptions;
-  ProjectOptions.AsmFile :=sl.Find('-a', Index);
+  s := AProject.LazCompilerOptions.CustomOptions;
+  ProjectOptions.AsmFile := Pos('-al', s) > 0;
+  ProjectOptions.AVRType := Find(s, '-Wp');
 
-//  ProjectOptions.AsmFile := pos('-al', sl.Text) > 0;
+  s := AProject.LazCompilerOptions.ExecuteAfter.Command;
+  ProjectOptions.AvrdudeCommand.Path := Copy(s, 0, pos(' ', s) - 1);
+  ProjectOptions.AvrdudeCommand.ConfigPath := Find(s, '-C');
+  ProjectOptions.AvrdudeCommand.Programmer := Find(s, '-c');
+  ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
 
-  //p:=pos('-Wp', s);
-  //if p>0 then begin
-  //  sa:=Copy(s, p+3).Split(' ');
-  //  if Length(sa)>0 then ProjectOptions.AVRType:=sa[0];
-  //end;
-  sl.Free;
+  ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
+  ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];
 end;
 
 { TAVR_Project_Options_Frame }
@@ -135,15 +151,7 @@ var
   LazProject: TLazProject;
 begin
   LazProject := LazarusIDE.ActiveProject;
-
-  ProjectOptions.AVRType := LazProject.LazCompilerOptions.CustomOptions;
-
-  ProjectOptions.SerialMonitorPort := LazProject.CustomData[Key_SerialMonitorPort];
-  ProjectOptions.SerialMonitorBaud := LazProject.CustomData[Key_SerialMonitorBaud];
-
-  SerialMonitorPort_ComboBox.Text := ProjectOptions.SerialMonitorPort;
-  SerialMonitorBaud_ComboBox.Text := ProjectOptions.SerialMonitorBaud;
-  AVR_Typ_ComboBox.Text := ProjectOptions.AVRType;
+  ProjectOptions.Load(LazProject);
 end;
 
 procedure TAVR_Project_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
@@ -151,11 +159,6 @@ var
   LazProject: TLazProject;
 begin
   LazProject := LazarusIDE.ActiveProject;
-
-  ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
-  ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
-  ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
-
   ProjectOptions.Save(LazProject);
 end;
 
@@ -166,56 +169,53 @@ end;
 
 procedure TAVR_Project_Options_Frame.LoadDefaultMask;
 begin
-  //ProjectOptions.AvrdudeCommand.Path := AVR_Options.avrdudePfad;
-  //ProjectOptions.AvrdudeCommand.Programmer := 'arduino';
-  //ProjectOptions.AvrdudeCommand.COM_Port := '/dev/ttyUSB0';
-  //
-  //ProjectOptions.AVRType := 'WpATMEGA328P';
-  //ProjectOptions.AsmFile := False;
-  //
-  //ProjectOptions.SerialMonitorPort := '/dev/ttyUSB0';
-  //ProjectOptions.SerialMonitorBaud := '9600';
 
-    with avrdudePathComboBox do begin
-      Items.Add('avrdude');
-      Items.Add('/usr/bin/avrdude');
-      Text := AVR_Options.avrdudePfad;
-    end;
+  with avrdudePathComboBox do begin
+    Items.Add('avrdude');
+    Items.Add('/usr/bin/avrdude');
+    Text := AVR_Options.avrdudePfad;
+  end;
 
-    with ProgrammerComboBox do begin
-      Items.Add('arduino');
-      Items.Add('usbasp');
-      Items.Add('stk500v1');
-      Text := 'arduino';
-    end;
+  with avrdudeConfigPathComboBox do begin
+    Items.Add('/etc/avrdude.conf');
+    Items.Add('avrdude.conf');
+    Text := AVR_Options.avrdudeConfigPath;
+  end;
 
-    with COMPortComboBox do begin
-      Items.Add('/dev/ttyUSB0');
-      Items.Add('/dev/ttyUSB1');
-      Items.Add('/dev/ttyUSB2');
-      Text := '/dev/ttyUSB0';
-    end;
+  with ProgrammerComboBox do begin
+    Items.Add('arduino');
+    Items.Add('usbasp');
+    Items.Add('stk500v1');
+    Text := 'arduino';
+  end;
 
-    with AVR_Typ_ComboBox do begin
-      Items.Add('ATMEGA328P');
-      Text := 'ATMEGA328P';
-    end;
+  with COMPortComboBox do begin
+    Items.Add('/dev/ttyUSB0');
+    Items.Add('/dev/ttyUSB1');
+    Items.Add('/dev/ttyUSB2');
+    Text := '/dev/ttyUSB0';
+  end;
 
-    HexFile_CheckBox.Checked := False;
+  with AVR_Typ_ComboBox do begin
+    Items.Add('ATMEGA328P');
+    Text := 'ATMEGA328P';
+  end;
 
-    with SerialMonitorPort_ComboBox do begin
-      Items.Add('/dev/ttyUSB0');
-      Items.Add('/dev/ttyUSB1');
-      Items.Add('/dev/ttyUSB2');
-      Text := '/dev/ttyUSB0';
-    end;
+  AsmFile_CheckBox.Checked := False;
 
-    with SerialMonitorBaud_ComboBox do begin
-      Items.Add('4800');
-      Items.Add('9600');
-      Items.Add('19200');
-      Text := '9600';
-    end;
+  with SerialMonitorPort_ComboBox do begin
+    Items.Add('/dev/ttyUSB0');
+    Items.Add('/dev/ttyUSB1');
+    Items.Add('/dev/ttyUSB2');
+    Text := '/dev/ttyUSB0';
+  end;
+
+  with SerialMonitorBaud_ComboBox do begin
+    Items.Add('4800');
+    Items.Add('9600');
+    Items.Add('19200');
+    Text := '9600';
+  end;
 
 end;
 
@@ -224,6 +224,10 @@ begin
 
   with avrdudePathComboBox do begin
     Text := ProjectOptions.AvrdudeCommand.Path;
+  end;
+
+  with avrdudeConfigPathComboBox do begin
+    Text := ProjectOptions.AvrdudeCommand.ConfigPath;
   end;
 
   with ProgrammerComboBox do begin
@@ -238,7 +242,7 @@ begin
     Text := ProjectOptions.AVRType;
   end;
 
-  HexFile_CheckBox.Checked := ProjectOptions.AsmFile;
+  AsmFile_CheckBox.Checked := ProjectOptions.AsmFile;
 
   with SerialMonitorPort_ComboBox do begin
     Text := ProjectOptions.SerialMonitorPort;
@@ -248,7 +252,20 @@ begin
     Text := ProjectOptions.SerialMonitorBaud;
   end;
 
+end;
 
+procedure TAVR_Project_Options_Frame.MaskToProjectOptions;
+begin
+  ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
+  ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
+  ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
+  ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
+
+  ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
+  ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
+
+  ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
+  ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
 end;
 
 end.

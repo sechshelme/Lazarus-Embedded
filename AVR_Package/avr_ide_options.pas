@@ -19,7 +19,7 @@ type
   TAVR_Options = class
   public
     avrdudePfad,
-    avrdudeConfPfad: string;
+    avrdudeConfigPath: string;
     procedure Save;
     procedure Load;
   end;
@@ -58,7 +58,7 @@ const
   Default_Avrdude_Pfad = '/usr/bin/avrdude';
 
   Key_Avrdude_Conf_Pfad = 'averdude_conf_pfad/value';
-  Default_Avrdude_Conf_Pfad = '/etc/averdude.conf';
+  Default_Avrdude_Conf_Pfad = '/etc/avrdude.conf';
 
 procedure TAVR_Options.Load;
 var
@@ -66,7 +66,7 @@ var
 begin
   Cfg := GetIDEConfigStorage(AVR_Options_File, True);
   avrdudePfad := Cfg.GetValue(Key_Avrdude_Pfad, Default_Avrdude_Pfad);
-  avrdudeConfPfad := Cfg.GetValue(Key_Avrdude_Conf_Pfad, Default_Avrdude_Conf_Pfad);
+  avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Pfad, Default_Avrdude_Conf_Pfad);
   Cfg.Free;
 end;
 
@@ -76,7 +76,7 @@ var
 begin
   Cfg := GetIDEConfigStorage(AVR_Options_File, False);
   Cfg.SetDeleteValue(Key_Avrdude_Pfad, avrdudePfad, Default_Avrdude_Pfad);
-  Cfg.SetDeleteValue(Key_Avrdude_Conf_Pfad, avrdudeConfPfad, Default_Avrdude_Conf_Pfad);
+  Cfg.SetDeleteValue(Key_Avrdude_Conf_Pfad, avrdudeConfigPath, Default_Avrdude_Conf_Pfad);
   Cfg.Free;
 end;
 
@@ -96,13 +96,13 @@ end;
 procedure TAVR_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 begin
   SetComboBoxText(ComboBoxAVRdude, AVR_Options.avrdudePfad, cstFilename, 30);
-  SetComboBoxText(ComboBoxAVRdudeConf, AVR_Options.avrdudeConfPfad, cstFilename, 30);
+  SetComboBoxText(ComboBoxAVRdudeConf, AVR_Options.avrdudeConfigPath, cstFilename, 30);
 end;
 
 procedure TAVR_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
 begin
   AVR_Options.avrdudePfad := ComboBoxAVRdude.Text;
-  AVR_Options.avrdudeConfPfad := ComboBoxAVRdudeConf.Text;
+  AVR_Options.avrdudeConfigPath := ComboBoxAVRdudeConf.Text;
   AVR_Options.Save;
 end;
 
