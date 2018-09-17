@@ -57,8 +57,7 @@ begin
     Form.AVR_Project_Options_Frame1.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
     ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
-    LazProject.Modified := False;
-    //    ShowMessage(BoolToStr(LazProject.Modified));
+    LazProject.Modified := True;
   end;
 
   Form.Free;
