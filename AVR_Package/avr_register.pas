@@ -56,9 +56,9 @@ begin
   if Form.ShowModal = mrOk then begin
     Form.AVR_Project_Options_Frame1.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
-//    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
-LazProject.IncreaseChangeStamp;
-//    ShowMessage(BoolToStr(LazProject.Modified));
+    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
+    LazProject.Modified := False;
+    //    ShowMessage(BoolToStr(LazProject.Modified));
   end;
 
   Form.Free;
@@ -116,19 +116,6 @@ begin
   Result := Form.ShowModal;
   if Result = mrOk then begin
     Form.AVR_Project_Options_Frame1.MaskToProjectOptions;
-
-    //with Form.AVR_Project_Options_Frame1 do begin
-    //  ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
-    //  ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
-    //  ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
-    //  ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
-    //
-    //  ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
-    //  ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
-    //
-    //  ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
-    //  ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
-    //end;
   end;
 
   Form.Free;
