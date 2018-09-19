@@ -78,11 +78,10 @@ begin
     TAVR_IDE_Options_Frame, AVROptionsFrameID)^.Index;
 
   // Project Option
-  RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
+//  RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen', 'AVR-Optionen',
-    nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen', 'AVR-Optionen', nil, @ShowAVROptionsDialog);
 end;
 
 { TProjectAVRApp }
