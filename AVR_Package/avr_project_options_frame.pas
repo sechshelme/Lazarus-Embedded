@@ -88,10 +88,11 @@ begin
   AProject.LazCompilerOptions.ExecuteAfter.Command := ProjectOptions.AvrdudeCommand.Path + ' ' +
     '-C' + ProjectOptions.AvrdudeCommand.ConfigPath + ' ' +
     '-v ' +
-    '-patmega328p ' +
+    '-p' + ProjectOptions.AVRType + ' ' +
     '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ' +
     '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
     '-b57600 -D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
+
 
   //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
 
@@ -168,6 +169,20 @@ begin
 end;
 
 procedure TAVR_Project_Options_Frame.LoadDefaultMask;
+const
+  avr_type =  // fpcsrc/rtl/embedded/Makefile
+    'atmega645 atmega165a atmega649a atmega32u4 atmega168p atmega3250pa atmega3290a ' +
+    'atmega165p atmega16u4 atmega6490p atmega324p atmega328 atmega64m1 atmega645p ' +
+    'atmega329a atmega324pa atmega32hvb at90pwm316 at90usb646 atmega16 atmega644 ' +
+    'at90can64 at90can32 at90pwm216 atmega3250a atmega3290pa atmega325p atmega328p ' +
+    'atmega3250 atmega329 atmega32a atmega6490 atmega168a atmega164pa atmega645a ' +
+    'atmega3290p atmega644p atmega164a atmega162 atmega32c1 atmega324a atmega169a ' +
+    'atmega644a atmega3290 atmega64a atmega169p atmega32 atmega168pa atmega16m1 ' +
+    'atmega16hvb atmega164p atmega325a atmega640 atmega6450 atmega329p at90usb647 ' +
+    'atmega168 atmega6490a atmega32m1 atmega64c1 atmega644pa atmega325pa atmega6450a ' +
+    'atmega329pa atmega6450p atmega64 atmega165pa atmega16a atmega649 atmega649p ' +
+    'atmega3250p atmega325 atmega169pa avrsim';
+
 begin
 
   with avrdudePathComboBox do begin
@@ -197,7 +212,9 @@ begin
   end;
 
   with AVR_Typ_ComboBox do begin
-    Items.Add('ATMEGA328P');
+    Items.DelimitedText := ' ';
+    Items.DelimitedText := avr_type;
+    Sorted := True;
     Text := 'ATMEGA328P';
   end;
 
