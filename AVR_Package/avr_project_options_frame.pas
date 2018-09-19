@@ -23,7 +23,8 @@ type
       Path,
       ConfigPath,
       Programmer,
-      COM_Port: string;
+      COM_Port,
+      Baud: string;
     end;
     AVRType,
     SerialMonitorPort,
@@ -43,7 +44,10 @@ type
 
   TAVR_Project_Options_Frame = class(TAbstractIDEOptionsEditor)
     avrdudeConfigPathComboBox: TComboBox;
+    COMPortBaudComboBox: TComboBox;
     Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     ProgrammerComboBox: TComboBox;
     AVR_Typ_ComboBox: TComboBox;
     AsmFile_CheckBox: TCheckBox;
@@ -77,6 +81,8 @@ implementation
 { TProjectOptions }
 
 procedure TProjectOptions.Save(AProject: TLazProject);
+var
+  s: string;
 begin
   with AProject.LazCompilerOptions do begin
     CustomOptions := '-Wp' + ProjectOptions.AVRType;
@@ -85,14 +91,18 @@ begin
     end;
   end;
 
-  AProject.LazCompilerOptions.ExecuteAfter.Command := ProjectOptions.AvrdudeCommand.Path + ' ' +
+  s := ProjectOptions.AvrdudeCommand.Path + ' ' +
     '-C' + ProjectOptions.AvrdudeCommand.ConfigPath + ' ' +
     '-v ' +
     '-p' + ProjectOptions.AVRType + ' ' +
-    '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ' +
-    '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
-    '-b57600 -D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
+    '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ';
+  if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
+    s += '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
+      '-b' + ProjectOptions.AvrdudeCommand.Baud + ' ';
+  end;
+  s += '-D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
+  AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 
   //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
 
@@ -109,9 +119,9 @@ var
     p, Index: integer;
   begin
     p := pos(v, Source);
-    p += Length(v);
     Result := '';
     if p > 0 then begin
+      p += Length(v);
       Index := p;
       while (Index <= Length(Source)) and (s[Index] > #32) do begin
         Result += Source[Index];
@@ -130,6 +140,7 @@ begin
   ProjectOptions.AvrdudeCommand.ConfigPath := Find(s, '-C');
   ProjectOptions.AvrdudeCommand.Programmer := Find(s, '-c');
   ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
+  ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
 
   ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
   ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];
@@ -211,6 +222,12 @@ begin
     Text := '/dev/ttyUSB0';
   end;
 
+  with COMPortBaudComboBox do begin
+    Items.Add('57600');
+    Items.Add('115200');
+    Text := '57600';
+  end;
+
   with AVR_Typ_ComboBox do begin
     Items.DelimitedText := ' ';
     Items.DelimitedText := avr_type;
@@ -255,6 +272,10 @@ begin
     Text := ProjectOptions.AvrdudeCommand.COM_Port;
   end;
 
+  with COMPortBaudComboBox do begin
+    Text := ProjectOptions.AvrdudeCommand.Baud;
+  end;
+
   with AVR_Typ_ComboBox do begin
     Text := ProjectOptions.AVRType;
   end;
@@ -277,6 +298,7 @@ begin
   ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
   ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
   ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
+  ProjectOptions.AvrdudeCommand.Baud := COMPortBaudComboBox.Text;
 
   ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
   ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;

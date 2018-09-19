@@ -6,8 +6,8 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   ClientHeight = 654
   ClientWidth = 493
   TabOrder = 0
-  DesignLeft = 1681
-  DesignTop = 54
+  DesignLeft = 1607
+  DesignTop = 48
   object Label1: TLabel
     Left = 16
     Height = 17
@@ -63,9 +63,9 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     ParentColor = False
   end
   object Label5: TLabel
-    Left = 24
+    Left = 16
     Height = 17
-    Top = 288
+    Top = 352
     Width = 48
     Caption = 'AVR Typ:'
     ParentColor = False
@@ -73,7 +73,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object AVR_Typ_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 312
+    Top = 384
     Width = 462
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
@@ -83,7 +83,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object AsmFile_CheckBox: TCheckBox
     Left = 16
     Height = 23
-    Top = 368
+    Top = 416
     Width = 75
     Caption = 'ASM-File'
     TabOrder = 4
@@ -110,8 +110,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     Left = 16
     Height = 29
     Top = 248
-    Width = 462
-    Anchors = [akTop, akLeft, akRight]
+    Width = 144
     ItemHeight = 0
     TabOrder = 6
     Text = 'COMPortComboBox'
@@ -141,5 +140,22 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     ItemHeight = 0
     TabOrder = 7
     Text = 'avrdudeConfigPathComboBox'
+  end
+  object COMPortBaudComboBox: TComboBox
+    Left = 208
+    Height = 29
+    Top = 248
+    Width = 112
+    ItemHeight = 0
+    TabOrder = 8
+    Text = 'COMPortBaudComboBox'
+  end
+  object Label9: TLabel
+    Left = 208
+    Height = 17
+    Top = 224
+    Width = 90
+    Caption = 'COM-Port Baud:'
+    ParentColor = False
   end
 end

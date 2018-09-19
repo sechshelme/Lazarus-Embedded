@@ -1,14 +1,15 @@
 object ProjectOptionsForm: TProjectOptionsForm
-  Left = 407
+  Left = 408
   Height = 704
-  Top = 578
-  Width = 421
+  Top = 581
+  Width = 489
   Caption = 'ProjectOptionsForm'
   ClientHeight = 704
-  ClientWidth = 421
+  ClientWidth = 489
+  Position = poDefault
   LCLVersion = '2.1.0.0'
   object OkButton: TButton
-    Left = 319
+    Left = 387
     Height = 25
     Top = 661
     Width = 75
@@ -19,7 +20,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 216
+    Left = 284
     Height = 25
     Top = 661
     Width = 75
@@ -30,30 +31,27 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 1
   end
   inline AVR_Project_Options_Frame1: TAVR_Project_Options_Frame
-    Width = 421
+    Width = 489
     Align = alTop
-    ClientWidth = 421
+    ClientWidth = 489
     TabOrder = 2
     inherited SerialMonitorPort_ComboBox: TComboBox
-      Width = 390
+      Width = 458
     end
     inherited SerialMonitorBaud_ComboBox: TComboBox
-      Width = 390
+      Width = 458
     end
     inherited avrdudePathComboBox: TComboBox
-      Width = 390
+      Width = 458
     end
     inherited AVR_Typ_ComboBox: TComboBox
-      Width = 390
+      Width = 458
     end
     inherited ProgrammerComboBox: TComboBox
-      Width = 390
-    end
-    inherited COMPortComboBox: TComboBox
-      Width = 390
+      Width = 458
     end
     inherited avrdudeConfigPathComboBox: TComboBox
-      Width = 390
+      Width = 458
     end
   end
 end
