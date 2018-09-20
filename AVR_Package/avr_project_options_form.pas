@@ -1,4 +1,4 @@
-unit Avr_Project_Options_Form;
+unit AVR_Project_Options_Form;
 
 {$mode objfpc}{$H+}
 
@@ -17,14 +17,15 @@ type
   { TProjectOptionsForm }
 
   TProjectOptionsForm = class(TForm)
-    AVR_Project_Options_Frame1: TAVR_Project_Options_Frame;
     OkButton: TButton;
     CancelButton: TButton;
+    procedure FormCreate(Sender: TObject);
     procedure OkButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
   private
 
   public
+    AVR_Project_Options_Frame: TAVR_Project_Options_Frame;
 
   end;
 
@@ -45,6 +46,17 @@ end;
 procedure TProjectOptionsForm.OkButtonClick(Sender: TObject);
 begin
   //  Close;
+end;
+
+procedure TProjectOptionsForm.FormCreate(Sender: TObject);
+begin
+  AVR_Project_Options_Frame := TAVR_Project_Options_Frame.Create(Self);
+  with AVR_Project_Options_Frame do begin
+    Parent := Self;
+    Align := alTop;
+    Self.ClientHeight := Height + 50;
+    Self.ClientWidth := Width;
+  end;
 end;
 
 end.

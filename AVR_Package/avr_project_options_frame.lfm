@@ -1,9 +1,9 @@
 object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   Left = 0
-  Height = 654
+  Height = 492
   Top = 0
   Width = 493
-  ClientHeight = 654
+  ClientHeight = 492
   ClientWidth = 493
   TabOrder = 0
   DesignLeft = 1607
@@ -11,7 +11,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object Label1: TLabel
     Left = 16
     Height = 17
-    Top = 480
+    Top = 352
     Width = 141
     Caption = 'Serial-Monitor COM-Port:'
     ParentColor = False
@@ -19,7 +19,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object SerialMonitorPort_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 504
+    Top = 376
     Width = 462
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
@@ -29,7 +29,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object Label2: TLabel
     Left = 16
     Height = 17
-    Top = 536
+    Top = 408
     Width = 32
     Caption = 'Baud:'
     ParentColor = False
@@ -37,7 +37,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object SerialMonitorBaud_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 560
+    Top = 432
     Width = 462
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
@@ -48,7 +48,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     Left = 16
     Height = 29
     Top = 56
-    Width = 462
+    Width = 416
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
@@ -65,7 +65,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object Label5: TLabel
     Left = 16
     Height = 17
-    Top = 352
+    Top = 240
     Width = 48
     Caption = 'AVR Typ:'
     ParentColor = False
@@ -73,19 +73,18 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   object AVR_Typ_ComboBox: TComboBox
     Left = 16
     Height = 29
-    Top = 384
-    Width = 462
-    Anchors = [akTop, akLeft, akRight]
+    Top = 264
+    Width = 112
     ItemHeight = 0
     TabOrder = 3
     Text = 'AVR_Typ_ComboBox'
   end
   object AsmFile_CheckBox: TCheckBox
-    Left = 16
+    Left = 200
     Height = 23
-    Top = 416
-    Width = 75
-    Caption = 'ASM-File'
+    Top = 264
+    Width = 131
+    Caption = 'ASM-File erzeugen'
     TabOrder = 4
   end
   object Label6: TLabel
@@ -100,25 +99,24 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     Left = 16
     Height = 29
     Top = 184
-    Width = 462
-    Anchors = [akTop, akLeft, akRight]
+    Width = 112
     ItemHeight = 0
     TabOrder = 5
     Text = 'ProgrammerComboBox'
   end
   object COMPortComboBox: TComboBox
-    Left = 16
+    Left = 144
     Height = 29
-    Top = 248
-    Width = 144
+    Top = 184
+    Width = 128
     ItemHeight = 0
     TabOrder = 6
     Text = 'COMPortComboBox'
   end
   object Label7: TLabel
-    Left = 16
+    Left = 144
     Height = 17
-    Top = 224
+    Top = 160
     Width = 58
     Caption = 'COM-Port:'
     ParentColor = False
@@ -135,27 +133,55 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     Left = 16
     Height = 29
     Top = 120
-    Width = 462
+    Width = 416
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 7
     Text = 'avrdudeConfigPathComboBox'
   end
   object COMPortBaudComboBox: TComboBox
-    Left = 208
+    Left = 288
     Height = 29
-    Top = 248
+    Top = 184
     Width = 112
     ItemHeight = 0
     TabOrder = 8
     Text = 'COMPortBaudComboBox'
   end
   object Label9: TLabel
-    Left = 208
+    Left = 288
     Height = 17
-    Top = 224
+    Top = 160
     Width = 90
     Caption = 'COM-Port Baud:'
     ParentColor = False
+  end
+  object Button1: TButton
+    Left = 446
+    Height = 29
+    Top = 56
+    Width = 32
+    Anchors = [akTop, akRight]
+    Caption = '...'
+    OnClick = Button1Click
+    TabOrder = 9
+  end
+  object Button2: TButton
+    Left = 446
+    Height = 29
+    Top = 120
+    Width = 32
+    Anchors = [akTop, akRight]
+    Caption = '...'
+    OnClick = Button2Click
+    TabOrder = 10
+  end
+  object OpenDialogAVRPath: TOpenDialog
+    Left = 448
+    Top = 16
+  end
+  object OpenDialogAVRConfigPath: TOpenDialog
+    Left = 448
+    Top = 96
   end
 end

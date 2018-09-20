@@ -18,7 +18,7 @@
     <Description Value="Add AVR-Project"/>
     <License Value="GPL-2"/>
     <Version Release="2"/>
-    <Files Count="4">
+    <Files Count="5">
       <Item1>
         <Filename Value="avr_register.pas"/>
         <HasRegisterProc Value="True"/>
@@ -36,6 +36,10 @@
         <Filename Value="avr_project_options_frame.pas"/>
         <UnitName Value="avr_project_options_frame"/>
       </Item4>
+      <Item5>
+        <Filename Value="avr_common.pas"/>
+        <UnitName Value="avr_common"/>
+      </Item5>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

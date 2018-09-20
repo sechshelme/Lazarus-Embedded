@@ -14,7 +14,7 @@ uses
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
 
   // AVR
-  AVR_IDE_Options, AVR_Project_Options_Frame, Avr_Project_Options_Form;
+  AVR_IDE_Options, AVR_Project_Options_Frame, AVR_Project_Options_Form;
 
 type
   { TProjectAVRApp }
@@ -50,11 +50,11 @@ begin
 
   ProjectOptions.Load(LazProject);
 
-  Form.AVR_Project_Options_Frame1.LoadDefaultMask;
-  Form.AVR_Project_Options_Frame1.ProjectOptionsToMask;
+  Form.AVR_Project_Options_Frame.LoadDefaultMask;
+  Form.AVR_Project_Options_Frame.ProjectOptionsToMask;
 
   if Form.ShowModal = mrOk then begin
-    Form.AVR_Project_Options_Frame1.MaskToProjectOptions;
+    Form.AVR_Project_Options_Frame.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
     ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
     LazProject.Modified := True;
@@ -81,7 +81,7 @@ begin
 //  RegisterIDEOptionsEditor(GroupProject, TAVR_Project_Options_Frame, AVROptionsIndex);
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen', 'AVR-Optionen', nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen', 'AVR-Optionen...', nil, @ShowAVROptionsDialog);
 end;
 
 { TProjectAVRApp }
@@ -109,11 +109,11 @@ var
 begin
   Form := TProjectOptionsForm.Create(nil);
 
-  Form.AVR_Project_Options_Frame1.LoadDefaultMask;
+  Form.AVR_Project_Options_Frame.LoadDefaultMask;
 
   Result := Form.ShowModal;
   if Result = mrOk then begin
-    Form.AVR_Project_Options_Frame1.MaskToProjectOptions;
+    Form.AVR_Project_Options_Frame.MaskToProjectOptions;
   end;
 
   Form.Free;
@@ -131,7 +131,7 @@ const
     '  // Setup' + LineEnding +
     '  repeat' + LineEnding +
     '    // Loop;' + LineEnding +
-    '  until 1 = 2;' + LineEnding + LineEnding +
+    '  until 1 = 2;' + LineEnding +
     'end.';
 
 var
