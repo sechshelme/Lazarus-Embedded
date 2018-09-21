@@ -6,6 +6,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   Caption = 'AVR Project Options'
   ClientHeight = 134
   ClientWidth = 267
+  OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'

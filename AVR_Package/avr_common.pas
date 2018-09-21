@@ -7,6 +7,9 @@ interface
 uses
   Classes, SysUtils;
 
+const
+  AVR_Options_File = 'avroptions.xml';
+
 function GetSerialPortNames: string;
 
 

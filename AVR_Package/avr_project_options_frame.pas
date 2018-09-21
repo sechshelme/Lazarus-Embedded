@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, EditBtn,
-  LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, IDEExternToolIntf,
+  LazIDEIntf,LazConfigStorage,
+  BaseIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, IDEExternToolIntf,
   AVR_Common, AVR_IDE_Options;
 
 const
@@ -65,6 +66,7 @@ type
     avrdudePathComboBox: TComboBox;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FrameClick(Sender: TObject);
   private
 
   public
@@ -168,6 +170,10 @@ begin
   if OpenDialogAVRConfigPath.Execute then begin
     avrdudeConfigPathComboBox.Text := OpenDialogAVRConfigPath.FileName;
   end;
+end;
+
+procedure TAVR_Project_Options_Frame.FrameClick(Sender: TObject);
+begin
 end;
 
 function TAVR_Project_Options_Frame.GetTitle: string;

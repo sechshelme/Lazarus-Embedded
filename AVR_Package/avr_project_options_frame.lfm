@@ -5,6 +5,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
   Width = 493
   ClientHeight = 492
   ClientWidth = 493
+  OnClick = FrameClick
   TabOrder = 0
   DesignLeft = 1607
   DesignTop = 48

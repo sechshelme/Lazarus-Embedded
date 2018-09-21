@@ -6,10 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
-  IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf;
-
-const
-  AVR_Options_File = 'avroptions.xml';
+  IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
+  AVR_Common;
 
 
 type
