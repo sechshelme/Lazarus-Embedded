@@ -3,6 +3,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   Height = 134
   Top = 582
   Width = 267
+  BorderStyle = bsDialog
   Caption = 'AVR Project Options'
   ClientHeight = 134
   ClientWidth = 267

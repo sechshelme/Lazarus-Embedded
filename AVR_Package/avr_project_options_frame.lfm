@@ -75,7 +75,7 @@ object AVR_Project_Options_Frame: TAVR_Project_Options_Frame
     Left = 16
     Height = 29
     Top = 264
-    Width = 112
+    Width = 152
     ItemHeight = 0
     TabOrder = 3
     Text = 'AVR_Typ_ComboBox'
