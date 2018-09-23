@@ -9,6 +9,22 @@ uses
 
 const
   AVR_Options_File = 'avroptions.xml';
+  AVR5_Typ =  // fpcsrc/rtl/embedded/Makefile
+    'atmega645,atmega165a,atmega649a,atmega32u4,atmega168p,atmega3250pa,atmega3290a,' +
+    'atmega165p,atmega16u4,atmega6490p,atmega324p,atmega328,atmega64m1,atmega645p,' +
+    'atmega329a,atmega324pa,atmega32hvb,at90pwm316,at90usb646,atmega16,atmega644,' +
+    'at90can64,at90can32,at90pwm216,atmega3250a,atmega3290pa,atmega325p,atmega328p,' +
+    'atmega3250,atmega329,atmega32a,atmega6490,atmega168a,atmega164pa,atmega645a,' +
+    'atmega3290p,atmega644p,atmega164a,atmega162,atmega32c1,atmega324a,atmega169a,' +
+    'atmega644a,atmega3290,atmega64a,atmega169p,atmega32,atmega168pa,atmega16m1,' +
+    'atmega16hvb,atmega164p,atmega325a,atmega640,atmega6450,atmega329p,at90usb647,' +
+    'atmega168,atmega6490a,atmega32m1,atmega64c1,atmega644pa,atmega325pa,atmega6450a,' +
+    'atmega329pa,atmega6450p,atmega64,atmega165pa,atmega16a,atmega649,atmega649p,' +
+    'atmega3250p,atmega325,atmega169pa,avrsim';
+
+  AVR_UARTBaudRates = '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
+
+
 
 function GetSerialPortNames: string;
 

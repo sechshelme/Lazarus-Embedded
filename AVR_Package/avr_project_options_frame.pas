@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, EditBtn,
-  LazIDEIntf,LazConfigStorage,
+  LazIDEIntf, LazConfigStorage,
   BaseIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, IDEExternToolIntf,
   AVR_Common, AVR_IDE_Options;
 
@@ -208,20 +208,6 @@ begin
 end;
 
 procedure TAVR_Project_Options_Frame.LoadDefaultMask;
-const
-  AVR5_Typ =  // fpcsrc/rtl/embedded/Makefile
-    'atmega645 atmega165a atmega649a atmega32u4 atmega168p atmega3250pa atmega3290a ' +
-    'atmega165p atmega16u4 atmega6490p atmega324p atmega328 atmega64m1 atmega645p ' +
-    'atmega329a atmega324pa atmega32hvb at90pwm316 at90usb646 atmega16 atmega644 ' +
-    'at90can64 at90can32 at90pwm216 atmega3250a atmega3290pa atmega325p atmega328p ' +
-    'atmega3250 atmega329 atmega32a atmega6490 atmega168a atmega164pa atmega645a ' +
-    'atmega3290p atmega644p atmega164a atmega162 atmega32c1 atmega324a atmega169a ' +
-    'atmega644a atmega3290 atmega64a atmega169p atmega32 atmega168pa atmega16m1 ' +
-    'atmega16hvb atmega164p atmega325a atmega640 atmega6450 atmega329p at90usb647 ' +
-    'atmega168 atmega6490a atmega32m1 atmega64c1 atmega644pa atmega325pa atmega6450a ' +
-    'atmega329pa atmega6450p atmega64 atmega165pa atmega16a atmega649 atmega649p ' +
-    'atmega3250p atmega325 atmega169pa avrsim';
-
 begin
 
   with avrdudePathComboBox do begin
@@ -250,14 +236,12 @@ begin
   end;
 
   with COMPortBaudComboBox do begin
-    Items.Add('57600');
-    Items.Add('115200');
+    Items.CommaText := '57600,115200';
     Text := '57600';
   end;
 
   with AVR_Typ_ComboBox do begin
-    Items.DelimitedText := ' ';
-    Items.DelimitedText := AVR5_Typ;
+    Items.CommaText := AVR5_Typ;
     Sorted := True;
     Text := 'ATMEGA328P';
   end;
@@ -272,9 +256,7 @@ begin
   end;
 
   with SerialMonitorBaud_ComboBox do begin
-    Items.Add('4800');
-    Items.Add('9600');
-    Items.Add('19200');
+    Items.CommaText := AVR_UARTBaudRates;
     Text := '9600';
   end;
 
