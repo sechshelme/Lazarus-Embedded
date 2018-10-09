@@ -33,42 +33,6 @@ object ProjectOptionsForm: TProjectOptionsForm
     OnClick = CancelButtonClick
     TabOrder = 1
   end
-  object Label1: TLabel
-    Left = 16
-    Height = 17
-    Top = 352
-    Width = 141
-    Caption = 'Serial-Monitor COM-Port:'
-    ParentColor = False
-  end
-  object SerialMonitorPort_ComboBox: TComboBox
-    Left = 16
-    Height = 29
-    Top = 372
-    Width = 442
-    Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 0
-    TabOrder = 2
-    Text = 'SerialMonitorPort_ComboBox'
-  end
-  object Label2: TLabel
-    Left = 16
-    Height = 17
-    Top = 408
-    Width = 32
-    Caption = 'Baud:'
-    ParentColor = False
-  end
-  object SerialMonitorBaud_ComboBox: TComboBox
-    Left = 16
-    Height = 29
-    Top = 427
-    Width = 442
-    Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 0
-    TabOrder = 3
-    Text = 'SerialMonitorBaud_ComboBox'
-  end
   object avrdudePathComboBox: TComboBox
     Left = 16
     Height = 29
@@ -76,7 +40,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Width = 442
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
-    TabOrder = 4
+    TabOrder = 2
     Text = 'avrdudePathComboBox'
   end
   object Label4: TLabel
@@ -101,7 +65,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Top = 264
     Width = 152
     ItemHeight = 0
-    TabOrder = 5
+    TabOrder = 3
     Text = 'AVR_Typ_ComboBox'
   end
   object AsmFile_CheckBox: TCheckBox
@@ -110,7 +74,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Top = 304
     Width = 131
     Caption = 'ASM-File erzeugen'
-    TabOrder = 6
+    TabOrder = 4
   end
   object Label6: TLabel
     Left = 16
@@ -126,7 +90,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Top = 184
     Width = 112
     ItemHeight = 0
-    TabOrder = 7
+    TabOrder = 5
     Text = 'ProgrammerComboBox'
   end
   object COMPortComboBox: TComboBox
@@ -135,7 +99,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Top = 184
     Width = 128
     ItemHeight = 0
-    TabOrder = 8
+    TabOrder = 6
     Text = 'COMPortComboBox'
   end
   object Label7: TLabel
@@ -161,7 +125,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Width = 442
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
-    TabOrder = 9
+    TabOrder = 7
     Text = 'avrdudeConfigPathComboBox'
   end
   object COMPortBaudComboBox: TComboBox
@@ -170,7 +134,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Top = 184
     Width = 112
     ItemHeight = 0
-    TabOrder = 10
+    TabOrder = 8
     Text = 'COMPortBaudComboBox'
   end
   object Label9: TLabel
@@ -189,7 +153,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Anchors = [akTop, akRight]
     Caption = '...'
     OnClick = Button1Click
-    TabOrder = 11
+    TabOrder = 9
   end
   object Button2: TButton
     Left = 470
@@ -199,7 +163,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Anchors = [akTop, akRight]
     Caption = '...'
     OnClick = Button2Click
-    TabOrder = 12
+    TabOrder = 10
   end
   object TemplatesButton: TButton
     Left = 232
@@ -208,7 +172,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Width = 75
     Caption = 'Vorlagen'
     OnClick = TemplatesButtonClick
-    TabOrder = 13
+    TabOrder = 11
   end
   object OpenDialogAVRPath: TOpenDialog
     Left = 416

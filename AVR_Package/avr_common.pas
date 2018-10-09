@@ -5,7 +5,8 @@ unit AVR_Common;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils,
+  ProjectIntf;
 
 const
   AVR_Options_File = 'avroptions.xml';
@@ -24,6 +25,35 @@ const
 
   AVR_UARTBaudRates = '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
 
+  Key_ProjectOptions_Left = 'project_options_form_left/value';
+  Key_ProjectOptions_Top = 'project_options_form_top/value';
+
+  Key_SerialMonitorPort = 'SerialMonitorPort';
+  Key_SerialMonitorBaud = 'COM_Port';
+
+
+type
+
+  { TProjectOptions }
+
+  TProjectOptions = class
+    AvrdudeCommand: record
+      Path,
+      ConfigPath,
+      Programmer,
+      COM_Port,
+      Baud: string;
+    end;
+    AVRType,
+    SerialMonitorPort,
+    SerialMonitorBaud: string;
+    AsmFile: boolean;
+    procedure Save(AProject: TLazProject);
+    procedure Load(AProject: TLazProject);
+  end;
+
+var
+  ProjectOptions: TProjectOptions;
 
 
 function GetSerialPortNames: string;
@@ -153,6 +183,77 @@ begin
   end;
 end;{$ENDIF}
 
+
+{ TProjectOptions }
+
+procedure TProjectOptions.Save(AProject: TLazProject);
+var
+  s: string;
+begin
+  with AProject.LazCompilerOptions do begin
+    CustomOptions := '-Wp' + ProjectOptions.AVRType;
+    if ProjectOptions.AsmFile then begin
+      CustomOptions := CustomOptions + LineEnding + '-al';
+    end;
+  end;
+
+  s := ProjectOptions.AvrdudeCommand.Path + ' ';
+  if ProjectOptions.AvrdudeCommand.ConfigPath <> '' then begin
+    s += '-C' + ProjectOptions.AvrdudeCommand.ConfigPath + ' ';
+  end;
+
+  s += '-v ' +
+    '-p' + ProjectOptions.AVRType + ' ' +
+    '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ';
+  if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
+    s += '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
+      '-b' + ProjectOptions.AvrdudeCommand.Baud + ' ';
+  end;
+  s += '-D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
+
+  AProject.LazCompilerOptions.ExecuteAfter.Command := s;
+
+  //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
+
+  AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitorPort;
+  AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitorBaud;
+end;
+
+procedure TProjectOptions.Load(AProject: TLazProject);
+var
+  s: string;
+
+  function Find(const Source, v: string): string;
+  var
+    p, Index: integer;
+  begin
+    p := pos(v, Source);
+    Result := '';
+    if p > 0 then begin
+      p += Length(v);
+      Index := p;
+      while (Index <= Length(Source)) and (s[Index] > #32) do begin
+        Result += Source[Index];
+        Inc(Index);
+      end;
+    end;
+  end;
+
+begin
+  s := AProject.LazCompilerOptions.CustomOptions;
+  ProjectOptions.AsmFile := Pos('-al', s) > 0;
+  ProjectOptions.AVRType := Find(s, '-Wp');
+
+  s := AProject.LazCompilerOptions.ExecuteAfter.Command;
+  ProjectOptions.AvrdudeCommand.Path := Copy(s, 0, pos(' ', s) - 1);
+  ProjectOptions.AvrdudeCommand.ConfigPath := Find(s, '-C');
+  ProjectOptions.AvrdudeCommand.Programmer := Find(s, '-c');
+  ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
+  ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
+
+  ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
+  ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];
+end;
 
 end.
 

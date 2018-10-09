@@ -14,7 +14,7 @@ uses
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
 
   // AVR
-  AVR_IDE_Options, AVR_Project_Options_Form;
+  AVR_Common, AVR_IDE_Options, AVR_Project_Options_Form, AVR_Serial_Monitor;
 
 type
   { TProjectAVRApp }
@@ -56,8 +56,32 @@ begin
   if Form.ShowModal = mrOk then begin
     Form.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
-    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
-    LazProject.Modified := True;
+//    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
+//    LazProject.Modified := True;
+  end;
+
+  Form.Free;
+end;
+
+procedure ShowSerialMonitor(Sender: TObject);
+var
+  LazProject: TLazProject;
+  Form: TSerial_Monitor_Form;
+begin
+  Form := TSerial_Monitor_Form.Create(nil);
+
+  LazProject := LazarusIDE.ActiveProject;
+
+  ProjectOptions.Load(LazProject);
+
+  Form.LoadDefaultMask;
+  Form.ProjectOptionsToMask;
+
+  if Form.ShowModal = mrOk then begin
+    Form.MaskToProjectOptions;
+    ProjectOptions.Save(LazProject);
+//    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
+//    LazProject.Modified := True;
   end;
 
   Form.Free;
@@ -79,6 +103,7 @@ begin
 
   // Menu
   RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen (Arduino)', 'AVR-Optionen... (Arduino)', nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...', nil, @ShowSerialMonitor);
 end;
 
 { TProjectAVRApp }
@@ -153,8 +178,6 @@ begin
   AProject.LazCompilerOptions.TargetOS := 'embedded';
   AProject.LazCompilerOptions.TargetProcessor := 'avr5';
 
-  //    AProject.LazCompilerOptions.ExecuteBefore.CompileReasons := [crCompile] + [crRun];
-  //    AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crBuild];
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
   ProjectOptions.Save(AProject);
