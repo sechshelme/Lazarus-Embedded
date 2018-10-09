@@ -1,0 +1,43 @@
+object ProjectOptionsForm: TProjectOptionsForm
+  Left = 591
+  Height = 238
+  Top = 590
+  Width = 320
+  BorderStyle = bsDialog
+  Caption = 'AVR Project Options'
+  ClientHeight = 238
+  ClientWidth = 320
+  Position = poDefaultPosOnly
+  LCLVersion = '2.1.0.0'
+  object OkButton: TButton
+    Left = 218
+    Height = 25
+    Top = 195
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    ModalResult = 1
+    OnClick = OkButtonClick
+    TabOrder = 0
+  end
+  object CancelButton: TButton
+    Left = 115
+    Height = 25
+    Top = 195
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Cancel'
+    ModalResult = 2
+    OnClick = CancelButtonClick
+    TabOrder = 1
+  end
+  object COMPortComboBox: TComboBox
+    Left = 40
+    Height = 29
+    Top = 48
+    Width = 128
+    ItemHeight = 0
+    TabOrder = 2
+    Text = 'COMPortComboBox'
+  end
+end

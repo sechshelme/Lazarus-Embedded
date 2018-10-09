@@ -14,7 +14,7 @@ uses
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
 
   // AVR
-  AVR_IDE_Options, AVR_Project_Options_Form;
+  AVR_Project_Options_Form;
 
 type
   { TProjectAVRApp }
@@ -50,14 +50,15 @@ begin
 
   ProjectOptions.Load(LazProject);
 
-  Form.LoadDefaultMask;
-  Form.ProjectOptionsToMask;
+  Form.COMPortComboBox.Text :=
+    ProjectOptions.AvrdudeCommand.COM_Port;
 
-  if Form.ShowModal = mrOk then begin
-    Form.MaskToProjectOptions;
+  if Form.ShowModal = mrOk then
+  begin
+    ProjectOptions.AvrdudeCommand.COM_Port :=
+      Form.COMPortComboBox.Text;
     ProjectOptions.Save(LazProject);
     ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
-    LazProject.Modified := True;
   end;
 
   Form.Free;
@@ -66,19 +67,12 @@ end;
 procedure Register;
 
 begin
-  AVR_Options := TAVR_Options.Create;
-  AVR_Options.Load;
-
   ProjectOptions := TProjectOptions.Create;
-
   RegisterProjectDescriptor(TProjectAVRApp.Create);
 
-  // IDE Option
-  AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment,
-    TAVR_IDE_Options_Frame, AVROptionsFrameID)^.Index;
-
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen (Arduino)', 'AVR-Optionen... (Arduino)', nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen', 'AVR-Optionen...',
+    nil, @ShowAVROptionsDialog);
 end;
 
 { TProjectAVRApp }
@@ -86,18 +80,18 @@ end;
 constructor TProjectAVRApp.Create;
 begin
   inherited Create;
-  Name := 'AVR-Project (Arduino)';
+  Name := 'Test_Project';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
 end;
 
 function TProjectAVRApp.GetLocalizedName: string;
 begin
-  Result := 'AVR-Project (Arduino)';
+  Result := 'Test-Project';
 end;
 
 function TProjectAVRApp.GetLocalizedDescription: string;
 begin
-  Result := 'Erstellt ein AVR-Project (Arduino)';
+  Result := 'Erstellt ein Test-Project';
 end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
@@ -105,12 +99,12 @@ var
   Form: TProjectOptionsForm;
 begin
   Form := TProjectOptionsForm.Create(nil);
-
-  Form.LoadDefaultMask;
+  Form.COMPortComboBox.Text := '/dev/ttyUSB0';
 
   Result := Form.ShowModal;
-  if Result = mrOk then begin
-    Form.MaskToProjectOptions;
+  if Result = mrOk then
+  begin
+    ProjectOptions.AvrdudeCommand.COM_Port := Form.COMPortComboBox.Text;
   end;
 
   Form.Free;
@@ -119,17 +113,7 @@ end;
 function TProjectAVRApp.InitProject(AProject: TLazProject): TModalResult;
 const
   ProjectText =
-    'program Project1;' + LineEnding + LineEnding +
-    '{$H-}' + LineEnding +
-    '{$O-}' + LineEnding + LineEnding +
-    'uses' + LineEnding +
-    '  intrinsics;' + LineEnding + LineEnding +
-    'begin' + LineEnding +
-    '  // Setup' + LineEnding +
-    '  repeat' + LineEnding +
-    '    // Loop;' + LineEnding +
-    '  until 1 = 2;' + LineEnding +
-    'end.';
+    'program Project1;' + LineEnding + LineEnding + 'begin' + LineEnding + 'end.';
 
 var
   MainFile: TLazProjectFile;
@@ -147,14 +131,9 @@ begin
   AProject.LazCompilerOptions.TargetFilename := 'Project1';
   AProject.LazCompilerOptions.Win32GraphicApp := False;
   AProject.LazCompilerOptions.GenerateDebugInfo := False;
-  AProject.LazCompilerOptions.UnitOutputDirectory := 'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
+  AProject.LazCompilerOptions.UnitOutputDirectory :=
+    'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
 
-  AProject.LazCompilerOptions.TargetCPU := 'avr';
-  AProject.LazCompilerOptions.TargetOS := 'embedded';
-  AProject.LazCompilerOptions.TargetProcessor := 'avr5';
-
-  //    AProject.LazCompilerOptions.ExecuteBefore.CompileReasons := [crCompile] + [crRun];
-  //    AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crBuild];
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
   ProjectOptions.Save(AProject);
@@ -164,7 +143,8 @@ end;
 
 function TProjectAVRApp.CreateStartFiles(AProject: TLazProject): TModalResult;
 begin
-  Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename, -1, -1, [ofProjectLoading, ofRegularFile]);
+  Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename,
+    -1, -1, [ofProjectLoading, ofRegularFile]);
 end;
 
 end.

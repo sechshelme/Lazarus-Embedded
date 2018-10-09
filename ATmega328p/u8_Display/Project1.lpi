@@ -26,13 +26,13 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <LaunchingApplication PathPlusParams=""/>
+        <LaunchingApplication Use="True" PathPlusParams="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="1">
         <Mode0 Name="default">
           <local>
-            <LaunchingApplication PathPlusParams=""/>
+            <LaunchingApplication Use="True" PathPlusParams="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
           </local>
         </Mode0>
       </Modes>
@@ -67,7 +67,7 @@
       <CustomOptions Value="-Wpatmega328p
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -patmega328p -carduino -P/dev/ttyACM0 -b115200 -D -Uflash:w:Project1.hex:i"/>
+        <Command Value="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

@@ -15,27 +15,19 @@
         </SyntaxOptions>
       </Parsing>
     </CompilerOptions>
-    <Description Value="Add AVR-Project"/>
+    <Description Value="Test-Package"/>
     <License Value="GPL-2"/>
     <Version Release="2"/>
-    <Files Count="4">
+    <Files Count="2">
       <Item1>
         <Filename Value="avr_register.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="AVR_Register"/>
       </Item1>
       <Item2>
-        <Filename Value="avr_ide_options.pas"/>
-        <UnitName Value="AVR_IDE_Options"/>
-      </Item2>
-      <Item3>
         <Filename Value="avr_project_options_form.pas"/>
-        <UnitName Value="AVR_Project_Options_Form"/>
-      </Item3>
-      <Item4>
-        <Filename Value="avr_common.pas"/>
-        <UnitName Value="AVR_Common"/>
-      </Item4>
+        <UnitName Value="avr_project_options_form"/>
+      </Item2>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
