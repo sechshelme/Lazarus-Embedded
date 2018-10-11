@@ -100,10 +100,6 @@ var
   Zaehler: integer = 0;
   p, Zahl: integer;
 
-const
-
-  TIM_CR1_CEN = 1; //  #define TIM_CR1_CEN	BIT(0)
-
 begin
   // Ports einschalten
   RCC.APB2ENR := RCC.APB2ENR or (%111 shl 2);
@@ -119,11 +115,6 @@ begin
   gpioC.CRH := $33333333;
 
   Zahl := 2;
-
-  TIM2.SR := 0;
-  TIM2.PSC := 0;
-  TIM2.ARR := $FFF;
-  TIM2.CR1 := TIM2.CR1 or tim_cr1_cen;
 
   while True do begin
     Inc(Zaehler);
@@ -148,6 +139,5 @@ begin
     gpioB.ODR := (Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5)) shl 8;
 
     Delay;
-
   end;
 end.

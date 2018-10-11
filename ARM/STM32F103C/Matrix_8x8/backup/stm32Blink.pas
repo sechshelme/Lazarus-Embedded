@@ -120,7 +120,7 @@ begin
 
   Zahl := 2;
 
-  TIM6.SR := 0;
+  TIM2.SR := 0;
   TIM2.PSC := 0;
   TIM2.ARR := $FFF;
   TIM2.CR1 := TIM2.CR1 or tim_cr1_cen;
