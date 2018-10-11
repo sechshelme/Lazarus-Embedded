@@ -1,0 +1,37 @@
+program GPIO_Write;
+  
+procedure Delay;
+var
+  i: uint32;
+begin
+  for i := 0 to 300000 do asm nop end;
+end;
+
+begin
+  // Ports einschalten
+  RCC.APB2ENR := RCC.APB2ENR or (%111 shl 2);
+
+  // Ports auf Ausgabe schalten
+  PortA.CRL := $33333333;
+  PortA.CRH := $33333333;
+
+  PortB.CRL := $33333333;
+  PortB.CRH := $33333333;
+
+  PortC.CRL := $33333333;
+  PortC.CRH := $33333333;  
+  
+  while true do begin  
+    // Pin beschreiben
+    PortA.ODR := %11110000;
+    PortB.ODR := %01010101 shl 8;  
+    PortC.ODR := $0000FFFF;    
+    Delay;
+    
+    // Pin beschreiben
+    PortA.ODR := %00001111;
+    PortB.ODR := %10101010 shl 8;  
+    PortC.ODR := $00000000;
+    Delay;    
+  end;
+end.
