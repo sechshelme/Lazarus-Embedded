@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="/home/tux/fpcupdeluxe_arm/fpc/bin/x86_64-linux/fpc.sh" Date="1539443060"/>
+  <Params Value=" -Tembedded -Parm -CpARMV7M -MObjFPC -Scghi -O1 -l -vewnhibq -Fi/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/STM32F103C/Timer_Blink/lib/arm-embedded -Fu/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/STM32F103C/Timer_Blink/ -FU/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/STM32F103C/Timer_Blink/lib/arm-embedded/ -FE/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/STM32F103C/Timer_Blink/ -o/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/STM32F103C/Timer_Blink/stm32Blink -WpSTM32F103C8 stm32Blink.pas"/>
+</CONFIG>

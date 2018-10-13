@@ -14,6 +14,10 @@
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
+    <CustomData Count="2">
+      <Item0 Name="COM_Port"/>
+      <Item1 Name="SerialMonitorPort"/>
+    </CustomData>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
     </BuildModes>
@@ -60,9 +64,9 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATMEGA328P"/>
+      <CustomOptions Value="-Wpatmega328p"/>
       <ExecuteAfter>
-        <Command Value="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

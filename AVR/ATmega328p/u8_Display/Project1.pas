@@ -4,10 +4,7 @@ program Project1;
 
 const
   CPU_Clock = 16000000; // Taktfrequenz Arduino, default 16MHz.
-  //  Baud = 9600;          // Baudrate
-  Baud = 1000000;          // Baudrate
-  ADSaddr0 = $48;
-  ADSaddr1 = $49;
+    Baud = 9600;          // Baudrate
   TWI_Write = 0;
   TWI_Read = 1;
 
@@ -48,7 +45,7 @@ var
 
   procedure TWIInit;
   const
-    F_SCL = 400000;                                // SCL Frequenz (400KHz)
+    F_SCL = 100000;                                // SCL Frequenz (400KHz)
     TWBR_val = byte((CPU_Clock div F_SCL) - 16) div 2;
   begin
     TWSR := 0;
@@ -267,7 +264,7 @@ begin
 
   lcd_Init;
 
-  //lcd_command(@invert, 1);
+//lcd_command(@invert, 1);
   GotoXY(1, 1);
 
 

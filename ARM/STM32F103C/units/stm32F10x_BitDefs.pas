@@ -988,7 +988,7 @@ CONST
 {$ENDIF}
 
 {****************  Bit definition for RCC_APB1ENR register  *****************}
-  RCC_APB1ENR_TIM2EN: uInt32  = $00000001;  // Timer 2 clock enabled
+  RCC_APB1ENR_TIM2EN: uInt32  = $00000001;  // Timer 2 clock enable
   RCC_APB1ENR_TIM3EN: uInt32  = $00000002;  // Timer 3 clock enable 
   RCC_APB1ENR_WWDGEN: uInt32  = $00000800;  // Window Watchdog clock enable 
   RCC_APB1ENR_USART2EN: uInt32  = $00020000;  // USART 2 clock enable 
