@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="11"/>
+    <BuildModes Active="Default"/>
+    <Units Count="10">
+      <Unit0>
+        <Filename Value="Timer_Blink.pas"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="17"/>
+        <CursorPos X="11" Y="48"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="../../fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103x6.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="448"/>
+        <CursorPos X="8" Y="253"/>
+        <UsageCount Value="10"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../../fpcupdeluxe_arm/fpcsrc/rtl/inc/systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="650"/>
+        <CursorPos Y="668"/>
+        <UsageCount Value="10"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../../fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f10x_ld.pp"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/inc/systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="649"/>
+        <CursorPos X="5" Y="669"/>
+        <UsageCount Value="11"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f10x_ld.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="43"/>
+        <CursorPos X="2" Y="43"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/ccr/mbf/Samples/Blinky/Blinky.lpr"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="544"/>
+        <CursorPos X="85" Y="556"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/lazarus/packager/registration/fcllaz.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="91" Y="13"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/cortexm3.pp"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="112"/>
+        <CursorPos X="59" Y="135"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit9>
+    </Units>
+    <JumpHistory Count="25" HistoryIndex="24">
+      <Position1>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/cortexm3.pp"/>
+        <Caret Line="9" Column="81"/>
+      </Position1>
+      <Position2>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/cortexm3.pp"/>
+        <Caret Line="21" Column="7"/>
+      </Position2>
+      <Position3>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/cortexm3.pp"/>
+        <Caret Line="151" Column="18" TopLine="135"/>
+      </Position3>
+      <Position4>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/cortexm3.pp"/>
+        <Caret Line="52" Column="26" TopLine="24"/>
+      </Position4>
+      <Position5>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/cortexm3.pp"/>
+        <Caret Line="34" Column="76" TopLine="3"/>
+      </Position5>
+      <Position6>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="364" Column="64" TopLine="343"/>
+      </Position6>
+      <Position7>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="454" Column="7" TopLine="422"/>
+      </Position7>
+      <Position8>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="455" Column="7" TopLine="423"/>
+      </Position8>
+      <Position9>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="456" Column="7" TopLine="424"/>
+      </Position9>
+      <Position10>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="457" Column="7" TopLine="425"/>
+      </Position10>
+      <Position11>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="458" Column="7" TopLine="426"/>
+      </Position11>
+      <Position12>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="500" Column="7" TopLine="468"/>
+      </Position12>
+      <Position13>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="490" Column="68" TopLine="468"/>
+      </Position13>
+      <Position14>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="37" Column="37" TopLine="17"/>
+      </Position14>
+      <Position15>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="38" Column="18" TopLine="17"/>
+      </Position15>
+      <Position16>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="136" Column="21" TopLine="104"/>
+      </Position16>
+      <Position17>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="185" Column="21" TopLine="153"/>
+      </Position17>
+      <Position18>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="186" Column="21" TopLine="154"/>
+      </Position18>
+      <Position19>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="187" Column="23" TopLine="155"/>
+      </Position19>
+      <Position20>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="188" Column="21" TopLine="156"/>
+      </Position20>
+      <Position21>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="197" Column="21" TopLine="165"/>
+      </Position21>
+      <Position22>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="198" Column="26" TopLine="166"/>
+      </Position22>
+      <Position23>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="271" Column="21" TopLine="239"/>
+      </Position23>
+      <Position24>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="343" Column="21" TopLine="311"/>
+      </Position24>
+      <Position25>
+        <Filename Value="/home/tux/fpcupdeluxe_arm/fpcsrc/rtl/embedded/arm/stm32f103xb.pp"/>
+        <Caret Line="345" Column="21" TopLine="313"/>
+      </Position25>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
