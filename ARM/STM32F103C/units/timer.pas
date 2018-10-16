@@ -62,7 +62,7 @@ end;
 procedure Timer2SetAutoReloadRegister(AValue: uInt16);
 begin
   Timer2Disable;
-  Timer2.Arr:= AValue;
+  Timer2.ARR:= AValue;
   Timer2Enable;
 end;
 

@@ -23,7 +23,6 @@ var
     LedC[13] := not LedC[13];   // LED PC13 umschalten
   end;
 
-
 begin
   // Ports einschalten
   RCC.APB2ENR := RCC.APB2ENR or (%111 shl 2);

@@ -1,7 +1,7 @@
 program GPIO_Write;
 
 uses
-  cortexm3;
+  cortexm3, Timer;
 
   procedure Delay;
   var
@@ -131,11 +131,10 @@ var
 
   end;
 
-  procedure Timer2_Interrupt; public Name 'TIM2_interrupt'; interrupt;
+  procedure Timer2_Interrupt;
   const
     p: integer = 0;
   begin
-    Tim2.SR := Tim2.SR and not TIM_SR_CC1IF; //clear CC1IF
     Inc(p);
     if p >= 80 then begin
       p := 0;
@@ -143,11 +142,10 @@ var
     end;
   end;
 
-  procedure Timer3_Interrupt; public Name 'TIM3_interrupt'; interrupt;
+  procedure Timer3_Interrupt;
   const
     p: integer = 0;
   begin
-    Tim3.SR := Tim3.SR and not TIM_SR_CC1IF; //clear CC1IF
     Inc(p);
     if p >= 80 then begin
       p := 0;
@@ -155,11 +153,10 @@ var
     end;
   end;
 
-  procedure Timer4_Interrupt; public Name 'TIM4_interrupt'; interrupt;
+  procedure Timer4_Interrupt;
   const
     p: integer = 0;
   begin
-    Tim4.SR := Tim4.SR and not TIM_SR_CC1IF; //clear CC1IF
     Inc(p);
     if p >= 80 then begin
       p := 0;
@@ -185,13 +182,13 @@ begin
   Zahl := 2;
 
   // Timer
-  Timer2Init;
-  Timer3Init;
-  Timer4Init;
+  Timer2.Init(@Timer2_Interrupt, 20,1234);
+  Timer3.Init(@Timer3_Interrupt, 2000,20);
+  Timer4.Init(@Timer4_Interrupt, 1220,20);
 
   while True do begin
     Inc(Zaehler);
-    if Zaehler >= 600 then begin
+    if Zaehler >= 100 then begin
       Zaehler := 0;
     end;
 
