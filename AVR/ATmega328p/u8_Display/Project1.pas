@@ -274,7 +274,7 @@ begin
     //FillChar(displayBuffer, SizeOf(displayBuffer), %01010101);
 
     for i := 0 to 255 do begin
-      displayBuffer[i] := i;
+      displayBuffer[i] := 3;
     end;
     //lcd_data(@displayBuffer, SizeOf(displayBuffer));
     lcd_data(@displayBuffer, 512);
