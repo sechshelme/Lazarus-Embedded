@@ -167,6 +167,26 @@ var
     TWIStop;
   end;
 
+  procedure ReadDS3231neu(addr: UInt16);
+  begin
+    TWIStart((addr shl 1) or TWI_Write);
+    TWIWrite(0);
+    TWIStop;
+
+    TWIStart((addr shl 1) or TWI_Read);
+    Date.second := TWIReadACK_Error and $7F;
+    Date.minute := TWIReadACK_Error;
+    Date.hour := TWIReadACK_Error;
+
+    TWIReadACK_Error;
+
+    Date.day := TWIReadACK_Error;
+    Date.month := TWIReadACK_Error;
+    Date.year := TWIReadNACK_Error + 2000;
+
+    TWIStop;
+  end;
+
 var
   s: ShortString;
 
@@ -186,7 +206,6 @@ begin
 
   repeat
     ReadDS3231(I2CAddr);
-
     str(Date.second: 6, s);
     UARTSendString('Sec: ' + s);
     str(Date.minute: 6, s);
@@ -195,5 +214,13 @@ begin
     UARTSendString(' Stunden: ' + s);
 
     UARTSendString(#13#10);
+
+    ReadDS3231neu(I2CAddr);
+    UARTSendString('Sec: ');
+    UARTSendChar(char((Date.second shr 4) + 48));
+    UARTSendChar(char((Date.second and $0F) + 48));
+
+    UARTSendString(#13#10#13#10);
+
   until 1 = 2;
 end.

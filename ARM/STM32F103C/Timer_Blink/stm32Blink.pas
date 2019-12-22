@@ -68,7 +68,7 @@ begin
   Timer3.Init(@Timer3_Interrupt, 2000, 2000);
   Timer4.Init(@Timer4_Interrupt, 1220, 2000);
 
-  Timer4.Prescaler(100);
+  Timer4.Prescaler(1000);
 
   while True do begin
     Inc(Zaehler);

@@ -40,6 +40,7 @@ const
   latchPin = 1;
   clockPin = 2;
 
+// Achtung, 7-Segment Bausteine sind 180Grad verdreht verbaut !
 const
   digits: packed array[0..17] of byte = (
     %00111111, // = 0

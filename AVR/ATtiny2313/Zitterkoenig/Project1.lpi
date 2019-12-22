@@ -14,10 +14,6 @@
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
-    <CustomData Count="2">
-      <Item0 Name="COM_Port"/>
-      <Item1 Name="SerialMonitorPort"/>
-    </CustomData>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
     </BuildModes>
@@ -67,7 +63,7 @@
       <CustomOptions Value="-WpATTINY2313A
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -pATTINY2313 -cusbasp -D -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -pattiny2313 -cusbasp -Uflash:w:Project1.hex:i "/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>
