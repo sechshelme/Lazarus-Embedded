@@ -9,7 +9,6 @@ uses
   IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   AVR_Common;
 
-
 type
 
   { TAVR_Options }
@@ -26,7 +25,7 @@ var
   AVR_Options: TAVR_Options;
 
 type
-
+  (* Frames befindet sich unter: Werkzeuge/Einstellungen.../Umgebung/AVR-Options *)
 
   { TAVR_IDE_Options_Frame }
 
