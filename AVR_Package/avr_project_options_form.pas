@@ -69,57 +69,55 @@ end;
 
 procedure TProjectOptionsForm.TemplatesButtonClick(Sender: TObject);
 var
-  Form: TForm;
-  okB, cancelB: TBitBtn;
-  cb: TListBox;
-  l: TLabel;
+  TemplatesForm: TForm;
+  okBt, cancelBt: TBitBtn;
+  ListBox: TListBox;
+  BoardLabel: TLabel;
 begin
-  Form := TForm.Create(nil);
-  with Form do begin
+  TemplatesForm := TForm.Create(nil);
+  with TemplatesForm do begin
     Position := poScreenCenter;
     ClientWidth := 400;
     ClientHeight := 300;
   end;
 
-  l := TLabel.Create(Form);
-  with l do begin
+  BoardLabel := TLabel.Create(TemplatesForm);
+  with BoardLabel do begin
     Left := 10;
     Top := 25;
     Text := 'Board:';
-    Parent := Form;
+    Parent := TemplatesForm;
   end;
 
-  okB := TBitBtn.Create(Form);
-  with okB do begin
+  okBt := TBitBtn.Create(TemplatesForm);
+  with okBt do begin
     Kind := bkOK;
-    //    Caption:='Ok';
-    Width := 75;
+    Width := 80;
     Height := 25;
-    Left := Form.ClientWidth - 100;
-    Top := Form.ClientHeight - 50;
+    Left := TemplatesForm.ClientWidth - 100;
+    Top := TemplatesForm.ClientHeight - 45;
     Anchors := [akRight, akBottom];
-    Parent := Form;
+    Parent := TemplatesForm;
   end;
 
-  cancelB := TBitBtn.Create(Form);
-  with cancelB do begin
+  cancelBt := TBitBtn.Create(TemplatesForm);
+  with cancelBt do begin
     Kind := bkCancel;
-    //    Caption:='Cancel';
-    Width := 75;
+    Width := 80;
     Height := 25;
-    Left := Form.ClientWidth - 200;
-    Top := Form.ClientHeight - 50;
+    Left := TemplatesForm.ClientWidth - 200;
+    Top := TemplatesForm.ClientHeight - 45;
     Anchors := [akRight, akBottom];
-    Parent := Form;
+    Parent := TemplatesForm;
   end;
 
-  cb := TListBox.Create(Form);
-  with cb do begin
-    Parent := Form;
+  ListBox := TListBox.Create(TemplatesForm);
+  with ListBox do begin
+    Parent := TemplatesForm;
     Top := 50;
     Left := 10;
-    Width := Form.ClientWidth - 20;
-    Height := Form.ClientHeight - 110;
+    Width := TemplatesForm.ClientWidth - 20;
+    Height := TemplatesForm.ClientHeight - 110;
     Anchors := [akLeft, akTop, akRight, akBottom];
     Text := 'Arduino UNO';
     Items.Add(Text);
@@ -127,8 +125,8 @@ begin
     Items.Add('Arduino Nano');
   end;
 
-  if Form.ShowModal = mrOk then begin
-    case cb.ItemIndex of
+  if TemplatesForm.ShowModal = mrOk then begin
+    case ListBox.ItemIndex of
       0: begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyACM0';
@@ -150,7 +148,7 @@ begin
     end;
   end;
 
-  Form.Free;
+  TemplatesForm.Free;
 end;
 
 procedure TProjectOptionsForm.LoadDefaultMask;
@@ -169,10 +167,10 @@ begin
   end;
 
   with ProgrammerComboBox do begin
-    Items.Add('arduino');
+    Text := 'arduino';
+    Items.Add(Text);
     Items.Add('usbasp');
     Items.Add('stk500v1');
-    Text := 'arduino';
   end;
 
   with COMPortComboBox do begin

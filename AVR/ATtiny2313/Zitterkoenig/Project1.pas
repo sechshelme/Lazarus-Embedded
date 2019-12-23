@@ -8,12 +8,12 @@ const
 
   procedure sei; assembler;
   asm
-           SEI
+           Sei
   end;
 
   procedure cli; assembler;
   asm
-           CLI
+           Cli
   end;
 
 
@@ -59,47 +59,40 @@ var
   begin
     achr := 0;
     leer := True;
-    while (vval >= 1000) do
-    begin
+    while (vval >= 1000) do begin
       Dec(vval, 1000);
       Inc(achr);
       leer := False;
     end;
-    if leer then
-    begin
+    if leer then begin
       achr := 16;
     end;
     Data[1] := achr;
 
     achr := 0;
-    while (vval >= 100) do
-    begin
+    while (vval >= 100) do begin
       Dec(vval, 100);
       Inc(achr);
       leer := False;
     end;
-    if leer then
-    begin
+    if leer then begin
       achr := 16;
     end;
     Data[1] := achr;
 
     achr := 0;
-    while (vval >= 10) do
-    begin
+    while (vval >= 10) do begin
       Dec(vval, 10);
       Inc(achr);
       leer := False;
     end;
-    if leer then
-    begin
+    if leer then begin
       achr := 16;
     end;
     Data[2] := achr;
 
     achr := 0;
-    while (vval >= 1) do
-    begin
+    while (vval >= 1) do begin
       Dec(vval);
       Inc(achr);
     end;
@@ -112,8 +105,7 @@ var
     i: byte;
   begin
     SPI_PORT.SlaveSelect := False;
-    for i := len - 1 downto 0 do
-    begin
+    for i := len - 1 downto 0 do begin
       USIDR := p[i];
       USISR := 1 shl USIOIF;
 
@@ -133,8 +125,7 @@ var
     p: byte = 0;
   begin
     p := p + 1;
-    if (p > 3) then
-    begin
+    if (p > 3) then begin
       p := 0;
     end;
 
@@ -151,15 +142,18 @@ var
 
     di := digits[p];
     SPIWriteData(@di, 1);
-    if p = 0 then
+    if p = 0 then begin
       SPI_PORT.p0 := True;
-    if p = 1 then
+    end;
+    if p = 1 then begin
       SPI_PORT.p1 := True;
-    if p = 2 then
+    end;
+    if p = 2 then begin
       SPI_PORT.p2 := True;
-    if p = 3 then
+    end;
+    if p = 3 then begin
       SPI_PORT.p3 := True;
-
+    end;
   end;
 
 begin

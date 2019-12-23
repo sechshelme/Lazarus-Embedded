@@ -13,7 +13,7 @@ uses
   // IdeIntf
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
 
-  // AVR
+  // AVR ( Eigene Units )
   AVR_Common, AVR_IDE_Options, AVR_Project_Options_Form, AVR_Serial_Monitor;
 
 type
@@ -57,7 +57,6 @@ begin
     Form.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
 //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
-//    LazProject.Modified := True;
   end;
 
   Form.Free;
@@ -81,7 +80,6 @@ begin
     Form.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
 //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
-//    LazProject.Modified := True;
   end;
 
   Form.Free;

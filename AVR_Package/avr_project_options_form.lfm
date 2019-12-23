@@ -1,18 +1,18 @@
 object ProjectOptionsForm: TProjectOptionsForm
-  Left = 431
+  Left = 607
   Height = 521
-  Top = 582
-  Width = 529
+  Top = 325
+  Width = 554
   BorderStyle = bsDialog
   Caption = 'AVR Project Options'
   ClientHeight = 521
-  ClientWidth = 529
+  ClientWidth = 554
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object OkButton: TButton
-    Left = 427
+    Left = 452
     Height = 25
     Top = 478
     Width = 75
@@ -23,21 +23,21 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 324
+    Left = 349
     Height = 25
     Top = 478
     Width = 75
     Anchors = [akRight, akBottom]
-    Caption = 'Cancel'
+    Caption = 'Abbrechen'
     ModalResult = 2
     OnClick = CancelButtonClick
     TabOrder = 1
   end
   object avrdudePathComboBox: TComboBox
     Left = 16
-    Height = 29
+    Height = 28
     Top = 56
-    Width = 442
+    Width = 467
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
@@ -45,23 +45,23 @@ object ProjectOptionsForm: TProjectOptionsForm
   end
   object Label4: TLabel
     Left = 16
-    Height = 17
+    Height = 16
     Top = 32
-    Width = 91
+    Width = 102
     Caption = 'AVRdude Aufruf:'
     ParentColor = False
   end
   object Label5: TLabel
     Left = 16
-    Height = 17
+    Height = 16
     Top = 240
-    Width = 48
+    Width = 54
     Caption = 'AVR Typ:'
     ParentColor = False
   end
   object AVR_Typ_ComboBox: TComboBox
     Left = 16
-    Height = 29
+    Height = 28
     Top = 264
     Width = 152
     ItemHeight = 0
@@ -72,21 +72,21 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 16
     Height = 23
     Top = 304
-    Width = 131
+    Width = 138
     Caption = 'ASM-File erzeugen'
     TabOrder = 4
   end
   object Label6: TLabel
     Left = 16
-    Height = 17
+    Height = 16
     Top = 160
-    Width = 75
+    Width = 78
     Caption = 'Programmer:'
     ParentColor = False
   end
   object ProgrammerComboBox: TComboBox
     Left = 16
-    Height = 29
+    Height = 28
     Top = 184
     Width = 112
     ItemHeight = 0
@@ -95,7 +95,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   end
   object COMPortComboBox: TComboBox
     Left = 144
-    Height = 29
+    Height = 28
     Top = 184
     Width = 128
     ItemHeight = 0
@@ -104,25 +104,25 @@ object ProjectOptionsForm: TProjectOptionsForm
   end
   object Label7: TLabel
     Left = 144
-    Height = 17
+    Height = 16
     Top = 160
-    Width = 58
+    Width = 63
     Caption = 'COM-Port:'
     ParentColor = False
   end
   object Label8: TLabel
     Left = 16
-    Height = 17
+    Height = 16
     Top = 96
-    Width = 253
+    Width = 280
     Caption = 'AVRdude Config-Pfad ( Leer = default Konfig. )'
     ParentColor = False
   end
   object avrdudeConfigPathComboBox: TComboBox
     Left = 16
-    Height = 29
+    Height = 28
     Top = 119
-    Width = 442
+    Width = 467
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 7
@@ -130,7 +130,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   end
   object COMPortBaudComboBox: TComboBox
     Left = 288
-    Height = 29
+    Height = 28
     Top = 184
     Width = 112
     ItemHeight = 0
@@ -139,14 +139,14 @@ object ProjectOptionsForm: TProjectOptionsForm
   end
   object Label9: TLabel
     Left = 288
-    Height = 17
+    Height = 16
     Top = 160
-    Width = 90
+    Width = 98
     Caption = 'COM-Port Baud:'
     ParentColor = False
   end
   object Button1: TButton
-    Left = 470
+    Left = 495
     Height = 29
     Top = 56
     Width = 32
@@ -156,7 +156,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 9
   end
   object Button2: TButton
-    Left = 470
+    Left = 495
     Height = 29
     Top = 120
     Width = 32
