@@ -36,9 +36,17 @@ type
     p0, p1, p2, p3, SlaveSelect, DataInt, DataOut, Clock: boolean;
   end;
 
+  TGPIOD = bitpacked record
+    Draht, Start, m0, m1, m2, m3, Ende: boolean;
+  end;
+
 var
-  SPI_PORT: TSPIGPIO absolute PORTB;
   SPI_DDR: TSPIGPIO absolute DDRB;
+  SPI_PORT: TSPIGPIO absolute PORTB;
+
+  GPIOD_IN: TGPIOD absolute PIND;
+  GPIOD_DRR: TGPIOD absolute DDRD;
+  GPIOD_PORT: TGPIOD absolute PORTD;
 
   z: Int16 = 0;
   Data: array[0..3, 0..2] of byte;
@@ -118,9 +126,9 @@ var
       p := 0;
     end;
 
-    PORTB := PORTB and %11110000;
+    PORTD := PORTD and %11000011;
     SPIWriteData(@Data[p], 3);
-    PORTB := PORTB or (1 shl p);
+    PORTD := PORTD or (%00100000 shr p);
   end;
 
 begin
@@ -129,7 +137,10 @@ begin
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
 
-  DDRB := DDRB or %00001111;
+  DDRD := %00111100;
+  GPIOD_PORT.Start := True;
+  GPIOD_PORT.Draht := True;
+  GPIOD_PORT.Ende := True;
 
   // -- Timer initialisieren
   TCCR0A := (1 shl WGM01);
@@ -146,7 +157,11 @@ begin
     //    zahl[3] := d mod 10;
 
     //    Inc(z);
-    Data[0, 0] := digits[1];
+    if not GPIOD_IN.Draht then begin
+      Inc(z);
+    end;
+
+    Data[0, 0] := digits[z];
     Data[1, 0] := digits[2];
     Data[2, 0] := digits[3];
     Data[3, 0] := digits[4];
