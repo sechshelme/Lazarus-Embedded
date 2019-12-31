@@ -21,9 +21,13 @@ type
     AsmFile_CheckBox: TCheckBox;
     avrdudeConfigPathComboBox: TComboBox;
     avrdudePathComboBox: TComboBox;
-    AVR_Typ_ComboBox: TComboBox;
+    AVR_Typ_FPC_ComboBox: TComboBox;
+    BitBtn1: TBitBtn;
     Button1: TButton;
     Button2: TButton;
+    AVR_Typ_avrdude_Edit: TEdit;
+    Label10: TLabel;
+    Memo1: TMemo;
     TemplatesButton: TButton;
     COMPortBaudComboBox: TComboBox;
     COMPortComboBox: TComboBox;
@@ -38,6 +42,7 @@ type
     OpenDialogAVRConfigPath: TOpenDialog;
     OpenDialogAVRPath: TOpenDialog;
     ProgrammerComboBox: TComboBox;
+    procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -131,19 +136,19 @@ begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyACM0';
         COMPortBaudComboBox.Text := '115200';
-        AVR_Typ_ComboBox.Text := 'ATMEGA328P';
+        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
       end;
       1: begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyUSB0';
         COMPortBaudComboBox.Text := '57600';
-        AVR_Typ_ComboBox.Text := 'ATMEGA328P';
+        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
       end;
       2: begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyUSB0';
         COMPortBaudComboBox.Text := '115200';
-        AVR_Typ_ComboBox.Text := 'ATMEGA328P';
+        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
       end;
     end;
   end;
@@ -184,8 +189,8 @@ begin
     Text := '57600';
   end;
 
-  with AVR_Typ_ComboBox do begin
-    Items.CommaText := AVR5_Typ;
+  with AVR_Typ_FPC_ComboBox do begin
+    Items.CommaText := AVR5_Fpc_Typ;
     Sorted := True;
     Text := 'ATMEGA328P';
   end;
@@ -196,44 +201,29 @@ end;
 
 procedure TProjectOptionsForm.ProjectOptionsToMask;
 begin
+  AVR_Typ_FPC_ComboBox.Text := ProjectOptions.AVR_FPC_Typ;
 
-  with avrdudePathComboBox do begin
-    Text := ProjectOptions.AvrdudeCommand.Path;
-  end;
-
-  with avrdudeConfigPathComboBox do begin
-    Text := ProjectOptions.AvrdudeCommand.ConfigPath;
-  end;
-
-  with ProgrammerComboBox do begin
-    Text := ProjectOptions.AvrdudeCommand.Programmer;
-  end;
-
-  with COMPortComboBox do begin
-    Text := ProjectOptions.AvrdudeCommand.COM_Port;
-  end;
-
-  with COMPortBaudComboBox do begin
-    Text := ProjectOptions.AvrdudeCommand.Baud;
-  end;
-
-  with AVR_Typ_ComboBox do begin
-    Text := ProjectOptions.AVRType;
-  end;
+  avrdudePathComboBox.Text := ProjectOptions.AvrdudeCommand.Path;
+  avrdudeConfigPathComboBox.Text := ProjectOptions.AvrdudeCommand.ConfigPath;
+  ProgrammerComboBox.Text := ProjectOptions.AvrdudeCommand.Programmer;
+  COMPortComboBox.Text := ProjectOptions.AvrdudeCommand.COM_Port;
+  COMPortBaudComboBox.Text := ProjectOptions.AvrdudeCommand.Baud;
+  AVR_Typ_avrdude_Edit.Text := ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
   AsmFile_CheckBox.Checked := ProjectOptions.AsmFile;
-
 end;
 
 procedure TProjectOptionsForm.MaskToProjectOptions;
 begin
+  ProjectOptions.AVR_FPC_Typ := AVR_Typ_FPC_ComboBox.Text;
+
   ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
   ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
   ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
   ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
   ProjectOptions.AvrdudeCommand.Baud := COMPortBaudComboBox.Text;
+  ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
 
-  ProjectOptions.AVRType := AVR_Typ_ComboBox.Text;
   ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
 end;
 
@@ -243,7 +233,6 @@ begin
 end;
 
 procedure TProjectOptionsForm.FormCreate(Sender: TObject);
-
 var
   Cfg: TConfigStorage;
 begin
@@ -269,6 +258,11 @@ begin
   if OpenDialogAVRPath.Execute then begin
     avrdudePathComboBox.Text := OpenDialogAVRPath.FileName;
   end;
+end;
+
+procedure TProjectOptionsForm.BitBtn1Click(Sender: TObject);
+begin
+  AVR_Typ_avrdude_Edit.Text := AVR_Typ_FPC_ComboBox.Text;
 end;
 
 procedure TProjectOptionsForm.Button2Click(Sender: TObject);

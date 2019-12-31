@@ -13,20 +13,20 @@ const
 
   // fpcsrc/rtl/embedded/Makefile
 
-  AVR25_Typ =
+  AVR25_Fpc_Typ =
     'attiny44a,attiny26,attiny48,attiny10,attiny84a,attiny2313,attiny461,attiny43u,'+
     'attiny24a,attiny88,attiny40,attiny861,attiny85,attiny20,attiny24,attiny9,'+
     'attiny87,attiny84,attiny13a,attiny45,attiny5,attiny828,attiny4313,attiny13,attiny261,'+
-    'attiny861a,attiny28,attiny4,attiny44,attiny2313a,attiny461a,attiny261a,attiny25,';
+    'attiny861a,attiny28,attiny4,attiny44,attiny2313a,attiny461a,attiny261a,attiny25';
 
-  AVR35_Typ =
+  AVR35_Fpc_Typ =
     'at90usb82,at90usb162,attiny167,atmega8u2,atmega16u2,atmega32u2,attiny1634';
 
-  AVR4_Typ =
+  AVR4_Fpc_Typ =
     'atmega88p,at90pwm3b,atmega48a,atmega48,atmega88a,at90pwm81,atmega8,atmega8515,'+
     'atmega88pa,atmega88,atmega48p,atmega8535,at90pwm1,at90pwm2b,atmega48pa,ata6285,ata6286,atmega8a';
 
-  AVR5_Typ =
+  AVR5_Fpc_Typ =
     'atmega645,atmega165a,atmega649a,atmega32u4,atmega168p,atmega3250pa,atmega3290a,' +
     'atmega165p,atmega16u4,atmega6490p,atmega324p,atmega328,atmega64m1,atmega645p,' +
     'atmega329a,atmega324pa,atmega32hvb,at90pwm316,at90usb646,atmega16,atmega644,' +
@@ -39,10 +39,10 @@ const
     'atmega329pa,atmega6450p,atmega64,atmega165pa,atmega16a,atmega649,atmega649p,' +
     'atmega3250p,atmega325,atmega169pa,avrsim';
 
-  AVR51_Typ =
+  AVR51_Fpc_Typ =
     'at90usb1287,atmega1284,atmega1281,atmega128rfa1,atmega1284p,at90can128,atmega128,at90usb1286,atmega128a,atmega1280';
 
-  AVR6_Typ =
+  AVR6_Fpc_Typ =
     'atmega2561,atmega2560,avrsim';
 
   AVR_UARTBaudRates = '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
@@ -61,12 +61,13 @@ type
   TProjectOptions = class
     AvrdudeCommand: record
       Path,
+      AVR_AVRDude_Typ,
       ConfigPath,
       Programmer,
       COM_Port,
       Baud: string;
     end;
-    AVRType,
+    AVR_FPC_Typ,
     SerialMonitorPort,
     SerialMonitorBaud: string;
     AsmFile: boolean;
@@ -213,7 +214,7 @@ var
   s: string;
 begin
   with AProject.LazCompilerOptions do begin
-    CustomOptions := '-Wp' + ProjectOptions.AVRType;
+    CustomOptions := '-Wp' + ProjectOptions.AVR_FPC_Typ;
     if ProjectOptions.AsmFile then begin
       CustomOptions := CustomOptions + LineEnding + '-al';
     end;
@@ -225,7 +226,7 @@ begin
   end;
 
   s += '-v ' +
-    '-p' + ProjectOptions.AVRType + ' ' +
+    '-p' + ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ + ' ' +
     '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ';
   if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
     s += '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
@@ -264,14 +265,20 @@ var
 begin
   s := AProject.LazCompilerOptions.CustomOptions;
   ProjectOptions.AsmFile := Pos('-al', s) > 0;
-  ProjectOptions.AVRType := Find(s, '-Wp');
+  ProjectOptions.AVR_FPC_Typ := Find(s, '-Wp');
 
   s := AProject.LazCompilerOptions.ExecuteAfter.Command;
   ProjectOptions.AvrdudeCommand.Path := Copy(s, 0, pos(' ', s) - 1);
   ProjectOptions.AvrdudeCommand.ConfigPath := Find(s, '-C');
+  ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := Find(s, '-p');
   ProjectOptions.AvrdudeCommand.Programmer := Find(s, '-c');
-  ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
-  ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
+  if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
+     ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
+     ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
+  end else begin
+    ProjectOptions.AvrdudeCommand.COM_Port := '';
+    ProjectOptions.AvrdudeCommand.Baud := '';
+  end;
 
   ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
   ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];

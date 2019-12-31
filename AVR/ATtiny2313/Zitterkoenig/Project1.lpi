@@ -64,10 +64,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATTINY2313
+      <CustomOptions Value="-WpATTINY2313A
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -pATTINY2313 -cusbasp -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -pattiny2313 -cusbasp -D -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

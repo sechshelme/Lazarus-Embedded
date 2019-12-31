@@ -81,7 +81,7 @@ end;
 
 function TAVR_IDE_Options_Frame.GetTitle: string;
 begin
-  Result := 'AVR Optionen';
+  Result := 'AVR-Optionen (Arduino)';
 end;
 
 procedure TAVR_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
