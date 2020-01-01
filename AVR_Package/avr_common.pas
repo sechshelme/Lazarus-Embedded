@@ -13,6 +13,9 @@ const
 
   // fpcsrc/rtl/embedded/Makefile
 
+  AVR_Familie_Typ =
+    'AVR25,AVR35,AVR4,AVR5,AVR51,AVR6';
+
   AVR25_Fpc_Typ =
     'attiny44a,attiny26,attiny48,attiny10,attiny84a,attiny2313,attiny461,attiny43u,'+
     'attiny24a,attiny88,attiny40,attiny861,attiny85,attiny20,attiny24,attiny9,'+
@@ -61,12 +64,13 @@ type
   TProjectOptions = class
     AvrdudeCommand: record
       Path,
-      AVR_AVRDude_Typ,
       ConfigPath,
+      AVR_AVRDude_Typ,
       Programmer,
       COM_Port,
       Baud: string;
     end;
+    AVR_Familie,
     AVR_FPC_Typ,
     SerialMonitorPort,
     SerialMonitorBaud: string;
@@ -214,6 +218,10 @@ var
   s: string;
 begin
   with AProject.LazCompilerOptions do begin
+    //      AProject.LazCompilerOptions.TargetCPU := 'avr';
+    //      AProject.LazCompilerOptions.TargetOS := 'embedded';
+    TargetProcessor := ProjectOptions.AVR_Familie;
+
     CustomOptions := '-Wp' + ProjectOptions.AVR_FPC_Typ;
     if ProjectOptions.AsmFile then begin
       CustomOptions := CustomOptions + LineEnding + '-al';
@@ -232,7 +240,8 @@ begin
     s += '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
       '-b' + ProjectOptions.AvrdudeCommand.Baud + ' ';
   end;
-  s += '-D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
+  s += '-Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
+//  s += '-D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
   AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 
@@ -263,6 +272,8 @@ var
   end;
 
 begin
+  ProjectOptions.AVR_Familie := AProject.LazCompilerOptions.TargetProcessor;
+
   s := AProject.LazCompilerOptions.CustomOptions;
   ProjectOptions.AsmFile := Pos('-al', s) > 0;
   ProjectOptions.AVR_FPC_Typ := Find(s, '-Wp');

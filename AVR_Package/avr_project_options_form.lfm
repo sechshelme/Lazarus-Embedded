@@ -1,11 +1,11 @@
 object ProjectOptionsForm: TProjectOptionsForm
   Left = 547
-  Height = 471
+  Height = 507
   Top = 324
   Width = 655
   BorderStyle = bsDialog
   Caption = 'AVR Project Options'
-  ClientHeight = 471
+  ClientHeight = 507
   ClientWidth = 655
   OnClose = FormClose
   OnCreate = FormCreate
@@ -14,7 +14,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object OkButton: TButton
     Left = 559
     Height = 25
-    Top = 373
+    Top = 409
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -25,7 +25,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object CancelButton: TButton
     Left = 456
     Height = 25
-    Top = 373
+    Top = 409
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -41,7 +41,6 @@ object ProjectOptionsForm: TProjectOptionsForm
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
-    Text = 'avrdudePathComboBox'
   end
   object Label4: TLabel
     Left = 16
@@ -54,7 +53,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object Label5: TLabel
     Left = 16
     Height = 16
-    Top = 168
+    Top = 232
     Width = 80
     Caption = 'AVR FPC Typ:'
     ParentColor = False
@@ -62,16 +61,15 @@ object ProjectOptionsForm: TProjectOptionsForm
   object AVR_Typ_FPC_ComboBox: TComboBox
     Left = 16
     Height = 28
-    Top = 192
+    Top = 256
     Width = 168
     ItemHeight = 0
     TabOrder = 3
-    Text = 'AVR_Typ_FPC_ComboBox'
   end
   object AsmFile_CheckBox: TCheckBox
     Left = 16
     Height = 23
-    Top = 352
+    Top = 368
     Width = 138
     Caption = 'ASM-File erzeugen'
     TabOrder = 4
@@ -79,7 +77,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object Label6: TLabel
     Left = 16
     Height = 16
-    Top = 240
+    Top = 304
     Width = 78
     Caption = 'Programmer:'
     ParentColor = False
@@ -87,25 +85,23 @@ object ProjectOptionsForm: TProjectOptionsForm
   object ProgrammerComboBox: TComboBox
     Left = 16
     Height = 28
-    Top = 264
+    Top = 328
     Width = 112
     ItemHeight = 0
     TabOrder = 5
-    Text = 'ProgrammerComboBox'
   end
   object COMPortComboBox: TComboBox
     Left = 144
     Height = 28
-    Top = 264
+    Top = 328
     Width = 128
     ItemHeight = 0
     TabOrder = 6
-    Text = 'COMPortComboBox'
   end
   object Label7: TLabel
     Left = 144
     Height = 16
-    Top = 240
+    Top = 304
     Width = 63
     Caption = 'COM-Port:'
     ParentColor = False
@@ -126,21 +122,19 @@ object ProjectOptionsForm: TProjectOptionsForm
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 7
-    Text = 'avrdudeConfigPathComboBox'
   end
   object COMPortBaudComboBox: TComboBox
     Left = 288
     Height = 28
-    Top = 264
+    Top = 328
     Width = 112
     ItemHeight = 0
     TabOrder = 8
-    Text = 'COMPortBaudComboBox'
   end
   object Label9: TLabel
     Left = 288
     Height = 16
-    Top = 240
+    Top = 304
     Width = 98
     Caption = 'COM-Port Baud:'
     ParentColor = False
@@ -166,7 +160,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 10
   end
   object TemplatesButton: TButton
-    Left = 432
+    Left = 408
     Height = 28
     Top = 192
     Width = 80
@@ -177,15 +171,14 @@ object ProjectOptionsForm: TProjectOptionsForm
   object AVR_Typ_avrdude_Edit: TEdit
     Left = 264
     Height = 28
-    Top = 192
+    Top = 256
     Width = 122
     TabOrder = 12
-    Text = 'AVR_Typ_avrdude_Edit'
   end
   object BitBtn1: TBitBtn
     Left = 200
     Height = 28
-    Top = 192
+    Top = 256
     Width = 51
     Caption = '-->'
     Glyph.Data = {
@@ -270,7 +263,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object Label10: TLabel
     Left = 264
     Height = 16
-    Top = 168
+    Top = 232
     Width = 115
     Caption = 'AVR AVRDude Typ:'
     ParentColor = False
@@ -278,7 +271,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 424
+    Top = 460
     Width = 655
     Align = alBottom
     Color = clAqua
@@ -286,6 +279,22 @@ object ProjectOptionsForm: TProjectOptionsForm
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für AVR erstellt wurde. Auch muss die AVR-Familie stimmen.'
     )
     TabOrder = 14
+  end
+  object AVR_Familie_ComboBox: TComboBox
+    Left = 16
+    Height = 28
+    Top = 192
+    Width = 128
+    ItemHeight = 0
+    TabOrder = 15
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 16
+    Top = 168
+    Width = 69
+    Caption = 'AVR Familie'
+    ParentColor = False
   end
   object OpenDialogAVRPath: TOpenDialog
     Left = 416

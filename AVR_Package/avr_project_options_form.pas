@@ -9,7 +9,7 @@ uses
   LazConfigStorage, BaseIDEIntf,
   LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   IDEExternToolIntf,
-  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
+//  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
   AVR_IDE_Options, AVR_Common;
 
@@ -26,6 +26,8 @@ type
     Button1: TButton;
     Button2: TButton;
     AVR_Typ_avrdude_Edit: TEdit;
+    AVR_Familie_ComboBox: TComboBox;
+    Label1: TLabel;
     Label10: TLabel;
     Memo1: TMemo;
     TemplatesButton: TButton;
@@ -157,6 +159,8 @@ begin
 end;
 
 procedure TProjectOptionsForm.LoadDefaultMask;
+var
+  lp: TLazProject;
 begin
 
   with avrdudePathComboBox do begin
@@ -169,6 +173,17 @@ begin
     Items.Add('/etc/avrdude.conf');
     Items.Add('avrdude.conf');
     Text := AVR_Options.avrdudeConfigPath;
+  end;
+
+  with AVR_Familie_ComboBox do begin
+    Items.CommaText := AVR_Familie_Typ;
+    Text := 'AVR5';
+  end;
+
+  with AVR_Typ_FPC_ComboBox do begin
+    Items.CommaText := AVR5_Fpc_Typ;
+    Sorted := True;
+    Text := 'ATMEGA328P';
   end;
 
   with ProgrammerComboBox do begin
@@ -189,18 +204,13 @@ begin
     Text := '57600';
   end;
 
-  with AVR_Typ_FPC_ComboBox do begin
-    Items.CommaText := AVR5_Fpc_Typ;
-    Sorted := True;
-    Text := 'ATMEGA328P';
-  end;
-
   AsmFile_CheckBox.Checked := False;
 
 end;
 
 procedure TProjectOptionsForm.ProjectOptionsToMask;
 begin
+  AVR_Familie_ComboBox.Text := ProjectOptions.AVR_Familie;
   AVR_Typ_FPC_ComboBox.Text := ProjectOptions.AVR_FPC_Typ;
 
   avrdudePathComboBox.Text := ProjectOptions.AvrdudeCommand.Path;
@@ -215,6 +225,7 @@ end;
 
 procedure TProjectOptionsForm.MaskToProjectOptions;
 begin
+  ProjectOptions.AVR_Familie := AVR_Familie_ComboBox.Text;
   ProjectOptions.AVR_FPC_Typ := AVR_Typ_FPC_ComboBox.Text;
 
   ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
