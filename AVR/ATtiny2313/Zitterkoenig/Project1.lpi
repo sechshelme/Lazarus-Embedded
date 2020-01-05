@@ -54,6 +54,7 @@
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <CodeGeneration>
+      <TargetProcessor Value="AVR25"/>
       <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>

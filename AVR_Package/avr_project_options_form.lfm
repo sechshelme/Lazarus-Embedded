@@ -1,18 +1,17 @@
 object ProjectOptionsForm: TProjectOptionsForm
-  Left = 547
+  Left = 359
   Height = 507
-  Top = 324
-  Width = 655
-  BorderStyle = bsDialog
+  Top = 193
+  Width = 585
   Caption = 'AVR Project Options'
   ClientHeight = 507
-  ClientWidth = 655
+  ClientWidth = 585
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object OkButton: TButton
-    Left = 559
+    Left = 489
     Height = 25
     Top = 409
     Width = 75
@@ -23,7 +22,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 456
+    Left = 386
     Height = 25
     Top = 409
     Width = 75
@@ -37,7 +36,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 16
     Height = 28
     Top = 56
-    Width = 568
+    Width = 498
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
@@ -118,7 +117,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 16
     Height = 28
     Top = 119
-    Width = 568
+    Width = 498
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 7
@@ -140,7 +139,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     ParentColor = False
   end
   object Button1: TButton
-    Left = 596
+    Left = 526
     Height = 29
     Top = 56
     Width = 32
@@ -150,7 +149,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 9
   end
   object Button2: TButton
-    Left = 596
+    Left = 526
     Height = 29
     Top = 120
     Width = 32
@@ -272,7 +271,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 0
     Height = 47
     Top = 460
-    Width = 655
+    Width = 585
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -286,6 +285,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Top = 192
     Width = 128
     ItemHeight = 0
+    OnChange = AVR_Familie_ComboBoxChange
     TabOrder = 15
   end
   object Label1: TLabel

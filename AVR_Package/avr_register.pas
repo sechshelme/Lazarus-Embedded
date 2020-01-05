@@ -81,7 +81,7 @@ begin
     ProjectOptions.Save(LazProject);
 //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
   end;
-
+        //
   Form.Free;
 end;
 
@@ -171,6 +171,8 @@ begin
   AProject.LazCompilerOptions.Win32GraphicApp := False;
   AProject.LazCompilerOptions.GenerateDebugInfo := False;
   AProject.LazCompilerOptions.UnitOutputDirectory := 'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
+
+  AProject.Flags := AProject.Flags + [pfRunnable];
 
   AProject.LazCompilerOptions.TargetCPU := 'avr';
   AProject.LazCompilerOptions.TargetOS := 'embedded';

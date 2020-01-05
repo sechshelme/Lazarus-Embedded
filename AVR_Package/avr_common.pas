@@ -218,8 +218,8 @@ var
   s: string;
 begin
   with AProject.LazCompilerOptions do begin
-    //      AProject.LazCompilerOptions.TargetCPU := 'avr';
-    //      AProject.LazCompilerOptions.TargetOS := 'embedded';
+    TargetCPU := 'avr';
+    TargetOS := 'embedded';
     TargetProcessor := ProjectOptions.AVR_Familie;
 
     CustomOptions := '-Wp' + ProjectOptions.AVR_FPC_Typ;
@@ -241,7 +241,6 @@ begin
       '-b' + ProjectOptions.AvrdudeCommand.Baud + ' ';
   end;
   s += '-Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
-//  s += '-D -Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
   AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 

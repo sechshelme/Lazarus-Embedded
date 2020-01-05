@@ -9,7 +9,7 @@ uses
   LazConfigStorage, BaseIDEIntf,
   LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   IDEExternToolIntf,
-//  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
+  //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
   AVR_IDE_Options, AVR_Common;
 
@@ -44,6 +44,7 @@ type
     OpenDialogAVRConfigPath: TOpenDialog;
     OpenDialogAVRPath: TOpenDialog;
     ProgrammerComboBox: TComboBox;
+    procedure AVR_Familie_ComboBoxChange(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -82,14 +83,16 @@ var
   BoardLabel: TLabel;
 begin
   TemplatesForm := TForm.Create(nil);
-  with TemplatesForm do begin
+  with TemplatesForm do
+  begin
     Position := poScreenCenter;
     ClientWidth := 400;
     ClientHeight := 300;
   end;
 
   BoardLabel := TLabel.Create(TemplatesForm);
-  with BoardLabel do begin
+  with BoardLabel do
+  begin
     Left := 10;
     Top := 25;
     Text := 'Board:';
@@ -97,7 +100,8 @@ begin
   end;
 
   okBt := TBitBtn.Create(TemplatesForm);
-  with okBt do begin
+  with okBt do
+  begin
     Kind := bkOK;
     Width := 80;
     Height := 25;
@@ -108,7 +112,8 @@ begin
   end;
 
   cancelBt := TBitBtn.Create(TemplatesForm);
-  with cancelBt do begin
+  with cancelBt do
+  begin
     Kind := bkCancel;
     Width := 80;
     Height := 25;
@@ -119,7 +124,8 @@ begin
   end;
 
   ListBox := TListBox.Create(TemplatesForm);
-  with ListBox do begin
+  with ListBox do
+  begin
     Parent := TemplatesForm;
     Top := 50;
     Left := 10;
@@ -130,27 +136,57 @@ begin
     Items.Add(Text);
     Items.Add('Arduino Nano (old Bootloader)');
     Items.Add('Arduino Nano');
+    Items.Add('ATmega328P');
+    Items.Add('ATtiny2313A');
   end;
 
-  if TemplatesForm.ShowModal = mrOk then begin
+  if TemplatesForm.ShowModal = mrOk then
+  begin
     case ListBox.ItemIndex of
-      0: begin
+      0:
+      begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyACM0';
         COMPortBaudComboBox.Text := '115200';
         AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
+        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Familie_ComboBox.Text := 'AVR5';
       end;
-      1: begin
+      1:
+      begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyUSB0';
         COMPortBaudComboBox.Text := '57600';
         AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
+        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Familie_ComboBox.Text := 'AVR5';
       end;
-      2: begin
+      2:
+      begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyUSB0';
         COMPortBaudComboBox.Text := '115200';
         AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
+        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Familie_ComboBox.Text := 'AVR5';
+      end;
+      3:
+      begin
+        ProgrammerComboBox.Text := 'usbasp';
+        COMPortComboBox.Text := '';
+        COMPortBaudComboBox.Text := '';
+        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
+        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Familie_ComboBox.Text := 'AVR5';
+      end;
+      4:
+      begin
+        ProgrammerComboBox.Text := 'usbasp';
+        COMPortComboBox.Text := '';
+        COMPortBaudComboBox.Text := '';
+        AVR_Typ_FPC_ComboBox.Text := 'ATTINY2313A';
+        AVR_Typ_avrdude_Edit.Text := 'ATTINY2313';
+        AVR_Familie_ComboBox.Text := 'AVR25';
       end;
     end;
   end;
@@ -163,43 +199,53 @@ var
   lp: TLazProject;
 begin
 
-  with avrdudePathComboBox do begin
+  with avrdudePathComboBox do
+  begin
     Items.Add('avrdude');
     Items.Add('/usr/bin/avrdude');
     Text := AVR_Options.avrdudePfad;
   end;
 
-  with avrdudeConfigPathComboBox do begin
+  with avrdudeConfigPathComboBox do
+  begin
     Items.Add('/etc/avrdude.conf');
     Items.Add('avrdude.conf');
     Text := AVR_Options.avrdudeConfigPath;
   end;
 
-  with AVR_Familie_ComboBox do begin
+  with AVR_Familie_ComboBox do
+  begin
     Items.CommaText := AVR_Familie_Typ;
+    ItemIndex := 3;
+    Style := csOwnerDrawFixed;
     Text := 'AVR5';
   end;
 
-  with AVR_Typ_FPC_ComboBox do begin
+  with AVR_Typ_FPC_ComboBox do
+  begin
     Items.CommaText := AVR5_Fpc_Typ;
     Sorted := True;
     Text := 'ATMEGA328P';
   end;
 
-  with ProgrammerComboBox do begin
+  AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+
+  with ProgrammerComboBox do
+  begin
     Text := 'arduino';
     Items.Add(Text);
     Items.Add('usbasp');
     Items.Add('stk500v1');
   end;
 
-  with COMPortComboBox do begin
-    Items.DelimitedText := ',';
-    Items.DelimitedText := GetSerialPortNames;
+  with COMPortComboBox do
+  begin
+    Items.CommaText := GetSerialPortNames;
     Text := '/dev/ttyUSB0';
   end;
 
-  with COMPortBaudComboBox do begin
+  with COMPortBaudComboBox do
+  begin
     Items.CommaText := '57600,115200';
     Text := '57600';
   end;
@@ -238,6 +284,29 @@ begin
   ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
 end;
 
+procedure TProjectOptionsForm.AVR_Familie_ComboBoxChange(Sender: TObject);
+begin
+  if AVR_Familie_ComboBox.Text = 'AVR25' then
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR25_Fpc_Typ
+  else
+  if AVR_Familie_ComboBox.Text = 'AVR35' then
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR35_Fpc_Typ
+  else
+  if AVR_Familie_ComboBox.Text = 'AVR4' then
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR4_Fpc_Typ
+  else
+  if AVR_Familie_ComboBox.Text = 'AVR5' then
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR5_Fpc_Typ
+  else
+  if AVR_Familie_ComboBox.Text = 'AVR51' then
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR51_Fpc_Typ
+  else
+  if AVR_Familie_ComboBox.Text = 'AVR6' then
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR6_Fpc_Typ;
+  AVR_Typ_FPC_ComboBox.Text := '';
+  AVR_Typ_avrdude_Edit.Text := '';
+end;
+
 procedure TProjectOptionsForm.OkButtonClick(Sender: TObject);
 begin
   //  Close;
@@ -266,7 +335,8 @@ end;
 procedure TProjectOptionsForm.Button1Click(Sender: TObject);
 begin
   OpenDialogAVRPath.FileName := avrdudePathComboBox.Text;
-  if OpenDialogAVRPath.Execute then begin
+  if OpenDialogAVRPath.Execute then
+  begin
     avrdudePathComboBox.Text := OpenDialogAVRPath.FileName;
   end;
 end;
@@ -279,7 +349,8 @@ end;
 procedure TProjectOptionsForm.Button2Click(Sender: TObject);
 begin
   OpenDialogAVRConfigPath.FileName := avrdudeConfigPathComboBox.Text;
-  if OpenDialogAVRConfigPath.Execute then begin
+  if OpenDialogAVRConfigPath.Execute then
+  begin
     avrdudeConfigPathComboBox.Text := OpenDialogAVRConfigPath.FileName;
   end;
 end;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Package Version="4">
+  <Package Version="5">
     <Name Value="AVR_Package"/>
     <Type Value="DesignTime"/>
     <Author Value="Mathias"/>
@@ -17,7 +17,7 @@
     </CompilerOptions>
     <Description Value="Add AVR-Project"/>
     <License Value="GPL-2"/>
-    <Version Release="2"/>
+    <Version Release="4"/>
     <Files Count="5">
       <Item1>
         <Filename Value="avr_register.pas"/>
