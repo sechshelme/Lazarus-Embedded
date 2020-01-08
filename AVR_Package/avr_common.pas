@@ -5,7 +5,7 @@ unit AVR_Common;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes, SysUtils, Dialogs, LCLType, Controls,
   ProjectIntf;
 
 const
@@ -215,7 +215,7 @@ end;{$ENDIF}
 
 procedure TProjectOptions.Save(AProject: TLazProject);
 var
-  s: string;
+  pr, s: string;
 begin
   with AProject.LazCompilerOptions do begin
     TargetCPU := 'avr';
@@ -236,7 +236,8 @@ begin
   s += '-v ' +
     '-p' + ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ + ' ' +
     '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ';
-  if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
+  pr := upCase(ProjectOptions.AvrdudeCommand.Programmer);
+  if (pr = 'ARDUINO') or (pr = 'STK500V1') then begin
     s += '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
       '-b' + ProjectOptions.AvrdudeCommand.Baud + ' ';
   end;
@@ -271,6 +272,12 @@ var
   end;
 
 begin
+  //if (AProject.LazCompilerOptions.TargetCPU <> 'avr') or (AProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
+  //    if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.'+LineEnding+
+  //    'Diese Funktion kann aktuelles Projekt zerstören'+LineEnding+LineEnding+
+  //    'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo],0) = mrNo then Close;
+  //  end;
+
   ProjectOptions.AVR_Familie := AProject.LazCompilerOptions.TargetProcessor;
 
   s := AProject.LazCompilerOptions.CustomOptions;
@@ -282,13 +289,13 @@ begin
   ProjectOptions.AvrdudeCommand.ConfigPath := Find(s, '-C');
   ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := Find(s, '-p');
   ProjectOptions.AvrdudeCommand.Programmer := Find(s, '-c');
-  if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
+//  if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
      ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
      ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
-  end else begin
-    ProjectOptions.AvrdudeCommand.COM_Port := '';
-    ProjectOptions.AvrdudeCommand.Baud := '';
-  end;
+//  end else begin
+//    ProjectOptions.AvrdudeCommand.COM_Port := '';
+//    ProjectOptions.AvrdudeCommand.Baud := '';
+//  end;
 
   ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
   ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];

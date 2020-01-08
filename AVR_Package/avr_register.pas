@@ -151,7 +151,7 @@ const
     '  // Setup' + LineEnding +
     '  repeat' + LineEnding +
     '    // Loop;' + LineEnding +
-    '  until 1 = 2;' + LineEnding +
+    '  until false;' + LineEnding +
     'end.';
 
 var

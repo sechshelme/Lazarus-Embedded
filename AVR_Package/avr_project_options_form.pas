@@ -54,7 +54,6 @@ type
     procedure CancelButtonClick(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-
   public
     procedure LoadDefaultMask;
     procedure ProjectOptionsToMask;
@@ -79,8 +78,9 @@ procedure TProjectOptionsForm.TemplatesButtonClick(Sender: TObject);
 var
   TemplatesForm: TForm;
   okBt, cancelBt: TBitBtn;
-  ListBox: TListBox;
+  TemplateListBox: TListBox;
   BoardLabel: TLabel;
+
 begin
   TemplatesForm := TForm.Create(nil);
   with TemplatesForm do
@@ -123,8 +123,8 @@ begin
     Parent := TemplatesForm;
   end;
 
-  ListBox := TListBox.Create(TemplatesForm);
-  with ListBox do
+  TemplateListBox := TListBox.Create(TemplatesForm);
+  with TemplateListBox do
   begin
     Parent := TemplatesForm;
     Top := 50;
@@ -142,7 +142,7 @@ begin
 
   if TemplatesForm.ShowModal = mrOk then
   begin
-    case ListBox.ItemIndex of
+    case TemplateListBox.ItemIndex of
       0:
       begin
         ProgrammerComboBox.Text := 'arduino';
@@ -246,12 +246,11 @@ begin
 
   with COMPortBaudComboBox do
   begin
-    Items.CommaText := '57600,115200';
+    Items.CommaText := '19200,57600,115200';
     Text := '57600';
   end;
 
   AsmFile_CheckBox.Checked := False;
-
 end;
 
 procedure TProjectOptionsForm.ProjectOptionsToMask;
