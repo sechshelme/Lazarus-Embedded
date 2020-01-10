@@ -1,7 +1,7 @@
 object ProjectOptionsForm: TProjectOptionsForm
-  Left = 359
+  Left = 168
   Height = 507
-  Top = 193
+  Top = 112
   Width = 585
   Caption = 'AVR Project Options'
   ClientHeight = 507

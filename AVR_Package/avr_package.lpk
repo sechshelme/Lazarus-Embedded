@@ -15,43 +15,47 @@
         </SyntaxOptions>
       </Parsing>
     </CompilerOptions>
-    <Description Value="Add AVR-Project"/>
+    <Description Value="Add and edit AVR-Project"/>
     <License Value="GPL-2"/>
-    <Version Release="4"/>
-    <Files Count="5">
-      <Item1>
+    <Version Release="5"/>
+    <Files>
+      <Item>
         <Filename Value="avr_register.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="AVR_Register"/>
-      </Item1>
-      <Item2>
+      </Item>
+      <Item>
         <Filename Value="avr_ide_options.pas"/>
         <UnitName Value="AVR_IDE_Options"/>
-      </Item2>
-      <Item3>
+      </Item>
+      <Item>
         <Filename Value="avr_project_options_form.pas"/>
         <UnitName Value="AVR_Project_Options_Form"/>
-      </Item3>
-      <Item4>
+      </Item>
+      <Item>
         <Filename Value="avr_common.pas"/>
         <UnitName Value="AVR_Common"/>
-      </Item4>
-      <Item5>
+      </Item>
+      <Item>
         <Filename Value="avr_serial_monitor.pas"/>
         <UnitName Value="avr_serial_monitor"/>
-      </Item5>
+      </Item>
+      <Item>
+        <Filename Value="avr_project_templates_form.pas"/>
+        <UnitName Value="avr_project_templates_form"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="languages"/>
     </i18n>
-    <RequiredPkgs Count="2">
-      <Item1>
+    <RequiredPkgs>
+      <Item>
         <PackageName Value="CodeTools"/>
-      </Item1>
-      <Item2>
+      </Item>
+      <Item>
         <PackageName Value="IDEIntf"/>
-      </Item2>
+      </Item>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>

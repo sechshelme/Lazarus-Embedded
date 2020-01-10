@@ -56,7 +56,6 @@ const
   Key_SerialMonitorPort = 'SerialMonitorPort';
   Key_SerialMonitorBaud = 'COM_Port';
 
-
 type
 
   { TProjectOptions }
@@ -123,33 +122,34 @@ begin
   end;
 end;
 
-{$ENDIF}
-{$IFNDEF MSWINDOWS}
+{$ELSE}
+//{$IFNDEF MSWINDOWS}
 uses
-    BaseUnix;
+  BaseUnix;
 
 function GetSerialPortNames: string;
 type
-TSerialStruct = packed record
-  typ: Integer;
-  line: Integer;
-  port: Cardinal;
-  irq: Integer;
-  flags: Integer;
-  xmit_fifo_size: Integer;
-  custom_divisor: Integer;
-  baud_base: Integer;
-  close_delay: Word;
-  io_type: Char;
-  reserved_char: Char;
-  hub6: Integer;
-  closing_wait: Word; // time to wait before closing
-  closing_wait2: Word; // no longer used...
-  iomem_base: ^Char;
-  iomem_reg_shift: Word;
-  port_high: Cardinal;
-  iomap_base: LongWord; // cookie passed into ioremap
-end;
+  TSerialStruct = packed record
+    typ: Integer;
+    line: Integer;
+    port: Cardinal;
+    irq: Integer;
+    flags: Integer;
+    xmit_fifo_size: Integer;
+    custom_divisor: Integer;
+    baud_base: Integer;
+    close_delay: Word;
+    io_type: Char;
+    reserved_char: Char;
+    hub6: Integer;
+    closing_wait: Word; // time to wait before closing
+    closing_wait2: Word; // no longer used...
+    iomem_base: ^Char;
+    iomem_reg_shift: Word;
+    port_high: Cardinal;
+    iomap_base: LongWord; // cookie passed into ioremap
+  end;
+
 var
   i: Integer;
   sr : TSearchRec;
@@ -158,8 +158,11 @@ var
   s: String;
   fd: PtrInt;
   Ser : TSerialStruct;
-const TIOCGSERIAL = $541E;
+
+const
+  TIOCGSERIAL = $541E;
   PORT_UNKNOWN = 0;
+
 begin
   Result := '';
   sl := TStringList.Create;
@@ -208,7 +211,8 @@ begin
   finally
     sl.Free;
   end;
-end;{$ENDIF}
+end;
+{$ENDIF}
 
 
 { TProjectOptions }
@@ -245,8 +249,6 @@ begin
 
   AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 
-  //    avrdude_ComboBox1.Text := 'avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i';
-
   AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitorPort;
   AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitorBaud;
 end;
@@ -272,12 +274,6 @@ var
   end;
 
 begin
-  //if (AProject.LazCompilerOptions.TargetCPU <> 'avr') or (AProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
-  //    if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.'+LineEnding+
-  //    'Diese Funktion kann aktuelles Projekt zerstören'+LineEnding+LineEnding+
-  //    'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo],0) = mrNo then Close;
-  //  end;
-
   ProjectOptions.AVR_Familie := AProject.LazCompilerOptions.TargetProcessor;
 
   s := AProject.LazCompilerOptions.CustomOptions;

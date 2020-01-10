@@ -48,15 +48,30 @@ begin
 
   LazProject := LazarusIDE.ActiveProject;
 
+  if (LazProject.LazCompilerOptions.TargetCPU <> 'avr') or
+    (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then
+  begin
+    if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.' +
+      LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' +
+      LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning,
+      [mbYes, mbNo], 0) = mrNo then
+    begin
+      Form.Free;
+      Exit;
+    end;
+  end;
+
   ProjectOptions.Load(LazProject);
 
   Form.LoadDefaultMask;
   Form.ProjectOptionsToMask;
 
-  if Form.ShowModal = mrOk then begin
+  if Form.ShowModal = mrOk then
+  begin
     Form.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
-//    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
+    LazProject.LazCompilerOptions.GenerateDebugInfo := False;
+    //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
   end;
 
   Form.Free;
@@ -76,12 +91,12 @@ begin
   Form.LoadDefaultMask;
   Form.ProjectOptionsToMask;
 
-  if Form.ShowModal = mrOk then begin
+  if Form.ShowModal = mrOk then
+  begin
     Form.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
-//    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
   end;
-        //
+
   Form.Free;
 end;
 
@@ -100,8 +115,10 @@ begin
     TAVR_IDE_Options_Frame, AVROptionsFrameID)^.Index;
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen (Arduino)', 'AVR-Optionen... (Arduino)', nil, @ShowAVROptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...', nil, @ShowSerialMonitor);
+  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen (Arduino)',
+    'AVR-Optionen... (Arduino)', nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...',
+    nil, @ShowSerialMonitor);
 end;
 
 { TProjectAVRApp }
@@ -132,7 +149,8 @@ begin
   Form.LoadDefaultMask;
 
   Result := Form.ShowModal;
-  if Result = mrOk then begin
+  if Result = mrOk then
+  begin
     Form.MaskToProjectOptions;
   end;
 
@@ -142,17 +160,11 @@ end;
 function TProjectAVRApp.InitProject(AProject: TLazProject): TModalResult;
 const
   ProjectText =
-    'program Project1;' + LineEnding + LineEnding +
-    '{$H-}' + LineEnding +
-    '{$O-}' + LineEnding + LineEnding +
-    'uses' + LineEnding +
-    '  intrinsics;' + LineEnding + LineEnding +
-    'begin' + LineEnding +
-    '  // Setup' + LineEnding +
-    '  repeat' + LineEnding +
-    '    // Loop;' + LineEnding +
-    '  until false;' + LineEnding +
-    'end.';
+    'program Project1;' + LineEnding + LineEnding + '{$H-}' +
+    LineEnding + '{$O-}' + LineEnding + LineEnding + 'uses' +
+    LineEnding + '  intrinsics;' + LineEnding + LineEnding + 'begin' +
+    LineEnding + '  // Setup' + LineEnding + '  repeat' + LineEnding +
+    '    // Loop;' + LineEnding + '  until false;' + LineEnding + 'end.';
 
 var
   MainFile: TLazProjectFile;
@@ -170,7 +182,8 @@ begin
   AProject.LazCompilerOptions.TargetFilename := 'Project1';
   AProject.LazCompilerOptions.Win32GraphicApp := False;
   AProject.LazCompilerOptions.GenerateDebugInfo := False;
-  AProject.LazCompilerOptions.UnitOutputDirectory := 'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
+  AProject.LazCompilerOptions.UnitOutputDirectory :=
+    'lib' + PathDelim + '$(TargetCPU)-$(TargetOS)';
 
   AProject.Flags := AProject.Flags + [pfRunnable];
 
@@ -187,7 +200,8 @@ end;
 
 function TProjectAVRApp.CreateStartFiles(AProject: TLazProject): TModalResult;
 begin
-  Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename, -1, -1, [ofProjectLoading, ofRegularFile]);
+  Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename,
+    -1, -1, [ofProjectLoading, ofRegularFile]);
 end;
 
 end.

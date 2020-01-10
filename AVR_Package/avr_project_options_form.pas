@@ -11,7 +11,7 @@ uses
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
-  AVR_IDE_Options, AVR_Common;
+  AVR_IDE_Options, AVR_Common, AVR_Project_Templates_Form;
 
 type
 
@@ -76,73 +76,14 @@ end;
 
 procedure TProjectOptionsForm.TemplatesButtonClick(Sender: TObject);
 var
-  TemplatesForm: TForm;
-  okBt, cancelBt: TBitBtn;
-  TemplateListBox: TListBox;
-  BoardLabel: TLabel;
+  TemplatesForm: TProjectTemplatesForm;
 
 begin
-  TemplatesForm := TForm.Create(nil);
-  with TemplatesForm do
-  begin
-    Position := poScreenCenter;
-    ClientWidth := 400;
-    ClientHeight := 300;
-  end;
-
-  BoardLabel := TLabel.Create(TemplatesForm);
-  with BoardLabel do
-  begin
-    Left := 10;
-    Top := 25;
-    Text := 'Board:';
-    Parent := TemplatesForm;
-  end;
-
-  okBt := TBitBtn.Create(TemplatesForm);
-  with okBt do
-  begin
-    Kind := bkOK;
-    Width := 80;
-    Height := 25;
-    Left := TemplatesForm.ClientWidth - 100;
-    Top := TemplatesForm.ClientHeight - 45;
-    Anchors := [akRight, akBottom];
-    Parent := TemplatesForm;
-  end;
-
-  cancelBt := TBitBtn.Create(TemplatesForm);
-  with cancelBt do
-  begin
-    Kind := bkCancel;
-    Width := 80;
-    Height := 25;
-    Left := TemplatesForm.ClientWidth - 200;
-    Top := TemplatesForm.ClientHeight - 45;
-    Anchors := [akRight, akBottom];
-    Parent := TemplatesForm;
-  end;
-
-  TemplateListBox := TListBox.Create(TemplatesForm);
-  with TemplateListBox do
-  begin
-    Parent := TemplatesForm;
-    Top := 50;
-    Left := 10;
-    Width := TemplatesForm.ClientWidth - 20;
-    Height := TemplatesForm.ClientHeight - 110;
-    Anchors := [akLeft, akTop, akRight, akBottom];
-    Text := 'Arduino UNO';
-    Items.Add(Text);
-    Items.Add('Arduino Nano (old Bootloader)');
-    Items.Add('Arduino Nano');
-    Items.Add('ATmega328P');
-    Items.Add('ATtiny2313A');
-  end;
+  TemplatesForm := TProjectTemplatesForm.Create(nil);
 
   if TemplatesForm.ShowModal = mrOk then
   begin
-    case TemplateListBox.ItemIndex of
+    case TemplatesForm.ListBox_Template.ItemIndex of
       0:
       begin
         ProgrammerComboBox.Text := 'arduino';
@@ -199,17 +140,23 @@ var
   lp: TLazProject;
 begin
 
-  with avrdudePathComboBox do
-  begin
+  with avrdudePathComboBox do begin
     Items.Add('avrdude');
+    {$IFDEF MSWINDOWS}
+    Items.Add('c:\averdude\averdude.exe');
+    {$ELSE}
     Items.Add('/usr/bin/avrdude');
+    {$ENDIF}
     Text := AVR_Options.avrdudePfad;
   end;
 
   with avrdudeConfigPathComboBox do
   begin
-    Items.Add('/etc/avrdude.conf');
+    {$IFDEF MSWINDOWS}
+    Items.Add('c:\averdude\avrdude.conf');
+    {$ELSE}
     Items.Add('avrdude.conf');
+    {$ENDIF}
     Text := AVR_Options.avrdudeConfigPath;
   end;
 
