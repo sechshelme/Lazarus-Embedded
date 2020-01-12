@@ -285,13 +285,8 @@ begin
   ProjectOptions.AvrdudeCommand.ConfigPath := Find(s, '-C');
   ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := Find(s, '-p');
   ProjectOptions.AvrdudeCommand.Programmer := Find(s, '-c');
-//  if upCase(ProjectOptions.AvrdudeCommand.Programmer) = 'ARDUINO' then begin
-     ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
-     ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
-//  end else begin
-//    ProjectOptions.AvrdudeCommand.COM_Port := '';
-//    ProjectOptions.AvrdudeCommand.Baud := '';
-//  end;
+  ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
+  ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
 
   ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
   ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];

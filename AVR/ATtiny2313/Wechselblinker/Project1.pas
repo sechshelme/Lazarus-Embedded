@@ -33,6 +33,16 @@ var
 
 
 begin
+
+  {$IFDEF CPUAVRXMEGA3}
+  LedDDR.green := True;
+  {ENDIF}
+
+  {$IFDEF CPUAVRXMEGA3}
+  LedDDR.green := True;
+  {ENDIF}
+
+
   LedDDR.green := True;
   LedDDR.yellow := True;
   LedDDR.red := True;

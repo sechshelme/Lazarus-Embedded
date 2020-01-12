@@ -52,10 +52,16 @@ implementation
 
 const
   Key_Avrdude_Pfad = 'averdude_pfad/value';
-  Default_Avrdude_Pfad = '/usr/bin/avrdude';
-
   Key_Avrdude_Conf_Pfad = 'averdude_conf_pfad/value';
+
+  {$IFDEF MSWINDOWS}
+  Default_Avrdude_Pfad = 'c:\averdude\averdude.exe';
+  Default_Avrdude_Conf_Pfad = 'c:\averdude\avrdude.conf';
+  {$ELSE}
+  Default_Avrdude_Pfad = '/usr/bin/avrdude';
   Default_Avrdude_Conf_Pfad = '/etc/avrdude.conf';
+  {$ENDIF}
+
 
 procedure TAVR_Options.Load;
 var

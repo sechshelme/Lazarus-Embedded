@@ -42,6 +42,7 @@ begin
     Items.Add('Arduino Nano');
     Items.Add('ATmega328P');
     Items.Add('ATtiny2313A');
+    ItemIndex := 0;
   end;
 end;
 

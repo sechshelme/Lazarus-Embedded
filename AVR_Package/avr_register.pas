@@ -42,9 +42,9 @@ implementation
 procedure ShowAVROptionsDialog(Sender: TObject);
 var
   LazProject: TLazProject;
-  Form: TProjectOptionsForm;
+  ProjOptiForm: TProjectOptionsForm;
 begin
-  Form := TProjectOptionsForm.Create(nil);
+  ProjOptiForm := TProjectOptionsForm.Create(nil);
 
   LazProject := LazarusIDE.ActiveProject;
 
@@ -56,25 +56,25 @@ begin
       LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning,
       [mbYes, mbNo], 0) = mrNo then
     begin
-      Form.Free;
+      ProjOptiForm.Free;
       Exit;
     end;
   end;
 
   ProjectOptions.Load(LazProject);
 
-  Form.LoadDefaultMask;
-  Form.ProjectOptionsToMask;
+  ProjOptiForm.LoadDefaultMask;
+  ProjOptiForm.ProjectOptionsToMask;
 
-  if Form.ShowModal = mrOk then
+  if ProjOptiForm.ShowModal = mrOk then
   begin
-    Form.MaskToProjectOptions;
+    ProjOptiForm.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
     //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
   end;
 
-  Form.Free;
+  ProjOptiForm.Free;
 end;
 
 procedure ShowSerialMonitor(Sender: TObject);

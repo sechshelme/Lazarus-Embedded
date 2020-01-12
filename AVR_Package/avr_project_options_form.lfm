@@ -1,11 +1,12 @@
 object ProjectOptionsForm: TProjectOptionsForm
-  Left = 168
+  Left = 350
   Height = 507
-  Top = 112
+  Top = 126
   Width = 585
   Caption = 'AVR Project Options'
   ClientHeight = 507
   ClientWidth = 585
+  OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
@@ -17,6 +18,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
+    Default = True
     ModalResult = 1
     OnClick = OkButtonClick
     TabOrder = 0
@@ -140,7 +142,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   end
   object Button1: TButton
     Left = 526
-    Height = 29
+    Height = 28
     Top = 56
     Width = 32
     Anchors = [akTop, akRight]
@@ -150,8 +152,8 @@ object ProjectOptionsForm: TProjectOptionsForm
   end
   object Button2: TButton
     Left = 526
-    Height = 29
-    Top = 120
+    Height = 28
+    Top = 119
     Width = 32
     Anchors = [akTop, akRight]
     Caption = '...'

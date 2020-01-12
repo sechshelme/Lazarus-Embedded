@@ -8,12 +8,14 @@ unit AVR_Package;
 interface
 
 uses
-  LazarusPackageIntf;
+  AVR_Register, AVR_IDE_Options, AVR_Project_Options_Form, AVR_Common, 
+  AVR_Serial_Monitor, AVR_Project_Templates_Form, LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
+  RegisterUnit('AVR_Register', @AVR_Register.Register);
 end;
 
 initialization

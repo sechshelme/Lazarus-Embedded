@@ -48,12 +48,14 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure OkButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
+    procedure ChangeAVR;
   public
     procedure LoadDefaultMask;
     procedure ProjectOptionsToMask;
@@ -89,8 +91,8 @@ begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyACM0';
         COMPortBaudComboBox.Text := '115200';
-        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
-        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
+        AVR_Typ_avrdude_Edit.Text := 'atmega328P';
         AVR_Familie_ComboBox.Text := 'AVR5';
       end;
       1:
@@ -98,8 +100,8 @@ begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyUSB0';
         COMPortBaudComboBox.Text := '57600';
-        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
-        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
+        AVR_Typ_avrdude_Edit.Text := 'atmega328P';
         AVR_Familie_ComboBox.Text := 'AVR5';
       end;
       2:
@@ -107,8 +109,8 @@ begin
         ProgrammerComboBox.Text := 'arduino';
         COMPortComboBox.Text := '/dev/ttyUSB0';
         COMPortBaudComboBox.Text := '115200';
-        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
-        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
+        AVR_Typ_avrdude_Edit.Text := 'atmega328P';
         AVR_Familie_ComboBox.Text := 'AVR5';
       end;
       3:
@@ -116,8 +118,8 @@ begin
         ProgrammerComboBox.Text := 'usbasp';
         COMPortComboBox.Text := '';
         COMPortBaudComboBox.Text := '';
-        AVR_Typ_FPC_ComboBox.Text := 'ATMEGA328P';
-        AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+        AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
+        AVR_Typ_avrdude_Edit.Text := 'atmega328P';
         AVR_Familie_ComboBox.Text := 'AVR5';
       end;
       4:
@@ -125,8 +127,8 @@ begin
         ProgrammerComboBox.Text := 'usbasp';
         COMPortComboBox.Text := '';
         COMPortBaudComboBox.Text := '';
-        AVR_Typ_FPC_ComboBox.Text := 'ATTINY2313A';
-        AVR_Typ_avrdude_Edit.Text := 'ATTINY2313';
+        AVR_Typ_FPC_ComboBox.Text := 'attiny2313A';
+        AVR_Typ_avrdude_Edit.Text := 'attiny2313';
         AVR_Familie_ComboBox.Text := 'AVR25';
       end;
     end;
@@ -172,10 +174,10 @@ begin
   begin
     Items.CommaText := AVR5_Fpc_Typ;
     Sorted := True;
-    Text := 'ATMEGA328P';
+    Text := 'atmega328P';
   end;
 
-  AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
+  AVR_Typ_avrdude_Edit.Text := 'atmega328P';
 
   with ProgrammerComboBox do
   begin
@@ -230,7 +232,7 @@ begin
   ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
 end;
 
-procedure TProjectOptionsForm.AVR_Familie_ComboBoxChange(Sender: TObject);
+procedure TProjectOptionsForm.ChangeAVR;
 begin
   if AVR_Familie_ComboBox.Text = 'AVR25' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR25_Fpc_Typ
@@ -249,8 +251,11 @@ begin
   else
   if AVR_Familie_ComboBox.Text = 'AVR6' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR6_Fpc_Typ;
-  AVR_Typ_FPC_ComboBox.Text := '';
-  AVR_Typ_avrdude_Edit.Text := '';
+end;
+
+procedure TProjectOptionsForm.AVR_Familie_ComboBoxChange(Sender: TObject);
+begin
+  ChangeAVR;
 end;
 
 procedure TProjectOptionsForm.OkButtonClick(Sender: TObject);
@@ -299,6 +304,11 @@ begin
   begin
     avrdudeConfigPathComboBox.Text := OpenDialogAVRConfigPath.FileName;
   end;
+end;
+
+procedure TProjectOptionsForm.FormActivate(Sender: TObject);
+begin
+  ChangeAVR;
 end;
 
 end.

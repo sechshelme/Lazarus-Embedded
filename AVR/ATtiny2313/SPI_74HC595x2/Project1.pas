@@ -29,14 +29,13 @@ var
 
 var
   z: Int16 = 0;
-  data:array[0..8] of Byte;
+  data:array[0..1] of Byte;
 begin
   SPI_DDR.DataOut := True;
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
-  data[1]:=255;
-  data[3]:=255;
-  data[8]:=%10101010;
+  data[0]:=%11001100;
+  data[1]:=%10101010;
 
   repeat
     Inc(z);
