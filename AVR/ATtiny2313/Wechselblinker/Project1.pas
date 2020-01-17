@@ -34,13 +34,13 @@ var
 
 begin
 
-  {$IFDEF CPUAVRXMEGA3}
+  {$IFDEF CPUAVR}
   LedDDR.green := True;
-  {ENDIF}
+  {$ENDIF}
 
-  {$IFDEF CPUAVRXMEGA3}
+  {$IFDEF CPUAVRTINY2313}
   LedDDR.green := True;
-  {ENDIF}
+  {$ENDIF}
 
 
   LedDDR.green := True;

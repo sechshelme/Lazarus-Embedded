@@ -82,6 +82,16 @@ var
 
 begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
+  with TemplatesForm.ListBox_Template do begin
+    Text := 'Arduino UNO';
+    Items.Add('Arduino UNO');
+    Items.Add('Arduino Nano (old Bootloader)');
+    Items.Add('Arduino Nano');
+    Items.Add('Arduino Mega');
+    Items.Add('ATmega328P');
+    Items.Add('ATtiny2313A');
+    ItemIndex := 0;
+  end;
 
   if TemplatesForm.ShowModal = mrOk then
   begin
@@ -115,6 +125,15 @@ begin
       end;
       3:
       begin
+        ProgrammerComboBox.Text := 'wiring';
+        COMPortComboBox.Text := '/dev/ttyUSB0';
+        COMPortBaudComboBox.Text := '115200';
+        AVR_Typ_FPC_ComboBox.Text := 'atmega2560';
+        AVR_Typ_avrdude_Edit.Text := 'atmega2560';
+        AVR_Familie_ComboBox.Text := 'AVR6';
+      end;
+      4:
+      begin
         ProgrammerComboBox.Text := 'usbasp';
         COMPortComboBox.Text := '';
         COMPortBaudComboBox.Text := '';
@@ -122,7 +141,7 @@ begin
         AVR_Typ_avrdude_Edit.Text := 'atmega328P';
         AVR_Familie_ComboBox.Text := 'AVR5';
       end;
-      4:
+      5:
       begin
         ProgrammerComboBox.Text := 'usbasp';
         COMPortComboBox.Text := '';
@@ -181,10 +200,8 @@ begin
 
   with ProgrammerComboBox do
   begin
+    Items.CommaText := 'arduino,usbasp,stk500v1,wiring';
     Text := 'arduino';
-    Items.Add(Text);
-    Items.Add('usbasp');
-    Items.Add('stk500v1');
   end;
 
   with COMPortComboBox do

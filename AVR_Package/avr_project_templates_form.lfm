@@ -8,7 +8,6 @@ object ProjectTemplatesForm: TProjectTemplatesForm
   ClientWidth = 260
   Constraints.MinHeight = 150
   Constraints.MinWidth = 260
-  OnCreate = FormCreate
   Position = poDefault
   LCLVersion = '2.1.0.0'
   object Label1: TLabel

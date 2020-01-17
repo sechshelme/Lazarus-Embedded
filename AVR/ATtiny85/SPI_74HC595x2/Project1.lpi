@@ -54,7 +54,7 @@
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="AVR6"/>
+      <TargetProcessor Value="AVR25"/>
       <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>
@@ -64,10 +64,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpatmega2560
+      <CustomOptions Value="-Wpattiny85
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -patmega2560 -cwiring -P/dev/ttyUSB0 -b115200 -D -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -pattiny85 -cusbasp -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

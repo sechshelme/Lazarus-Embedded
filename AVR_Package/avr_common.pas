@@ -67,7 +67,8 @@ type
       AVR_AVRDude_Typ,
       Programmer,
       COM_Port,
-      Baud: string;
+      Baud : string;
+      Disable_Auto_Erase : Boolean;
     end;
     AVR_Familie,
     AVR_FPC_Typ,
@@ -241,9 +242,13 @@ begin
     '-p' + ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ + ' ' +
     '-c' + ProjectOptions.AvrdudeCommand.Programmer + ' ';
   pr := upCase(ProjectOptions.AvrdudeCommand.Programmer);
-  if (pr = 'ARDUINO') or (pr = 'STK500V1') then begin
+  if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') then begin
     s += '-P' + ProjectOptions.AvrdudeCommand.COM_Port + ' ' +
       '-b' + ProjectOptions.AvrdudeCommand.Baud + ' ';
+  end;
+
+  if ProjectOptions.AvrdudeCommand.Disable_Auto_Erase then begin
+    s +='-D ';
   end;
   s += '-Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
@@ -287,6 +292,7 @@ begin
   ProjectOptions.AvrdudeCommand.Programmer := Find(s, '-c');
   ProjectOptions.AvrdudeCommand.COM_Port := Find(s, '-P');
   ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
+  ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
 
   ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
   ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];

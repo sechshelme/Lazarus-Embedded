@@ -3,7 +3,7 @@ program Project1;
 {$O-}
 type
   TSPIGPIO = bitpacked record
-    p0, p1, p2, p3, SlaveSelect, DataIn, DataOut, Clock: boolean;
+    DataIn, DataOut, Clock, SlaveSelect, p0, p1, p2, p3: boolean;
   end;
 
 var
@@ -15,7 +15,8 @@ var
     i: byte;
   begin
     SPI_PORT.SlaveSelect := False;
-    for i := len - 1 downto 0 do begin
+    for i := len - 1 downto 0 do
+    begin
       USIDR := p[i];
       USISR := 1 shl USIOIF;
 
@@ -29,16 +30,18 @@ var
 
 var
   z: Int16 = 0;
-  data:array[0..1] of Byte;
+  Data: array[0..1] of byte;
 begin
   SPI_DDR.DataOut := True;
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
-  data[0]:=%11001100;
-  data[1]:=%10101010;
+  Data[0] := %11001100;
+  Data[1] := %10101010;
+//  Data[0] := 0;
+//  Data[1] := 255;
 
   repeat
     Inc(z);
-    SPIWriteData(@data, Length(data));
+    SPIWriteData(@Data, Length(Data));
   until 1 = 2;
 end.

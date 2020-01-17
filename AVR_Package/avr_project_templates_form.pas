@@ -16,7 +16,6 @@ type
     BitBtn_Cancel: TBitBtn;
     Label1: TLabel;
     ListBox_Template: TListBox;
-    procedure FormCreate(Sender: TObject);
     procedure ListBox_TemplateDblClick(Sender: TObject);
   private
 
@@ -32,19 +31,6 @@ implementation
 {$R *.lfm}
 
 { TProjectTemplatesForm }
-
-procedure TProjectTemplatesForm.FormCreate(Sender: TObject);
-begin
-  with ListBox_Template do begin
-    Text := 'Arduino UNO';
-    Items.Add(Text);
-    Items.Add('Arduino Nano (old Bootloader)');
-    Items.Add('Arduino Nano');
-    Items.Add('ATmega328P');
-    Items.Add('ATtiny2313A');
-    ItemIndex := 0;
-  end;
-end;
 
 procedure TProjectTemplatesForm.ListBox_TemplateDblClick(Sender: TObject);
 begin
