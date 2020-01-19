@@ -17,7 +17,7 @@
     </CompilerOptions>
     <Description Value="Add and edit AVR-Project"/>
     <License Value="GPL-2"/>
-    <Version Release="7"/>
+    <Version Release="8"/>
     <Files>
       <Item>
         <Filename Value="avr_register.pas"/>

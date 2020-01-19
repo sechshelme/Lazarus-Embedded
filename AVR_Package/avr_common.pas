@@ -57,6 +57,78 @@ const
   Key_SerialMonitorBaud = 'COM_Port';
 
 type
+  TAVROptions = record
+    AVR_Familie,
+    AVR_FPC_Typ,
+
+    AVR_AVRDude_Typ,
+    Programmer,
+    COM_Port,
+    Baud : string;
+    Disable_Auto_Erase : Boolean;
+  end;
+
+const
+  Templates_Count = 6;
+
+  Templates: TStringArray = (
+    'Arduino UNO',
+    'Arduino Nano (old Bootloader)',
+    'Arduino Nano',
+    'Arduino Mega',
+    'ATmega328P',
+    'ATtiny2313A');
+
+  TemplatesPara: array[0..Templates_Count - 1] of TAVROptions = ((
+    AVR_Familie: 'AVR5';
+    AVR_FPC_Typ: 'atmega328p';
+    AVR_AVRDude_Typ: 'atmega328p';
+    Programmer: 'arduino';
+    COM_Port: '/dev/ttyACM0';
+    Baud: '115200';
+    Disable_Auto_Erase : false;),(
+
+    AVR_Familie: 'AVR5';
+    AVR_FPC_Typ: 'atmega328p';
+    AVR_AVRDude_Typ: 'atmega328p';
+    Programmer: 'arduino';
+    COM_Port: '/dev/ttyUSB0';
+    Baud: '57600';
+    Disable_Auto_Erase : false;),(
+
+    AVR_Familie: 'AVR5';
+    AVR_FPC_Typ: 'atmega328p';
+    AVR_AVRDude_Typ: 'atmega328p';
+    Programmer: 'arduino';
+    COM_Port: '/dev/ttyUSB0';
+    Baud: '115200';
+    Disable_Auto_Erase : false;),(
+
+    AVR_Familie: 'AVR6';
+    AVR_FPC_Typ: 'atmega2560';
+    AVR_AVRDude_Typ: 'atmega2560';
+    Programmer: 'wiring';
+    COM_Port: '/dev/ttyUSB0';
+    Baud: '115200';
+    Disable_Auto_Erase : true;),(
+
+    AVR_Familie: 'AVR5';
+    AVR_FPC_Typ: 'atmega328p';
+    AVR_AVRDude_Typ: 'atmega328p';
+    Programmer: 'usbasp';
+    COM_Port: '';
+    Baud: '';
+    Disable_Auto_Erase : false;),(
+
+    AVR_Familie: 'AVR25';
+    AVR_FPC_Typ: 'attiny2313a';
+    AVR_AVRDude_Typ: 'attiny2313';
+    Programmer: 'usbasp';
+    COM_Port: '';
+    Baud: '';
+    Disable_Auto_Erase : false;));
+
+type
 
   { TProjectOptions }
 
@@ -71,9 +143,10 @@ type
       Disable_Auto_Erase : Boolean;
     end;
     AVR_Familie,
-    AVR_FPC_Typ,
-    SerialMonitorPort,
-    SerialMonitorBaud: string;
+    AVR_FPC_Typ: string;
+    SerialMonitor: record
+      Port, Baud: string;
+    end;
     AsmFile: boolean;
     procedure Save(AProject: TLazProject);
     procedure Load(AProject: TLazProject);
@@ -254,8 +327,8 @@ begin
 
   AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 
-  AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitorPort;
-  AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitorBaud;
+  AProject.CustomData[Key_SerialMonitorPort] := ProjectOptions.SerialMonitor.Port;
+  AProject.CustomData[Key_SerialMonitorBaud] := ProjectOptions.SerialMonitor.Baud;
 end;
 
 procedure TProjectOptions.Load(AProject: TLazProject);
@@ -294,8 +367,8 @@ begin
   ProjectOptions.AvrdudeCommand.Baud := Find(s, '-b');
   ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
 
-  ProjectOptions.SerialMonitorPort := AProject.CustomData[Key_SerialMonitorPort];
-  ProjectOptions.SerialMonitorBaud := AProject.CustomData[Key_SerialMonitorBaud];
+  ProjectOptions.SerialMonitor.Port := AProject.CustomData[Key_SerialMonitorPort];
+  ProjectOptions.SerialMonitor.Baud := AProject.CustomData[Key_SerialMonitorBaud];
 end;
 
 end.

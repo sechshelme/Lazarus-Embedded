@@ -70,7 +70,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object AsmFile_CheckBox: TCheckBox
     Left = 16
     Height = 23
-    Top = 368
+    Top = 400
     Width = 138
     Caption = 'ASM-File erzeugen'
     TabOrder = 4
@@ -297,6 +297,14 @@ object ProjectOptionsForm: TProjectOptionsForm
     Width = 69
     Caption = 'AVR Familie'
     ParentColor = False
+  end
+  object CheckBox1: TCheckBox
+    Left = 16
+    Height = 23
+    Top = 368
+    Width = 94
+    Caption = 'CheckBox1'
+    TabOrder = 16
   end
   object OpenDialogAVRPath: TOpenDialog
     Left = 416

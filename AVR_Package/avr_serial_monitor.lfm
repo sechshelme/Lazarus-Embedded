@@ -9,15 +9,15 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   LCLVersion = '2.1.0.0'
   object Label1: TLabel
     Left = 24
-    Height = 17
+    Height = 16
     Top = 16
-    Width = 141
+    Width = 152
     Caption = 'Serial-Monitor COM-Port:'
     ParentColor = False
   end
   object SerialMonitorPort_ComboBox: TComboBox
     Left = 24
-    Height = 29
+    Height = 28
     Top = 40
     Width = 510
     Anchors = [akTop, akLeft, akRight]
@@ -27,15 +27,15 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   end
   object Label2: TLabel
     Left = 24
-    Height = 17
+    Height = 16
     Top = 80
-    Width = 32
+    Width = 35
     Caption = 'Baud:'
     ParentColor = False
   end
   object SerialMonitorBaud_ComboBox: TComboBox
     Left = 24
-    Height = 29
+    Height = 28
     Top = 112
     Width = 510
     Anchors = [akTop, akLeft, akRight]

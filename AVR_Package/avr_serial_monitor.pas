@@ -37,9 +37,7 @@ implementation
 procedure TSerial_Monitor_Form.LoadDefaultMask;
 begin
   with SerialMonitorPort_ComboBox do begin
-    Items.Add('/dev/ttyUSB0');
-    Items.Add('/dev/ttyUSB1');
-    Items.Add('/dev/ttyUSB2');
+    Items.CommaText := GetSerialPortNames;
     Text := '/dev/ttyUSB0';
   end;
 
@@ -52,18 +50,18 @@ end;
 procedure TSerial_Monitor_Form.ProjectOptionsToMask;
 begin
   with SerialMonitorPort_ComboBox do begin
-    Text := ProjectOptions.SerialMonitorPort;
+    Text := ProjectOptions.SerialMonitor.Port;
   end;
 
   with SerialMonitorBaud_ComboBox do begin
-    Text := ProjectOptions.SerialMonitorBaud;
+    Text := ProjectOptions.SerialMonitor.Baud;
   end;
 end;
 
 procedure TSerial_Monitor_Form.MaskToProjectOptions;
 begin
-    ProjectOptions.SerialMonitorPort := SerialMonitorPort_ComboBox.Text;
-    ProjectOptions.SerialMonitorBaud := SerialMonitorBaud_ComboBox.Text;
+    ProjectOptions.SerialMonitor.Port := SerialMonitorPort_ComboBox.Text;
+    ProjectOptions.SerialMonitor.Baud := SerialMonitorBaud_ComboBox.Text;
 end;
 
 end.
