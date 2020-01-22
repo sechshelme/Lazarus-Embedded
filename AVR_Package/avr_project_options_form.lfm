@@ -1,7 +1,7 @@
 object ProjectOptionsForm: TProjectOptionsForm
-  Left = 350
+  Left = 1738
   Height = 507
-  Top = 126
+  Top = 189
   Width = 585
   Caption = 'AVR Project Options'
   ClientHeight = 507
@@ -70,7 +70,7 @@ object ProjectOptionsForm: TProjectOptionsForm
   object AsmFile_CheckBox: TCheckBox
     Left = 16
     Height = 23
-    Top = 400
+    Top = 411
     Width = 138
     Caption = 'ASM-File erzeugen'
     TabOrder = 4
@@ -298,13 +298,21 @@ object ProjectOptionsForm: TProjectOptionsForm
     Caption = 'AVR Familie'
     ParentColor = False
   end
-  object CheckBox1: TCheckBox
+  object Disable_Auto_Erase_CheckBox: TCheckBox
     Left = 16
     Height = 23
     Top = 368
-    Width = 94
-    Caption = 'CheckBox1'
+    Width = 165
+    Caption = 'Disable Auto Erase (-D)'
     TabOrder = 16
+  end
+  object CheckBox2: TCheckBox
+    Left = 10
+    Height = 23
+    Top = 10
+    Width = 94
+    Caption = 'CheckBox2'
+    TabOrder = 17
   end
   object OpenDialogAVRPath: TOpenDialog
     Left = 416

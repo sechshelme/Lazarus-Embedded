@@ -27,7 +27,7 @@ type
     Button2: TButton;
     AVR_Typ_avrdude_Edit: TEdit;
     AVR_Familie_ComboBox: TComboBox;
-    CheckBox1: TCheckBox;
+    Disable_Auto_Erase_CheckBox: TCheckBox;
     Label1: TLabel;
     Label10: TLabel;
     Memo1: TMemo;
@@ -101,79 +101,8 @@ begin
     AVR_Typ_avrdude_Edit.Text := TemplatesPara[i].AVR_AVRDude_Typ;
     AVR_Familie_ComboBox.Text := TemplatesPara[i].AVR_Familie;
 
-    CheckBox1.Checked := TemplatesPara[i].Disable_Auto_Erase;
+    Disable_Auto_Erase_CheckBox.Checked := TemplatesPara[i].Disable_Auto_Erase;
   end;
-
-//
-//
-//  AVR_Familie: 'AVR5';
-//  AVR_FPC_Typ: 'atmega328p';
-//  AVR_AVRDude_Typ: 'atmega328p';
-//  Programmer: 'arduino';
-//  COM_Port: '/dev/ttyACM0';
-//  Baud: '115200';
-//  Disable_Auto_Erase : false;),(
-//
-//
-
-  //  case TemplatesForm.ListBox_Template.ItemIndex of
-  //    0:
-  //    begin
-  //      ProgrammerComboBox.Text := 'arduino';
-  //      COMPortComboBox.Text := '/dev/ttyACM0';
-  //      COMPortBaudComboBox.Text := '115200';
-  //      AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
-  //      AVR_Typ_avrdude_Edit.Text := 'atmega328P';
-  //      AVR_Familie_ComboBox.Text := 'AVR5';
-  //    end;
-  //    1:
-  //    begin
-  //      ProgrammerComboBox.Text := 'arduino';
-  //      COMPortComboBox.Text := '/dev/ttyUSB0';
-  //      COMPortBaudComboBox.Text := '57600';
-  //      AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
-  //      AVR_Typ_avrdude_Edit.Text := 'atmega328P';
-  //      AVR_Familie_ComboBox.Text := 'AVR5';
-  //    end;
-  //    2:
-  //    begin
-  //      ProgrammerComboBox.Text := 'arduino';
-  //      COMPortComboBox.Text := '/dev/ttyUSB0';
-  //      COMPortBaudComboBox.Text := '115200';
-  //      AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
-  //      AVR_Typ_avrdude_Edit.Text := 'atmega328P';
-  //      AVR_Familie_ComboBox.Text := 'AVR5';
-  //    end;
-  //    3:
-  //    begin
-  //      ProgrammerComboBox.Text := 'wiring';
-  //      COMPortComboBox.Text := '/dev/ttyUSB0';
-  //      COMPortBaudComboBox.Text := '115200';
-  //      AVR_Typ_FPC_ComboBox.Text := 'atmega2560';
-  //      AVR_Typ_avrdude_Edit.Text := 'atmega2560';
-  //      AVR_Familie_ComboBox.Text := 'AVR6';
-  //    end;
-  //    4:
-  //    begin
-  //      ProgrammerComboBox.Text := 'usbasp';
-  //      COMPortComboBox.Text := '';
-  //      COMPortBaudComboBox.Text := '';
-  //      AVR_Typ_FPC_ComboBox.Text := 'atmega328P';
-  //      AVR_Typ_avrdude_Edit.Text := 'atmega328P';
-  //      AVR_Familie_ComboBox.Text := 'AVR5';
-  //    end;
-  //    5:
-  //    begin
-  //      ProgrammerComboBox.Text := 'usbasp';
-  //      COMPortComboBox.Text := '';
-  //      COMPortBaudComboBox.Text := '';
-  //      AVR_Typ_FPC_ComboBox.Text := 'attiny2313A';
-  //      AVR_Typ_avrdude_Edit.Text := 'attiny2313';
-  //      AVR_Familie_ComboBox.Text := 'AVR25';
-  //    end;
-  //  end;
-  //end;
-  //end;
 
   TemplatesForm.Free;
 end;
@@ -239,7 +168,7 @@ begin
   end;
 
   AsmFile_CheckBox.Checked := False;
-  CheckBox1.Checked := False;
+  Disable_Auto_Erase_CheckBox.Checked := False;
 end;
 
 procedure TProjectOptionsForm.ProjectOptionsToMask;
@@ -255,7 +184,7 @@ begin
   AVR_Typ_avrdude_Edit.Text := ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
   AsmFile_CheckBox.Checked := ProjectOptions.AsmFile;
-  CheckBox1.Checked := ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+  Disable_Auto_Erase_CheckBox.Checked := ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
 procedure TProjectOptionsForm.MaskToProjectOptions;
@@ -271,7 +200,7 @@ begin
   ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
 
   ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
-  ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := CheckBox1.Checked;
+  ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := Disable_Auto_Erase_CheckBox.Checked;
 end;
 
 procedure TProjectOptionsForm.ChangeAVR;

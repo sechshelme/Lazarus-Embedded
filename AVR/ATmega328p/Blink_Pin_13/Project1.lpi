@@ -67,7 +67,7 @@
       <CustomOptions Value="-Wpatmega328p
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -patmega328p -carduino -P/dev/ttyACM0 -b115200 -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>
