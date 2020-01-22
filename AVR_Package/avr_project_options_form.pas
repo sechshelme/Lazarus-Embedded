@@ -80,18 +80,18 @@ end;
 procedure TProjectOptionsForm.TemplatesButtonClick(Sender: TObject);
 var
   TemplatesForm: TProjectTemplatesForm;
-  i: Integer;
+  i: integer;
 
 begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
-  with TemplatesForm.ListBox_Template do begin
-    Text := 'Arduino UNO';
-    Items.AddStrings(Templates);
-    ItemIndex := 0;
-  end;
 
-  if TemplatesForm.ShowModal = mrOk then
-  begin
+  for i := 0 to Length(TemplatesPara) - 1 do begin
+    TemplatesForm.ListBox_Template.Items.AddStrings(TemplatesPara[i].Name);
+  end;
+  TemplatesForm.ListBox_Template.Caption := TemplatesPara[0].Name;
+  TemplatesForm.ListBox_Template.ItemIndex := 0;
+
+  if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
     ProgrammerComboBox.Text := TemplatesPara[i].Programmer;
@@ -122,8 +122,7 @@ begin
     Text := AVR_Options.avrdudePfad;
   end;
 
-  with avrdudeConfigPathComboBox do
-  begin
+  with avrdudeConfigPathComboBox do begin
     {$IFDEF MSWINDOWS}
     Items.Add('c:\averdude\avrdude.conf');
     {$ELSE}
@@ -132,16 +131,14 @@ begin
     Text := AVR_Options.avrdudeConfigPath;
   end;
 
-  with AVR_Familie_ComboBox do
-  begin
+  with AVR_Familie_ComboBox do begin
     Items.CommaText := AVR_Familie_Typ;
     ItemIndex := 3;
     Style := csOwnerDrawFixed;
     Text := 'AVR5';
   end;
 
-  with AVR_Typ_FPC_ComboBox do
-  begin
+  with AVR_Typ_FPC_ComboBox do begin
     Items.CommaText := AVR5_Fpc_Typ;
     Sorted := True;
     Text := 'atmega328P';
@@ -149,20 +146,17 @@ begin
 
   AVR_Typ_avrdude_Edit.Text := 'atmega328P';
 
-  with ProgrammerComboBox do
-  begin
+  with ProgrammerComboBox do begin
     Items.CommaText := 'arduino,usbasp,stk500v1,wiring';
     Text := 'arduino';
   end;
 
-  with COMPortComboBox do
-  begin
+  with COMPortComboBox do begin
     Items.CommaText := GetSerialPortNames;
     Text := '/dev/ttyUSB0';
   end;
 
-  with COMPortBaudComboBox do
-  begin
+  with COMPortBaudComboBox do begin
     Items.CommaText := '19200,57600,115200';
     Text := '57600';
   end;
@@ -184,7 +178,8 @@ begin
   AVR_Typ_avrdude_Edit.Text := ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
   AsmFile_CheckBox.Checked := ProjectOptions.AsmFile;
-  Disable_Auto_Erase_CheckBox.Checked := ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+  Disable_Auto_Erase_CheckBox.Checked :=
+    ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
 procedure TProjectOptionsForm.MaskToProjectOptions;
@@ -200,27 +195,23 @@ begin
   ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
 
   ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
-  ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := Disable_Auto_Erase_CheckBox.Checked;
+  ProjectOptions.AvrdudeCommand.Disable_Auto_Erase :=
+    Disable_Auto_Erase_CheckBox.Checked;
 end;
 
 procedure TProjectOptionsForm.ChangeAVR;
 begin
   if AVR_Familie_ComboBox.Text = 'AVR25' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR25_Fpc_Typ
-  else
-  if AVR_Familie_ComboBox.Text = 'AVR35' then
+  else if AVR_Familie_ComboBox.Text = 'AVR35' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR35_Fpc_Typ
-  else
-  if AVR_Familie_ComboBox.Text = 'AVR4' then
+  else if AVR_Familie_ComboBox.Text = 'AVR4' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR4_Fpc_Typ
-  else
-  if AVR_Familie_ComboBox.Text = 'AVR5' then
+  else if AVR_Familie_ComboBox.Text = 'AVR5' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR5_Fpc_Typ
-  else
-  if AVR_Familie_ComboBox.Text = 'AVR51' then
+  else if AVR_Familie_ComboBox.Text = 'AVR51' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR51_Fpc_Typ
-  else
-  if AVR_Familie_ComboBox.Text = 'AVR6' then
+  else if AVR_Familie_ComboBox.Text = 'AVR6' then
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR6_Fpc_Typ;
 end;
 
@@ -257,8 +248,7 @@ end;
 procedure TProjectOptionsForm.Button1Click(Sender: TObject);
 begin
   OpenDialogAVRPath.FileName := avrdudePathComboBox.Text;
-  if OpenDialogAVRPath.Execute then
-  begin
+  if OpenDialogAVRPath.Execute then begin
     avrdudePathComboBox.Text := OpenDialogAVRPath.FileName;
   end;
 end;
@@ -271,8 +261,7 @@ end;
 procedure TProjectOptionsForm.Button2Click(Sender: TObject);
 begin
   OpenDialogAVRConfigPath.FileName := avrdudeConfigPathComboBox.Text;
-  if OpenDialogAVRConfigPath.Execute then
-  begin
+  if OpenDialogAVRConfigPath.Execute then begin
     avrdudeConfigPathComboBox.Text := OpenDialogAVRConfigPath.FileName;
   end;
 end;

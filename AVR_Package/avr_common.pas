@@ -58,6 +58,7 @@ const
 
 type
   TAVROptions = record
+    Name,
     AVR_Familie,
     AVR_FPC_Typ,
 
@@ -69,17 +70,8 @@ type
   end;
 
 const
-  Templates_Count = 6;
-
-  Templates: TStringArray = (
-    'Arduino UNO',
-    'Arduino Nano (old Bootloader)',
-    'Arduino Nano',
-    'Arduino Mega',
-    'ATmega328P',
-    'ATtiny2313A');
-
-  TemplatesPara: array[0..Templates_Count - 1] of TAVROptions = ((
+  TemplatesPara: array of TAVROptions = ((
+    Name: 'Arduino UNO';
     AVR_Familie: 'AVR5';
     AVR_FPC_Typ: 'atmega328p';
     AVR_AVRDude_Typ: 'atmega328p';
@@ -88,6 +80,7 @@ const
     Baud: '115200';
     Disable_Auto_Erase : false;),(
 
+    Name: 'Arduino Nano (old Bootloader)';
     AVR_Familie: 'AVR5';
     AVR_FPC_Typ: 'atmega328p';
     AVR_AVRDude_Typ: 'atmega328p';
@@ -96,6 +89,7 @@ const
     Baud: '57600';
     Disable_Auto_Erase : false;),(
 
+    Name: 'Arduino Nano';
     AVR_Familie: 'AVR5';
     AVR_FPC_Typ: 'atmega328p';
     AVR_AVRDude_Typ: 'atmega328p';
@@ -104,6 +98,7 @@ const
     Baud: '115200';
     Disable_Auto_Erase : false;),(
 
+    Name: 'Arduino Mega';
     AVR_Familie: 'AVR6';
     AVR_FPC_Typ: 'atmega2560';
     AVR_AVRDude_Typ: 'atmega2560';
@@ -112,6 +107,7 @@ const
     Baud: '115200';
     Disable_Auto_Erase : true;),(
 
+    Name: 'ATmega328P';
     AVR_Familie: 'AVR5';
     AVR_FPC_Typ: 'atmega328p';
     AVR_AVRDude_Typ: 'atmega328p';
@@ -120,6 +116,7 @@ const
     Baud: '';
     Disable_Auto_Erase : false;),(
 
+    Name: 'ATtiny2313A';
     AVR_Familie: 'AVR25';
     AVR_FPC_Typ: 'attiny2313a';
     AVR_AVRDude_Typ: 'attiny2313';

@@ -306,14 +306,6 @@ object ProjectOptionsForm: TProjectOptionsForm
     Caption = 'Disable Auto Erase (-D)'
     TabOrder = 16
   end
-  object CheckBox2: TCheckBox
-    Left = 10
-    Height = 23
-    Top = 10
-    Width = 94
-    Caption = 'CheckBox2'
-    TabOrder = 17
-  end
   object OpenDialogAVRPath: TOpenDialog
     Left = 416
     Top = 16
