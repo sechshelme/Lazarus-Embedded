@@ -53,7 +53,7 @@ var
   Zaehler:UInt16;
   Data: array[0..127] of byte;
 
-procedure Timer0_Interrupt; public Name 'TIMER2_OVF_ISR'; interrupt;
+procedure Timer2_Interrupt; public Name 'TIMER2_OVF_ISR'; interrupt;
 begin
   TCNT2 := 70;
   Inc(p);

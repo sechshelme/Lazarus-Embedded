@@ -1,20 +1,20 @@
 object ProjectOptionsForm: TProjectOptionsForm
   Left = 1738
-  Height = 507
+  Height = 506
   Top = 189
-  Width = 585
+  Width = 580
   Caption = 'AVR Project Options'
-  ClientHeight = 507
-  ClientWidth = 585
+  ClientHeight = 506
+  ClientWidth = 580
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object OkButton: TButton
-    Left = 489
+    Left = 484
     Height = 25
-    Top = 409
+    Top = 408
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -24,9 +24,9 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 386
+    Left = 381
     Height = 25
-    Top = 409
+    Top = 408
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -38,7 +38,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 16
     Height = 28
     Top = 56
-    Width = 498
+    Width = 493
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
@@ -119,7 +119,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 16
     Height = 28
     Top = 119
-    Width = 498
+    Width = 493
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 7
@@ -141,7 +141,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     ParentColor = False
   end
   object Button1: TButton
-    Left = 526
+    Left = 521
     Height = 28
     Top = 56
     Width = 32
@@ -151,7 +151,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 9
   end
   object Button2: TButton
-    Left = 526
+    Left = 521
     Height = 28
     Top = 119
     Width = 32
@@ -161,10 +161,11 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 10
   end
   object TemplatesButton: TButton
-    Left = 408
+    Left = 472
     Height = 28
     Top = 192
     Width = 80
+    Anchors = [akTop, akRight]
     Caption = 'Vorlagen...'
     OnClick = TemplatesButtonClick
     TabOrder = 11
@@ -272,8 +273,8 @@ object ProjectOptionsForm: TProjectOptionsForm
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 460
-    Width = 585
+    Top = 459
+    Width = 580
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
