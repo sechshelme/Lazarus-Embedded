@@ -17,7 +17,7 @@ const
     UCSR0C := %011 shl UCSZ0;
   end;
 
-    procedure UARTSendChar(c: char);
+  procedure UARTSendChar(c: char);
   begin
     while UCSR0A and (1 shl UDRE0) = 0 do begin
     end;

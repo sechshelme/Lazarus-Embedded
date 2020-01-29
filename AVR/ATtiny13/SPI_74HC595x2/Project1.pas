@@ -10,6 +10,8 @@ var
   SPI_PORT: TSPIGPIO absolute PORTB;
   SPI_DDR: TSPIGPIO absolute DDRB;
 
+// ATtiny13 hat kein Hardware SPI, daher ein SoftwareWrite.
+
   procedure SPIWriteData(p: PByte; len: byte);
     var
       i, j: byte;
