@@ -63,6 +63,7 @@ var
   procedure Timer0_Interrupt; public Name 'TIM0_COMPA_ISR'; interrupt;
   begin
     TCNT0 := 70;
+
     Inc(p);
     if p >= 8 then begin
       p := 0;
@@ -87,7 +88,7 @@ begin
   avr_cli;
   // -- Timer0 initialisieren.
   TCCR0A := 0;
-  TCCR0B := %010;                     // CPU-Takt / 1024
+  TCCR0B := %010;                    
   TIMSK0 := TIMSK0 or (1 shl OCIE0A); // Timer0 soll Interrupt auslösen.
 
   // -- Interrupt aktivieren.

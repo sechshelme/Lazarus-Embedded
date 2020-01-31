@@ -51,7 +51,7 @@ var
   p,
   Zahl: integer;
   Zaehler:UInt16;
-  Data: array[0..127] of byte;
+  Data: array[0..126] of byte;
 
 procedure Timer2_Interrupt; public Name 'TIMER2_OVF_ISR'; interrupt;
 begin
