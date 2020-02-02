@@ -123,6 +123,15 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
+    Disable_Auto_Erase : false;),(
+
+    Name: 'ATtiny13A';
+    AVR_Familie: 'AVR25';
+    AVR_FPC_Typ: 'attiny13a';
+    AVR_AVRDude_Typ: 'attiny13';
+    Programmer: 'usbasp';
+    COM_Port: '';
+    Baud: '';
     Disable_Auto_Erase : false;));
 
 type

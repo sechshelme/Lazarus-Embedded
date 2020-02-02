@@ -47,6 +47,7 @@ begin
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
 
+  // SPI inizialisieren
   SPCR := (1 shl SPE) or (1 shl MSTR) or (%00 shl SPR);
   SPSR := (1 shl SPI2X);  // SCK x 2 auf 1 MHZ
 

@@ -14,10 +14,6 @@
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
-    <CustomData Count="2">
-      <Item0 Name="COM_Port"/>
-      <Item1 Name="SerialMonitorPort"/>
-    </CustomData>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
     </BuildModes>
@@ -26,13 +22,13 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <LaunchingApplication PathPlusParams=""/>
+        <LaunchingApplication Use="True" PathPlusParams="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="1">
         <Mode0 Name="default">
           <local>
-            <LaunchingApplication PathPlusParams=""/>
+            <LaunchingApplication Use="True" PathPlusParams="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
           </local>
         </Mode0>
       </Modes>
@@ -54,7 +50,7 @@
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="AVR5"/>
+      <TargetProcessor Value="AVR25"/>
       <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>
@@ -64,10 +60,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpatmega328p
+      <CustomOptions Value="-WpATTINY2313A
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -patmega328p -cusbasp -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -pattiny2313 -cusbasp -Uflash:w:Project1.hex:i "/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>
