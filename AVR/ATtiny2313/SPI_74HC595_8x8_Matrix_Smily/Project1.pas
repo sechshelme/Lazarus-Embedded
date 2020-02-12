@@ -41,7 +41,6 @@ var
   var
     i: byte;
   begin
-    SPI_PORT.SlaveSelect := False;
     for i := len - 1 downto 0 do begin
       USIDR := p[i];
       USISR := 1 shl USIOIF;
@@ -51,6 +50,7 @@ var
       until (USISR and (1 shl USIOIF)) <> 0;
 
     end;
+    SPI_PORT.SlaveSelect := False;
     SPI_PORT.SlaveSelect := True;
   end;
 

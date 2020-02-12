@@ -15,9 +15,9 @@
         </SyntaxOptions>
       </Parsing>
     </CompilerOptions>
-    <Description Value="Add and edit AVR-Project"/>
+    <Description Value="Arduino AVR Package for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="8"/>
+    <Version Release="9"/>
     <Files>
       <Item>
         <Filename Value="avr_register.pas"/>

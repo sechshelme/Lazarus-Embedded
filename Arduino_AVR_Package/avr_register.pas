@@ -49,13 +49,11 @@ begin
   LazProject := LazarusIDE.ActiveProject;
 
   if (LazProject.LazCompilerOptions.TargetCPU <> 'avr') or
-    (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then
-  begin
+    (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
     if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.' +
       LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' +
       LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning,
-      [mbYes, mbNo], 0) = mrNo then
-    begin
+      [mbYes, mbNo], 0) = mrNo then begin
       ProjOptiForm.Free;
       Exit;
     end;
@@ -66,8 +64,7 @@ begin
   ProjOptiForm.LoadDefaultMask;
   ProjOptiForm.ProjectOptionsToMask;
 
-  if ProjOptiForm.ShowModal = mrOk then
-  begin
+  if ProjOptiForm.ShowModal = mrOk then begin
     ProjOptiForm.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
@@ -91,8 +88,7 @@ begin
   Form.LoadDefaultMask;
   Form.ProjectOptionsToMask;
 
-  if Form.ShowModal = mrOk then
-  begin
+  if Form.ShowModal = mrOk then begin
     Form.MaskToProjectOptions;
     ProjectOptions.Save(LazProject);
   end;
@@ -149,27 +145,40 @@ begin
   Form.LoadDefaultMask;
 
   Result := Form.ShowModal;
-  if Result = mrOk then
-  begin
+  if Result = mrOk then begin
     Form.MaskToProjectOptions;
   end;
 
   Form.Free;
 end;
 
+
 function TProjectAVRApp.InitProject(AProject: TLazProject): TModalResult;
 const
   ProjectText =
-    'program Project1;' + LineEnding + LineEnding + '{$H-}' +
-    LineEnding + '{$O-}' + LineEnding + LineEnding + 'uses' +
-    LineEnding + '  intrinsics;' + LineEnding + LineEnding + 'begin' +
-    LineEnding + '  // Setup' + LineEnding + '  repeat' + LineEnding +
-    '    // Loop;' + LineEnding + '  until false;' + LineEnding + 'end.';
+    'program Project1;' + LineEnding + LineEnding + '{$H-,J-,O-}' +
+    LineEnding + LineEnding + 'uses' + LineEnding + '  intrinsics;' +
+    LineEnding + LineEnding + 'begin' + LineEnding + '  // Setup' +
+    LineEnding + '  repeat' + LineEnding + '    // Loop;' + LineEnding +
+    '  until false;' + LineEnding + 'end.';
 
 var
   MainFile: TLazProjectFile;
 
+
+//procedure test;
+//var
+//  sl:TStringList;
+//begin
+//  sl:=TStringList.Create;
+//  sl.LoadFromFile('avr_register.pas');
+//  ShowMessage(sl.Text);
+//
+//  sl.Free;
+//end;
+
 begin
+//  test;
   inherited InitProject(AProject);
 
   MainFile := AProject.CreateProjectFile('Project1.pas');
