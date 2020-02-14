@@ -1,17 +1,17 @@
 object Form1: TForm1
   Left = 560
-  Height = 574
+  Height = 984
   Top = 276
-  Width = 582
+  Width = 1998
   Caption = 'Form1'
-  ClientHeight = 574
-  ClientWidth = 582
+  ClientHeight = 984
+  ClientWidth = 1998
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
   object Button1: TButton
-    Left = 494
+    Left = 1910
     Height = 25
-    Top = 534
+    Top = 944
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Generate'
@@ -20,9 +20,9 @@ object Form1: TForm1
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 520
+    Height = 930
     Top = 0
-    Width = 582
+    Width = 1998
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
