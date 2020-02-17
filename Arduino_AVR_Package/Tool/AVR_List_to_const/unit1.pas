@@ -36,13 +36,16 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   SynEdit1.ScrollBars := ssAutoBoth;
+
+  Caption:={$I %FPCVERSION%};
+  Caption:=LCLVersion;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
   SL_Source, AVR_List: TStringList;
   SubArchList: string = '';
-  s, s2: string;
+  SubArch, s, s2: string;
   i: integer;
 
 begin
@@ -57,9 +60,10 @@ begin
   repeat
     s := SL_Source[i];
     if pos('ifeq ($(SUBARCH),avr', s) > 0 then begin
-      Delete(s, 1, 17);
-      Delete(s, Length(s), 1);
-      SubArchList += s + ',';
+      SubArch := s;
+      Delete(SubArch, 1, 17);
+      Delete(SubArch, Length(SubArch), 1);
+      SubArchList += SubArch + ',';
 
       Inc(i);
       s := SL_Source[i];
@@ -69,6 +73,7 @@ begin
         Delete(s2, Length(s2), 1);
       end;
       s2 := StringReplace(s2, ' ', ',', [rfReplaceAll]);
+      AVR_List.Add('    // ' + SubArch);
       AVR_List.Add('    '#39 + s2 + #39' +');
 
       while pos('\', s) > 0 do begin
@@ -89,7 +94,6 @@ begin
   until i >= SL_Source.Count;
 
   s := AVR_List[AVR_List.Count - 2];
-  Caption := s;
   Delete(s, Length(s), 1);
   AVR_List[AVR_List.Count - 2] := s;
 
@@ -101,14 +105,15 @@ begin
   SynEdit1.Lines.Add('// Die Arrays werden aus "./fpcsrc/fpc/rtl/embedded/Makefile" importiert.');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('unit');
-  SynEdit1.Lines.Add('  AVR_SubArchList;');
+  SynEdit1.Lines.Add('  AVR_SubArch_List;');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('const');
-  SynEdit1.Lines.Add('  SubArchList = ''' + SubArchList + ''';');
+  SynEdit1.Lines.Add('  SubArch_List = ''' + SubArchList + ''';');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('  AVR_List: array of string = (');
+  SynEdit1.Lines.Add('');
   for i := 0 to AVR_List.Count - 1 do begin
     SynEdit1.Lines.Add(AVR_List[i]);
   end;
@@ -119,7 +124,7 @@ begin
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-  SynEdit1.Lines.SaveToFile('../../avr_subarchList.pas');
+  SynEdit1.Lines.SaveToFile('../../avr_subarch_list.pas');
 
   AVR_List.Free;
   SL_Source.Free;

@@ -44,6 +44,10 @@
         <Filename Value="avr_project_templates_form.pas"/>
         <UnitName Value="avr_project_templates_form"/>
       </Item>
+      <Item>
+        <Filename Value="avr_subarch_list.pas"/>
+        <UnitName Value="AVR_SubArchList"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

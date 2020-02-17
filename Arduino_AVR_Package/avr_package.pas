@@ -9,7 +9,8 @@ interface
 
 uses
   AVR_Register, AVR_IDE_Options, AVR_Project_Options_Form, AVR_Common, 
-  AVR_Serial_Monitor, AVR_Project_Templates_Form, LazarusPackageIntf;
+  AVR_Serial_Monitor, AVR_Project_Templates_Form, avr_subarch_list, 
+  LazarusPackageIntf;
 
 implementation
 

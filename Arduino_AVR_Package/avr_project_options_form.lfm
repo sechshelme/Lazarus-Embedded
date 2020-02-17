@@ -282,21 +282,21 @@ object ProjectOptionsForm: TProjectOptionsForm
     )
     TabOrder = 14
   end
-  object AVR_Familie_ComboBox: TComboBox
+  object AVR_SubArch_ComboBox: TComboBox
     Left = 16
     Height = 28
     Top = 192
     Width = 128
     ItemHeight = 0
-    OnChange = AVR_Familie_ComboBoxChange
+    OnChange = AVR_SubArch_ComboBoxChange
     TabOrder = 15
   end
   object Label1: TLabel
     Left = 16
     Height = 16
     Top = 168
-    Width = 69
-    Caption = 'AVR Familie'
+    Width = 79
+    Caption = 'AVR SubArch'
     ParentColor = False
   end
   object Disable_Auto_Erase_CheckBox: TCheckBox

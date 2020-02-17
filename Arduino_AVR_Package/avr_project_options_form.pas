@@ -11,7 +11,7 @@ uses
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
-  AVR_IDE_Options, AVR_Common, AVR_Project_Templates_Form;
+  AVR_IDE_Options, AVR_Common, AVR_Project_Templates_Form, AVR_SubArch_List;
 
 type
 
@@ -26,7 +26,7 @@ type
     Button1: TButton;
     Button2: TButton;
     AVR_Typ_avrdude_Edit: TEdit;
-    AVR_Familie_ComboBox: TComboBox;
+    AVR_SubArch_ComboBox: TComboBox;
     Disable_Auto_Erase_CheckBox: TCheckBox;
     Label1: TLabel;
     Label10: TLabel;
@@ -45,7 +45,7 @@ type
     OpenDialogAVRConfigPath: TOpenDialog;
     OpenDialogAVRPath: TOpenDialog;
     ProgrammerComboBox: TComboBox;
-    procedure AVR_Familie_ComboBoxChange(Sender: TObject);
+    procedure AVR_SubArch_ComboBoxChange(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -99,7 +99,7 @@ begin
     COMPortBaudComboBox.Text := TemplatesPara[i].Baud;
     AVR_Typ_FPC_ComboBox.Text := TemplatesPara[i].AVR_FPC_Typ;
     AVR_Typ_avrdude_Edit.Text := TemplatesPara[i].AVR_AVRDude_Typ;
-    AVR_Familie_ComboBox.Text := TemplatesPara[i].AVR_Familie;
+    AVR_SubArch_ComboBox.Text := TemplatesPara[i].AVR_Familie;
 
     Disable_Auto_Erase_CheckBox.Checked := TemplatesPara[i].Disable_Auto_Erase;
   end;
@@ -131,15 +131,17 @@ begin
     Text := AVR_Options.avrdudeConfigPath;
   end;
 
-  with AVR_Familie_ComboBox do begin
-    Items.CommaText := AVR_Familie_Typ;
+  with AVR_SubArch_ComboBox do begin
+    Items.CommaText := SubArch_List;
     ItemIndex := 3;
     Style := csOwnerDrawFixed;
     Text := 'AVR5';
   end;
 
   with AVR_Typ_FPC_ComboBox do begin
-    Items.CommaText := AVR5_Fpc_Typ;
+//    Items.CommaText := AVR5_Fpc_Typ;
+    Items.CommaText := AVR_List[6];   ///// ???????
+    ItemIndex := 6;
     Sorted := True;
     Text := 'atmega328P';
   end;
@@ -167,7 +169,7 @@ end;
 
 procedure TProjectOptionsForm.ProjectOptionsToMask;
 begin
-  AVR_Familie_ComboBox.Text := ProjectOptions.AVR_Familie;
+  AVR_SubArch_ComboBox.Text := ProjectOptions.AVR_Familie;
   AVR_Typ_FPC_ComboBox.Text := ProjectOptions.AVR_FPC_Typ;
 
   avrdudePathComboBox.Text := ProjectOptions.AvrdudeCommand.Path;
@@ -184,7 +186,7 @@ end;
 
 procedure TProjectOptionsForm.MaskToProjectOptions;
 begin
-  ProjectOptions.AVR_Familie := AVR_Familie_ComboBox.Text;
+  ProjectOptions.AVR_Familie := AVR_SubArch_ComboBox.Text;
   ProjectOptions.AVR_FPC_Typ := AVR_Typ_FPC_ComboBox.Text;
 
   ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
@@ -201,21 +203,25 @@ end;
 
 procedure TProjectOptionsForm.ChangeAVR;
 begin
-  if AVR_Familie_ComboBox.Text = 'AVR25' then
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR25_Fpc_Typ
-  else if AVR_Familie_ComboBox.Text = 'AVR35' then
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR35_Fpc_Typ
-  else if AVR_Familie_ComboBox.Text = 'AVR4' then
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR4_Fpc_Typ
-  else if AVR_Familie_ComboBox.Text = 'AVR5' then
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR5_Fpc_Typ
-  else if AVR_Familie_ComboBox.Text = 'AVR51' then
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR51_Fpc_Typ
-  else if AVR_Familie_ComboBox.Text = 'AVR6' then
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR6_Fpc_Typ;
+  //if AVR_SubArch_ComboBox.Text = 'AVR25' then
+  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR25_Fpc_Typ
+  //else if AVR_SubArch_ComboBox.Text = 'AVR35' then
+  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR35_Fpc_Typ
+  //else if AVR_SubArch_ComboBox.Text = 'AVR4' then
+  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR4_Fpc_Typ
+  //else if AVR_SubArch_ComboBox.Text = 'AVR5' then
+  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR5_Fpc_Typ
+  //else if AVR_SubArch_ComboBox.Text = 'AVR51' then
+  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR51_Fpc_Typ
+  //else if AVR_SubArch_ComboBox.Text = 'AVR6' then
+  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR6_Fpc_Typ;
+
+  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[AVR_SubArch_ComboBox.ItemIndex];
+  Caption:=IntToStr(AVR_SubArch_ComboBox.ItemIndex);
+//  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[4];
 end;
 
-procedure TProjectOptionsForm.AVR_Familie_ComboBoxChange(Sender: TObject);
+procedure TProjectOptionsForm.AVR_SubArch_ComboBoxChange(Sender: TObject);
 begin
   ChangeAVR;
 end;

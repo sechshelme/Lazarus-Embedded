@@ -6,47 +6,47 @@ interface
 
 uses
   Classes, SysUtils, Dialogs, LCLType, Controls,
-  ProjectIntf;
+  ProjectIntf, AVR_SubArch_List;
 
 const
   AVR_Options_File = 'avroptions.xml';
 
   // fpcsrc/rtl/embedded/Makefile
 
-  AVR_Familie_Typ =
-    'AVR25,AVR35,AVR4,AVR5,AVR51,AVR6';
-
-  AVR25_Fpc_Typ =
-    'attiny44a,attiny26,attiny48,attiny10,attiny84a,attiny2313,attiny461,attiny43u,'+
-    'attiny24a,attiny88,attiny40,attiny861,attiny85,attiny20,attiny24,attiny9,'+
-    'attiny87,attiny84,attiny13a,attiny45,attiny5,attiny828,attiny4313,attiny13,attiny261,'+
-    'attiny861a,attiny28,attiny4,attiny44,attiny2313a,attiny461a,attiny261a,attiny25';
-
-  AVR35_Fpc_Typ =
-    'at90usb82,at90usb162,attiny167,atmega8u2,atmega16u2,atmega32u2,attiny1634';
-
-  AVR4_Fpc_Typ =
-    'atmega88p,at90pwm3b,atmega48a,atmega48,atmega88a,at90pwm81,atmega8,atmega8515,'+
-    'atmega88pa,atmega88,atmega48p,atmega8535,at90pwm1,at90pwm2b,atmega48pa,ata6285,ata6286,atmega8a';
-
-  AVR5_Fpc_Typ =
-    'atmega645,atmega165a,atmega649a,atmega32u4,atmega168p,atmega3250pa,atmega3290a,' +
-    'atmega165p,atmega16u4,atmega6490p,atmega324p,atmega328,atmega64m1,atmega645p,' +
-    'atmega329a,atmega324pa,atmega32hvb,at90pwm316,at90usb646,atmega16,atmega644,' +
-    'at90can64,at90can32,at90pwm216,atmega3250a,atmega3290pa,atmega325p,atmega328p,' +
-    'atmega3250,atmega329,atmega32a,atmega6490,atmega168a,atmega164pa,atmega645a,' +
-    'atmega3290p,atmega644p,atmega164a,atmega162,atmega32c1,atmega324a,atmega169a,' +
-    'atmega644a,atmega3290,atmega64a,atmega169p,atmega32,atmega168pa,atmega16m1,' +
-    'atmega16hvb,atmega164p,atmega325a,atmega640,atmega6450,atmega329p,at90usb647,' +
-    'atmega168,atmega6490a,atmega32m1,atmega64c1,atmega644pa,atmega325pa,atmega6450a,' +
-    'atmega329pa,atmega6450p,atmega64,atmega165pa,atmega16a,atmega649,atmega649p,' +
-    'atmega3250p,atmega325,atmega169pa,avrsim';
-
-  AVR51_Fpc_Typ =
-    'at90usb1287,atmega1284,atmega1281,atmega128rfa1,atmega1284p,at90can128,atmega128,at90usb1286,atmega128a,atmega1280';
-
-  AVR6_Fpc_Typ =
-    'atmega2561,atmega2560,avrsim';
+  //AVR_Familie_Typ =
+  //  'AVR25,AVR35,AVR4,AVR5,AVR51,AVR6';
+  //
+  //AVR25_Fpc_Typ =
+  //  'attiny44a,attiny26,attiny48,attiny10,attiny84a,attiny2313,attiny461,attiny43u,'+
+  //  'attiny24a,attiny88,attiny40,attiny861,attiny85,attiny20,attiny24,attiny9,'+
+  //  'attiny87,attiny84,attiny13a,attiny45,attiny5,attiny828,attiny4313,attiny13,attiny261,'+
+  //  'attiny861a,attiny28,attiny4,attiny44,attiny2313a,attiny461a,attiny261a,attiny25';
+  //
+  //AVR35_Fpc_Typ =
+  //  'at90usb82,at90usb162,attiny167,atmega8u2,atmega16u2,atmega32u2,attiny1634';
+  //
+  //AVR4_Fpc_Typ =
+  //  'atmega88p,at90pwm3b,atmega48a,atmega48,atmega88a,at90pwm81,atmega8,atmega8515,'+
+  //  'atmega88pa,atmega88,atmega48p,atmega8535,at90pwm1,at90pwm2b,atmega48pa,ata6285,ata6286,atmega8a';
+  //
+  //AVR5_Fpc_Typ =
+  //  'atmega645,atmega165a,atmega649a,atmega32u4,atmega168p,atmega3250pa,atmega3290a,' +
+  //  'atmega165p,atmega16u4,atmega6490p,atmega324p,atmega328,atmega64m1,atmega645p,' +
+  //  'atmega329a,atmega324pa,atmega32hvb,at90pwm316,at90usb646,atmega16,atmega644,' +
+  //  'at90can64,at90can32,at90pwm216,atmega3250a,atmega3290pa,atmega325p,atmega328p,' +
+  //  'atmega3250,atmega329,atmega32a,atmega6490,atmega168a,atmega164pa,atmega645a,' +
+  //  'atmega3290p,atmega644p,atmega164a,atmega162,atmega32c1,atmega324a,atmega169a,' +
+  //  'atmega644a,atmega3290,atmega64a,atmega169p,atmega32,atmega168pa,atmega16m1,' +
+  //  'atmega16hvb,atmega164p,atmega325a,atmega640,atmega6450,atmega329p,at90usb647,' +
+  //  'atmega168,atmega6490a,atmega32m1,atmega64c1,atmega644pa,atmega325pa,atmega6450a,' +
+  //  'atmega329pa,atmega6450p,atmega64,atmega165pa,atmega16a,atmega649,atmega649p,' +
+  //  'atmega3250p,atmega325,atmega169pa,avrsim';
+  //
+  //AVR51_Fpc_Typ =
+  //  'at90usb1287,atmega1284,atmega1281,atmega128rfa1,atmega1284p,at90can128,atmega128,at90usb1286,atmega128a,atmega1280';
+  //
+  //AVR6_Fpc_Typ =
+  //  'atmega2561,atmega2560,avrsim';
 
   AVR_UARTBaudRates = '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
 
