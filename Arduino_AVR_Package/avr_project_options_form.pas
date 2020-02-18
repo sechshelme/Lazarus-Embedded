@@ -108,8 +108,6 @@ begin
 end;
 
 procedure TProjectOptionsForm.LoadDefaultMask;
-var
-  lp: TLazProject;
 begin
 
   with avrdudePathComboBox do begin
@@ -202,6 +200,8 @@ begin
 end;
 
 procedure TProjectOptionsForm.ChangeAVR;
+var
+  ind: integer;
 begin
   //if AVR_SubArch_ComboBox.Text = 'AVR25' then
   //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR25_Fpc_Typ
@@ -216,9 +216,14 @@ begin
   //else if AVR_SubArch_ComboBox.Text = 'AVR6' then
   //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR6_Fpc_Typ;
 
-  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[AVR_SubArch_ComboBox.ItemIndex];
+  ind:=AVR_SubArch_ComboBox.ItemIndex;
   Caption:=IntToStr(AVR_SubArch_ComboBox.ItemIndex);
-//  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[4];
+  if (ind < 0) or (ind >= Length(SubArch_List)) then begin
+//    ShowMessage('Ungültige SubArch');
+    AVR_Typ_FPC_ComboBox.Items.CommaText:='';
+  end else begin
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];
+  end;
 end;
 
 procedure TProjectOptionsForm.AVR_SubArch_ComboBoxChange(Sender: TObject);

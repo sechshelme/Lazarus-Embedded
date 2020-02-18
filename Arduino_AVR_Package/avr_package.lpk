@@ -17,7 +17,7 @@
     </CompilerOptions>
     <Description Value="Arduino AVR Package for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="9"/>
+    <Version Release="10"/>
     <Files>
       <Item>
         <Filename Value="avr_register.pas"/>
@@ -46,7 +46,7 @@
       </Item>
       <Item>
         <Filename Value="avr_subarch_list.pas"/>
-        <UnitName Value="AVR_SubArchList"/>
+        <UnitName Value="avr_subarch_list"/>
       </Item>
     </Files>
     <i18n>
