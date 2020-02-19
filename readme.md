@@ -10,7 +10,7 @@ Nachträglich kann man mit "Projekt/AVR-Optionen (Arduino)..." die Parameter edi
 Die Package befindet sich unter: Lazarus_Arduino_AVR_GUI_Package
 
 
-
+<br><br><br>
 <b> Lazarus Arduino / AVR GUI </b> (english)
 
 This package extends Lazarus with a GUI for Arduino / AVR.
