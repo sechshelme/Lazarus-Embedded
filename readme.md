@@ -1,5 +1,6 @@
 
 <b>Lazarus Arduino/AVR GUI</b>
+
 Mit dieser Package wird Lazarus mit einer GUI für Arduino/AVR erweitert.
 Damit werden alle Parameter für ein AVR-Project gesetzt, inklusive den AVRDude Aufruf.
 
@@ -8,6 +9,7 @@ Nachträglich kann man mit "Projekt/AVR-Optionen (Arduino)..." die Parameter edi
 
 
 <b> Lazarus Arduino / AVR GUI </b>
+
 This package extends Lazarus with a GUI for Arduino / AVR.
 This sets all parameters for an AVR project, including the AVRDude call.
 
