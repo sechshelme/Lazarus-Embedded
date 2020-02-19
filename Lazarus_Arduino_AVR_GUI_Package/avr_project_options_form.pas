@@ -99,7 +99,8 @@ begin
     COMPortBaudComboBox.Text := TemplatesPara[i].Baud;
     AVR_Typ_FPC_ComboBox.Text := TemplatesPara[i].AVR_FPC_Typ;
     AVR_Typ_avrdude_Edit.Text := TemplatesPara[i].AVR_AVRDude_Typ;
-    AVR_SubArch_ComboBox.Text := TemplatesPara[i].AVR_Familie;
+    AVR_SubArch_ComboBox.Text := TemplatesPara[i].AVR_SubArch;
+    AVR_SubArch_ComboBox.OnChange(Sender);
 
     Disable_Auto_Erase_CheckBox.Checked := TemplatesPara[i].Disable_Auto_Erase;
   end;
@@ -137,9 +138,6 @@ begin
   end;
 
   with AVR_Typ_FPC_ComboBox do begin
-//    Items.CommaText := AVR5_Fpc_Typ;
-    Items.CommaText := AVR_List[6];   ///// ???????
-    ItemIndex := 6;
     Sorted := True;
     Text := 'atmega328P';
   end;
@@ -167,7 +165,7 @@ end;
 
 procedure TProjectOptionsForm.ProjectOptionsToMask;
 begin
-  AVR_SubArch_ComboBox.Text := ProjectOptions.AVR_Familie;
+  AVR_SubArch_ComboBox.Text := ProjectOptions.AVR_SubArch;
   AVR_Typ_FPC_ComboBox.Text := ProjectOptions.AVR_FPC_Typ;
 
   avrdudePathComboBox.Text := ProjectOptions.AvrdudeCommand.Path;
@@ -184,7 +182,7 @@ end;
 
 procedure TProjectOptionsForm.MaskToProjectOptions;
 begin
-  ProjectOptions.AVR_Familie := AVR_SubArch_ComboBox.Text;
+  ProjectOptions.AVR_SubArch := AVR_SubArch_ComboBox.Text;
   ProjectOptions.AVR_FPC_Typ := AVR_Typ_FPC_ComboBox.Text;
 
   ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
@@ -203,24 +201,9 @@ procedure TProjectOptionsForm.ChangeAVR;
 var
   ind: integer;
 begin
-  //if AVR_SubArch_ComboBox.Text = 'AVR25' then
-  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR25_Fpc_Typ
-  //else if AVR_SubArch_ComboBox.Text = 'AVR35' then
-  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR35_Fpc_Typ
-  //else if AVR_SubArch_ComboBox.Text = 'AVR4' then
-  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR4_Fpc_Typ
-  //else if AVR_SubArch_ComboBox.Text = 'AVR5' then
-  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR5_Fpc_Typ
-  //else if AVR_SubArch_ComboBox.Text = 'AVR51' then
-  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR51_Fpc_Typ
-  //else if AVR_SubArch_ComboBox.Text = 'AVR6' then
-  //  AVR_Typ_FPC_ComboBox.Items.CommaText := AVR6_Fpc_Typ;
-
-  ind:=AVR_SubArch_ComboBox.ItemIndex;
-  Caption:=IntToStr(AVR_SubArch_ComboBox.ItemIndex);
+  ind := AVR_SubArch_ComboBox.ItemIndex;
   if (ind < 0) or (ind >= Length(SubArch_List)) then begin
-//    ShowMessage('Ungültige SubArch');
-    AVR_Typ_FPC_ComboBox.Items.CommaText:='';
+    AVR_Typ_FPC_ComboBox.Items.CommaText := '';
   end else begin
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];
   end;
