@@ -112,7 +112,7 @@ begin
 
   // Menu
   RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen (Arduino)',
-    'AVR-Optionen... (Arduino)', nil, @ShowAVROptionsDialog);
+    'AVR-Optionen (Arduino)...', nil, @ShowAVROptionsDialog);
   RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...',
     nil, @ShowSerialMonitor);
 end;
