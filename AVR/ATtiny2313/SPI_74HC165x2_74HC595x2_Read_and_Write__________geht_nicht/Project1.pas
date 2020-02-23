@@ -88,7 +88,7 @@ begin
     buf[0] := not buf[0];
     buf[1] := not buf[1];
 //         buf[0]:=10;
-//          buf[1]:=10;
+//         buf[1]:=10;
 
 
     SPIWriteData(@buf, 2);

@@ -7,18 +7,15 @@
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
         <MainUnitHasScaledStatement Value="False"/>
+        <CompatibilityMode Value="True"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="Project1"/>
+      <Title Value="Timer_Blink"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
-    <CustomData Count="2">
-      <Item0 Name="COM_Port"/>
-      <Item1 Name="SerialMonitorPort"/>
-    </CustomData>
-    <BuildModes>
-      <Item Name="Default" Default="True"/>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -27,25 +24,25 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
-    <Units>
-      <Unit>
-        <Filename Value="Project1.pas"/>
+    <Units Count="1">
+      <Unit0>
+        <Filename Value="Timer_Blink.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
+      </Unit0>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="Project1"/>
+      <Filename Value="Timer_Blink"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="AVR1"/>
-      <TargetCPU Value="avr"/>
+      <TargetProcessor Value="ARMV7M"/>
+      <TargetCPU Value="arm"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>
     <Linking>
@@ -54,24 +51,24 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpattiny2313a"/>
+      <CustomOptions Value="-WpSTM32F103X8"/>
       <ExecuteAfter>
-        <Command Value="/usr/bin/avrdude -C/etc/avrdude.conf -v -pattiny2313 -cusbasp -Uflash:w:Project1.hex:i"/>
+        <Command Value="st-flash write Timer_Blink.bin 0x8000000"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions>
-      <Item>
+    <Exceptions Count="3">
+      <Item1>
         <Name Value="EAbort"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <Name Value="ECodetoolError"/>
-      </Item>
-      <Item>
+      </Item2>
+      <Item3>
         <Name Value="EFOpenError"/>
-      </Item>
+      </Item3>
     </Exceptions>
   </Debugging>
 </CONFIG>
