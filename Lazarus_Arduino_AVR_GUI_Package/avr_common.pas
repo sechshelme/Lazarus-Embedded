@@ -8,11 +8,12 @@ uses
   Classes, SysUtils, Dialogs, LCLType, Controls,
   ProjectIntf,
 
-  AVR_SubArch_List; // Unit wird von "./Tools/AVR_List_to_const" generiert.
+  Embedded_SubArch_List; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
 const
   AVR_Options_File = 'avroptions.xml';
 
+  AVR_Programmer = 'arduino,usbasp,stk500v1,wiring';
   AVR_UARTBaudRates = '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
 
   Key_ProjectOptions_Left = 'project_options_form_left/value';

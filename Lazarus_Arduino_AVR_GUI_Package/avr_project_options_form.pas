@@ -11,7 +11,7 @@ uses
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
-  AVR_IDE_Options, AVR_Common, AVR_Project_Templates_Form, AVR_SubArch_List;
+  AVR_IDE_Options, AVR_Common, AVR_Project_Templates_Form, Embedded_SubArch_List;
 
 type
 
@@ -131,7 +131,7 @@ begin
   end;
 
   with AVR_SubArch_ComboBox do begin
-    Items.CommaText := SubArch_List;
+    Items.CommaText := avr_SubArch_List;
     ItemIndex := 3;
     Style := csOwnerDrawFixed;
     Text := 'AVR5';
@@ -145,7 +145,7 @@ begin
   AVR_Typ_avrdude_Edit.Text := 'atmega328P';
 
   with ProgrammerComboBox do begin
-    Items.CommaText := 'arduino,usbasp,stk500v1,wiring';
+    Items.CommaText := AVR_Programmer;
     Text := 'arduino';
   end;
 
@@ -202,7 +202,7 @@ var
   ind: integer;
 begin
   ind := AVR_SubArch_ComboBox.ItemIndex;
-  if (ind < 0) or (ind >= Length(SubArch_List)) then begin
+  if (ind < 0) or (ind >= Length(avr_SubArch_List)) then begin
     AVR_Typ_FPC_ComboBox.Items.CommaText := '';
   end else begin
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];

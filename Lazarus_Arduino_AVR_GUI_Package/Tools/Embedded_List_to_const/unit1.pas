@@ -19,7 +19,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-
+    procedure FindSubArch(Sub: String; l: TStrings);
   public
 
   end;
@@ -41,25 +41,23 @@ begin
   Caption:=LCLVersion;
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.FindSubArch(Sub: String; l: TStrings);
 var
-  SL_Source, AVR_List: TStringList;
-  SubArchList: string = '';
+  AVR_List, SL_Source: TStringList;
+  SubArchList:String='';
   SubArch, s, s2: string;
-  i: integer;
+  i:Integer;
 
 begin
-  SynEdit1.Clear;
   SL_Source := TStringList.Create;
   AVR_List := TStringList.Create;
 
   SL_Source.LoadFromFile('/home/tux/fpc.src/fpc/rtl/embedded/Makefile');
 
-
   i := 0;
   repeat
     s := SL_Source[i];
-    if pos('ifeq ($(SUBARCH),avr', s) > 0 then begin
+    if pos('ifeq ($(SUBARCH),'+Sub, s) > 0 then begin
       SubArch := s;
       Delete(SubArch, 1, 17);
       Delete(SubArch, Length(SubArch), 1);
@@ -100,34 +98,50 @@ begin
   AVR_List.Delete(AVR_List.Count - 1);
   Delete(SubArchList, Length(SubArchList), 1);
 
+
+
+  L.Add('  ' + Sub + '_SubArch_List = ''' + SubArchList + ''';');
+  L.Add('');
+  L.Add('  ' + Sub + '_List: array of string = (');
+  L.Add('');
+
+
+  for i := 0 to AVR_List.Count - 1 do begin
+    L.Add(AVR_List[i]);
+  end;
+  L.Add(');');
+  L.Add('');
+
+  AVR_List.Free;
+  SL_Source.Free;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  SynEdit1.Clear;
+
   SynEdit1.Lines.Add('');
-  SynEdit1.Lines.Add('// Diese Unit wird automatisch durch das Tool "./Tool/AVR_List_to_const" erzeugt.');
+  SynEdit1.Lines.Add('// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.');
   SynEdit1.Lines.Add('// Die Arrays werden aus "./fpcsrc/fpc/rtl/embedded/Makefile" importiert.');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('unit');
-  SynEdit1.Lines.Add('  AVR_SubArch_List;');
+  SynEdit1.Lines.Add('  Embedded_SubArch_List;');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('const');
-  SynEdit1.Lines.Add('  SubArch_List = ''' + SubArchList + ''';');
-  SynEdit1.Lines.Add('');
-  SynEdit1.Lines.Add('  AVR_List: array of string = (');
-  SynEdit1.Lines.Add('');
-  for i := 0 to AVR_List.Count - 1 do begin
-    SynEdit1.Lines.Add(AVR_List[i]);
-  end;
-  SynEdit1.Lines.Add(');');
+
+  FindSubArch('avr', SynEdit1.Lines);
+//  FindSubArch('arm', SynEdit1.Lines);
+
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('implementation');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-  SynEdit1.Lines.SaveToFile('../../avr_subarch_list.pas');
+  SynEdit1.Lines.SaveToFile('../../embedded_subarch_list.pas');
 
-  AVR_List.Free;
-  SL_Source.Free;
 end;
 
 end.

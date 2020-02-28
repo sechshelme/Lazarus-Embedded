@@ -13,6 +13,8 @@ uses
   // IdeIntf
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
 
+  DefineTemplates,
+
   // AVR ( Eigene Units )
   AVR_Common, AVR_IDE_Options, AVR_Project_Options_Form, AVR_Serial_Monitor;
 

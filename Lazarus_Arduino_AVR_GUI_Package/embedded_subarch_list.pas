@@ -1,16 +1,16 @@
 
-// Diese Unit wird automatisch durch das Tool "./Tool/AVR_List_to_const" erzeugt.
+// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.
 // Die Arrays werden aus "./fpcsrc/fpc/rtl/embedded/Makefile" importiert.
 
 unit
-  AVR_SubArch_List;
+  Embedded_SubArch_List;
 
 interface
 
 const
-  SubArch_List = 'avrtiny,avr1,avr2,avr25,avr35,avr4,avr5,avr51,avr6,avrxmega3';
+  avr_SubArch_List = 'avrtiny,avr1,avr2,avr25,avr35,avr4,avr5,avr51,avr6,avrxmega3';
 
-  AVR_List: array of string = (
+  avr_List: array of string = (
 
     // avrtiny
     'attiny4,attiny5,attiny9,attiny10,attiny20,attiny40,attiny102,attiny104',
@@ -66,6 +66,7 @@ const
     'attiny816,attiny817,attiny1604,attiny1606,attiny1607,attiny1614,' +
     'attiny1616,attiny1617,attiny1624,attiny1626,attiny1627,attiny3214,attiny3216,attiny3217'
 );
+
 
 implementation
 

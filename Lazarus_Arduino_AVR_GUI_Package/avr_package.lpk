@@ -38,15 +38,15 @@
       </Item>
       <Item>
         <Filename Value="avr_serial_monitor.pas"/>
-        <UnitName Value="avr_serial_monitor"/>
+        <UnitName Value="AVR_Serial_Monitor"/>
       </Item>
       <Item>
         <Filename Value="avr_project_templates_form.pas"/>
-        <UnitName Value="avr_project_templates_form"/>
+        <UnitName Value="AVR_Project_Templates_Form"/>
       </Item>
       <Item>
-        <Filename Value="avr_subarch_list.pas"/>
-        <UnitName Value="avr_subarch_list"/>
+        <Filename Value="embedded_subarch_list.pas"/>
+        <UnitName Value="Embedded_SubArch_List"/>
       </Item>
     </Files>
     <i18n>
