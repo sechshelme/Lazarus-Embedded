@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  SynHighlighterPas, SynEdit;
+  SynHighlighterPas, SynEdit, AVR_CPUInfo, ARM_CPUInfo;
 
 type
 
@@ -139,6 +139,9 @@ begin
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
+
+//  for in tcontrollertype do  Caption:=avr_embedded_controllers[ct_attiny13].controllerunitstr;
+
 
   SynEdit1.Lines.SaveToFile('../../embedded_subarch_list.pas');
 

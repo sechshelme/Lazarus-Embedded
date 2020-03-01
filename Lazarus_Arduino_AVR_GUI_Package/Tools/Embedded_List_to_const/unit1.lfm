@@ -1,17 +1,17 @@
 object Form1: TForm1
-  Left = 560
-  Height = 984
-  Top = 276
-  Width = 1998
+  Left = 386
+  Height = 925
+  Top = 263
+  Width = 665
   Caption = 'Form1'
-  ClientHeight = 984
-  ClientWidth = 1998
+  ClientHeight = 925
+  ClientWidth = 665
   OnCreate = FormCreate
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.0.6.0'
   object Button1: TButton
-    Left = 1910
+    Left = 577
     Height = 25
-    Top = 944
+    Top = 885
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Generate'
@@ -20,9 +20,9 @@ object Form1: TForm1
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 930
+    Height = 871
     Top = 0
-    Width = 1998
+    Width = 665
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
@@ -523,8 +523,7 @@ object Form1: TForm1
     Enabled = False
     CompilerMode = pcmDelphi
     NestedComments = False
-    TypeHelpers = True
-    Left = 98
-    Top = 536
+    left = 98
+    top = 536
   end
 end

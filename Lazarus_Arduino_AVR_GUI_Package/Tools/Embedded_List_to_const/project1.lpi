@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="12"/>
+    <Version Value="11"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
       <Title Value="project1"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
@@ -13,8 +14,8 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
-    <BuildModes>
-      <Item Name="Default" Default="True"/>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -22,28 +23,38 @@
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
+      <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages>
-      <Item>
+    <RequiredPackages Count="2">
+      <Item1>
         <PackageName Value="SynEdit"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <PackageName Value="LCL"/>
-      </Item>
+      </Item2>
     </RequiredPackages>
-    <Units>
-      <Unit>
+    <Units Count="4">
+      <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
+      </Unit0>
+      <Unit1>
         <Filename Value="unit1.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-      </Unit>
+      </Unit1>
+      <Unit2>
+        <Filename Value="src_mod/arm_cpuinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="src_mod/avr_cpuinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AVR_CPUInfo"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -53,6 +64,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="src_mod"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
@@ -62,18 +74,23 @@
         </Win32>
       </Options>
     </Linking>
+    <Other>
+      <ExecuteBefore>
+        <Command Value="src_mod.sh"/>
+      </ExecuteBefore>
+    </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions>
-      <Item>
+    <Exceptions Count="3">
+      <Item1>
         <Name Value="EAbort"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <Name Value="ECodetoolError"/>
-      </Item>
-      <Item>
+      </Item2>
+      <Item3>
         <Name Value="EFOpenError"/>
-      </Item>
+      </Item3>
     </Exceptions>
   </Debugging>
 </CONFIG>
