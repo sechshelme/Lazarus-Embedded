@@ -27,4 +27,3 @@ The package is located at: Lazarus_Arduino_AVR_GUI_Package
 
 <img src="avr_package.png">
 
-

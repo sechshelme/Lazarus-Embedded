@@ -33,7 +33,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -55,6 +55,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="AVR_CPUInfo"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="src_mod.sh"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

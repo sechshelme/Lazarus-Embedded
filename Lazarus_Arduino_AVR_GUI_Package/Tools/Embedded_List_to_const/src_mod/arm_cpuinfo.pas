@@ -550,7 +550,7 @@ Const
      pocall_hardfloat
    ];
 
-   arm_cputypestr : array[tcputype] of string[8] = ('',
+   cputypestr : array[tcputype] of string[8] = ('',
      'ARMV3',
      'ARMV4',
      'ARMV4T',
@@ -591,7 +591,7 @@ Const
       but we don't care about this warning }
     {$WARN 3177 OFF}
 
-   arm_embedded_controllers : array [tcontrollertype] of tcontrollerdatatype =
+   embedded_controllers : array [tcontrollertype] of tcontrollerdatatype =
    (
       (controllertypestr:'';		controllerunitstr:'';	cputype:cpu_none; fputype:fpu_none; flashbase:0;	flashsize:0;	srambase:0;	sramsize:0),
 

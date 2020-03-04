@@ -1,14 +1,14 @@
 #!/bin/bash
 cp /home/tux/fpc.src/fpc/compiler/avr/cpuinfo.pas ./src_mod/avr_cpuinfo.pas
 sed s/"Unit CPUInfo;"/"Unit AVR_CPUInfo;"/g ./src_mod/avr_cpuinfo.pas -i
-sed s/"embedded_controllers"/"avr_embedded_controllers"/g ./src_mod/avr_cpuinfo.pas -i
-sed s/"cputypestr"/"avr_cputypestr"/g ./src_mod/avr_cpuinfo.pas -i
+#sed s/"embedded_controllers"/"avr_embedded_controllers"/g ./src_mod/avr_cpuinfo.pas -i
+#sed s/"cputypestr"/"avr_cputypestr"/g ./src_mod/avr_cpuinfo.pas -i
 
 
 cp /home/tux/fpc.src/fpc/compiler/arm/cpuinfo.pas ./src_mod/arm_cpuinfo.pas
 sed s/"Unit CPUInfo;"/"Unit ARM_CPUInfo;"/g ./src_mod/arm_cpuinfo.pas -i
-sed s/"embedded_controllers"/"arm_embedded_controllers"/g ./src_mod/arm_cpuinfo.pas -i
-sed s/"cputypestr"/"arm_cputypestr"/g ./src_mod/arm_cpuinfo.pas -i
+#sed s/"embedded_controllers"/"arm_embedded_controllers"/g ./src_mod/arm_cpuinfo.pas -i
+#sed s/"cputypestr"/"arm_cputypestr"/g ./src_mod/arm_cpuinfo.pas -i
 
 
 

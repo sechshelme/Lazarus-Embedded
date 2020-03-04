@@ -20,6 +20,8 @@ type
     procedure FormCreate(Sender: TObject);
   private
     procedure FindSubArch(Sub: String; l: TStrings);
+    procedure GenerateARM(sl: TStrings);
+    procedure GenerateAVR(sl: TStrings);
   public
 
   end;
@@ -98,13 +100,10 @@ begin
   AVR_List.Delete(AVR_List.Count - 1);
   Delete(SubArchList, Length(SubArchList), 1);
 
-
-
   L.Add('  ' + Sub + '_SubArch_List = ''' + SubArchList + ''';');
   L.Add('');
   L.Add('  ' + Sub + '_List: array of string = (');
   L.Add('');
-
 
   for i := 0 to AVR_List.Count - 1 do begin
     L.Add(AVR_List[i]);
@@ -114,6 +113,74 @@ begin
 
   AVR_List.Free;
   SL_Source.Free;
+end;
+
+procedure TForm1.GenerateAVR(sl: TStrings);
+var
+  cpt:AVR_CPUInfo.tcputype;
+  cdt : AVR_CPUInfo.tcontrollertype;
+  s:String='';
+  s2:String='';
+  sarr:array[AVR_CPUInfo.tcputype] of String;
+begin
+  for cpt in AVR_CPUInfo.tcputype do begin
+    Str(cpt, s);
+    s2:=s2+Copy(s, 5)+',';
+    sarr[cpt]:='';
+  end;
+  Delete(s2, Length(s2), 1);
+  sl.Add('  AVR_SubArch_List = '#39 + s2 + #39 + ';');
+  sl.Add('');
+  for cdt in AVR_CPUInfo.tcontrollertype do begin
+    sarr[AVR_CPUInfo.embedded_controllers[cdt].cputype] += AVR_CPUInfo.embedded_controllers[cdt].controllertypestr + ',';
+  end;
+
+  sl.Add('  AVR_List: array of string = (');
+  for cpt in AVR_CPUInfo.tcputype do begin
+    sl.Add('');
+    Str(cpt, s);
+    sl.Add('    // ' + Copy(s, 5));
+    sl.Add('    '#39 +  Copy(sarr[cpt], 1, Length(sarr[cpt]) - 1) + #39 + ',');
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s;
+
+  sl.Add('  );');
+end;
+
+procedure TForm1.GenerateARM(sl: TStrings);
+var
+  cpt:ARM_CPUInfo.tcputype;
+  cdt : ARM_CPUInfo.tcontrollertype;
+  s:String='';
+  s2:String='';
+  sarr:array[ARM_CPUInfo.tcputype] of String;
+begin
+  for cpt in ARM_CPUInfo.tcputype do begin
+    Str(cpt, s);
+    s2:=s2+Copy(s, 5)+',';
+    sarr[cpt]:='';
+  end;
+  Delete(s2, Length(s2), 1);
+  sl.Add('  ARM_SubArch_List = '#39 + s2 + #39 + ';');
+  sl.Add('');
+  for cdt in ARM_CPUInfo.tcontrollertype do begin
+    sarr[ARM_CPUInfo.embedded_controllers[cdt].cputype] += ARM_CPUInfo.embedded_controllers[cdt].controllertypestr + ',';
+  end;
+
+  sl.Add('  ARM_List: array of string = (');
+  for cpt in ARM_CPUInfo.tcputype do begin
+    sl.Add('');
+    Str(cpt, s);
+    sl.Add('    // ' + Copy(s, 5));
+    sl.Add('    '#39 +  Copy(sarr[cpt], 1, Length(sarr[cpt]) - 1) + #39 + ',');
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s;
+
+  sl.Add('  );');
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -131,7 +198,11 @@ begin
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('const');
 
-  FindSubArch('avr', SynEdit1.Lines);
+  GenerateAVR(SynEdit1.Lines);
+  SynEdit1.Lines.Add('');
+  GenerateARM(SynEdit1.Lines);
+
+//  FindSubArch('avr', SynEdit1.Lines);
 //  FindSubArch('arm', SynEdit1.Lines);
 
   SynEdit1.Lines.Add('');
@@ -140,7 +211,7 @@ begin
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-//  for in tcontrollertype do  Caption:=avr_embedded_controllers[ct_attiny13].controllerunitstr;
+
 
 
   SynEdit1.Lines.SaveToFile('../../embedded_subarch_list.pas');

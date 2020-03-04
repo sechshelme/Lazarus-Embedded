@@ -311,7 +311,7 @@ Const
      pocall_softfloat
    ];
 
-   avr_cputypestr : array[tcputype] of string[9] = ('',
+   cputypestr : array[tcputype] of string[9] = ('',
      'AVRTINY',
      'AVR1',
      'AVR2',
@@ -335,7 +335,7 @@ Const
     { We know that there are fields after sramsize
       but we don't care about this warning }
    {$WARN 3177 OFF}
-   avr_embedded_controllers : array [tcontrollertype] of tcontrollerdatatype =
+   embedded_controllers : array [tcontrollertype] of tcontrollerdatatype =
    ((
         controllertypestr:'';
         controllerunitstr:'';
