@@ -1,4 +1,4 @@
-unit AVR_Serial_Monitor;
+unit Embedded_GUI_Serial_Monitor;
 
 {$mode objfpc}{$H+}
 
@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  AVR_Common;
+
+  Embedded_GUI_Find_Comports, Embedded_GUI_AVR_Common;
 
 type
 
@@ -50,18 +51,18 @@ end;
 procedure TSerial_Monitor_Form.ProjectOptionsToMask;
 begin
   with SerialMonitorPort_ComboBox do begin
-    Text := ProjectOptions.SerialMonitor.Port;
+    Text := AVR_ProjectOptions.SerialMonitor.Port;
   end;
 
   with SerialMonitorBaud_ComboBox do begin
-    Text := ProjectOptions.SerialMonitor.Baud;
+    Text := AVR_ProjectOptions.SerialMonitor.Baud;
   end;
 end;
 
 procedure TSerial_Monitor_Form.MaskToProjectOptions;
 begin
-    ProjectOptions.SerialMonitor.Port := SerialMonitorPort_ComboBox.Text;
-    ProjectOptions.SerialMonitor.Baud := SerialMonitorBaud_ComboBox.Text;
+    AVR_ProjectOptions.SerialMonitor.Port := SerialMonitorPort_ComboBox.Text;
+    AVR_ProjectOptions.SerialMonitor.Baud := SerialMonitorBaud_ComboBox.Text;
 end;
 
 end.

@@ -44,7 +44,7 @@
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="AVR1"/>
+      <TargetProcessor Value="avr1"/>
       <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>

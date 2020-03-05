@@ -1,4 +1,4 @@
-unit AVR_IDE_Options;
+unit Embedded_GUI_IDE_Options;
 
 {$mode objfpc}{$H+}
 
@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
   IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
-  AVR_Common;
+
+  Embedded_GUI_AVR_Common;
 
 type
 
@@ -25,7 +26,7 @@ var
   AVR_Options: TAVR_Options;
 
 type
-  (* Frames befindet sich unter: Werkzeuge/Einstellungen.../Umgebung/AVR-Options *)
+  (* Frames befindet sich in der Lazarus-IDE unter: "Werkzeuge/Einstellungen.../Umgebung/AVR-Options" *)
 
   { TAVR_IDE_Options_Frame }
 

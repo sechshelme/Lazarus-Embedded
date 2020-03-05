@@ -1,4 +1,4 @@
-unit AVR_Project_Templates_Form;
+unit Embedded_GUI_AVR_Project_Templates_Form;
 
 {$mode objfpc}{$H+}
 

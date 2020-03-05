@@ -1,4 +1,4 @@
-unit AVR_Project_Options_Form;
+unit Embedded_GUI_AVR_Project_Options_Form;
 
 {$mode objfpc}{$H+}
 
@@ -11,7 +11,8 @@ uses
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
-  AVR_IDE_Options, AVR_Common, AVR_Project_Templates_Form, Embedded_SubArch_List;
+  Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
+  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Templates_Form, Embedded_GUI_SubArch_List;
 
 type
 
@@ -85,24 +86,24 @@ var
 begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
 
-  for i := 0 to Length(TemplatesPara) - 1 do begin
-    TemplatesForm.ListBox_Template.Items.AddStrings(TemplatesPara[i].Name);
+  for i := 0 to Length(AVR_TemplatesPara) - 1 do begin
+    TemplatesForm.ListBox_Template.Items.AddStrings(AVR_TemplatesPara[i].Name);
   end;
-  TemplatesForm.ListBox_Template.Caption := TemplatesPara[0].Name;
+  TemplatesForm.ListBox_Template.Caption := AVR_TemplatesPara[0].Name;
   TemplatesForm.ListBox_Template.ItemIndex := 0;
 
   if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
-    ProgrammerComboBox.Text := TemplatesPara[i].Programmer;
-    COMPortComboBox.Text := TemplatesPara[i].COM_Port;
-    COMPortBaudComboBox.Text := TemplatesPara[i].Baud;
-    AVR_Typ_FPC_ComboBox.Text := TemplatesPara[i].AVR_FPC_Typ;
-    AVR_Typ_avrdude_Edit.Text := TemplatesPara[i].AVR_AVRDude_Typ;
-    AVR_SubArch_ComboBox.Text := TemplatesPara[i].AVR_SubArch;
+    ProgrammerComboBox.Text := AVR_TemplatesPara[i].Programmer;
+    COMPortComboBox.Text := AVR_TemplatesPara[i].COM_Port;
+    COMPortBaudComboBox.Text := AVR_TemplatesPara[i].Baud;
+    AVR_Typ_FPC_ComboBox.Text := AVR_TemplatesPara[i].AVR_FPC_Typ;
+    AVR_Typ_avrdude_Edit.Text := AVR_TemplatesPara[i].AVR_AVRDude_Typ;
+    AVR_SubArch_ComboBox.Text := AVR_TemplatesPara[i].AVR_SubArch;
     AVR_SubArch_ComboBox.OnChange(Sender);
 
-    Disable_Auto_Erase_CheckBox.Checked := TemplatesPara[i].Disable_Auto_Erase;
+    Disable_Auto_Erase_CheckBox.Checked := AVR_TemplatesPara[i].Disable_Auto_Erase;
   end;
 
   TemplatesForm.Free;
@@ -165,35 +166,34 @@ end;
 
 procedure TProjectOptionsForm.ProjectOptionsToMask;
 begin
-  AVR_SubArch_ComboBox.Text := ProjectOptions.AVR_SubArch;
-  AVR_Typ_FPC_ComboBox.Text := ProjectOptions.AVR_FPC_Typ;
+  AVR_SubArch_ComboBox.Text := AVR_ProjectOptions.AVR_SubArch;
+  AVR_Typ_FPC_ComboBox.Text := AVR_ProjectOptions.AVR_FPC_Typ;
 
-  avrdudePathComboBox.Text := ProjectOptions.AvrdudeCommand.Path;
-  avrdudeConfigPathComboBox.Text := ProjectOptions.AvrdudeCommand.ConfigPath;
-  ProgrammerComboBox.Text := ProjectOptions.AvrdudeCommand.Programmer;
-  COMPortComboBox.Text := ProjectOptions.AvrdudeCommand.COM_Port;
-  COMPortBaudComboBox.Text := ProjectOptions.AvrdudeCommand.Baud;
-  AVR_Typ_avrdude_Edit.Text := ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
+  avrdudePathComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Path;
+  avrdudeConfigPathComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.ConfigPath;
+  ProgrammerComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Programmer;
+  COMPortComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.COM_Port;
+  COMPortBaudComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Baud;
+  AVR_Typ_avrdude_Edit.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
-  AsmFile_CheckBox.Checked := ProjectOptions.AsmFile;
-  Disable_Auto_Erase_CheckBox.Checked :=
-    ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+  AsmFile_CheckBox.Checked := AVR_ProjectOptions.AsmFile;
+  Disable_Auto_Erase_CheckBox.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
 procedure TProjectOptionsForm.MaskToProjectOptions;
 begin
-  ProjectOptions.AVR_SubArch := AVR_SubArch_ComboBox.Text;
-  ProjectOptions.AVR_FPC_Typ := AVR_Typ_FPC_ComboBox.Text;
+  AVR_ProjectOptions.AVR_SubArch := AVR_SubArch_ComboBox.Text;
+  AVR_ProjectOptions.AVR_FPC_Typ := AVR_Typ_FPC_ComboBox.Text;
 
-  ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
-  ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
-  ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
-  ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
-  ProjectOptions.AvrdudeCommand.Baud := COMPortBaudComboBox.Text;
-  ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
+  AVR_ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
+  AVR_ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
+  AVR_ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
+  AVR_ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
+  AVR_ProjectOptions.AvrdudeCommand.Baud := COMPortBaudComboBox.Text;
+  AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
 
-  ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
-  ProjectOptions.AvrdudeCommand.Disable_Auto_Erase :=
+  AVR_ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
+  AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase :=
     Disable_Auto_Erase_CheckBox.Checked;
 end;
 

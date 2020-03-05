@@ -1,4 +1,4 @@
-unit AVR_Register;
+unit Embedded_GUI_Register;
 
 {$mode objfpc}{$H+}
 
@@ -16,7 +16,8 @@ uses
   DefineTemplates,  // Als Test;
 
   // AVR ( Eigene Units )
-  AVR_Common, AVR_IDE_Options, AVR_Project_Options_Form, AVR_Serial_Monitor;
+  Embedded_GUI_IDE_Options,
+  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Options_Form, Embedded_GUI_Serial_Monitor;
 
 type
   { TProjectAVRApp }
@@ -61,14 +62,14 @@ begin
     end;
   end;
 
-  ProjectOptions.Load(LazProject);
+  AVR_ProjectOptions.Load(LazProject);
 
   ProjOptiForm.LoadDefaultMask;
   ProjOptiForm.ProjectOptionsToMask;
 
   if ProjOptiForm.ShowModal = mrOk then begin
     ProjOptiForm.MaskToProjectOptions;
-    ProjectOptions.Save(LazProject);
+    AVR_ProjectOptions.Save(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
     //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
   end;
@@ -85,14 +86,14 @@ begin
 
   LazProject := LazarusIDE.ActiveProject;
 
-  ProjectOptions.Load(LazProject);
+  AVR_ProjectOptions.Load(LazProject);
 
   Form.LoadDefaultMask;
   Form.ProjectOptionsToMask;
 
   if Form.ShowModal = mrOk then begin
     Form.MaskToProjectOptions;
-    ProjectOptions.Save(LazProject);
+    AVR_ProjectOptions.Save(LazProject);
   end;
 
   Form.Free;
@@ -104,7 +105,7 @@ begin
   AVR_Options := TAVR_Options.Create;
   AVR_Options.Load;
 
-  ProjectOptions := TProjectOptions.Create;
+  AVR_ProjectOptions := TAVR_ProjectOptions.Create;
 
   RegisterProjectDescriptor(TProjectAVRApp.Create);
 
@@ -113,8 +114,8 @@ begin
     TAVR_IDE_Options_Frame, AVROptionsFrameID)^.Index;
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'AVR-Optionen (Arduino)',
-    'AVR-Optionen (Arduino)...', nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, 'AVR-Embedded-Optionen (Arduino)',
+    'AVR-Embedded-Optionen (Arduino)...', nil, @ShowAVROptionsDialog);
   RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...',
     nil, @ShowSerialMonitor);
 end;
@@ -124,18 +125,18 @@ end;
 constructor TProjectAVRApp.Create;
 begin
   inherited Create;
-  Name := 'AVR-Project (Arduino)';
+  Name := 'AVR-Embedded-Project (Arduino)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
 end;
 
 function TProjectAVRApp.GetLocalizedName: string;
 begin
-  Result := 'AVR-Project (Arduino)';
+  Result := 'AVR-Embedded-Project (Arduino)';
 end;
 
 function TProjectAVRApp.GetLocalizedDescription: string;
 begin
-  Result := 'Erstellt ein AVR-Project (Arduino)';
+  Result := 'Erstellt ein AVR-Embedded-Project (Arduino)';
 end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
@@ -204,7 +205,7 @@ begin
 
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
-  ProjectOptions.Save(AProject);
+  AVR_ProjectOptions.Save(AProject);
 
   Result := mrOk;
 end;

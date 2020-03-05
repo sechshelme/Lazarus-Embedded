@@ -1,9 +1,10 @@
 
 // Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.
-// Die Arrays werden aus "./fpcsrc/fpc/rtl/embedded/Makefile" importiert.
+// Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und
+// "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.
 
 unit
-  Embedded_SubArch_List;
+  Embedded_GUI_SubArch_List;
 
 interface
 

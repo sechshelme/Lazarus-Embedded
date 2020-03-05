@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Package Version="5">
-    <Name Value="AVR_Package"/>
+    <Name Value="Embedded_GUI_Package"/>
     <Type Value="DesignTime"/>
     <Author Value="Mathias"/>
     <CompilerOptions>
@@ -15,38 +15,42 @@
         </SyntaxOptions>
       </Parsing>
     </CompilerOptions>
-    <Description Value="Arduino AVR Package for Lazarus"/>
+    <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="10"/>
+    <Version Release="11"/>
     <Files>
       <Item>
-        <Filename Value="avr_register.pas"/>
+        <Filename Value="embedded_gui_register.pas"/>
         <HasRegisterProc Value="True"/>
-        <UnitName Value="AVR_Register"/>
+        <UnitName Value="embedded_gui_register"/>
       </Item>
       <Item>
-        <Filename Value="avr_ide_options.pas"/>
-        <UnitName Value="AVR_IDE_Options"/>
+        <Filename Value="embedded_gui_ide_options.pas"/>
+        <UnitName Value="embedded_gui_ide_options"/>
       </Item>
       <Item>
-        <Filename Value="avr_project_options_form.pas"/>
-        <UnitName Value="AVR_Project_Options_Form"/>
+        <Filename Value="embedded_gui_avr_project_options_form.pas"/>
+        <UnitName Value="embedded_gui_avr_project_options_form"/>
       </Item>
       <Item>
-        <Filename Value="avr_common.pas"/>
-        <UnitName Value="AVR_Common"/>
+        <Filename Value="embedded_gui_avr_common.pas"/>
+        <UnitName Value="embedded_gui_avr_common"/>
       </Item>
       <Item>
-        <Filename Value="avr_serial_monitor.pas"/>
-        <UnitName Value="AVR_Serial_Monitor"/>
+        <Filename Value="embedded_gui_serial_monitor.pas"/>
+        <UnitName Value="embedded_gui_serial_monitor"/>
       </Item>
       <Item>
-        <Filename Value="avr_project_templates_form.pas"/>
-        <UnitName Value="AVR_Project_Templates_Form"/>
+        <Filename Value="embedded_gui_avr_project_templates_form.pas"/>
+        <UnitName Value="embedded_gui_avr_project_templates_form"/>
       </Item>
       <Item>
-        <Filename Value="embedded_subarch_list.pas"/>
-        <UnitName Value="Embedded_SubArch_List"/>
+        <Filename Value="embedded_gui_subarch_list.pas"/>
+        <UnitName Value="Embedded_GUI_SubArch_List"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_find_comports.pas"/>
+        <UnitName Value="embedded_gui_find_comports"/>
       </Item>
     </Files>
     <i18n>

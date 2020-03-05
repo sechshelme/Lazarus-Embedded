@@ -189,10 +189,11 @@ begin
 
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.');
-  SynEdit1.Lines.Add('// Die Arrays werden aus "./fpcsrc/fpc/rtl/embedded/Makefile" importiert.');
+  SynEdit1.Lines.Add('// Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und');
+  SynEdit1.Lines.Add('// "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('unit');
-  SynEdit1.Lines.Add('  Embedded_SubArch_List;');
+  SynEdit1.Lines.Add('  Embedded_GUI_SubArch_List;');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
@@ -211,11 +212,7 @@ begin
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-
-
-
-  SynEdit1.Lines.SaveToFile('../../embedded_subarch_list.pas');
-
+  SynEdit1.Lines.SaveToFile('../../embedded_gui_subarch_list.pas');
 end;
 
 end.
