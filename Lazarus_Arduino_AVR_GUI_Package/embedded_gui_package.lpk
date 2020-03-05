@@ -52,6 +52,10 @@
         <Filename Value="embedded_gui_find_comports.pas"/>
         <UnitName Value="embedded_gui_find_comports"/>
       </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_common.pas"/>
+        <UnitName Value="embedded_gui_arm_common"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

@@ -2,10 +2,10 @@ object ProjectTemplatesForm: TProjectTemplatesForm
   Left = 1788
   Height = 372
   Top = 65
-  Width = 260
+  Width = 268
   Caption = 'Vorlagen'
   ClientHeight = 372
-  ClientWidth = 260
+  ClientWidth = 268
   Constraints.MinHeight = 150
   Constraints.MinWidth = 260
   Position = poDefault
@@ -19,7 +19,7 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     ParentColor = False
   end
   object BitBtn_Ok: TBitBtn
-    Left = 152
+    Left = 160
     Height = 30
     Top = 319
     Width = 96
@@ -31,7 +31,7 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     TabOrder = 0
   end
   object BitBtn_Cancel: TBitBtn
-    Left = 32
+    Left = 40
     Height = 30
     Top = 319
     Width = 99
@@ -46,11 +46,11 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     Left = 16
     Height = 263
     Top = 40
-    Width = 232
+    Width = 240
     Anchors = [akTop, akLeft, akRight, akBottom]
     ItemHeight = 0
     OnDblClick = ListBox_TemplateDblClick
-    ScrollWidth = 230
+    ScrollWidth = 238
     TabOrder = 2
     TopIndex = -1
   end

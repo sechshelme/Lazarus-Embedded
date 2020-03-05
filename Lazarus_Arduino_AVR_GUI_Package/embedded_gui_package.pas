@@ -11,7 +11,8 @@ uses
   Embedded_GUI_Register, Embedded_GUI_IDE_Options, 
   Embedded_GUI_AVR_Project_Options_Form, Embedded_GUI_AVR_Common, 
   Embedded_GUI_Serial_Monitor, Embedded_GUI_AVR_Project_Templates_Form, 
-  Embedded_GUI_SubArch_List, Embedded_GUI_Find_Comports, LazarusPackageIntf;
+  Embedded_GUI_SubArch_List, Embedded_GUI_Find_Comports, 
+  Embedded_GUI_ARM_Common, LazarusPackageIntf;
 
 implementation
 

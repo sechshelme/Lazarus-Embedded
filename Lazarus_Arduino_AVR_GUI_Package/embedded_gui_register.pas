@@ -32,6 +32,16 @@ type
     function DoInitDescriptor: TModalResult; override;
   end;
 
+  TProjectARMApp = class(TProjectDescriptor)
+  public
+    //constructor Create; override;
+    //function GetLocalizedName: string; override;
+    //function GetLocalizedDescription: string; override;
+    //function InitProject(AProject: TLazProject): TModalResult; override;
+    //function CreateStartFiles(AProject: TLazProject): TModalResult; override;
+    //function DoInitDescriptor: TModalResult; override;
+  end;
+
 var
   AVROptionsFrameID: integer = 1000;
 

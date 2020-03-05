@@ -23,19 +23,6 @@ const
   Key_SerialMonitorBaud = 'COM_Port';
 
 type
-  TAVROptions = record
-    Name,
-    AVR_SubArch,
-    AVR_FPC_Typ,
-
-    AVR_AVRDude_Typ,
-    Programmer,
-    COM_Port,
-    Baud : string;
-    Disable_Auto_Erase : Boolean;
-  end;
-
-type
 
   { TAVR_ProjectOptions }
 
@@ -59,11 +46,20 @@ type
     procedure Load(AProject: TLazProject);
   end;
 
-var
-  AVR_ProjectOptions: TAVR_ProjectOptions;
+type
+  TAVR_TemplatesPara = record
+    Name,
+    AVR_SubArch,
+    AVR_FPC_Typ,
+    AVR_AVRDude_Typ,
+    Programmer,
+    COM_Port,
+    Baud : string;
+    Disable_Auto_Erase : Boolean;
+  end;
 
 const
-  AVR_TemplatesPara: array of TAVROptions = ((
+  AVR_TemplatesPara: array of TAVR_TemplatesPara = ((
     Name: 'Arduino UNO';
     AVR_SubArch: 'AVR5';
     AVR_FPC_Typ: 'atmega328p';
@@ -126,6 +122,9 @@ const
     COM_Port: '';
     Baud: '';
     Disable_Auto_Erase : false;));
+
+var
+  AVR_ProjectOptions: TAVR_ProjectOptions;
 
 implementation
 
