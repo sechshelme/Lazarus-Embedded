@@ -9,9 +9,9 @@ uses
 
 type
 
-  { TProjectTemplatesForm }
+  { TAVRProjectTemplatesForm }
 
-  TProjectTemplatesForm = class(TForm)
+  TAVRProjectTemplatesForm = class(TForm)
     BitBtn_Ok: TBitBtn;
     BitBtn_Cancel: TBitBtn;
     Label1: TLabel;
@@ -24,15 +24,15 @@ type
   end;
 
 var
-  ProjectTemplatesForm: TProjectTemplatesForm;
+  AVRProjectTemplatesForm: TAVRProjectTemplatesForm;
 
 implementation
 
 {$R *.lfm}
 
-{ TProjectTemplatesForm }
+{ TAVRProjectTemplatesForm }
 
-procedure TProjectTemplatesForm.ListBox_TemplateDblClick(Sender: TObject);
+procedure TAVRProjectTemplatesForm.ListBox_TemplateDblClick(Sender: TObject);
 begin
   BitBtn_Ok.Click;
 end;

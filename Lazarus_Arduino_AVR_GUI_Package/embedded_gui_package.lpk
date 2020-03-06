@@ -56,6 +56,10 @@
         <Filename Value="embedded_gui_arm_common.pas"/>
         <UnitName Value="embedded_gui_arm_common"/>
       </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_project_options_form.pas"/>
+        <UnitName Value="embedded_gui_arm_project_options_form"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

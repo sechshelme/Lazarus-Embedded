@@ -1,18 +1,18 @@
 object ProjectOptionsForm: TProjectOptionsForm
-  Left = 1738
+  Left = 2652
   Height = 506
-  Top = 189
-  Width = 580
-  Caption = 'AVR Project Options'
+  Top = 56
+  Width = 575
+  Caption = 'AVR Embedded Project Options'
   ClientHeight = 506
-  ClientWidth = 580
+  ClientWidth = 575
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object OkButton: TButton
-    Left = 484
+    Left = 479
     Height = 25
     Top = 408
     Width = 75
@@ -24,7 +24,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 381
+    Left = 376
     Height = 25
     Top = 408
     Width = 75
@@ -38,7 +38,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 16
     Height = 28
     Top = 56
-    Width = 493
+    Width = 488
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
@@ -50,6 +50,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Width = 102
     Caption = 'AVRdude Aufruf:'
     ParentColor = False
+    OnClick = Label4Click
   end
   object Label5: TLabel
     Left = 16
@@ -119,7 +120,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 16
     Height = 28
     Top = 119
-    Width = 493
+    Width = 488
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 7
@@ -141,7 +142,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     ParentColor = False
   end
   object Button1: TButton
-    Left = 521
+    Left = 516
     Height = 28
     Top = 56
     Width = 32
@@ -151,7 +152,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 9
   end
   object Button2: TButton
-    Left = 521
+    Left = 516
     Height = 28
     Top = 119
     Width = 32
@@ -161,7 +162,7 @@ object ProjectOptionsForm: TProjectOptionsForm
     TabOrder = 10
   end
   object TemplatesButton: TButton
-    Left = 472
+    Left = 468
     Height = 28
     Top = 192
     Width = 80
@@ -274,11 +275,11 @@ object ProjectOptionsForm: TProjectOptionsForm
     Left = 0
     Height = 47
     Top = 459
-    Width = 580
+    Width = 575
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
-      'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für AVR erstellt wurde. Auch muss die AVR-Familie stimmen.'
+      'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für AVR-Embedded erstellt wurde. Auch muss das AVR-SubArch stimmen.'
     )
     TabOrder = 14
   end

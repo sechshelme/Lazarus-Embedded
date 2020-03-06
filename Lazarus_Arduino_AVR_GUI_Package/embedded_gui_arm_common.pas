@@ -23,6 +23,8 @@ type
     procedure Load(AProject: TLazProject);
   end;
 
+var
+  ARM_ProjectOptions: TARM_ProjectOptions;
 
 implementation
 

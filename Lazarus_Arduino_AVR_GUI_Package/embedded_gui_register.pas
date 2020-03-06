@@ -15,9 +15,11 @@ uses
 
   DefineTemplates,  // Als Test;
 
-  // AVR ( Eigene Units )
+  // Embedded ( Eigene Units )
   Embedded_GUI_IDE_Options,
-  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Options_Form, Embedded_GUI_Serial_Monitor;
+  Embedded_GUI_ARM_Common, Embedded_GUI_ARM_Project_Options_Form,
+  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Options_Form,
+  Embedded_GUI_Serial_Monitor;
 
 type
   { TProjectAVRApp }
@@ -112,12 +114,17 @@ end;
 procedure Register;
 
 begin
-  AVR_Options := TAVR_Options.Create;
+  AVR_Options := TAVR_Options.Create;       // ändern auf embedded
   AVR_Options.Load;
 
   AVR_ProjectOptions := TAVR_ProjectOptions.Create;
 
   RegisterProjectDescriptor(TProjectAVRApp.Create);
+
+
+//  ARM_ProjectOptions := TARM_ProjectOptions.Create;
+
+//  RegisterProjectDescriptor(TProjectARMApp.Create);
 
   // IDE Option
   AVROptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment,
@@ -178,20 +185,7 @@ const
 var
   MainFile: TLazProjectFile;
 
-
-//procedure test;
-//var
-//  sl:TStringList;
-//begin
-//  sl:=TStringList.Create;
-//  sl.LoadFromFile('avr_register.pas');
-//  ShowMessage(sl.Text);
-//
-//  sl.Free;
-//end;
-
 begin
-//  test;
   inherited InitProject(AProject);
 
   MainFile := AProject.CreateProjectFile('Project1.pas');

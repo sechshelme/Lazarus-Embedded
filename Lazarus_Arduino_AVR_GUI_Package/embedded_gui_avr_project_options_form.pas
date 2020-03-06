@@ -53,6 +53,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure Label4Click(Sender: TObject);
     procedure OkButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
@@ -80,11 +81,11 @@ end;
 
 procedure TProjectOptionsForm.TemplatesButtonClick(Sender: TObject);
 var
-  TemplatesForm: TProjectTemplatesForm;
+  TemplatesForm: TAVRProjectTemplatesForm;
   i: integer;
 
 begin
-  TemplatesForm := TProjectTemplatesForm.Create(nil);
+  TemplatesForm := TAVRProjectTemplatesForm.Create(nil);
 
   for i := 0 to Length(AVR_TemplatesPara) - 1 do begin
     TemplatesForm.ListBox_Template.Items.AddStrings(AVR_TemplatesPara[i].Name);
@@ -227,6 +228,11 @@ begin
   Left := StrToInt(Cfg.GetValue(Key_ProjectOptions_Left, '100'));
   Top := StrToInt(Cfg.GetValue(Key_ProjectOptions_Top, '50'));
   Cfg.Free;
+end;
+
+procedure TProjectOptionsForm.Label4Click(Sender: TObject);
+begin
+
 end;
 
 procedure TProjectOptionsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
