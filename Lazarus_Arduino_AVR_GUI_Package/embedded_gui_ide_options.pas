@@ -8,13 +8,14 @@ uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
   IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
 
+  Embedded_GUI_Common,
   Embedded_GUI_AVR_Common;
 
 type
 
-  { TAVR_Options }
+  { TEmbedded_IDE_Options }
 
-  TAVR_Options = class
+  TEmbedded_IDE_Options = class
   public
     avrdudePfad,
     avrdudeConfigPath: string;
@@ -23,16 +24,17 @@ type
   end;
 
 var
-  AVR_Options: TAVR_Options;
+  Embedded_IDE_Options: TEmbedded_IDE_Options;
 
 type
   (* Frames befindet sich in der Lazarus-IDE unter: "Werkzeuge/Einstellungen.../Umgebung/AVR-Options" *)
 
-  { TAVR_IDE_Options_Frame }
+  { TEmbedded_IDE_Options_Frame }
 
-  TAVR_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
+  TEmbedded_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
     ComboBoxAVRdude: TComboBox;
     ComboBoxAVRdudeConf: TComboBox;
+    GroupBox1: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
   private
@@ -49,7 +51,7 @@ implementation
 
 {$R *.lfm}
 
-{ TAVR_Options }
+{ TEmbedded_IDE_Options }
 
 const
   Key_Avrdude_Pfad = 'averdude_pfad/value';
@@ -64,53 +66,53 @@ const
   {$ENDIF}
 
 
-procedure TAVR_Options.Load;
+procedure TEmbedded_IDE_Options.Load;
 var
   Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(AVR_Options_File, True);
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   avrdudePfad := Cfg.GetValue(Key_Avrdude_Pfad, Default_Avrdude_Pfad);
   avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Pfad, Default_Avrdude_Conf_Pfad);
   Cfg.Free;
 end;
 
-procedure TAVR_Options.Save;
+procedure TEmbedded_IDE_Options.Save;
 var
   Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(AVR_Options_File, False);
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, False);
   Cfg.SetDeleteValue(Key_Avrdude_Pfad, avrdudePfad, Default_Avrdude_Pfad);
   Cfg.SetDeleteValue(Key_Avrdude_Conf_Pfad, avrdudeConfigPath, Default_Avrdude_Conf_Pfad);
   Cfg.Free;
 end;
 
-{ TAVR_IDE_Options_Frame }
+{ TEmbedded_IDE_Options_Frame }
 
-function TAVR_IDE_Options_Frame.GetTitle: string;
+function TEmbedded_IDE_Options_Frame.GetTitle: string;
 begin
   Result := 'AVR-Optionen (Arduino)';
 end;
 
-procedure TAVR_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
+procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
   ComboBoxAVRdude.Text := Default_Avrdude_Pfad;
   ComboBoxAVRdudeConf.Text := Default_Avrdude_Conf_Pfad;
 end;
 
-procedure TAVR_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
+procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 begin
-  SetComboBoxText(ComboBoxAVRdude, AVR_Options.avrdudePfad, cstFilename, 30);
-  SetComboBoxText(ComboBoxAVRdudeConf, AVR_Options.avrdudeConfigPath, cstFilename, 30);
+  SetComboBoxText(ComboBoxAVRdude, Embedded_IDE_Options.avrdudePfad, cstFilename, 30);
+  SetComboBoxText(ComboBoxAVRdudeConf, Embedded_IDE_Options.avrdudeConfigPath, cstFilename, 30);
 end;
 
-procedure TAVR_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
+procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
 begin
-  AVR_Options.avrdudePfad := ComboBoxAVRdude.Text;
-  AVR_Options.avrdudeConfigPath := ComboBoxAVRdudeConf.Text;
-  AVR_Options.Save;
+  Embedded_IDE_Options.avrdudePfad := ComboBoxAVRdude.Text;
+  Embedded_IDE_Options.avrdudeConfigPath := ComboBoxAVRdudeConf.Text;
+  Embedded_IDE_Options.Save;
 end;
 
-class function TAVR_IDE_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
+class function TEmbedded_IDE_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
 begin
   Result := IDEEditorGroups.GetByIndex(GroupEnvironment)^.GroupClass;
 end;

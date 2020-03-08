@@ -15,6 +15,7 @@ type
 
   TARM_ProjectOptions = class
     stlink_Command: record
+      Path,
       FlashBase: string;
     end;
     ARM_SubArch, ARM_FPC_Typ: string;

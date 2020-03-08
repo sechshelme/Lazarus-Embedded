@@ -17,7 +17,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="11"/>
+    <Version Release="12"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_register.pas"/>
@@ -59,6 +59,18 @@
       <Item>
         <Filename Value="embedded_gui_arm_project_options_form.pas"/>
         <UnitName Value="embedded_gui_arm_project_options_form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_common.pas"/>
+        <UnitName Value="embedded_gui_common"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_avr_register.pas"/>
+        <UnitName Value="embedded_gui_avr_register"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_register.pas"/>
+        <UnitName Value="embedded_gui_arm_register"/>
       </Item>
     </Files>
     <i18n>

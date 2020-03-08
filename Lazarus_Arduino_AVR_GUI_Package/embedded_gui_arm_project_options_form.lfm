@@ -1,4 +1,4 @@
-object Form1: TForm1
+object ARM_Project_Options_Form: TARM_Project_Options_Form
   Left = 2390
   Height = 367
   Top = 680
@@ -7,13 +7,13 @@ object Form1: TForm1
   ClientHeight = 367
   ClientWidth = 495
   LCLVersion = '2.1.0.0'
-  object ComboBox1: TComboBox
+  object ARM_SubArch_ComboBox: TComboBox
     Left = 16
     Height = 28
     Top = 128
     Width = 168
     ItemHeight = 0
-    OnChange = ComboBox1Change
+    OnChange = ARM_SubArch_ComboBoxChange
     TabOrder = 0
   end
   object Label1: TLabel
@@ -32,7 +32,7 @@ object Form1: TForm1
     Caption = 'ST-Link Aufruf:'
     ParentColor = False
   end
-  object avrdudePathComboBox: TComboBox
+  object STLinkPathComboBox: TComboBox
     Left = 16
     Height = 28
     Top = 56
@@ -105,11 +105,11 @@ object Form1: TForm1
     Left = 16
     Height = 16
     Top = 168
-    Width = 80
-    Caption = 'AVR FPC Typ:'
+    Width = 84
+    Caption = 'ARM FPC Typ:'
     ParentColor = False
   end
-  object AVR_Typ_FPC_ComboBox: TComboBox
+  object ARM_Typ_FPC_ComboBox: TComboBox
     Left = 16
     Height = 28
     Top = 192

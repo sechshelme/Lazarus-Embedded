@@ -1,4 +1,4 @@
-object ProjectOptionsForm: TProjectOptionsForm
+object AVR_Project_Options_Form: TAVR_Project_Options_Form
   Left = 2652
   Height = 506
   Top = 56

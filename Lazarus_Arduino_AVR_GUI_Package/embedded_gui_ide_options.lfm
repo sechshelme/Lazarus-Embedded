@@ -1,45 +1,56 @@
-object AVR_IDE_Options_Frame: TAVR_IDE_Options_Frame
+object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
   Left = 0
-  Height = 252
+  Height = 335
   Top = 0
-  Width = 333
-  ClientHeight = 252
-  ClientWidth = 333
+  Width = 429
+  ClientHeight = 335
+  ClientWidth = 429
   TabOrder = 0
-  DesignLeft = 2296
-  DesignTop = 179
-  object Label1: TLabel
+  DesignLeft = 600
+  DesignTop = 253
+  object GroupBox1: TGroupBox
     Left = 16
-    Height = 16
-    Top = 24
-    Width = 88
-    Caption = 'AVRdude-Pfad'
-    ParentColor = False
-  end
-  object ComboBoxAVRdude: TComboBox
-    Left = 16
-    Height = 28
-    Top = 56
-    Width = 293
+    Height = 200
+    Top = 16
+    Width = 398
     Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 0
+    Caption = 'GroupBox1'
+    ClientHeight = 183
+    ClientWidth = 396
     TabOrder = 0
-  end
-  object ComboBoxAVRdudeConf: TComboBox
-    Left = 16
-    Height = 28
-    Top = 136
-    Width = 293
-    Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 0
-    TabOrder = 1
-  end
-  object Label2: TLabel
-    Left = 20
-    Height = 16
-    Top = 104
-    Width = 133
-    Caption = 'AVRdude-Config-Pfad'
-    ParentColor = False
+    object ComboBoxAVRdude: TComboBox
+      Left = 0
+      Height = 28
+      Top = 56
+      Width = 381
+      Anchors = [akTop, akLeft, akRight]
+      ItemHeight = 0
+      TabOrder = 0
+    end
+    object ComboBoxAVRdudeConf: TComboBox
+      Left = 0
+      Height = 28
+      Top = 136
+      Width = 381
+      Anchors = [akTop, akLeft, akRight]
+      ItemHeight = 0
+      TabOrder = 1
+    end
+    object Label2: TLabel
+      Left = 20
+      Height = 16
+      Top = 104
+      Width = 133
+      Caption = 'AVRdude-Config-Pfad'
+      ParentColor = False
+    end
+    object Label1: TLabel
+      Left = 16
+      Height = 16
+      Top = 24
+      Width = 88
+      Caption = 'AVRdude-Pfad'
+      ParentColor = False
+    end
   end
 end

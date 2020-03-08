@@ -11,14 +11,15 @@ uses
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
+  Embedded_GUI_Common,
   Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
   Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Templates_Form, Embedded_GUI_SubArch_List;
 
 type
 
-  { TProjectOptionsForm }
+  { TAVR_Project_Options_Form }
 
-  TProjectOptionsForm = class(TForm)
+  TAVR_Project_Options_Form = class(TForm)
     AsmFile_CheckBox: TCheckBox;
     avrdudeConfigPathComboBox: TComboBox;
     avrdudePathComboBox: TComboBox;
@@ -66,20 +67,20 @@ type
   end;
 
 var
-  ProjectOptionsForm: TProjectOptionsForm;
+  AVR_Project_Options_Form: TAVR_Project_Options_Form;
 
 implementation
 
 {$R *.lfm}
 
-{ TProjectOptionsForm }
+{ TAVR_Project_Options_Form }
 
-procedure TProjectOptionsForm.CancelButtonClick(Sender: TObject);
+procedure TAVR_Project_Options_Form.CancelButtonClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TProjectOptionsForm.TemplatesButtonClick(Sender: TObject);
+procedure TAVR_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
 var
   TemplatesForm: TAVRProjectTemplatesForm;
   i: integer;
@@ -110,7 +111,85 @@ begin
   TemplatesForm.Free;
 end;
 
-procedure TProjectOptionsForm.LoadDefaultMask;
+procedure TAVR_Project_Options_Form.AVR_SubArch_ComboBoxChange(Sender: TObject);
+begin
+  ChangeAVR;
+end;
+
+procedure TAVR_Project_Options_Form.OkButtonClick(Sender: TObject);
+begin
+  //  Close;
+end;
+
+procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(
+  Embedded_Options_File, True);
+  Left := StrToInt(Cfg.GetValue(Key_ProjectOptions_Left, '100'));
+  Top := StrToInt(Cfg.GetValue(Key_ProjectOptions_Top, '50'));
+  Cfg.Free;
+end;
+
+procedure TAVR_Project_Options_Form.Label4Click(Sender: TObject);
+begin
+
+end;
+
+procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, False);
+  Cfg.SetDeleteValue(Key_ProjectOptions_Left, IntToStr(Left), '100');
+  Cfg.SetDeleteValue(Key_ProjectOptions_Top, IntToStr(Top), '50');
+  Cfg.Free;
+end;
+
+procedure TAVR_Project_Options_Form.Button1Click(Sender: TObject);
+begin
+  OpenDialogAVRPath.FileName := avrdudePathComboBox.Text;
+  if OpenDialogAVRPath.Execute then begin
+    avrdudePathComboBox.Text := OpenDialogAVRPath.FileName;
+  end;
+end;
+
+procedure TAVR_Project_Options_Form.BitBtn1Click(Sender: TObject);
+begin
+  AVR_Typ_avrdude_Edit.Text := AVR_Typ_FPC_ComboBox.Text;
+end;
+
+procedure TAVR_Project_Options_Form.Button2Click(Sender: TObject);
+begin
+  OpenDialogAVRConfigPath.FileName := avrdudeConfigPathComboBox.Text;
+  if OpenDialogAVRConfigPath.Execute then begin
+    avrdudeConfigPathComboBox.Text := OpenDialogAVRConfigPath.FileName;
+  end;
+end;
+
+procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
+begin
+  ChangeAVR;
+end;
+
+// private
+
+procedure TAVR_Project_Options_Form.ChangeAVR;
+var
+  ind: integer;
+begin
+  ind := AVR_SubArch_ComboBox.ItemIndex;
+  if (ind < 0) or (ind >= Length(AVR_SubArch_List)) then begin
+    AVR_Typ_FPC_ComboBox.Items.CommaText := '';
+  end else begin
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];
+  end;
+end;
+
+// public
+
+procedure TAVR_Project_Options_Form.LoadDefaultMask;
 begin
 
   with avrdudePathComboBox do begin
@@ -120,7 +199,7 @@ begin
     {$ELSE}
     Items.Add('/usr/bin/avrdude');
     {$ENDIF}
-    Text := AVR_Options.avrdudePfad;
+    Text := Embedded_IDE_Options.avrdudePfad;
   end;
 
   with avrdudeConfigPathComboBox do begin
@@ -129,22 +208,22 @@ begin
     {$ELSE}
     Items.Add('avrdude.conf');
     {$ENDIF}
-    Text := AVR_Options.avrdudeConfigPath;
+    Text := Embedded_IDE_Options.avrdudeConfigPath;
   end;
 
   with AVR_SubArch_ComboBox do begin
     Items.CommaText := avr_SubArch_List;
-    ItemIndex := 3;
+    ItemIndex := 3;                    // ???????????????
     Style := csOwnerDrawFixed;
     Text := 'AVR5';
   end;
 
   with AVR_Typ_FPC_ComboBox do begin
     Sorted := True;
-    Text := 'atmega328P';
+    Text := 'ATMEGA328P';
   end;
 
-  AVR_Typ_avrdude_Edit.Text := 'atmega328P';
+  AVR_Typ_avrdude_Edit.Text := 'ATMEGA328P';
 
   with ProgrammerComboBox do begin
     Items.CommaText := AVR_Programmer;
@@ -165,7 +244,7 @@ begin
   Disable_Auto_Erase_CheckBox.Checked := False;
 end;
 
-procedure TProjectOptionsForm.ProjectOptionsToMask;
+procedure TAVR_Project_Options_Form.ProjectOptionsToMask;
 begin
   AVR_SubArch_ComboBox.Text := AVR_ProjectOptions.AVR_SubArch;
   AVR_Typ_FPC_ComboBox.Text := AVR_ProjectOptions.AVR_FPC_Typ;
@@ -181,7 +260,7 @@ begin
   Disable_Auto_Erase_CheckBox.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
-procedure TProjectOptionsForm.MaskToProjectOptions;
+procedure TAVR_Project_Options_Form.MaskToProjectOptions;
 begin
   AVR_ProjectOptions.AVR_SubArch := AVR_SubArch_ComboBox.Text;
   AVR_ProjectOptions.AVR_FPC_Typ := AVR_Typ_FPC_ComboBox.Text;
@@ -196,79 +275,6 @@ begin
   AVR_ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
   AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase :=
     Disable_Auto_Erase_CheckBox.Checked;
-end;
-
-procedure TProjectOptionsForm.ChangeAVR;
-var
-  ind: integer;
-begin
-  ind := AVR_SubArch_ComboBox.ItemIndex;
-  if (ind < 0) or (ind >= Length(avr_SubArch_List)) then begin
-    AVR_Typ_FPC_ComboBox.Items.CommaText := '';
-  end else begin
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];
-  end;
-end;
-
-procedure TProjectOptionsForm.AVR_SubArch_ComboBoxChange(Sender: TObject);
-begin
-  ChangeAVR;
-end;
-
-procedure TProjectOptionsForm.OkButtonClick(Sender: TObject);
-begin
-  //  Close;
-end;
-
-procedure TProjectOptionsForm.FormCreate(Sender: TObject);
-var
-  Cfg: TConfigStorage;
-begin
-  Cfg := GetIDEConfigStorage(AVR_Options_File, True);
-  Left := StrToInt(Cfg.GetValue(Key_ProjectOptions_Left, '100'));
-  Top := StrToInt(Cfg.GetValue(Key_ProjectOptions_Top, '50'));
-  Cfg.Free;
-end;
-
-procedure TProjectOptionsForm.Label4Click(Sender: TObject);
-begin
-
-end;
-
-procedure TProjectOptionsForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  Cfg: TConfigStorage;
-begin
-  Cfg := GetIDEConfigStorage(AVR_Options_File, False);
-  Cfg.SetDeleteValue(Key_ProjectOptions_Left, IntToStr(Left), '100');
-  Cfg.SetDeleteValue(Key_ProjectOptions_Top, IntToStr(Top), '50');
-  Cfg.Free;
-end;
-
-procedure TProjectOptionsForm.Button1Click(Sender: TObject);
-begin
-  OpenDialogAVRPath.FileName := avrdudePathComboBox.Text;
-  if OpenDialogAVRPath.Execute then begin
-    avrdudePathComboBox.Text := OpenDialogAVRPath.FileName;
-  end;
-end;
-
-procedure TProjectOptionsForm.BitBtn1Click(Sender: TObject);
-begin
-  AVR_Typ_avrdude_Edit.Text := AVR_Typ_FPC_ComboBox.Text;
-end;
-
-procedure TProjectOptionsForm.Button2Click(Sender: TObject);
-begin
-  OpenDialogAVRConfigPath.FileName := avrdudeConfigPathComboBox.Text;
-  if OpenDialogAVRConfigPath.Execute then begin
-    avrdudeConfigPathComboBox.Text := OpenDialogAVRConfigPath.FileName;
-  end;
-end;
-
-procedure TProjectOptionsForm.FormActivate(Sender: TObject);
-begin
-  ChangeAVR;
 end;
 
 end.
