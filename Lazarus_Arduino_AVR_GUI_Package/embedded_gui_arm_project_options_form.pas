@@ -25,6 +25,7 @@ type
     AsmFile_CheckBox: TCheckBox;
     BitBtn1: TBitBtn;
     ARM_FlashBase_ComboBox: TComboBox;
+    Label2: TLabel;
     STLinkPathComboBox: TComboBox;
     ARM_Typ_FPC_ComboBox: TComboBox;
     Button1: TButton;
