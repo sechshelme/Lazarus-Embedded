@@ -54,8 +54,8 @@
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="armv7m"/>
-      <TargetCPU Value="arm"/>
+      <TargetProcessor Value="avr5"/>
+      <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>
     <Linking>
@@ -64,10 +64,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpSTM32F103X8
+      <CustomOptions Value="-Wpatmega328p
 -al"/>
       <ExecuteAfter>
-        <Command Value="st-flash write Project1.hex 0x"/>
+        <Command Value="avrdude -v -patmega328p -cusbasp -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

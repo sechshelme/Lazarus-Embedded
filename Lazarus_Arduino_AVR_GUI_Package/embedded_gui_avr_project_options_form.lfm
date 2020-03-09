@@ -50,7 +50,6 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Width = 102
     Caption = 'AVRdude Aufruf:'
     ParentColor = False
-    OnClick = Label4Click
   end
   object Label5: TLabel
     Left = 16

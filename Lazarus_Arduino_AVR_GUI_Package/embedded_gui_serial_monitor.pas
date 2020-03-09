@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
 
+  Embedded_GUI_Common,
   Embedded_GUI_Find_Comports, Embedded_GUI_AVR_Common;
 
 type
@@ -43,7 +44,7 @@ begin
   end;
 
   with SerialMonitorBaud_ComboBox do begin
-    Items.CommaText := AVR_UARTBaudRates;
+    Items.CommaText := UARTBaudRates;
     Text := '9600';
   end;
 end;

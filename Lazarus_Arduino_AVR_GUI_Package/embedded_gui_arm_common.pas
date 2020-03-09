@@ -7,6 +7,7 @@ interface
 uses
   Classes, SysUtils, Dialogs, LCLType, Controls,
   ProjectIntf,
+  Embedded_GUI_Common,
   Embedded_GUI_SubArch_List; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
 type
@@ -44,30 +45,9 @@ begin
     end;
   end;
 
-  //s := AvrdudeCommand.Path + ' ';
-  //if AvrdudeCommand.ConfigPath <> '' then begin
-  //  s += '-C' + AvrdudeCommand.ConfigPath + ' ';
-  //end;
-  //
-  //s += '-v ' +
-  //  '-p' + AvrdudeCommand.AVR_AVRDude_Typ + ' ' +
-  //  '-c' + AvrdudeCommand.Programmer + ' ';
-  //pr := upCase(AvrdudeCommand.Programmer);
-  //if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') then begin
-  //  s += '-P' + AvrdudeCommand.COM_Port + ' ' +
-  //    '-b' + AvrdudeCommand.Baud + ' ';
-  //end;
-  //
-  //if AvrdudeCommand.Disable_Auto_Erase then begin
-  //  s +='-D ';
-  //end;
-  //s += '-Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
-  //
-  //AProject.LazCompilerOptions.ExecuteAfter.Command := s;
-
   AProject.LazCompilerOptions.ExecuteAfter.Command :=
     'st-flash write ' + AProject.LazCompilerOptions.TargetFilename +
-    '.hex ' + stlink_Command.FlashBase;
+    '.bin ' + stlink_Command.FlashBase;
 
 end;
 

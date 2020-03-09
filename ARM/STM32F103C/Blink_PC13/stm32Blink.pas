@@ -6,7 +6,7 @@ program stm32Blink;
   var
     i: uint32;
   begin
-    for i := 0 to 150000 do
+    for i := 0 to 140000 do
     begin
       asm
                NOP end; // Leerbefehl

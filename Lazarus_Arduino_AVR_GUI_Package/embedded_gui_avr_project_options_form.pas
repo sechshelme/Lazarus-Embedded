@@ -54,7 +54,6 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure Label4Click(Sender: TObject);
     procedure OkButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
@@ -125,16 +124,10 @@ procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
 var
   Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(
-  Embedded_Options_File, True);
-  Left := StrToInt(Cfg.GetValue(Key_ProjectOptions_Left, '100'));
-  Top := StrToInt(Cfg.GetValue(Key_ProjectOptions_Top, '50'));
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Left := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Left, '100'));
+  Top := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Top, '50'));
   Cfg.Free;
-end;
-
-procedure TAVR_Project_Options_Form.Label4Click(Sender: TObject);
-begin
-
 end;
 
 procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -142,8 +135,8 @@ var
   Cfg: TConfigStorage;
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, False);
-  Cfg.SetDeleteValue(Key_ProjectOptions_Left, IntToStr(Left), '100');
-  Cfg.SetDeleteValue(Key_ProjectOptions_Top, IntToStr(Top), '50');
+  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Left, IntToStr(Left), '100');
+  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Top, IntToStr(Top), '50');
   Cfg.Free;
 end;
 

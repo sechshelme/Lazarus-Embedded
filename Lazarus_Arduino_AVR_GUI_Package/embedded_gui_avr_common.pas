@@ -12,13 +12,6 @@ uses
 
 const
   AVR_Programmer = 'arduino,usbasp,stk500v1,wiring';
-  AVR_UARTBaudRates = '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
-
-  Key_ProjectOptions_Left = 'project_options_form_left/value';
-  Key_ProjectOptions_Top = 'project_options_form_top/value';
-
-  Key_SerialMonitorPort = 'SerialMonitorPort';
-  Key_SerialMonitorBaud = 'COM_Port';
 
 type
 
@@ -164,8 +157,8 @@ begin
 
   AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 
-  AProject.CustomData[Key_SerialMonitorPort] := SerialMonitor.Port;
-  AProject.CustomData[Key_SerialMonitorBaud] := SerialMonitor.Baud;
+//  AProject.CustomData[Key_SerialMonitorPort] := SerialMonitor.Port;
+//  AProject.CustomData[Key_SerialMonitorBaud] := SerialMonitor.Baud;
 end;
 
 procedure TAVR_ProjectOptions.Load(AProject: TLazProject);
@@ -204,8 +197,8 @@ begin
   AvrdudeCommand.Baud := Find(s, '-b');
   AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
 
-  SerialMonitor.Port := AProject.CustomData[Key_SerialMonitorPort];
-  SerialMonitor.Baud := AProject.CustomData[Key_SerialMonitorBaud];
+//  SerialMonitor.Port := AProject.CustomData[Key_SerialMonitorPort];
+//  SerialMonitor.Baud := AProject.CustomData[Key_SerialMonitorBaud];
 end;
 
 end.
