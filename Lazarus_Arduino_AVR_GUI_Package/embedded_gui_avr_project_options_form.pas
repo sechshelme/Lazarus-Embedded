@@ -127,6 +127,8 @@ begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Left := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Left, '100'));
   Top := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Top, '50'));
+  Width := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Width, '500'));
+  Height := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Height, '500'));
   Cfg.Free;
 end;
 
@@ -134,9 +136,11 @@ procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: 
 var
   Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, False);
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Left, IntToStr(Left), '100');
-  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Top, IntToStr(Top), '50');
+  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Top, IntToStr(Top), '50');
+  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Width, IntToStr(Width), '500');
+  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Height, IntToStr(Height), '500');
   Cfg.Free;
 end;
 

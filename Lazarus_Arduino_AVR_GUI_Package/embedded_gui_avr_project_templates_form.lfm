@@ -8,6 +8,8 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
   ClientWidth = 323
   Constraints.MinHeight = 150
   Constraints.MinWidth = 260
+  OnClose = FormClose
+  OnCreate = FormCreate
   Position = poDefault
   LCLVersion = '2.1.0.0'
   object Label1: TLabel
@@ -21,7 +23,7 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
   object BitBtn_Ok: TBitBtn
     Left = 215
     Height = 30
-    Top = 310
+    Top = 320
     Width = 96
     Anchors = [akRight, akBottom]
     Default = True
@@ -33,7 +35,7 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
   object BitBtn_Cancel: TBitBtn
     Left = 95
     Height = 30
-    Top = 310
+    Top = 320
     Width = 99
     Anchors = [akRight, akBottom]
     Cancel = True
@@ -44,7 +46,7 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
   end
   object ListBox_Template: TListBox
     Left = 16
-    Height = 254
+    Height = 270
     Top = 40
     Width = 295
     Anchors = [akTop, akLeft, akRight, akBottom]
