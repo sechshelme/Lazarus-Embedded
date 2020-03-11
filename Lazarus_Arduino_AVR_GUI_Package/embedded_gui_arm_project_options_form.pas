@@ -14,7 +14,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
   Embedded_GUI_ARM_Common,
-  // Embedded_GUI_ARM_Project_Templates_Form,
+//  Embedded_GUI_ARM_Project_Templates_Form,
   Embedded_GUI_SubArch_List;
 
 type
@@ -64,8 +64,8 @@ begin
   Cfg := GetIDEConfigStorage( Embedded_Options_File, True);
   Left := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Left, '100'));
   Top := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Top, '50'));
-  Width := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Width, '100'));
-  Height := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Height, '50'));
+  Width := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Width, '500'));
+  Height := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Height, '400'));
   Cfg.Free;
 end;
 
@@ -77,8 +77,8 @@ begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Left, IntToStr(Left), '100');
   Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Top, IntToStr(Top), '50');
-  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Width, IntToStr(Width), '100');
-  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Height, IntToStr(Height), '50');
+  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Width, IntToStr(Width), '500');
+  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Height, IntToStr(Height), '400');
   Cfg.Free;
 end;
 
@@ -94,13 +94,14 @@ begin
 
   with STLinkPathComboBox do
   begin
-    Items.Add('avrdude');
-      {$IFDEF MSWINDOWS}
-    Items.Add('c:\stlink\stlink.exe');
-      {$ELSE}
-    Items.Add('/usr/bin/stlink');
-      {$ENDIF}
-    //      Text := Embedded_IDE_Options.avrdudePfad;   ??????????????????
+    Items.Add('st-flash');
+    //  {$IFDEF MSWINDOWS}
+    //Items.Add('c:\stlink\stlink.exe');
+    //  {$ELSE}
+    //Items.Add('/usr/bin/stlink');
+    //  {$ENDIF}
+    Items.Add(Default_STFlash_Path);
+    Text := Embedded_IDE_Options.STFlashPath;
   end;
 
   with ARM_SubArch_ComboBox do
@@ -125,26 +126,7 @@ begin
     Items.Add('0x08000000');
   end;
 
-  //    AVR_Typ_avrdude_Edit.Text := 'STM32F103X8';
-
-  //with ProgrammerComboBox do begin
-  //  Items.CommaText := AVR_Programmer;
-  //  Text := 'arduino';
-  //end;
-
-  //with COMPortComboBox do begin
-  //  Items.CommaText := GetSerialPortNames;
-  //  Text := '/dev/ttyUSB0';
-  //end;
-
-  //with COMPortBaudComboBox do begin
-  //  Items.CommaText := '19200,57600,115200';
-  //  Text := '57600';
-  //end;
-
   AsmFile_CheckBox.Checked := False;
-  //    Disable_Auto_Erase_CheckBox.Checked := False;
-
 end;
 
 procedure TARM_Project_Options_Form.ProjectOptionsToMask;
@@ -153,14 +135,9 @@ begin
   ARM_Typ_FPC_ComboBox.Text := ARM_ProjectOptions.ARM_FPC_Typ;
 
   STLinkPathComboBox.Text := ARM_ProjectOptions.stlink_Command.Path;
-  //    avrdudeConfigPathComboBox.Text := ARM_ProjectOptions.AvrdudeCommand.ConfigPath;
-  //ProgrammerComboBox.Text := ARM_ProjectOptions.AvrdudeCommand.Programmer;
-  //COMPortComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.COM_Port;
-  //COMPortBaudComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Baud;
   ARM_FlashBase_ComboBox.Text := ARM_ProjectOptions.stlink_Command.FlashBase;
 
   AsmFile_CheckBox.Checked := ARM_ProjectOptions.AsmFile;
-  //    Disable_Auto_Erase_CheckBox.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
 procedure TARM_Project_Options_Form.MaskToProjectOptions;
@@ -170,14 +147,8 @@ begin
 
   ARM_ProjectOptions.stlink_Command.Path := STLinkPathComboBox.Text;
   ARM_ProjectOptions.stlink_Command.FlashBase := ARM_FlashBase_ComboBox.Text ;
-  //    AVR_ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.Programmer := ProgrammerComboBox.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.COM_Port := COMPortComboBox.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.Baud := COMPortBaudComboBox.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
 
   ARM_ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
-  //    AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase :=  Disable_Auto_Erase_CheckBox.Checked;
 end;
 
 // private

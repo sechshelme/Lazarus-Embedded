@@ -17,8 +17,9 @@ type
 
   TEmbedded_IDE_Options = class
   public
-    avrdudePfad,
-    avrdudeConfigPath: string;
+    avrdudePath,
+    avrdudeConfigPath,
+    STFlashPath: string;
     procedure Save;
     procedure Load;
   end;
@@ -33,10 +34,13 @@ type
 
   TEmbedded_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
     ComboBoxAVRdude: TComboBox;
+    ComboBoxSTFlashPfad: TComboBox;
     ComboBoxAVRdudeConf: TComboBox;
     GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
   private
 
   public
@@ -53,26 +57,14 @@ implementation
 
 { TEmbedded_IDE_Options }
 
-const
-  Key_Avrdude_Pfad = 'averdude_pfad/value';
-  Key_Avrdude_Conf_Pfad = 'averdude_conf_pfad/value';
-
-  {$IFDEF MSWINDOWS}
-  Default_Avrdude_Pfad = 'c:\averdude\averdude.exe';
-  Default_Avrdude_Conf_Pfad = 'c:\averdude\avrdude.conf';
-  {$ELSE}
-  Default_Avrdude_Pfad = '/usr/bin/avrdude';
-  Default_Avrdude_Conf_Pfad = '/etc/avrdude.conf';
-  {$ENDIF}
-
-
 procedure TEmbedded_IDE_Options.Load;
 var
   Cfg: TConfigStorage;
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  avrdudePfad := Cfg.GetValue(Key_Avrdude_Pfad, Default_Avrdude_Pfad);
-  avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Pfad, Default_Avrdude_Conf_Pfad);
+  avrdudePath := Cfg.GetValue(Key_Avrdude_Path, Default_Avrdude_Path);
+  avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Path, Default_Avrdude_Conf_Path);
+  STFlashPath := Cfg.GetValue(Key_STFlash_Path, Default_STFlash_Path);
   Cfg.Free;
 end;
 
@@ -80,9 +72,10 @@ procedure TEmbedded_IDE_Options.Save;
 var
   Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, False);
-  Cfg.SetDeleteValue(Key_Avrdude_Pfad, avrdudePfad, Default_Avrdude_Pfad);
-  Cfg.SetDeleteValue(Key_Avrdude_Conf_Pfad, avrdudeConfigPath, Default_Avrdude_Conf_Pfad);
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.SetDeleteValue(Key_Avrdude_Path, avrdudePath, Default_Avrdude_Path);
+  Cfg.SetDeleteValue(Key_Avrdude_Conf_Path, avrdudeConfigPath, Default_Avrdude_Conf_Path);
+  Cfg.SetDeleteValue(Key_STFlash_Path, STFlashPath, Default_STFlash_Path);
   Cfg.Free;
 end;
 
@@ -90,25 +83,30 @@ end;
 
 function TEmbedded_IDE_Options_Frame.GetTitle: string;
 begin
-  Result := 'AVR-Optionen (Arduino)';
+  Result := 'Embedded GUI Optionen';
 end;
 
 procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
-  ComboBoxAVRdude.Text := Default_Avrdude_Pfad;
-  ComboBoxAVRdudeConf.Text := Default_Avrdude_Conf_Pfad;
+  ComboBoxAVRdude.Text := Default_Avrdude_Path;
+  ComboBoxAVRdudeConf.Text := Default_Avrdude_Conf_Path;
+
+  ComboBoxSTFlashPfad.Text := Default_STFlash_Path;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 begin
-  SetComboBoxText(ComboBoxAVRdude, Embedded_IDE_Options.avrdudePfad, cstFilename, 30);
-  SetComboBoxText(ComboBoxAVRdudeConf, Embedded_IDE_Options.avrdudeConfigPath, cstFilename, 30);
+  SetComboBoxText(ComboBoxAVRdude, Embedded_IDE_Options.avrdudePath, cstFilename);
+  SetComboBoxText(ComboBoxAVRdudeConf, Embedded_IDE_Options.avrdudeConfigPath, cstFilename);
+
+  SetComboBoxText(ComboBoxSTFlashPfad, Embedded_IDE_Options.STFlashPath, cstFilename);
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
 begin
-  Embedded_IDE_Options.avrdudePfad := ComboBoxAVRdude.Text;
+  Embedded_IDE_Options.avrdudePath := ComboBoxAVRdude.Text;
   Embedded_IDE_Options.avrdudeConfigPath := ComboBoxAVRdudeConf.Text;
+  Embedded_IDE_Options.STFlashPath := ComboBoxSTFlashPfad.Text;
   Embedded_IDE_Options.Save;
 end;
 

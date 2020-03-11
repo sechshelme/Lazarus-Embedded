@@ -191,20 +191,22 @@ begin
 
   with avrdudePathComboBox do begin
     Items.Add('avrdude');
-    {$IFDEF MSWINDOWS}
-    Items.Add('c:\averdude\averdude.exe');
-    {$ELSE}
-    Items.Add('/usr/bin/avrdude');
-    {$ENDIF}
-    Text := Embedded_IDE_Options.avrdudePfad;
+    //{$IFDEF MSWINDOWS}
+    //Items.Add('c:\averdude\averdude.exe');
+    //{$ELSE}
+    //Items.Add('/usr/bin/avrdude');
+    //{$ENDIF}
+    Items.Add(Default_Avrdude_Path);
+    Text := Embedded_IDE_Options.avrdudePath;
   end;
 
   with avrdudeConfigPathComboBox do begin
-    {$IFDEF MSWINDOWS}
-    Items.Add('c:\averdude\avrdude.conf');
-    {$ELSE}
-    Items.Add('avrdude.conf');
-    {$ENDIF}
+    //{$IFDEF MSWINDOWS}
+    //Items.Add('c:\averdude\avrdude.conf');
+    //{$ELSE}
+    //Items.Add('avrdude.conf');
+    //{$ENDIF}
+    Items.Add(Default_Avrdude_Conf_Path);
     Text := Embedded_IDE_Options.avrdudeConfigPath;
   end;
 

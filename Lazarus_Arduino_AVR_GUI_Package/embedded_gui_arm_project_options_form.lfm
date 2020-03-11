@@ -1,10 +1,10 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
   Left = 2390
-  Height = 367
+  Height = 364
   Top = 680
   Width = 495
   Caption = 'ARM Embedded Project Options'
-  ClientHeight = 367
+  ClientHeight = 364
   ClientWidth = 495
   OnClose = FormClose
   OnCreate = FormCreate
@@ -73,7 +73,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   object CancelButton: TButton
     Left = 280
     Height = 25
-    Top = 264
+    Top = 261
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -83,7 +83,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   object OkButton: TButton
     Left = 388
     Height = 25
-    Top = 264
+    Top = 261
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -94,7 +94,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 320
+    Top = 317
     Width = 495
     Align = alBottom
     Color = clAqua
