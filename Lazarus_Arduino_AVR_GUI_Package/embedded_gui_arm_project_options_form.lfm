@@ -1,11 +1,12 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 2390
+  Left = 2013
   Height = 364
-  Top = 680
+  Top = 674
   Width = 495
   Caption = 'ARM Embedded Project Options'
   ClientHeight = 364
   ClientWidth = 495
+  OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
@@ -60,6 +61,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Width = 80
     Anchors = [akTop, akRight]
     Caption = 'Vorlagen...'
+    OnClick = TemplatesButtonClick
     TabOrder = 3
   end
   object AsmFile_CheckBox: TCheckBox

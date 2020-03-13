@@ -14,7 +14,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
   Embedded_GUI_ARM_Common,
-//  Embedded_GUI_ARM_Project_Templates_Form,
+  Embedded_GUI_ARM_Project_Templates_Form,
   Embedded_GUI_SubArch_List;
 
 type
@@ -38,8 +38,10 @@ type
     OkButton: TButton;
     TemplatesButton: TButton;
     procedure ARM_SubArch_ComboBoxChange(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure TemplatesButtonClick(Sender: TObject);
   private
     procedure ChangeARM;
   public
@@ -69,6 +71,33 @@ begin
   Cfg.Free;
 end;
 
+procedure TARM_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
+var
+  TemplatesForm:
+    TARMProjectTemplatesForm;
+  i: integer;
+
+begin
+  TemplatesForm := TARMProjectTemplatesForm.Create(nil);
+
+  for i := 0 to Length(ARM_TemplatesPara) - 1 do begin
+    TemplatesForm.ListBox_Template.Items.AddStrings(ARM_TemplatesPara[i].Name);
+  end;
+  TemplatesForm.ListBox_Template.Caption := ARM_TemplatesPara[0].Name;
+  TemplatesForm.ListBox_Template.ItemIndex := 0;
+
+  if TemplatesForm.ShowModal = mrOk then begin
+    i := TemplatesForm.ListBox_Template.ItemIndex;
+
+    ARM_SubArch_ComboBox.Text := ARM_TemplatesPara[i].ARM_SubArch;
+    ARM_Typ_FPC_ComboBox.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
+    ARM_FlashBase_ComboBox.Text := ARM_TemplatesPara[i].FlashBase;
+    ARM_SubArch_ComboBox.OnChange(Sender);
+  end;
+
+  TemplatesForm.Free;
+end;
+
 procedure TARM_Project_Options_Form.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 var
@@ -83,6 +112,11 @@ begin
 end;
 
 procedure TARM_Project_Options_Form.ARM_SubArch_ComboBoxChange(Sender: TObject);
+begin
+  ChangeARM;
+end;
+
+procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
 begin
   ChangeARM;
 end;
@@ -107,7 +141,7 @@ begin
   with ARM_SubArch_ComboBox do
   begin
     Items.CommaText := ARM_SubArch_List;
-    ItemIndex := 3;          // ??????????????
+//    ItemIndex := 3;          // ??????????????
     Style := csOwnerDrawFixed;
     Text := 'ARMV7M';
   end;

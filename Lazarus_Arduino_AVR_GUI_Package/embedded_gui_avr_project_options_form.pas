@@ -96,18 +96,22 @@ begin
   if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
+    AVR_SubArch_ComboBox.Text := AVR_TemplatesPara[i].AVR_SubArch;
+    AVR_Typ_FPC_ComboBox.Text := AVR_TemplatesPara[i].AVR_FPC_Typ;
+    AVR_Typ_avrdude_Edit.Text := AVR_TemplatesPara[i].AVR_AVRDude_Typ;
     ProgrammerComboBox.Text := AVR_TemplatesPara[i].Programmer;
     COMPortComboBox.Text := AVR_TemplatesPara[i].COM_Port;
     COMPortBaudComboBox.Text := AVR_TemplatesPara[i].Baud;
-    AVR_Typ_FPC_ComboBox.Text := AVR_TemplatesPara[i].AVR_FPC_Typ;
-    AVR_Typ_avrdude_Edit.Text := AVR_TemplatesPara[i].AVR_AVRDude_Typ;
-    AVR_SubArch_ComboBox.Text := AVR_TemplatesPara[i].AVR_SubArch;
-    AVR_SubArch_ComboBox.OnChange(Sender);
-
     Disable_Auto_Erase_CheckBox.Checked := AVR_TemplatesPara[i].Disable_Auto_Erase;
+    AVR_SubArch_ComboBox.OnChange(Sender);
   end;
 
   TemplatesForm.Free;
+end;
+
+procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
+begin
+  ChangeAVR;
 end;
 
 procedure TAVR_Project_Options_Form.AVR_SubArch_ComboBoxChange(Sender: TObject);
@@ -165,11 +169,6 @@ begin
   end;
 end;
 
-procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
-begin
-  ChangeAVR;
-end;
-
 // private
 
 procedure TAVR_Project_Options_Form.ChangeAVR;
@@ -212,7 +211,7 @@ begin
 
   with AVR_SubArch_ComboBox do begin
     Items.CommaText := avr_SubArch_List;
-    ItemIndex := 3;                    // ???????????????
+//    ItemIndex := 3;                    // ???????????????
     Style := csOwnerDrawFixed;
     Text := 'AVR5';
   end;

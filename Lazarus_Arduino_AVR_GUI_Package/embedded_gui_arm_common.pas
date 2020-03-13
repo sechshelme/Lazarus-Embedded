@@ -25,6 +25,26 @@ type
     procedure Load(AProject: TLazProject);
   end;
 
+type
+  TARM_TemplatesPara = record
+    Name,
+    ARM_SubArch,
+    ARM_FPC_Typ,
+    FlashBase: string;
+  end;
+
+const
+  ARM_TemplatesPara: array of TARM_TemplatesPara = ((
+    Name: 'STM32F103X8';
+    ARM_SubArch: 'ARMV7M';
+    ARM_FPC_Typ: 'STM32F103X8';
+    FlashBase: '0x08000000';),(
+
+    Name: 'Arduino DUE';
+    ARM_SubArch: 'ARMV7M';
+    ARM_FPC_Typ: 'ATSAM3X8E';
+    FlashBase: '0x080000'));
+
 var
   ARM_ProjectOptions: TARM_ProjectOptions;
 

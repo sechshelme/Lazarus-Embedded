@@ -51,7 +51,6 @@ begin
   Top := StrToInt(Cfg.GetValue(Key_AVR_Templates_Top, '60'));
   Width := StrToInt(Cfg.GetValue(Key_AVR_Templates_Width, '300'));
   Height := StrToInt(Cfg.GetValue(Key_AVR_Templates_Height, '400'));
-//  ShowMessage('create ' + Width.ToString);
   Cfg.Free;
 end;
 
@@ -64,7 +63,6 @@ begin
   Cfg.SetDeleteValue(Key_AVR_Templates_Top, IntToStr(Top), '60');
   Cfg.SetDeleteValue(Key_AVR_Templates_Width, IntToStr(Width), '300');
   Cfg.SetDeleteValue(Key_AVR_Templates_Height, IntToStr(Height), '400');
-//  ShowMessage('close ' + Width.ToString);
   Cfg.Free;
 end;
 

@@ -1,29 +1,26 @@
-object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
-  Left = 1679
-  Height = 375
-  Top = 56
-  Width = 337
-  Caption = 'AVR Embedded Vorlagen'
-  ClientHeight = 375
-  ClientWidth = 337
-  Constraints.MinHeight = 150
-  Constraints.MinWidth = 260
+object ARMProjectTemplatesForm: TARMProjectTemplatesForm
+  Left = 2162
+  Height = 440
+  Top = 615
+  Width = 390
+  Caption = 'ARMProjectTemplatesForm'
+  ClientHeight = 440
+  ClientWidth = 390
   OnClose = FormClose
   OnCreate = FormCreate
-  Position = poDefault
   LCLVersion = '2.1.0.0'
   object Label1: TLabel
     Left = 16
     Height = 16
-    Top = 16
+    Top = 8
     Width = 40
     Caption = 'Board:'
     ParentColor = False
   end
   object BitBtn_Ok: TBitBtn
-    Left = 229
+    Left = 280
     Height = 30
-    Top = 332
+    Top = 390
     Width = 96
     Anchors = [akRight, akBottom]
     Default = True
@@ -33,9 +30,9 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
     TabOrder = 0
   end
   object BitBtn_Cancel: TBitBtn
-    Left = 109
+    Left = 160
     Height = 30
-    Top = 332
+    Top = 390
     Width = 99
     Anchors = [akRight, akBottom]
     Cancel = True
@@ -46,13 +43,13 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
   end
   object ListBox_Template: TListBox
     Left = 16
-    Height = 282
-    Top = 40
-    Width = 309
+    Height = 342
+    Top = 32
+    Width = 360
     Anchors = [akTop, akLeft, akRight, akBottom]
     ItemHeight = 0
     OnDblClick = ListBox_TemplateDblClick
-    ScrollWidth = 307
+    ScrollWidth = 358
     TabOrder = 2
     TopIndex = -1
   end

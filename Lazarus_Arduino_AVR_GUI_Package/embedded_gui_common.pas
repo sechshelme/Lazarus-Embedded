@@ -39,6 +39,11 @@ const
   Key_ARM_ProjectOptions_Width = 'arm_project_options_form_width/value';
   Key_ARM_ProjectOptions_Height = 'arm_project_options_form_height/value';
 
+  Key_ARM_Templates_Left = 'arm_templates_left/value';
+  Key_ARM_Templates_Top = 'arm_templates_form_top/value';
+  Key_ARM_Templates_Width = 'arm_templates_form_width/value';
+  Key_ARM_Templates_Height = 'arm_templates_form_height/value';
+
 
   Key_SerialMonitorPort = 'SerialMonitorPort';
   Key_SerialMonitorBaud = 'COM_Port';
