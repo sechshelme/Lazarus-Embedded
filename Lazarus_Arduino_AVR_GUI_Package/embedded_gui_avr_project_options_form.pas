@@ -13,7 +13,9 @@ uses
 
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
-  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Templates_Form, Embedded_GUI_SubArch_List;
+  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Templates_Form,
+  Embedded_GUI_AVR_CPU_Info_Form,
+  Embedded_GUI_SubArch_List;
 
 type
 
@@ -47,10 +49,12 @@ type
     OpenDialogAVRConfigPath: TOpenDialog;
     OpenDialogAVRPath: TOpenDialog;
     ProgrammerComboBox: TComboBox;
+    CPU_InfoButton: TButton;
     procedure AVR_SubArch_ComboBoxChange(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure CPU_InfoButtonClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -77,6 +81,15 @@ implementation
 procedure TAVR_Project_Options_Form.CancelButtonClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TAVR_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
+var
+  Form: TAVR_CPU_InfoForm;
+begin
+  Form := TAVR_CPU_InfoForm.Create(nil);
+  Form.ShowModal;
+  Form.Free;
 end;
 
 procedure TAVR_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
@@ -136,7 +149,8 @@ begin
   Cfg.Free;
 end;
 
-procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TAVR_Project_Options_Form.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
 var
   Cfg: TConfigStorage;
 begin
@@ -211,7 +225,7 @@ begin
 
   with AVR_SubArch_ComboBox do begin
     Items.CommaText := avr_SubArch_List;
-//    ItemIndex := 3;                    // ???????????????
+    //    ItemIndex := 3;                    // ???????????????
     Style := csOwnerDrawFixed;
     Text := 'AVR5';
   end;
@@ -255,7 +269,8 @@ begin
   AVR_Typ_avrdude_Edit.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
   AsmFile_CheckBox.Checked := AVR_ProjectOptions.AsmFile;
-  Disable_Auto_Erase_CheckBox.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+  Disable_Auto_Erase_CheckBox.Checked :=
+    AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
 procedure TAVR_Project_Options_Form.MaskToProjectOptions;

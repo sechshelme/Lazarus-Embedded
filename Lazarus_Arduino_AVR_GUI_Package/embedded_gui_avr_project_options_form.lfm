@@ -308,6 +308,16 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'Disable Auto Erase (-D)'
     TabOrder = 12
   end
+  object CPU_InfoButton: TButton
+    Left = 468
+    Height = 28
+    Top = 256
+    Width = 80
+    Anchors = [akTop, akRight]
+    Caption = 'CPU Info...'
+    OnClick = CPU_InfoButtonClick
+    TabOrder = 17
+  end
   object OpenDialogAVRPath: TOpenDialog
     Left = 416
     Top = 16

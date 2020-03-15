@@ -118,8 +118,8 @@ end;
 
 procedure TForm1.GenerateAVR(sl: TStrings);
 var
-  cpt:AVR_CPUInfo.tcputype;
-  cdt : AVR_CPUInfo.tcontrollertype;
+  cpt: AVR_CPUInfo.tcputype;
+  cdt: AVR_CPUInfo.tcontrollertype;
   s:String='';
   s2:String='';
   sarr:array[AVR_CPUInfo.tcputype] of String;
@@ -154,8 +154,8 @@ end;
 
 procedure TForm1.GenerateARM(sl: TStrings);
 var
-  cpt:ARM_CPUInfo.tcputype;
-  cdt : ARM_CPUInfo.tcontrollertype;
+  cpt: ARM_CPUInfo.tcputype;
+  cdt: ARM_CPUInfo.tcontrollertype;
   s:String='';
   s2:String='';
   sarr:array[ARM_CPUInfo.tcputype] of String;
@@ -189,25 +189,61 @@ begin
 end;
 
 procedure TForm1.GenerateAVR_Table(sl: TStrings);
+const
+  Digi = 4;
+var
+  cdt: AVR_CPUInfo.tcontrollertype;
+  s:String;
+
+  function getCPUType(cpu: AVR_CPUInfo.tcputype): String;
+  begin
+    Str(cpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+  function getFPUType(cpu: AVR_CPUInfo.tfputype): String;
+  begin
+    Str(cpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+  //controllertypestr:'AVRSIM';
+  //controllerunitstr:'AVRSIM';
+  //
+  //cputype: cpu_avr5;
+  //fputype: fpu_soft;
+  //flashbase:0;
+  //flashsize:$20000;
+  //srambase:256;
+  //sramsize:32*1024;
+  //eeprombase:0;
+  //eepromsize:4096;
+
 begin
   sl.Add('type');
+  sl.Add('  TAVRControllerDataList = array of array of String;');
+  sl.Add('');
+  sl.Add('const');
+  sl.Add('  AVRControllerDataList : TAVRControllerDataList = (');
+  sl.Add('  ('#39'controllertypestr'#39', '#39' controllerunitstr'#39', '#39' cputype'#39', '#39' fputype'#39', '#39' flashbase'#39',');
+  sl.Add('   '#39'flashsize'#39', '#39' srambase'#39', '#39' sramsize'#39', '#39' eeprombase'#39', '#39' eepromsize'#39'),');
 
-  sl.Add('  tcontrollerdatatype = record');
-  sl.Add('    controllertypestr,');
-  sl.Add('    controllerunitstr,');
-  sl.Add('    cputype,');
-  sl.Add('    tcputype,');
-  sl.Add('    fputype,');
-  sl.Add('    tfputype,');
-  sl.Add('    flashbase,');
-  sl.Add('    flashsize,');
-  sl.Add('    srambase,');
-  sl.Add('    sramsize,');
-  sl.Add('    eeprombase,');
-  sl.Add('    eepromsize,');
-  sl.Add('    bootbase,');
-  sl.Add('    bootsize: String;');
-  sl.Add('  end;');
+  for cdt in AVR_CPUInfo.tcontrollertype do begin
+    s:= '  ('#39 + AVR_CPUInfo.embedded_controllers[cdt].controllertypestr + #39', ' +
+             #39 + AVR_CPUInfo.embedded_controllers[cdt].controllerunitstr + #39', ' +
+             #39 + getCPUType(AVR_CPUInfo.embedded_controllers[cdt].cputype) + #39', ' +
+             #39 + getFPUType(AVR_CPUInfo.embedded_controllers[cdt].fputype) + #39', ' +
+             #39 + IntToStr(AVR_CPUInfo.embedded_controllers[cdt].flashbase) + #39', ' +
+             #39 + IntToStr(AVR_CPUInfo.embedded_controllers[cdt].flashsize) + #39', ' +
+             #39 + IntToStr(AVR_CPUInfo.embedded_controllers[cdt].srambase) + #39', ' +
+             #39 + IntToStr(AVR_CPUInfo.embedded_controllers[cdt].sramsize) + #39', ' +
+             #39 + IntToStr(AVR_CPUInfo.embedded_controllers[cdt].eeprombase) + #39', ' +
+             #39 + IntToStr(AVR_CPUInfo.embedded_controllers[cdt].eepromsize) + #39'),';
+    sl.Add(s);
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s + ');'
 end;
 
 

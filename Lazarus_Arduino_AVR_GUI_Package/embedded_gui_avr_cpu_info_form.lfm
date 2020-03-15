@@ -1,0 +1,39 @@
+object AVR_CPU_InfoForm: TAVR_CPU_InfoForm
+  Left = 533
+  Height = 966
+  Top = 130
+  Width = 1468
+  Caption = 'AVR CPU Info'
+  ClientHeight = 966
+  ClientWidth = 1468
+  OnCreate = FormCreate
+  Position = poDefaultPosOnly
+  LCLVersion = '2.1.0.0'
+  object BitBtn_Ok: TBitBtn
+    Left = 1364
+    Height = 30
+    Top = 926
+    Width = 96
+    Anchors = [akRight, akBottom]
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 912
+    Top = 0
+    Width = 1468
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Font.Height = -13
+    Font.Name = 'Ubuntu Mono'
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 1
+    WordWrap = False
+  end
+end

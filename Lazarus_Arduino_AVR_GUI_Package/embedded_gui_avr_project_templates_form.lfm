@@ -2,10 +2,10 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
   Left = 1679
   Height = 375
   Top = 56
-  Width = 337
+  Width = 341
   Caption = 'AVR Embedded Vorlagen'
   ClientHeight = 375
-  ClientWidth = 337
+  ClientWidth = 341
   Constraints.MinHeight = 150
   Constraints.MinWidth = 260
   OnClose = FormClose
@@ -21,7 +21,7 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
     ParentColor = False
   end
   object BitBtn_Ok: TBitBtn
-    Left = 229
+    Left = 233
     Height = 30
     Top = 332
     Width = 96
@@ -33,7 +33,7 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
     TabOrder = 0
   end
   object BitBtn_Cancel: TBitBtn
-    Left = 109
+    Left = 113
     Height = 30
     Top = 332
     Width = 99
@@ -45,14 +45,14 @@ object AVRProjectTemplatesForm: TAVRProjectTemplatesForm
     TabOrder = 1
   end
   object ListBox_Template: TListBox
-    Left = 16
+    Left = 13
     Height = 282
     Top = 40
-    Width = 309
+    Width = 316
     Anchors = [akTop, akLeft, akRight, akBottom]
     ItemHeight = 0
     OnDblClick = ListBox_TemplateDblClick
-    ScrollWidth = 307
+    ScrollWidth = 314
     TabOrder = 2
     TopIndex = -1
   end
