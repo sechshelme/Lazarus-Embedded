@@ -1,21 +1,23 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
   Left = 2652
-  Height = 491
+  Height = 490
   Top = 56
-  Width = 575
+  Width = 510
   Caption = 'AVR Embedded Project Options'
-  ClientHeight = 491
-  ClientWidth = 575
+  ClientHeight = 490
+  ClientWidth = 510
+  Constraints.MinHeight = 490
+  Constraints.MinWidth = 510
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object OkButton: TButton
-    Left = 479
+    Left = 423
     Height = 25
-    Top = 408
-    Width = 75
+    Top = 407
+    Width = 82
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
     Default = True
@@ -24,10 +26,10 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     TabOrder = 15
   end
   object CancelButton: TButton
-    Left = 376
+    Left = 311
     Height = 25
-    Top = 408
-    Width = 75
+    Top = 407
+    Width = 82
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
@@ -38,7 +40,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Left = 16
     Height = 28
     Top = 56
-    Width = 488
+    Width = 439
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 0
@@ -119,7 +121,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Left = 16
     Height = 28
     Top = 119
-    Width = 488
+    Width = 439
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 2
@@ -141,17 +143,17 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     ParentColor = False
   end
   object Button1: TButton
-    Left = 516
+    Left = 464
     Height = 28
     Top = 56
-    Width = 32
+    Width = 35
     Anchors = [akTop, akRight]
     Caption = '...'
     OnClick = Button1Click
     TabOrder = 1
   end
   object Button2: TButton
-    Left = 516
+    Left = 466
     Height = 28
     Top = 119
     Width = 32
@@ -161,10 +163,10 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     TabOrder = 3
   end
   object TemplatesButton: TButton
-    Left = 468
+    Left = 411
     Height = 28
     Top = 192
-    Width = 80
+    Width = 87
     Anchors = [akTop, akRight]
     Caption = 'Vorlagen...'
     OnClick = TemplatesButtonClick
@@ -273,8 +275,8 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 444
-    Width = 575
+    Top = 443
+    Width = 510
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -309,10 +311,10 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     TabOrder = 12
   end
   object CPU_InfoButton: TButton
-    Left = 468
+    Left = 411
     Height = 28
     Top = 256
-    Width = 80
+    Width = 87
     Anchors = [akTop, akRight]
     Caption = 'CPU Info...'
     OnClick = CPU_InfoButtonClick

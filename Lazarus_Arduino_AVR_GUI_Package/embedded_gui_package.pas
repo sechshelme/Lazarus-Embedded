@@ -14,7 +14,7 @@ uses
   Embedded_GUI_SubArch_List, Embedded_GUI_Find_Comports, 
   Embedded_GUI_ARM_Common, Embedded_GUI_ARM_Project_Options_Form, 
   Embedded_GUI_Common, Embedded_GUI_AVR_Register, Embedded_GUI_ARM_Register, 
-  Embedded_GUI_ARM_Project_Templates_Form, Embedded_GUI_AVR_CPU_Info_Form, 
+  Embedded_GUI_ARM_Project_Templates_Form, Embedded_GUI_CPU_Info_Form, 
   LazarusPackageIntf;
 
 implementation

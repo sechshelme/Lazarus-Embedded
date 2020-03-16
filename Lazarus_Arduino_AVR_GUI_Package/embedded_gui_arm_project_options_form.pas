@@ -15,6 +15,7 @@ uses
   Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
   Embedded_GUI_ARM_Common,
   Embedded_GUI_ARM_Project_Templates_Form,
+  Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_SubArch_List;
 
 type
@@ -25,6 +26,7 @@ type
     AsmFile_CheckBox: TCheckBox;
     BitBtn1: TBitBtn;
     ARM_FlashBase_ComboBox: TComboBox;
+    CPU_InfoButton: TButton;
     Label2: TLabel;
     STLinkPathComboBox: TComboBox;
     ARM_Typ_FPC_ComboBox: TComboBox;
@@ -38,6 +40,7 @@ type
     OkButton: TButton;
     TemplatesButton: TButton;
     procedure ARM_SubArch_ComboBoxChange(Sender: TObject);
+    procedure CPU_InfoButtonClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -71,6 +74,29 @@ begin
   Cfg.Free;
 end;
 
+procedure TARM_Project_Options_Form.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Left, IntToStr(Left), '100');
+  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Top, IntToStr(Top), '50');
+  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Width, IntToStr(Width), '500');
+  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Height, IntToStr(Height), '400');
+  Cfg.Free;
+end;
+
+procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
+var
+  Form: TCPU_InfoForm;
+begin
+  Form := TCPU_InfoForm.Create(nil);
+  Form.Load(ARMControllerDataList);
+  Form.ShowModal;
+  Form.Free;
+end;
+
 procedure TARM_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
 var
   TemplatesForm:
@@ -96,19 +122,6 @@ begin
   end;
 
   TemplatesForm.Free;
-end;
-
-procedure TARM_Project_Options_Form.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
-var
-  Cfg: TConfigStorage;
-begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Left, IntToStr(Left), '100');
-  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Top, IntToStr(Top), '50');
-  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Width, IntToStr(Width), '500');
-  Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Height, IntToStr(Height), '400');
-  Cfg.Free;
 end;
 
 procedure TARM_Project_Options_Form.ARM_SubArch_ComboBoxChange(Sender: TObject);

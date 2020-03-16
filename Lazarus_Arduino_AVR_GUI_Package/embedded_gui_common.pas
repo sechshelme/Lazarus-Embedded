@@ -23,13 +23,17 @@ const
   Default_STFlash_Path = '/usr/local/bin/st-flash';
   {$ENDIF}
 
+  Key_CPU_Info_Left = 'cpu_info_form_left/value';
+  Key_CPU_Info_Top = 'cpu_info_form_top/value';
+  Key_CPU_Info_Width = 'cpu_info_form_width/value';
+  Key_CPU_Info_Height = 'cpu_info_form_height/value';
 
   Key_AVR_ProjectOptions_Left = 'avr_project_options_form_left/value';
   Key_AVR_ProjectOptions_Top = 'avr_project_options_form_top/value';
   Key_AVR_ProjectOptions_Width = 'avr_project_options_form_width/value';
   Key_AVR_ProjectOptions_Height = 'avr_project_options_form_height/value';
 
-  Key_AVR_Templates_Left = 'avr_templates_left/value';
+  Key_AVR_Templates_Left = 'avr_templates_form_left/value';
   Key_AVR_Templates_Top = 'avr_templates_form_top/value';
   Key_AVR_Templates_Width = 'avr_templates_form_width/value';
   Key_AVR_Templates_Height = 'avr_templates_form_height/value';
@@ -39,7 +43,7 @@ const
   Key_ARM_ProjectOptions_Width = 'arm_project_options_form_width/value';
   Key_ARM_ProjectOptions_Height = 'arm_project_options_form_height/value';
 
-  Key_ARM_Templates_Left = 'arm_templates_left/value';
+  Key_ARM_Templates_Left = 'arm_templates_form_left/value';
   Key_ARM_Templates_Top = 'arm_templates_form_top/value';
   Key_ARM_Templates_Width = 'arm_templates_form_width/value';
   Key_ARM_Templates_Height = 'arm_templates_form_height/value';

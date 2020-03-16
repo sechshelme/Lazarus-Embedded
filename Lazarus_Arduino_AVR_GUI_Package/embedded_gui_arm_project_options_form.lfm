@@ -1,11 +1,13 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
   Left = 2013
-  Height = 364
+  Height = 350
   Top = 674
-  Width = 495
+  Width = 540
   Caption = 'ARM Embedded Project Options'
-  ClientHeight = 364
-  ClientWidth = 495
+  ClientHeight = 350
+  ClientWidth = 540
+  Constraints.MinHeight = 350
+  Constraints.MinWidth = 540
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
@@ -40,13 +42,13 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Left = 16
     Height = 28
     Top = 56
-    Width = 401
+    Width = 471
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 0
   end
   object Button1: TButton
-    Left = 431
+    Left = 495
     Height = 28
     Top = 56
     Width = 32
@@ -55,7 +57,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabOrder = 1
   end
   object TemplatesButton: TButton
-    Left = 383
+    Left = 447
     Height = 28
     Top = 128
     Width = 80
@@ -73,9 +75,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabOrder = 7
   end
   object CancelButton: TButton
-    Left = 280
+    Left = 344
     Height = 25
-    Top = 261
+    Top = 253
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -83,9 +85,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabOrder = 8
   end
   object OkButton: TButton
-    Left = 388
+    Left = 452
     Height = 25
-    Top = 261
+    Top = 253
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -96,8 +98,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 317
-    Width = 495
+    Top = 303
+    Width = 540
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -221,5 +223,15 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Width = 67
     Caption = 'Flash Base:'
     ParentColor = False
+  end
+  object CPU_InfoButton: TButton
+    Left = 447
+    Height = 28
+    Top = 192
+    Width = 80
+    Anchors = [akTop, akRight]
+    Caption = 'CPU Info...'
+    OnClick = CPU_InfoButtonClick
+    TabOrder = 11
   end
 end

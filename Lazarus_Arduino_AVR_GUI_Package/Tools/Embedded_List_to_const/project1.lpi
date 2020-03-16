@@ -49,6 +49,7 @@
       <Unit2>
         <Filename Value="src_mod/arm_cpuinfo.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ARM_CPUInfo"/>
       </Unit2>
       <Unit3>
         <Filename Value="src_mod/avr_cpuinfo.pas"/>

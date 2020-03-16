@@ -1,18 +1,19 @@
-object AVR_CPU_InfoForm: TAVR_CPU_InfoForm
+object CPU_InfoForm: TCPU_InfoForm
   Left = 533
-  Height = 966
+  Height = 194
   Top = 130
-  Width = 1468
-  Caption = 'AVR CPU Info'
-  ClientHeight = 966
-  ClientWidth = 1468
+  Width = 322
+  Caption = 'Embedde CPU Info'
+  ClientHeight = 194
+  ClientWidth = 322
+  OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object BitBtn_Ok: TBitBtn
-    Left = 1364
+    Left = 218
     Height = 30
-    Top = 926
+    Top = 154
     Width = 96
     Anchors = [akRight, akBottom]
     Default = True
@@ -23,9 +24,9 @@ object AVR_CPU_InfoForm: TAVR_CPU_InfoForm
   end
   object Memo1: TMemo
     Left = 0
-    Height = 912
+    Height = 140
     Top = 0
-    Width = 1468
+    Width = 322
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = -13

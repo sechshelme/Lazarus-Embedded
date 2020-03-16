@@ -1,7 +1,7 @@
 object ARMProjectTemplatesForm: TARMProjectTemplatesForm
-  Left = 2162
+  Left = 2175
   Height = 440
-  Top = 615
+  Top = 623
   Width = 390
   Caption = 'ARMProjectTemplatesForm'
   ClientHeight = 440

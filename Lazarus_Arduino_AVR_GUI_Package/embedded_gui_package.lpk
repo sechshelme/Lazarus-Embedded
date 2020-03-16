@@ -77,8 +77,8 @@
         <UnitName Value="embedded_gui_arm_project_templates_form"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_avr_cpu_info_form.pas"/>
-        <UnitName Value="embedded_gui_avr_cpu_info_form"/>
+        <Filename Value="embedded_gui_cpu_info_form.pas"/>
+        <UnitName Value="embedded_gui_cpu_info_form"/>
       </Item>
     </Files>
     <i18n>
