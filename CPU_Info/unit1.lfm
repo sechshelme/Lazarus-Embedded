@@ -1,0 +1,30 @@
+object Form1: TForm1
+  Left = 533
+  Height = 647
+  Top = 130
+  Width = 821
+  Caption = 'Form1'
+  ClientHeight = 647
+  ClientWidth = 821
+  OnCreate = FormCreate
+  LCLVersion = '2.1.0.0'
+  object StringGrid1: TStringGrid
+    Left = 0
+    Height = 596
+    Top = 0
+    Width = 821
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 731
+    Height = 25
+    Top = 604
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+end
