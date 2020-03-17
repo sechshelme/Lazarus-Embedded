@@ -25,6 +25,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="Embedded_GUI_Package"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -37,12 +40,9 @@
         <Filename Value="unit1.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_avr_register.pas"/>
-        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -53,7 +53,6 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../Lazarus_Arduino_AVR_GUI_Package"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
