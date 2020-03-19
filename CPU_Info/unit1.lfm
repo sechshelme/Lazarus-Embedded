@@ -16,6 +16,13 @@ object Form1: TForm1
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
+    ColWidths = (
+      64
+      188
+      188
+      188
+      191
+    )
   end
   object Button1: TButton
     Left = 731
@@ -23,8 +30,19 @@ object Form1: TForm1
     Top = 604
     Width = 75
     Anchors = [akRight, akBottom]
-    Caption = 'Button1'
+    Caption = 'Beenden'
     OnClick = Button1Click
     TabOrder = 1
+  end
+  object ComboBox1: TComboBox
+    Left = 16
+    Height = 28
+    Top = 608
+    Width = 116
+    Anchors = [akLeft, akBottom]
+    ItemHeight = 0
+    OnSelect = ComboBox1Select
+    TabOrder = 2
+    Text = 'ComboBox1'
   end
 end
