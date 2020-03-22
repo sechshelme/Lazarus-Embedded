@@ -16,6 +16,8 @@ object Form1: TForm1
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
+    OnCompareCells = StringGrid1CompareCells
+    OnHeaderClick = StringGrid1HeaderClick
     ColWidths = (
       64
       188
