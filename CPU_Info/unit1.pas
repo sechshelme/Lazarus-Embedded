@@ -69,34 +69,22 @@ begin
   Load(AVRControllerDataList);
 end;
 
-procedure TForm1.StringGrid1CompareCells(Sender: TObject;
-  ACol, ARow, BCol, BRow: integer; var Result: integer);
-
-  function IsNumber(s: string): boolean;
-  var
-    i, er: integer;
-  begin
-    Val(s, i, er);
-    Result := er = 0;
-  end;
+procedure TForm1.StringGrid1CompareCells(Sender: TObject; ACol, ARow, BCol, BRow: integer; var Result: integer);
+var
+  i0, i1: integer;
 
 begin
-  IsNumber('a');
-
-  Result := CompareStr(StringGrid1.Cells[ACol, ARow], StringGrid1.Cells[BCol, BRow]);
+  if TryStrToInt(StringGrid1.Cells[ACol, ARow], i0) and TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then begin
+    Result := i0 - i1;
+  end else begin
+    Result := CompareStr(StringGrid1.Cells[ACol, ARow], StringGrid1.Cells[BCol, BRow]);
+  end;
   if Result = 0 then begin
     Result := CompareStr(StringGrid1.Cells[2, ARow], StringGrid1.Cells[2, BRow]);
     if Result = 0 then begin
       Result := CompareStr(StringGrid1.Cells[0, ARow], StringGrid1.Cells[0, BRow]);
     end;
   end;
-  //if Result = 0 then begin
-  //  if ACol = 0 then begin
-  //    Result := CompareStr(StringGrid1.Cells[1, ARow], StringGrid1.Cells[1, BRow]);
-  //  end else begin
-  //    Result := CompareStr(StringGrid1.Cells[0, ARow], StringGrid1.Cells[0, BRow]);
-  //  end;
-  //end;
 end;
 
 procedure TForm1.StringGrid1HeaderClick(Sender: TObject; IsColumn: boolean;
