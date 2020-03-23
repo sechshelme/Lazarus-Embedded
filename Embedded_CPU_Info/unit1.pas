@@ -64,6 +64,8 @@ begin
   StringGrid1.FixedCols := 0;
   StringGrid1.DoubleBuffered := True;
   StringGrid1.TitleFont.Style := [fsBold];
+//  StringGrid1.Options:=[goFixedVertLine,goFixedHorzLine,goVertLine,goHorzLine,goRangeSelect,goSmoothScroll];
+  StringGrid1.AlternateColor:=clMoneyGreen;
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Item);
   Load(AVRControllerDataList);
