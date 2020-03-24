@@ -21,8 +21,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure StringGrid1CompareCells(Sender: TObject;
       ACol, ARow, BCol, BRow: integer; var Result: integer);
-    procedure StringGrid1HeaderClick(Sender: TObject; IsColumn: boolean;
-      Index: integer);
   private
 
   public
@@ -64,19 +62,22 @@ begin
   StringGrid1.FixedCols := 0;
   StringGrid1.DoubleBuffered := True;
   StringGrid1.TitleFont.Style := [fsBold];
-//  StringGrid1.Options:=[goFixedVertLine,goFixedHorzLine,goVertLine,goHorzLine,goRangeSelect,goSmoothScroll];
-  StringGrid1.AlternateColor:=clMoneyGreen;
+  StringGrid1.AlternateColor := clMoneyGreen;
+  StringGrid1.ColumnClickSorts := True;
+
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Item);
   Load(AVRControllerDataList);
 end;
 
-procedure TForm1.StringGrid1CompareCells(Sender: TObject; ACol, ARow, BCol, BRow: integer; var Result: integer);
+procedure TForm1.StringGrid1CompareCells(Sender: TObject;
+  ACol, ARow, BCol, BRow: integer; var Result: integer);
 var
   i0, i1: integer;
 
 begin
-  if TryStrToInt(StringGrid1.Cells[ACol, ARow], i0) and TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then begin
+  if TryStrToInt(StringGrid1.Cells[ACol, ARow], i0) and
+    TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then begin
     Result := i0 - i1;
   end else begin
     Result := CompareStr(StringGrid1.Cells[ACol, ARow], StringGrid1.Cells[BCol, BRow]);
@@ -87,12 +88,9 @@ begin
       Result := CompareStr(StringGrid1.Cells[0, ARow], StringGrid1.Cells[0, BRow]);
     end;
   end;
-end;
-
-procedure TForm1.StringGrid1HeaderClick(Sender: TObject; IsColumn: boolean;
-  Index: integer);
-begin
-  StringGrid1.SortColRow(True, Index, 1, StringGrid1.RowCount - 1);
+  if StringGrid1.SortOrder = soDescending then begin
+    Result *= -1;
+  end;
 end;
 
 procedure TForm1.Load(Table: array of TStringArray);
@@ -107,8 +105,6 @@ begin
     end;
   end;
   StringGrid1.AutoSizeColumns;
-  //  StringGrid1.SortColRow(True, 0, 1, StringGrid1.RowCount-1);
-  //  StringGrid1.SortColRow(True, 2, 1, StringGrid1.RowCount - 1);
 end;
 
 end.
