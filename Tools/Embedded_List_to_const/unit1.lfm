@@ -1,17 +1,17 @@
 object Form1: TForm1
-  Left = 386
-  Height = 994
-  Top = 263
-  Width = 1338
+  Left = 1129
+  Height = 999
+  Top = 323
+  Width = 1300
   Caption = 'Form1'
-  ClientHeight = 994
-  ClientWidth = 1338
+  ClientHeight = 999
+  ClientWidth = 1300
   OnCreate = FormCreate
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.1.0.0'
   object Button1: TButton
-    Left = 1250
+    Left = 1212
     Height = 25
-    Top = 954
+    Top = 959
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Generate'
@@ -20,9 +20,9 @@ object Form1: TForm1
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 940
+    Height = 945
     Top = 0
-    Width = 1338
+    Width = 1300
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
@@ -519,11 +519,36 @@ object Form1: TForm1
       end
     end
   end
+  object DirectoryEdit1: TDirectoryEdit
+    Left = 56
+    Height = 28
+    Top = 949
+    Width = 464
+    Directory = 'DirectoryEdit1'
+    ShowHidden = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    Anchors = [akLeft, akRight, akBottom]
+    MaxLength = 0
+    TabOrder = 2
+    Text = 'DirectoryEdit1'
+  end
+  object Button2: TButton
+    Left = 579
+    Height = 25
+    Top = 949
+    Width = 117
+    Anchors = [akRight, akBottom]
+    Caption = 'Generate Unit'
+    OnClick = Button2Click
+    TabOrder = 3
+  end
   object SynPasSyn1: TSynPasSyn
     Enabled = False
     CompilerMode = pcmDelphi
     NestedComments = False
-    left = 98
-    top = 536
+    TypeHelpers = True
+    Left = 98
+    Top = 536
   end
 end
