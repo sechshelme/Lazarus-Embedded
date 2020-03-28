@@ -48,15 +48,22 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
-  sl: TStringList;
+  sl, sourceSL: TStringList;
   i: integer;
+  path:String;
 begin
+  sourceSL:=TStringList.Create;
+  path:=ExtractFileDir(ParamStr(0));
+  Caption:=path;;
   sl := FindAllFiles(DirectoryEdit1.Directory, 'cpuinfo.pas', True);
   SynEdit1.Lines.Text := sl.Text;
-  sl.Free;
   for i := 0 to sl.Count - 1 do begin
+    sourceSL.LoadFromFile(sl[i]);
+    sourceSL.Text:=StringReplace(sourceSL.Text,'end', 'ende', [rfReplaceAll, rfIgnoreCase]);
+//    sourceSL.SaveToFile(path+'/src_mod/'+'cpuinfo.pas'+i.ToString);
   end;
-
+  sl.Free;
+  sourceSL.Free;
 end;
 
 procedure TForm1.GenerateAVR(sl: TStrings);
