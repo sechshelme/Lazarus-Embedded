@@ -6,7 +6,12 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn, FileUtil,
-  SynHighlighterPas, SynEdit, AVR_CPUInfo, ARM_CPUInfo;
+  SynHighlighterPas, SynEdit,
+  avr_CPUInfo,
+  arm_CPUInfo,
+  mips_CPUInfo,
+  //  risc32_CPUInfo,
+  xtensa_CPUInfo;
 
 type
 
@@ -42,25 +47,71 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   SynEdit1.ScrollBars := ssAutoBoth;
-  DirectoryEdit1.Directory := '/home/tux/fpc.src/fpc/compiler';
+  DirectoryEdit1.Directory := '/home/tux/fpc.src/fpc';
 end;
 
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
   sl, sourceSL: TStringList;
+  sa: TStringArray;
   i: integer;
-  path:String;
+  source_path, dest_path, cpu: string;
 begin
-  sourceSL:=TStringList.Create;
-  path:=ExtractFileDir(ParamStr(0));
-  Caption:=path;;
-  sl := FindAllFiles(DirectoryEdit1.Directory, 'cpuinfo.pas', True);
+  sourceSL := TStringList.Create;
+  sl := TStringList.Create;
+  source_path := DirectoryEdit1.Directory;
+  dest_path := ExtractFileDir(ParamStr(0));
+  FindAllFiles(sl, source_path, 'cpuinfo.pas', True);
+
+  CopyFile(source_path + '/compiler/fpcdefs.inc', dest_path + '/src_mod/fpcdefs.inc');
+  CopyFile(source_path + '/compiler/cutils.pas', dest_path + '/src_mod/cutils.pas');
+  CopyFile(source_path + '/compiler/constexp.pas', dest_path + '/src_mod/constexp.pas');
+  CopyFile(source_path + '/compiler/systems.pas', dest_path + '/src_mod/systems.pas');
+  CopyFile(source_path + '/compiler/systems.inc', dest_path + '/src_mod/systems.inc');
+
+  sl.LoadFromFile(source_path + '/compiler/globtype.pas');
+  sl.Insert(26, 'type');
+  sl.Insert(27, '  PUint = word;');
+  sl.Insert(28, '  PInt = Smallint;');
+  sl.Insert(29, '  AWord = Word;');
+  sl.Insert(30, '  AInt = Smallint;');
+  sl.Insert(31, '');
+  sl.SaveToFile(dest_path + '/src_mod/globtype.pas');
+
   SynEdit1.Lines.Text := sl.Text;
+
+  sl.Clear;
+  sl.Add(source_path + '/compiler/avr/cpuinfo.pas');
+  sl.Add(source_path + '/compiler/arm/cpuinfo.pas');
+  sl.Add(source_path + '/compiler/xtensa/cpuinfo.pas');
+  sl.Add(source_path + '/compiler/riscv32/cpuinfo.pas');
+  sl.Add(source_path + '/compiler/mips/cpuinfo.pas');
+
+  //  sl.Add(path + '/compiler/i8086/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/aarch64/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/powerpc64/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/x86_64/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/riscv64/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/powerpc/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/jvm/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/sparc/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/m68k/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/i386/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/generic/cpuinfo.pas');
+  //  sl.Add(path + '/compiler/sparc64/cpuinfo.pas');
+
   for i := 0 to sl.Count - 1 do begin
+    sa := sl[i].Split('/');
+    if Length(sa) > 2 then begin
+      cpu := sa[Length(sa) - 2];
+    end;
+    SynEdit1.Lines.Add(cpu);
     sourceSL.LoadFromFile(sl[i]);
-    sourceSL.Text:=StringReplace(sourceSL.Text,'end', 'ende', [rfReplaceAll, rfIgnoreCase]);
-//    sourceSL.SaveToFile(path+'/src_mod/'+'cpuinfo.pas'+i.ToString);
+    sourceSL.Text := StringReplace(sourceSL.Text, 'CPUInfo', cpu +
+      '_CPUInfo', [rfReplaceAll, rfIgnoreCase]);
+
+    sourceSL.SaveToFile(dest_path + '/src_mod/' + cpu + '_cpuinfo.pas');
   end;
   sl.Free;
   sourceSL.Free;

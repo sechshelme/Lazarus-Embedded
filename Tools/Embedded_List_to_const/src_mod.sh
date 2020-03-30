@@ -15,4 +15,8 @@ sed 26a"  AInt = Smallint;" ./src_mod/globtype.pas -i
 sed 26a"type" ./src_mod/globtype.pas -i
 
 cp /home/tux/fpc.src/fpc/compiler/fpcdefs.inc ./src_mod/fpcdefs.inc
+cp /home/tux/fpc.src/fpc/compiler/cutils.pas ./src_mod/cutils.pas
+cp /home/tux/fpc.src/fpc/compiler/constexp.pas ./src_mod/constexp.pas
+cp /home/tux/fpc.src/fpc/compiler/systems.pas ./src_mod/systems.pas
+cp /home/tux/fpc.src/fpc/compiler/systems.inc ./src_mod/systems.inc
 

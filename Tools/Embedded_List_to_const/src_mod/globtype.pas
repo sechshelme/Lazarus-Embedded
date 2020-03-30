@@ -25,11 +25,11 @@ unit globtype;
 interface
 
 type
-AInt = Smallint;
-AWord = Word;
-PInt = Smallint;
-PUint = word;
- 
+  PUint = word;
+  PInt = Smallint;
+  AWord = Word;
+  AInt = Smallint;
+
     const
        maxidlen = 127;
 

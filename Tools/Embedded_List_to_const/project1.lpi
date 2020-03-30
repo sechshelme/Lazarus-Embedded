@@ -55,7 +55,7 @@
       <Unit3>
         <Filename Value="src_mod/avr_cpuinfo.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="AVR_CPUInfo"/>
+        <UnitName Value="avr_CPUInfo"/>
       </Unit3>
       <Unit4>
         <Filename Value="src_mod.sh"/>
@@ -80,11 +80,6 @@
         </Win32>
       </Options>
     </Linking>
-    <Other>
-      <ExecuteBefore>
-        <Command Value="src_mod.sh"/>
-      </ExecuteBefore>
-    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">
