@@ -19,15 +19,13 @@ uses
   Embedded_GUI_AVR_Register,
   Embedded_GUI_ARM_Register,
   Embedded_GUI_IDE_Options,
+  Embedded_GUI_Common,
   Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Options_Form,
   Embedded_GUI_ARM_Common, Embedded_GUI_ARM_Project_Options_Form,
   Embedded_GUI_Serial_Monitor;
 
 var
   Embbed_IDE_OptionsFrameID: integer = 1000;
-
-//const
-//  AVROptionsIndex = ProjectOptionsMisc + 100;
 
 procedure Register;
 
@@ -62,7 +60,6 @@ begin
     ProjOptiForm.MaskToProjectOptions;
     AVR_ProjectOptions.Save(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
-    //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
   end;
 
   ProjOptiForm.Free;
@@ -97,7 +94,6 @@ begin
     ProjOptiForm.MaskToProjectOptions;
     ARM_ProjectOptions.Save(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
-    //    ShowMessage(LazProject.LazCompilerOptions.ExecuteAfter.Command);
   end;
 
   ProjOptiForm.Free;
@@ -127,6 +123,10 @@ end;
 
 procedure Register;
 
+const
+  AVR_Title = 'AVR-Embedded-Optionen (Arduino)';
+  ARM_Title = 'ARM-Embedded-Optionen (STM32)';
+
 begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
   Embedded_IDE_Options.Load;
@@ -142,11 +142,9 @@ begin
   Embbed_IDE_OptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment, TEmbedded_IDE_Options_Frame, Embbed_IDE_OptionsFrameID)^.Index;
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, 'AVR-Embedded-Optionen (Arduino)',
-    'AVR-Embedded-Optionen (Arduino)...', nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...', nil, @ShowAVROptionsDialog);
 
-  RegisterIdeMenuCommand(mnuProject, 'ARM-Embedded-Optionen (STM32)',
-    'ARM-Embedded-Optionen (STM32)...', nil, @ShowARMOptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
 
 //  RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...', nil, @ShowSerialMonitor);
 end;

@@ -2,10 +2,9 @@ unit Embedded_GUI_Common;
 
 interface
 
-
-
 const
-  UARTBaudRates = '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
+  UARTBaudRates =
+    '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
 
   Embedded_Options_File = 'embedded_gui_options.xml';
 
@@ -14,9 +13,9 @@ const
   Key_STFlash_Path = 'stlink_pfad/value';
 
   {$IFDEF MSWINDOWS}
-  Default_Avrdude_Pfad = 'c:\averdude\averdude.exe';
-  Default_Avrdude_Conf_Pfad = 'c:\averdude\avrdude.conf';
-  Default_STFlash_Pfad = 'c:\st-link\st-flash.exe';
+  Default_Avrdude_Path = 'c:\avrdude\averdude.exe';
+  Default_Avrdude_Conf_Path = 'c:\avrdude\avrdude.conf';
+  Default_STFlash_Path = 'c:\st-link\st-flash.exe';
   {$ELSE}
   Default_Avrdude_Path = '/usr/bin/avrdude';
   Default_Avrdude_Conf_Path = '/etc/avrdude.conf';
@@ -56,4 +55,3 @@ const
 implementation
 
 end.
-

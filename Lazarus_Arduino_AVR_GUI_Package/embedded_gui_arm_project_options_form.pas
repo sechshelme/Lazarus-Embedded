@@ -12,7 +12,8 @@ uses
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
   Embedded_GUI_Common,
-  Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
+  Embedded_GUI_Find_Comports,
+  Embedded_GUI_IDE_Options,
   Embedded_GUI_ARM_Common,
   Embedded_GUI_ARM_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
@@ -40,6 +41,7 @@ type
     OkButton: TButton;
     TemplatesButton: TButton;
     procedure ARM_SubArch_ComboBoxChange(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
     procedure CPU_InfoButtonClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -66,7 +68,7 @@ procedure TARM_Project_Options_Form.FormCreate(Sender: TObject);
 var
   Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage( Embedded_Options_File, True);
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Left := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Left, '100'));
   Top := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Top, '50'));
   Width := StrToInt(Cfg.GetValue(Key_ARM_ProjectOptions_Width, '500'));
@@ -99,8 +101,7 @@ end;
 
 procedure TARM_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
 var
-  TemplatesForm:
-    TARMProjectTemplatesForm;
+  TemplatesForm: TARMProjectTemplatesForm;
   i: integer;
 
 begin
@@ -124,6 +125,20 @@ begin
   TemplatesForm.Free;
 end;
 
+procedure TARM_Project_Options_Form.BitBtn1Click(Sender: TObject);
+var
+  i: integer;
+  s: string;
+begin
+  for i := 1 to Length(ARMControllerDataList) - 1 do begin
+    if ARMControllerDataList[i, 0] = ARM_Typ_FPC_ComboBox.Text then begin
+      s := ARMControllerDataList[i, 4].ToInteger.ToHexString(8);
+      ARM_FlashBase_ComboBox.Text := '0x' + s;
+      Break;
+    end;
+  end;
+end;
+
 procedure TARM_Project_Options_Form.ARM_SubArch_ComboBoxChange(Sender: TObject);
 begin
   ChangeARM;
@@ -139,34 +154,24 @@ end;
 procedure TARM_Project_Options_Form.LoadDefaultMask;
 begin
 
-  with STLinkPathComboBox do
-  begin
+  with STLinkPathComboBox do begin
     Items.Add('st-flash');
-    //  {$IFDEF MSWINDOWS}
-    //Items.Add('c:\stlink\stlink.exe');
-    //  {$ELSE}
-    //Items.Add('/usr/bin/stlink');
-    //  {$ENDIF}
     Items.Add(Default_STFlash_Path);
     Text := Embedded_IDE_Options.STFlashPath;
   end;
 
-  with ARM_SubArch_ComboBox do
-  begin
+  with ARM_SubArch_ComboBox do begin
     Items.CommaText := ARM_SubArch_List;
-//    ItemIndex := 3;          // ??????????????
     Style := csOwnerDrawFixed;
     Text := 'ARMV7M';
   end;
 
-  with ARM_Typ_FPC_ComboBox do
-  begin
+  with ARM_Typ_FPC_ComboBox do begin
     Sorted := True;
     Text := 'STM32F103X8';
   end;
 
-  with ARM_FlashBase_ComboBox do
-  begin
+  with ARM_FlashBase_ComboBox do begin
     Sorted := True;
     Text := '0x08000000';
     Items.Add('0x00000000');
@@ -193,7 +198,7 @@ begin
   ARM_ProjectOptions.ARM_FPC_Typ := ARM_Typ_FPC_ComboBox.Text;
 
   ARM_ProjectOptions.stlink_Command.Path := STLinkPathComboBox.Text;
-  ARM_ProjectOptions.stlink_Command.FlashBase := ARM_FlashBase_ComboBox.Text ;
+  ARM_ProjectOptions.stlink_Command.FlashBase := ARM_FlashBase_ComboBox.Text;
 
   ARM_ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
 end;
@@ -205,12 +210,9 @@ var
   ind: integer;
 begin
   ind := ARM_SubArch_ComboBox.ItemIndex;
-  if (ind < 0) or (ind >= Length(ARM_SubArch_List)) then
-  begin
+  if (ind < 0) or (ind >= Length(ARM_SubArch_List)) then begin
     ARM_Typ_FPC_ComboBox.Items.CommaText := '';
-  end
-  else
-  begin
+  end else begin
     ARM_Typ_FPC_ComboBox.Items.CommaText := ARM_List[ind];
   end;
 end;

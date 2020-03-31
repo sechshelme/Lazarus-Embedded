@@ -99,14 +99,6 @@ begin
   ARM_FPC_Typ := Find(s, '-Wp');
 
   s := AProject.LazCompilerOptions.ExecuteAfter.Command;
-  //AvrdudeCommand.Path := Copy(s, 0, pos(' ', s) - 1);
-  //AvrdudeCommand.ConfigPath := Find(s, '-C');
-  //AvrdudeCommand.AVR_AVRDude_Typ := Find(s, '-p');
-  //AvrdudeCommand.Programmer := Find(s, '-c');
-  //AvrdudeCommand.COM_Port := Find(s, '-P');
-  //AvrdudeCommand.Baud := Find(s, '-b');
-  //AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
-
   stlink_Command.FlashBase := '0x' + Find(s, '0x');
 end;
 

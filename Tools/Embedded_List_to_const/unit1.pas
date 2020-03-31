@@ -10,7 +10,7 @@ uses
   avr_CPUInfo,
   arm_CPUInfo,
   mips_CPUInfo,
-  //  risc32_CPUInfo,
+  riscv32_CPUInfo,
   xtensa_CPUInfo;
 
 type
@@ -31,6 +31,13 @@ type
     procedure GenerateAVR_Table(sl: TStrings);
     procedure GenerateARM(sl: TStrings);
     procedure GenerateARM_Table(sl: TStrings);
+    procedure GenerateXTensa(sl: TStrings);
+    procedure GenerateXTensa_Table(sl: TStrings);
+    procedure GenerateRisc32(sl: TStrings);
+    procedure GenerateRisc32_Table(sl: TStrings);
+    procedure GenerateMips(sl: TStrings);
+    procedure GenerateMips_Table(sl: TStrings);
+
   public
 
   end;
@@ -111,8 +118,11 @@ begin
     sourceSL.Text := StringReplace(sourceSL.Text, 'CPUInfo', cpu +
       '_CPUInfo', [rfReplaceAll, rfIgnoreCase]);
 
+    if cpu = 'mips' then sourceSL.Insert(0, '{$define MIPSEL}');
+
     sourceSL.SaveToFile(dest_path + '/src_mod/' + cpu + '_cpuinfo.pas');
   end;
+
   sl.Free;
   sourceSL.Free;
 end;
@@ -165,9 +175,9 @@ var
     Delete(Result, 1, 4);
   end;
 
-  function getFPUType(cpu: AVR_CPUInfo.tfputype): string;
+  function getFPUType(fpu: AVR_CPUInfo.tfputype): string;
   begin
-    Str(cpu, Result);
+    Str(fpu, Result);
     Delete(Result, 1, 4);
   end;
 
@@ -247,9 +257,9 @@ var
     Delete(Result, 1, 4);
   end;
 
-  function getFPUType(cpu: ARM_CPUInfo.tfputype): string;
+  function getFPUType(fpu: ARM_CPUInfo.tfputype): string;
   begin
-    Str(cpu, Result);
+    Str(fpu, Result);
     Delete(Result, 1, 4);
   end;
 
@@ -283,6 +293,268 @@ begin
   sl[sl.Count - 1] := s + ');';
 end;
 
+procedure TForm1.GenerateXTensa(sl: TStrings);
+var
+  cpt: xtensa_CPUInfo.tcputype;
+  cdt: xtensa_CPUInfo.tcontrollertype;
+  s: string = '';
+  s2: string = '';
+  sarr: array[xtensa_CPUInfo.tcputype] of string;
+begin
+  for cpt in xtensa_CPUInfo.tcputype do begin
+    Str(cpt, s);
+    s2 := s2 + Copy(s, 5) + ',';
+    sarr[cpt] := '';
+  end;
+  Delete(s2, Length(s2), 1);
+  sl.Add('const');
+  sl.Add('  XTEensa_SubArch_List = '#39 + s2 + #39 + ';');
+  sl.Add('');
+  for cdt in xtensa_CPUInfo.tcontrollertype do begin
+    sarr[xtensa_CPUInfo.embedded_controllers[cdt].cputype] +=
+      xtensa_CPUInfo.embedded_controllers[cdt].controllertypestr + ',';
+  end;
+
+  sl.Add('  XTEensa_List: array of string = (');
+  for cpt in xtensa_CPUInfo.tcputype do begin
+    sl.Add('');
+    Str(cpt, s);
+    sl.Add('    // ' + Copy(s, 5));
+    sl.Add('    '#39 + Copy(sarr[cpt], 1, Length(sarr[cpt]) - 1) + #39 + ',');
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s;
+
+  sl.Add('  );');
+  sl.Add('');
+end;
+
+procedure TForm1.GenerateXTensa_Table(sl: TStrings);
+//{$I systems.inc}
+
+var
+  cdt: XTensa_CPUInfo.tcontrollertype;
+  s: string;
+
+  function getCPUType(cpu: XTensa_CPUInfo.tcputype): string;
+  begin
+    Str(cpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+  function getFPUType(fpu: XTensa_CPUInfo.tfputype): string;
+  begin
+    Str(fpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+  //function getABIType(abi: tabi): string;
+  //begin
+  //  Str(abi, Result);
+  //  Delete(Result, 1, 4);
+  //end;
+
+begin
+  sl.Add('type');
+  sl.Add('  TXTensaControllerDataList = array of array of String;');
+  sl.Add('');
+  sl.Add('const');
+  sl.Add('  XTensaControllerDataList : TXTensaControllerDataList = (');
+  sl.Add('  ('#39'controllertypestr'#39', '#39' controllerunitstr'#39', '#39' cputype'#39', '#39' fputype'#39', '#39' abi'#39', '#39' flashbase'#39',');
+  sl.Add('   '#39'flashsize'#39', '#39' srambase'#39', '#39' sramsize'#39', '#39' eeprombase'#39', '#39' eepromsize'#39', '#39' bootbase'#39', '#39' bootsize'#39'),');
+
+  for cdt in XTensa_CPUInfo.tcontrollertype do begin
+    s := '  ('#39 + XTensa_CPUInfo.embedded_controllers[cdt].controllertypestr +
+      #39', ' + #39 + XTensa_CPUInfo.embedded_controllers[cdt].controllerunitstr +
+      #39', ' + #39 + getCPUType(XTensa_CPUInfo.embedded_controllers[cdt].cputype) +
+      #39', ' + #39 + getFPUType(XTensa_CPUInfo.embedded_controllers[cdt].fputype) +
+//      #39', ' + #39 + getABIType(XTensa_CPUInfo.embedded_controllers[cdt].abi) +
+      #39', ' + #39 + 'abi' +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].flashbase) +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].flashsize) +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].srambase) +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].sramsize) +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].eeprombase) +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].eepromsize) +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].bootbase) +
+      #39', ' + #39 + IntToStr(XTensa_CPUInfo.embedded_controllers[cdt].bootsize) +
+      #39'),';
+    sl.Add(s);
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s + ');';
+end;
+
+procedure TForm1.GenerateRisc32(sl: TStrings);
+var
+  cpt: riscv32_CPUInfo.tcputype;
+  cdt: riscv32_CPUInfo.tcontrollertype;
+  s: string = '';
+  s2: string = '';
+  sarr: array[riscv32_CPUInfo.tcputype] of string;
+begin
+  for cpt in riscv32_CPUInfo.tcputype do begin
+    Str(cpt, s);
+    s2 := s2 + Copy(s, 5) + ',';
+    sarr[cpt] := '';
+  end;
+  Delete(s2, Length(s2), 1);
+  sl.Add('const');
+  sl.Add('  Riscv32_SubArch_List = '#39 + s2 + #39 + ';');
+  sl.Add('');
+  for cdt in riscv32_CPUInfo.tcontrollertype do begin
+    sarr[riscv32_CPUInfo.embedded_controllers[cdt].cputype] +=
+      riscv32_CPUInfo.embedded_controllers[cdt].controllertypestr + ',';
+  end;
+
+  sl.Add('  Riscv32_List: array of string = (');
+  for cpt in riscv32_CPUInfo.tcputype do begin
+    sl.Add('');
+    Str(cpt, s);
+    sl.Add('    // ' + Copy(s, 5));
+    sl.Add('    '#39 + Copy(sarr[cpt], 1, Length(sarr[cpt]) - 1) + #39 + ',');
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s;
+
+  sl.Add('  );');
+  sl.Add('');
+end;
+
+procedure TForm1.GenerateRisc32_Table(sl: TStrings);
+var
+  cdt: Riscv32_CPUInfo.tcontrollertype;
+  s: string;
+
+  function getCPUType(cpu: Riscv32_CPUInfo.tcputype): string;
+  begin
+    Str(cpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+  function getFPUType(fpu: Riscv32_CPUInfo.tfputype): string;
+  begin
+    Str(fpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+begin
+  sl.Add('type');
+  sl.Add('  TRiscv32ControllerDataList = array of array of String;');
+  sl.Add('');
+  sl.Add('const');
+  sl.Add('  Riscv32ControllerDataList : TRiscv32ControllerDataList = (');
+  sl.Add('  ('#39'controllertypestr'#39', '#39' controllerunitstr'#39', '#39' cputype'#39', '#39' fputype'#39', '#39' flashbase'#39',');
+  sl.Add('   '#39'flashsize'#39', '#39' srambase'#39', '#39' sramsize'#39', '#39' eeprombase'#39', '#39' eepromsize'#39', '#39' bootbase'#39', '#39' bootsize'#39'),');
+
+  for cdt in Riscv32_CPUInfo.tcontrollertype do begin
+    s := '  ('#39 + Riscv32_CPUInfo.embedded_controllers[cdt].controllertypestr +
+      #39', ' + #39 + Riscv32_CPUInfo.embedded_controllers[cdt].controllerunitstr +
+      #39', ' + #39 + getCPUType(Riscv32_CPUInfo.embedded_controllers[cdt].cputype) +
+      #39', ' + #39 + getFPUType(Riscv32_CPUInfo.embedded_controllers[cdt].fputype) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].flashbase) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].flashsize) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].srambase) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].sramsize) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].eeprombase) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].eepromsize) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].bootbase) +
+      #39', ' + #39 + IntToStr(Riscv32_CPUInfo.embedded_controllers[cdt].bootsize) +
+      #39'),';
+    sl.Add(s);
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s + ');';
+end;
+
+procedure TForm1.GenerateMips(sl: TStrings);
+var
+  cpt: Mips_CPUInfo.tcputype;
+  cdt: Mips_CPUInfo.tcontrollertype;
+  s: string = '';
+  s2: string = '';
+  sarr: array[Mips_CPUInfo.tcputype] of string;
+begin
+  for cpt in Mips_CPUInfo.tcputype do begin
+    Str(cpt, s);
+    s2 := s2 + Copy(s, 5) + ',';
+    sarr[cpt] := '';
+  end;
+  Delete(s2, Length(s2), 1);
+  sl.Add('const');
+  sl.Add('  Mips_SubArch_List = '#39 + s2 + #39 + ';');
+  sl.Add('');
+  for cdt in Mips_CPUInfo.tcontrollertype do begin
+    sarr[Mips_CPUInfo.embedded_controllers[cdt].cputype] +=
+      Mips_CPUInfo.embedded_controllers[cdt].controllertypestr + ',';
+  end;
+
+  sl.Add('  Mips_List: array of string = (');
+  for cpt in Mips_CPUInfo.tcputype do begin
+    sl.Add('');
+    Str(cpt, s);
+    sl.Add('    // ' + Copy(s, 5));
+    sl.Add('    '#39 + Copy(sarr[cpt], 1, Length(sarr[cpt]) - 1) + #39 + ',');
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s;
+
+  sl.Add('  );');
+  sl.Add('');
+end;
+
+procedure TForm1.GenerateMips_Table(sl: TStrings);
+var
+  cdt: Mips_CPUInfo.tcontrollertype;
+  s: string;
+
+  function getCPUType(cpu: Mips_CPUInfo.tcputype): string;
+  begin
+    Str(cpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+  function getFPUType(cpu: Mips_CPUInfo.tfputype): string;
+  begin
+    Str(cpu, Result);
+    Delete(Result, 1, 4);
+  end;
+
+begin
+  sl.Add('type');
+  sl.Add('  TMipsControllerDataList = array of array of String;');
+  sl.Add('');
+  sl.Add('const');
+  sl.Add('  MipsControllerDataList : TMipsControllerDataList = (');
+  sl.Add('  ('#39'controllertypestr'#39', '#39' controllerunitstr'#39', '#39' cputype'#39', '#39' fputype'#39', '#39' flashbase'#39',');
+  sl.Add('   '#39'flashsize'#39', '#39' srambase'#39', '#39' sramsize'#39', '#39' eeprombase'#39', '#39' eepromsize'#39', '#39' bootbase'#39', '#39' bootsize'#39'),');
+
+  for cdt in Mips_CPUInfo.tcontrollertype do begin
+    s := '  ('#39 + Mips_CPUInfo.embedded_controllers[cdt].controllertypestr +
+      #39', ' + #39 + Mips_CPUInfo.embedded_controllers[cdt].controllerunitstr +
+      #39', ' + #39 + getCPUType(Mips_CPUInfo.embedded_controllers[cdt].cputype) +
+      #39', ' + #39 + getFPUType(Mips_CPUInfo.embedded_controllers[cdt].fputype) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].flashbase) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].flashsize) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].srambase) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].sramsize) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].eeprombase) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].eepromsize) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].bootbase) +
+      #39', ' + #39 + IntToStr(Mips_CPUInfo.embedded_controllers[cdt].bootsize) +
+      #39'),';
+    sl.Add(s);
+  end;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s + ');';
+end;
+
 // Ebedded Systeme:
 // arm, avr, mipsel(mips), i386, x86_64, i8086, m68k, risc32, risc64, xtensa
 
@@ -308,20 +580,30 @@ begin
   SynEdit1.Lines.Add('');
   GenerateARM(SynEdit1.Lines);
   SynEdit1.Lines.Add('');
+  GenerateXTensa(SynEdit1.Lines);
+  SynEdit1.Lines.Add('');
+  GenerateRisc32(SynEdit1.Lines);
+  SynEdit1.Lines.Add('');
+  GenerateMips(SynEdit1.Lines);
+  SynEdit1.Lines.Add('');
+
   GenerateAVR_Table(SynEdit1.Lines);
   SynEdit1.Lines.Add('');
   GenerateARM_Table(SynEdit1.Lines);
-
-  //  FindSubArch('avr', SynEdit1.Lines);
-  //  FindSubArch('arm', SynEdit1.Lines);
-
   SynEdit1.Lines.Add('');
+  GenerateXTensa_Table(SynEdit1.Lines);
+  SynEdit1.Lines.Add('');
+  GenerateRisc32_Table(SynEdit1.Lines);
+  SynEdit1.Lines.Add('');
+  GenerateMips_Table(SynEdit1.Lines);
+  SynEdit1.Lines.Add('');
+
   SynEdit1.Lines.Add('implementation');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-  SynEdit1.Lines.SaveToFile('../../embedded_gui_subarch_list.pas');
+  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
 end;
 
 end.

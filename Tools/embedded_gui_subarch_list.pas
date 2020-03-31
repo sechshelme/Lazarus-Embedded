@@ -115,6 +115,78 @@ const
   );
 
 
+const
+  XTEensa_SubArch_List = 'none,lx106,lx6';
+
+  XTEensa_List: array of string = (
+
+    // none
+    '',
+
+    // lx106
+    'ESP8266',
+
+    // lx6
+    'ESP32,ESP32_D0WD,ESP32_D2WD,ESP32_S0WD'
+  );
+
+
+const
+  Riscv32_SubArch_List = 'none,rv32imac,rv32ima,rv32im,rv32i';
+
+  Riscv32_List: array of string = (
+
+    // none
+    '',
+
+    // rv32imac
+    'FE310G000,FE310G002,HIFIVE1,HIFIVE1REVB,REDFIVE,REDFIVETHING,GD32VF103C4,GD32VF103C6,GD32VF103C8,GD32VF103CB,GD32VF103R4,GD32VF103R6,GD32VF103R8,GD32VF103RB,GD32VF103T4,GD32VF103T6,GD32VF103T8,GD32VF103TB,GD32VF103V8,GD32VF103VB',
+
+    // rv32ima
+    '',
+
+    // rv32im
+    '',
+
+    // rv32i
+    ''
+  );
+
+
+const
+  Mips_SubArch_List = 'none,mips1,mips2,mips3,mips4,mips5,mips32,mips32r2,pic32mx';
+
+  Mips_List: array of string = (
+
+    // none
+    '',
+
+    // mips1
+    '',
+
+    // mips2
+    '',
+
+    // mips3
+    '',
+
+    // mips4
+    '',
+
+    // mips5
+    '',
+
+    // mips32
+    '',
+
+    // mips32r2
+    '',
+
+    // pic32mx
+    'PIC32MX110F016B,PIC32MX110F016C,PIC32MX110F016D,PIC32MX120F032B,PIC32MX120F032C,PIC32MX120F032D,PIC32MX130F064B,PIC32MX130F064C,PIC32MX130F064D,PIC32MX150F128B,PIC32MX150F128C,PIC32MX150F128D,PIC32MX210F016B,PIC32MX210F016C,PIC32MX210F016D,PIC32MX220F032B,PIC32MX220F032C,PIC32MX220F032D,PIC32MX230F064B,PIC32MX230F064C,PIC32MX230F064D,PIC32MX250F128B,PIC32MX250F128C,PIC32MX250F128D,PIC32MX775F256H,PIC32MX775F256L,PIC32MX775F512H,PIC32MX775F512L,PIC32MX795F512H,PIC32MX795F512L'
+  );
+
+
 type
   TAVRControllerDataList = array of array of String;
 
@@ -718,6 +790,88 @@ const
   ('NRF52840_XXAA', 'NRF52', 'armv7em', 'soft', '0', '524288', '536870912', '65536', '0', '0', '0', '0'),
   ('RASPI2', 'RASPI2', 'armv7a', 'vfpv4', '0', '0', '32768', '268435456', '0', '0', '0', '0'),
   ('THUMB2_BARE', 'THUMB2_BARE', 'armv7m', 'soft', '0', '8192', '536870912', '1024', '0', '0', '0', '0'));
+
+type
+  TXTensaControllerDataList = array of array of String;
+
+const
+  XTensaControllerDataList : TXTensaControllerDataList = (
+  ('controllertypestr', ' controllerunitstr', ' cputype', ' fputype', ' abi', ' flashbase',
+   'flashsize', ' srambase', ' sramsize', ' eeprombase', ' eepromsize', ' bootbase', ' bootsize'),
+  ('', '', 'none', 'none', 'abi', '0', '0', '0', '0', '0', '0', '0', '0'),
+  ('ESP8266', 'ESP8266', 'lx106', 'none', 'abi', '0', '0', '0', '0', '0', '0', '0', '0'),
+  ('ESP32', 'ESP32', 'lx6', 'none', 'abi', '0', '0', '0', '0', '0', '0', '0', '0'),
+  ('ESP32_D0WD', 'ESP32_D0WD', 'lx6', 'none', 'abi', '1073741824', '458752', '1074200576', '532480', '0', '0', '0', '0'),
+  ('ESP32_D2WD', 'ESP32_D2WD', 'lx6', 'none', 'abi', '1073741824', '458752', '1074200576', '532480', '0', '0', '0', '0'),
+  ('ESP32_S0WD', 'ESP32_S0WD', 'lx6', 'none', 'abi', '1073741824', '458752', '1074200576', '532480', '0', '0', '0', '0'));
+
+type
+  TRiscv32ControllerDataList = array of array of String;
+
+const
+  Riscv32ControllerDataList : TRiscv32ControllerDataList = (
+  ('controllertypestr', ' controllerunitstr', ' cputype', ' fputype', ' flashbase',
+   'flashsize', ' srambase', ' sramsize', ' eeprombase', ' eepromsize', ' bootbase', ' bootsize'),
+  ('', '', 'none', 'none', '0', '0', '0', '0', '0', '0', '0', '0'),
+  ('FE310G000', 'FE310G000', 'rv32imac', 'none', '541065216', '16777216', '2147483648', '16384', '0', '0', '0', '0'),
+  ('FE310G002', 'FE310G002', 'rv32imac', 'none', '536936448', '4194304', '2147483648', '16384', '0', '0', '0', '0'),
+  ('HIFIVE1', 'FE310G000', 'rv32imac', 'none', '541065216', '16777216', '2147483648', '16384', '0', '0', '0', '0'),
+  ('HIFIVE1REVB', 'FE310G002', 'rv32imac', 'none', '536936448', '4194304', '2147483648', '16384', '0', '0', '0', '0'),
+  ('REDFIVE', 'FE310G002', 'rv32imac', 'none', '536936448', '4194304', '2147483648', '16384', '0', '0', '0', '0'),
+  ('REDFIVETHING', 'FE310G002', 'rv32imac', 'none', '536936448', '37748736', '2147483648', '16384', '0', '0', '0', '0'),
+  ('GD32VF103C4', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '16384', '536870912', '6144', '0', '0', '0', '0'),
+  ('GD32VF103C6', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '32768', '536870912', '10240', '0', '0', '0', '0'),
+  ('GD32VF103C8', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '65536', '536870912', '20480', '0', '0', '0', '0'),
+  ('GD32VF103CB', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '131072', '536870912', '32768', '0', '0', '0', '0'),
+  ('GD32VF103R4', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '16384', '536870912', '6144', '0', '0', '0', '0'),
+  ('GD32VF103R6', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '32768', '536870912', '10240', '0', '0', '0', '0'),
+  ('GD32VF103R8', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '65536', '536870912', '20480', '0', '0', '0', '0'),
+  ('GD32VF103RB', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '131072', '536870912', '32768', '0', '0', '0', '0'),
+  ('GD32VF103T4', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '16384', '536870912', '6144', '0', '0', '0', '0'),
+  ('GD32VF103T6', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '32768', '536870912', '10240', '0', '0', '0', '0'),
+  ('GD32VF103T8', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '65536', '536870912', '20480', '0', '0', '0', '0'),
+  ('GD32VF103TB', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '131072', '536870912', '32768', '0', '0', '0', '0'),
+  ('GD32VF103V8', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '65536', '536870912', '20480', '0', '0', '0', '0'),
+  ('GD32VF103VB', 'GD32VF103XX', 'rv32imac', 'none', '134217728', '131072', '536870912', '32768', '0', '0', '0', '0'));
+
+type
+  TMipsControllerDataList = array of array of String;
+
+const
+  MipsControllerDataList : TMipsControllerDataList = (
+  ('controllertypestr', ' controllerunitstr', ' cputype', ' fputype', ' flashbase',
+   'flashsize', ' srambase', ' sramsize', ' eeprombase', ' eepromsize', ' bootbase', ' bootsize'),
+  ('', '', 'none', 'none', '0', '0', '0', '0', '0', '0', '0', '0'),
+  ('PIC32MX110F016B', 'PIC32MX1xxFxxxB', 'pic32mx', 'soft', '2634022912', '16384', '2684354560', '4096', '0', '0', '3217031168', '3055'),
+  ('PIC32MX110F016C', 'PIC32MX1xxFxxxC', 'pic32mx', 'soft', '2634022912', '16384', '2684354560', '4096', '0', '0', '3217031168', '3055'),
+  ('PIC32MX110F016D', 'PIC32MX1xxFxxxD', 'pic32mx', 'soft', '2634022912', '16384', '2684354560', '4096', '0', '0', '3217031168', '3055'),
+  ('PIC32MX120F032B', 'PIC32MX1xxFxxxB', 'pic32mx', 'soft', '2634022912', '32768', '2684354560', '8192', '0', '0', '3217031168', '3055'),
+  ('PIC32MX120F032C', 'PIC32MX1xxFxxxC', 'pic32mx', 'soft', '2634022912', '32768', '2684354560', '8192', '0', '0', '3217031168', '3055'),
+  ('PIC32MX120F032D', 'PIC32MX1xxFxxxD', 'pic32mx', 'soft', '2634022912', '32768', '2684354560', '8192', '0', '0', '3217031168', '3055'),
+  ('PIC32MX130F064B', 'PIC32MX1xxFxxxB', 'pic32mx', 'soft', '2634022912', '65536', '2684354560', '16384', '0', '0', '3217031168', '3055'),
+  ('PIC32MX130F064C', 'PIC32MX1xxFxxxC', 'pic32mx', 'soft', '2634022912', '65536', '2684354560', '16384', '0', '0', '3217031168', '3055'),
+  ('PIC32MX130F064D', 'PIC32MX1xxFxxxD', 'pic32mx', 'soft', '2634022912', '65536', '2684354560', '16384', '0', '0', '3217031168', '3055'),
+  ('PIC32MX150F128B', 'PIC32MX1xxFxxxB', 'pic32mx', 'soft', '2634022912', '131072', '2684354560', '32768', '0', '0', '3217031168', '3055'),
+  ('PIC32MX150F128C', 'PIC32MX1xxFxxxC', 'pic32mx', 'soft', '2634022912', '131072', '2684354560', '32768', '0', '0', '3217031168', '3055'),
+  ('PIC32MX150F128D', 'PIC32MX1xxFxxxD', 'pic32mx', 'soft', '2634022912', '131072', '2684354560', '32768', '0', '0', '3217031168', '3055'),
+  ('PIC32MX210F016B', 'PIC32MX2xxFxxxB', 'pic32mx', 'soft', '2634022912', '16384', '2684354560', '4096', '0', '0', '3217031168', '3055'),
+  ('PIC32MX210F016C', 'PIC32MX2xxFxxxC', 'pic32mx', 'soft', '2634022912', '16384', '2684354560', '4096', '0', '0', '3217031168', '3055'),
+  ('PIC32MX210F016D', 'PIC32MX2xxFxxxD', 'pic32mx', 'soft', '2634022912', '16384', '2684354560', '4096', '0', '0', '3217031168', '3055'),
+  ('PIC32MX220F032B', 'PIC32MX2xxFxxxB', 'pic32mx', 'soft', '2634022912', '32768', '2684354560', '8192', '0', '0', '3217031168', '3055'),
+  ('PIC32MX220F032C', 'PIC32MX2xxFxxxC', 'pic32mx', 'soft', '2634022912', '32768', '2684354560', '8192', '0', '0', '3217031168', '3055'),
+  ('PIC32MX220F032D', 'PIC32MX2xxFxxxD', 'pic32mx', 'soft', '2634022912', '32768', '2684354560', '8192', '0', '0', '3217031168', '3055'),
+  ('PIC32MX230F064B', 'PIC32MX2xxFxxxB', 'pic32mx', 'soft', '2634022912', '65536', '2684354560', '16384', '0', '0', '3217031168', '3055'),
+  ('PIC32MX230F064C', 'PIC32MX2xxFxxxC', 'pic32mx', 'soft', '2634022912', '65536', '2684354560', '16384', '0', '0', '3217031168', '3055'),
+  ('PIC32MX230F064D', 'PIC32MX2xxFxxxD', 'pic32mx', 'soft', '2634022912', '65536', '2684354560', '16384', '0', '0', '3217031168', '3055'),
+  ('PIC32MX250F128B', 'PIC32MX2xxFxxxB', 'pic32mx', 'soft', '2634022912', '131072', '2684354560', '32768', '0', '0', '3217031168', '3055'),
+  ('PIC32MX250F128C', 'PIC32MX2xxFxxxC', 'pic32mx', 'soft', '2634022912', '131072', '2147483648', '32768', '0', '0', '3217031168', '3055'),
+  ('PIC32MX250F128D', 'PIC32MX2xxFxxxD', 'pic32mx', 'soft', '2634022912', '131072', '2684354560', '32768', '0', '0', '3217031168', '3055'),
+  ('PIC32MX775F256H', 'PIC32MX7x5FxxxH', 'pic32mx', 'soft', '2634022912', '262144', '2684354560', '65536', '0', '0', '3217031168', '12271'),
+  ('PIC32MX775F256L', 'PIC32MX7x5FxxxL', 'pic32mx', 'soft', '2634022912', '262144', '2684354560', '65536', '0', '0', '3217031168', '12271'),
+  ('PIC32MX775F512H', 'PIC32MX7x5FxxxH', 'pic32mx', 'soft', '2634022912', '524288', '2684354560', '65536', '0', '0', '3217031168', '12271'),
+  ('PIC32MX775F512L', 'PIC32MX7x5FxxxL', 'pic32mx', 'soft', '2634022912', '524288', '2684354560', '65536', '0', '0', '3217031168', '12271'),
+  ('PIC32MX795F512H', 'PIC32MX7x5FxxxH', 'pic32mx', 'soft', '2634022912', '524288', '2684354560', '131072', '0', '0', '3217031168', '12271'),
+  ('PIC32MX795F512L', 'PIC32MX7x5FxxxL', 'pic32mx', 'soft', '2634022912', '524288', '2684354560', '131072', '0', '0', '3217031168', '12271'));
 
 implementation
 

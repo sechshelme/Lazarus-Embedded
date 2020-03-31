@@ -34,7 +34,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="14">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -61,6 +61,44 @@
         <Filename Value="src_mod.sh"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="src_mod/globtype.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="src_mod/mips_cpuinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="mips_CPUInfo"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="src_mod/cutils.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="src_mod/xtensa_cpuinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="xtensa_CPUInfo"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="src_mod/systems.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="src_mod/constexp.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="src_mod/fpcdefs.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="src_mod/riscv32_cpuinfo.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="src_mod/systems.inc"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -69,7 +107,7 @@
       <Filename Value="project1"/>
     </Target>
     <SearchPaths>
-      <IncludeFiles Value="$(ProjOutDir)"/>
+      <IncludeFiles Value="$(ProjOutDir);src_mod"/>
       <OtherUnitFiles Value="src_mod"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>

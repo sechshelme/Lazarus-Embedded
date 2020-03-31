@@ -206,6 +206,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
+    OnClick = BitBtn1Click
     TabOrder = 5
   end
   object ARM_FlashBase_ComboBox: TComboBox

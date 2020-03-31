@@ -38,7 +38,7 @@ implementation
 { TForm1 }
 
 const
-  Item = 'AVR,ARM';
+  Item = 'AVR,ARM,Mips,Riscv32,XTensa';
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
@@ -55,6 +55,18 @@ begin
     1:
     begin
       Load(ARMControllerDataList);
+    end;
+    2:
+    begin
+      Load(MipsControllerDataList);
+    end;
+    3:
+    begin
+      Load(Riscv32ControllerDataList);
+    end;
+    4:
+    begin
+      Load(XTensaControllerDataList);
     end;
   end;
 end;

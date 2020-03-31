@@ -1,3 +1,4 @@
+{$define MIPSEL}
 {
     Copyright (c) 1998-2002 by the Free Pascal development team
 
