@@ -21,7 +21,7 @@ var
   procedure Timer2_Interrupt; public Name 'TIM2_global_interrupt'; interrupt;
   begin
     TIMer2.SR := TIMer2.SR and not TIM_SR_CC1IF; // clear CC1IF
-    LedC[13] := not LedC[13];   // LED PC13 umschalten
+    LedC[13] := not LedC[13];   // LED PC13  umschalten
   end;
 
 begin

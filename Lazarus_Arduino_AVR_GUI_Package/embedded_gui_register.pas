@@ -22,6 +22,8 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Options_Form,
   Embedded_GUI_ARM_Common, Embedded_GUI_ARM_Project_Options_Form,
+  Embedded_GUI_CPU_Info_Form,
+  Embedded_GUI_SubArch_List,
   Embedded_GUI_Serial_Monitor;
 
 var
@@ -99,6 +101,16 @@ begin
   ProjOptiForm.Free;
 end;
 
+procedure ShowCPU_Info(Sender: TObject);
+var
+  Form: TCPU_InfoForm;
+begin
+  Form := TCPU_InfoForm.Create(nil);
+  Form.Load(AVRControllerDataList);        // Lazarus auslesen ??????????
+  Form.ShowModal;
+  Form.Free;
+end;
+
 procedure ShowSerialMonitor(Sender: TObject);
 var
   LazProject: TLazProject;
@@ -126,6 +138,7 @@ procedure Register;
 const
   AVR_Title = 'AVR-Embedded-Optionen (Arduino)';
   ARM_Title = 'ARM-Embedded-Optionen (STM32)';
+  Embedded_Titel = 'Embedded-CPU-Info';
 
 begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
@@ -143,8 +156,8 @@ begin
 
   // Menu
   RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...', nil, @ShowAVROptionsDialog);
-
   RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, Embedded_Titel, Embedded_Titel + '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
 
 //  RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...', nil, @ShowSerialMonitor);
 end;

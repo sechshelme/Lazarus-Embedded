@@ -6,6 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, StdCtrls,
+  Grids,
 
   BaseIDEIntf, LazConfigStorage,
 
@@ -19,9 +20,13 @@ type
 
   TCPU_InfoForm = class(TForm)
     BitBtn_Ok: TBitBtn;
-    Memo1: TMemo;
+    ComboBox1: TComboBox;
+    StringGrid1: TStringGrid;
+    procedure ComboBox1Select(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure StringGrid1CompareCells(Sender: TObject; ACol, ARow, BCol,
+      BRow: Integer; var Result: integer);
   private
 
   public
@@ -47,7 +52,45 @@ begin
   Width := StrToInt(Cfg.GetValue(Key_CPU_Info_Width, '500'));
   Height := StrToInt(Cfg.GetValue(Key_CPU_Info_Height, '500'));
   Cfg.Free;
+
+  StringGrid1.FixedCols := 0;
+  StringGrid1.DoubleBuffered := True;
+  StringGrid1.TitleFont.Style := [fsBold];
+  StringGrid1.AlternateColor := clMoneyGreen;
+  StringGrid1.ColumnClickSorts := True;
+
+  ComboBox1.Text := 'AVR';
+  ComboBox1.Items.AddCommaText(Embedded_Systems);
+//  Load(AVRControllerDataList);
 end;
+
+procedure TCPU_InfoForm.StringGrid1CompareCells(Sender: TObject; ACol, ARow,
+  BCol, BRow: Integer; var Result: integer);
+var
+  i0, i1: integer;
+  begin
+    if TryStrToInt(StringGrid1.Cells[ACol, ARow], i0) and
+      TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then
+    begin
+      Result := i0 - i1;
+    end
+    else
+    begin
+      Result := CompareStr(StringGrid1.Cells[ACol, ARow], StringGrid1.Cells[BCol, BRow]);
+    end;
+    if Result = 0 then
+    begin
+      Result := CompareStr(StringGrid1.Cells[2, ARow], StringGrid1.Cells[2, BRow]);
+      if Result = 0 then
+      begin
+        Result := CompareStr(StringGrid1.Cells[0, ARow], StringGrid1.Cells[0, BRow]);
+      end;
+    end;
+    if StringGrid1.SortOrder = soDescending then
+    begin
+      Result *= -1;
+    end;
+  end;
 
 procedure TCPU_InfoForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
@@ -61,18 +104,46 @@ begin
   Cfg.Free;
 end;
 
+procedure TCPU_InfoForm.ComboBox1Select(Sender: TObject);
+begin
+  case ComboBox1.ItemIndex of
+    0:
+    begin
+      Load(AVRControllerDataList);
+    end;
+    1:
+    begin
+      Load(ARMControllerDataList);
+    end;
+    2:
+    begin
+      Load(MipsControllerDataList);
+    end;
+    3:
+    begin
+      Load(Riscv32ControllerDataList);
+    end;
+    4:
+    begin
+      Load(XTensaControllerDataList);
+    end;
+  end;
+end;
+
 procedure TCPU_InfoForm.Load(var Table: array of TStringArray);
 var
   x, y: integer;
-  s: string;
 begin
-  for y := 0 to Length(Table) - 1 do begin
-    s := '';
-    for x := 0 to Length(Table[y]) - 1 do begin
-      s += Format('%20s', [Table[y, x]]);
+  StringGrid1.RowCount := Length(Table);
+  StringGrid1.ColCount := Length(Table[0]);
+  for y := 0 to Length(Table) - 1 do
+  begin
+    for x := 0 to Length(Table[y]) - 1 do
+    begin
+      StringGrid1.Cells[x, y] := Table[y, x];
     end;
-    Memo1.Lines.Add(s);
   end;
+  StringGrid1.AutoSizeColumns;
 end;
 
 end.

@@ -6,6 +6,8 @@ const
   UARTBaudRates =
     '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
 
+  Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
+
   Embedded_Options_File = 'embedded_gui_options.xml';
 
   Key_Avrdude_Path = 'averdude_pfad/value';

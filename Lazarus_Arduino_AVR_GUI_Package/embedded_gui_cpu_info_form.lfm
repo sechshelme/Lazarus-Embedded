@@ -1,19 +1,20 @@
 object CPU_InfoForm: TCPU_InfoForm
   Left = 533
-  Height = 194
+  Height = 282
   Top = 130
-  Width = 322
+  Width = 505
+  Anchors = [akTop, akLeft, akBottom]
   Caption = 'Embedde CPU Info'
-  ClientHeight = 194
-  ClientWidth = 322
+  ClientHeight = 282
+  ClientWidth = 505
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object BitBtn_Ok: TBitBtn
-    Left = 218
+    Left = 401
     Height = 30
-    Top = 154
+    Top = 242
     Width = 96
     Anchors = [akRight, akBottom]
     Default = True
@@ -22,19 +23,24 @@ object CPU_InfoForm: TCPU_InfoForm
     ModalResult = 1
     TabOrder = 0
   end
-  object Memo1: TMemo
+  object StringGrid1: TStringGrid
     Left = 0
-    Height = 140
+    Height = 229
     Top = 0
-    Width = 322
+    Width = 505
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
-    Font.Height = -13
-    Font.Name = 'Ubuntu Mono'
-    ParentFont = False
-    ReadOnly = True
-    ScrollBars = ssAutoBoth
     TabOrder = 1
-    WordWrap = False
+    OnCompareCells = StringGrid1CompareCells
+  end
+  object ComboBox1: TComboBox
+    Left = 16
+    Height = 28
+    Top = 242
+    Width = 120
+    Anchors = [akLeft, akBottom]
+    ItemHeight = 0
+    OnSelect = ComboBox1Select
+    TabOrder = 2
   end
 end
