@@ -46,6 +46,7 @@ procedure TARMProjectTemplatesForm.FormCreate(Sender: TObject);
 var
   Cfg: TConfigStorage;
 begin
+  Caption:=Title + 'ARM Vorlagen';
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Left := StrToInt(Cfg.GetValue(Key_ARM_Templates_Left, '90'));
   Top := StrToInt(Cfg.GetValue(Key_ARM_Templates_Top, '60'));

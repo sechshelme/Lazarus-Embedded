@@ -1,7 +1,7 @@
 object CPU_InfoForm: TCPU_InfoForm
-  Left = 533
+  Left = 852
   Height = 282
-  Top = 130
+  Top = 150
   Width = 505
   Anchors = [akTop, akLeft, akBottom]
   Caption = 'Embedde CPU Info'
@@ -42,5 +42,15 @@ object CPU_InfoForm: TCPU_InfoForm
     ItemHeight = 0
     OnSelect = ComboBox1Select
     TabOrder = 2
+  end
+  object ToggleBox1: TToggleBox
+    Left = 160
+    Height = 30
+    Top = 242
+    Width = 75
+    Anchors = [akLeft, akBottom]
+    Caption = 'Hex'
+    OnChange = ToggleBox1Change
+    TabOrder = 3
   end
 end

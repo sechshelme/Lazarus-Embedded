@@ -16,6 +16,7 @@ uses
 
   // Embedded ( Eigene Units )
   Embedded_GUI_IDE_Options,
+  Embedded_GUI_Common,
   Embedded_GUI_ARM_Common,
   Embedded_GUI_ARM_Project_Options_Form;
 
@@ -42,18 +43,18 @@ implementation
 constructor TProjectARMApp.Create;
 begin
   inherited Create;
-  Name := 'ARM-Embedded-Project (STM32)';
+  Name := Title + 'ARM-Project (STM32)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
 end;
 
 function TProjectARMApp.GetLocalizedName: string;
 begin
-  Result := 'ARM-Embedded-Project (STM32)';
+  Result := Title + 'ARM-Project (STM32)';
 end;
 
 function TProjectARMApp.GetLocalizedDescription: string;
 begin
-  Result := 'Erstellt ein ARM-Embedded-Project (STM32)';
+  Result := Title + 'Erstellt ein ARM-Project (STM32)';
 end;
 
 function TProjectARMApp.DoInitDescriptor: TModalResult;

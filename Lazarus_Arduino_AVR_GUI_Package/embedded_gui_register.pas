@@ -136,9 +136,9 @@ end;
 procedure Register;
 
 const
-  AVR_Title = 'AVR-Embedded-Optionen (Arduino)';
-  ARM_Title = 'ARM-Embedded-Optionen (STM32)';
-  Embedded_Titel = 'Embedded-CPU-Info';
+  AVR_Title = Title + 'AVR-Optionen (Arduino)';
+  ARM_Title = Title + 'ARM-Optionen (STM32)';
+  Embedded_Titel = Title + 'CPU-Info';
 
 begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
@@ -159,7 +159,7 @@ begin
   RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
   RegisterIdeMenuCommand(mnuProject, Embedded_Titel, Embedded_Titel + '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
 
-//  RegisterIdeMenuCommand(mnuProject, 'Serial-Monitor', 'Serial-Monitor...', nil, @ShowSerialMonitor);
+//  RegisterIdeMenuCommand(mnuProject, Title + 'Serial-Monitor', Title + 'Serial-Monitor...', nil, @ShowSerialMonitor);
 end;
 
 

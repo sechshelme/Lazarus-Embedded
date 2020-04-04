@@ -82,6 +82,7 @@ procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
 var
   Cfg: TConfigStorage;
 begin
+  Caption := Title + 'AVR Project Options';
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Left := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Left, '100'));
   Top := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Top, '50'));

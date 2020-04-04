@@ -16,6 +16,7 @@ uses
 
   // Embedded ( Eigene Units )
   Embedded_GUI_IDE_Options,
+  Embedded_GUI_Common,
   Embedded_GUI_AVR_Common,
   Embedded_GUI_AVR_Project_Options_Form;
 
@@ -39,18 +40,18 @@ implementation
 constructor TProjectAVRApp.Create;
 begin
   inherited Create;
-  Name := 'AVR-Embedded-Project (Arduino)';
+  Name := Title + 'AVR-Project (Arduino)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
 end;
 
 function TProjectAVRApp.GetLocalizedName: string;
 begin
-  Result := 'AVR-Embedded-Project (Arduino)';
+  Result := Title + 'AVR-Project (Arduino)';
 end;
 
 function TProjectAVRApp.GetLocalizedDescription: string;
 begin
-  Result := 'Erstellt ein AVR-Embedded-Project (Arduino)';
+  Result := Title + 'Erstellt ein AVR-Project (Arduino)';
 end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;

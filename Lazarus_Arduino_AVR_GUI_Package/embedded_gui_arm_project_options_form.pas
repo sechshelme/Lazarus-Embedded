@@ -81,6 +81,7 @@ procedure TARM_Project_Options_Form.FormClose(Sender: TObject;
 var
   Cfg: TConfigStorage;
 begin
+  Caption := Title + 'ARM Project Options';
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Left, IntToStr(Left), '100');
   Cfg.SetDeleteValue(Key_ARM_ProjectOptions_Top, IntToStr(Top), '50');

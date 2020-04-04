@@ -7,8 +7,7 @@ uses
   cthreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, unit1, embedded_gui_subarch_list
-  { you can add units after this };
+  Forms, unit1, embedded_gui_subarch_list;
 
 {$R *.res}
 

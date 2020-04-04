@@ -16,11 +16,13 @@ type
     Button1: TButton;
     ComboBox1: TComboBox;
     StringGrid1: TStringGrid;
+    ToggleBox1: TToggleBox;
     procedure Button1Click(Sender: TObject);
     procedure ComboBox1Select(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid1CompareCells(Sender: TObject;
       ACol, ARow, BCol, BRow: integer; var Result: integer);
+    procedure ToggleBox1Change(Sender: TObject);
   private
 
   public
@@ -48,24 +50,19 @@ end;
 procedure TForm1.ComboBox1Select(Sender: TObject);
 begin
   case ComboBox1.ItemIndex of
-    0:
-    begin
+    0: begin
       Load(AVRControllerDataList);
     end;
-    1:
-    begin
+    1: begin
       Load(ARMControllerDataList);
     end;
-    2:
-    begin
+    2: begin
       Load(MipsControllerDataList);
     end;
-    3:
-    begin
+    3: begin
       Load(Riscv32ControllerDataList);
     end;
-    4:
-    begin
+    4: begin
       Load(XTensaControllerDataList);
     end;
   end;
@@ -81,7 +78,9 @@ begin
 
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Item);
-  Load(AVRControllerDataList);
+  ComboBox1.ItemIndex := 1;
+  ComboBox1Select(Sender);
+  //  Load(AVRControllerDataList);
 end;
 
 procedure TForm1.StringGrid1CompareCells(Sender: TObject;
@@ -91,39 +90,40 @@ var
 
 begin
   if TryStrToInt(StringGrid1.Cells[ACol, ARow], i0) and
-    TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then
-  begin
+    TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then begin
     Result := i0 - i1;
-  end
-  else
-  begin
+  end else begin
     Result := CompareStr(StringGrid1.Cells[ACol, ARow], StringGrid1.Cells[BCol, BRow]);
   end;
-  if Result = 0 then
-  begin
+  if Result = 0 then begin
     Result := CompareStr(StringGrid1.Cells[2, ARow], StringGrid1.Cells[2, BRow]);
-    if Result = 0 then
-    begin
+    if Result = 0 then begin
       Result := CompareStr(StringGrid1.Cells[0, ARow], StringGrid1.Cells[0, BRow]);
     end;
   end;
-  if StringGrid1.SortOrder = soDescending then
-  begin
+  if StringGrid1.SortOrder = soDescending then begin
     Result *= -1;
   end;
 end;
 
+procedure TForm1.ToggleBox1Change(Sender: TObject);
+begin
+  ComboBox1Select(Sender);
+end;
+
 procedure TForm1.Load(Table: array of TStringArray);
 var
-  x, y: integer;
+  x, y, i: integer;
 begin
   StringGrid1.RowCount := Length(Table);
   StringGrid1.ColCount := Length(Table[0]);
-  for y := 0 to Length(Table) - 1 do
-  begin
-    for x := 0 to Length(Table[y]) - 1 do
-    begin
-      StringGrid1.Cells[x, y] := Table[y, x];
+  for y := 0 to Length(Table) - 1 do begin
+    for x := 0 to Length(Table[y]) - 1 do begin
+      if ToggleBox1.Checked and TryStrToInt(Table[y, x], i) then begin
+        StringGrid1.Cells[x, y] := '$' + Table[y, x].ToInteger.ToHexString;
+      end else begin
+        StringGrid1.Cells[x, y] := Table[y, x];
+      end;
     end;
   end;
   StringGrid1.AutoSizeColumns;
