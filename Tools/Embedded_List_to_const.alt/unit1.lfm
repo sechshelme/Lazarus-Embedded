@@ -1,18 +1,28 @@
 object Form1: TForm1
-  Left = 415
-  Height = 370
-  Top = 211
-  Width = 839
+  Left = 1129
+  Height = 999
+  Top = 323
+  Width = 1300
   Caption = 'Form1'
-  ClientHeight = 370
-  ClientWidth = 839
+  ClientHeight = 999
+  ClientWidth = 1300
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
+  object Button1: TButton
+    Left = 1212
+    Height = 25
+    Top = 959
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Generate'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 319
+    Height = 945
     Top = 0
-    Width = 839
+    Width = 1300
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
@@ -21,7 +31,7 @@ object Form1: TForm1
     Font.Quality = fqNonAntialiased
     ParentColor = False
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 1
     Gutter.Width = 57
     Gutter.MouseActions = <>
     RightGutter.Width = 0
@@ -509,51 +519,36 @@ object Form1: TForm1
       end
     end
   end
-  object BitBtn1: TBitBtn
-    Left = 728
-    Height = 30
-    Top = 327
-    Width = 94
-    Anchors = [akRight, akBottom]
-    DefaultCaption = True
-    Kind = bkClose
-    ModalResult = 11
-    TabOrder = 1
-  end
-  object BitBtn2: TBitBtn
-    Left = 264
-    Height = 30
-    Top = 327
-    Width = 120
-    Anchors = [akLeft, akBottom]
-    Caption = 'Generte'
-    Kind = bkRetry
-    ModalResult = 4
-    OnClick = BitBtn2Click
-    TabOrder = 2
-  end
   object DirectoryEdit1: TDirectoryEdit
-    Left = 16
+    Left = 56
     Height = 28
-    Top = 327
-    Width = 240
+    Top = 949
+    Width = 464
     Directory = 'DirectoryEdit1'
     ShowHidden = False
     ButtonWidth = 23
     NumGlyphs = 1
-    Anchors = [akLeft, akBottom]
+    Anchors = [akLeft, akRight, akBottom]
     MaxLength = 0
-    TabOrder = 3
+    TabOrder = 2
     Text = 'DirectoryEdit1'
+  end
+  object Button2: TButton
+    Left = 579
+    Height = 25
+    Top = 949
+    Width = 117
+    Anchors = [akRight, akBottom]
+    Caption = 'Generate Unit'
+    OnClick = Button2Click
+    TabOrder = 3
   end
   object SynPasSyn1: TSynPasSyn
     Enabled = False
-    CommentAttri.Foreground = clGray
-    StringAttri.Foreground = clRed
     CompilerMode = pcmDelphi
     NestedComments = False
     TypeHelpers = True
-    Left = 374
-    Top = 57
+    Left = 98
+    Top = 536
   end
 end
