@@ -64,7 +64,7 @@ begin
 
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Embedded_Systems);
-  ComboBox1.ItemIndex:=1;
+//  ComboBox1.ItemIndex:=1;
   ComboBox1Select(Sender);
 //  Load(AVRControllerDataList);
 end;

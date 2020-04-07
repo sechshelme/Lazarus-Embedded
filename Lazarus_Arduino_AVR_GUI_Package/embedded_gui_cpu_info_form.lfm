@@ -1,7 +1,7 @@
 object CPU_InfoForm: TCPU_InfoForm
-  Left = 852
+  Left = 1515
   Height = 282
-  Top = 150
+  Top = 53
   Width = 505
   Anchors = [akTop, akLeft, akBottom]
   Caption = 'Embedde CPU Info'

@@ -1,18 +1,18 @@
 object Form1: TForm1
   Left = 415
-  Height = 370
+  Height = 1099
   Top = 211
-  Width = 839
+  Width = 1550
   Caption = 'Form1'
-  ClientHeight = 370
-  ClientWidth = 839
+  ClientHeight = 1099
+  ClientWidth = 1550
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 319
+    Height = 1048
     Top = 0
-    Width = 839
+    Width = 1550
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
@@ -510,9 +510,9 @@ object Form1: TForm1
     end
   end
   object BitBtn1: TBitBtn
-    Left = 728
+    Left = 1439
     Height = 30
-    Top = 327
+    Top = 1056
     Width = 94
     Anchors = [akRight, akBottom]
     DefaultCaption = True
@@ -523,7 +523,7 @@ object Form1: TForm1
   object BitBtn2: TBitBtn
     Left = 264
     Height = 30
-    Top = 327
+    Top = 1056
     Width = 120
     Anchors = [akLeft, akBottom]
     Caption = 'Generte'
@@ -535,7 +535,7 @@ object Form1: TForm1
   object DirectoryEdit1: TDirectoryEdit
     Left = 16
     Height = 28
-    Top = 327
+    Top = 1056
     Width = 240
     Directory = 'DirectoryEdit1'
     ShowHidden = False

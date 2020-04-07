@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-//    Embedded_GUI_SubArch_List,
+  //    Embedded_GUI_SubArch_List,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
   Buttons, FileUtil, SynEdit, SynHighlighterPas;
 
@@ -24,6 +24,7 @@ type
   private
     function AddSubArch(sl: TStrings; cpu: string): TStringList;
     procedure AddCPUData(sl, SubArchList: TStrings; cpu: string);
+    procedure AddControllerDataList(sl: TStrings; cpu: string);
   public
 
   end;
@@ -60,20 +61,18 @@ begin
   source_SL.Free;
   p := Pos('cputypestr', s);
   if p > 0 then begin
-    repeat
-      Inc(p);
-    until s[p] = #39;
-    Inc(p);
     while s[p] <> ')' do begin
       Inc(p);
       if s[p] = #39 then begin
         Inc(p);
-        s1 := '';
-        repeat
-          s1 += s[p];
-          Inc(p);
-        until s[p] = #39;
-        Result.Add(s1);
+        if s[p] <> #39 then begin
+          s1 := '';
+          repeat
+            s1 += s[p];
+            Inc(p);
+          until s[p] = #39;
+          Result.Add(s1);
+        end;
       end;
     end;
 
@@ -82,7 +81,6 @@ begin
       sl.Add('const');
       sl.Add('  ' + sa[Length(sa) - 2] + '_SubArch_List = ');
       sl.Add('    '#39 + Result.CommaText + #39 + ';');
-      sl.Add('');
     end;
 
   end;
@@ -93,7 +91,7 @@ var
   source_SL: TStringList;
   SubArchData: array of TStringList;
   p, i: integer;
-  s, s1: string;
+  s, s1, s2: string;
   sa: TStringArray;
 begin
   if Pos('generic', cpu) > 0 then begin
@@ -116,6 +114,7 @@ begin
         Delete(s, 1, p + 15);
         p := 0;
         s1 := '';
+        s2 := '';
         repeat
           Inc(p);
         until s[p] = #39;
@@ -125,28 +124,106 @@ begin
             s1 += s[p];
             Inc(p);
           until s[p] = #39;
-          SubArchData[0].Add(s1);
+
+          p := Pos('cpu_', s);
+          Inc(p, 4);
+          repeat
+            s2 += s[p];
+            Inc(p);
+          until not (s[p] in ['0'..'9', 'a'..'z', '_']);
+
+          i := 0;
+
+          while UpCase(s2) <> UpCase(SubArchList[i]) do begin
+            Inc(i);
+          end;
+
+          SubArchData[i].Add(s1);
         end;
       end;
     end;
-  end;
 
-  sa := cpu.Split('/');
-  if Length(sa) >= 2 then begin
+    sa := cpu.Split('/');
+    if Length(sa) >= 2 then begin
+      sl.Add('');
+      sl.Add('  ' + sa[Length(sa) - 2] + '_List: array of string = (');
+    end;
+
+    for i := 0 to Length(SubArchData) - 1 do begin
+      sl.Add('');
+      sl.Add('    // ' + SubArchList[i]);
+      sl.Add('    ' + #39 + SubArchData[i].CommaText + #39 + ',');
+    end;
+    s := sl[sl.Count - 1];
+    Delete(s, Length(s), 1);
+    sl[sl.Count - 1] := s + ');';
     sl.Add('');
-    sl.Add('  ' + sa[Length(sa) - 2] + '_List: array of string = (');
   end;
-
-  for i := 0 to Length(SubArchData) - 1 do begin
-    sl.Add('    '+#39 + SubArchData[i].CommaText + #39 + ',');
-  end;
-  s := sl[sl.Count - 1];
-  Delete(s, Length(s), 1);
-  sl[sl.Count - 1] := s + ');';
 
   for i := 0 to Length(SubArchData) - 1 do begin
     SubArchData[i].Free;
   end;
+end;
+
+procedure TForm1.AddControllerDataList(sl: TStrings; cpu: string);
+var
+  source_SL, sl1: TStringList;
+  p, i: integer;
+  s, s1, s2: string;
+  sa: TStringArray;
+begin
+  if Pos('generic', cpu) > 0 then begin
+    Exit;
+  end;
+  source_SL := TStringList.Create;
+  sl1 := TStringList.Create;
+  source_SL.LoadFromFile(cpu);
+  s := source_SL.Text;
+  source_SL.Free;
+
+  sa := cpu.Split('/');
+  if Length(sa) >= 2 then begin
+    sl.Add('');
+    s1 := sa[Length(sa) - 2];
+    sl.Add('type');
+    sl.Add('  T' + s1 + 'ControllerDataList = array of array of String;');
+    sl.Add('');
+    sl.Add('const');
+    sl.Add('  ' + s1 + 'ControllerDataList : T' + s1 + 'ControllerDataList = (');
+  end;
+
+  p := Pos('embedded_controllers', s);
+  if p > 0 then begin
+    repeat
+      Inc(p);
+    until s[p] = '(';
+    repeat
+      Inc(p);
+    until s[p] = '(';
+
+    repeat
+      repeat
+        Inc(p);
+      until s[p] in ['0'..'9', 'a'..'z', '_'];
+      s1 := '';
+      repeat
+        s1 += s[p];
+        Inc(p);
+      until not (s[p] in ['0'..'9', 'a'..'z', '_']);
+      sl1.Add(s1);
+      repeat
+        Inc(p);
+      until s[p] in [';', ')'];
+      Write(s[p]);
+    until s[p] = ')';
+
+  end;
+
+  sl.Add('  ('#39 + sl1.CommaText + #39);
+  sl.Add('  );');
+
+
+  sl1.Free;
 end;
 
 procedure TForm1.BitBtn2Click(Sender: TObject);
@@ -169,6 +246,10 @@ begin
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
+
+  for i := 0 to CPU_SL.Count - 1 do begin
+    AddControllerDataList(SynEdit1.Lines, CPU_SL[i]);
+  end;
 
   for i := 0 to CPU_SL.Count - 1 do begin
     SubArchList := AddSubArch(SynEdit1.Lines, CPU_SL[i]);
