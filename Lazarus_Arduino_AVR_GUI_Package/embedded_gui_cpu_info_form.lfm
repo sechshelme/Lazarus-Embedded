@@ -4,7 +4,7 @@ object CPU_InfoForm: TCPU_InfoForm
   Top = 53
   Width = 505
   Anchors = [akTop, akLeft, akBottom]
-  Caption = 'Embedde CPU Info'
+  Caption = 'Embedded CPU Info'
   ClientHeight = 282
   ClientWidth = 505
   OnClose = FormClose

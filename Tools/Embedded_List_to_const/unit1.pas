@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  //    Embedded_GUI_SubArch_List,
+  Embedded_GUI_SubArch_List,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
   Buttons, FileUtil, SynEdit, SynHighlighterPas;
 
@@ -22,6 +22,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
+    function getKomma(sl: TStringList): string;
     function AddSubArch(sl: TStrings; cpu: string): TStringList;
     procedure AddCPUData(sl, SubArchList: TStrings; cpu: string);
     procedure AddControllerDataList(sl: TStrings; cpu: string);
@@ -42,6 +43,14 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   SynEdit1.ScrollBars := ssAutoBoth;
   DirectoryEdit1.Directory := '/home/tux/fpc.src/fpc';
+end;
+
+function TForm1.getKomma(sl: TStringList): string;
+begin
+  Result := sl.CommaText;
+  Result := StringReplace(Result, ',', #39', '#39, [rfReplaceAll, rfIgnoreCase]);
+  Result := StringReplace(Result, 'cpu_', '', [rfReplaceAll, rfIgnoreCase]);
+  Result := StringReplace(Result, 'fpu_', '', [rfReplaceAll, rfIgnoreCase]);
 end;
 
 function TForm1.AddSubArch(sl: TStrings; cpu: string): TStringList;
@@ -186,10 +195,10 @@ begin
     sl.Add('');
     s1 := sa[Length(sa) - 2];
     sl.Add('type');
-    sl.Add('  T' + s1 + 'ControllerDataList = array of array of String;');
+    sl.Add('  T' + s1 + '_ControllerDataList = array of array of String;');
     sl.Add('');
     sl.Add('const');
-    sl.Add('  ' + s1 + 'ControllerDataList : T' + s1 + 'ControllerDataList = (');
+    sl.Add('  ' + s1 + '_ControllerDataList : T' + s1 + '_ControllerDataList = (');
   end;
 
   p := Pos('embedded_controllers', s);
@@ -197,6 +206,7 @@ begin
     repeat
       Inc(p);
     until s[p] = '(';
+
     repeat
       Inc(p);
     until s[p] = '(';
@@ -204,24 +214,60 @@ begin
     repeat
       repeat
         Inc(p);
-      until s[p] in ['0'..'9', 'a'..'z', '_'];
+      until s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_'];
       s1 := '';
       repeat
         s1 += s[p];
         Inc(p);
-      until not (s[p] in ['0'..'9', 'a'..'z', '_']);
+      until not (s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
       sl1.Add(s1);
-      repeat
+      while not (s[p] in [';', ')']) do begin
         Inc(p);
-      until s[p] in [';', ')'];
-      Write(s[p]);
+      end;
     until s[p] = ')';
 
+    sl.Add('    ('#39 + getKomma(sl1) + #39'),');
+    sl1.Clear;
+    repeat
+      Inc(p);
+    until s[p] in [',', ')'];
+
+    if s[p] = ',' then begin
+      repeat
+        repeat
+          repeat
+            Inc(p);
+          until s[p] = ':';
+          repeat
+            Inc(p);
+          until s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$'];
+          s1 := '';
+          repeat
+            s1 += s[p];
+            Inc(p);
+          until not (s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$']);
+          sl1.Add(s1);
+
+          while not (s[p] in [';', ')']) do begin
+            Inc(p);
+          end;
+          while not (s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$', ')']) do begin
+            Inc(p);
+          end;
+        until s[p] = ')';
+
+        sl.Add('    ('#39 + getKomma(sl1) + #39'),');
+        sl1.Clear;
+        repeat
+          Inc(p);
+        until s[p] in [',', ')'];
+      until s[p] = ')';
+    end;
+
+    s := sl[sl.Count - 1];
+    Delete(s, Length(s), 1);
+    sl[sl.Count - 1] := s + ');';
   end;
-
-  sl.Add('  ('#39 + sl1.CommaText + #39);
-  sl.Add('  );');
-
 
   sl1.Free;
 end;
@@ -241,8 +287,7 @@ begin
   SynEdit1.Lines.Add('// Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und');
   SynEdit1.Lines.Add('// "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.');
   SynEdit1.Lines.Add('');
-  SynEdit1.Lines.Add('unit');
-  SynEdit1.Lines.Add('  Embedded_GUI_SubArch_List;');
+  SynEdit1.Lines.Add('unit Embedded_GUI_SubArch_List;');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
@@ -263,8 +308,8 @@ begin
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-  SynEdit1.Lines.SaveToFile('embedded_gui_subarch_list.pas');
-  // SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
+  //  SynEdit1.Lines.SaveToFile('embedded_gui_subarch_list.pas');
+  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
   CPU_SL.Free;
 end;
 

@@ -114,7 +114,7 @@ var
   Form: TCPU_InfoForm;
 begin
   Form := TCPU_InfoForm.Create(nil);
-  Form.Load(AVRControllerDataList);
+  Form.Load(AVR_ControllerDataList);
   Form.ShowModal;
   Form.Free;
 end;

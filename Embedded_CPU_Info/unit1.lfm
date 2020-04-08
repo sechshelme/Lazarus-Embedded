@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 902
+  Left = 1593
   Height = 410
-  Top = 346
+  Top = 954
   Width = 593
   Caption = 'CPU-Info'
   ClientHeight = 410

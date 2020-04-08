@@ -64,9 +64,7 @@ begin
 
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Embedded_Systems);
-//  ComboBox1.ItemIndex:=1;
   ComboBox1Select(Sender);
-//  Load(AVRControllerDataList);
 end;
 
 procedure TCPU_InfoForm.StringGrid1CompareCells(Sender: TObject;
@@ -112,19 +110,19 @@ procedure TCPU_InfoForm.ComboBox1Select(Sender: TObject);
 begin
   case ComboBox1.ItemIndex of
     0: begin
-      Load(AVRControllerDataList);
+      Load(AVR_ControllerDataList);
     end;
     1: begin
-      Load(ARMControllerDataList);
+      Load(ARM_ControllerDataList);
     end;
     2: begin
-      Load(MipsControllerDataList);
+      Load(Mips_ControllerDataList);
     end;
     3: begin
-      Load(Riscv32ControllerDataList);
+      Load(Riscv32_ControllerDataList);
     end;
     4: begin
-      Load(XTensaControllerDataList);
+      Load(XTensa_ControllerDataList);
     end;
   end;
 end;
@@ -137,9 +135,13 @@ begin
   StringGrid1.ColCount := Length(Table[0]);
   for y := 0 to Length(Table) - 1 do begin
     for x := 0 to Length(Table[y]) - 1 do begin
-      if ToggleBox1.Checked and TryStrToInt(Table[y, x], i) then begin
-        StringGrid1.Cells[x, y] := '$' + Table[y, x].ToInteger.ToHexString;
-      end else begin
+      if TryStrToInt(Table[y, x], i) then begin
+        if ToggleBox1.Checked then begin
+          StringGrid1.Cells[x, y] := '$' + Table[y, x].ToInteger.ToHexString;
+        end else begin
+          StringGrid1.Cells[x, y] := Table[y, x].ToInteger.ToString;
+        end;
+       end else begin
         StringGrid1.Cells[x, y] := Table[y, x];
       end;
     end;

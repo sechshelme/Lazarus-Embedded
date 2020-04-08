@@ -526,7 +526,7 @@ object Form1: TForm1
     Top = 1056
     Width = 120
     Anchors = [akLeft, akBottom]
-    Caption = 'Generte'
+    Caption = 'Generate'
     Kind = bkRetry
     ModalResult = 4
     OnClick = BitBtn2Click

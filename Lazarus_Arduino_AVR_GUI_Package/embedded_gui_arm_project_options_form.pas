@@ -95,7 +95,7 @@ var
   Form: TCPU_InfoForm;
 begin
   Form := TCPU_InfoForm.Create(nil);
-  Form.Load(ARMControllerDataList);
+  Form.Load(ARM_ControllerDataList);
   Form.ShowModal;
   Form.Free;
 end;
@@ -131,9 +131,9 @@ var
   i: integer;
   s: string;
 begin
-  for i := 1 to Length(ARMControllerDataList) - 1 do begin
-    if ARMControllerDataList[i, 0] = ARM_Typ_FPC_ComboBox.Text then begin
-      s := ARMControllerDataList[i, 4].ToInteger.ToHexString(8);
+  for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
+    if ARM_ControllerDataList[i, 0] = ARM_Typ_FPC_ComboBox.Text then begin
+      s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
       ARM_FlashBase_ComboBox.Text := '0x' + s;
       Break;
     end;
