@@ -137,14 +137,18 @@ var
   x, y, i: integer;
 begin
   StringGrid1.RowCount := Length(Table);
-  StringGrid1.ColCount := Length(Table[0]);
+  StringGrid1.ColCount := 0;
   for y := 0 to Length(Table) - 1 do begin
+    if StringGrid1.ColCount < Length(Table[y]) then begin
+      StringGrid1.ColCount := Length(Table[y]);
+    end;
+
     for x := 0 to Length(Table[y]) - 1 do begin
       if TryStrToInt(Table[y, x], i) then begin
         if ToggleBox1.Checked then begin
           StringGrid1.Cells[x, y] := '$' + Table[y, x].ToInteger.ToHexString;
         end else begin
-          StringGrid1.Cells[x, y] := Table[y, x].ToInteger.ToString;
+          StringGrid1.Cells[x, y] := UInt32(Table[y, x].ToInteger).ToString;
         end;
       end else begin
         StringGrid1.Cells[x, y] := Table[y, x];

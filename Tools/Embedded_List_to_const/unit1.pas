@@ -44,12 +44,13 @@ procedure TForm1.FormCreate(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  ini    := TIniFile.Create('config.ini');
-  Left   := ini.ReadInteger('pos', 'Left',   100);
-  Width  := ini.ReadInteger('pos', 'Width',  500);
-  Top    := ini.ReadInteger('pos', 'Top',     50);
+  ini := TIniFile.Create('config.ini');
+  Left := ini.ReadInteger('pos', 'Left', 100);
+  Width := ini.ReadInteger('pos', 'Width', 500);
+  Top := ini.ReadInteger('pos', 'Top', 50);
   Height := ini.ReadInteger('pos', 'Height', 400);
-  ini.Free;  SynEdit1.ScrollBars := ssAutoBoth;
+  ini.Free;
+  SynEdit1.ScrollBars := ssAutoBoth;
 
   DirectoryEdit1.Directory := '/home/tux/fpc.src/fpc';
 end;
@@ -108,7 +109,7 @@ procedure TForm1.AddCPUData(sl, SubArchList: TStrings; cpu: string);
 var
   source_SL: TStringList;
   SubArchData: array of TStringList;
-  p, i: integer;
+  ofs, i: integer;
   s, s1, s2: string;
   sa: TStringArray;
 begin
@@ -123,34 +124,36 @@ begin
   for i := 0 to Length(SubArchData) - 1 do begin
     SubArchData[i] := TStringList.Create;
   end;
-  p:=0;
-
-  p := Pos('embedded_controllers', s, p);
-  if p > 0 then begin
-//    Delete(s, 1, p + 19);
-    while p > 0 do begin
-      p := Pos('controllertypestr', s, p);
-      if p > 0 then begin
-//        Delete(s, 1, p + 15);
-//        p := 0;
+  ofs := 1;
+  ofs := Pos('embedded_controllers', s, ofs);
+  if ofs > 0 then begin
+    //    Delete(s, 1, ofs + 19);
+    //    ofs:=0;
+    while ofs > 0 do begin
+      ofs := Pos('controllertypestr', s, ofs);
+      //      WriteLn(ofs, cpu);
+      if ofs > 0 then begin
+        //       Delete(s, 1, ofs + 15);
+        //        ofs := 0;
         s1 := '';
         s2 := '';
-        repeat
-          Inc(p);
-        until s[p] = #39;
-        Inc(p);
-        if s[p] <> #39 then begin
+        ofs := Pos(#39, s, ofs);
+        //        repeat
+        //          Inc(ofs);
+        //        until s[ofs] = #39;
+        Inc(ofs);
+        if s[ofs] <> #39 then begin
           repeat
-            s1 += s[p];
-            Inc(p);
-          until s[p] = #39;
+            s1 += s[ofs];
+            Inc(ofs);
+          until s[ofs] = #39;
 
-          p := Pos('cpu_', s, p);
-          Inc(p, 4);
+          ofs := Pos('cpu_', s, ofs);
+          Inc(ofs, 4);
           repeat
-            s2 += s[p];
-            Inc(p);
-          until not (s[p] in ['0'..'9', 'a'..'z', '_']);
+            s2 += s[ofs];
+            Inc(ofs);
+          until not (s[ofs] in ['0'..'9', 'a'..'z', '_']);
 
           i := 0;
 
@@ -188,9 +191,10 @@ end;
 procedure TForm1.AddControllerDataList(sl: TStrings; cpu: string);
 var
   source_SL, sl1: TStringList;
-  p, i: integer;
-  s, s1, s2: string;
+  ofs: integer;
+  s, s1: string;
   sa: TStringArray;
+  first:Boolean;
 begin
   if Pos('generic', cpu) > 0 then begin
     Exit;
@@ -212,69 +216,83 @@ begin
     sl.Add('  ' + s1 + '_ControllerDataList : T' + s1 + '_ControllerDataList = (');
   end;
 
-  p := Pos('embedded_controllers', s);
-  if p > 0 then begin
-    repeat
-      Inc(p);
-    until s[p] = '(';
+  ofs := 1;
+  ofs := Pos('embedded_controllers', s, 1);
 
-    repeat
-      Inc(p);
-    until s[p] = '(';
+  first:=True;
+  if ofs > 0 then begin
+    while (ofs > 0) do begin
+      ofs := Pos('(', s, ofs);
+      ofs := Pos('(', s, ofs);
+      //repeat
+      //  Inc(ofs);
+      //until s[ofs] = '(';
+      //
+      //repeat
+      //  Inc(ofs);
+      //until s[ofs] = '(';
 
-    repeat
       repeat
-        Inc(p);
-      until s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_'];
-      s1 := '';
-      repeat
-        s1 += s[p];
-        Inc(p);
-      until not (s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
-      sl1.Add(s1);
-      while not (s[p] in [';', ')']) do begin
-        Inc(p);
+        repeat
+          Inc(ofs);
+        until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_'];
+        s1 := '';
+        repeat
+          s1 += s[ofs];
+          Inc(ofs);
+        until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
+        sl1.Add(s1);
+        while not (s[ofs] in [';', ')']) do begin
+          Inc(ofs);
+        end;
+      until s[ofs] = ')';
+
+      if first then begin
+      sl.Add('    ('#39 + getKomma(sl1) + #39'),');
+      first:=False;
       end;
-    until s[p] = ')';
-
-    sl.Add('    ('#39 + getKomma(sl1) + #39'),');
-    sl1.Clear;
-    repeat
-      Inc(p);
-    until s[p] in [',', ')'];
-
-    if s[p] = ',' then begin
+      sl1.Clear;
       repeat
+        Inc(ofs);
+      until s[ofs] in [',', ')'];
+
+      if s[ofs] = ',' then begin
         repeat
           repeat
-            Inc(p);
-          until s[p] = ':';
-          repeat
-            Inc(p);
-          until s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$'];
-          s1 := '';
-          repeat
-            s1 += s[p];
-            Inc(p);
-          until not (s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$']);
-          sl1.Add(s1);
+            ofs := Pos(':', s, ofs);
+            //          repeat
+            //            Inc(ofs);
+            //          until s[ofs] = ':';
+            repeat
+              Inc(ofs);
+            until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$'];
+            s1 := '';
+            repeat
+              s1 += s[ofs];
+              Inc(ofs);
+            until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_',
+                '+', '-', '*', '/', '$']);
+            sl1.Add(s1);
 
-          while not (s[p] in [';', ')']) do begin
-            Inc(p);
-          end;
-          while not (s[p] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$', ')']) do begin
-            Inc(p);
-          end;
-        until s[p] = ')';
+            while not (s[ofs] in [';', ')']) do begin
+              Inc(ofs);
+            end;
+            while not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_',
+                '+', '-', '*', '/', '$', ')']) do begin
+              Inc(ofs);
+            end;
+          until s[ofs] = ')';
 
-        sl.Add('    ('#39 + getKomma(sl1) + #39'),');
-        sl1.Clear;
-        repeat
-          Inc(p);
-        until s[p] in [',', ')'];
-      until s[p] = ')';
+          sl.Add('    ('#39 + getKomma(sl1) + #39'),');
+          sl1.Clear;
+          repeat
+            Inc(ofs);
+          until s[ofs] in [',', ')'];
+        until s[ofs] = ')';
+      end;
+
+      ofs := Pos('embedded_controllers', s, ofs);
     end;
-
     s := sl[sl.Count - 1];
     Delete(s, Length(s), 1);
     sl[sl.Count - 1] := s + ');';
@@ -293,7 +311,8 @@ begin
   SynEdit1.Clear;
 
   SynEdit1.Lines.Add('');
-  SynEdit1.Lines.Add('// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.');
+  SynEdit1.Lines.Add(
+    '// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.');
   SynEdit1.Lines.Add('// Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und');
   SynEdit1.Lines.Add('// "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.');
   SynEdit1.Lines.Add('');
@@ -319,7 +338,8 @@ begin
   SynEdit1.Lines.Add('end.');
 
   //  SynEdit1.Lines.SaveToFile('embedded_gui_subarch_list.pas');
-  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
+  SynEdit1.Lines.SaveToFile(
+    '../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
   CPU_SL.Free;
 end;
 
@@ -328,9 +348,9 @@ var
   ini: TIniFile;
 begin
   ini := TIniFile.Create('config.ini');
-  ini.WriteInteger('pos', 'Left',   Left);
-  ini.WriteInteger('pos', 'Width',  Width);
-  ini.WriteInteger('pos', 'Top',    Top);
+  ini.WriteInteger('pos', 'Left', Left);
+  ini.WriteInteger('pos', 'Width', Width);
+  ini.WriteInteger('pos', 'Top', Top);
   ini.WriteInteger('pos', 'Height', Height);
   ini.Free;
 end;
