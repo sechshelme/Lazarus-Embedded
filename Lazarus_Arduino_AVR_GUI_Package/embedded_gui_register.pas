@@ -107,7 +107,7 @@ var
 begin
   Form := TCPU_InfoForm.Create(nil);
 //  Form.Load(AVR_ControllerDataList);        // Lazarus auslesen ??????????
-  Form.ComboBox1.ItemIndex :=0;
+  Form.ComboBox1.ItemIndex :=0 ;
   Form.ComboBox1Select(Sender);
   Form.ShowModal;
   Form.Free;

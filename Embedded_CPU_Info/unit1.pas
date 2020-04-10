@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ValEdit, Grids,
-  StdCtrls, Embedded_GUI_SubArch_List, Types;
+  StdCtrls, Embedded_GUI_SubArch_List, Types, IniFiles;
 
 type
 
@@ -19,6 +19,7 @@ type
     ToggleBox1: TToggleBox;
     procedure Button1Click(Sender: TObject);
     procedure ComboBox1Select(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid1CompareCells(Sender: TObject;
       ACol, ARow, BCol, BRow: integer; var Result: integer);
@@ -68,8 +69,29 @@ begin
   end;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+var
+  ini: TIniFile;
 begin
+  ini := TIniFile.Create('config.ini');
+  ini.WriteInteger('pos', 'Left', Left);
+  ini.WriteInteger('pos', 'Width', Width);
+  ini.WriteInteger('pos', 'Top', Top);
+  ini.WriteInteger('pos', 'Height', Height);
+  ini.Free;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  ini: TIniFile;
+begin
+  ini := TIniFile.Create('config.ini');
+  Left := ini.ReadInteger('pos', 'Left', 100);
+  Width := ini.ReadInteger('pos', 'Width', 500);
+  Top := ini.ReadInteger('pos', 'Top', 50);
+  Height := ini.ReadInteger('pos', 'Height', 400);
+  ini.Free;
+
   StringGrid1.FixedCols := 0;
   StringGrid1.DoubleBuffered := True;
   StringGrid1.TitleFont.Style := [fsBold];
@@ -78,9 +100,8 @@ begin
 
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Item);
-  ComboBox1.ItemIndex := 1;
+  ComboBox1.ItemIndex := 0;
   ComboBox1Select(Sender);
-  //  Load(AVRControllerDataList);
 end;
 
 procedure TForm1.StringGrid1CompareCells(Sender: TObject;
@@ -125,7 +146,7 @@ begin
         end else begin
           StringGrid1.Cells[x, y] := Table[y, x].ToInteger.ToString;
         end;
-       end else begin
+      end else begin
         StringGrid1.Cells[x, y] := Table[y, x];
       end;
     end;

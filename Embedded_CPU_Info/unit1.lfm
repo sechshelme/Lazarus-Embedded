@@ -6,6 +6,7 @@ object Form1: TForm1
   Caption = 'CPU-Info'
   ClientHeight = 410
   ClientWidth = 593
+  OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
   object StringGrid1: TStringGrid
