@@ -23,7 +23,9 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
+    function FindText(s: String; var ofs: Integer): String;
     function getKomma(sl: TStringList): string;
+    function GetControllerDataType(s: string): String;
     function AddSubArch(sl: TStrings; cpu: string): TStringList;
     procedure AddCPUData(sl, SubArchList: TStrings; cpu: string);
     procedure AddControllerDataList(sl: TStrings; cpu: string);
@@ -61,6 +63,35 @@ begin
   Result := StringReplace(Result, ',', #39', '#39, [rfReplaceAll, rfIgnoreCase]);
   Result := StringReplace(Result, 'cpu_', '', [rfReplaceAll, rfIgnoreCase]);
   Result := StringReplace(Result, 'fpu_', '', [rfReplaceAll, rfIgnoreCase]);
+end;
+
+function TForm1.FindText(s: String; var ofs:Integer): String;
+begin
+  while not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']) do begin
+    Inc(ofs);
+  end;
+
+  Result:='';
+  repeat
+    Result += s[ofs];
+    Inc(ofs);
+  until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
+end;
+
+function TForm1.GetControllerDataType(s: string): String;
+var
+  ofs:Integer;
+  s1:String;
+begin
+  ofs:=Pos('tcontrollerdatatype', s);
+  Inc(ofs, 19);
+  FindText(s,ofs);
+  s1:=FindText(s,ofs);
+
+
+
+  Result:=s1;
+
 end;
 
 function TForm1.AddSubArch(sl: TStrings; cpu: string): TStringList;
@@ -153,7 +184,7 @@ begin
           repeat
             s2 += s[ofs];
             Inc(ofs);
-          until not (s[ofs] in ['0'..'9', 'a'..'z', '_']);
+          until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
 
           i := 0;
 
@@ -195,6 +226,7 @@ var
   s, s1: string;
   sa: TStringArray;
   first:Boolean;
+  ControllerDataType :String;
 begin
   if Pos('generic', cpu) > 0 then begin
     Exit;
@@ -204,6 +236,9 @@ begin
   source_SL.LoadFromFile(cpu);
   s := source_SL.Text;
   source_SL.Free;
+
+  ControllerDataType:=GetControllerDataType(s);
+  WriteLn(ControllerDataType);
 
   sa := cpu.Split('/');
   if Length(sa) >= 2 then begin
