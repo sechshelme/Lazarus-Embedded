@@ -2,6 +2,11 @@ unit Embedded_GUI_Common;
 
 interface
 
+type
+  TSerialMonitor_Para = record
+    Port, Baud: string;
+  end;
+
 const
   UARTBaudRates =
     '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
@@ -52,8 +57,12 @@ const
   Key_ARM_Templates_Height = 'arm_templates_form_height/value';
 
 
-  Key_SerialMonitorPort = 'SerialMonitorPort';
-  Key_SerialMonitorBaud = 'COM_Port';
+  Key_SerialMonitorPort = 'SerialMonitorPort/value';
+  Key_SerialMonitorBaud = 'COM_Port/value';
+  Key_SerialMonitor_Left = 'serial_monitor_form_left/value';
+  Key_SerialMonitor_Top = 'serial_monitor_form_top/value';
+  Key_SerialMonitor_Width = 'serial_monitor_form_width/value';
+  Key_SerialMonitor_Height = 'serial_monitor_form_height/value';
 
 
 implementation

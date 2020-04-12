@@ -1,0 +1,41 @@
+object InputForm: TInputForm
+  Left = 587
+  Height = 240
+  Top = 310
+  Width = 320
+  Caption = 'InputForm'
+  ClientHeight = 240
+  ClientWidth = 320
+  LCLVersion = '1.7'
+  object SpeedButtonLefr: TSpeedButton
+    Tag = 1
+    Left = 24
+    Height = 22
+    Top = 48
+    Width = 23
+    OnClick = SpeedButtonClick
+  end
+  object SpeedButtonUp: TSpeedButton
+    Left = 56
+    Height = 22
+    Top = 24
+    Width = 23
+    OnClick = SpeedButtonClick
+  end
+  object SpeedButtonDown: TSpeedButton
+    Tag = 3
+    Left = 56
+    Height = 22
+    Top = 72
+    Width = 23
+    OnClick = SpeedButtonClick
+  end
+  object SpeedButtonRight: TSpeedButton
+    Tag = 2
+    Left = 88
+    Height = 22
+    Top = 48
+    Width = 23
+    OnClick = SpeedButtonClick
+  end
+end

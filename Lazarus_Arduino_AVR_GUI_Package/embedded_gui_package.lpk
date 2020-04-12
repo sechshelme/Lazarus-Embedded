@@ -17,32 +17,32 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="19"/>
+    <Version Release="20"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_register.pas"/>
         <HasRegisterProc Value="True"/>
-        <UnitName Value="embedded_gui_register"/>
+        <UnitName Value="Embedded_GUI_Register"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_ide_options.pas"/>
-        <UnitName Value="embedded_gui_ide_options"/>
+        <UnitName Value="Embedded_GUI_IDE_Options"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_avr_project_options_form.pas"/>
-        <UnitName Value="embedded_gui_avr_project_options_form"/>
+        <UnitName Value="Embedded_GUI_AVR_Project_Options_Form"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_avr_common.pas"/>
-        <UnitName Value="embedded_gui_avr_common"/>
+        <UnitName Value="Embedded_GUI_AVR_Common"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_serial_monitor.pas"/>
-        <UnitName Value="embedded_gui_serial_monitor"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_avr_project_templates_form.pas"/>
-        <UnitName Value="embedded_gui_avr_project_templates_form"/>
+        <UnitName Value="Embedded_GUI_AVR_Project_Templates_Form"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_subarch_list.pas"/>
@@ -50,35 +50,35 @@
       </Item>
       <Item>
         <Filename Value="embedded_gui_find_comports.pas"/>
-        <UnitName Value="embedded_gui_find_comports"/>
+        <UnitName Value="Embedded_GUI_Find_Comports"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_arm_common.pas"/>
-        <UnitName Value="embedded_gui_arm_common"/>
+        <UnitName Value="Embedded_GUI_ARM_Common"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_arm_project_options_form.pas"/>
-        <UnitName Value="embedded_gui_arm_project_options_form"/>
+        <UnitName Value="Embedded_GUI_ARM_Project_Options_Form"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_common.pas"/>
-        <UnitName Value="embedded_gui_common"/>
+        <UnitName Value="Embedded_GUI_Common"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_avr_register.pas"/>
-        <UnitName Value="embedded_gui_avr_register"/>
+        <UnitName Value="Embedded_GUI_AVR_Register"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_arm_register.pas"/>
-        <UnitName Value="embedded_gui_arm_register"/>
+        <UnitName Value="Embedded_GUI_ARM_Register"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_arm_project_templates_form.pas"/>
-        <UnitName Value="embedded_gui_arm_project_templates_form"/>
+        <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_cpu_info_form.pas"/>
-        <UnitName Value="embedded_gui_cpu_info_form"/>
+        <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
       </Item>
     </Files>
     <i18n>
@@ -86,6 +86,9 @@
       <OutDir Value="languages"/>
     </i18n>
     <RequiredPkgs>
+      <Item>
+        <PackageName Value="laz_synapse"/>
+      </Item>
       <Item>
         <PackageName Value="CodeTools"/>
       </Item>

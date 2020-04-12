@@ -385,29 +385,29 @@ type
 
 const
   i8086_ControllerDataList : Ti8086_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Taarch64_ControllerDataList = array of array of String;
 
 const
   aarch64_ControllerDataList : Taarch64_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tpowerpc64_ControllerDataList = array of array of String;
 
 const
   powerpc64_ControllerDataList : Tpowerpc64_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tavr_ControllerDataList = array of array of String;
 
 const
   avr_ControllerDataList : Tavr_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize'),
-    ('AVRSIM', 'AVRSIM', 'avr5', 'soft', '0', '$20000', '256', '32*1024', '0', '4096'),
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'),
+    ('AVRSIM', 'AVRSIM', 'avr5', 'soft', '0', '$20000', '256', '32', '0', '4096'),
     ('AT90CAN32', 'AT90CAN32', 'avr5', 'soft', '0', '32768', '256', '2048', '0', '1024'),
     ('AT90CAN64', 'AT90CAN64', 'avr5', 'soft', '0', '65536', '256', '4096', '0', '2048'),
     ('AT90CAN128', 'AT90CAN128', 'avr51', 'soft', '0', '131072', '256', '4096', '0', '4096'),
@@ -632,28 +632,28 @@ type
 
 const
   x86_64_ControllerDataList : Tx86_64_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Triscv64_ControllerDataList = array of array of String;
 
 const
   riscv64_ControllerDataList : Triscv64_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tpowerpc_ControllerDataList = array of array of String;
 
 const
   powerpc_ControllerDataList : Tpowerpc_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tarm_ControllerDataList = array of array of String;
 
 const
   arm_ControllerDataList : Tarm_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'),
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'),
     ('LPC810M021FN8', 'LPC8xx', 'armv6m', 'soft', '$00000000', '$00001000', '$10000000', '$00000400'),
     ('LPC811M001FDH16', 'LPC8xx', 'armv6m', 'soft', '$00000000', '$00002000', '$10000000', '$00000800'),
     ('LPC812M101FDH16', 'LPC8xx', 'armv6m', 'soft', '$00000000', '$00004000', '$10000000', '$00001000'),
@@ -1027,19 +1027,19 @@ type
 
 const
   xtensa_ControllerDataList : Txtensa_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'abi', 'flashbase'),
-    ('ESP8266', 'ESP8266', 'lx106', 'none', 'abi_xtensa_call0', '$40000000', '448*1024', '$40070000', '520*1024'),
-    ('ESP32', 'ESP32', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '2*1024*1024'),
-    ('ESP32_D0WD', 'ESP32_D0WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448*1024', '$40070000', '520*1024'),
-    ('ESP32_D2WD', 'ESP32_D2WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448*1024', '$40070000', '520*1024'),
-    ('ESP32_S0WD', 'ESP32_S0WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448*1024', '$40070000', '520*1024'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'abi', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'),
+    ('ESP8266', 'ESP8266', 'lx106', 'none', 'abi_xtensa_call0', '$40000000', '448', '$40070000', '520'),
+    ('ESP32', 'ESP32', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '2'),
+    ('ESP32_D0WD', 'ESP32_D0WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448', '$40070000', '520'),
+    ('ESP32_D2WD', 'ESP32_D2WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448', '$40070000', '520'),
+    ('ESP32_S0WD', 'ESP32_S0WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448', '$40070000', '520'));
 
 type
   Triscv32_ControllerDataList = array of array of String;
 
 const
   riscv32_ControllerDataList : Triscv32_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'),
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'),
     ('FE310G000', 'FE310G000', 'rv32imac', 'none', '$20400000', '$01000000', '$80000000', '$00004000'),
     ('FE310G002', 'FE310G002', 'rv32imac', 'none', '$20010000', '$00400000', '$80000000', '$00004000'),
     ('HIFIVE1', 'FE310G000', 'rv32imac', 'none', '$20400000', '$01000000', '$80000000', '$00004000'),
@@ -1066,28 +1066,28 @@ type
 
 const
   jvm_ControllerDataList : Tjvm_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tsparc_ControllerDataList = array of array of String;
 
 const
   sparc_ControllerDataList : Tsparc_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tm68k_ControllerDataList = array of array of String;
 
 const
   m68k_ControllerDataList : Tm68k_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tmips_ControllerDataList = array of array of String;
 
 const
   mips_ControllerDataList : Tmips_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'),
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'),
     ('PIC32MX110F016B', 'PIC32MX1xxFxxxB', 'pic32mx', 'soft', '$9d000000', '$00004000', '$A0000000', '$00001000', '0', '0', '$BFC00000', '$00000BEF'),
     ('PIC32MX110F016C', 'PIC32MX1xxFxxxC', 'pic32mx', 'soft', '$9d000000', '$00004000', '$A0000000', '$00001000', '0', '0', '$BFC00000', '$00000BEF'),
     ('PIC32MX110F016D', 'PIC32MX1xxFxxxD', 'pic32mx', 'soft', '$9d000000', '$00004000', '$A0000000', '$00001000', '0', '0', '$BFC00000', '$00000BEF'),
@@ -1124,14 +1124,14 @@ type
 
 const
   i386_ControllerDataList : Ti386_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type
   Tsparc64_ControllerDataList = array of array of String;
 
 const
   sparc64_ControllerDataList : Tsparc64_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 implementation
 

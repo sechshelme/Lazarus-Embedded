@@ -135,6 +135,7 @@ end;
 procedure TForm1.Load(Table: array of TStringArray);
 var
   x, y, i: integer;
+  ui: UInt64;
 begin
   StringGrid1.RowCount := Length(Table);
   StringGrid1.ColCount := 0;
@@ -146,9 +147,11 @@ begin
     for x := 0 to Length(Table[y]) - 1 do begin
       if TryStrToInt(Table[y, x], i) then begin
         if ToggleBox1.Checked then begin
-          StringGrid1.Cells[x, y] := '$' + Table[y, x].ToInteger.ToHexString;
+          ui := StrToInt64(Table[y, x]);
+          StringGrid1.Cells[x, y] := '$' + IntToHex(ui, 8);
         end else begin
-          StringGrid1.Cells[x, y] := UInt32(Table[y, x].ToInteger).ToString;
+          ui := StrToInt64(Table[y, x]);
+          StringGrid1.Cells[x, y] := IntToStr(ui);
         end;
       end else begin
         StringGrid1.Cells[x, y] := Table[y, x];

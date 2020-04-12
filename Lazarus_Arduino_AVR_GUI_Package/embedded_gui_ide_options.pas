@@ -83,7 +83,7 @@ end;
 
 function TEmbedded_IDE_Options_Frame.GetTitle: string;
 begin
-  Result := 'Embedded GUI Optionen';
+  Result := Title + 'Embedded GUI Optionen';
 end;
 
 procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);

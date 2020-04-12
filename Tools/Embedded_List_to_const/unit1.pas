@@ -23,9 +23,9 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
-    function FindText(s: String; var ofs: Integer): String;
+    function FindText(s: string; var ofs: integer): string;
     function getKomma(sl: TStringList): string;
-    function GetControllerDataType(s: string): String;
+    function GetControllerDataType(s: string): string;
     function AddSubArch(sl: TStrings; cpu: string): TStringList;
     procedure AddCPUData(sl, SubArchList: TStrings; cpu: string);
     procedure AddControllerDataList(sl: TStrings; cpu: string);
@@ -65,33 +65,35 @@ begin
   Result := StringReplace(Result, 'fpu_', '', [rfReplaceAll, rfIgnoreCase]);
 end;
 
-function TForm1.FindText(s: String; var ofs:Integer): String;
+function TForm1.FindText(s: string; var ofs: integer): string;
 begin
-  while not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']) do begin
+  while not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '$']) do begin
     Inc(ofs);
   end;
-
-  Result:='';
+  Result := '';
   repeat
     Result += s[ofs];
     Inc(ofs);
-  until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
+  until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '$']);
 end;
 
-function TForm1.GetControllerDataType(s: string): String;
+function TForm1.GetControllerDataType(s: string): string;
 var
-  ofs:Integer;
-  s1:String;
+  ofs: integer;
+  s1: string;
 begin
-  ofs:=Pos('tcontrollerdatatype', s);
+  ofs := Pos('tcontrollerdatatype', s);
   Inc(ofs, 19);
-  FindText(s,ofs);
-  s1:=FindText(s,ofs);
-
-
-
-  Result:=s1;
-
+  FindText(s, ofs);
+  s1 := FindText(s, ofs);
+  Result := s1;
+  repeat
+    while not (s[ofs] in [';', ',']) do begin
+      Inc(ofs);
+    end;
+    s1 := FindText(s, ofs);
+    if s1<>'end' then  Result += #39', '#39+s1;
+  until s1 = 'end';
 end;
 
 function TForm1.AddSubArch(sl: TStrings; cpu: string): TStringList;
@@ -225,8 +227,8 @@ var
   ofs: integer;
   s, s1: string;
   sa: TStringArray;
-  first:Boolean;
-  ControllerDataType :String;
+//  First: boolean;
+//  ControllerDataType: string;
 begin
   if Pos('generic', cpu) > 0 then begin
     Exit;
@@ -237,8 +239,8 @@ begin
   s := source_SL.Text;
   source_SL.Free;
 
-  ControllerDataType:=GetControllerDataType(s);
-  WriteLn(ControllerDataType);
+//  ControllerDataType := GetControllerDataType(s);
+//  WriteLn(ControllerDataType);
 
   sa := cpu.Split('/');
   if Length(sa) >= 2 then begin
@@ -254,7 +256,8 @@ begin
   ofs := 1;
   ofs := Pos('embedded_controllers', s, 1);
 
-  first:=True;
+  sl.Add('    ('#39 + GetControllerDataType(s) + #39'),');
+//  First := True;
   if ofs > 0 then begin
     while (ofs > 0) do begin
       ofs := Pos('(', s, ofs);
@@ -268,25 +271,27 @@ begin
       //until s[ofs] = '(';
 
       repeat
-        repeat
-          Inc(ofs);
-        until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_'];
-        s1 := '';
-        repeat
-          s1 += s[ofs];
-          Inc(ofs);
-        until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
-        sl1.Add(s1);
+        FindText(s, ofs);
+//        repeat
+//          Inc(ofs);
+//        until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_'];
+////        s1 := '';
+//        repeat
+////          s1 += s[ofs];
+//          Inc(ofs);
+//        until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
+//        sl1.Add(s1);
         while not (s[ofs] in [';', ')']) do begin
           Inc(ofs);
         end;
       until s[ofs] = ')';
 
-      if first then begin
-      sl.Add('    ('#39 + getKomma(sl1) + #39'),');
-      first:=False;
-      end;
-      sl1.Clear;
+//      if First then begin
+//        sl.Add('    ('#39 + getKomma(sl1) + #39'),');
+//        sl.Add('    ('#39 + GetControllerDataType(s) + #39'),');
+//        First := False;
+//      end;
+  //    sl1.Clear;
       repeat
         Inc(ofs);
       until s[ofs] in [',', ')'];
@@ -298,16 +303,17 @@ begin
             //          repeat
             //            Inc(ofs);
             //          until s[ofs] = ':';
-            repeat
-              Inc(ofs);
-            until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$'];
-            s1 := '';
-            repeat
-              s1 += s[ofs];
-              Inc(ofs);
-            until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_',
-                '+', '-', '*', '/', '$']);
-            sl1.Add(s1);
+            //s1 := '';
+            //repeat
+            //  Inc(ofs);
+            //until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$'];
+            //repeat
+            //  s1 += s[ofs];
+            //  Inc(ofs);
+            //until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_',
+            //    '+', '-', '*', '/', '$']);
+            //sl1.Add(s1);
+            sl1.Add(FindText(s, ofs));
 
             while not (s[ofs] in [';', ')']) do begin
               Inc(ofs);

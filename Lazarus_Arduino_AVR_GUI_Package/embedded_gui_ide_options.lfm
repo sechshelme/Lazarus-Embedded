@@ -1,10 +1,10 @@
 object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
   Left = 0
-  Height = 410
+  Height = 433
   Top = 0
-  Width = 499
-  ClientHeight = 410
-  ClientWidth = 499
+  Width = 540
+  ClientHeight = 433
+  ClientWidth = 540
   TabOrder = 0
   DesignLeft = 2025
   DesignTop = 476
@@ -12,17 +12,17 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     Left = 16
     Height = 200
     Top = 16
-    Width = 468
+    Width = 509
     Anchors = [akTop, akLeft, akRight]
     Caption = 'AVR'
     ClientHeight = 183
-    ClientWidth = 466
+    ClientWidth = 507
     TabOrder = 0
     object ComboBoxAVRdude: TComboBox
       Left = 16
       Height = 28
       Top = 56
-      Width = 440
+      Width = 481
       Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       TabOrder = 0
@@ -31,7 +31,7 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
       Left = 16
       Height = 28
       Top = 136
-      Width = 440
+      Width = 481
       Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       TabOrder = 1
@@ -57,10 +57,11 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     Left = 16
     Height = 128
     Top = 232
-    Width = 468
+    Width = 509
+    Anchors = [akTop, akLeft, akRight]
     Caption = 'ARM'
     ClientHeight = 111
-    ClientWidth = 466
+    ClientWidth = 507
     TabOrder = 1
     object Label3: TLabel
       Left = 16
@@ -74,7 +75,7 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
       Left = 16
       Height = 28
       Top = 56
-      Width = 440
+      Width = 481
       Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       TabOrder = 0

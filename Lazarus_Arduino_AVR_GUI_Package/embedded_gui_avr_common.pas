@@ -7,7 +7,6 @@ interface
 uses
   Classes, SysUtils, Dialogs, LCLType, Controls,
   ProjectIntf,
-
   Embedded_GUI_SubArch_List; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
 const
@@ -19,19 +18,11 @@ type
 
   TAVR_ProjectOptions = class
     AvrdudeCommand: record
-      Path,
-      ConfigPath,
-      AVR_AVRDude_Typ,
-      Programmer,
-      COM_Port,
-      Baud : string;
-      Disable_Auto_Erase : Boolean;
+      Path, ConfigPath, AVR_AVRDude_Typ, Programmer,
+      COM_Port, Baud: string;
+      Disable_Auto_Erase: boolean;
     end;
-    AVR_SubArch,
-    AVR_FPC_Typ: string;
-    SerialMonitor: record
-      Port, Baud: string;
-    end;
+    AVR_SubArch, AVR_FPC_Typ: string;
     AsmFile: boolean;
     procedure Save(AProject: TLazProject);
     procedure Load(AProject: TLazProject);
@@ -45,8 +36,8 @@ type
     AVR_AVRDude_Typ,
     Programmer,
     COM_Port,
-    Baud : string;
-    Disable_Auto_Erase : Boolean;
+    Baud: string;
+    Disable_Auto_Erase: boolean;
   end;
 
 const
@@ -58,7 +49,7 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyACM0';
     Baud: '115200';
-    Disable_Auto_Erase : false;),(
+    Disable_Auto_Erase: False; ), (
 
     Name: 'Arduino Nano (old Bootloader)';
     AVR_SubArch: 'AVR5';
@@ -67,7 +58,7 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyUSB0';
     Baud: '57600';
-    Disable_Auto_Erase : false;),(
+    Disable_Auto_Erase: False; ), (
 
     Name: 'Arduino Nano';
     AVR_SubArch: 'AVR5';
@@ -76,7 +67,7 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyUSB0';
     Baud: '115200';
-    Disable_Auto_Erase : false;),(
+    Disable_Auto_Erase: False; ), (
 
     Name: 'Arduino Mega';
     AVR_SubArch: 'AVR6';
@@ -85,7 +76,7 @@ const
     Programmer: 'wiring';
     COM_Port: '/dev/ttyUSB0';
     Baud: '115200';
-    Disable_Auto_Erase : true;),(
+    Disable_Auto_Erase: True; ), (
 
     Name: 'ATmega328P';
     AVR_SubArch: 'AVR5';
@@ -94,7 +85,7 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
-    Disable_Auto_Erase : false;),(
+    Disable_Auto_Erase: False; ), (
 
     Name: 'ATtiny2313A';
     AVR_SubArch: 'AVR25';
@@ -103,7 +94,7 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
-    Disable_Auto_Erase : false;),(
+    Disable_Auto_Erase: False; ), (
 
     Name: 'ATtiny13A';
     AVR_SubArch: 'AVR25';
@@ -112,7 +103,7 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
-    Disable_Auto_Erase : false;));
+    Disable_Auto_Erase: False; ));
 
 var
   AVR_ProjectOptions: TAVR_ProjectOptions;
@@ -141,24 +132,22 @@ begin
     s += '-C' + AvrdudeCommand.ConfigPath + ' ';
   end;
 
-  s += '-v ' +
-    '-p' + AvrdudeCommand.AVR_AVRDude_Typ + ' ' +
-    '-c' + AvrdudeCommand.Programmer + ' ';
+  s += '-v ' + '-p' + AvrdudeCommand.AVR_AVRDude_Typ + ' ' + '-c' +
+    AvrdudeCommand.Programmer + ' ';
   pr := upCase(AvrdudeCommand.Programmer);
   if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') then begin
-    s += '-P' + AvrdudeCommand.COM_Port + ' ' +
-      '-b' + AvrdudeCommand.Baud + ' ';
+    s += '-P' + AvrdudeCommand.COM_Port + ' ' + '-b' + AvrdudeCommand.Baud + ' ';
   end;
 
   if AvrdudeCommand.Disable_Auto_Erase then begin
-    s +='-D ';
+    s += '-D ';
   end;
   s += '-Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
   AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 
-//  AProject.CustomData[Key_SerialMonitorPort] := SerialMonitor.Port;
-//  AProject.CustomData[Key_SerialMonitorBaud] := SerialMonitor.Baud;
+  //  AProject.CustomData[Key_SerialMonitorPort] := SerialMonitor.Port;
+  //  AProject.CustomData[Key_SerialMonitorBaud] := SerialMonitor.Baud;
 end;
 
 procedure TAVR_ProjectOptions.Load(AProject: TLazProject);
@@ -197,10 +186,18 @@ begin
   AvrdudeCommand.Baud := Find(s, '-b');
   AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
 
-//  SerialMonitor.Port := AProject.CustomData[Key_SerialMonitorPort];
-//  SerialMonitor.Baud := AProject.CustomData[Key_SerialMonitorBaud];
+  //  SerialMonitor.Port := AProject.CustomData[Key_SerialMonitorPort];
+  //  SerialMonitor.Baud := AProject.CustomData[Key_SerialMonitorBaud];
 end;
 
 end.
+
+
+
+
+
+
+
+
 
 

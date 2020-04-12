@@ -48,7 +48,7 @@ procedure TCPU_InfoForm.FormCreate(Sender: TObject);
 var
   Cfg: TConfigStorage;
 begin
-  Caption:=Title + 'CPU Info';
+  Caption := Title + 'CPU Info';
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Left := StrToInt(Cfg.GetValue(Key_CPU_Info_Left, '100'));
   Top := StrToInt(Cfg.GetValue(Key_CPU_Info_Top, '50'));
@@ -130,20 +130,23 @@ end;
 procedure TCPU_InfoForm.Load(var Table: array of TStringArray);
 var
   x, y, i: integer;
+  ui: UInt64;
 begin
   StringGrid1.RowCount := Length(Table);
   StringGrid1.ColCount := 0;
   for y := 0 to Length(Table) - 1 do begin
-    if StringGrid1.ColCount<Length(Table[y]) then begin
+    if StringGrid1.ColCount < Length(Table[y]) then begin
       StringGrid1.ColCount := Length(Table[y]);
     end;
 
     for x := 0 to Length(Table[y]) - 1 do begin
       if TryStrToInt(Table[y, x], i) then begin
         if ToggleBox1.Checked then begin
-          StringGrid1.Cells[x, y] := '$' + Table[y, x].ToInteger.ToHexString;
+          ui := StrToInt64(Table[y, x]);
+          StringGrid1.Cells[x, y] := '$' + IntToHex(ui, 8);
         end else begin
-          StringGrid1.Cells[x, y] := UInt32(Table[y, x].ToInteger).ToString;
+          ui := StrToInt64(Table[y, x]);
+          StringGrid1.Cells[x, y] := IntToStr(ui);
         end;
       end else begin
         StringGrid1.Cells[x, y] := Table[y, x];
