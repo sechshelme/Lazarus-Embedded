@@ -8,13 +8,14 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
   Menus,
 
-  synaser, // Package "laz_synapse"
+//  synaser, // Package "laz_synapse"
 
 
    BaseIDEIntf,
   LazConfigStorage,
 
   Embedded_GUI_Common,
+  Embedded_GUI_Modifed_Synaser,
   Embedded_GUI_Find_Comports, Embedded_GUI_AVR_Common;
 
 type

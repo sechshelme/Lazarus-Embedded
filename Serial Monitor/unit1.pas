@@ -6,7 +6,13 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Menus, synaser, LazFileUtils, Input, Baud;
+  ExtCtrls, Menus,
+  //  synaser,
+  LazFileUtils, Input, Baud,
+//  Embedded_GUI_ARM_Project_Templates_Form,
+
+  Embedded_GUI_Find_Comports,
+  Embedded_GUI_Modifed_Synaser;
 
 type
 
@@ -51,7 +57,6 @@ implementation
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
-  sl: TStringList;
   i: integer;
   bf: TBaudForm;
   baud: integer;
@@ -131,7 +136,7 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
-  s: string;
+  s: string = '';
   l: integer;
 begin
   while Timer1.Enabled and (ser.CanRead(10)) do begin

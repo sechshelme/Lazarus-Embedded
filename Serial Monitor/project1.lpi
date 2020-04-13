@@ -27,15 +27,12 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="1">
       <Item1>
-        <PackageName Value="laz_synapse"/>
-      </Item1>
-      <Item2>
         <PackageName Value="LCL"/>
-      </Item2>
+      </Item1>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="7">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,6 +61,24 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Baud"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_find_comports.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Embedded_GUI_Find_Comports"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_modifed_synaser.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Embedded_GUI_Modifed_Synaser"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_arm_project_templates_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ARMProjectTemplatesForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -73,6 +88,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../Lazarus_Arduino_AVR_GUI_Package"/>
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <Linking>

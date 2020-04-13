@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  BaseIDEIntf, LazConfigStorage,
+  BaseIDEIntf,
+  LazConfigStorage,
 
   Embedded_GUI_Common;
 

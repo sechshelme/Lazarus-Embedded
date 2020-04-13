@@ -17,7 +17,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="20"/>
+    <Version Release="21"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_register.pas"/>
@@ -49,10 +49,6 @@
         <UnitName Value="Embedded_GUI_SubArch_List"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_find_comports.pas"/>
-        <UnitName Value="Embedded_GUI_Find_Comports"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_arm_common.pas"/>
         <UnitName Value="Embedded_GUI_ARM_Common"/>
       </Item>
@@ -80,15 +76,16 @@
         <Filename Value="embedded_gui_cpu_info_form.pas"/>
         <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
       </Item>
+      <Item>
+        <Filename Value="embedded_gui_modifed_synaser.pas"/>
+        <UnitName Value="embedded_gui_modifed_synaser"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="languages"/>
     </i18n>
     <RequiredPkgs>
-      <Item>
-        <PackageName Value="laz_synapse"/>
-      </Item>
       <Item>
         <PackageName Value="CodeTools"/>
       </Item>
