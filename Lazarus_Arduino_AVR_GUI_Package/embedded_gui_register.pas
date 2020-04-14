@@ -124,11 +124,11 @@ begin
 
   AVR_ProjectOptions.Load(LazProject);
 
-  Form.LoadDefaultMask;
-  Form.ProjectOptionsToMask;
+//  Form.LoadDefaultMask;
+//  Form.ProjectOptionsToMask;
 
   if Form.ShowModal = mrOk then begin
-    Form.MaskToProjectOptions;
+//    Form.MaskToProjectOptions;
     AVR_ProjectOptions.Save(LazProject);
   end;
 

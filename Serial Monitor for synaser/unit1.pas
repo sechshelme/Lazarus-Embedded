@@ -7,12 +7,8 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Menus,
-  //  synaser,
-  LazFileUtils, Input, Baud,
-//  Embedded_GUI_ARM_Project_Templates_Form,
-
-  Embedded_GUI_Find_Comports,
-  Embedded_GUI_Modifed_Synaser;
+  synaser,
+  LazFileUtils, Input, Baud;
 
 type
 

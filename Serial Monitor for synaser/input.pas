@@ -5,7 +5,7 @@ unit Input;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Buttons, Serial;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Buttons;
 
 type
 
@@ -29,7 +29,7 @@ var
 implementation
 
 uses
-  Embedded_GUI_Serial_Monitor;
+  Unit1;
 
 {$R *.lfm}
 
@@ -52,9 +52,8 @@ begin
     t := 31;
   end;  // Down
 
-  with Serial_Monitor_Form do begin
-    SerWrite(ser.Handle, t, 1);
-  end;
+
+  Form1.ser.SendByte(t);
 end;
 
 end.

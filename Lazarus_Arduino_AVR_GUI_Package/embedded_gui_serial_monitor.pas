@@ -5,50 +5,60 @@ unit Embedded_GUI_Serial_Monitor;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Menus,
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  ExtCtrls, Menus,
+  Serial,
+  LazFileUtils,
+//  Input,
 
-//  synaser, // Package "laz_synapse"
-
-
-   BaseIDEIntf,
+  {$IFDEF Komponets}
+  BaseIDEIntf,  // Bei Komponente
   LazConfigStorage,
+  {$ELSE}
+  IniFiles,  // Bei normalen Anwendungen
+  {$ENDIF}
 
   Embedded_GUI_Common,
-  Embedded_GUI_Modifed_Synaser,
-  Embedded_GUI_Find_Comports, Embedded_GUI_AVR_Common;
+  Embedded_GUI_Find_Comports;
 
 type
 
   { TSerial_Monitor_Form }
 
   TSerial_Monitor_Form = class(TForm)
-    Send_Button: TButton;
+    Button1: TButton;
     Clear_Button: TButton;
+    Close_Button: TButton;
     CheckBox1: TCheckBox;
+    Port_ComboBox: TComboBox;
+    Baud_ComboBox: TComboBox;
     Edit1: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
     MainMenu1: TMainMenu;
     Memo1: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
-    SerialMonitorBaud_ComboBox: TComboBox;
-    SerialMonitorPort_ComboBox: TComboBox;
     Timer1: TTimer;
-    procedure Send_ButtonClick(Sender: TObject);
+    procedure Baud_ComboBoxChange(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
+    procedure Close_ButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
+    procedure Port_ComboBoxChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
     SubMenuItemArray: array[0..31] of TMenuItem;
+
     procedure MenuItemClick(Sender: TObject);
+
   public
-    ser: TBlockSerial;
-    procedure LoadDefaultMask;
-    procedure ProjectOptionsToMask;
-    procedure MaskToProjectOptions;
+    ser: record
+      Handle: TSerialHandle;
+      Flags: TSerialFlags;
+      Parity: TParityType;
+    end;
+
   end;
 
 var
@@ -60,29 +70,11 @@ implementation
 
 { TSerial_Monitor_Form }
 
+
 procedure TSerial_Monitor_Form.FormCreate(Sender: TObject);
 var
-  Cfg: TConfigStorage;
-  sl: TStringList;
   i: integer;
-//  bf: TBaudForm;
-  baud: integer;
 begin
-  Caption:=Title + 'Serial - Monitor';
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Left := StrToInt(Cfg.GetValue(Key_SerialMonitor_Left, '100'));
-  Top := StrToInt(Cfg.GetValue(Key_SerialMonitor_Top, '50'));
-  Width := StrToInt(Cfg.GetValue(Key_SerialMonitor_Width, '500'));
-  Height := StrToInt(Cfg.GetValue(Key_SerialMonitor_Height, '500'));
-  Cfg.Free;
-
-//  bf := TBaudForm.Create(self);
-//  bf.ShowModal;
-
-//  baud := StrToInt(bf.ComboBox1.Text);
-baud:=9600;
-
-//  bf.Free;
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
     SubMenuItemArray[i] := TMenuItem.Create(Self);
@@ -94,23 +86,24 @@ baud:=9600;
     MenuItem1.Insert(i, SubMenuItemArray[i]);
   end;
 
+  Port_ComboBox.Style := csOwnerDrawFixed;
+  Port_ComboBox.Items.CommaText := GetSerialPortNames;
+  Port_ComboBox.Text := '/dev/ttyUSB0';
+  Baud_ComboBox.Items.CommaText := UARTBaudRates;
+  Baud_ComboBox.Text := '9600';
+//  Baud_ComboBox.Style := csOwnerDrawFixed;
 
-//  ComboBox1.Items.CommaText := GetSerialPortNames;
+  ser.Handle := SerOpen('/dev/ttyUSB0');
 
-  ser := TBlockSerial.Create;
-  ser.LinuxLock := False;
-  ser.Purge;
+  SerSetParams(ser.Handle, 9600, 8, NoneParity, 1, ser.Flags);
 
   {$IFDEF MSWINDOWS}
-  ser.Connect('COM8');
+  ser.Handle := SerOpen('COM8');
   {$ELSE}
-  //  ser.Connect('/dev/ttyACM2');
-  ser.Connect('/dev/ttyUSB0');
+  ser.Handle := SerOpen('/dev/ttyUSB0');
   {$ENDIF}
 
-  Sleep(1000);
-  //ser.Config(9600, 8, 'N', SB1, False, False);
-  ser.Config(baud, 8, 'N', SB1, False, False);
+  //  Sleep(1000);
 
   Memo1.ScrollBars := ssAutoBoth;
   Memo1.WordWrap := False;
@@ -118,40 +111,78 @@ baud:=9600;
   Memo1.Color := clBlack;
   Memo1.Font.Color := clLtGray;
   Memo1.Font.Name := 'Monospace';
-  Memo1.Lines.Add('Device: ' + ser.Device + '   Status: ' + ser.LastErrorDesc +
-    ' ' + IntToStr(ser.LastError));
-  Memo1.DoubleBuffered := True;
+  Memo1.Font.Style := [fsBold];
 
-  Sleep(1000);
+  //  Memo1.Lines.Add('Device: ' + ser.Device + '   Status: ' + ser.LastErrorDesc +    ' ' + IntToStr(ser.LastError));
+  //  Sleep(1000);
   Timer1.Interval := 100;
   Timer1.Enabled := True;
+
+  Memo1.DoubleBuffered := True;
+end;
+
+procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
+begin
+//  InputForm.Show;
 end;
 
 procedure TSerial_Monitor_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  Cfg: TConfigStorage;
 begin
   Timer1.Enabled := False;
-  ser.Free;
+  SerSync(ser.Handle);
+  SerFlushOutput(ser.Handle);
+  SerClose(ser.Handle);
+end;
 
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetDeleteValue(Key_SerialMonitor_Left, IntToStr(Left), '100');
-  Cfg.SetDeleteValue(Key_SerialMonitor_Top, IntToStr(Top), '50');
-  Cfg.SetDeleteValue(Key_SerialMonitor_Width, IntToStr(Width), '500');
-  Cfg.SetDeleteValue(Key_SerialMonitor_Height, IntToStr(Height), '500');
-  Cfg.Free;
+procedure TSerial_Monitor_Form.Button1Click(Sender: TObject);
+begin
+  if Length(Edit1.Text) > 0 then begin
+    SerWrite(ser.Handle, Edit1.Text[1], Length(Edit1.Text));
+  end;
+end;
+
+procedure TSerial_Monitor_Form.Port_ComboBoxChange(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  SerSync(ser.Handle);
+  SerFlushOutput(ser.Handle);
+  SerClose(ser.Handle);
+
+  ser.Handle := SerOpen(Port_ComboBox.Text);
+  SerSetParams(ser.Handle, StrToInt(Baud_ComboBox.Text), 8, NoneParity, 1, ser.Flags);
+  Timer1.Enabled := True;
+end;
+
+procedure TSerial_Monitor_Form.Baud_ComboBoxChange(Sender: TObject);
+begin
+  SerSetParams(ser.Handle, StrToInt(Baud_ComboBox.Text), 8, NoneParity, 1, ser.Flags);
+end;
+
+procedure TSerial_Monitor_Form.Clear_ButtonClick(Sender: TObject);
+begin
+  Memo1.Clear;
+end;
+
+procedure TSerial_Monitor_Form.Close_ButtonClick(Sender: TObject);
+begin
+  Timer1.Enabled:=False;
+  Close;
 end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  s: string;
-  l: integer;
+  i: integer;
+  header: array[0..1023] of byte;
+  Count: integer;
 begin
-  while Timer1.Enabled and (ser.CanRead(10)) do begin
-    l := ser.WaitingData;
-    SetLength(s, l);
-    ser.RecvBuffer(@s[1], l);
-    Memo1.Text := Memo1.Text + s;
+  //  FillByte(header, SizeOf(header), 0);
+
+  while Timer1.Enabled do begin
+    Count := SerReadTimeout(ser.Handle, header, 1024, 10);
+    for i := 0 to Count - 1 do begin
+      Memo1.Text := Memo1.Text + char(header[i]);
+    end;
+
     if CheckBox1.Checked then begin
       Memo1.SelStart := -2;
     end;
@@ -161,48 +192,8 @@ end;
 
 procedure TSerial_Monitor_Form.MenuItemClick(Sender: TObject);
 begin
-  ser.SendByte(TMenuItem(Sender).Tag);
-end;
-
-procedure TSerial_Monitor_Form.Clear_ButtonClick(Sender: TObject);
-begin
-  Memo1.Clear;
-end;
-
-procedure TSerial_Monitor_Form.Send_ButtonClick(Sender: TObject);
-begin
-  ser.SendBuffer(Pointer(Edit1.Text), Length(Edit1.Text));
-end;
-
-procedure TSerial_Monitor_Form.LoadDefaultMask;
-begin
-  with SerialMonitorPort_ComboBox do begin
-    Items.CommaText := GetSerialPortNames;
-    Text := '/dev/ttyUSB0';
-  end;
-
-  with SerialMonitorBaud_ComboBox do begin
-    Items.CommaText := UARTBaudRates;
-    Text := '9600';
-  end;
-end;
-
-procedure TSerial_Monitor_Form.ProjectOptionsToMask;
-begin
-  with SerialMonitorPort_ComboBox do begin
-//    Text := AVR_ProjectOptions.SerialMonitor.Port;
-  end;
-
-  with SerialMonitorBaud_ComboBox do begin
-//    Text := AVR_ProjectOptions.SerialMonitor.Baud;
-  end;
-end;
-
-procedure TSerial_Monitor_Form.MaskToProjectOptions;
-begin
-//    AVR_ProjectOptions.SerialMonitor.Port := SerialMonitorPort_ComboBox.Text;
-//    AVR_ProjectOptions.SerialMonitor.Baud := SerialMonitorBaud_ComboBox.Text;
+  Caption := IntToStr(TMenuItem(Sender).Tag);
+  SerWrite(ser.Handle, TMenuItem(Sender).Tag, 1);
 end;
 
 end.
-

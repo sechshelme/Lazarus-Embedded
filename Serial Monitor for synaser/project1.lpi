@@ -27,23 +27,26 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="laz_synapse"/>
       </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
     </RequiredPackages>
-    <Units Count="9">
+    <Units Count="7">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="embedded_gui_serial_monitor.pas"/>
+        <Filename Value="unit1.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Serial_Monitor_Form"/>
+        <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Embedded_GUI_Serial_Monitor"/>
+        <UnitName Value="Unit1"/>
       </Unit1>
       <Unit2>
         <Filename Value="input.pas"/>
@@ -79,18 +82,6 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
       </Unit6>
-      <Unit7>
-        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Serial_Monitor_Form"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Embedded_GUI_Serial_Monitor"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor.lfm"/>
-        <IsPartOfProject Value="True"/>
-      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

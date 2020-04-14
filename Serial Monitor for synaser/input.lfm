@@ -6,7 +6,7 @@ object InputForm: TInputForm
   Caption = 'InputForm'
   ClientHeight = 240
   ClientWidth = 320
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '1.7'
   object SpeedButtonLefr: TSpeedButton
     Tag = 1
     Left = 24

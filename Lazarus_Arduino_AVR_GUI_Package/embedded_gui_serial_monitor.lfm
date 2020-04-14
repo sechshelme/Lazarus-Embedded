@@ -1,116 +1,113 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 2156
-  Height = 839
-  Top = 168
-  Width = 827
-  Caption = 'Serial Monitor'
-  ClientHeight = 815
-  ClientWidth = 827
+  Left = 2085
+  Height = 731
+  Top = 516
+  Width = 638
+  Caption = 'Serial_Monitor_Form'
+  ClientHeight = 707
+  ClientWidth = 638
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
-  object Label1: TLabel
-    Left = 16
-    Height = 16
-    Top = 777
-    Width = 63
-    Anchors = [akLeft, akBottom]
-    Caption = 'COM-Port:'
-    ParentColor = False
-  end
-  object SerialMonitorPort_ComboBox: TComboBox
-    Left = 96
-    Height = 28
-    Top = 777
-    Width = 152
-    Anchors = [akLeft, akBottom]
-    ItemHeight = 0
-    TabOrder = 0
-    Text = 'SerialMonitorPort_ComboBox'
-  end
-  object Label2: TLabel
-    Left = 280
-    Height = 16
-    Top = 777
-    Width = 35
-    Anchors = [akLeft, akBottom]
-    Caption = 'Baud:'
-    ParentColor = False
-  end
-  object SerialMonitorBaud_ComboBox: TComboBox
-    Left = 344
-    Height = 28
-    Top = 777
-    Width = 96
-    Anchors = [akLeft, akBottom]
-    ItemHeight = 0
-    TabOrder = 1
-    Text = 'SerialMonitorBaud_ComboBox'
-  end
-  object Send_Button: TButton
-    Left = 744
-    Height = 25
-    Top = 8
-    Width = 75
-    Anchors = [akTop, akRight]
-    Caption = 'Senden'
-    OnClick = Send_ButtonClick
-    TabOrder = 2
-  end
-  object Edit1: TEdit
-    Left = 8
-    Height = 28
-    Top = 6
-    Width = 728
-    Anchors = [akTop, akLeft, akRight]
-    TabOrder = 3
-    Text = 'Edit1'
-  end
   object Memo1: TMemo
     Left = 0
-    Height = 732
-    Top = 36
-    Width = 827
+    Height = 620
+    Top = 40
+    Width = 638
     Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
       ''
     )
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 0
+  end
+  object Edit1: TEdit
+    Left = 8
+    Height = 28
+    Top = 6
+    Width = 537
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 1
+    Text = 'Edit1'
+  end
+  object Button1: TButton
+    Left = 553
+    Height = 25
+    Top = 8
+    Width = 75
+    Anchors = [akTop, akRight]
+    Caption = 'Senden'
+    OnClick = Button1Click
+    TabOrder = 2
   end
   object CheckBox1: TCheckBox
-    Left = 472
+    Left = 24
     Height = 23
-    Top = 776
+    Top = 674
     Width = 89
     Anchors = [akLeft, akBottom]
     Caption = 'Autoscroll'
+    TabOrder = 3
+  end
+  object Port_ComboBox: TComboBox
+    Left = 192
+    Height = 28
+    Top = 669
+    Width = 124
+    Anchors = [akLeft, akBottom]
+    ItemHeight = 0
+    OnChange = Port_ComboBoxChange
+    TabOrder = 4
+    Text = 'Port_ComboBox'
+  end
+  object Baud_ComboBox: TComboBox
+    Left = 320
+    Height = 28
+    Top = 669
+    Width = 100
+    Anchors = [akLeft, akBottom]
+    ItemHeight = 0
+    OnChange = Baud_ComboBoxChange
     TabOrder = 5
+    Text = '4800'
   end
   object Clear_Button: TButton
-    Left = 608
+    Left = 112
     Height = 25
-    Top = 776
+    Top = 669
     Width = 75
     Anchors = [akLeft, akBottom]
     Caption = 'Clear'
     OnClick = Clear_ButtonClick
     TabOrder = 6
   end
+  object Close_Button: TButton
+    Left = 538
+    Height = 25
+    Top = 669
+    Width = 83
+    Anchors = [akRight, akBottom]
+    Caption = 'Abbrechen'
+    OnClick = Close_ButtonClick
+    TabOrder = 7
+  end
   object Timer1: TTimer
+    Enabled = False
+    Interval = 100
     OnTimer = Timer1Timer
-    Left = 82
-    Top = 169
+    Left = 72
+    Top = 104
   end
   object MainMenu1: TMainMenu
-    Left = 347
-    Top = 140
+    Left = 319
+    Top = 112
     object MenuItem1: TMenuItem
       Caption = 'Send ASCII'
     end
     object MenuItem2: TMenuItem
       Caption = 'Arduino'
+      OnClick = MenuItem2Click
     end
   end
 end

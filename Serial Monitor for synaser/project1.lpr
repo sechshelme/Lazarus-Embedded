@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Embedded_GUI_Serial_Monitor, Input, Baud, Embedded_GUI_Find_Comports
+  Forms, Unit1, Input, Baud, Embedded_GUI_Find_Comports
   { you can add units after this };
 
 {$R *.res}
@@ -15,7 +15,7 @@ uses
 begin
   RequireDerivedFormResource:=True;
   Application.Initialize;
-  Application.CreateForm(TSerial_Monitor_Form, Serial_Monitor_Form);
+  Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TInputForm, InputForm);
   Application.CreateForm(TBaudForm, BaudForm);
   Application.Run;

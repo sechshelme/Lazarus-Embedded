@@ -14,10 +14,13 @@
           <AllowLabel Value="False"/>
         </SyntaxOptions>
       </Parsing>
+      <Other>
+        <CustomOptions Value="-dKomponents"/>
+      </Other>
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="21"/>
+    <Version Release="22"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_register.pas"/>
@@ -78,7 +81,7 @@
       </Item>
       <Item>
         <Filename Value="embedded_gui_modifed_synaser.pas"/>
-        <UnitName Value="embedded_gui_modifed_synaser"/>
+        <UnitName Value="Embedded_GUI_Modifed_Synaser"/>
       </Item>
     </Files>
     <i18n>
