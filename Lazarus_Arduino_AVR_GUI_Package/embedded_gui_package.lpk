@@ -20,7 +20,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="22"/>
+    <Version Release="23"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_register.pas"/>
@@ -78,10 +78,6 @@
       <Item>
         <Filename Value="embedded_gui_cpu_info_form.pas"/>
         <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
-      </Item>
-      <Item>
-        <Filename Value="embedded_gui_modifed_synaser.pas"/>
-        <UnitName Value="Embedded_GUI_Modifed_Synaser"/>
       </Item>
     </Files>
     <i18n>

@@ -15,7 +15,7 @@ uses
   Embedded_GUI_ARM_Project_Options_Form, Embedded_GUI_Common, 
   Embedded_GUI_AVR_Register, Embedded_GUI_ARM_Register, 
   Embedded_GUI_ARM_Project_Templates_Form, Embedded_GUI_CPU_Info_Form, 
-  Embedded_GUI_Modifed_Synaser, LazarusPackageIntf;
+  LazarusPackageIntf;
 
 implementation
 

@@ -11,9 +11,8 @@ uses
   LazFileUtils,
 //  Input,
 
-  {$IFDEF Komponets}
+  {$IFDEF Komponents}
   BaseIDEIntf,  // Bei Komponente
-  LazConfigStorage,
   {$ELSE}
   IniFiles,  // Bei normalen Anwendungen
   {$ENDIF}

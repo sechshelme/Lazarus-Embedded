@@ -12,7 +12,6 @@ uses
   LazLoggerBase,
   // IdeIntf
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
-
   DefineTemplates,  // Als Test;
 
   // Embedded ( Eigene Units )
@@ -32,6 +31,51 @@ var
 procedure Register;
 
 implementation
+
+type
+  TLSW = class(TObject)
+  private
+    procedure DoOpen;
+    procedure DoClose;
+  public
+    function RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
+    function RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
+    procedure StopHandler(Sender: TObject);
+  end;
+
+function TLSW.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
+begin
+  DoClose;
+end;
+
+function TLSW.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
+begin
+  DoClose;
+end;
+
+procedure TLSW.StopHandler(Sender: TObject);
+begin
+  DoOpen;
+end;
+
+procedure TLSW.DoOpen;
+begin
+  ShowMessage('Serial Öffnen');
+  //  if Assigned(SerialMonitor) then
+  //    SerialMonitor.RequestActivateMonitor(True);
+end;
+
+procedure TLSW.DoClose;
+begin
+  ShowMessage('Serial Schliessen');
+  //  if Assigned(SerialMonitor) then
+  //    SerialMonitor.RequestActivateMonitor(False);
+end;
+
+var
+  LSW: TLSW;
+//////// End TLSW
+
 
 procedure ShowAVROptionsDialog(Sender: TObject);
 var
@@ -106,8 +150,8 @@ var
   Form: TCPU_InfoForm;
 begin
   Form := TCPU_InfoForm.Create(nil);
-//  Form.Load(AVR_ControllerDataList);        // Lazarus auslesen ??????????
-  Form.ComboBox1.ItemIndex :=0 ;
+  //  Form.Load(AVR_ControllerDataList);        // Lazarus auslesen ??????????
+  Form.ComboBox1.ItemIndex := 0;
   Form.ComboBox1Select(Sender);
   Form.ShowModal;
   Form.Free;
@@ -124,11 +168,11 @@ begin
 
   AVR_ProjectOptions.Load(LazProject);
 
-//  Form.LoadDefaultMask;
-//  Form.ProjectOptionsToMask;
+  //  Form.LoadDefaultMask;
+  //  Form.ProjectOptionsToMask;
 
   if Form.ShowModal = mrOk then begin
-//    Form.MaskToProjectOptions;
+    //    Form.MaskToProjectOptions;
     AVR_ProjectOptions.Save(LazProject);
   end;
 
@@ -153,15 +197,28 @@ begin
   ARM_ProjectOptions := TARM_ProjectOptions.Create;
   RegisterProjectDescriptor(TProjectARMApp.Create);
 
+
+  // Run ( without or with debugger ) hooks
+  LazarusIDE.AddHandlerOnRunDebug(@LSW.RunHandler);
+  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@LSW.RunNoDebugHandler);
+  LazarusIDE.AddHandlerOnRunFinished(@LSW.StopHandler, True);
+
+
   // IDE Option
-  Embbed_IDE_OptionsFrameID := RegisterIDEOptionsEditor(GroupEnvironment, TEmbedded_IDE_Options_Frame, Embbed_IDE_OptionsFrameID)^.Index;
+  Embbed_IDE_OptionsFrameID :=
+    RegisterIDEOptionsEditor(GroupEnvironment, TEmbedded_IDE_Options_Frame,
+    Embbed_IDE_OptionsFrameID)^.Index;
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...', nil, @ShowAVROptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, Embedded_Titel, Embedded_Titel + '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
+  RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...',
+    nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...',
+    nil, @ShowARMOptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, Embedded_Titel, Embedded_Titel +
+    '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
 
-  RegisterIdeMenuCommand(mnuProject, Title + 'Serial-Monitor', Title + 'Serial-Monitor...', nil, @ShowSerialMonitor);        // Anderer Ort ??????????
+  RegisterIdeMenuCommand(mnuProject, Title + 'Serial-Monitor', Title +
+    'Serial-Monitor...', nil, @ShowSerialMonitor);        // Anderer Ort ??????????
 end;
 
 

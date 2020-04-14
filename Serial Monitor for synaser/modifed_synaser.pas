@@ -54,7 +54,7 @@
   {$ASMMODE intel}
 {$ENDIF}
 
-unit Embedded_GUI_Modifed_Synaser;
+unit Modifed_Synaser;
 
 interface
 

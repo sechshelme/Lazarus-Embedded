@@ -32,65 +32,44 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="9">
+    <Units Count="6">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="embedded_gui_serial_monitor.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Serial_Monitor_Form"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Embedded_GUI_Serial_Monitor"/>
-      </Unit1>
-      <Unit2>
         <Filename Value="input.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InputForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Input"/>
-      </Unit2>
-      <Unit3>
-        <Filename Value="baud.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="BaudForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Baud"/>
-      </Unit3>
-      <Unit4>
+      </Unit1>
+      <Unit2>
         <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_find_comports.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Embedded_GUI_Find_Comports"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_modifed_synaser.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Embedded_GUI_Modifed_Synaser"/>
-      </Unit5>
-      <Unit6>
+      </Unit2>
+      <Unit3>
         <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_arm_project_templates_form.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ARMProjectTemplatesForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
-      </Unit6>
-      <Unit7>
+      </Unit3>
+      <Unit4>
         <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Serial_Monitor_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Embedded_GUI_Serial_Monitor"/>
-      </Unit7>
-      <Unit8>
+      </Unit4>
+      <Unit5>
         <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor.lfm"/>
         <IsPartOfProject Value="True"/>
-      </Unit8>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
