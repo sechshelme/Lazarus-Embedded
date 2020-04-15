@@ -1,20 +1,20 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 2085
-  Height = 731
-  Top = 516
-  Width = 638
+  Left = 2086
+  Height = 754
+  Top = 537
+  Width = 622
   Caption = 'Serial_Monitor_Form'
-  ClientHeight = 707
-  ClientWidth = 638
+  ClientHeight = 730
+  ClientWidth = 622
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
   object Memo1: TMemo
     Left = 0
-    Height = 620
+    Height = 643
     Top = 40
-    Width = 638
+    Width = 622
     Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
       ''
@@ -26,13 +26,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Left = 8
     Height = 28
     Top = 6
-    Width = 537
+    Width = 521
     Anchors = [akTop, akLeft, akRight]
     TabOrder = 1
     Text = 'Edit1'
   end
   object Button1: TButton
-    Left = 553
+    Left = 537
     Height = 25
     Top = 8
     Width = 75
@@ -44,7 +44,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   object CheckBox1: TCheckBox
     Left = 24
     Height = 23
-    Top = 674
+    Top = 697
     Width = 89
     Anchors = [akLeft, akBottom]
     Caption = 'Autoscroll'
@@ -53,7 +53,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   object Port_ComboBox: TComboBox
     Left = 192
     Height = 28
-    Top = 669
+    Top = 692
     Width = 124
     Anchors = [akLeft, akBottom]
     ItemHeight = 0
@@ -64,7 +64,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   object Baud_ComboBox: TComboBox
     Left = 320
     Height = 28
-    Top = 669
+    Top = 692
     Width = 100
     Anchors = [akLeft, akBottom]
     ItemHeight = 0
@@ -75,7 +75,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   object Clear_Button: TButton
     Left = 112
     Height = 25
-    Top = 669
+    Top = 692
     Width = 75
     Anchors = [akLeft, akBottom]
     Caption = 'Clear'
@@ -83,9 +83,9 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     TabOrder = 6
   end
   object Close_Button: TButton
-    Left = 538
+    Left = 522
     Height = 25
-    Top = 669
+    Top = 692
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'

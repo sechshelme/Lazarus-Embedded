@@ -7,8 +7,6 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, StdCtrls,
   Grids,
-  BaseIDEIntf,
-  LazConfigStorage,
 
   // Embedded ( Eigene Units )
   Embedded_GUI_Common,
@@ -45,16 +43,9 @@ implementation
 { TCPU_InfoForm }
 
 procedure TCPU_InfoForm.FormCreate(Sender: TObject);
-var
-  Cfg: TConfigStorage;
 begin
   Caption := Title + 'CPU Info';
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Left := StrToInt(Cfg.GetValue(Key_CPU_Info_Left, '100'));
-  Top := StrToInt(Cfg.GetValue(Key_CPU_Info_Top, '50'));
-  Width := StrToInt(Cfg.GetValue(Key_CPU_Info_Width, '500'));
-  Height := StrToInt(Cfg.GetValue(Key_CPU_Info_Height, '500'));
-  Cfg.Free;
+  LoadFormPos(Self);
 
   StringGrid1.FixedCols := 0;
   StringGrid1.DoubleBuffered := True;
@@ -65,6 +56,11 @@ begin
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Embedded_Systems);
   ComboBox1Select(Sender);
+end;
+
+procedure TCPU_InfoForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  SaveFormPos(Self);
 end;
 
 procedure TCPU_InfoForm.StringGrid1CompareCells(Sender: TObject;
@@ -92,18 +88,6 @@ end;
 procedure TCPU_InfoForm.ToggleBox1Change(Sender: TObject);
 begin
   ComboBox1Select(Sender);
-end;
-
-procedure TCPU_InfoForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  Cfg: TConfigStorage;
-begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetDeleteValue(Key_CPU_Info_Left, IntToStr(Left), '100');
-  Cfg.SetDeleteValue(Key_CPU_Info_Top, IntToStr(Top), '50');
-  Cfg.SetDeleteValue(Key_CPU_Info_Width, IntToStr(Width), '500');
-  Cfg.SetDeleteValue(Key_CPU_Info_Height, IntToStr(Height), '500');
-  Cfg.Free;
 end;
 
 procedure TCPU_InfoForm.ComboBox1Select(Sender: TObject);

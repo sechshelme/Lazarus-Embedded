@@ -74,6 +74,8 @@ procedure TSerial_Monitor_Form.FormCreate(Sender: TObject);
 var
   i: integer;
 begin
+  Caption := Title + 'Serial-Monitor';
+  LoadFormPos(Self);
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
     SubMenuItemArray[i] := TMenuItem.Create(Self);
@@ -120,17 +122,19 @@ begin
   Memo1.DoubleBuffered := True;
 end;
 
-procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
-begin
-//  InputForm.Show;
-end;
-
 procedure TSerial_Monitor_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   Timer1.Enabled := False;
   SerSync(ser.Handle);
   SerFlushOutput(ser.Handle);
   SerClose(ser.Handle);
+
+  SaveFormPos(Self);
+end;
+
+procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
+begin
+//  InputForm.Show;
 end;
 
 procedure TSerial_Monitor_Form.Button1Click(Sender: TObject);

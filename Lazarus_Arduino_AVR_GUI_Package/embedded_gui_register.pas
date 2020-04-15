@@ -60,14 +60,14 @@ end;
 
 procedure TLSW.DoOpen;
 begin
-  ShowMessage('Serial Öffnen');
+//  ShowMessage('Serial Öffnen');
   //  if Assigned(SerialMonitor) then
   //    SerialMonitor.RequestActivateMonitor(True);
 end;
 
 procedure TLSW.DoClose;
 begin
-  ShowMessage('Serial Schliessen');
+//  ShowMessage('Serial Schliessen');
   //  if Assigned(SerialMonitor) then
   //    SerialMonitor.RequestActivateMonitor(False);
 end;

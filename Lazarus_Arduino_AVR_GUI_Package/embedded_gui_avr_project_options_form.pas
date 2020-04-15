@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, Buttons,
-  LazConfigStorage, BaseIDEIntf,
+//  LazConfigStorage, BaseIDEIntf,
   LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
@@ -79,29 +79,15 @@ implementation
 { TAVR_Project_Options_Form }
 
 procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
-var
-  Cfg: TConfigStorage;
 begin
   Caption := Title + 'AVR Project Options';
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Left := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Left, '100'));
-  Top := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Top, '50'));
-  Width := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Width, '500'));
-  Height := StrToInt(Cfg.GetValue(Key_AVR_ProjectOptions_Height, '500'));
-  Cfg.Free;
+  LoadFormPos(Self);
 end;
 
 procedure TAVR_Project_Options_Form.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
-var
-  Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Left, IntToStr(Left), '100');
-  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Top, IntToStr(Top), '50');
-  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Width, IntToStr(Width), '500');
-  Cfg.SetDeleteValue(Key_AVR_ProjectOptions_Height, IntToStr(Height), '500');
-  Cfg.Free;
+  SaveFormPos(Self);
 end;
 
 procedure TAVR_Project_Options_Form.CancelButtonClick(Sender: TObject);
