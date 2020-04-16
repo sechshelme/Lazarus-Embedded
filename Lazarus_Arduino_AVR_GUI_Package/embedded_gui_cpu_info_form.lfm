@@ -21,6 +21,7 @@ object CPU_InfoForm: TCPU_InfoForm
     DefaultCaption = True
     Kind = bkOK
     ModalResult = 1
+    OnClick = BitBtn_OkClick
     TabOrder = 0
   end
   object StringGrid1: TStringGrid

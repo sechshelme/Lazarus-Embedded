@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, unit1, embedded_gui_subarch_list;
+  Forms, Embedded_GUI_SubArch_List, Embedded_GUI_CPU_Info_Form;
 
 {$R *.res}
 
@@ -15,7 +15,7 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TCPU_InfoForm, CPU_InfoForm);
   Application.Run;
 end.
 

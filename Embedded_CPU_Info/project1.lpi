@@ -49,6 +49,18 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Embedded_GUI_SubArch_List"/>
       </Unit>
+      <Unit>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_cpu_info_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CPU_InfoForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_cpu_info_form.lfm"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

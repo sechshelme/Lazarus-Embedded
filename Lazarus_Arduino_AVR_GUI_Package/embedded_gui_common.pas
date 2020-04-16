@@ -2,11 +2,14 @@ unit Embedded_GUI_Common;
 
 interface
 
+(* Bei "Komponent-Explorer/Einstellungen/Compilereinstellungen/Benutzerdefinierte Einstellungen/"
+  ist "-dKomponents" eingetragen. *)
+
 uses
   {$IFDEF Komponents}
   BaseIDEIntf, LazConfigStorage,  // Bei Komponente
   {$ELSE}
-  IniFiles,  // Bei normalen Anwendungen
+  XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
   SysUtils, Forms;
 
@@ -26,9 +29,12 @@ const
 
   Embedded_Options_File = 'embedded_gui_options.xml';
 
-  Key_Avrdude_Path = 'averdude_pfad/value';
-  Key_Avrdude_Conf_Path = 'averdude_conf_pfad/value';
-  Key_STFlash_Path = 'stlink_pfad/value';
+  Key_AVRdude = 'avrdude/';
+  Key_STFlash = 'st_flashe/';
+
+  Key_Avrdude_Path = Key_AVRdude + 'pfad/value';
+  Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/value';
+  Key_STFlash_Path = Key_STFlash + 'pfad/value';
 
   {$IFDEF MSWINDOWS}
   Default_Avrdude_Path = 'c:\avrdude\averdude.exe';
@@ -40,81 +46,59 @@ const
   Default_STFlash_Path = '/usr/local/bin/st-flash';
   {$ENDIF}
 
-  //Key_CPU_Info_Left = 'cpu_info_form_left/value';
-  //Key_CPU_Info_Top = 'cpu_info_form_top/value';
-  //Key_CPU_Info_Width = 'cpu_info_form_width/value';
-  //Key_CPU_Info_Height = 'cpu_info_form_height/value';
-  //
-  //Key_AVR_ProjectOptions_Left = 'avr_project_options_form_left/value';
-  //Key_AVR_ProjectOptions_Top = 'avr_project_options_form_top/value';
-  //Key_AVR_ProjectOptions_Width = 'avr_project_options_form_width/value';
-  //Key_AVR_ProjectOptions_Height = 'avr_project_options_form_height/value';
-  //
-  //Key_AVR_Templates_Left = 'avr_templates_form_left/value';
-  //Key_AVR_Templates_Top = 'avr_templates_form_top/value';
-  //Key_AVR_Templates_Width = 'avr_templates_form_width/value';
-  //Key_AVR_Templates_Height = 'avr_templates_form_height/value';
-  //
-  //Key_ARM_ProjectOptions_Left = 'arm_project_options_form_left/value';
-  //Key_ARM_ProjectOptions_Top = 'arm_project_options_form_top/value';
-  //Key_ARM_ProjectOptions_Width = 'arm_project_options_form_width/value';
-  //Key_ARM_ProjectOptions_Height = 'arm_project_options_form_height/value';
-  //
-  //Key_ARM_Templates_Left = 'arm_templates_form_left/value';
-  //Key_ARM_Templates_Top = 'arm_templates_form_top/value';
-  //Key_ARM_Templates_Width = 'arm_templates_form_width/value';
-  //Key_ARM_Templates_Height = 'arm_templates_form_height/value';
-
-
   Key_SerialMonitorPort = 'SerialMonitorPort/value';
   Key_SerialMonitorBaud = 'COM_Port/value';
-  //Key_SerialMonitor_Left = 'serial_monitor_form_left/value';
-  //Key_SerialMonitor_Top = 'serial_monitor_form_top/value';
-  //Key_SerialMonitor_Width = 'serial_monitor_form_width/value';
-  //Key_SerialMonitor_Height = 'serial_monitor_form_height/value';
 
-procedure LoadFormPos(f: TForm);
-procedure SaveFormPos(f: TForm);
+procedure LoadFormPos(Form: TForm);
+procedure SaveFormPos(Form: TForm);
 
 
 implementation
 
-procedure LoadFormPos(f: TForm);
+procedure LoadFormPos(Form: TForm);
 var
   {$IFDEF Komponents}
   Cfg: TConfigStorage;
-    {$ELSE}
-  ini: TIniFile;
-    {$ENDIF}
+  {$ELSE}
+  Cfg: TXMLConfig;
+  {$ENDIF}
 begin
-  {$IFDEF Komponents}
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  f.Left := StrToInt(Cfg.GetValue('Key_' + f.Name + '_Left/value', '100'));
-  f.Top := StrToInt(Cfg.GetValue('Key_' + f.Name + '_Top/value', '50'));
-  f.Width := StrToInt(Cfg.GetValue('Key_' + f.Name + '_Width/value', '500'));
-  f.Height := StrToInt(Cfg.GetValue('Key_' + f.Name + '_Height/value', '500'));
-  Cfg.Free;
+  with Form do begin
+    {$IFDEF Komponents}
+    Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
     {$ELSE}
+    Cfg := TXMLConfig.Create(nil);
+    Cfg.Filename := 'config.xml';
     {$ENDIF}
+    Left := StrToInt(Cfg.GetValue(Name + '/Left/value', IntToStr(Left)));
+    Top := StrToInt(Cfg.GetValue(Name + '/Top/value', IntToStr(Top)));
+    Width := StrToInt(Cfg.GetValue(Name + '/Width/value', IntToStr(Width)));
+    Height := StrToInt(Cfg.GetValue(Name + '/Height/value', IntToStr(Height)));
+    Cfg.Free;
+  end;
 end;
 
-procedure SaveFormPos(f: TForm);
+procedure SaveFormPos(Form: TForm);
 var
-{$IFDEF Komponents}
+  {$IFDEF Komponents}
   Cfg: TConfigStorage;
   {$ELSE}
-  ini: TIniFile;
+  Cfg: TXMLConfig;
   {$ENDIF}
 begin
-{$IFDEF Komponents}
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetDeleteValue('Key_' + f.Name + '_Left/value', IntToStr(f.Left), '90');
-  Cfg.SetDeleteValue('Key_' + f.Name + '_Top/value', IntToStr(f.Top), '60');
-  Cfg.SetDeleteValue('Key_' + f.Name + '_Width/value', IntToStr(f.Width), '300');
-  Cfg.SetDeleteValue('Key_' + f.Name + '_Height/value', IntToStr(f.Height), '400');
-  Cfg.Free;
-  {$ELSE}
-  {$ENDIF}
+  with Form do begin
+    {$IFDEF Komponents}
+    Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+    {$ELSE}
+    Cfg := TXMLConfig.Create(nil);
+    Cfg.Filename := 'config.xml';
+    {$ENDIF}
+    Cfg.SetDeleteValue(Name + '/Left/value', IntToStr(Left), '90');
+    Cfg.SetDeleteValue(Name + '/Top/value', IntToStr(Top), '60');
+    Cfg.SetDeleteValue(Name + '/Width/value', IntToStr(Width), '300');
+    Cfg.SetDeleteValue(Name + '/Height/value', IntToStr(Height), '400');
+    Cfg.Free;
+  end;
 end;
 
 end.

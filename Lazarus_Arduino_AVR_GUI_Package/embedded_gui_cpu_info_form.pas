@@ -21,6 +21,7 @@ type
     ComboBox1: TComboBox;
     StringGrid1: TStringGrid;
     ToggleBox1: TToggleBox;
+    procedure BitBtn_OkClick(Sender: TObject);
     procedure ComboBox1Select(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -55,6 +56,7 @@ begin
 
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Embedded_Systems);
+  ComboBox1.ItemIndex := 0;
   ComboBox1Select(Sender);
 end;
 
@@ -109,6 +111,11 @@ begin
       Load(XTensa_ControllerDataList);
     end;
   end;
+end;
+
+procedure TCPU_InfoForm.BitBtn_OkClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TCPU_InfoForm.Load(var Table: array of TStringArray);
