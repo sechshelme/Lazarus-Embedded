@@ -11,7 +11,7 @@ uses
   {$ELSE}
   XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
-  SysUtils, Forms;
+  SysUtils,Controls, Forms;
 
 type
   TSerialMonitor_Para = record
@@ -21,7 +21,7 @@ type
 const
   UARTBaudRates =
     //    '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
-    '50,75,110,134,150,200,300,600,1200,1800,2400,4800,19200,38400,57600,115200,230400,460800';
+    '50,75,110,134,150,200,300,600,1200,1800,2400,4800,9600,19200,38400,57600,115200,230400,460800';
 
   Title = '[Embedded GUI] ';
 
@@ -30,7 +30,7 @@ const
   Embedded_Options_File = 'embedded_gui_options.xml';
 
   Key_AVRdude = 'avrdude/';
-  Key_STFlash = 'st_flashe/';
+  Key_STFlash = 'st_flash/';
 
   Key_Avrdude_Path = Key_AVRdude + 'pfad/value';
   Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/value';
@@ -49,13 +49,13 @@ const
   Key_SerialMonitorPort = 'SerialMonitorPort/value';
   Key_SerialMonitorBaud = 'COM_Port/value';
 
-procedure LoadFormPos(Form: TForm);
-procedure SaveFormPos(Form: TForm);
+procedure LoadFormPos(Form: TControl);
+procedure SaveFormPos(Form: TControl);
 
 
 implementation
 
-procedure LoadFormPos(Form: TForm);
+procedure LoadFormPos(Form: TControl);
 var
   {$IFDEF Komponents}
   Cfg: TConfigStorage;
@@ -70,15 +70,15 @@ begin
     Cfg := TXMLConfig.Create(nil);
     Cfg.Filename := 'config.xml';
     {$ENDIF}
-    Left := StrToInt(Cfg.GetValue(Name + '/Left/value', IntToStr(Left)));
-    Top := StrToInt(Cfg.GetValue(Name + '/Top/value', IntToStr(Top)));
-    Width := StrToInt(Cfg.GetValue(Name + '/Width/value', IntToStr(Width)));
-    Height := StrToInt(Cfg.GetValue(Name + '/Height/value', IntToStr(Height)));
+    Left := Cfg.GetValue(WideString(Name) + '/Left/value', Left);
+    Top := Cfg.GetValue(WideString(Name) + '/Top/value', Top);
+    Width := Cfg.GetValue(WideString(Name) + '/Width/value', Width);
+    Height := Cfg.GetValue(WideString(Name) + '/Height/value', Height);
     Cfg.Free;
   end;
 end;
 
-procedure SaveFormPos(Form: TForm);
+procedure SaveFormPos(Form: TControl);
 var
   {$IFDEF Komponents}
   Cfg: TConfigStorage;
@@ -93,10 +93,10 @@ begin
     Cfg := TXMLConfig.Create(nil);
     Cfg.Filename := 'config.xml';
     {$ENDIF}
-    Cfg.SetDeleteValue(Name + '/Left/value', IntToStr(Left), '90');
-    Cfg.SetDeleteValue(Name + '/Top/value', IntToStr(Top), '60');
-    Cfg.SetDeleteValue(Name + '/Width/value', IntToStr(Width), '300');
-    Cfg.SetDeleteValue(Name + '/Height/value', IntToStr(Height), '400');
+    Cfg.SetValue(WideString(Name) + '/Left/value', Left);
+    Cfg.SetValue(WideString(Name) + '/Top/value', Top);
+    Cfg.SetValue(WideString(Name) + '/Width/value', Width);
+    Cfg.SetValue(WideString(Name) + '/Height/value', Height);
     Cfg.Free;
   end;
 end;

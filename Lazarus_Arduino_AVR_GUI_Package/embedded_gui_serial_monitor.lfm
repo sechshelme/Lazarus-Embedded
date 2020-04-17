@@ -9,6 +9,8 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
+  OnHide = FormHide
+  OnShow = FormShow
   LCLVersion = '2.1.0.0'
   object Memo1: TMemo
     Left = 0
@@ -57,7 +59,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Width = 124
     Anchors = [akLeft, akBottom]
     ItemHeight = 0
-    OnChange = Port_ComboBoxChange
+    OnChange = ComboBoxChange
     TabOrder = 4
     Text = 'Port_ComboBox'
   end
@@ -68,7 +70,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Width = 100
     Anchors = [akLeft, akBottom]
     ItemHeight = 0
-    OnChange = Baud_ComboBoxChange
+    OnChange = ComboBoxChange
     TabOrder = 5
     Text = '4800'
   end
@@ -102,6 +104,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   object MainMenu1: TMainMenu
     Left = 319
     Top = 112
+    object MenuItem3: TMenuItem
+      Caption = 'Datei'
+      object MenuItem_Close: TMenuItem
+        Caption = 'Schliessen'
+        OnClick = MenuItem_CloseClick
+      end
+    end
     object MenuItem1: TMenuItem
       Caption = 'Send ASCII'
     end

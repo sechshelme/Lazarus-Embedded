@@ -33,49 +33,55 @@ procedure Register;
 implementation
 
 type
-  TLSW = class(TObject)
+
+  { TSerialMonitor }
+
+  TSerialMonitor = class(TObject)
   private
-    procedure DoOpen;
-    procedure DoClose;
+    Active: boolean;
   public
+    constructor Create;
     function RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
     function RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
     procedure StopHandler(Sender: TObject);
   end;
 
-function TLSW.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
+function TSerialMonitor.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
-  DoClose;
+  if Serial_Monitor_Form.Timer1.Enabled then begin
+    Active := True;
+    Serial_Monitor_Form.CloseSerial;
+  end else begin
+    Active := False;
+  end;
 end;
 
-function TLSW.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
+function TSerialMonitor.RunNoDebugHandler(Sender: TObject;
+  var Handled: boolean): TModalResult;
 begin
-  DoClose;
+  if Serial_Monitor_Form.Timer1.Enabled then begin
+    Active := True;
+    Serial_Monitor_Form.CloseSerial;
+  end else begin
+    Active := False;
+  end;
 end;
 
-procedure TLSW.StopHandler(Sender: TObject);
+procedure TSerialMonitor.StopHandler(Sender: TObject);
 begin
-  DoOpen;
+  if Active then begin
+    Serial_Monitor_Form.OpenSerial;
+  end;
 end;
 
-procedure TLSW.DoOpen;
+constructor TSerialMonitor.Create;
 begin
-//  ShowMessage('Serial Öffnen');
-  //  if Assigned(SerialMonitor) then
-  //    SerialMonitor.RequestActivateMonitor(True);
-end;
-
-procedure TLSW.DoClose;
-begin
-//  ShowMessage('Serial Schliessen');
-  //  if Assigned(SerialMonitor) then
-  //    SerialMonitor.RequestActivateMonitor(False);
+  inherited Create;
+  Active := False;
 end;
 
 var
-  LSW: TLSW;
-//////// End TLSW
-
+  SerialMonitor: TSerialMonitor;
 
 procedure ShowAVROptionsDialog(Sender: TObject);
 var
@@ -157,30 +163,25 @@ begin
   Form.Free;
 end;
 
-procedure ShowSerialMonitor(Sender: TObject);
+procedure RegisterSerialMonitor(Sender: TObject);
 var
   LazProject: TLazProject;
-  Form: TSerial_Monitor_Form;
 begin
-  Form := TSerial_Monitor_Form.Create(nil);
+  if not Assigned(Serial_Monitor_Form) then begin
+    Serial_Monitor_Form := TSerial_Monitor_Form.Create(nil);
+  end;
 
   LazProject := LazarusIDE.ActiveProject;
 
-  AVR_ProjectOptions.Load(LazProject);
+  //  AVR_ProjectOptions.Load(LazProject);
 
   //  Form.LoadDefaultMask;
   //  Form.ProjectOptionsToMask;
+  Serial_Monitor_Form.Show;
 
-  if Form.ShowModal = mrOk then begin
-    //    Form.MaskToProjectOptions;
-    AVR_ProjectOptions.Save(LazProject);
-  end;
-
-  Form.Free;
 end;
 
 procedure Register;
-
 const
   AVR_Title = Title + 'AVR-Optionen (Arduino)';
   ARM_Title = Title + 'ARM-Optionen (STM32)';
@@ -199,9 +200,10 @@ begin
 
 
   // Run ( without or with debugger ) hooks
-  LazarusIDE.AddHandlerOnRunDebug(@LSW.RunHandler);
-  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@LSW.RunNoDebugHandler);
-  LazarusIDE.AddHandlerOnRunFinished(@LSW.StopHandler, True);
+  SerialMonitor := TSerialMonitor.Create;
+  LazarusIDE.AddHandlerOnRunDebug(@SerialMonitor.RunHandler);
+  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@SerialMonitor.RunNoDebugHandler);
+  LazarusIDE.AddHandlerOnRunFinished(@SerialMonitor.StopHandler, True);
 
 
   // IDE Option
@@ -218,7 +220,7 @@ begin
     '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
 
   RegisterIdeMenuCommand(mnuProject, Title + 'Serial-Monitor', Title +
-    'Serial-Monitor...', nil, @ShowSerialMonitor);        // Anderer Ort ??????????
+    'Serial-Monitor...', nil, @RegisterSerialMonitor);        // Anderer Ort ??????????
 end;
 
 

@@ -73,9 +73,9 @@ var
   Cfg: TConfigStorage;
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetDeleteValue(Key_Avrdude_Path, avrdudePath, Default_Avrdude_Path);
-  Cfg.SetDeleteValue(Key_Avrdude_Conf_Path, avrdudeConfigPath, Default_Avrdude_Conf_Path);
-  Cfg.SetDeleteValue(Key_STFlash_Path, STFlashPath, Default_STFlash_Path);
+  Cfg.SetValue(Key_Avrdude_Path, avrdudePath);
+  Cfg.SetValue(Key_Avrdude_Conf_Path, avrdudeConfigPath);
+  Cfg.SetValue(Key_STFlash_Path, STFlashPath);
   Cfg.Free;
 end;
 

@@ -9,7 +9,7 @@ uses
   ExtCtrls, Menus,
   Serial,
   LazFileUtils,
-//  Input,
+  //  Input,
 
   {$IFDEF Komponents}
   BaseIDEIntf,  // Bei Komponente
@@ -29,6 +29,8 @@ type
     Clear_Button: TButton;
     Close_Button: TButton;
     CheckBox1: TCheckBox;
+    MenuItem3: TMenuItem;
+    MenuItem_Close: TMenuItem;
     Port_ComboBox: TComboBox;
     Baud_ComboBox: TComboBox;
     Edit1: TEdit;
@@ -37,27 +39,28 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     Timer1: TTimer;
-    procedure Baud_ComboBoxChange(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
     procedure Close_ButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormHide(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
-    procedure Port_ComboBoxChange(Sender: TObject);
+    procedure MenuItem_CloseClick(Sender: TObject);
+    procedure ComboBoxChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
     SubMenuItemArray: array[0..31] of TMenuItem;
-
     procedure MenuItemClick(Sender: TObject);
-
   public
     ser: record
       Handle: TSerialHandle;
       Flags: TSerialFlags;
       Parity: TParityType;
     end;
-
+    procedure OpenSerial;
+    procedure CloseSerial;
   end;
 
 var
@@ -68,7 +71,6 @@ implementation
 {$R *.lfm}
 
 { TSerial_Monitor_Form }
-
 
 procedure TSerial_Monitor_Form.FormCreate(Sender: TObject);
 var
@@ -87,25 +89,6 @@ begin
     MenuItem1.Insert(i, SubMenuItemArray[i]);
   end;
 
-  Port_ComboBox.Style := csOwnerDrawFixed;
-  Port_ComboBox.Items.CommaText := GetSerialPortNames;
-  Port_ComboBox.Text := '/dev/ttyUSB0';
-  Baud_ComboBox.Items.CommaText := UARTBaudRates;
-  Baud_ComboBox.Text := '9600';
-//  Baud_ComboBox.Style := csOwnerDrawFixed;
-
-  ser.Handle := SerOpen('/dev/ttyUSB0');
-
-  SerSetParams(ser.Handle, 9600, 8, NoneParity, 1, ser.Flags);
-
-  {$IFDEF MSWINDOWS}
-  ser.Handle := SerOpen('COM8');
-  {$ELSE}
-  ser.Handle := SerOpen('/dev/ttyUSB0');
-  {$ENDIF}
-
-  //  Sleep(1000);
-
   Memo1.ScrollBars := ssAutoBoth;
   Memo1.WordWrap := False;
   Memo1.ParentFont := False;
@@ -114,27 +97,63 @@ begin
   Memo1.Font.Name := 'Monospace';
   Memo1.Font.Style := [fsBold];
 
-  //  Memo1.Lines.Add('Device: ' + ser.Device + '   Status: ' + ser.LastErrorDesc +    ' ' + IntToStr(ser.LastError));
-  //  Sleep(1000);
   Timer1.Interval := 100;
-  Timer1.Enabled := True;
+
+  Port_ComboBox.Style := csOwnerDrawFixed;
+  Port_ComboBox.Items.CommaText := GetSerialPortNames;
+  {$IFDEF MSWINDOWS}
+  Port_ComboBox.Text := 'COM8';
+  {$ELSE}
+  Port_ComboBox.Text := '/dev/ttyUSB0';
+  {$ENDIF}
+  Baud_ComboBox.Items.CommaText := UARTBaudRates;
+  Baud_ComboBox.Text := '9600';
+  //  Baud_ComboBox.Style := csOwnerDrawFixed;
 
   Memo1.DoubleBuffered := True;
 end;
 
+procedure TSerial_Monitor_Form.FormHide(Sender: TObject);
+begin
+  CloseSerial;
+end;
+
+procedure TSerial_Monitor_Form.FormShow(Sender: TObject);
+begin
+  OpenSerial;
+end;
+
 procedure TSerial_Monitor_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  SaveFormPos(Self);
+end;
+
+procedure TSerial_Monitor_Form.OpenSerial;
+begin
+  ser.Handle := SerOpen('COM8');
+  ser.Handle := SerOpen('/dev/ttyUSB0');
+  ser.Handle := SerOpen(Port_ComboBox.Text);
+  SerSetParams(ser.Handle, StrToInt(Baud_ComboBox.Text), 8, NoneParity, 1, ser.Flags);
+  Timer1.Enabled := True;
+end;
+
+procedure TSerial_Monitor_Form.CloseSerial;
 begin
   Timer1.Enabled := False;
   SerSync(ser.Handle);
   SerFlushOutput(ser.Handle);
   SerClose(ser.Handle);
-
-  SaveFormPos(Self);
 end;
 
 procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
 begin
-//  InputForm.Show;
+  //  InputForm.Show;
+end;
+
+procedure TSerial_Monitor_Form.MenuItem_CloseClick(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  Close;
 end;
 
 procedure TSerial_Monitor_Form.Button1Click(Sender: TObject);
@@ -144,21 +163,10 @@ begin
   end;
 end;
 
-procedure TSerial_Monitor_Form.Port_ComboBoxChange(Sender: TObject);
+procedure TSerial_Monitor_Form.ComboBoxChange(Sender: TObject);
 begin
-  Timer1.Enabled := False;
-  SerSync(ser.Handle);
-  SerFlushOutput(ser.Handle);
-  SerClose(ser.Handle);
-
-  ser.Handle := SerOpen(Port_ComboBox.Text);
-  SerSetParams(ser.Handle, StrToInt(Baud_ComboBox.Text), 8, NoneParity, 1, ser.Flags);
-  Timer1.Enabled := True;
-end;
-
-procedure TSerial_Monitor_Form.Baud_ComboBoxChange(Sender: TObject);
-begin
-  SerSetParams(ser.Handle, StrToInt(Baud_ComboBox.Text), 8, NoneParity, 1, ser.Flags);
+  CloseSerial;
+  OpenSerial;
 end;
 
 procedure TSerial_Monitor_Form.Clear_ButtonClick(Sender: TObject);
@@ -168,7 +176,7 @@ end;
 
 procedure TSerial_Monitor_Form.Close_ButtonClick(Sender: TObject);
 begin
-  Timer1.Enabled:=False;
+  Timer1.Enabled := False;
   Close;
 end;
 
