@@ -2,10 +2,10 @@ object Form1: TForm1
   Left = 415
   Height = 225
   Top = 211
-  Width = 327
+  Width = 562
   Caption = 'Form1'
   ClientHeight = 225
-  ClientWidth = 327
+  ClientWidth = 562
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
@@ -13,7 +13,7 @@ object Form1: TForm1
     Left = 0
     Height = 174
     Top = 0
-    Width = 327
+    Width = 562
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
@@ -510,8 +510,8 @@ object Form1: TForm1
       end
     end
   end
-  object BitBtn1: TBitBtn
-    Left = 216
+  object Close_Btn: TBitBtn
+    Left = 451
     Height = 30
     Top = 182
     Width = 94
@@ -521,7 +521,7 @@ object Form1: TForm1
     ModalResult = 11
     TabOrder = 1
   end
-  object BitBtn2: TBitBtn
+  object Generate_BitBtn: TBitBtn
     Left = 264
     Height = 30
     Top = 182
@@ -530,7 +530,7 @@ object Form1: TForm1
     Caption = 'Generate'
     Kind = bkRetry
     ModalResult = 4
-    OnClick = BitBtn2Click
+    OnClick = Generate_BitBtnClick
     TabOrder = 2
   end
   object DirectoryEdit1: TDirectoryEdit

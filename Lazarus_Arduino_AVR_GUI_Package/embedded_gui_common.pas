@@ -70,10 +70,10 @@ begin
     Cfg := TXMLConfig.Create(nil);
     Cfg.Filename := 'config.xml';
     {$ENDIF}
-    Left := Cfg.GetValue(WideString(Name) + '/Left/value', Left);
-    Top := Cfg.GetValue(WideString(Name) + '/Top/value', Top);
-    Width := Cfg.GetValue(WideString(Name) + '/Width/value', Width);
-    Height := Cfg.GetValue(WideString(Name) + '/Height/value', Height);
+    Left := Cfg.GetValue(Name + '/Left/value', Left);
+    Top := Cfg.GetValue(Name + '/Top/value', Top);
+    Width := Cfg.GetValue(Name + '/Width/value', Width);
+    Height := Cfg.GetValue(Name + '/Height/value', Height);
     Cfg.Free;
   end;
 end;
@@ -93,10 +93,10 @@ begin
     Cfg := TXMLConfig.Create(nil);
     Cfg.Filename := 'config.xml';
     {$ENDIF}
-    Cfg.SetValue(WideString(Name) + '/Left/value', Left);
-    Cfg.SetValue(WideString(Name) + '/Top/value', Top);
-    Cfg.SetValue(WideString(Name) + '/Width/value', Width);
-    Cfg.SetValue(WideString(Name) + '/Height/value', Height);
+    Cfg.SetValue(Name + '/Left/value', Left);
+    Cfg.SetValue(Name + '/Top/value', Top);
+    Cfg.SetValue(Name + '/Width/value', Width);
+    Cfg.SetValue(Name + '/Height/value', Height);
     Cfg.Free;
   end;
 end;

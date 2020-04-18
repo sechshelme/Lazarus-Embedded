@@ -14,18 +14,18 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    Close_Btn: TBitBtn;
+    Generate_BitBtn: TBitBtn;
     DirectoryEdit1: TDirectoryEdit;
     SynEdit1: TSynEdit;
     SynPasSyn1: TSynPasSyn;
-    procedure BitBtn2Click(Sender: TObject);
+    procedure Generate_BitBtnClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
     function FindText(s: string; var ofs: integer): string;
-    function getKomma(sl: TStringList): string;
-    function GetControllerDataType(s: string): string;
+    function Comma(sl: TStringList): string;
+    function ControllerDataType(s: string): string;
     function AddSubArch(sl: TStrings; cpu: string): TStringList;
     procedure AddCPUData(sl, SubArchList: TStrings; cpu: string);
     procedure AddControllerDataList(sl: TStrings; cpu: string);
@@ -51,13 +51,25 @@ begin
   Width := ini.ReadInteger('pos', 'Width', 500);
   Top := ini.ReadInteger('pos', 'Top', 50);
   Height := ini.ReadInteger('pos', 'Height', 400);
+  DirectoryEdit1.Directory := ini.ReadString('options', 'path', '/home/tux/fpc.src/fpc');
   ini.Free;
   SynEdit1.ScrollBars := ssAutoBoth;
-
-  DirectoryEdit1.Directory := '/home/tux/fpc.src/fpc';
 end;
 
-function TForm1.getKomma(sl: TStringList): string;
+procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+var
+  ini: TIniFile;
+begin
+  ini := TIniFile.Create('config.ini');
+  ini.WriteInteger('pos', 'Left', Left);
+  ini.WriteInteger('pos', 'Width', Width);
+  ini.WriteInteger('pos', 'Top', Top);
+  ini.WriteInteger('pos', 'Height', Height);
+  ini.WriteString('options', 'path', DirectoryEdit1.Directory);
+  ini.Free;
+end;
+
+function TForm1.Comma(sl: TStringList): string;
 begin
   Result := sl.CommaText;
   Result := StringReplace(Result, ',', #39', '#39, [rfReplaceAll, rfIgnoreCase]);
@@ -77,7 +89,7 @@ begin
   until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '$']);
 end;
 
-function TForm1.GetControllerDataType(s: string): string;
+function TForm1.ControllerDataType(s: string): string;
 var
   ofs: integer;
   s1: string;
@@ -92,7 +104,9 @@ begin
       Inc(ofs);
     end;
     s1 := FindText(s, ofs);
-    if s1<>'end' then  Result += #39', '#39+s1;
+    if s1 <> 'end' then begin
+      Result += #39', '#39 + s1;
+    end;
   until s1 = 'end';
 end;
 
@@ -160,20 +174,12 @@ begin
   ofs := 1;
   ofs := Pos('embedded_controllers', s, ofs);
   if ofs > 0 then begin
-    //    Delete(s, 1, ofs + 19);
-    //    ofs:=0;
     while ofs > 0 do begin
       ofs := Pos('controllertypestr', s, ofs);
-      //      WriteLn(ofs, cpu);
       if ofs > 0 then begin
-        //       Delete(s, 1, ofs + 15);
-        //        ofs := 0;
         s1 := '';
         s2 := '';
         ofs := Pos(#39, s, ofs);
-        //        repeat
-        //          Inc(ofs);
-        //        until s[ofs] = #39;
         Inc(ofs);
         if s[ofs] <> #39 then begin
           repeat
@@ -227,8 +233,6 @@ var
   ofs: integer;
   s, s1: string;
   sa: TStringArray;
-//  First: boolean;
-//  ControllerDataType: string;
 begin
   if Pos('generic', cpu) > 0 then begin
     Exit;
@@ -238,9 +242,6 @@ begin
   source_SL.LoadFromFile(cpu);
   s := source_SL.Text;
   source_SL.Free;
-
-//  ControllerDataType := GetControllerDataType(s);
-//  WriteLn(ControllerDataType);
 
   sa := cpu.Split('/');
   if Length(sa) >= 2 then begin
@@ -253,45 +254,21 @@ begin
     sl.Add('  ' + s1 + '_ControllerDataList : T' + s1 + '_ControllerDataList = (');
   end;
 
-  ofs := 1;
-  ofs := Pos('embedded_controllers', s, 1);
+  ofs := Pos('embedded_controllers', s);
+  sl.Add('    ('#39 + ControllerDataType(s) + #39'),');
 
-  sl.Add('    ('#39 + GetControllerDataType(s) + #39'),');
-//  First := True;
   if ofs > 0 then begin
     while (ofs > 0) do begin
       ofs := Pos('(', s, ofs);
       ofs := Pos('(', s, ofs);
-      //repeat
-      //  Inc(ofs);
-      //until s[ofs] = '(';
-      //
-      //repeat
-      //  Inc(ofs);
-      //until s[ofs] = '(';
 
       repeat
         FindText(s, ofs);
-//        repeat
-//          Inc(ofs);
-//        until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_'];
-////        s1 := '';
-//        repeat
-////          s1 += s[ofs];
-//          Inc(ofs);
-//        until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_']);
-//        sl1.Add(s1);
         while not (s[ofs] in [';', ')']) do begin
           Inc(ofs);
         end;
       until s[ofs] = ')';
 
-//      if First then begin
-//        sl.Add('    ('#39 + getKomma(sl1) + #39'),');
-//        sl.Add('    ('#39 + GetControllerDataType(s) + #39'),');
-//        First := False;
-//      end;
-  //    sl1.Clear;
       repeat
         Inc(ofs);
       until s[ofs] in [',', ')'];
@@ -300,31 +277,19 @@ begin
         repeat
           repeat
             ofs := Pos(':', s, ofs);
-            //          repeat
-            //            Inc(ofs);
-            //          until s[ofs] = ':';
-            //s1 := '';
-            //repeat
-            //  Inc(ofs);
-            //until s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$'];
-            //repeat
-            //  s1 += s[ofs];
-            //  Inc(ofs);
-            //until not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_',
-            //    '+', '-', '*', '/', '$']);
-            //sl1.Add(s1);
+
             sl1.Add(FindText(s, ofs));
 
             while not (s[ofs] in [';', ')']) do begin
               Inc(ofs);
             end;
-            while not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_',
-                '+', '-', '*', '/', '$', ')']) do begin
+            while not (s[ofs] in ['0'..'9', 'a'..'z', 'A'..'Z', '_', '+', '-', '*', '/', '$', ')']) do begin
+
               Inc(ofs);
             end;
           until s[ofs] = ')';
 
-          sl.Add('    ('#39 + getKomma(sl1) + #39'),');
+          sl.Add('    ('#39 + Comma(sl1) + #39'),');
           sl1.Clear;
           repeat
             Inc(ofs);
@@ -342,7 +307,7 @@ begin
   sl1.Free;
 end;
 
-procedure TForm1.BitBtn2Click(Sender: TObject);
+procedure TForm1.Generate_BitBtnClick(Sender: TObject);
 var
   i: integer;
   CPU_SL, SubArchList: TStringList;
@@ -352,8 +317,7 @@ begin
   SynEdit1.Clear;
 
   SynEdit1.Lines.Add('');
-  SynEdit1.Lines.Add(
-    '// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.');
+  SynEdit1.Lines.Add('// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.');
   SynEdit1.Lines.Add('// Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und');
   SynEdit1.Lines.Add('// "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.');
   SynEdit1.Lines.Add('');
@@ -378,22 +342,8 @@ begin
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-  //  SynEdit1.Lines.SaveToFile('embedded_gui_subarch_list.pas');
-  SynEdit1.Lines.SaveToFile(
-    '../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
+  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
   CPU_SL.Free;
-end;
-
-procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  ini: TIniFile;
-begin
-  ini := TIniFile.Create('config.ini');
-  ini.WriteInteger('pos', 'Left', Left);
-  ini.WriteInteger('pos', 'Width', Width);
-  ini.WriteInteger('pos', 'Top', Top);
-  ini.WriteInteger('pos', 'Height', Height);
-  ini.Free;
 end;
 
 end.
