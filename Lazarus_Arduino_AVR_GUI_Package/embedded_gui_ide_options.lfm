@@ -1,84 +1,121 @@
 object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
   Left = 0
-  Height = 433
+  Height = 585
   Top = 0
-  Width = 540
-  ClientHeight = 433
-  ClientWidth = 540
+  Width = 782
+  ClientHeight = 585
+  ClientWidth = 782
   TabOrder = 0
-  DesignLeft = 2025
-  DesignTop = 476
-  object GroupBox1: TGroupBox
-    Left = 16
-    Height = 200
-    Top = 16
-    Width = 509
-    Anchors = [akTop, akLeft, akRight]
-    Caption = 'AVR'
-    ClientHeight = 183
-    ClientWidth = 507
+  DesignLeft = 1557
+  DesignTop = 234
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 585
+    Top = 0
+    Width = 782
+    ActivePage = TabSheet3
+    Align = alClient
+    TabIndex = 2
     TabOrder = 0
-    object ComboBoxAVRdude: TComboBox
-      Left = 16
-      Height = 28
-      Top = 56
-      Width = 481
-      Anchors = [akTop, akLeft, akRight]
-      ItemHeight = 0
-      TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'AVR'
+      ClientHeight = 555
+      ClientWidth = 772
+      object Label1: TLabel
+        Left = 11
+        Height = 16
+        Top = 24
+        Width = 88
+        Caption = 'AVRdude-Pfad'
+        ParentColor = False
+      end
+      object ComboBoxAVRdude: TComboBox
+        Left = 0
+        Height = 28
+        Top = 56
+        Width = 1073
+        Anchors = [akTop, akLeft, akRight]
+        ItemHeight = 0
+        TabOrder = 0
+      end
+      object Label2: TLabel
+        Left = 11
+        Height = 16
+        Top = 104
+        Width = 133
+        Caption = 'AVRdude-Config-Pfad'
+        ParentColor = False
+      end
+      object ComboBoxAVRdudeConf: TComboBox
+        Left = 0
+        Height = 28
+        Top = 136
+        Width = 1073
+        Anchors = [akTop, akLeft, akRight]
+        ItemHeight = 0
+        TabOrder = 1
+      end
     end
-    object ComboBoxAVRdudeConf: TComboBox
-      Left = 16
-      Height = 28
-      Top = 136
-      Width = 481
-      Anchors = [akTop, akLeft, akRight]
-      ItemHeight = 0
-      TabOrder = 1
+    object TabSheet2: TTabSheet
+      Caption = 'ARM'
+      ClientHeight = 555
+      ClientWidth = 772
+      object Label3: TLabel
+        Left = 11
+        Height = 16
+        Top = 24
+        Width = 82
+        Caption = 'ST-Flash-Pfad'
+        ParentColor = False
+      end
+      object ComboBoxSTFlashPfad: TComboBox
+        Left = 0
+        Height = 28
+        Top = 56
+        Width = 1072
+        Anchors = [akTop, akLeft, akRight]
+        ItemHeight = 0
+        TabOrder = 0
+      end
     end
-    object Label2: TLabel
-      Left = 16
-      Height = 16
-      Top = 104
-      Width = 133
-      Caption = 'AVRdude-Config-Pfad'
-      ParentColor = False
-    end
-    object Label1: TLabel
-      Left = 16
-      Height = 16
-      Top = 24
-      Width = 88
-      Caption = 'AVRdude-Pfad'
-      ParentColor = False
-    end
-  end
-  object GroupBox2: TGroupBox
-    Left = 16
-    Height = 128
-    Top = 232
-    Width = 509
-    Anchors = [akTop, akLeft, akRight]
-    Caption = 'ARM'
-    ClientHeight = 111
-    ClientWidth = 507
-    TabOrder = 1
-    object Label3: TLabel
-      Left = 16
-      Height = 16
-      Top = 24
-      Width = 82
-      Caption = 'ST-Flash-Pfad'
-      ParentColor = False
-    end
-    object ComboBoxSTFlashPfad: TComboBox
-      Left = 16
-      Height = 28
-      Top = 56
-      Width = 481
-      Anchors = [akTop, akLeft, akRight]
-      ItemHeight = 0
-      TabOrder = 0
+    object TabSheet3: TTabSheet
+      Caption = 'Serial-Monitor'
+      ClientHeight = 555
+      ClientWidth = 772
+      object Port_ComboBox: TComboBox
+        Left = 136
+        Height = 28
+        Top = 10
+        Width = 124
+        ItemHeight = 0
+        TabOrder = 0
+        Text = 'Port_ComboBox'
+      end
+      object Baud_ComboBox: TComboBox
+        Left = 136
+        Height = 28
+        Top = 58
+        Width = 124
+        ItemHeight = 0
+        TabOrder = 1
+        Text = '4800'
+      end
+      object Label4: TLabel
+        Left = 8
+        Height = 16
+        Top = 16
+        Width = 29
+        Caption = 'Port:'
+        ParentColor = False
+      end
+      object Label5: TLabel
+        Left = 8
+        Height = 16
+        Top = 64
+        Width = 32
+        Caption = 'Baud'
+        ParentColor = False
+      end
     end
   end
 end

@@ -56,8 +56,7 @@ begin
   end;
 end;
 
-function TSerialMonitor.RunNoDebugHandler(Sender: TObject;
-  var Handled: boolean): TModalResult;
+function TSerialMonitor.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
   if Serial_Monitor_Form.Timer1.Enabled then begin
     Active := True;
@@ -92,12 +91,8 @@ begin
 
   LazProject := LazarusIDE.ActiveProject;
 
-  if (LazProject.LazCompilerOptions.TargetCPU <> 'avr') or
-    (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
-    if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.' +
-      LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' +
-      LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning,
-      [mbYes, mbNo], 0) = mrNo then begin
+  if (LazProject.LazCompilerOptions.TargetCPU <> 'avr') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
+    if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
       ProjOptiForm.Free;
       Exit;
     end;
@@ -126,12 +121,8 @@ begin
 
   LazProject := LazarusIDE.ActiveProject;
 
-  if (LazProject.LazCompilerOptions.TargetCPU <> 'arm') or
-    (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
-    if MessageDlg('Warnung', 'Es handelt sich nicht um ein ARM Embedded Project.' +
-      LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' +
-      LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning,
-      [mbYes, mbNo], 0) = mrNo then begin
+  if (LazProject.LazCompilerOptions.TargetCPU <> 'arm') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
+    if MessageDlg('Warnung', 'Es handelt sich nicht um ein ARM Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
       ProjOptiForm.Free;
       Exit;
     end;
@@ -208,19 +199,14 @@ begin
 
   // IDE Option
   Embbed_IDE_OptionsFrameID :=
-    RegisterIDEOptionsEditor(GroupEnvironment, TEmbedded_IDE_Options_Frame,
-    Embbed_IDE_OptionsFrameID)^.Index;
+    RegisterIDEOptionsEditor(GroupEnvironment, TEmbedded_IDE_Options_Frame, Embbed_IDE_OptionsFrameID)^.Index;
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...',
-    nil, @ShowAVROptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...',
-    nil, @ShowARMOptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, Embedded_Titel, Embedded_Titel +
-    '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
+  RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...', nil, @ShowAVROptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, Embedded_Titel, Embedded_Titel + '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
 
-  RegisterIdeMenuCommand(mnuProject, Title + 'Serial-Monitor', Title +
-    'Serial-Monitor...', nil, @RegisterSerialMonitor);        // Anderer Ort ??????????
+  RegisterIdeMenuCommand(mnuProject, Title + 'Serial-Monitor', Title + 'Serial-Monitor...', nil, @RegisterSerialMonitor);        // Anderer Ort ??????????
 end;
 
 

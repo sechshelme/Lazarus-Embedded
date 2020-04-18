@@ -5,9 +5,9 @@ unit Embedded_GUI_IDE_Options;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs,
+  Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, ComCtrls,
   IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
-
+  Embedded_GUI_Find_Comports,
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Common;
 
@@ -17,9 +17,7 @@ type
 
   TEmbedded_IDE_Options = class
   public
-    avrdudePath,
-    avrdudeConfigPath,
-    STFlashPath: string;
+    avrdudePath, avrdudeConfigPath, STFlashPath: string;
     procedure Save;
     procedure Load;
   end;
@@ -33,14 +31,20 @@ type
   { TEmbedded_IDE_Options_Frame }
 
   TEmbedded_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
+    Baud_ComboBox: TComboBox;
     ComboBoxAVRdude: TComboBox;
-    ComboBoxSTFlashPfad: TComboBox;
     ComboBoxAVRdudeConf: TComboBox;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
+    ComboBoxSTFlashPfad: TComboBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    PageControl1: TPageControl;
+    Port_ComboBox: TComboBox;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
   private
 
   public
@@ -92,6 +96,11 @@ begin
   ComboBoxAVRdudeConf.Text := Default_Avrdude_Conf_Path;
 
   ComboBoxSTFlashPfad.Text := Default_STFlash_Path;
+
+  Port_ComboBox.Items.CommaText := GetSerialPortNames;
+  Baud_ComboBox.Items.CommaText := UARTBaudRates;
+
+//  PageControl1.ActivePageIndex:=0;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
@@ -116,5 +125,8 @@ begin
 end;
 
 end.
+
+
+
 
 
