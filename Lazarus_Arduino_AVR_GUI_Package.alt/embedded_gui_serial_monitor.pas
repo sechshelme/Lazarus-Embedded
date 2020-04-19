@@ -13,7 +13,6 @@ uses
 
   {$IFDEF Komponents}
   BaseIDEIntf,  // Bei Komponente
-  Embedded_GUI_IDE_Options,
   {$ELSE}
   IniFiles,  // Bei normalen Anwendungen
   {$ENDIF}
@@ -102,17 +101,13 @@ begin
 
   Port_ComboBox.Style := csOwnerDrawFixed;
   Port_ComboBox.Items.CommaText := GetSerialPortNames;
-  Baud_ComboBox.Items.CommaText := UARTBaudRates;
-
-
-  {$IFDEF Komponents}
-  Port_ComboBox.Text := Embedded_IDE_Options.SerialMonitor.Port;
-  Baud_ComboBox.Text := Embedded_IDE_Options.SerialMonitor.Baud;
+  {$IFDEF MSWINDOWS}
+  Port_ComboBox.Text := 'COM8';
   {$ELSE}
-  Port_ComboBox.Text := UARTDefaultPort;
-  Baud_ComboBox.Text := UARTDefaultBaud;
+  Port_ComboBox.Text := '/dev/ttyUSB0';
   {$ENDIF}
-
+  Baud_ComboBox.Items.CommaText := UARTBaudRates;
+  Baud_ComboBox.Text := '9600';
   //  Baud_ComboBox.Style := csOwnerDrawFixed;
 
   Memo1.DoubleBuffered := True;
@@ -135,6 +130,8 @@ end;
 
 procedure TSerial_Monitor_Form.OpenSerial;
 begin
+  ser.Handle := SerOpen('COM8');
+  ser.Handle := SerOpen('/dev/ttyUSB0');
   ser.Handle := SerOpen(Port_ComboBox.Text);
   SerSetParams(ser.Handle, StrToInt(Baud_ComboBox.Text), 8, NoneParity, 1, ser.Flags);
   Timer1.Enabled := True;

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="5">
+    <Name Value="Embedded_GUI_Package"/>
+    <Type Value="DesignTime"/>
+    <Author Value="Mathias"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <AllowLabel Value="False"/>
+        </SyntaxOptions>
+      </Parsing>
+      <Other>
+        <CustomOptions Value="-dKomponents"/>
+      </Other>
+    </CompilerOptions>
+    <Description Value="Embedded GUI for Lazarus"/>
+    <License Value="GPL-2"/>
+    <Version Release="71"/>
+    <Files>
+      <Item>
+        <Filename Value="embedded_gui_register.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="Embedded_GUI_Register"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_ide_options.pas"/>
+        <UnitName Value="Embedded_GUI_IDE_Options"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_avr_project_options_form.pas"/>
+        <UnitName Value="Embedded_GUI_AVR_Project_Options_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_avr_common.pas"/>
+        <UnitName Value="Embedded_GUI_AVR_Common"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_serial_monitor.pas"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_avr_project_templates_form.pas"/>
+        <UnitName Value="Embedded_GUI_AVR_Project_Templates_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_subarch_list.pas"/>
+        <UnitName Value="Embedded_GUI_SubArch_List"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_common.pas"/>
+        <UnitName Value="Embedded_GUI_ARM_Common"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_project_options_form.pas"/>
+        <UnitName Value="Embedded_GUI_ARM_Project_Options_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_common.pas"/>
+        <UnitName Value="Embedded_GUI_Common"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_avr_register.pas"/>
+        <UnitName Value="Embedded_GUI_AVR_Register"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_register.pas"/>
+        <UnitName Value="Embedded_GUI_ARM_Register"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_project_templates_form.pas"/>
+        <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_cpu_info_form.pas"/>
+        <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
+      </Item>
+    </Files>
+    <i18n>
+      <EnableI18N Value="True"/>
+      <OutDir Value="languages"/>
+    </i18n>
+    <RequiredPkgs>
+      <Item>
+        <PackageName Value="CodeTools"/>
+      </Item>
+      <Item>
+        <PackageName Value="IDEIntf"/>
+      </Item>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
+  </Package>
+</CONFIG>

@@ -1,0 +1,122 @@
+object Serial_Monitor_Form: TSerial_Monitor_Form
+  Left = 2086
+  Height = 754
+  Top = 537
+  Width = 622
+  Caption = 'Serial_Monitor_Form'
+  ClientHeight = 730
+  ClientWidth = 622
+  Menu = MainMenu1
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnHide = FormHide
+  OnShow = FormShow
+  LCLVersion = '2.1.0.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 643
+    Top = 40
+    Width = 622
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      ''
+    )
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Edit1: TEdit
+    Left = 8
+    Height = 28
+    Top = 6
+    Width = 521
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 1
+    Text = 'Edit1'
+  end
+  object Button1: TButton
+    Left = 537
+    Height = 25
+    Top = 8
+    Width = 75
+    Anchors = [akTop, akRight]
+    Caption = 'Senden'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object CheckBox1: TCheckBox
+    Left = 24
+    Height = 23
+    Top = 697
+    Width = 89
+    Anchors = [akLeft, akBottom]
+    Caption = 'Autoscroll'
+    TabOrder = 3
+  end
+  object Port_ComboBox: TComboBox
+    Left = 192
+    Height = 28
+    Top = 692
+    Width = 124
+    Anchors = [akLeft, akBottom]
+    ItemHeight = 0
+    OnChange = ComboBoxChange
+    TabOrder = 4
+    Text = 'Port_ComboBox'
+  end
+  object Baud_ComboBox: TComboBox
+    Left = 320
+    Height = 28
+    Top = 692
+    Width = 100
+    Anchors = [akLeft, akBottom]
+    ItemHeight = 0
+    OnChange = ComboBoxChange
+    TabOrder = 5
+    Text = '4800'
+  end
+  object Clear_Button: TButton
+    Left = 112
+    Height = 25
+    Top = 692
+    Width = 75
+    Anchors = [akLeft, akBottom]
+    Caption = 'Clear'
+    OnClick = Clear_ButtonClick
+    TabOrder = 6
+  end
+  object Close_Button: TButton
+    Left = 522
+    Height = 25
+    Top = 692
+    Width = 83
+    Anchors = [akRight, akBottom]
+    Caption = 'Abbrechen'
+    OnClick = Close_ButtonClick
+    TabOrder = 7
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Timer1Timer
+    Left = 72
+    Top = 104
+  end
+  object MainMenu1: TMainMenu
+    Left = 319
+    Top = 112
+    object MenuItem3: TMenuItem
+      Caption = 'Datei'
+      object MenuItem_Close: TMenuItem
+        Caption = 'Schliessen'
+        OnClick = MenuItem_CloseClick
+      end
+    end
+    object MenuItem1: TMenuItem
+      Caption = 'Send ASCII'
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Arduino'
+      OnClick = MenuItem2Click
+    end
+  end
+end

@@ -144,7 +144,7 @@ begin
   with STLinkPathComboBox do begin
     Items.Add('st-flash');
     Items.Add(Default_STFlash_Path);
-    Text := Embedded_IDE_Options.ARM.STFlashPath;
+    Text := Embedded_IDE_Options.STFlashPath;
   end;
 
   with ARM_SubArch_ComboBox do begin

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, Buttons,
-  //  LazConfigStorage, BaseIDEIntf,
+//  LazConfigStorage, BaseIDEIntf,
   LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
@@ -84,8 +84,8 @@ begin
   LoadFormPos(Self);
 end;
 
-procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-
+procedure TAVR_Project_Options_Form.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
 begin
   SaveFormPos(Self);
 end;
@@ -192,13 +192,23 @@ begin
 
   with avrdudePathComboBox do begin
     Items.Add('avrdude');
+    //{$IFDEF MSWINDOWS}
+    //Items.Add('c:\averdude\averdude.exe');
+    //{$ELSE}
+    //Items.Add('/usr/bin/avrdude');
+    //{$ENDIF}
     Items.Add(Default_Avrdude_Path);
-    Text := Embedded_IDE_Options.AVR.avrdudePath;
+    Text := Embedded_IDE_Options.avrdudePath;
   end;
 
   with avrdudeConfigPathComboBox do begin
+    //{$IFDEF MSWINDOWS}
+    //Items.Add('c:\averdude\avrdude.conf');
+    //{$ELSE}
+    //Items.Add('avrdude.conf');
+    //{$ENDIF}
     Items.Add(Default_Avrdude_Conf_Path);
-    Text := Embedded_IDE_Options.AVR.avrdudeConfigPath;
+    Text := Embedded_IDE_Options.avrdudeConfigPath;
   end;
 
   with AVR_SubArch_ComboBox do begin
@@ -247,7 +257,8 @@ begin
   AVR_Typ_avrdude_Edit.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
   AsmFile_CheckBox.Checked := AVR_ProjectOptions.AsmFile;
-  Disable_Auto_Erase_CheckBox.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+  Disable_Auto_Erase_CheckBox.Checked :=
+    AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
 procedure TAVR_Project_Options_Form.MaskToProjectOptions;
@@ -263,7 +274,8 @@ begin
   AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
 
   AVR_ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
-  AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := Disable_Auto_Erase_CheckBox.Checked;
+  AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase :=
+    Disable_Auto_Erase_CheckBox.Checked;
 end;
 
 end.
