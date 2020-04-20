@@ -14,8 +14,8 @@ type
   { TARMProjectTemplatesForm }
 
   TARMProjectTemplatesForm = class(TForm)
-    BitBtn_Cancel: TBitBtn;
     BitBtn_Ok: TBitBtn;
+    BitBtn_Cancel: TBitBtn;
     Label1: TLabel;
     ListBox_Template: TListBox;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);

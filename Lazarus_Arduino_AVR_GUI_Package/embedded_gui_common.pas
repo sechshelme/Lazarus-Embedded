@@ -13,11 +13,6 @@ uses
   {$ENDIF}
   SysUtils,Controls, Forms;
 
-//type
-//  TSerialMonitor_Para = record
-//    Port, Baud: string;
-//  end;
-
 const
   UARTBaudRates =
     //    '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
@@ -42,7 +37,7 @@ const
   Key_STFlash_Path = Key_STFlash + 'pfad/value';
 
   {$IFDEF MSWINDOWS}
-  Default_Avrdude_Path = 'c:\avrdude\averdude.exe';
+  Default_Avrdude_Path = 'c:\avrdude\avrdude.exe';
   Default_Avrdude_Conf_Path = 'c:\avrdude\avrdude.conf';
   Default_STFlash_Path = 'c:\st-link\st-flash.exe';
   UARTDefaultPort = 'COM8';
