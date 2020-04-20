@@ -21,8 +21,6 @@ uses
   Embedded_GUI_AVR_Project_Options_Form;
 
 type
-  { TProjectAVRApp }
-
   TProjectAVRApp = class(TProjectDescriptor)
   public
     constructor Create; override;
@@ -33,7 +31,39 @@ type
     function DoInitDescriptor: TModalResult; override;
   end;
 
+procedure ShowAVROptionsDialog(Sender: TObject);
+
 implementation
+
+procedure ShowAVROptionsDialog(Sender: TObject);
+var
+  LazProject: TLazProject;
+  ProjOptiForm: TAVR_Project_Options_Form;
+begin
+  ProjOptiForm := TAVR_Project_Options_Form.Create(nil);
+
+  LazProject := LazarusIDE.ActiveProject;
+
+  if (LazProject.LazCompilerOptions.TargetCPU <> 'avr') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
+    if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
+      ProjOptiForm.Free;
+      Exit;
+    end;
+  end;
+
+  AVR_ProjectOptions.Load(LazProject);
+
+  ProjOptiForm.LoadDefaultMask;
+  ProjOptiForm.ProjectOptionsToMask;
+
+  if ProjOptiForm.ShowModal = mrOk then begin
+    ProjOptiForm.MaskToProjectOptions;
+    AVR_ProjectOptions.Save(LazProject);
+    LazProject.LazCompilerOptions.GenerateDebugInfo := False;
+  end;
+
+  ProjOptiForm.Free;
+end;
 
 { TProjectAVRApp }
 
@@ -117,7 +147,6 @@ begin
   Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename,
     -1, -1, [ofProjectLoading, ofRegularFile]);
 end;
-
 
 end.
 

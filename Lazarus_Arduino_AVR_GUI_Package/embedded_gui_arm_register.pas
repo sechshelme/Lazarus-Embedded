@@ -34,9 +34,40 @@ type
     function DoInitDescriptor: TModalResult; override;
   end;
 
+procedure ShowARMOptionsDialog(Sender: TObject);
 
 
 implementation
+
+procedure ShowARMOptionsDialog(Sender: TObject);
+var
+  LazProject: TLazProject;
+  ProjOptiForm: TARM_Project_Options_Form;
+begin
+  ProjOptiForm := TARM_Project_Options_Form.Create(nil);
+
+  LazProject := LazarusIDE.ActiveProject;
+
+  if (LazProject.LazCompilerOptions.TargetCPU <> 'arm') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
+    if MessageDlg('Warnung', 'Es handelt sich nicht um ein ARM Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
+      ProjOptiForm.Free;
+      Exit;
+    end;
+  end;
+
+  ARM_ProjectOptions.Load(LazProject);
+
+  ProjOptiForm.LoadDefaultMask;
+  ProjOptiForm.ProjectOptionsToMask;
+
+  if ProjOptiForm.ShowModal = mrOk then begin
+    ProjOptiForm.MaskToProjectOptions;
+    ARM_ProjectOptions.Save(LazProject);
+    LazProject.LazCompilerOptions.GenerateDebugInfo := False;
+  end;
+
+  ProjOptiForm.Free;
+end;
 
 { TProjectARMApp }
 

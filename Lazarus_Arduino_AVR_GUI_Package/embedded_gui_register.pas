@@ -48,28 +48,34 @@ type
 
 function TSerialMonitor.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
-  if Serial_Monitor_Form.Timer1.Enabled then begin
-    Active := True;
-    Serial_Monitor_Form.CloseSerial;
-  end else begin
-    Active := False;
+  if Assigned(Serial_Monitor_Form) then begin
+    if Serial_Monitor_Form.Timer1.Enabled then begin
+      Active := True;
+      Serial_Monitor_Form.CloseSerial;
+    end else begin
+      Active := False;
+    end;
   end;
 end;
 
 function TSerialMonitor.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
-  if Serial_Monitor_Form.Timer1.Enabled then begin
-    Active := True;
-    Serial_Monitor_Form.CloseSerial;
-  end else begin
-    Active := False;
+  if Assigned(Serial_Monitor_Form) then begin
+    if Serial_Monitor_Form.Timer1.Enabled then begin
+      Active := True;
+      Serial_Monitor_Form.CloseSerial;
+    end else begin
+      Active := False;
+    end;
   end;
 end;
 
 procedure TSerialMonitor.StopHandler(Sender: TObject);
 begin
-  if Active then begin
-    Serial_Monitor_Form.OpenSerial;
+  if Assigned(Serial_Monitor_Form) then begin
+    if Active then begin
+      Serial_Monitor_Form.OpenSerial;
+    end;
   end;
 end;
 
@@ -81,66 +87,6 @@ end;
 
 var
   SerialMonitor: TSerialMonitor;
-
-procedure ShowAVROptionsDialog(Sender: TObject);
-var
-  LazProject: TLazProject;
-  ProjOptiForm: TAVR_Project_Options_Form;
-begin
-  ProjOptiForm := TAVR_Project_Options_Form.Create(nil);
-
-  LazProject := LazarusIDE.ActiveProject;
-
-  if (LazProject.LazCompilerOptions.TargetCPU <> 'avr') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
-    if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
-      ProjOptiForm.Free;
-      Exit;
-    end;
-  end;
-
-  AVR_ProjectOptions.Load(LazProject);
-
-  ProjOptiForm.LoadDefaultMask;
-  ProjOptiForm.ProjectOptionsToMask;
-
-  if ProjOptiForm.ShowModal = mrOk then begin
-    ProjOptiForm.MaskToProjectOptions;
-    AVR_ProjectOptions.Save(LazProject);
-    LazProject.LazCompilerOptions.GenerateDebugInfo := False;
-  end;
-
-  ProjOptiForm.Free;
-end;
-
-procedure ShowARMOptionsDialog(Sender: TObject);
-var
-  LazProject: TLazProject;
-  ProjOptiForm: TARM_Project_Options_Form;
-begin
-  ProjOptiForm := TARM_Project_Options_Form.Create(nil);
-
-  LazProject := LazarusIDE.ActiveProject;
-
-  if (LazProject.LazCompilerOptions.TargetCPU <> 'arm') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
-    if MessageDlg('Warnung', 'Es handelt sich nicht um ein ARM Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
-      ProjOptiForm.Free;
-      Exit;
-    end;
-  end;
-
-  ARM_ProjectOptions.Load(LazProject);
-
-  ProjOptiForm.LoadDefaultMask;
-  ProjOptiForm.ProjectOptionsToMask;
-
-  if ProjOptiForm.ShowModal = mrOk then begin
-    ProjOptiForm.MaskToProjectOptions;
-    ARM_ProjectOptions.Save(LazProject);
-    LazProject.LazCompilerOptions.GenerateDebugInfo := False;
-  end;
-
-  ProjOptiForm.Free;
-end;
 
 procedure ShowCPU_Info(Sender: TObject);
 var
@@ -184,7 +130,6 @@ begin
 
   AVR_ProjectOptions := TAVR_ProjectOptions.Create;
   RegisterProjectDescriptor(TProjectAVRApp.Create);
-
 
   ARM_ProjectOptions := TARM_ProjectOptions.Create;
   RegisterProjectDescriptor(TProjectARMApp.Create);

@@ -26,21 +26,32 @@ type
   { TSerial_Monitor_Form }
 
   TSerial_Monitor_Form = class(TForm)
-    Button1: TButton;
+    Button_Send: TButton;
     Clear_Button: TButton;
     Close_Button: TButton;
-    CheckBox1: TCheckBox;
+    CheckBox_AutoScroll: TCheckBox;
+    ComboBox_Baud: TComboBox;
+    ComboBox_Bits: TComboBox;
+    ComboBox_FlowControl: TComboBox;
+    ComboBox_Parity: TComboBox;
+    ComboBox_Port: TComboBox;
+    ComboBox_StopBits: TComboBox;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     MenuItem3: TMenuItem;
     MenuItem_Close: TMenuItem;
-    Port_ComboBox: TComboBox;
-    Baud_ComboBox: TComboBox;
-    Edit1: TEdit;
+    Panel1: TPanel;
+    Edit_Send: TEdit;
     MainMenu1: TMainMenu;
     Memo1: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     Timer1: TTimer;
-    procedure Button1Click(Sender: TObject);
+    procedure Button_SendClick(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
     procedure Close_ButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -97,25 +108,44 @@ begin
   Memo1.Font.Color := clLtGray;
   Memo1.Font.Name := 'Monospace';
   Memo1.Font.Style := [fsBold];
+  Memo1.DoubleBuffered := True;
 
-  Timer1.Interval := 100;
+  Timer1.Interval := 200;
 
-  Port_ComboBox.Style := csOwnerDrawFixed;
-  Port_ComboBox.Items.CommaText := GetSerialPortNames;
-  Baud_ComboBox.Items.CommaText := UARTBaudRates;
+  ComboBox_Port.Style := csOwnerDrawFixed;
+  ComboBox_Port.Items.CommaText := GetSerialPortNames;
 
+  ComboBox_Baud.Style := csOwnerDrawFixed;
+  ComboBox_Baud.Items.CommaText := UARTBaudRates;
+
+  ComboBox_Parity.Style := csOwnerDrawFixed;
+  ComboBox_Parity.Items.CommaText := UARTParitys;
+
+  ComboBox_Bits.Style := csOwnerDrawFixed;
+  ComboBox_Bits.Items.CommaText := UARTBitss;
+
+  ComboBox_StopBits.Style := csOwnerDrawFixed;
+  ComboBox_StopBits.Items.CommaText := UARTStopBitss;
+
+  ComboBox_FlowControl.Style := csOwnerDrawFixed;
+  ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
 
   {$IFDEF Komponents}
-  Port_ComboBox.Text := Embedded_IDE_Options.SerialMonitor.Port;
-  Baud_ComboBox.Text := Embedded_IDE_Options.SerialMonitor.Baud;
+  ComboBox_Port.Text := Embedded_IDE_Options.SerialMonitor.Port;
+  ComboBox_Baud.Text := Embedded_IDE_Options.SerialMonitor.Baud;
+  ComboBox_Parity.Text := Embedded_IDE_Options.SerialMonitor.Parity;
+  ComboBox_Bits.Text := Embedded_IDE_Options.SerialMonitor.Bits;
+  ComboBox_StopBits.Text := Embedded_IDE_Options.SerialMonitor.StopBits;
+  ComboBox_FlowControl.Text := Embedded_IDE_Options.SerialMonitor.FlowControl;
   {$ELSE}
-  Port_ComboBox.Text := UARTDefaultPort;
-  Baud_ComboBox.Text := UARTDefaultBaud;
+  ComboBox_Port.Text := UARTDefaultPort;
+  ComboBox_Baud.Text := UARTDefaultBaud;
+  ComboBox_Parity.Text := UARTDefaultParity;
+  ComboBox_Bits.Text := UARTDefaultBits;
+  ComboBox_StopBits.Text := UARTDefaultStopBits;
+  ComboBox_FlowControl.Text := UARTDefaultFlowControl;
   {$ENDIF}
 
-  //  Baud_ComboBox.Style := csOwnerDrawFixed;
-
-  Memo1.DoubleBuffered := True;
 end;
 
 procedure TSerial_Monitor_Form.FormHide(Sender: TObject);
@@ -135,8 +165,10 @@ end;
 
 procedure TSerial_Monitor_Form.OpenSerial;
 begin
-  ser.Handle := SerOpen(Port_ComboBox.Text);
-  SerSetParams(ser.Handle, StrToInt(Baud_ComboBox.Text), 8, NoneParity, 1, ser.Flags);
+  ser.Handle := SerOpen(ComboBox_Port.Text);
+  SerSetParams(ser.Handle, StrToInt(ComboBox_Baud.Text), StrToInt(ComboBox_Bits.Text),
+    NoneParity, StrToInt(ComboBox_StopBits.Text), ser.Flags);  // ??????????? ser.flags  NoneParity
+//  SerSetParams(ser.Handle, StrToInt(ComboBox_Baud.Text), 8, NoneParity, 1, ser.Flags);
   Timer1.Enabled := True;
 end;
 
@@ -159,10 +191,10 @@ begin
   Close;
 end;
 
-procedure TSerial_Monitor_Form.Button1Click(Sender: TObject);
+procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
 begin
-  if Length(Edit1.Text) > 0 then begin
-    SerWrite(ser.Handle, Edit1.Text[1], Length(Edit1.Text));
+  if Length(Edit_Send.Text) > 0 then begin
+    SerWrite(ser.Handle, Edit_Send.Text[1], Length(Edit_Send.Text));
   end;
 end;
 
@@ -197,7 +229,7 @@ begin
       Memo1.Text := Memo1.Text + char(header[i]);
     end;
 
-    if CheckBox1.Checked then begin
+    if CheckBox_AutoScroll.Checked then begin
       Memo1.SelStart := -2;
     end;
     Application.ProcessMessages;
