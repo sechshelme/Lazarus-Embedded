@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Menus,
+  ExtCtrls, Menus, Spin,
   Serial,
   LazFileUtils,
   //  Input,
@@ -36,6 +36,8 @@ type
     ComboBox_Parity: TComboBox;
     ComboBox_Port: TComboBox;
     ComboBox_StopBits: TComboBox;
+    Label10: TLabel;
+    Label11: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
@@ -50,6 +52,8 @@ type
     Memo1: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    SpinEdit_TimeOut: TSpinEdit;
+    SpinEdit_Timer: TSpinEdit;
     Timer1: TTimer;
     procedure Button_SendClick(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
@@ -66,11 +70,7 @@ type
     SubMenuItemArray: array[0..31] of TMenuItem;
     procedure MenuItemClick(Sender: TObject);
   public
-    ser: record
-      Handle: TSerialHandle;
-      Flags: TSerialFlags;
-      Parity: TParityType;
-    end;
+    SerialHandle: TSerialHandle;
     procedure OpenSerial;
     procedure CloseSerial;
   end;
@@ -137,6 +137,8 @@ begin
   ComboBox_Bits.Text := Embedded_IDE_Options.SerialMonitor.Bits;
   ComboBox_StopBits.Text := Embedded_IDE_Options.SerialMonitor.StopBits;
   ComboBox_FlowControl.Text := Embedded_IDE_Options.SerialMonitor.FlowControl;
+  SpinEdit_TimeOut.Value:=Embedded_IDE_Options.SerialMonitor.TimeOut;
+  SpinEdit_Timer.Value:=Embedded_IDE_Options.SerialMonitor.Timer;
   {$ELSE}
   ComboBox_Port.Text := UARTDefaultPort;
   ComboBox_Baud.Text := UARTDefaultBaud;
@@ -144,6 +146,8 @@ begin
   ComboBox_Bits.Text := UARTDefaultBits;
   ComboBox_StopBits.Text := UARTDefaultStopBits;
   ComboBox_FlowControl.Text := UARTDefaultFlowControl;
+  SpinEdit_TimeOut.Value:=UARTDefaultTimeOut;
+  SpinEdit_Timer.Value:=UARTDefaultTimer;
   {$ENDIF}
 
 end;
@@ -164,20 +168,33 @@ begin
 end;
 
 procedure TSerial_Monitor_Form.OpenSerial;
+var
+  Flags: TSerialFlags;
+  Parity:TParityType;
+
 begin
-  ser.Handle := SerOpen(ComboBox_Port.Text);
-  SerSetParams(ser.Handle, StrToInt(ComboBox_Baud.Text), StrToInt(ComboBox_Bits.Text),
-    NoneParity, StrToInt(ComboBox_StopBits.Text), ser.Flags);  // ??????????? ser.flags  NoneParity
-//  SerSetParams(ser.Handle, StrToInt(ComboBox_Baud.Text), 8, NoneParity, 1, ser.Flags);
+  if ComboBox_FlowControl.Text = 'none' then begin
+    Flags := [];
+  end else begin
+    Flags := [RtsCtsFlowControl];
+  end;
+
+  Parity:=TParityType(ComboBox_Parity.ItemIndex);
+
+  SerialHandle := SerOpen(ComboBox_Port.Text);
+  SerSetParams(SerialHandle, StrToInt(ComboBox_Baud.Text), StrToInt(ComboBox_Bits.Text),
+    Parity, StrToInt(ComboBox_StopBits.Text), Flags);
+
+  Timer1.Interval:=SpinEdit_Timer.Value;
   Timer1.Enabled := True;
 end;
 
 procedure TSerial_Monitor_Form.CloseSerial;
 begin
   Timer1.Enabled := False;
-  SerSync(ser.Handle);
-  SerFlushOutput(ser.Handle);
-  SerClose(ser.Handle);
+  SerSync(SerialHandle);
+  SerFlushOutput(SerialHandle);
+  SerClose(SerialHandle);
 end;
 
 procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
@@ -194,7 +211,7 @@ end;
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
 begin
   if Length(Edit_Send.Text) > 0 then begin
-    SerWrite(ser.Handle, Edit_Send.Text[1], Length(Edit_Send.Text));
+    SerWrite(SerialHandle, Edit_Send.Text[1], Length(Edit_Send.Text));
   end;
 end;
 
@@ -218,15 +235,14 @@ end;
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
   i: integer;
-  header: array[0..1023] of byte;
+  buf: array[0..4096] of byte;
   Count: integer;
 begin
-  //  FillByte(header, SizeOf(header), 0);
 
   while Timer1.Enabled do begin
-    Count := SerReadTimeout(ser.Handle, header, 1024, 10);
+    Count := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
     for i := 0 to Count - 1 do begin
-      Memo1.Text := Memo1.Text + char(header[i]);
+      Memo1.Text := Memo1.Text + char(buf[i]);
     end;
 
     if CheckBox_AutoScroll.Checked then begin
@@ -239,7 +255,7 @@ end;
 procedure TSerial_Monitor_Form.MenuItemClick(Sender: TObject);
 begin
   Caption := IntToStr(TMenuItem(Sender).Tag);
-  SerWrite(ser.Handle, TMenuItem(Sender).Tag, 1);
+  SerWrite(SerialHandle, TMenuItem(Sender).Tag, 1);
 end;
 
 end.

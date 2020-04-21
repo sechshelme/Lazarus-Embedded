@@ -22,20 +22,20 @@ type
   { TAVR_Project_Options_Form }
 
   TAVR_Project_Options_Form = class(TForm)
-    AsmFile_CheckBox: TCheckBox;
+    CheckBox_AsmFile: TCheckBox;
     avrdudeConfigPathComboBox: TComboBox;
     avrdudePathComboBox: TComboBox;
     AVR_Typ_FPC_ComboBox: TComboBox;
     BitBtn1: TBitBtn;
-    Button1: TButton;
-    Button2: TButton;
+    Button_AVRDude_Path: TButton;
+    Button_AVERDude_Config_Path: TButton;
     AVR_Typ_avrdude_Edit: TEdit;
     AVR_SubArch_ComboBox: TComboBox;
-    Disable_Auto_Erase_CheckBox: TCheckBox;
+    CheckBox_Disable_Auto_Erase: TCheckBox;
     Label1: TLabel;
     Label10: TLabel;
     Memo1: TMemo;
-    TemplatesButton: TButton;
+    Button_Templates: TButton;
     COMPortBaudComboBox: TComboBox;
     COMPortComboBox: TComboBox;
     Label4: TLabel;
@@ -44,23 +44,22 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    OkButton: TButton;
-    CancelButton: TButton;
-    OpenDialogAVRConfigPath: TOpenDialog;
-    OpenDialogAVRPath: TOpenDialog;
+    Button_Ok: TButton;
+    Button_Cancel: TButton;
+    OpenDialog: TOpenDialog;
     ProgrammerComboBox: TComboBox;
-    CPU_InfoButton: TButton;
+    Button_CPU_Info: TButton;
     procedure AVR_SubArch_ComboBoxChange(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure CPU_InfoButtonClick(Sender: TObject);
+    procedure Button_AVRDude_PathClick(Sender: TObject);
+    procedure Button_AVERDude_Config_PathClick(Sender: TObject);
+    procedure Button_CPU_InfoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure OkButtonClick(Sender: TObject);
-    procedure CancelButtonClick(Sender: TObject);
-    procedure TemplatesButtonClick(Sender: TObject);
+    procedure Button_OkClick(Sender: TObject);
+    procedure Button_CancelClick(Sender: TObject);
+    procedure Button_TemplatesClick(Sender: TObject);
   private
     procedure ChangeAVR;
   public
@@ -90,12 +89,12 @@ begin
   SaveFormPos(Self);
 end;
 
-procedure TAVR_Project_Options_Form.CancelButtonClick(Sender: TObject);
+procedure TAVR_Project_Options_Form.Button_CancelClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TAVR_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
+procedure TAVR_Project_Options_Form.Button_CPU_InfoClick(Sender: TObject);
 var
   Form: TCPU_InfoForm;
 begin
@@ -105,7 +104,7 @@ begin
   Form.Free;
 end;
 
-procedure TAVR_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
+procedure TAVR_Project_Options_Form.Button_TemplatesClick(Sender: TObject);
 var
   TemplatesForm: TAVRProjectTemplatesForm;
   i: integer;
@@ -128,7 +127,7 @@ begin
     ProgrammerComboBox.Text := AVR_TemplatesPara[i].Programmer;
     COMPortComboBox.Text := AVR_TemplatesPara[i].COM_Port;
     COMPortBaudComboBox.Text := AVR_TemplatesPara[i].Baud;
-    Disable_Auto_Erase_CheckBox.Checked := AVR_TemplatesPara[i].Disable_Auto_Erase;
+    CheckBox_Disable_Auto_Erase.Checked := AVR_TemplatesPara[i].Disable_Auto_Erase;
     AVR_SubArch_ComboBox.OnChange(Sender);
   end;
 
@@ -145,16 +144,16 @@ begin
   ChangeAVR;
 end;
 
-procedure TAVR_Project_Options_Form.OkButtonClick(Sender: TObject);
+procedure TAVR_Project_Options_Form.Button_OkClick(Sender: TObject);
 begin
   //  Close;
 end;
 
-procedure TAVR_Project_Options_Form.Button1Click(Sender: TObject);
+procedure TAVR_Project_Options_Form.Button_AVRDude_PathClick(Sender: TObject);
 begin
-  OpenDialogAVRPath.FileName := avrdudePathComboBox.Text;
-  if OpenDialogAVRPath.Execute then begin
-    avrdudePathComboBox.Text := OpenDialogAVRPath.FileName;
+  OpenDialog.FileName := avrdudePathComboBox.Text;
+  if OpenDialog.Execute then begin
+    avrdudePathComboBox.Text := OpenDialog.FileName;
   end;
 end;
 
@@ -163,11 +162,11 @@ begin
   AVR_Typ_avrdude_Edit.Text := AVR_Typ_FPC_ComboBox.Text;
 end;
 
-procedure TAVR_Project_Options_Form.Button2Click(Sender: TObject);
+procedure TAVR_Project_Options_Form.Button_AVERDude_Config_PathClick(Sender: TObject);
 begin
-  OpenDialogAVRConfigPath.FileName := avrdudeConfigPathComboBox.Text;
-  if OpenDialogAVRConfigPath.Execute then begin
-    avrdudeConfigPathComboBox.Text := OpenDialogAVRConfigPath.FileName;
+  OpenDialog.FileName := avrdudeConfigPathComboBox.Text;
+  if OpenDialog.Execute then begin
+    avrdudeConfigPathComboBox.Text := OpenDialog.FileName;
   end;
 end;
 
@@ -230,8 +229,8 @@ begin
     Text := '57600';
   end;
 
-  AsmFile_CheckBox.Checked := False;
-  Disable_Auto_Erase_CheckBox.Checked := False;
+  CheckBox_AsmFile.Checked := False;
+  CheckBox_Disable_Auto_Erase.Checked := False;
 end;
 
 procedure TAVR_Project_Options_Form.ProjectOptionsToMask;
@@ -246,8 +245,8 @@ begin
   COMPortBaudComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Baud;
   AVR_Typ_avrdude_Edit.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
-  AsmFile_CheckBox.Checked := AVR_ProjectOptions.AsmFile;
-  Disable_Auto_Erase_CheckBox.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+  CheckBox_AsmFile.Checked := AVR_ProjectOptions.AsmFile;
+  CheckBox_Disable_Auto_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
 end;
 
 procedure TAVR_Project_Options_Form.MaskToProjectOptions;
@@ -262,8 +261,8 @@ begin
   AVR_ProjectOptions.AvrdudeCommand.Baud := COMPortBaudComboBox.Text;
   AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := AVR_Typ_avrdude_Edit.Text;
 
-  AVR_ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
-  AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := Disable_Auto_Erase_CheckBox.Checked;
+  AVR_ProjectOptions.AsmFile := CheckBox_AsmFile.Checked;
+  AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := CheckBox_Disable_Auto_Erase.Checked;
 end;
 
 end.

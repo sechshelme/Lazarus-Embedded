@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Package Version="5">
+  <Package Version="4">
     <Name Value="Embedded_GUI_Package"/>
     <Type Value="DesignTime"/>
     <Author Value="Mathias"/>
@@ -21,88 +21,116 @@
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
     <Version Release="73"/>
-    <Files>
-      <Item>
+    <Files Count="24">
+      <Item1>
         <Filename Value="embedded_gui_arm_common.pas"/>
         <UnitName Value="Embedded_GUI_ARM_Common"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
+        <Filename Value="embedded_gui_arm_project_options_form.lfm"/>
+        <Type Value="LFM"/>
+      </Item2>
+      <Item3>
         <Filename Value="embedded_gui_arm_project_options_form.pas"/>
         <UnitName Value="Embedded_GUI_ARM_Project_Options_Form"/>
-      </Item>
-      <Item>
+      </Item3>
+      <Item4>
+        <Filename Value="embedded_gui_arm_project_templates_form.lfm"/>
+        <Type Value="LFM"/>
+      </Item4>
+      <Item5>
         <Filename Value="embedded_gui_arm_project_templates_form.pas"/>
         <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
-      </Item>
-      <Item>
+      </Item5>
+      <Item6>
         <Filename Value="embedded_gui_arm_register.pas"/>
         <UnitName Value="Embedded_GUI_ARM_Register"/>
-      </Item>
-      <Item>
+      </Item6>
+      <Item7>
         <Filename Value="embedded_gui_avr_common.pas"/>
         <UnitName Value="Embedded_GUI_AVR_Common"/>
-      </Item>
-      <Item>
+      </Item7>
+      <Item8>
+        <Filename Value="embedded_gui_avr_project_options_form.lfm"/>
+        <Type Value="LFM"/>
+      </Item8>
+      <Item9>
         <Filename Value="embedded_gui_avr_project_options_form.pas"/>
         <UnitName Value="Embedded_GUI_AVR_Project_Options_Form"/>
-      </Item>
-      <Item>
+      </Item9>
+      <Item10>
+        <Filename Value="embedded_gui_avr_project_templates_form.lfm"/>
+        <Type Value="LFM"/>
+      </Item10>
+      <Item11>
         <Filename Value="embedded_gui_avr_project_templates_form.pas"/>
         <UnitName Value="Embedded_GUI_AVR_Project_Templates_Form"/>
-      </Item>
-      <Item>
+      </Item11>
+      <Item12>
         <Filename Value="embedded_gui_avr_register.pas"/>
         <UnitName Value="Embedded_GUI_AVR_Register"/>
-      </Item>
-      <Item>
+      </Item12>
+      <Item13>
         <Filename Value="embedded_gui_common.pas"/>
         <UnitName Value="Embedded_GUI_Common"/>
-      </Item>
-      <Item>
+      </Item13>
+      <Item14>
+        <Filename Value="embedded_gui_cpu_info_form.lfm"/>
+        <Type Value="LFM"/>
+      </Item14>
+      <Item15>
         <Filename Value="embedded_gui_cpu_info_form.pas"/>
         <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
-      </Item>
-      <Item>
+      </Item15>
+      <Item16>
         <Filename Value="embedded_gui_find_comports.pas"/>
         <UnitName Value="Embedded_GUI_Find_Comports"/>
-      </Item>
-      <Item>
+      </Item16>
+      <Item17>
+        <Filename Value="embedded_gui_ide_options.lfm"/>
+        <Type Value="LFM"/>
+      </Item17>
+      <Item18>
         <Filename Value="embedded_gui_ide_options.pas"/>
         <UnitName Value="Embedded_GUI_IDE_Options"/>
-      </Item>
-      <Item>
+      </Item18>
+      <Item19>
         <Filename Value="embedded_gui_package.lpk"/>
         <Type Value="Text"/>
-      </Item>
-      <Item>
+      </Item19>
+      <Item20>
         <Filename Value="embedded_gui_package.pas"/>
         <UnitName Value="Embedded_GUI_Package"/>
-      </Item>
-      <Item>
+      </Item20>
+      <Item21>
         <Filename Value="embedded_gui_register.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="Embedded_GUI_Register"/>
-      </Item>
-      <Item>
+      </Item21>
+      <Item22>
+        <Filename Value="embedded_gui_serial_monitor.lfm"/>
+        <Type Value="LFM"/>
+      </Item22>
+      <Item23>
         <Filename Value="embedded_gui_serial_monitor.pas"/>
         <UnitName Value="Embedded_GUI_Serial_Monitor"/>
-      </Item>
-      <Item>
+      </Item23>
+      <Item24>
         <Filename Value="embedded_gui_subarch_list.pas"/>
         <UnitName Value="Embedded_GUI_SubArch_List"/>
-      </Item>
+      </Item24>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="languages"/>
     </i18n>
-    <RequiredPkgs>
-      <Item>
+    <RequiredPkgs Count="2">
+      <Item1>
         <PackageName Value="CodeTools"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <PackageName Value="IDEIntf"/>
-      </Item>
+      </Item2>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>

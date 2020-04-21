@@ -1,22 +1,23 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
   Left = 2086
-  Height = 660
+  Height = 673
   Top = 537
-  Width = 805
+  Width = 818
   Caption = 'Serial_Monitor_Form'
-  ClientHeight = 636
-  ClientWidth = 805
+  ClientHeight = 649
+  ClientWidth = 818
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   OnHide = FormHide
   OnShow = FormShow
+  Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object Memo1: TMemo
     Left = 0
-    Height = 596
+    Height = 609
     Top = 40
-    Width = 625
+    Width = 638
     Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
       ''
@@ -28,13 +29,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Left = 8
     Height = 28
     Top = 8
-    Width = 500
+    Width = 513
     Anchors = [akTop, akLeft, akRight]
     TabOrder = 0
     Text = 'Edit_Send'
   end
   object Button_Send: TButton
-    Left = 516
+    Left = 529
     Height = 26
     Top = 8
     Width = 80
@@ -44,12 +45,12 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     TabOrder = 1
   end
   object Panel1: TPanel
-    Left = 604
-    Height = 636
+    Left = 617
+    Height = 649
     Top = 0
     Width = 201
     Align = alRight
-    ClientHeight = 636
+    ClientHeight = 649
     ClientWidth = 201
     TabOrder = 3
     object ComboBox_Port: TComboBox
@@ -157,7 +158,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object CheckBox_AutoScroll: TCheckBox
       Left = 16
       Height = 23
-      Top = 553
+      Top = 566
       Width = 89
       Anchors = [akLeft, akBottom]
       Caption = 'Autoscroll'
@@ -166,7 +167,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object Clear_Button: TButton
       Left = 16
       Height = 25
-      Top = 593
+      Top = 606
       Width = 75
       Anchors = [akLeft, akBottom]
       Caption = 'Clear'
@@ -176,17 +177,52 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object Close_Button: TButton
       Left = 104
       Height = 25
-      Top = 593
+      Top = 606
       Width = 83
       Anchors = [akRight, akBottom]
       Caption = 'Schliessen'
       OnClick = Close_ButtonClick
       TabOrder = 8
     end
+    object Label10: TLabel
+      Left = 15
+      Height = 16
+      Top = 448
+      Width = 53
+      Caption = 'Timeout:'
+      ParentColor = False
+    end
+    object SpinEdit_TimeOut: TSpinEdit
+      Left = 106
+      Height = 28
+      Top = 440
+      Width = 85
+      MaxValue = 1000
+      MinValue = 1
+      TabOrder = 9
+      Value = 1
+    end
+    object SpinEdit_Timer: TSpinEdit
+      Left = 106
+      Height = 28
+      Top = 488
+      Width = 85
+      MaxValue = 5000
+      MinValue = 50
+      TabOrder = 10
+      Value = 50
+    end
+    object Label11: TLabel
+      Left = 15
+      Height = 16
+      Top = 496
+      Width = 37
+      Caption = 'Timer:'
+      ParentColor = False
+    end
   end
   object Timer1: TTimer
     Enabled = False
-    Interval = 100
     OnTimer = Timer1Timer
     Left = 32
     Top = 72

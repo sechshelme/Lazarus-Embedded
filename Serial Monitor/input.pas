@@ -53,7 +53,7 @@ begin
   end;  // Down
 
   with Serial_Monitor_Form do begin
-    SerWrite(ser.Handle, t, 1);
+    SerWrite(SerialHandle, t, 1);
   end;
 end;
 

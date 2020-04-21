@@ -54,6 +54,8 @@ const
   UARTDefaultBits = '8';
   UARTDefaultStopBits = '1';
   UARTDefaultFlowControl = 'none';
+  UARTDefaultTimeOut = 10;
+  UARTDefaultTimer = 200;
 
   Key_SerialMonitorPort = 'SerialMonitor/Port/value';
   Key_SerialMonitorBaud = 'SerialMonitor/Baud/value';
@@ -61,6 +63,8 @@ const
   Key_SerialMonitorBits = 'SerialMonitor/Bits/value';
   Key_SerialMonitorStopBits = 'SerialMonitor/StopBits/value';
   Key_SerialMonitorFlowControl = 'SerialMonitor/FlowControl/value';
+  Key_SerialMonitorTimeOut = 'SerialMonitor/TimeOut/value';
+  Key_SerialMonitorTimer = 'SerialMonitor/Timer/value';
 
 procedure LoadFormPos(Form: TControl);
 procedure SaveFormPos(Form: TControl);
@@ -76,19 +80,17 @@ var
   Cfg: TXMLConfig;
   {$ENDIF}
 begin
-  with Form do begin
-    {$IFDEF Komponents}
-    Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-    {$ELSE}
-    Cfg := TXMLConfig.Create(nil);
-    Cfg.Filename := 'config.xml';
-    {$ENDIF}
-    Left := Cfg.GetValue(Name + '/Left/value', Left);
-    Top := Cfg.GetValue(Name + '/Top/value', Top);
-    Width := Cfg.GetValue(Name + '/Width/value', Width);
-    Height := Cfg.GetValue(Name + '/Height/value', Height);
-    Cfg.Free;
-  end;
+  {$IFDEF Komponents}
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  {$ELSE}
+  Cfg := TXMLConfig.Create(nil);
+  Cfg.Filename := 'config.xml';
+  {$ENDIF}
+  Form.Left := Cfg.GetValue(Form.Name+ '/Left/value', Form.Left);
+  Form.Top := Cfg.GetValue(Form.Name + '/Top/value', Form.Top);
+  Form.Width := Cfg.GetValue(Form.Name + '/Width/value', Form.Width);
+  Form.Height := Cfg.GetValue(Form.Name + '/Height/value', Form.Height);
+  Cfg.Free;
 end;
 
 procedure SaveFormPos(Form: TControl);
@@ -99,19 +101,17 @@ var
   Cfg: TXMLConfig;
   {$ENDIF}
 begin
-  with Form do begin
-    {$IFDEF Komponents}
-    Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-    {$ELSE}
-    Cfg := TXMLConfig.Create(nil);
-    Cfg.Filename := 'config.xml';
-    {$ENDIF}
-    Cfg.SetValue(Name + '/Left/value', Left);
-    Cfg.SetValue(Name + '/Top/value', Top);
-    Cfg.SetValue(Name + '/Width/value', Width);
-    Cfg.SetValue(Name + '/Height/value', Height);
-    Cfg.Free;
-  end;
+  {$IFDEF Komponents}
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  {$ELSE}
+  Cfg := TXMLConfig.Create(nil);
+  Cfg.Filename := 'config.xml';
+  {$ENDIF}
+  Cfg.SetValue(Form.Name + '/Left/value', Form.Left);
+  Cfg.SetValue(Form.Name + '/Top/value', Form.Top);
+  Cfg.SetValue(Form.Name + '/Width/value', Form.Width);
+  Cfg.SetValue(Form.Name + '/Height/value', Form.Height);
+  Cfg.Free;
 end;
 
 end.

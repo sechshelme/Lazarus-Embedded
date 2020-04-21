@@ -6,8 +6,8 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
   ClientHeight = 585
   ClientWidth = 782
   TabOrder = 0
-  DesignLeft = 2606
-  DesignTop = 163
+  DesignLeft = 2573
+  DesignTop = 464
   object PageControl1: TPageControl
     Left = 0
     Height = 585
@@ -29,11 +29,11 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
         Caption = 'AVRdude-Pfad'
         ParentColor = False
       end
-      object ComboBoxAVRdude: TComboBox
+      object ComboBox_AVRdude_Path: TComboBox
         Left = 0
         Height = 28
         Top = 56
-        Width = 1073
+        Width = 712
         Anchors = [akTop, akLeft, akRight]
         ItemHeight = 0
         TabOrder = 0
@@ -46,14 +46,34 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
         Caption = 'AVRdude-Config-Pfad'
         ParentColor = False
       end
-      object ComboBoxAVRdudeConf: TComboBox
+      object ComboBox_AVRdudeConf: TComboBox
         Left = 0
         Height = 28
         Top = 136
-        Width = 1073
+        Width = 712
         Anchors = [akTop, akLeft, akRight]
         ItemHeight = 0
         TabOrder = 1
+      end
+      object Button_AVRDude_Path: TButton
+        Left = 728
+        Height = 28
+        Top = 56
+        Width = 35
+        Anchors = [akTop, akRight]
+        Caption = '...'
+        OnClick = Button_AVRDude_PathClick
+        TabOrder = 2
+      end
+      object Button_AVRDude_Config: TButton
+        Left = 728
+        Height = 28
+        Top = 136
+        Width = 35
+        Anchors = [akTop, akRight]
+        Caption = '...'
+        OnClick = Button_AVRDude_ConfigClick
+        TabOrder = 3
       end
     end
     object TabSheet2: TTabSheet
@@ -68,14 +88,24 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
         Caption = 'ST-Flash-Pfad'
         ParentColor = False
       end
-      object ComboBoxSTFlashPfad: TComboBox
-        Left = 0
+      object ComboBox_STFlashPfad: TComboBox
+        Left = 16
         Height = 28
         Top = 56
-        Width = 1072
+        Width = 703
         Anchors = [akTop, akLeft, akRight]
         ItemHeight = 0
         TabOrder = 0
+      end
+      object Button_ST_Flash: TButton
+        Left = 728
+        Height = 28
+        Top = 56
+        Width = 35
+        Anchors = [akTop, akRight]
+        Caption = '...'
+        OnClick = Button_ST_FlashClick
+        TabOrder = 1
       end
     end
     object TabSheet3: TTabSheet
@@ -178,6 +208,46 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
         ItemHeight = 0
         TabOrder = 5
       end
+      object SpinEdit_TimeOut: TSpinEdit
+        Left = 104
+        Height = 28
+        Top = 312
+        Width = 85
+        MaxValue = 1000
+        MinValue = 1
+        TabOrder = 6
+        Value = 1
+      end
+      object Label10: TLabel
+        Left = 8
+        Height = 16
+        Top = 320
+        Width = 53
+        Caption = 'Timeout:'
+        ParentColor = False
+      end
+      object SpinEdit_Timer: TSpinEdit
+        Left = 104
+        Height = 28
+        Top = 360
+        Width = 85
+        MaxValue = 5000
+        MinValue = 50
+        TabOrder = 7
+        Value = 50
+      end
+      object Label11: TLabel
+        Left = 8
+        Height = 16
+        Top = 368
+        Width = 37
+        Caption = 'Timer:'
+        ParentColor = False
+      end
     end
+  end
+  object OpenDialog: TOpenDialog
+    Left = 544
+    Top = 56
   end
 end

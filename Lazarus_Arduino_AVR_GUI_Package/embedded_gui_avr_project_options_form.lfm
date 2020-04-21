@@ -13,7 +13,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
-  object OkButton: TButton
+  object Button_Ok: TButton
     Left = 423
     Height = 25
     Top = 407
@@ -22,10 +22,10 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'Ok'
     Default = True
     ModalResult = 1
-    OnClick = OkButtonClick
+    OnClick = Button_OkClick
     TabOrder = 15
   end
-  object CancelButton: TButton
+  object Button_Cancel: TButton
     Left = 311
     Height = 25
     Top = 407
@@ -33,7 +33,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
-    OnClick = CancelButtonClick
+    OnClick = Button_CancelClick
     TabOrder = 14
   end
   object avrdudePathComboBox: TComboBox
@@ -69,7 +69,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     ItemHeight = 0
     TabOrder = 6
   end
-  object AsmFile_CheckBox: TCheckBox
+  object CheckBox_AsmFile: TCheckBox
     Left = 16
     Height = 23
     Top = 411
@@ -142,34 +142,34 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'COM-Port Baud:'
     ParentColor = False
   end
-  object Button1: TButton
+  object Button_AVRDude_Path: TButton
     Left = 464
     Height = 28
     Top = 56
     Width = 35
     Anchors = [akTop, akRight]
     Caption = '...'
-    OnClick = Button1Click
+    OnClick = Button_AVRDude_PathClick
     TabOrder = 1
   end
-  object Button2: TButton
+  object Button_AVERDude_Config_Path: TButton
     Left = 466
     Height = 28
     Top = 119
     Width = 32
     Anchors = [akTop, akRight]
     Caption = '...'
-    OnClick = Button2Click
+    OnClick = Button_AVERDude_Config_PathClick
     TabOrder = 3
   end
-  object TemplatesButton: TButton
+  object Button_Templates: TButton
     Left = 411
     Height = 28
     Top = 192
     Width = 87
     Anchors = [akTop, akRight]
     Caption = 'Vorlagen...'
-    OnClick = TemplatesButtonClick
+    OnClick = Button_TemplatesClick
     TabOrder = 5
   end
   object AVR_Typ_avrdude_Edit: TEdit
@@ -302,7 +302,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'AVR SubArch'
     ParentColor = False
   end
-  object Disable_Auto_Erase_CheckBox: TCheckBox
+  object CheckBox_Disable_Auto_Erase: TCheckBox
     Left = 16
     Height = 23
     Top = 368
@@ -310,22 +310,18 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'Disable Auto Erase (-D)'
     TabOrder = 12
   end
-  object CPU_InfoButton: TButton
+  object Button_CPU_Info: TButton
     Left = 411
     Height = 28
     Top = 256
     Width = 87
     Anchors = [akTop, akRight]
     Caption = 'CPU Info...'
-    OnClick = CPU_InfoButtonClick
+    OnClick = Button_CPU_InfoClick
     TabOrder = 17
   end
-  object OpenDialogAVRPath: TOpenDialog
+  object OpenDialog: TOpenDialog
     Left = 416
     Top = 16
-  end
-  object OpenDialogAVRConfigPath: TOpenDialog
-    Left = 416
-    Top = 88
   end
 end
