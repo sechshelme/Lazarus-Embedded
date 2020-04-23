@@ -164,6 +164,7 @@ end;
 
 procedure TSerial_Monitor_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  CloseSerial;
   SaveFormPos(Self);
 end;
 
@@ -197,17 +198,6 @@ begin
   SerClose(SerialHandle);
 end;
 
-procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
-begin
-  //  InputForm.Show;
-end;
-
-procedure TSerial_Monitor_Form.MenuItem_CloseClick(Sender: TObject);
-begin
-  Timer1.Enabled := False;
-  Close;
-end;
-
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
 begin
   if Length(Edit_Send.Text) > 0 then begin
@@ -228,7 +218,6 @@ end;
 
 procedure TSerial_Monitor_Form.Close_ButtonClick(Sender: TObject);
 begin
-  Timer1.Enabled := False;
   Close;
 end;
 
@@ -239,7 +228,7 @@ var
   Count: integer;
 begin
 
-  while Timer1.Enabled do begin
+//  while Timer1.Enabled do begin
     Count := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
     for i := 0 to Count - 1 do begin
       Memo1.Text := Memo1.Text + char(buf[i]);
@@ -249,7 +238,17 @@ begin
       Memo1.SelStart := -2;
     end;
     Application.ProcessMessages;
-  end;
+//  end;
+end;
+
+procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
+begin
+  //  InputForm.Show;
+end;
+
+procedure TSerial_Monitor_Form.MenuItem_CloseClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TSerial_Monitor_Form.MenuItemClick(Sender: TObject);

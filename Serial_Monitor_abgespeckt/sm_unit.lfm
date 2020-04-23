@@ -1,0 +1,60 @@
+object Serial_Monitor_Form: TSerial_Monitor_Form
+  Left = 2086
+  Height = 673
+  Top = 537
+  Width = 818
+  Caption = 'Serial_Monitor_Form'
+  ClientHeight = 673
+  ClientWidth = 818
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDefaultPosOnly
+  LCLVersion = '2.1.0.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 633
+    Top = 40
+    Width = 822
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      ''
+    )
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Edit_Send: TEdit
+    Left = 8
+    Height = 28
+    Top = 8
+    Width = 513
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 0
+    Text = 'Edit_Send'
+  end
+  object Button_Send: TButton
+    Left = 529
+    Height = 26
+    Top = 8
+    Width = 80
+    Anchors = [akTop, akRight]
+    Caption = 'Senden'
+    OnClick = Button_SendClick
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 704
+    Height = 25
+    Top = 8
+    Width = 75
+    Anchors = [akTop, akRight]
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 3
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    Left = 32
+    Top = 72
+  end
+end
