@@ -1,20 +1,20 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 2086
-  Height = 673
-  Top = 537
-  Width = 818
+  Left = 1935
+  Height = 677
+  Top = 505
+  Width = 832
   Caption = 'Serial_Monitor_Form'
-  ClientHeight = 673
-  ClientWidth = 818
+  ClientHeight = 677
+  ClientWidth = 832
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object Memo1: TMemo
     Left = 0
-    Height = 633
+    Height = 637
     Top = 40
-    Width = 822
+    Width = 836
     Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
       ''
@@ -26,13 +26,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Left = 8
     Height = 28
     Top = 8
-    Width = 513
+    Width = 527
     Anchors = [akTop, akLeft, akRight]
     TabOrder = 0
     Text = 'Edit_Send'
   end
   object Button_Send: TButton
-    Left = 529
+    Left = 543
     Height = 26
     Top = 8
     Width = 80
@@ -42,7 +42,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 704
+    Left = 718
     Height = 25
     Top = 8
     Width = 75

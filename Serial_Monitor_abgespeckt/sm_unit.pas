@@ -26,6 +26,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
 
+
+
+
+
   public
     SerialHandle: TSerialHandle;
   end;
@@ -74,20 +78,27 @@ end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  i: integer;
-  buf: array[0..4096] of byte;
-  Count: integer;
+  buf: array[0..4095] of byte;
+  bufCount, StringCount: integer;
+  s: string;
 begin
+  Timer1.Enabled := False;
+  bufCount := SerRead(SerialHandle, buf, Length(buf));
+//  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), 10);
+  //for i := 0 to bufCount - 1 do begin
+  //  StringCount := Memo1.Lines.Count - 1;
+  //  Memo1.Lines[StringCount] := Memo1.Lines[StringCount] + char(buf[i]);
+  //end;
+  if bufCount > 0 then begin
+    SetLength(s, bufCount);
+    Move(buf, s[1], bufCount);
 
-//  while Timer1.Enabled do begin
-    Count := SerReadTimeout(SerialHandle, buf, Length(buf), 10);
-    for i := 0 to Count - 1 do begin
-      Memo1.Text := Memo1.Text + char(buf[i]);
-    end;
+    StringCount := Memo1.Lines.Count - 1;
+    Memo1.Lines[StringCount] := Memo1.Lines[StringCount] + s;
 
     Memo1.SelStart := -2;
-    Application.ProcessMessages;
-//  end;
+  end;
+  Timer1.Enabled := True;
 end;
 
 end.

@@ -137,8 +137,8 @@ begin
   ComboBox_Bits.Text := Embedded_IDE_Options.SerialMonitor.Bits;
   ComboBox_StopBits.Text := Embedded_IDE_Options.SerialMonitor.StopBits;
   ComboBox_FlowControl.Text := Embedded_IDE_Options.SerialMonitor.FlowControl;
-  SpinEdit_TimeOut.Value:=Embedded_IDE_Options.SerialMonitor.TimeOut;
-  SpinEdit_Timer.Value:=Embedded_IDE_Options.SerialMonitor.Timer;
+  SpinEdit_TimeOut.Value := Embedded_IDE_Options.SerialMonitor.TimeOut;
+  SpinEdit_Timer.Value := Embedded_IDE_Options.SerialMonitor.Timer;
   {$ELSE}
   ComboBox_Port.Text := UARTDefaultPort;
   ComboBox_Baud.Text := UARTDefaultBaud;
@@ -146,8 +146,8 @@ begin
   ComboBox_Bits.Text := UARTDefaultBits;
   ComboBox_StopBits.Text := UARTDefaultStopBits;
   ComboBox_FlowControl.Text := UARTDefaultFlowControl;
-  SpinEdit_TimeOut.Value:=UARTDefaultTimeOut;
-  SpinEdit_Timer.Value:=UARTDefaultTimer;
+  SpinEdit_TimeOut.Value := UARTDefaultTimeOut;
+  SpinEdit_Timer.Value := UARTDefaultTimer;
   {$ENDIF}
 
 end;
@@ -171,7 +171,7 @@ end;
 procedure TSerial_Monitor_Form.OpenSerial;
 var
   Flags: TSerialFlags;
-  Parity:TParityType;
+  Parity: TParityType;
 
 begin
   if ComboBox_FlowControl.Text = 'none' then begin
@@ -180,13 +180,13 @@ begin
     Flags := [RtsCtsFlowControl];
   end;
 
-  Parity:=TParityType(ComboBox_Parity.ItemIndex);
+  Parity := TParityType(ComboBox_Parity.ItemIndex);
 
   SerialHandle := SerOpen(ComboBox_Port.Text);
   SerSetParams(SerialHandle, StrToInt(ComboBox_Baud.Text), StrToInt(ComboBox_Bits.Text),
     Parity, StrToInt(ComboBox_StopBits.Text), Flags);
 
-  Timer1.Interval:=SpinEdit_Timer.Value;
+  Timer1.Interval := SpinEdit_Timer.Value;
   Timer1.Enabled := True;
 end;
 
@@ -223,22 +223,39 @@ end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  i: integer;
-  buf: array[0..4096] of byte;
-  Count: integer;
+  buf: array[0..4095] of byte;
+  sl, bufCount, StringCount: integer;
+  s: string;
 begin
+  Timer1.Enabled := False;
+  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
+  //  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf));
+  //    for i := 0 to Count - 1 do begin
+  //      Memo1.Text := Memo1.Text + char(buf[i]);
+  //    end;
+  if bufCount > 0 then begin
+    sl := Memo1.SelStart;
+    SetLength(s, bufCount);
+    Move(buf, s[1], bufCount);
 
-//  while Timer1.Enabled do begin
-    Count := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
-    for i := 0 to Count - 1 do begin
-      Memo1.Text := Memo1.Text + char(buf[i]);
-    end;
+    StringCount := Memo1.Lines.Count - 1;
+    Memo1.Lines[StringCount] := Memo1.Lines[StringCount] + s;
+
 
     if CheckBox_AutoScroll.Checked then begin
       Memo1.SelStart := -2;
+//      Memo1.SelStart := 10;
+//      Memo1.SelLength := 10;
+      Memo1.VertScrollBar.Position:=1000000;
+    end else begin
+//      Memo1.SelStart := sl;
     end;
-    Application.ProcessMessages;
-//  end;
+  end;
+  Caption:=sl.ToString;
+
+  //    Application.ProcessMessages;
+  //  end;
+  Timer1.Enabled := True;
 end;
 
 procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
