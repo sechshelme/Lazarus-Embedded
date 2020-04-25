@@ -221,42 +221,65 @@ begin
   Close;
 end;
 
+//procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
+//var
+//  buf: array[0..4095] of byte;
+//  sl, bufCount, SLCount: integer;
+//  s: string;
+//begin
+//  Timer1.Enabled := False;
+//  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
+//  //  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf));
+//  //    for i := 0 to Count - 1 do begin
+//  //      Memo1.Text := Memo1.Text + char(buf[i]);
+//  //    end;
+//  if bufCount > 0 then begin
+//    sl := Memo1.SelStart;
+//    SetLength(s, bufCount);
+//    Move(buf, s[1], bufCount);
+//
+//    SLCount := Memo1.Lines.Count - 1;
+//    Memo1.Lines[SLCount] := Memo1.Lines[SLCount] + s;
+//
+//
+//    if CheckBox_AutoScroll.Checked then begin
+//      Memo1.SelStart := -2;
+////      Memo1.SelStart := 10;
+////      Memo1.SelLength := 10;
+//      Memo1.VertScrollBar.Position:=1000000;
+//    end else begin
+////      Memo1.SelStart := sl;
+//    end;
+//  end;
+//  Caption:=sl.ToString;
+//
+//  //    Application.ProcessMessages;
+//  //  end;
+//  Timer1.Enabled := True;
+//end;
+
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  buf: array[0..4095] of byte;
-  sl, bufCount, StringCount: integer;
-  s: string;
+  buf: array[0..4096] of byte;
+  bufCount, SLCount: integer;
 begin
   Timer1.Enabled := False;
-  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
-  //  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf));
-  //    for i := 0 to Count - 1 do begin
-  //      Memo1.Text := Memo1.Text + char(buf[i]);
-  //    end;
-  if bufCount > 0 then begin
-    sl := Memo1.SelStart;
-    SetLength(s, bufCount);
-    Move(buf, s[1], bufCount);
+  try
+    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
+//    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf)-1, 10);
+    if bufCount > 0 then begin
+      buf[bufCount] := 0;
 
-    StringCount := Memo1.Lines.Count - 1;
-    Memo1.Lines[StringCount] := Memo1.Lines[StringCount] + s;
+      SLCount := Memo1.Lines.Count - 1;
+      Memo1.Lines[SLCount] := Memo1.Lines[SLCount] + PChar(@buf[0]);
 
-
-    if CheckBox_AutoScroll.Checked then begin
       Memo1.SelStart := -2;
-//      Memo1.SelStart := 10;
-//      Memo1.SelLength := 10;
-      Memo1.VertScrollBar.Position:=1000000;
-    end else begin
-//      Memo1.SelStart := sl;
     end;
+  finally
+    Timer1.Enabled := True;
   end;
-  Caption:=sl.ToString;
-
-  //    Application.ProcessMessages;
-  //  end;
-  Timer1.Enabled := True;
 end;
+
 
 procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
 begin

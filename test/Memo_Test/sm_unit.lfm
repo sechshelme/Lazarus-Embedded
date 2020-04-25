@@ -1,0 +1,38 @@
+object Serial_Monitor_Form: TSerial_Monitor_Form
+  Left = 1486
+  Height = 677
+  Top = 570
+  Width = 832
+  Caption = 'Serial_Monitor_Form'
+  ClientHeight = 677
+  ClientWidth = 832
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDefaultPosOnly
+  LCLVersion = '2.0.8.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 637
+    Top = 40
+    Width = 836
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      ''
+    )
+    ParentFont = False
+    TabOrder = 0
+  end
+  object AutoScroll_CheckBox1: TCheckBox
+    Left = 64
+    Height = 23
+    Top = 8
+    Width = 158
+    Caption = 'AutoScroll_CheckBox1'
+    TabOrder = 1
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 246
+    Top = 190
+  end
+end

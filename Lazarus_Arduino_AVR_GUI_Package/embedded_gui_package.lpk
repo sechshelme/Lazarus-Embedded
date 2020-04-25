@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Package Version="4">
+  <Package Version="5">
     <Name Value="Embedded_GUI_Package"/>
     <Type Value="DesignTime"/>
     <Author Value="Mathias"/>
@@ -20,7 +20,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="74"/>
+    <Version Release="75"/>
     <Files Count="24">
       <Item1>
         <Filename Value="embedded_gui_arm_common.pas"/>

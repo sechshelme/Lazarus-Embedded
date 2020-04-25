@@ -30,6 +30,8 @@ type
 
 
 
+
+
   public
     SerialHandle: TSerialHandle;
   end;
@@ -52,7 +54,7 @@ begin
   Timer1.Interval := 200;
 
   SerialHandle := SerOpen('/dev/ttyUSB0');
-  SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
+  SerSetParams(SerialHandle, 115200, 8, NoneParity, 1, []);
   Timer1.Enabled := True;
 end;
 
@@ -78,27 +80,23 @@ end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  buf: array[0..4095] of byte;
-  bufCount, StringCount: integer;
-  s: string;
+  buf: array[0..4096] of byte;
+  bufCount, SLCount: integer;
 begin
   Timer1.Enabled := False;
-  bufCount := SerRead(SerialHandle, buf, Length(buf));
-//  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), 10);
-  //for i := 0 to bufCount - 1 do begin
-  //  StringCount := Memo1.Lines.Count - 1;
-  //  Memo1.Lines[StringCount] := Memo1.Lines[StringCount] + char(buf[i]);
-  //end;
-  if bufCount > 0 then begin
-    SetLength(s, bufCount);
-    Move(buf, s[1], bufCount);
+  try
+    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf)-1, 10);
+    if bufCount > 0 then begin
+      buf[bufCount] := 0;
 
-    StringCount := Memo1.Lines.Count - 1;
-    Memo1.Lines[StringCount] := Memo1.Lines[StringCount] + s;
+      SLCount := Memo1.Lines.Count - 1;
+      Memo1.Lines[SLCount] := Memo1.Lines[SLCount] + PChar(@buf[0]);
 
-    Memo1.SelStart := -2;
+      Memo1.SelStart := -2;
+    end;
+  finally
+    Timer1.Enabled := True;
   end;
-  Timer1.Enabled := True;
 end;
 
 end.
