@@ -187,6 +187,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Width = 85
       MaxValue = 1000
       MinValue = 1
+      OnChange = ComboBoxChange
       TabOrder = 9
       Value = 1
     end
@@ -197,6 +198,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Width = 85
       MaxValue = 5000
       MinValue = 50
+      OnChange = ComboBoxChange
       TabOrder = 10
       Value = 50
     end

@@ -68,6 +68,7 @@ type
     procedure Timer1Timer(Sender: TObject);
   private
     TempSL: TStrings;
+    ReadBuffer: array[0..4096] of byte;
     SubMenuItemArray: array[0..31] of TMenuItem;
     procedure MenuItemClick(Sender: TObject);
   public
@@ -263,18 +264,14 @@ end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-//  buf: array[0..4096] of byte;
-  buf: array[0..65536] of byte;
   bufCount, SLCount, i: integer;
 begin
   Timer1.Enabled := False;
   try
-    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf) - 1,
-      SpinEdit_TimeOut.Value);
-    //    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf)-1, 10);
+    bufCount := SerReadTimeout(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1, SpinEdit_TimeOut.Value);
     if bufCount > 0 then begin
-      TempSL.Text := PChar(@buf[0]);
-      buf[bufCount] := 0;
+      ReadBuffer[bufCount] := 0;
+      TempSL.Text := PChar(@ReadBuffer[0]);
 
       SLCount := SynEdit1.Lines.Count - 1;
       if SLCount < 1 then begin
@@ -283,15 +280,20 @@ begin
         SynEdit1.Lines[SLCount] := SynEdit1.Lines[SLCount] + TempSL[0];
       end;
 
-      // alle folgenden Zeilen als neue Zeilen ins SynEdit anhängen
       for i := 1 to TempSL.Count - 1 do begin
         SynEdit1.Lines.Add(TempSL[i]);
       end;
+
+//      if ReadBuffer[bufCount - 1] in [10, 13] then begin
+        if ReadBuffer[bufCount - 1] in [13] then begin
+        SynEdit1.Lines.Add('');
+      end;
+      //SynEdit1.Text := SynEdit1.Text + TempSL.Text;
+
+
       if CheckBox_AutoScroll.Checked then begin
         SynEdit1.CaretY := SynEdit1.Lines.Count;
       end;
-
-      //      SynEdit1.Lines[SLCount] := SynEdit1.Lines[SLCount] + PChar(@buf[0]);
 
     end;
   finally
