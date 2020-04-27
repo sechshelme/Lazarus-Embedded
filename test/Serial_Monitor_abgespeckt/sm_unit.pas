@@ -25,13 +25,6 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-
-
-
-
-
-
-
   public
     SerialHandle: TSerialHandle;
   end;

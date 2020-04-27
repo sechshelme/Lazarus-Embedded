@@ -8,11 +8,11 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, Menus, Spin,
   Serial,
-  LazFileUtils,
+  LazFileUtils, SynEdit,
   //  Input,
 
   {$IFDEF Komponents}
-  BaseIDEIntf,  // Bei Komponente
+  BaseIDEIntf,              // Bei Komponente
   Embedded_GUI_IDE_Options,
   {$ELSE}
   IniFiles,  // Bei normalen Anwendungen
@@ -49,11 +49,11 @@ type
     Panel1: TPanel;
     Edit_Send: TEdit;
     MainMenu1: TMainMenu;
-    Memo1: TMemo;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     SpinEdit_TimeOut: TSpinEdit;
     SpinEdit_Timer: TSpinEdit;
+    SynEdit1: TSynEdit;
     Timer1: TTimer;
     procedure Button_SendClick(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
@@ -67,6 +67,7 @@ type
     procedure ComboBoxChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
+    TempSL: TStrings;
     SubMenuItemArray: array[0..31] of TMenuItem;
     procedure MenuItemClick(Sender: TObject);
   public
@@ -91,6 +92,8 @@ begin
   Caption := Title + 'Serial-Monitor';
   LoadFormPos(Self);
 
+  TempSL := TStringList.Create;
+
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
     SubMenuItemArray[i] := TMenuItem.Create(Self);
     with SubMenuItemArray[i] do begin
@@ -101,14 +104,13 @@ begin
     MenuItem1.Insert(i, SubMenuItemArray[i]);
   end;
 
-  Memo1.ScrollBars := ssAutoBoth;
-  Memo1.WordWrap := False;
-  Memo1.ParentFont := False;
-  Memo1.Color := clBlack;
-  Memo1.Font.Color := clLtGray;
-  Memo1.Font.Name := 'Monospace';
-  Memo1.Font.Style := [fsBold];
-  Memo1.DoubleBuffered := True;
+  SynEdit1.ScrollBars := ssAutoBoth;
+  SynEdit1.ParentFont := False;
+  SynEdit1.Color := clBlack;
+  SynEdit1.Font.Color := clLtGray;
+  SynEdit1.Font.Name := 'Monospace';
+  SynEdit1.Font.Style := [fsBold];
+  SynEdit1.DoubleBuffered := True;
 
   Timer1.Interval := 200;
 
@@ -166,6 +168,7 @@ procedure TSerial_Monitor_Form.FormClose(Sender: TObject; var CloseAction: TClos
 begin
   CloseSerial;
   SaveFormPos(Self);
+  TempSL.Free;
 end;
 
 procedure TSerial_Monitor_Form.OpenSerial;
@@ -213,7 +216,7 @@ end;
 
 procedure TSerial_Monitor_Form.Clear_ButtonClick(Sender: TObject);
 begin
-  Memo1.Clear;
+  SynEdit1.Clear;
 end;
 
 procedure TSerial_Monitor_Form.Close_ButtonClick(Sender: TObject);
@@ -231,24 +234,24 @@ end;
 //  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
 //  //  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf));
 //  //    for i := 0 to Count - 1 do begin
-//  //      Memo1.Text := Memo1.Text + char(buf[i]);
+//  //      SynEdit1.Text := SynEdit1.Text + char(buf[i]);
 //  //    end;
 //  if bufCount > 0 then begin
-//    sl := Memo1.SelStart;
+//    sl := SynEdit1.SelStart;
 //    SetLength(s, bufCount);
 //    Move(buf, s[1], bufCount);
 //
-//    SLCount := Memo1.Lines.Count - 1;
-//    Memo1.Lines[SLCount] := Memo1.Lines[SLCount] + s;
+//    SLCount := SynEdit1.Lines.Count - 1;
+//    SynEdit1.Lines[SLCount] := SynEdit1.Lines[SLCount] + s;
 //
 //
 //    if CheckBox_AutoScroll.Checked then begin
-//      Memo1.SelStart := -2;
-////      Memo1.SelStart := 10;
-////      Memo1.SelLength := 10;
-//      Memo1.VertScrollBar.Position:=1000000;
+//      SynEdit1.SelStart := -2;
+////      SynEdit1.SelStart := 10;
+////      SynEdit1.SelLength := 10;
+//      SynEdit1.VertScrollBar.Position:=1000000;
 //    end else begin
-////      Memo1.SelStart := sl;
+////      SynEdit1.SelStart := sl;
 //    end;
 //  end;
 //  Caption:=sl.ToString;
@@ -260,20 +263,36 @@ end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  buf: array[0..4096] of byte;
-  bufCount, SLCount: integer;
+//  buf: array[0..4096] of byte;
+  buf: array[0..65536] of byte;
+  bufCount, SLCount, i: integer;
 begin
   Timer1.Enabled := False;
   try
-    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
-//    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf)-1, 10);
+    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf) - 1,
+      SpinEdit_TimeOut.Value);
+    //    bufCount := SerReadTimeout(SerialHandle, buf, Length(buf)-1, 10);
     if bufCount > 0 then begin
+      TempSL.Text := PChar(@buf[0]);
       buf[bufCount] := 0;
 
-      SLCount := Memo1.Lines.Count - 1;
-      Memo1.Lines[SLCount] := Memo1.Lines[SLCount] + PChar(@buf[0]);
+      SLCount := SynEdit1.Lines.Count - 1;
+      if SLCount < 1 then begin
+        SynEdit1.Lines.Add(TempSL[0]);
+      end else begin
+        SynEdit1.Lines[SLCount] := SynEdit1.Lines[SLCount] + TempSL[0];
+      end;
 
-      Memo1.SelStart := -2;
+      // alle folgenden Zeilen als neue Zeilen ins SynEdit anhängen
+      for i := 1 to TempSL.Count - 1 do begin
+        SynEdit1.Lines.Add(TempSL[i]);
+      end;
+      if CheckBox_AutoScroll.Checked then begin
+        SynEdit1.CaretY := SynEdit1.Lines.Count;
+      end;
+
+      //      SynEdit1.Lines[SLCount] := SynEdit1.Lines[SLCount] + PChar(@buf[0]);
+
     end;
   finally
     Timer1.Enabled := True;
