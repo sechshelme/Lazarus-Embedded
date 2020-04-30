@@ -24,8 +24,8 @@ type
     end;
     AVR_SubArch, AVR_FPC_Typ: string;
     AsmFile: boolean;
-    procedure Save(AProject: TLazProject);
-    procedure Load(AProject: TLazProject);
+    procedure Save_to_Project(AProject: TLazProject);
+    procedure Load_from_Project(AProject: TLazProject);
   end;
 
 type
@@ -112,7 +112,7 @@ implementation
 
 { TProjectOptions }
 
-procedure TAVR_ProjectOptions.Save(AProject: TLazProject);
+procedure TAVR_ProjectOptions.Save_to_Project(AProject: TLazProject);
 var
   pr, s: string;
 begin
@@ -145,12 +145,9 @@ begin
   s += '-Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
   AProject.LazCompilerOptions.ExecuteAfter.Command := s;
-
-  //  AProject.CustomData[Key_SerialMonitorPort] := SerialMonitor.Port;
-  //  AProject.CustomData[Key_SerialMonitorBaud] := SerialMonitor.Baud;
 end;
 
-procedure TAVR_ProjectOptions.Load(AProject: TLazProject);
+procedure TAVR_ProjectOptions.Load_from_Project(AProject: TLazProject);
 var
   s: string;
 
@@ -185,9 +182,6 @@ begin
   AvrdudeCommand.COM_Port := Find(s, '-P');
   AvrdudeCommand.Baud := Find(s, '-b');
   AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
-
-  //  SerialMonitor.Port := AProject.CustomData[Key_SerialMonitorPort];
-  //  SerialMonitor.Baud := AProject.CustomData[Key_SerialMonitorBaud];
 end;
 
 end.

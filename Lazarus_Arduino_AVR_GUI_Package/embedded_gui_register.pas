@@ -12,7 +12,7 @@ uses
   LazLoggerBase,
   // IdeIntf
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
-//  DefineTemplates,  // Als Test;
+  //  DefineTemplates,  // Als Test;
 
   // Embedded ( Eigene Units )
   Embedded_GUI_AVR_Register,
@@ -106,14 +106,11 @@ procedure RegisterSerialMonitor(Sender: TObject);
 begin
   if not Assigned(Serial_Monitor_Form) then begin
     Serial_Monitor_Form := TSerial_Monitor_Form.Create(nil);
+//    ShowMessage('create');
+  end else begin
+//    ShowMessage('no create');
   end;
 
-//  LazProject := LazarusIDE.ActiveProject;
-
-  //  AVR_ProjectOptions.Load(LazProject);
-
-  //  Form.LoadDefaultMask;
-  //  Form.ProjectOptionsToMask;
   Serial_Monitor_Form.Show;
 end;
 
@@ -125,7 +122,7 @@ const
 
 begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
-//  Embedded_IDE_Options.Load;
+  //  Embedded_IDE_Options.Load;
 
   AVR_ProjectOptions := TAVR_ProjectOptions.Create;
   RegisterProjectDescriptor(TProjectAVRApp.Create);

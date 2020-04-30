@@ -1,26 +1,26 @@
 object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
   Left = 0
-  Height = 585
+  Height = 604
   Top = 0
-  Width = 782
-  ClientHeight = 585
-  ClientWidth = 782
+  Width = 464
+  ClientHeight = 604
+  ClientWidth = 464
   TabOrder = 0
-  DesignLeft = 2573
-  DesignTop = 464
+  DesignLeft = 2519
+  DesignTop = 357
   object PageControl1: TPageControl
     Left = 0
-    Height = 585
+    Height = 604
     Top = 0
-    Width = 782
+    Width = 464
     ActivePage = TabSheet3
     Align = alClient
     TabIndex = 2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'AVR'
-      ClientHeight = 555
-      ClientWidth = 772
+      ClientHeight = 574
+      ClientWidth = 454
       object Label1: TLabel
         Left = 11
         Height = 16
@@ -78,8 +78,8 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     end
     object TabSheet2: TTabSheet
       Caption = 'ARM'
-      ClientHeight = 555
-      ClientWidth = 772
+      ClientHeight = 574
+      ClientWidth = 454
       object Label3: TLabel
         Left = 11
         Height = 16
@@ -110,139 +110,177 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     end
     object TabSheet3: TTabSheet
       Caption = 'Serial-Monitor'
-      ClientHeight = 555
-      ClientWidth = 772
-      object ComboBox_Port: TComboBox
-        Left = 104
-        Height = 28
+      ClientHeight = 574
+      ClientWidth = 454
+      object GroupBox_Interface: TGroupBox
+        Left = 8
+        Height = 433
         Top = 8
-        Width = 176
-        ItemHeight = 0
+        Width = 435
+        Anchors = [akTop, akLeft, akRight]
+        Caption = 'Interface'
+        ClientHeight = 416
+        ClientWidth = 433
         TabOrder = 0
+        object SpinEdit_Timer: TSpinEdit
+          Left = 104
+          Height = 28
+          Top = 360
+          Width = 85
+          MaxValue = 5000
+          MinValue = 50
+          TabOrder = 0
+          Value = 50
+        end
+        object Label11: TLabel
+          Left = 8
+          Height = 16
+          Top = 368
+          Width = 37
+          Caption = 'Timer:'
+          ParentColor = False
+        end
+        object SpinEdit_TimeOut: TSpinEdit
+          Left = 104
+          Height = 28
+          Top = 312
+          Width = 85
+          MaxValue = 1000
+          MinValue = 1
+          TabOrder = 1
+          Value = 1
+        end
+        object Label10: TLabel
+          Left = 8
+          Height = 16
+          Top = 320
+          Width = 53
+          Caption = 'Timeout:'
+          ParentColor = False
+        end
+        object ComboBox_FlowControl: TComboBox
+          Left = 104
+          Height = 28
+          Top = 248
+          Width = 176
+          ItemHeight = 0
+          TabOrder = 2
+        end
+        object Label8: TLabel
+          Left = 8
+          Height = 16
+          Top = 256
+          Width = 79
+          Caption = 'Flow control:'
+          ParentColor = False
+        end
+        object ComboBox_StopBits: TComboBox
+          Left = 104
+          Height = 28
+          Top = 200
+          Width = 176
+          ItemHeight = 0
+          TabOrder = 3
+        end
+        object Label9: TLabel
+          Left = 8
+          Height = 16
+          Top = 208
+          Width = 53
+          Caption = 'Stopbits:'
+          ParentColor = False
+        end
+        object Label6: TLabel
+          Left = 8
+          Height = 16
+          Top = 160
+          Width = 26
+          Caption = 'Bits:'
+          ParentColor = False
+        end
+        object ComboBox_Bits: TComboBox
+          Left = 104
+          Height = 28
+          Top = 152
+          Width = 176
+          ItemHeight = 0
+          TabOrder = 4
+        end
+        object ComboBox_Parity: TComboBox
+          Left = 104
+          Height = 28
+          Top = 104
+          Width = 176
+          ItemHeight = 0
+          TabOrder = 5
+        end
+        object Label7: TLabel
+          Left = 8
+          Height = 16
+          Top = 112
+          Width = 38
+          Caption = 'Parity:'
+          ParentColor = False
+        end
+        object ComboBox_Baud: TComboBox
+          Left = 104
+          Height = 28
+          Top = 56
+          Width = 176
+          ItemHeight = 0
+          TabOrder = 6
+        end
+        object Label5: TLabel
+          Left = 8
+          Height = 16
+          Top = 64
+          Width = 65
+          Caption = 'Baud Rate:'
+          ParentColor = False
+        end
+        object ComboBox_Port: TComboBox
+          Left = 104
+          Height = 28
+          Top = 8
+          Width = 176
+          ItemHeight = 0
+          TabOrder = 7
+        end
+        object Label4: TLabel
+          Left = 8
+          Height = 16
+          Top = 16
+          Width = 29
+          Caption = 'Port:'
+          ParentColor = False
+        end
       end
-      object ComboBox_Baud: TComboBox
-        Left = 104
-        Height = 28
-        Top = 56
-        Width = 176
-        ItemHeight = 0
+      object GroupBox_Output: TGroupBox
+        Left = 8
+        Height = 104
+        Top = 448
+        Width = 435
+        Anchors = [akTop, akLeft, akRight]
+        Caption = 'Output'
+        ClientHeight = 87
+        ClientWidth = 433
         TabOrder = 1
-      end
-      object Label4: TLabel
-        Left = 8
-        Height = 16
-        Top = 16
-        Width = 29
-        Caption = 'Port:'
-        ParentColor = False
-      end
-      object Label5: TLabel
-        Left = 8
-        Height = 16
-        Top = 64
-        Width = 65
-        Caption = 'Baud Rate:'
-        ParentColor = False
-      end
-      object ComboBox_Bits: TComboBox
-        Left = 104
-        Height = 28
-        Top = 152
-        Width = 176
-        ItemHeight = 0
-        TabOrder = 2
-      end
-      object Label6: TLabel
-        Left = 8
-        Height = 16
-        Top = 160
-        Width = 26
-        Caption = 'Bits:'
-        ParentColor = False
-      end
-      object Label7: TLabel
-        Left = 8
-        Height = 16
-        Top = 112
-        Width = 38
-        Caption = 'Parity:'
-        ParentColor = False
-      end
-      object ComboBox_Parity: TComboBox
-        Left = 104
-        Height = 28
-        Top = 104
-        Width = 176
-        ItemHeight = 0
-        TabOrder = 3
-      end
-      object ComboBox_FlowControl: TComboBox
-        Left = 104
-        Height = 28
-        Top = 248
-        Width = 176
-        ItemHeight = 0
-        TabOrder = 4
-      end
-      object Label8: TLabel
-        Left = 8
-        Height = 16
-        Top = 256
-        Width = 79
-        Caption = 'Flow control:'
-        ParentColor = False
-      end
-      object Label9: TLabel
-        Left = 8
-        Height = 16
-        Top = 208
-        Width = 53
-        Caption = 'Stopbits:'
-        ParentColor = False
-      end
-      object ComboBox_StopBits: TComboBox
-        Left = 104
-        Height = 28
-        Top = 200
-        Width = 176
-        ItemHeight = 0
-        TabOrder = 5
-      end
-      object SpinEdit_TimeOut: TSpinEdit
-        Left = 104
-        Height = 28
-        Top = 312
-        Width = 85
-        MaxValue = 1000
-        MinValue = 1
-        TabOrder = 6
-        Value = 1
-      end
-      object Label10: TLabel
-        Left = 8
-        Height = 16
-        Top = 320
-        Width = 53
-        Caption = 'Timeout:'
-        ParentColor = False
-      end
-      object SpinEdit_Timer: TSpinEdit
-        Left = 104
-        Height = 28
-        Top = 360
-        Width = 85
-        MaxValue = 5000
-        MinValue = 50
-        TabOrder = 7
-        Value = 50
-      end
-      object Label11: TLabel
-        Left = 8
-        Height = 16
-        Top = 368
-        Width = 37
-        Caption = 'Timer:'
-        ParentColor = False
+        object CheckBox_AutoScroll: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 8
+          Width = 90
+          Caption = 'AutoScroll'
+          TabOrder = 0
+        end
+        object CheckBox_WordWarp: TCheckBox
+          Left = 8
+          Height = 23
+          Top = 32
+          Width = 89
+          Caption = 'Wordwarp'
+          TabOrder = 1
+        end
       end
     end
   end

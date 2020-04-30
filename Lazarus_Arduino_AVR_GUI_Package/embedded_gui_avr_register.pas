@@ -51,14 +51,14 @@ begin
     end;
   end;
 
-  AVR_ProjectOptions.Load(LazProject);
+  AVR_ProjectOptions.Load_from_Project(LazProject);
 
   ProjOptiForm.LoadDefaultMask;
   ProjOptiForm.ProjectOptionsToMask;
 
   if ProjOptiForm.ShowModal = mrOk then begin
     ProjOptiForm.MaskToProjectOptions;
-    AVR_ProjectOptions.Save(LazProject);
+    AVR_ProjectOptions.Save_to_Project(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
   end;
 
@@ -137,7 +137,7 @@ begin
 
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
-  AVR_ProjectOptions.Save(AProject);
+  AVR_ProjectOptions.Save_to_Project(AProject);
 
   Result := mrOk;
 end;

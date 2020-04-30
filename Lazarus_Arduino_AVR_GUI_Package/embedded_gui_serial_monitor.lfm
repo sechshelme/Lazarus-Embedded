@@ -146,7 +146,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object CheckBox_AutoScroll: TCheckBox
       Left = 16
       Height = 23
-      Top = 566
+      Top = 536
       Width = 89
       Anchors = [akLeft, akBottom]
       Caption = 'Autoscroll'
@@ -176,15 +176,15 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Left = 15
       Height = 16
       Top = 448
-      Width = 53
-      Caption = 'Timeout:'
+      Width = 99
+      Caption = 'Timeout (0=off):'
       ParentColor = False
     end
     object SpinEdit_TimeOut: TSpinEdit
-      Left = 106
+      Left = 120
       Height = 28
       Top = 440
-      Width = 85
+      Width = 71
       MaxValue = 1000
       MinValue = 1
       OnChange = ComboBoxChange
@@ -192,10 +192,10 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Value = 1
     end
     object SpinEdit_Timer: TSpinEdit
-      Left = 106
+      Left = 120
       Height = 28
       Top = 488
-      Width = 85
+      Width = 71
       MaxValue = 5000
       MinValue = 50
       OnChange = ComboBoxChange
@@ -209,6 +209,15 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Width = 37
       Caption = 'Timer:'
       ParentColor = False
+    end
+    object CheckBox_WordWarp: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 564
+      Width = 89
+      Anchors = [akLeft, akBottom]
+      Caption = 'Wordwarp'
+      TabOrder = 11
     end
   end
   inline SynEdit1: TSynEdit

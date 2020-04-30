@@ -21,8 +21,8 @@ type
     end;
     ARM_SubArch, ARM_FPC_Typ: string;
     AsmFile: boolean;
-    procedure Save(AProject: TLazProject);
-    procedure Load(AProject: TLazProject);
+    procedure Save_to_Project(AProject: TLazProject);
+    procedure Load_from_Project(AProject: TLazProject);
   end;
 
 type
@@ -52,7 +52,7 @@ implementation
 
 { TARM_ProjectOptions }
 
-procedure TARM_ProjectOptions.Save(AProject: TLazProject);
+procedure TARM_ProjectOptions.Save_to_Project(AProject: TLazProject);
 begin
   with AProject.LazCompilerOptions do begin
     TargetCPU := 'arm';
@@ -71,7 +71,7 @@ begin
 
 end;
 
-procedure TARM_ProjectOptions.Load(AProject: TLazProject);
+procedure TARM_ProjectOptions.Load_from_Project(AProject: TLazProject);
 var
   s: string;
 

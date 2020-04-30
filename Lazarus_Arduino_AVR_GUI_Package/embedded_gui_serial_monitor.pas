@@ -27,6 +27,7 @@ type
 
   TSerial_Monitor_Form = class(TForm)
     Button_Send: TButton;
+    CheckBox_WordWarp: TCheckBox;
     Clear_Button: TButton;
     Close_Button: TButton;
     CheckBox_AutoScroll: TCheckBox;
@@ -94,6 +95,8 @@ begin
   LoadFormPos(Self);
 
   TempSL := TStringList.Create;
+  TempSL.LineBreak := #13#10;
+  TempSL.SkipLastLineBreak := True;
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
     SubMenuItemArray[i] := TMenuItem.Create(Self);
@@ -134,14 +137,25 @@ begin
   ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
 
   {$IFDEF Komponents}
-  ComboBox_Port.Text := Embedded_IDE_Options.SerialMonitor.Port;
-  ComboBox_Baud.Text := Embedded_IDE_Options.SerialMonitor.Baud;
-  ComboBox_Parity.Text := Embedded_IDE_Options.SerialMonitor.Parity;
-  ComboBox_Bits.Text := Embedded_IDE_Options.SerialMonitor.Bits;
-  ComboBox_StopBits.Text := Embedded_IDE_Options.SerialMonitor.StopBits;
-  ComboBox_FlowControl.Text := Embedded_IDE_Options.SerialMonitor.FlowControl;
-  SpinEdit_TimeOut.Value := Embedded_IDE_Options.SerialMonitor.TimeOut;
-  SpinEdit_Timer.Value := Embedded_IDE_Options.SerialMonitor.Timer;
+  with Embedded_IDE_Options do begin
+    with SerialMonitor do begin
+      with Com_Interface do begin
+        ComboBox_Port.Text := Port;
+        ComboBox_Baud.Text := Baud;
+        ComboBox_Parity.Text := Parity;
+        ComboBox_Bits.Text := Bits;
+        ComboBox_StopBits.Text := StopBits;
+        ComboBox_FlowControl.Text := FlowControl;
+        SpinEdit_TimeOut.Value := TimeOut;
+        SpinEdit_Timer.Value := TimerInterval;
+      end;
+
+      with Output do begin
+        CheckBox_AutoScroll.Checked := AutoScroll;
+        CheckBox_WordWarp.Checked := WordWarp;
+      end;
+    end;
+  end;
   {$ELSE}
   ComboBox_Port.Text := UARTDefaultPort;
   ComboBox_Baud.Text := UARTDefaultBaud;
@@ -151,6 +165,9 @@ begin
   ComboBox_FlowControl.Text := UARTDefaultFlowControl;
   SpinEdit_TimeOut.Value := UARTDefaultTimeOut;
   SpinEdit_Timer.Value := UARTDefaultTimer;
+
+  CheckBox_AutoScroll.Checked := True;
+  CheckBox_WordWarp.Checked := False;
   {$ENDIF}
 
 end;
@@ -170,6 +187,9 @@ begin
   CloseSerial;
   SaveFormPos(Self);
   TempSL.Free;
+  //  CloseAction := caFree;
+//  ShowMessage(Integer(CloseAction).ToString+'    '+Integer(caNone).ToString+'    ');
+//    CloseAction := caNone;
 end;
 
 procedure TSerial_Monitor_Form.OpenSerial;
@@ -225,71 +245,41 @@ begin
   Close;
 end;
 
-//procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
-//var
-//  buf: array[0..4095] of byte;
-//  sl, bufCount, SLCount: integer;
-//  s: string;
-//begin
-//  Timer1.Enabled := False;
-//  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf), SpinEdit_TimeOut.Value);
-//  //  bufCount := SerReadTimeout(SerialHandle, buf, Length(buf));
-//  //    for i := 0 to Count - 1 do begin
-//  //      SynEdit1.Text := SynEdit1.Text + char(buf[i]);
-//  //    end;
-//  if bufCount > 0 then begin
-//    sl := SynEdit1.SelStart;
-//    SetLength(s, bufCount);
-//    Move(buf, s[1], bufCount);
-//
-//    SLCount := SynEdit1.Lines.Count - 1;
-//    SynEdit1.Lines[SLCount] := SynEdit1.Lines[SLCount] + s;
-//
-//
-//    if CheckBox_AutoScroll.Checked then begin
-//      SynEdit1.SelStart := -2;
-////      SynEdit1.SelStart := 10;
-////      SynEdit1.SelLength := 10;
-//      SynEdit1.VertScrollBar.Position:=1000000;
-//    end else begin
-////      SynEdit1.SelStart := sl;
-//    end;
-//  end;
-//  Caption:=sl.ToString;
-//
-//  //    Application.ProcessMessages;
-//  //  end;
-//  Timer1.Enabled := True;
-//end;
-
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  bufCount, SLCount, i: integer;
+  bufCount, SLCount: integer;
+const
+  maxPuffer: integer = 0;
 begin
   Timer1.Enabled := False;
   try
-    bufCount := SerReadTimeout(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1, SpinEdit_TimeOut.Value);
+    if SpinEdit_TimeOut.Value = 0 then begin
+      bufCount := SerRead(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1);
+    end else begin
+      bufCount := SerReadTimeout(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1, SpinEdit_TimeOut.Value);
+    end;
+
+    if bufCount > maxPuffer then begin
+      maxPuffer := bufCount;
+      Caption := maxPuffer.ToString;
+    end;
+
     if bufCount > 0 then begin
-      ReadBuffer[bufCount] := 0;
-      TempSL.Text := PChar(@ReadBuffer[0]);
+      ReadBuffer[bufCount] := 0; // Für PChar
 
       SLCount := SynEdit1.Lines.Count - 1;
-      if SLCount < 1 then begin
-        SynEdit1.Lines.Add(TempSL[0]);
+
+      if SLCount >= 0 then begin
+        TempSL.Text := SynEdit1.Lines[SLCount] + PChar(@ReadBuffer[0]);
+        SynEdit1.Lines.Delete(SLCount);
       end else begin
-        SynEdit1.Lines[SLCount] := SynEdit1.Lines[SLCount] + TempSL[0];
+        TempSL.Text := PChar(@ReadBuffer[0]);
       end;
 
-      for i := 1 to TempSL.Count - 1 do begin
-        SynEdit1.Lines.Add(TempSL[i]);
-      end;
-
-//      if ReadBuffer[bufCount - 1] in [10, 13] then begin
-        if ReadBuffer[bufCount - 1] in [13] then begin
+      SynEdit1.Lines.AddStrings(TempSL);
+      if ReadBuffer[bufCount - 1] = 10 then begin
         SynEdit1.Lines.Add('');
       end;
-      //SynEdit1.Text := SynEdit1.Text + TempSL.Text;
-
 
       if CheckBox_AutoScroll.Checked then begin
         SynEdit1.CaretY := SynEdit1.Lines.Count;

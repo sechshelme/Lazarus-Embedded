@@ -57,14 +57,18 @@ const
   UARTDefaultTimeOut = 10;
   UARTDefaultTimer = 200;
 
-  Key_SerialMonitorPort = 'SerialMonitor/Port/value';
-  Key_SerialMonitorBaud = 'SerialMonitor/Baud/value';
-  Key_SerialMonitorParity = 'SerialMonitor/Parity/value';
-  Key_SerialMonitorBits = 'SerialMonitor/Bits/value';
-  Key_SerialMonitorStopBits = 'SerialMonitor/StopBits/value';
-  Key_SerialMonitorFlowControl = 'SerialMonitor/FlowControl/value';
-  Key_SerialMonitorTimeOut = 'SerialMonitor/TimeOut/value';
-  Key_SerialMonitorTimer = 'SerialMonitor/Timer/value';
+  Key_SerialMonitorPort = 'SerialMonitor/Interface/Port/value';
+  Key_SerialMonitorBaud = 'SerialMonitor/Interface/Baud/value';
+  Key_SerialMonitorParity = 'SerialMonitor/Interface/Parity/value';
+  Key_SerialMonitorBits = 'SerialMonitor/Interface/Bits/value';
+  Key_SerialMonitorStopBits = 'SerialMonitor/Interface/StopBits/value';
+  Key_SerialMonitorFlowControl = 'SerialMonitor/Interface/FlowControl/value';
+  Key_SerialMonitorTimeOut = 'SerialMonitor/Interface/TimeOut/value';
+  Key_SerialMonitorTimer = 'SerialMonitor/Interface/Timer/value';
+
+  Key_SerialMonitorAutoScroll = 'SerialMonitor/Output/Autoscroll/value';
+  Key_SerialMonitorWordWarp = 'SerialMonitor/Output/Wordwarp/value';
+
 
 procedure LoadFormPos(Form: TControl);
 procedure SaveFormPos(Form: TControl);

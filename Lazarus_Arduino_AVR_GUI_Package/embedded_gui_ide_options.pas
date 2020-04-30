@@ -23,13 +23,18 @@ type
       STFlashPath: string;
     end;
     SerialMonitor: record
-      Port, Baud, Bits, Parity, StopBits, FlowControl: string;
-      TimeOut, Timer:Integer;
+      Com_Interface: record
+        Port, Baud, Bits, Parity, StopBits, FlowControl: string;
+        TimeOut, TimerInterval: integer;
+      end;
+      Output: record
+        AutoScroll, WordWarp: boolean;
+      end;
     end;
     constructor Create;
   private
-    procedure Save;
-    procedure Load;
+    procedure Save_to_XML;
+    procedure Load_from_XML;
   end;
 
 var
@@ -43,15 +48,20 @@ type
   TEmbedded_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
     Button_AVRDude_Path: TButton;
     Button_AVRDude_Config: TButton;
-    ComboBox_STFlashPfad: TComboBox;
-    Button_ST_Flash: TButton;
+    CheckBox_WordWarp: TCheckBox;
+    CheckBox_AutoScroll: TCheckBox;
     ComboBox_Baud: TComboBox;
-    ComboBox_AVRdude_Path: TComboBox;
-    ComboBox_AVRdudeConf: TComboBox;
     ComboBox_Bits: TComboBox;
     ComboBox_FlowControl: TComboBox;
     ComboBox_Parity: TComboBox;
+    ComboBox_Port: TComboBox;
+    ComboBox_STFlashPfad: TComboBox;
+    Button_ST_Flash: TButton;
+    ComboBox_AVRdude_Path: TComboBox;
+    ComboBox_AVRdudeConf: TComboBox;
     ComboBox_StopBits: TComboBox;
+    GroupBox_Interface: TGroupBox;
+    GroupBox_Output: TGroupBox;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -65,7 +75,6 @@ type
     Label9: TLabel;
     OpenDialog: TOpenDialog;
     PageControl1: TPageControl;
-    ComboBox_Port: TComboBox;
     SpinEdit_TimeOut: TSpinEdit;
     SpinEdit_Timer: TSpinEdit;
     TabSheet1: TTabSheet;
@@ -90,7 +99,7 @@ implementation
 
 { TEmbedded_IDE_Options }
 
-procedure TEmbedded_IDE_Options.Load;
+procedure TEmbedded_IDE_Options.Load_from_XML;
 var
   Cfg: TConfigStorage;
 begin
@@ -99,19 +108,27 @@ begin
   AVR.avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Path, Default_Avrdude_Conf_Path);
   ARM.STFlashPath := Cfg.GetValue(Key_STFlash_Path, Default_STFlash_Path);
 
-  SerialMonitor.Port := Cfg.GetValue(Key_SerialMonitorPort, UARTDefaultPort);
-  SerialMonitor.Baud := Cfg.GetValue(Key_SerialMonitorBaud, UARTDefaultBaud);
-  SerialMonitor.Parity := Cfg.GetValue(Key_SerialMonitorParity, UARTDefaultParity);
-  SerialMonitor.Bits := Cfg.GetValue(Key_SerialMonitorBits, UARTDefaultBits);
-  SerialMonitor.StopBits := Cfg.GetValue(Key_SerialMonitorStopBits, UARTDefaultStopBits);
-  SerialMonitor.FlowControl := Cfg.GetValue(Key_SerialMonitorFlowControl, UARTDefaultFlowControl);
+  with SerialMonitor do begin
+    with Com_Interface do begin
+      Port := Cfg.GetValue(Key_SerialMonitorPort, UARTDefaultPort);
+      Baud := Cfg.GetValue(Key_SerialMonitorBaud, UARTDefaultBaud);
+      Parity := Cfg.GetValue(Key_SerialMonitorParity, UARTDefaultParity);
+      Bits := Cfg.GetValue(Key_SerialMonitorBits, UARTDefaultBits);
+      StopBits := Cfg.GetValue(Key_SerialMonitorStopBits, UARTDefaultStopBits);
+      FlowControl := Cfg.GetValue(Key_SerialMonitorFlowControl, UARTDefaultFlowControl);
 
-  SerialMonitor.TimeOut:=Cfg.GetValue(Key_SerialMonitorTimeOut, UARTDefaultTimeOut);
-  SerialMonitor.Timer:=Cfg.GetValue(Key_SerialMonitorTimer, UARTDefaultTimer);
+      TimeOut := Cfg.GetValue(Key_SerialMonitorTimeOut, UARTDefaultTimeOut);
+      TimerInterval := Cfg.GetValue(Key_SerialMonitorTimer, UARTDefaultTimer);
+    end;
+    with Output do begin
+      AutoScroll := Cfg.GetValue(Key_SerialMonitorAutoScroll, True);
+      WordWarp := Cfg.GetValue(Key_SerialMonitorWordWarp, False);
+    end;
+  end;
   Cfg.Free;
 end;
 
-procedure TEmbedded_IDE_Options.Save;
+procedure TEmbedded_IDE_Options.Save_to_XML;
 var
   Cfg: TConfigStorage;
 begin
@@ -120,23 +137,30 @@ begin
   Cfg.SetValue(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
   Cfg.SetValue(Key_STFlash_Path, ARM.STFlashPath);
 
-  Cfg.SetValue(Key_SerialMonitorPort, SerialMonitor.Port);
-  Cfg.SetValue(Key_SerialMonitorBaud, SerialMonitor.Baud);
-  Cfg.SetValue(Key_SerialMonitorParity, SerialMonitor.Parity);
-  Cfg.SetValue(Key_SerialMonitorBits, SerialMonitor.Bits);
-  Cfg.SetValue(Key_SerialMonitorStopBits, SerialMonitor.StopBits);
-  Cfg.SetValue(Key_SerialMonitorFlowControl, SerialMonitor.FlowControl);
+  with SerialMonitor do begin
+    with Com_Interface do begin
+      Cfg.SetValue(Key_SerialMonitorPort, Port);
+      Cfg.SetValue(Key_SerialMonitorBaud, Baud);
+      Cfg.SetValue(Key_SerialMonitorParity, Parity);
+      Cfg.SetValue(Key_SerialMonitorBits, Bits);
+      Cfg.SetValue(Key_SerialMonitorStopBits, StopBits);
+      Cfg.SetValue(Key_SerialMonitorFlowControl, FlowControl);
 
-  Cfg.SetValue(Key_SerialMonitorTimeOut, SerialMonitor.TimeOut);
-  Cfg.SetValue(Key_SerialMonitorTimer, SerialMonitor.Timer);
-
+      Cfg.SetValue(Key_SerialMonitorTimeOut, TimeOut);
+      Cfg.SetValue(Key_SerialMonitorTimer, TimerInterval);
+    end;
+    with Output do begin
+      Cfg.SetValue(Key_SerialMonitorAutoScroll, AutoScroll);
+      Cfg.SetValue(Key_SerialMonitorWordWarp, WordWarp);
+    end;
+  end;
   Cfg.Free;
 end;
 
 constructor TEmbedded_IDE_Options.Create;
 begin
   inherited Create;
-  Load;
+  Load_from_XML;
 end;
 
 { TEmbedded_IDE_Options_Frame }
@@ -162,7 +186,7 @@ begin
   OpenDialog.FileName := ComboBox_AVRdudeConf.Text;
   if OpenDialog.Execute then begin
     ComboBox_AVRdudeConf.Text := OpenDialog.FileName;
- end;
+  end;
 end;
 
 function TEmbedded_IDE_Options_Frame.GetTitle: string;
@@ -172,70 +196,71 @@ end;
 
 procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
-//  ComboBox_AVRdude_Path.Text := Default_Avrdude_Path;
-//  ComboBox_AVRdudeConf.Text := Default_Avrdude_Conf_Path;
-
-//  ComboBox_STFlashPfad.Text := Default_STFlash_Path;
-
   ComboBox_Port.Items.CommaText := GetSerialPortNames;
-//  ComboBox_Port.Text := UARTDefaultPort;
-
   ComboBox_Baud.Items.CommaText := UARTBaudRates;
-//  ComboBox_Baud.Text := UARTDefaultBaud;
-
   ComboBox_Parity.Items.CommaText := UARTParitys;
-//  ComboBox_Parity.Text := UARTDefaultParity;
-
   ComboBox_Bits.Items.CommaText := UARTBitss;
-//  ComboBox_Bits.Text := UARTDefaultBits;
-
   ComboBox_StopBits.Items.CommaText := UARTStopBitss;
-//  ComboBox_StopBits.Text := UARTDefaultStopBits;
-
   ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
-//  ComboBox_FlowControl.Text := UARTDefaultFlowControl;
-
-//  SpinEdit_TimeOut.Value:=UARTDefaultTimeOut;
-//  SpinEdit_Timer.Value:=UARTDefaultTimer;
-
-  //  PageControl1.ActivePageIndex:=0;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 begin
-  SetComboBoxText(ComboBox_AVRdude_Path, Embedded_IDE_Options.AVR.avrdudePath, cstFilename);
-  SetComboBoxText(ComboBox_AVRdudeConf, Embedded_IDE_Options.AVR.avrdudeConfigPath, cstFilename);
+  with Embedded_IDE_Options do begin
+    SetComboBoxText(ComboBox_AVRdude_Path, AVR.avrdudePath, cstFilename);
+    SetComboBoxText(ComboBox_AVRdudeConf, AVR.avrdudeConfigPath, cstFilename);
 
-  SetComboBoxText(ComboBox_STFlashPfad, Embedded_IDE_Options.ARM.STFlashPath, cstFilename);
+    SetComboBoxText(ComboBox_STFlashPfad, ARM.STFlashPath, cstFilename);
 
-  ComboBox_Port.Text := Embedded_IDE_Options.SerialMonitor.Port;
-  ComboBox_Baud.Text := Embedded_IDE_Options.SerialMonitor.Baud;
-  ComboBox_Parity.Text := Embedded_IDE_Options.SerialMonitor.Parity;
-  ComboBox_Bits.Text := Embedded_IDE_Options.SerialMonitor.Bits;
-  ComboBox_StopBits.Text := Embedded_IDE_Options.SerialMonitor.StopBits;
-  ComboBox_FlowControl.Text := Embedded_IDE_Options.SerialMonitor.FlowControl;
+    with SerialMonitor do begin
+      with Com_Interface do begin
+        ComboBox_Port.Text := Port;
+        ComboBox_Baud.Text := Baud;
+        ComboBox_Parity.Text := Parity;
+        ComboBox_Bits.Text := Bits;
+        ComboBox_StopBits.Text := StopBits;
+        ComboBox_FlowControl.Text := FlowControl;
 
-  SpinEdit_TimeOut.Value:=Embedded_IDE_Options.SerialMonitor.TimeOut;
-  SpinEdit_Timer.Value:=Embedded_IDE_Options.SerialMonitor.Timer;
+        SpinEdit_TimeOut.Value := TimeOut;
+        SpinEdit_Timer.Value := TimerInterval;
+      end;
+
+      with Output do begin
+        CheckBox_AutoScroll.Checked := AutoScroll;
+        CheckBox_WordWarp.Checked := WordWarp;
+      end;
+    end;
+  end;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
 begin
-  Embedded_IDE_Options.AVR.avrdudePath := ComboBox_AVRdude_Path.Text;
-  Embedded_IDE_Options.AVR.avrdudeConfigPath := ComboBox_AVRdudeConf.Text;
-  Embedded_IDE_Options.ARM.STFlashPath := ComboBox_STFlashPfad.Text;
+  with Embedded_IDE_Options do begin
+    AVR.avrdudePath := ComboBox_AVRdude_Path.Text;
+    AVR.avrdudeConfigPath := ComboBox_AVRdudeConf.Text;
+    ARM.STFlashPath := ComboBox_STFlashPfad.Text;
 
-  Embedded_IDE_Options.SerialMonitor.Port := ComboBox_Port.Text;
-  Embedded_IDE_Options.SerialMonitor.Baud := ComboBox_Baud.Text;
-  Embedded_IDE_Options.SerialMonitor.Parity := ComboBox_Parity.Text;
-  Embedded_IDE_Options.SerialMonitor.Bits := ComboBox_Bits.Text;
-  Embedded_IDE_Options.SerialMonitor.StopBits := ComboBox_StopBits.Text;
-  Embedded_IDE_Options.SerialMonitor.FlowControl := ComboBox_FlowControl.Text;
+    with SerialMonitor do begin
+      with Com_Interface do begin
+        Port := ComboBox_Port.Text;
+        Baud := ComboBox_Baud.Text;
+        Parity := ComboBox_Parity.Text;
+        Bits := ComboBox_Bits.Text;
+        StopBits := ComboBox_StopBits.Text;
+        FlowControl := ComboBox_FlowControl.Text;
 
-  Embedded_IDE_Options.SerialMonitor.TimeOut := SpinEdit_TimeOut.Value;
-  Embedded_IDE_Options.SerialMonitor.Timer := SpinEdit_Timer.Value;
+        TimeOut := SpinEdit_TimeOut.Value;
+        TimerInterval := SpinEdit_Timer.Value;
+      end;
 
-  Embedded_IDE_Options.Save;
+      with Output do begin
+        AutoScroll := CheckBox_AutoScroll.Checked;
+        WordWarp := CheckBox_WordWarp.Checked;
+      end;
+    end;
+
+    Embedded_IDE_Options.Save_to_XML;
+  end;
 end;
 
 class function TEmbedded_IDE_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
@@ -244,11 +269,6 @@ begin
 end;
 
 end.
-
-
-
-
-
 
 
 
