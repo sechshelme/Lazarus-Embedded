@@ -59,13 +59,9 @@ type
     procedure Button_SendClick(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
     procedure Close_ButtonClick(Sender: TObject);
-    procedure ComboBox_PortChange(Sender: TObject);
-    procedure ComboBox_PortClick(Sender: TObject);
-    procedure ComboBox_PortEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormHide(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem_CloseClick(Sender: TObject);
@@ -182,10 +178,6 @@ begin
   TempSL.Free;
 end;
 
-procedure TSerial_Monitor_Form.FormHide(Sender: TObject);
-begin
-end;
-
 procedure TSerial_Monitor_Form.FormShow(Sender: TObject);
 begin
   ComboBox_Port.Items.CommaText := GetSerialPortNames;
@@ -256,18 +248,6 @@ begin
   Close;
 end;
 
-procedure TSerial_Monitor_Form.ComboBox_PortChange(Sender: TObject);
-begin
-end;
-
-procedure TSerial_Monitor_Form.ComboBox_PortClick(Sender: TObject);
-begin
-end;
-
-procedure TSerial_Monitor_Form.ComboBox_PortEnter(Sender: TObject);
-begin
-end;
-
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
   bufCount, SLCount: integer;
@@ -284,7 +264,7 @@ begin
 
     if bufCount > maxPuffer then begin
       maxPuffer := bufCount;
-      Caption := maxPuffer.ToString;
+//      Caption := maxPuffer.ToString;
     end;
 
     if bufCount > 0 then begin
