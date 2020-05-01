@@ -59,6 +59,9 @@ type
     procedure Button_SendClick(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
     procedure Close_ButtonClick(Sender: TObject);
+    procedure ComboBox_PortChange(Sender: TObject);
+    procedure ComboBox_PortClick(Sender: TObject);
+    procedure ComboBox_PortEnter(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -185,6 +188,7 @@ end;
 
 procedure TSerial_Monitor_Form.FormShow(Sender: TObject);
 begin
+  ComboBox_Port.Items.CommaText := GetSerialPortNames;
   OpenSerial;
 end;
 
@@ -250,6 +254,18 @@ end;
 procedure TSerial_Monitor_Form.Close_ButtonClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TSerial_Monitor_Form.ComboBox_PortChange(Sender: TObject);
+begin
+end;
+
+procedure TSerial_Monitor_Form.ComboBox_PortClick(Sender: TObject);
+begin
+end;
+
+procedure TSerial_Monitor_Form.ComboBox_PortEnter(Sender: TObject);
+begin
 end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);

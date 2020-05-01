@@ -14,7 +14,7 @@ uses
   ProjectIntf, CompOptsIntf, LazIDEIntf, IDEOptionsIntf, IDEOptEditorIntf, MenuIntf,
   //  DefineTemplates,  // Als Test;
 
-  // Embedded ( Eigene Units )
+  // Embedded GUI ( Eigene Units )
   Embedded_GUI_AVR_Register,
   Embedded_GUI_ARM_Register,
   Embedded_GUI_IDE_Options,
@@ -34,9 +34,9 @@ implementation
 
 type
 
-  { TSerialMonitor }
+  { TNewIDEHandle }
 
-  TSerialMonitor = class(TObject)
+  TNewIDEHandle = class(TObject)
   private
     Active: boolean;
   public
@@ -44,9 +44,10 @@ type
     function RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
     function RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
     procedure StopHandler(Sender: TObject);
+
   end;
 
-function TSerialMonitor.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
+function TNewIDEHandle.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
   if Assigned(Serial_Monitor_Form) then begin
     if Serial_Monitor_Form.Timer1.Enabled then begin
@@ -58,7 +59,7 @@ begin
   end;
 end;
 
-function TSerialMonitor.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
+function TNewIDEHandle.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
   if Assigned(Serial_Monitor_Form) then begin
     if Serial_Monitor_Form.Timer1.Enabled then begin
@@ -70,7 +71,7 @@ begin
   end;
 end;
 
-procedure TSerialMonitor.StopHandler(Sender: TObject);
+procedure TNewIDEHandle.StopHandler(Sender: TObject);
 begin
   if Assigned(Serial_Monitor_Form) then begin
     if Active then begin
@@ -79,14 +80,14 @@ begin
   end;
 end;
 
-constructor TSerialMonitor.Create;
+constructor TNewIDEHandle.Create;
 begin
   inherited Create;
   Active := False;
 end;
 
 var
-  SerialMonitor: TSerialMonitor;
+  NewIDEHandle: TNewIDEHandle;
 
 procedure ShowCPU_Info(Sender: TObject);
 var
@@ -101,16 +102,10 @@ begin
 end;
 
 procedure RegisterSerialMonitor(Sender: TObject);
-//var
-//  LazProject: TLazProject;
 begin
   if not Assigned(Serial_Monitor_Form) then begin
     Serial_Monitor_Form := TSerial_Monitor_Form.Create(nil);
-//    ShowMessage('create');
-  end else begin
-//    ShowMessage('no create');
   end;
-
   Serial_Monitor_Form.Show;
 end;
 
@@ -130,24 +125,22 @@ begin
   ARM_ProjectOptions := TARM_ProjectOptions.Create;
   RegisterProjectDescriptor(TProjectARMApp.Create);
 
-
   // Run ( without or with debugger ) hooks
-  SerialMonitor := TSerialMonitor.Create;
-  LazarusIDE.AddHandlerOnRunDebug(@SerialMonitor.RunHandler);
-  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@SerialMonitor.RunNoDebugHandler);
-  LazarusIDE.AddHandlerOnRunFinished(@SerialMonitor.StopHandler, True);
+  NewIDEHandle := TNewIDEHandle.Create;
+  LazarusIDE.AddHandlerOnRunDebug(@NewIDEHandle.RunHandler);
+  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@NewIDEHandle.RunNoDebugHandler);
+  LazarusIDE.AddHandlerOnRunFinished(@NewIDEHandle.StopHandler, True);
 
-
-  // IDE Option
+  // Werkzeuge --> Einstellungen --> Umgebung
   Embbed_IDE_OptionsFrameID :=
     RegisterIDEOptionsEditor(GroupEnvironment, TEmbedded_IDE_Options_Frame, Embbed_IDE_OptionsFrameID)^.Index;
 
   // Menu
   RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...', nil, @ShowAVROptionsDialog);
   RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, Embedded_Titel, Embedded_Titel + '...', nil, @ShowCPU_Info);    // Anderer Ort ??????????
 
-  RegisterIdeMenuCommand(mnuProject, Title + 'Serial-Monitor', Title + 'Serial-Monitor...', nil, @RegisterSerialMonitor);        // Anderer Ort ??????????
+  RegisterIdeMenuCommand(mnuTools, Embedded_Titel, Embedded_Titel + '...', nil, @ShowCPU_Info);
+  RegisterIdeMenuCommand(mnuTools, Title + 'Serial-Monitor', Title + 'Serial-Monitor...', nil, @RegisterSerialMonitor);
 end;
 
 

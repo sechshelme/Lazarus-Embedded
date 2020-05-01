@@ -1,11 +1,11 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
   Left = 2086
-  Height = 673
-  Top = 537
-  Width = 818
+  Height = 1031
+  Top = 344
+  Width = 1042
   Caption = 'Serial_Monitor_Form'
-  ClientHeight = 649
-  ClientWidth = 818
+  ClientHeight = 1007
+  ClientWidth = 1042
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
@@ -18,13 +18,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Left = 8
     Height = 28
     Top = 8
-    Width = 513
+    Width = 737
     Anchors = [akTop, akLeft, akRight]
     TabOrder = 0
     Text = 'Edit_Send'
   end
   object Button_Send: TButton
-    Left = 529
+    Left = 753
     Height = 26
     Top = 8
     Width = 80
@@ -34,12 +34,12 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     TabOrder = 1
   end
   object Panel1: TPanel
-    Left = 617
-    Height = 649
+    Left = 841
+    Height = 1007
     Top = 0
     Width = 201
     Align = alRight
-    ClientHeight = 649
+    ClientHeight = 1007
     ClientWidth = 201
     TabOrder = 2
     object ComboBox_Port: TComboBox
@@ -49,6 +49,8 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Width = 176
       ItemHeight = 0
       OnChange = ComboBoxChange
+      OnClick = ComboBox_PortClick
+      OnEnter = ComboBox_PortEnter
       TabOrder = 0
     end
     object ComboBox_Baud: TComboBox
@@ -147,7 +149,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object CheckBox_AutoScroll: TCheckBox
       Left = 16
       Height = 23
-      Top = 536
+      Top = 894
       Width = 89
       Anchors = [akLeft, akBottom]
       Caption = 'Autoscroll'
@@ -156,7 +158,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object Clear_Button: TButton
       Left = 16
       Height = 25
-      Top = 606
+      Top = 964
       Width = 75
       Anchors = [akLeft, akBottom]
       Caption = 'Clear'
@@ -166,7 +168,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object Close_Button: TButton
       Left = 104
       Height = 25
-      Top = 606
+      Top = 964
       Width = 83
       Anchors = [akRight, akBottom]
       Caption = 'Schliessen'
@@ -214,7 +216,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object CheckBox_WordWarp: TCheckBox
       Left = 16
       Height = 23
-      Top = 564
+      Top = 922
       Width = 89
       Anchors = [akLeft, akBottom]
       Caption = 'Wordwarp'
@@ -223,9 +225,9 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 601
+    Height = 959
     Top = 48
-    Width = 624
+    Width = 848
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
     Font.Name = 'DejaVu Sans Mono'
