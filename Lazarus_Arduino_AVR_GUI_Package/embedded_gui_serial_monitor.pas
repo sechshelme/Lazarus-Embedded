@@ -61,6 +61,7 @@ type
     procedure Close_ButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
@@ -92,6 +93,7 @@ var
   i: integer;
 begin
   Caption := Title + 'Serial-Monitor';
+  SerialHandle := 0;
   LoadFormPos(Self);
 
   TempSL := TStringList.Create;
@@ -172,9 +174,13 @@ begin
 
 end;
 
+procedure TSerial_Monitor_Form.FormDestroy(Sender: TObject);
+begin
+  TempSL.Free;
+end;
+
 procedure TSerial_Monitor_Form.FormHide(Sender: TObject);
 begin
-  CloseSerial;
 end;
 
 procedure TSerial_Monitor_Form.FormShow(Sender: TObject);
@@ -186,10 +192,6 @@ procedure TSerial_Monitor_Form.FormClose(Sender: TObject; var CloseAction: TClos
 begin
   CloseSerial;
   SaveFormPos(Self);
-  TempSL.Free;
-  //  CloseAction := caFree;
-//  ShowMessage(Integer(CloseAction).ToString+'    '+Integer(caNone).ToString+'    ');
-//    CloseAction := caNone;
 end;
 
 procedure TSerial_Monitor_Form.OpenSerial;
@@ -198,6 +200,8 @@ var
   Parity: TParityType;
 
 begin
+  CloseSerial;
+
   if ComboBox_FlowControl.Text = 'none' then begin
     Flags := [];
   end else begin
@@ -216,10 +220,13 @@ end;
 
 procedure TSerial_Monitor_Form.CloseSerial;
 begin
-  Timer1.Enabled := False;
-  SerSync(SerialHandle);
-  SerFlushOutput(SerialHandle);
-  SerClose(SerialHandle);
+  if SerialHandle <> 0 then begin
+    Timer1.Enabled := False;
+    SerSync(SerialHandle);
+    SerFlushOutput(SerialHandle);
+    SerClose(SerialHandle);
+    SerialHandle := 0;
+  end;
 end;
 
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);

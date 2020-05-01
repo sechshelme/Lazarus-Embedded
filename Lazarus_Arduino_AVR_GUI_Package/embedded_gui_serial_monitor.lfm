@@ -9,6 +9,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnHide = FormHide
   OnShow = FormShow
   Position = poDefaultPosOnly
