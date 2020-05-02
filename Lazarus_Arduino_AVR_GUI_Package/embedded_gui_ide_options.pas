@@ -76,7 +76,7 @@ type
     OpenDialog: TOpenDialog;
     PageControl1: TPageControl;
     SpinEdit_TimeOut: TSpinEdit;
-    SpinEdit_Timer: TSpinEdit;
+    SpinEdit_TimerInterval: TSpinEdit;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -222,7 +222,7 @@ begin
         ComboBox_FlowControl.Text := FlowControl;
 
         SpinEdit_TimeOut.Value := TimeOut;
-        SpinEdit_Timer.Value := TimerInterval;
+        SpinEdit_TimerInterval.Value := TimerInterval;
       end;
 
       with Output do begin
@@ -250,7 +250,7 @@ begin
         FlowControl := ComboBox_FlowControl.Text;
 
         TimeOut := SpinEdit_TimeOut.Value;
-        TimerInterval := SpinEdit_Timer.Value;
+        TimerInterval := SpinEdit_TimerInterval.Value;
       end;
 
       with Output do begin

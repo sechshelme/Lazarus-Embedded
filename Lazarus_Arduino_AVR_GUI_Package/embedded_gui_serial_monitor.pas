@@ -53,7 +53,7 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     SpinEdit_TimeOut: TSpinEdit;
-    SpinEdit_Timer: TSpinEdit;
+    SpinEdit_TimerInterval: TSpinEdit;
     SynEdit1: TSynEdit;
     Timer1: TTimer;
     procedure Button_SendClick(Sender: TObject);
@@ -96,7 +96,8 @@ begin
   LoadFormPos(Self);
 
   TempSL := TStringList.Create;
-  TempSL.LineBreak := #13#10;
+//  TempSL.LineBreak := #13#10;
+  TempSL.LineBreak := #10;
   TempSL.SkipLastLineBreak := True;
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
@@ -148,7 +149,7 @@ begin
         ComboBox_StopBits.Text := StopBits;
         ComboBox_FlowControl.Text := FlowControl;
         SpinEdit_TimeOut.Value := TimeOut;
-        SpinEdit_Timer.Value := TimerInterval;
+        SpinEdit_TimerInterval.Value := TimerInterval;
       end;
 
       with Output do begin
@@ -165,7 +166,7 @@ begin
   ComboBox_StopBits.Text := UARTDefaultStopBits;
   ComboBox_FlowControl.Text := UARTDefaultFlowControl;
   SpinEdit_TimeOut.Value := UARTDefaultTimeOut;
-  SpinEdit_Timer.Value := UARTDefaultTimer;
+  SpinEdit_TimerInterval.Value := UARTDefaultTimer;
 
   CheckBox_AutoScroll.Checked := True;
   CheckBox_WordWarp.Checked := False;
@@ -210,7 +211,7 @@ begin
   SerSetParams(SerialHandle, StrToInt(ComboBox_Baud.Text), StrToInt(ComboBox_Bits.Text),
     Parity, StrToInt(ComboBox_StopBits.Text), Flags);
 
-  Timer1.Interval := SpinEdit_Timer.Value;
+  Timer1.Interval := SpinEdit_TimerInterval.Value;
   Timer1.Enabled := True;
 end;
 

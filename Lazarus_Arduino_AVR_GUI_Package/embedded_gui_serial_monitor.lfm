@@ -1,7 +1,7 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 2086
+  Left = 1911
   Height = 1031
-  Top = 344
+  Top = 222
   Width = 1042
   Caption = 'Serial_Monitor_Form'
   ClientHeight = 1007
@@ -186,12 +186,11 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Top = 440
       Width = 71
       MaxValue = 1000
-      MinValue = 1
       OnChange = ComboBoxChange
       TabOrder = 9
       Value = 1
     end
-    object SpinEdit_Timer: TSpinEdit
+    object SpinEdit_TimerInterval: TSpinEdit
       Left = 120
       Height = 28
       Top = 488
@@ -206,8 +205,8 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Left = 15
       Height = 16
       Top = 496
-      Width = 37
-      Caption = 'Timer:'
+      Width = 87
+      Caption = 'Timer Interval:'
       ParentColor = False
     end
     object CheckBox_WordWarp: TCheckBox
