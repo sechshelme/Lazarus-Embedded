@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, ComCtrls, EditBtn,
-  Spin, IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf, ProjectIntf,
-  CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, Embedded_GUI_Find_Comports,
-  Embedded_GUI_Common, Embedded_GUI_AVR_Common;
+  Spin, ExtCtrls, IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf,
+  ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
+  Embedded_GUI_Find_Comports, Embedded_GUI_Common, Embedded_GUI_AVR_Common;
 
 type
 
@@ -28,6 +28,7 @@ type
         TimeOut, TimerInterval: integer;
       end;
       Output: record
+          LineBreak:Integer;
         AutoScroll, WordWarp: boolean;
       end;
     end;
@@ -75,6 +76,7 @@ type
     Label9: TLabel;
     OpenDialog: TOpenDialog;
     PageControl1: TPageControl;
+    RadioGroup_LineBreak: TRadioGroup;
     SpinEdit_TimeOut: TSpinEdit;
     SpinEdit_TimerInterval: TSpinEdit;
     TabSheet1: TTabSheet;
@@ -121,8 +123,9 @@ begin
       TimerInterval := Cfg.GetValue(Key_SerialMonitorTimer, UARTDefaultTimer);
     end;
     with Output do begin
-      AutoScroll := Cfg.GetValue(Key_SerialMonitorAutoScroll, True);
-      WordWarp := Cfg.GetValue(Key_SerialMonitorWordWarp, False);
+      LineBreak := Cfg.GetValue(Key_SerialMonitorLineBreak, OutputDefaultLineBreak);
+      AutoScroll := Cfg.GetValue(Key_SerialMonitorAutoScroll, OutputDefaultAutoScroll);
+      WordWarp := Cfg.GetValue(Key_SerialMonitorWordWarp, OutputDefaultWordWarp);
     end;
   end;
   Cfg.Free;
@@ -150,6 +153,7 @@ begin
       Cfg.SetValue(Key_SerialMonitorTimer, TimerInterval);
     end;
     with Output do begin
+      Cfg.SetValue(Key_SerialMonitorLineBreak, LineBreak);
       Cfg.SetValue(Key_SerialMonitorAutoScroll, AutoScroll);
       Cfg.SetValue(Key_SerialMonitorWordWarp, WordWarp);
     end;
@@ -202,6 +206,8 @@ begin
   ComboBox_Bits.Items.CommaText := UARTBitss;
   ComboBox_StopBits.Items.CommaText := UARTStopBitss;
   ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
+
+  RadioGroup_LineBreak.Items.CommaText:=OutputLineBreaks;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
@@ -226,6 +232,7 @@ begin
       end;
 
       with Output do begin
+        RadioGroup_LineBreak.ItemIndex:=LineBreak;
         CheckBox_AutoScroll.Checked := AutoScroll;
         CheckBox_WordWarp.Checked := WordWarp;
       end;
@@ -254,6 +261,7 @@ begin
       end;
 
       with Output do begin
+        LineBreak:=RadioGroup_LineBreak.ItemIndex;
         AutoScroll := CheckBox_AutoScroll.Checked;
         WordWarp := CheckBox_WordWarp.Checked;
       end;

@@ -2,10 +2,10 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   Left = 1911
   Height = 1031
   Top = 222
-  Width = 1042
+  Width = 1050
   Caption = 'Serial_Monitor_Form'
   ClientHeight = 1007
-  ClientWidth = 1042
+  ClientWidth = 1050
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
@@ -17,13 +17,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Left = 8
     Height = 28
     Top = 8
-    Width = 737
+    Width = 745
     Anchors = [akTop, akLeft, akRight]
     TabOrder = 0
     Text = 'Edit_Send'
   end
   object Button_Send: TButton
-    Left = 753
+    Left = 761
     Height = 26
     Top = 8
     Width = 80
@@ -33,7 +33,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     TabOrder = 1
   end
   object Panel1: TPanel
-    Left = 841
+    Left = 849
     Height = 1007
     Top = 0
     Width = 201
@@ -46,6 +46,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 40
       Width = 176
+      Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       OnChange = ComboBoxChange
       TabOrder = 0
@@ -55,6 +56,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 104
       Width = 176
+      Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       OnChange = ComboBoxChange
       TabOrder = 1
@@ -80,6 +82,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 232
       Width = 176
+      Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       OnChange = ComboBoxChange
       TabOrder = 2
@@ -105,6 +108,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 168
       Width = 176
+      Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       OnChange = ComboBoxChange
       TabOrder = 3
@@ -114,6 +118,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 360
       Width = 176
+      Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       OnChange = ComboBoxChange
       TabOrder = 4
@@ -139,6 +144,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 296
       Width = 176
+      Anchors = [akTop, akLeft, akRight]
       ItemHeight = 0
       OnChange = ComboBoxChange
       TabOrder = 5
@@ -185,6 +191,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 440
       Width = 71
+      Anchors = [akTop, akLeft, akRight]
       MaxValue = 1000
       OnChange = ComboBoxChange
       TabOrder = 9
@@ -195,6 +202,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Height = 28
       Top = 488
       Width = 71
+      Anchors = [akTop, akLeft, akRight]
       MaxValue = 5000
       MinValue = 50
       OnChange = ComboBoxChange
@@ -218,12 +226,30 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Caption = 'Wordwarp'
       TabOrder = 11
     end
+    object RadioGroup_LineBreak: TRadioGroup
+      Left = 16
+      Height = 81
+      Top = 536
+      Width = 175
+      Anchors = [akTop, akLeft, akRight]
+      AutoFill = True
+      Caption = 'LineBreak'
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      OnSelectionChanged = RadioGroup_LineBreakSelectionChanged
+      TabOrder = 12
+    end
   end
   inline SynEdit1: TSynEdit
     Left = 0
     Height = 959
     Top = 48
-    Width = 848
+    Width = 856
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
     Font.Name = 'DejaVu Sans Mono'

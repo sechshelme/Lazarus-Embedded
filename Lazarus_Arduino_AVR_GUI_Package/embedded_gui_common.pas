@@ -23,6 +23,8 @@ const
   UARTStopBitss = '1,2';
   UARTFlowControls = 'none,RTS/CTS';
 
+  OutputLineBreaks = 'LF/#10,CR/#13,CRLF/#13#10';
+
   Title = '[Embedded GUI] ';
 
   Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
@@ -57,6 +59,10 @@ const
   UARTDefaultTimeOut = 10;
   UARTDefaultTimer = 200;
 
+  OutputDefaultLineBreak = 0; // 0 = #10
+  OutputDefaultAutoScroll = True;
+  OutputDefaultWordWarp = False;
+
   Key_SerialMonitorPort = 'SerialMonitor/Interface/Port/value';
   Key_SerialMonitorBaud = 'SerialMonitor/Interface/Baud/value';
   Key_SerialMonitorParity = 'SerialMonitor/Interface/Parity/value';
@@ -66,6 +72,7 @@ const
   Key_SerialMonitorTimeOut = 'SerialMonitor/Interface/TimeOut/value';
   Key_SerialMonitorTimer = 'SerialMonitor/Interface/Timer/value';
 
+  Key_SerialMonitorLineBreak = 'SerialMonitor/Output/Linebreak/value';
   Key_SerialMonitorAutoScroll = 'SerialMonitor/Output/Autoscroll/value';
   Key_SerialMonitorWordWarp = 'SerialMonitor/Output/Wordwarp/value';
 
@@ -90,7 +97,7 @@ begin
   Cfg := TXMLConfig.Create(nil);
   Cfg.Filename := 'config.xml';
   {$ENDIF}
-  Form.Left := Cfg.GetValue(Form.Name+ '/Left/value', Form.Left);
+  Form.Left := Cfg.GetValue(Form.Name + '/Left/value', Form.Left);
   Form.Top := Cfg.GetValue(Form.Name + '/Top/value', Form.Top);
   Form.Width := Cfg.GetValue(Form.Name + '/Width/value', Form.Width);
   Form.Height := Cfg.GetValue(Form.Name + '/Height/value', Form.Height);

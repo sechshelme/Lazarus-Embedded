@@ -52,6 +52,7 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    RadioGroup_LineBreak: TRadioGroup;
     SpinEdit_TimeOut: TSpinEdit;
     SpinEdit_TimerInterval: TSpinEdit;
     SynEdit1: TSynEdit;
@@ -66,6 +67,7 @@ type
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem_CloseClick(Sender: TObject);
     procedure ComboBoxChange(Sender: TObject);
+    procedure RadioGroup_LineBreakSelectionChanged(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
     TempSL: TStrings;
@@ -96,8 +98,6 @@ begin
   LoadFormPos(Self);
 
   TempSL := TStringList.Create;
-//  TempSL.LineBreak := #13#10;
-  TempSL.LineBreak := #10;
   TempSL.SkipLastLineBreak := True;
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
@@ -138,6 +138,19 @@ begin
   ComboBox_FlowControl.Style := csOwnerDrawFixed;
   ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
 
+  RadioGroup_LineBreak.Items.CommaText := OutputLineBreaks;
+
+end;
+
+procedure TSerial_Monitor_Form.FormDestroy(Sender: TObject);
+begin
+  TempSL.Free;
+end;
+
+procedure TSerial_Monitor_Form.FormShow(Sender: TObject);
+begin
+  ComboBox_Port.Items.CommaText := GetSerialPortNames;
+
   {$IFDEF Komponents}
   with Embedded_IDE_Options do begin
     with SerialMonitor do begin
@@ -153,6 +166,7 @@ begin
       end;
 
       with Output do begin
+        RadioGroup_LineBreak.ItemIndex := LineBreak;
         CheckBox_AutoScroll.Checked := AutoScroll;
         CheckBox_WordWarp.Checked := WordWarp;
       end;
@@ -168,20 +182,11 @@ begin
   SpinEdit_TimeOut.Value := UARTDefaultTimeOut;
   SpinEdit_TimerInterval.Value := UARTDefaultTimer;
 
+  RadioGroup_LineBreak.ItemIndex := 0;
   CheckBox_AutoScroll.Checked := True;
   CheckBox_WordWarp.Checked := False;
   {$ENDIF}
 
-end;
-
-procedure TSerial_Monitor_Form.FormDestroy(Sender: TObject);
-begin
-  TempSL.Free;
-end;
-
-procedure TSerial_Monitor_Form.FormShow(Sender: TObject);
-begin
-  ComboBox_Port.Items.CommaText := GetSerialPortNames;
   OpenSerial;
 end;
 
@@ -239,6 +244,21 @@ begin
   OpenSerial;
 end;
 
+procedure TSerial_Monitor_Form.RadioGroup_LineBreakSelectionChanged(Sender: TObject);
+begin
+  case RadioGroup_LineBreak.ItemIndex of
+    0: begin
+      TempSL.LineBreak := #10;
+    end;
+    1: begin
+      TempSL.LineBreak := #13;
+    end;
+    2: begin
+      TempSL.LineBreak := #13#10;
+    end;
+  end;
+end;
+
 procedure TSerial_Monitor_Form.Clear_ButtonClick(Sender: TObject);
 begin
   SynEdit1.Clear;
@@ -265,7 +285,7 @@ begin
 
     if bufCount > maxPuffer then begin
       maxPuffer := bufCount;
-//      Caption := maxPuffer.ToString;
+      Caption := maxPuffer.ToString;
     end;
 
     if bufCount > 0 then begin
@@ -281,8 +301,17 @@ begin
       end;
 
       SynEdit1.Lines.AddStrings(TempSL);
-      if ReadBuffer[bufCount - 1] = 10 then begin
-        SynEdit1.Lines.Add('');
+
+      if (TempSL.LineBreak = #10) or (TempSL.LineBreak = #13#10) then begin
+        if ReadBuffer[bufCount - 1] = 10 then begin
+          SynEdit1.Lines.Add('');
+        end;
+      end else begin
+        if TempSL.LineBreak = #13 then begin
+          if ReadBuffer[bufCount - 1] = 13 then begin
+            SynEdit1.Lines.Add('');
+          end;
+        end;
       end;
 
       if CheckBox_AutoScroll.Checked then begin

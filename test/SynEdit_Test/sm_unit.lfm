@@ -9,12 +9,12 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '2.1.0.0'
   object AutoScroll_CheckBox1: TCheckBox
     Left = 64
     Height = 23
     Top = 8
-    Width = 158
+    Width = 165
     Caption = 'AutoScroll_CheckBox1'
     TabOrder = 0
   end

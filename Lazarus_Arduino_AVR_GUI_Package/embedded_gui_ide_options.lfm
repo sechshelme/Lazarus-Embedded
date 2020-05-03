@@ -256,29 +256,45 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
       end
       object GroupBox_Output: TGroupBox
         Left = 8
-        Height = 104
+        Height = 128
         Top = 264
         Width = 774
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Output'
-        ClientHeight = 87
+        ClientHeight = 111
         ClientWidth = 772
         TabOrder = 1
         object CheckBox_AutoScroll: TCheckBox
-          Left = 8
+          Left = 232
           Height = 23
-          Top = 8
+          Top = 16
           Width = 90
           Caption = 'AutoScroll'
-          TabOrder = 0
+          TabOrder = 1
         end
         object CheckBox_WordWarp: TCheckBox
-          Left = 8
+          Left = 232
           Height = 23
-          Top = 32
+          Top = 40
           Width = 91
           Caption = 'WordWarp'
-          TabOrder = 1
+          TabOrder = 2
+        end
+        object RadioGroup_LineBreak: TRadioGroup
+          Left = 16
+          Height = 81
+          Top = 8
+          Width = 185
+          AutoFill = True
+          Caption = 'LineBreak'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          TabOrder = 0
         end
       end
     end

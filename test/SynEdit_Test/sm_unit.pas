@@ -42,6 +42,7 @@ begin
   SynEdit1.ParentFont := False;
 
   TempSL := TStringList.Create;
+  TempSL.LineBreak:=#13;
 
   Timer1.Interval := 200;
   Timer1.Enabled := True;
@@ -75,40 +76,59 @@ var
   s: string;
 begin
   Result := '';
-  for i := 0 to Random(800) do begin
+  for i := 0 to Random(80) do begin
     Result += GetChar;
     if Random(10) = 0 then begin
       Result += ' ';
     end;
     if Random(50) = 0 then begin
-      str(nr: 8, s);
-      Inc(nr);
-      Result += LineEnding + s + ':';
+      //      str(nr: 8, s);
+      //      Inc(nr);
+      //      Result += LineEnding + s + ':';
       //Result += #13#10 + s + ':';
       //Result += #13 + s + ':';
     end;
+
   end;
+  str(nr: 8, s);
+  Inc(nr);
+//  Result := #10 + s + Result + #13;
+//Result := s + Result + #13#10;
+//Result := #13#10 +s + Result;
+
+Result := s + Result + #13;
+//Result := #13 +s + Result;
+
 end;
 
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
-  lc, i: integer;
+  lc, i, SLCount: integer;
   s: string;
 begin
   Timer1.Enabled := False;
 
   try
-    TempSL.Text := GetString;  // Zufällig erzeugter String;
-    if TempSL.Count = 0 then begin
+    s := GetString;  // Zufällig erzeugter String;
+    if Length(s) < 1 then begin
       exit;
     end;
-    // Sonderbehandlung bis zum ersten Linebreak in cs: direkt an die letzte Zeile im SynEdit anhängen
-    lc := SynEdit1.Lines.Count - 1;
-    SynEdit1.Lines[lc] := SynEdit1.Lines[lc] + TempSL[0];
-    // alle folgenden Zeilen als neue Zeilen ins SynEdit anhängen
-    for i := 1 to TempSL.Count - 1 do begin
-      SynEdit1.Lines.Add(TempSL[i]);
+    //    ReadBuffer[bufCount] := 0; // Für PChar
+
+    SLCount := SynEdit1.Lines.Count - 1;
+
+    if SLCount >= 0 then begin
+      TempSL.Text := SynEdit1.Lines[SLCount] + s;
+      SynEdit1.Lines.Delete(SLCount);
+    end else begin
+      TempSL.Text := s;
     end;
+
+    SynEdit1.Lines.AddStrings(TempSL);
+    if s[Length(s)] = #13 then begin
+      SynEdit1.Lines.Add('');
+    end;
+
     if AutoScroll_CheckBox1.Checked then begin
       SynEdit1.CaretY := SynEdit1.Lines.Count;
     end;
