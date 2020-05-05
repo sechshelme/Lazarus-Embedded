@@ -8,7 +8,11 @@ uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, ComCtrls, EditBtn,
   Spin, ExtCtrls, IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf,
   ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
-  Embedded_GUI_Find_Comports, Embedded_GUI_Common, Embedded_GUI_AVR_Common;
+  Embedded_GUI_Find_Comports,
+  Embedded_GUI_Common,
+  Embedded_GUI_AVR_Common,
+  Embedded_GUI_Serial_Monitor_Interface_Options_Frame,
+  Embedded_GUI_Serial_Monitor_Output_Options_Frame;
 
 type
 
@@ -22,16 +26,7 @@ type
     ARM: record
       STFlashPath: string;
     end;
-    SerialMonitor: record
-      Com_Interface: record
-        Port, Baud, Bits, Parity, StopBits, FlowControl: string;
-        TimeOut, TimerInterval: integer;
-      end;
-      Output: record
-          LineBreak:Integer;
-        AutoScroll, WordWarp: boolean;
-      end;
-    end;
+    SerialMonitor: TSerialMonitor_Options;
     constructor Create;
   private
     procedure Save_to_XML;
@@ -49,44 +44,25 @@ type
   TEmbedded_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
     Button_AVRDude_Path: TButton;
     Button_AVRDude_Config: TButton;
-    CheckBox_WordWarp: TCheckBox;
-    CheckBox_AutoScroll: TCheckBox;
-    ComboBox_Baud: TComboBox;
-    ComboBox_Bits: TComboBox;
-    ComboBox_FlowControl: TComboBox;
-    ComboBox_Parity: TComboBox;
-    ComboBox_Port: TComboBox;
     ComboBox_STFlashPfad: TComboBox;
     Button_ST_Flash: TButton;
     ComboBox_AVRdude_Path: TComboBox;
     ComboBox_AVRdudeConf: TComboBox;
-    ComboBox_StopBits: TComboBox;
-    GroupBox_Interface: TGroupBox;
-    GroupBox_Output: TGroupBox;
     Label1: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
     OpenDialog: TOpenDialog;
     PageControl1: TPageControl;
-    RadioGroup_LineBreak: TRadioGroup;
-    SpinEdit_TimeOut: TSpinEdit;
-    SpinEdit_TimerInterval: TSpinEdit;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
     procedure Button_AVRDude_ConfigClick(Sender: TObject);
     procedure Button_AVRDude_PathClick(Sender: TObject);
     procedure Button_ST_FlashClick(Sender: TObject);
   private
-
+    SM_Interface_Frame: TSM_Interface_Frame;
+    SM_Output_Frame: TSM_Output_Frame;
   public
     function GetTitle: string; override;
     procedure Setup({%H-}ADialog: TAbstractOptionsEditorDialog); override;
@@ -200,14 +176,19 @@ end;
 
 procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
-  ComboBox_Port.Items.CommaText := GetSerialPortNames;
-  ComboBox_Baud.Items.CommaText := UARTBaudRates;
-  ComboBox_Parity.Items.CommaText := UARTParitys;
-  ComboBox_Bits.Items.CommaText := UARTBitss;
-  ComboBox_StopBits.Items.CommaText := UARTStopBitss;
-  ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
+  SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
+  SM_Interface_Frame.Parent := Self.TabSheet3;
+  SM_Output_Frame := TSM_Output_Frame.Create(Self);
+  SM_Output_Frame.Parent := Self.TabSheet4;
 
-  RadioGroup_LineBreak.Items.CommaText:=OutputLineBreaks;
+  SM_Interface_Frame.ComboBox_Port.Items.CommaText := GetSerialPortNames;
+  SM_Interface_Frame.ComboBox_Baud.Items.CommaText := UARTBaudRates;
+  SM_Interface_Frame.ComboBox_Parity.Items.CommaText := UARTParitys;
+  SM_Interface_Frame.ComboBox_Bits.Items.CommaText := UARTBitss;
+  SM_Interface_Frame.ComboBox_StopBits.Items.CommaText := UARTStopBitss;
+  SM_Interface_Frame.ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
+
+  SM_Output_Frame.RadioGroup_LineBreak.Items.CommaText := OutputLineBreaks;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
@@ -220,21 +201,21 @@ begin
 
     with SerialMonitor do begin
       with Com_Interface do begin
-        ComboBox_Port.Text := Port;
-        ComboBox_Baud.Text := Baud;
-        ComboBox_Parity.Text := Parity;
-        ComboBox_Bits.Text := Bits;
-        ComboBox_StopBits.Text := StopBits;
-        ComboBox_FlowControl.Text := FlowControl;
+        SM_Interface_Frame.ComboBox_Port.Text := Port;
+        SM_Interface_Frame.ComboBox_Baud.Text := Baud;
+        SM_Interface_Frame.ComboBox_Parity.Text := Parity;
+        SM_Interface_Frame.ComboBox_Bits.Text := Bits;
+        SM_Interface_Frame.ComboBox_StopBits.Text := StopBits;
+        SM_Interface_Frame.ComboBox_FlowControl.Text := FlowControl;
 
-        SpinEdit_TimeOut.Value := TimeOut;
-        SpinEdit_TimerInterval.Value := TimerInterval;
+        SM_Interface_Frame.SpinEdit_TimeOut.Value := TimeOut;
+        SM_Interface_Frame.SpinEdit_TimerInterval.Value := TimerInterval;
       end;
 
       with Output do begin
-        RadioGroup_LineBreak.ItemIndex:=LineBreak;
-        CheckBox_AutoScroll.Checked := AutoScroll;
-        CheckBox_WordWarp.Checked := WordWarp;
+        SM_Output_Frame.RadioGroup_LineBreak.ItemIndex := LineBreak;
+        SM_Output_Frame.CheckBox_AutoScroll.Checked := AutoScroll;
+        SM_Output_Frame.CheckBox_WordWarp.Checked := WordWarp;
       end;
     end;
   end;
@@ -249,21 +230,21 @@ begin
 
     with SerialMonitor do begin
       with Com_Interface do begin
-        Port := ComboBox_Port.Text;
-        Baud := ComboBox_Baud.Text;
-        Parity := ComboBox_Parity.Text;
-        Bits := ComboBox_Bits.Text;
-        StopBits := ComboBox_StopBits.Text;
-        FlowControl := ComboBox_FlowControl.Text;
+        Port := SM_Interface_Frame.ComboBox_Port.Text;
+        Baud := SM_Interface_Frame.ComboBox_Baud.Text;
+        Parity := SM_Interface_Frame.ComboBox_Parity.Text;
+        Bits := SM_Interface_Frame.ComboBox_Bits.Text;
+        StopBits := SM_Interface_Frame.ComboBox_StopBits.Text;
+        FlowControl := SM_Interface_Frame.ComboBox_FlowControl.Text;
 
-        TimeOut := SpinEdit_TimeOut.Value;
-        TimerInterval := SpinEdit_TimerInterval.Value;
+        TimeOut := SM_Interface_Frame.SpinEdit_TimeOut.Value;
+        TimerInterval := SM_Interface_Frame.SpinEdit_TimerInterval.Value;
       end;
 
       with Output do begin
-        LineBreak:=RadioGroup_LineBreak.ItemIndex;
-        AutoScroll := CheckBox_AutoScroll.Checked;
-        WordWarp := CheckBox_WordWarp.Checked;
+        LineBreak := SM_Output_Frame.RadioGroup_LineBreak.ItemIndex;
+        AutoScroll := SM_Output_Frame.CheckBox_AutoScroll.Checked;
+        WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
       end;
     end;
 
@@ -277,6 +258,7 @@ begin
 end;
 
 end.
+
 
 
 

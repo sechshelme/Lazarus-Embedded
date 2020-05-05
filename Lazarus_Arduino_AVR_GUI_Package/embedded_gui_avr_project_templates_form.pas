@@ -6,7 +6,6 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-
   Embedded_GUI_Common;
 
 type
@@ -43,7 +42,7 @@ end;
 
 procedure TAVRProjectTemplatesForm.FormCreate(Sender: TObject);
 begin
-  Caption:=Title + 'AVR Vorlagen';
+  Caption := Title + 'AVR Vorlagen';
   LoadFormPos(Self);
 end;
 

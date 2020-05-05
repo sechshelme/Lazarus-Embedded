@@ -13,6 +13,19 @@ uses
   {$ENDIF}
   SysUtils, Controls, Forms;
 
+type
+  TSerialMonitor_Options = record
+    Com_Interface: record
+      Port, Baud, Bits, Parity, StopBits, FlowControl: string;
+      TimeOut, TimerInterval: integer;
+    end;
+    Output: record
+      LineBreak: integer;
+      AutoScroll, WordWarp: boolean;
+    end;
+  end;
+
+
 const
   UARTBaudRates =
     //    '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';

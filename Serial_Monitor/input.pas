@@ -29,7 +29,7 @@ var
 implementation
 
 uses
-  Embedded_GUI_Serial_Monitor;
+  Embedded_GUI_Serial_Monitor_Form;
 
 {$R *.lfm}
 

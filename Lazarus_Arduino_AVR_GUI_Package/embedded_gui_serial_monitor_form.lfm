@@ -1,7 +1,7 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
   Left = 1911
   Height = 1031
-  Top = 222
+  Top = 221
   Width = 1050
   Caption = 'Serial_Monitor_Form'
   ClientHeight = 1007
@@ -766,6 +766,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     object MenuItem2: TMenuItem
       Caption = 'Arduino'
       OnClick = MenuItem2Click
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Optionen'
+      object MenuItem5: TMenuItem
+        Caption = 'Optionen...'
+        OnClick = MenuItem5Click
+      end
     end
   end
 end

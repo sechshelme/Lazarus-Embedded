@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CONFIG>
   <Serial_Monitor_Form>
-    <Left value="592"/>
-    <Top value="217"/>
+    <Left value="1445"/>
+    <Top value="183"/>
     <Width value="1056"/>
     <Height value="1083"/>
   </Serial_Monitor_Form>
+  <SerialMonitor_Options_Form>
+    <Left value="1011"/>
+    <Top value="198"/>
+    <Width value="689"/>
+    <Height value="373"/>
+  </SerialMonitor_Options_Form>
 </CONFIG>

@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="7">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -62,17 +62,25 @@
         <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
       </Unit3>
       <Unit4>
-        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor.pas"/>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor_form.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Serial_Monitor_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Embedded_GUI_Serial_Monitor"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Form"/>
       </Unit4>
       <Unit5>
-        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor.lfm"/>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor_interface_options_frame.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="SM_Interface_Frame"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Interface_Options_Frame"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor_form.lfm"/>
+        <IsPartOfProject Value="True"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

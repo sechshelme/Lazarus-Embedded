@@ -1,0 +1,67 @@
+object SerialMonitor_Options_Form: TSerialMonitor_Options_Form
+  Left = 1011
+  Height = 356
+  Top = 198
+  Width = 406
+  Caption = 'SerialMonitor_Options_Form'
+  ClientHeight = 356
+  ClientWidth = 406
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poDefaultSizeOnly
+  LCLVersion = '2.1.0.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 298
+    Top = 0
+    Width = 406
+    ActivePage = TabSheet1
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Serial-Monitor-Interface'
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Serial-Monitor-Output'
+    end
+  end
+  object Btn_Close: TBitBtn
+    Left = 286
+    Height = 30
+    Top = 314
+    Width = 99
+    Anchors = [akRight, akBottom]
+    Caption = '&Schliessen'
+    Kind = bkClose
+    OnClick = Btn_CloseClick
+    TabOrder = 1
+  end
+  object Btn_Apply: TBitBtn
+    Left = 64
+    Height = 30
+    Top = 314
+    Width = 115
+    Anchors = [akRight, akBottom]
+    Caption = '&Uebernehmen'
+    Kind = bkRetry
+    ModalResult = 4
+    OnClick = Btn_ApplyClick
+    TabOrder = 2
+  end
+  object Btn_Ok: TBitBtn
+    Left = 192
+    Height = 30
+    Top = 314
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
+    OnClick = Btn_OkClick
+    TabOrder = 3
+  end
+end

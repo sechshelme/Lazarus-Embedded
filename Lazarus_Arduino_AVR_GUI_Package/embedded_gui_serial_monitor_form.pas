@@ -1,4 +1,4 @@
-unit Embedded_GUI_Serial_Monitor;
+unit Embedded_GUI_Serial_Monitor_Form;
 
 {$mode objfpc}{$H+}
 
@@ -19,7 +19,8 @@ uses
   {$ENDIF}
 
   Embedded_GUI_Common,
-  Embedded_GUI_Find_Comports;
+  Embedded_GUI_Find_Comports,
+  Embedded_GUI_Serial_Monitor_Options_Form;
 
 type
 
@@ -46,6 +47,8 @@ type
     Label8: TLabel;
     Label9: TLabel;
     MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
     MenuItem_Close: TMenuItem;
     Panel1: TPanel;
     Edit_Send: TEdit;
@@ -65,6 +68,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem_CloseClick(Sender: TObject);
     procedure ComboBoxChange(Sender: TObject);
     procedure RadioGroup_LineBreakSelectionChanged(Sender: TObject);
@@ -99,6 +103,8 @@ begin
 
   TempSL := TStringList.Create;
   TempSL.SkipLastLineBreak := True;
+
+  SerialMonitor_Options_Form:= TSerialMonitor_Options_Form.Create(Self);
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
     SubMenuItemArray[i] := TMenuItem.Create(Self);
@@ -328,6 +334,11 @@ end;
 procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
 begin
   //  InputForm.Show;
+end;
+
+procedure TSerial_Monitor_Form.MenuItem5Click(Sender: TObject);
+begin
+  SerialMonitor_Options_Form.Show;
 end;
 
 procedure TSerial_Monitor_Form.MenuItem_CloseClick(Sender: TObject);

@@ -108,16 +108,24 @@
         <UnitName Value="Embedded_GUI_Register"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_serial_monitor.lfm"/>
-        <Type Value="LFM"/>
-      </Item>
-      <Item>
-        <Filename Value="embedded_gui_serial_monitor.pas"/>
-        <UnitName Value="Embedded_GUI_Serial_Monitor"/>
+        <Filename Value="embedded_gui_serial_monitor_form.pas"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Form"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_subarch_list.pas"/>
         <UnitName Value="Embedded_GUI_SubArch_List"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_serial_monitor_interface_options_frame.pas"/>
+        <UnitName Value="embedded_gui_serial_monitor_interface_options_frame"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_serial_monitor_output_options_frame.pas"/>
+        <UnitName Value="embedded_gui_serial_monitor_output_options_frame"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_serial_monitor_options_form.pas"/>
+        <UnitName Value="embedded_gui_serial_monitor_options_form"/>
       </Item>
     </Files>
     <i18n>
