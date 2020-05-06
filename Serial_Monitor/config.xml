@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CONFIG>
   <Serial_Monitor_Form>
-    <Left value="1445"/>
-    <Top value="183"/>
-    <Width value="1056"/>
-    <Height value="1083"/>
+    <FormPos Top="203" Left="1676" Width="1015" Height="1031"/>
+    <COMPortPara Baud="9600" Bits="8" Port="/dev/ttyUSB0" Parity="none" TimeOut="10" StopBits="1" FlowControl="none" TimerInterval="200"/>
+    <OutputScreenPara Wordwarp="False" LineBreak="0" AutoScroll="True"/>
   </Serial_Monitor_Form>
   <SerialMonitor_Options_Form>
-    <Left value="1011"/>
-    <Top value="198"/>
-    <Width value="689"/>
-    <Height value="373"/>
+    <FormPos Top="198" Left="1011" Width="685" Height="329"/>
   </SerialMonitor_Options_Form>
 </CONFIG>

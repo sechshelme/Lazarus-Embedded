@@ -117,7 +117,6 @@ const
 
 begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
-  //  Embedded_IDE_Options.Load;
 
   AVR_ProjectOptions := TAVR_ProjectOptions.Create;
   RegisterProjectDescriptor(TProjectAVRApp.Create);

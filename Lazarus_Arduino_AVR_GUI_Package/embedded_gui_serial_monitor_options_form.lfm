@@ -1,21 +1,22 @@
 object SerialMonitor_Options_Form: TSerialMonitor_Options_Form
   Left = 1011
-  Height = 356
+  Height = 326
   Top = 198
-  Width = 406
+  Width = 687
   Caption = 'SerialMonitor_Options_Form'
-  ClientHeight = 356
-  ClientWidth = 406
-  OnClose = FormClose
+  ClientHeight = 326
+  ClientWidth = 687
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnHide = FormHide
   OnShow = FormShow
   Position = poDefaultSizeOnly
   LCLVersion = '2.1.0.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 298
+    Height = 268
     Top = 0
-    Width = 406
+    Width = 687
     ActivePage = TabSheet1
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -29,9 +30,9 @@ object SerialMonitor_Options_Form: TSerialMonitor_Options_Form
     end
   end
   object Btn_Close: TBitBtn
-    Left = 286
+    Left = 567
     Height = 30
-    Top = 314
+    Top = 284
     Width = 99
     Anchors = [akRight, akBottom]
     Caption = '&Schliessen'
@@ -40,9 +41,9 @@ object SerialMonitor_Options_Form: TSerialMonitor_Options_Form
     TabOrder = 1
   end
   object Btn_Apply: TBitBtn
-    Left = 64
+    Left = 345
     Height = 30
-    Top = 314
+    Top = 284
     Width = 115
     Anchors = [akRight, akBottom]
     Caption = '&Uebernehmen'
@@ -52,9 +53,9 @@ object SerialMonitor_Options_Form: TSerialMonitor_Options_Form
     TabOrder = 2
   end
   object Btn_Ok: TBitBtn
-    Left = 192
+    Left = 473
     Height = 30
-    Top = 314
+    Top = 284
     Width = 75
     Anchors = [akRight, akBottom]
     Default = True

@@ -11,6 +11,7 @@ uses
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Common,
+  Embedded_GUI_Serial_Monitor_Options_Form,
   Embedded_GUI_Serial_Monitor_Interface_Options_Frame,
   Embedded_GUI_Serial_Monitor_Output_Options_Frame;
 
@@ -26,8 +27,9 @@ type
     ARM: record
       STFlashPath: string;
     end;
-    SerialMonitor: TSerialMonitor_Options;
+    SerialMonitor_Options: TSerialMonitor_Options;
     constructor Create;
+    destructor Destroy; override;
   private
     procedure Save_to_XML;
     procedure Load_from_XML;
@@ -37,7 +39,7 @@ var
   Embedded_IDE_Options: TEmbedded_IDE_Options;
 
 type
-  (* Frames befindet sich in der Lazarus-IDE unter: "Werkzeuge/Einstellungen.../Umgebung/AVR-Options" *)
+  (* Frames ist sichtbar in der Lazarus-IDE unter: "Werkzeuge/Einstellungen.../Umgebung/AVR-Options" *)
 
   { TEmbedded_IDE_Options_Frame }
 
@@ -77,6 +79,19 @@ implementation
 
 { TEmbedded_IDE_Options }
 
+constructor TEmbedded_IDE_Options.Create;
+begin
+  inherited Create;
+  SerialMonitor_Options:=  TSerialMonitor_Options.Create;
+  Load_from_XML;
+end;
+
+destructor TEmbedded_IDE_Options.Destroy;
+begin
+  SerialMonitor_Options.Free;
+  inherited Destroy;
+end;
+
 procedure TEmbedded_IDE_Options.Load_from_XML;
 var
   Cfg: TConfigStorage;
@@ -86,24 +101,7 @@ begin
   AVR.avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Path, Default_Avrdude_Conf_Path);
   ARM.STFlashPath := Cfg.GetValue(Key_STFlash_Path, Default_STFlash_Path);
 
-  with SerialMonitor do begin
-    with Com_Interface do begin
-      Port := Cfg.GetValue(Key_SerialMonitorPort, UARTDefaultPort);
-      Baud := Cfg.GetValue(Key_SerialMonitorBaud, UARTDefaultBaud);
-      Parity := Cfg.GetValue(Key_SerialMonitorParity, UARTDefaultParity);
-      Bits := Cfg.GetValue(Key_SerialMonitorBits, UARTDefaultBits);
-      StopBits := Cfg.GetValue(Key_SerialMonitorStopBits, UARTDefaultStopBits);
-      FlowControl := Cfg.GetValue(Key_SerialMonitorFlowControl, UARTDefaultFlowControl);
-
-      TimeOut := Cfg.GetValue(Key_SerialMonitorTimeOut, UARTDefaultTimeOut);
-      TimerInterval := Cfg.GetValue(Key_SerialMonitorTimer, UARTDefaultTimer);
-    end;
-    with Output do begin
-      LineBreak := Cfg.GetValue(Key_SerialMonitorLineBreak, OutputDefaultLineBreak);
-      AutoScroll := Cfg.GetValue(Key_SerialMonitorAutoScroll, OutputDefaultAutoScroll);
-      WordWarp := Cfg.GetValue(Key_SerialMonitorWordWarp, OutputDefaultWordWarp);
-    end;
-  end;
+  SerialMonitor_Options.Load_from_XML;
   Cfg.Free;
 end;
 
@@ -116,31 +114,8 @@ begin
   Cfg.SetValue(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
   Cfg.SetValue(Key_STFlash_Path, ARM.STFlashPath);
 
-  with SerialMonitor do begin
-    with Com_Interface do begin
-      Cfg.SetValue(Key_SerialMonitorPort, Port);
-      Cfg.SetValue(Key_SerialMonitorBaud, Baud);
-      Cfg.SetValue(Key_SerialMonitorParity, Parity);
-      Cfg.SetValue(Key_SerialMonitorBits, Bits);
-      Cfg.SetValue(Key_SerialMonitorStopBits, StopBits);
-      Cfg.SetValue(Key_SerialMonitorFlowControl, FlowControl);
-
-      Cfg.SetValue(Key_SerialMonitorTimeOut, TimeOut);
-      Cfg.SetValue(Key_SerialMonitorTimer, TimerInterval);
-    end;
-    with Output do begin
-      Cfg.SetValue(Key_SerialMonitorLineBreak, LineBreak);
-      Cfg.SetValue(Key_SerialMonitorAutoScroll, AutoScroll);
-      Cfg.SetValue(Key_SerialMonitorWordWarp, WordWarp);
-    end;
-  end;
+  SerialMonitor_Options.Save_to_XML;
   Cfg.Free;
-end;
-
-constructor TEmbedded_IDE_Options.Create;
-begin
-  inherited Create;
-  Load_from_XML;
 end;
 
 { TEmbedded_IDE_Options_Frame }
@@ -188,7 +163,7 @@ begin
   SM_Interface_Frame.ComboBox_StopBits.Items.CommaText := UARTStopBitss;
   SM_Interface_Frame.ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
 
-  SM_Output_Frame.RadioGroup_LineBreak.Items.CommaText := OutputLineBreaks;
+  SM_Output_Frame.RadioGroup_LineBreak.Items.AddStrings(OutputLineBreaks, True);
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
@@ -199,7 +174,7 @@ begin
 
     SetComboBoxText(ComboBox_STFlashPfad, ARM.STFlashPath, cstFilename);
 
-    with SerialMonitor do begin
+    with SerialMonitor_Options do begin
       with Com_Interface do begin
         SM_Interface_Frame.ComboBox_Port.Text := Port;
         SM_Interface_Frame.ComboBox_Baud.Text := Baud;
@@ -228,7 +203,7 @@ begin
     AVR.avrdudeConfigPath := ComboBox_AVRdudeConf.Text;
     ARM.STFlashPath := ComboBox_STFlashPfad.Text;
 
-    with SerialMonitor do begin
+    with SerialMonitor_Options do begin
       with Com_Interface do begin
         Port := SM_Interface_Frame.ComboBox_Port.Text;
         Baud := SM_Interface_Frame.ComboBox_Baud.Text;

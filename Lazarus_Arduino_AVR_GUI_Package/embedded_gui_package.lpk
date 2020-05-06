@@ -15,12 +15,12 @@
         </SyntaxOptions>
       </Parsing>
       <Other>
-        <CustomOptions Value="-dKomponents"/>
+        <CustomOptions Value="-dPackages"/>
       </Other>
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="78"/>
+    <Version Release="79"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_arm_common.pas"/>
@@ -117,15 +117,15 @@
       </Item>
       <Item>
         <Filename Value="embedded_gui_serial_monitor_interface_options_frame.pas"/>
-        <UnitName Value="embedded_gui_serial_monitor_interface_options_frame"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Interface_Options_Frame"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_serial_monitor_output_options_frame.pas"/>
-        <UnitName Value="embedded_gui_serial_monitor_output_options_frame"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Output_Options_Frame"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_serial_monitor_options_form.pas"/>
-        <UnitName Value="embedded_gui_serial_monitor_options_form"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Options_Form"/>
       </Item>
     </Files>
     <i18n>

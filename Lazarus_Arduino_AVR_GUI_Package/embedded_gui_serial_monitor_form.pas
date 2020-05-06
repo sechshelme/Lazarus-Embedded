@@ -11,11 +11,10 @@ uses
   LazFileUtils, SynEdit,
   //  Input,
 
-  {$IFDEF Komponents}
-  BaseIDEIntf,              // Bei Komponente
-  Embedded_GUI_IDE_Options,
+  {$IFDEF Packages}
+  BaseIDEIntf,              // Bei Packages
   {$ELSE}
-  IniFiles,  // Bei normalen Anwendungen
+  IniFiles,  // Bei normalen Projekt
   {$ENDIF}
 
   Embedded_GUI_Common,
@@ -28,36 +27,16 @@ type
 
   TSerial_Monitor_Form = class(TForm)
     Button_Send: TButton;
-    CheckBox_WordWarp: TCheckBox;
     Clear_Button: TButton;
     Close_Button: TButton;
-    CheckBox_AutoScroll: TCheckBox;
-    ComboBox_Baud: TComboBox;
-    ComboBox_Bits: TComboBox;
-    ComboBox_FlowControl: TComboBox;
-    ComboBox_Parity: TComboBox;
-    ComboBox_Port: TComboBox;
-    ComboBox_StopBits: TComboBox;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem_Close: TMenuItem;
-    Panel1: TPanel;
     Edit_Send: TEdit;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
-    RadioGroup_LineBreak: TRadioGroup;
-    SpinEdit_TimeOut: TSpinEdit;
-    SpinEdit_TimerInterval: TSpinEdit;
     SynEdit1: TSynEdit;
     Timer1: TTimer;
     procedure Button_SendClick(Sender: TObject);
@@ -80,6 +59,7 @@ type
     procedure MenuItemClick(Sender: TObject);
   public
     SerialHandle: TSerialHandle;
+    SerialMonitor_Options: TSerialMonitor_Options;
     procedure OpenSerial;
     procedure CloseSerial;
   end;
@@ -90,6 +70,9 @@ var
 implementation
 
 {$R *.lfm}
+
+//uses
+//    Embedded_GUI_IDE_Options;
 
 { TSerial_Monitor_Form }
 
@@ -104,7 +87,8 @@ begin
   TempSL := TStringList.Create;
   TempSL.SkipLastLineBreak := True;
 
-  SerialMonitor_Options_Form:= TSerialMonitor_Options_Form.Create(Self);
+  SerialMonitor_Options := TSerialMonitor_Options.Create;
+  SerialMonitor_Options_Form := TSerialMonitor_Options_Form.Create(Self);
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
     SubMenuItemArray[i] := TMenuItem.Create(Self);
@@ -123,76 +107,19 @@ begin
   SynEdit1.Font.Name := 'Monospace';
   SynEdit1.Font.Style := [fsBold];
   SynEdit1.DoubleBuffered := True;
+  SynEdit1.ReadOnly := True;
 
   Timer1.Interval := 200;
-
-  ComboBox_Port.Style := csOwnerDrawFixed;
-  ComboBox_Port.Items.CommaText := GetSerialPortNames;
-
-  ComboBox_Baud.Style := csOwnerDrawFixed;
-  ComboBox_Baud.Items.CommaText := UARTBaudRates;
-
-  ComboBox_Parity.Style := csOwnerDrawFixed;
-  ComboBox_Parity.Items.CommaText := UARTParitys;
-
-  ComboBox_Bits.Style := csOwnerDrawFixed;
-  ComboBox_Bits.Items.CommaText := UARTBitss;
-
-  ComboBox_StopBits.Style := csOwnerDrawFixed;
-  ComboBox_StopBits.Items.CommaText := UARTStopBitss;
-
-  ComboBox_FlowControl.Style := csOwnerDrawFixed;
-  ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
-
-  RadioGroup_LineBreak.Items.CommaText := OutputLineBreaks;
-
 end;
 
 procedure TSerial_Monitor_Form.FormDestroy(Sender: TObject);
 begin
+  SerialMonitor_Options.Free;
   TempSL.Free;
 end;
 
 procedure TSerial_Monitor_Form.FormShow(Sender: TObject);
 begin
-  ComboBox_Port.Items.CommaText := GetSerialPortNames;
-
-  {$IFDEF Komponents}
-  with Embedded_IDE_Options do begin
-    with SerialMonitor do begin
-      with Com_Interface do begin
-        ComboBox_Port.Text := Port;
-        ComboBox_Baud.Text := Baud;
-        ComboBox_Parity.Text := Parity;
-        ComboBox_Bits.Text := Bits;
-        ComboBox_StopBits.Text := StopBits;
-        ComboBox_FlowControl.Text := FlowControl;
-        SpinEdit_TimeOut.Value := TimeOut;
-        SpinEdit_TimerInterval.Value := TimerInterval;
-      end;
-
-      with Output do begin
-        RadioGroup_LineBreak.ItemIndex := LineBreak;
-        CheckBox_AutoScroll.Checked := AutoScroll;
-        CheckBox_WordWarp.Checked := WordWarp;
-      end;
-    end;
-  end;
-  {$ELSE}
-  ComboBox_Port.Text := UARTDefaultPort;
-  ComboBox_Baud.Text := UARTDefaultBaud;
-  ComboBox_Parity.Text := UARTDefaultParity;
-  ComboBox_Bits.Text := UARTDefaultBits;
-  ComboBox_StopBits.Text := UARTDefaultStopBits;
-  ComboBox_FlowControl.Text := UARTDefaultFlowControl;
-  SpinEdit_TimeOut.Value := UARTDefaultTimeOut;
-  SpinEdit_TimerInterval.Value := UARTDefaultTimer;
-
-  RadioGroup_LineBreak.ItemIndex := 0;
-  CheckBox_AutoScroll.Checked := True;
-  CheckBox_WordWarp.Checked := False;
-  {$ENDIF}
-
   OpenSerial;
 end;
 
@@ -205,25 +132,35 @@ end;
 procedure TSerial_Monitor_Form.OpenSerial;
 var
   Flags: TSerialFlags;
-  Parity: TParityType;
-
+  Par: TParityType;
 begin
   CloseSerial;
 
-  if ComboBox_FlowControl.Text = 'none' then begin
-    Flags := [];
-  end else begin
-    Flags := [RtsCtsFlowControl];
+  with SerialMonitor_Options.Com_Interface do begin
+    if FlowControl = 'none' then begin
+      Flags := [];
+    end else begin
+      Flags := [RtsCtsFlowControl];
+    end;
+
+    case Parity of
+      'none': begin
+        Par := NoneParity;
+      end;
+      'odd': begin
+        Par := OddParity;
+      end;
+      'even': begin
+        Par := EvenParity;
+      end;
+    end;
+
+    SerialHandle := SerOpen(Port);
+    SerSetParams(SerialHandle, StrToInt(Baud), StrToInt(Bits), Par, StrToInt(StopBits), Flags);
+
+    Timer1.Interval := TimerInterval;
+    Timer1.Enabled := True;
   end;
-
-  Parity := TParityType(ComboBox_Parity.ItemIndex);
-
-  SerialHandle := SerOpen(ComboBox_Port.Text);
-  SerSetParams(SerialHandle, StrToInt(ComboBox_Baud.Text), StrToInt(ComboBox_Bits.Text),
-    Parity, StrToInt(ComboBox_StopBits.Text), Flags);
-
-  Timer1.Interval := SpinEdit_TimerInterval.Value;
-  Timer1.Enabled := True;
 end;
 
 procedure TSerial_Monitor_Form.CloseSerial;
@@ -251,18 +188,10 @@ begin
 end;
 
 procedure TSerial_Monitor_Form.RadioGroup_LineBreakSelectionChanged(Sender: TObject);
+const
+  LB: array[0..2] of string[2] = (#10, #13, #13#10);
 begin
-  case RadioGroup_LineBreak.ItemIndex of
-    0: begin
-      TempSL.LineBreak := #10;
-    end;
-    1: begin
-      TempSL.LineBreak := #13;
-    end;
-    2: begin
-      TempSL.LineBreak := #13#10;
-    end;
-  end;
+  TempSL.LineBreak := LB[SerialMonitor_Options.Output.LineBreak];
 end;
 
 procedure TSerial_Monitor_Form.Clear_ButtonClick(Sender: TObject);
@@ -283,16 +212,18 @@ const
 begin
   Timer1.Enabled := False;
   try
-    if SpinEdit_TimeOut.Value = 0 then begin
-      bufCount := SerRead(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1);
-    end else begin
-      bufCount := SerReadTimeout(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1, SpinEdit_TimeOut.Value);
+    with SerialMonitor_Options.Com_Interface do begin
+      if TimeOut = 0 then begin
+        bufCount := SerRead(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1);
+      end else begin
+        bufCount := SerReadTimeout(SerialHandle, ReadBuffer, Length(ReadBuffer) - 1, TimeOut);
+      end;
     end;
 
-    if bufCount > maxPuffer then begin
-      maxPuffer := bufCount;
-      Caption := maxPuffer.ToString;
-    end;
+    //if bufCount > maxPuffer then begin
+    //  maxPuffer := bufCount;
+    //  Caption := maxPuffer.ToString;
+    //end;
 
     if bufCount > 0 then begin
       ReadBuffer[bufCount] := 0; // Für PChar
@@ -320,8 +251,10 @@ begin
         end;
       end;
 
-      if CheckBox_AutoScroll.Checked then begin
-        SynEdit1.CaretY := SynEdit1.Lines.Count;
+      with SerialMonitor_Options.Com_Interface do begin
+        if AutoScroll then begin
+          SynEdit1.CaretY := SynEdit1.Lines.Count;
+        end;
       end;
 
     end;
