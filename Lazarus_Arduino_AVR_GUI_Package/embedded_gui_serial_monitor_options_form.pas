@@ -80,7 +80,7 @@ var
   n: string;
 begin
   inherited Create;
-  n := 'Serial_Monitor_Form/';
+  n := Copy(TSerial_Monitor_Form.ClassName, 2) +'/';
   Key_SerialMonitorPort := n + i + 'Port';
   Key_SerialMonitorBaud := n + i + 'Baud';
   Key_SerialMonitorParity := n + i + 'Parity';

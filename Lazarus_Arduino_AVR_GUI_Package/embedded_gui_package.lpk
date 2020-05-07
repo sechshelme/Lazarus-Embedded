@@ -27,20 +27,20 @@
         <UnitName Value="Embedded_GUI_ARM_Common"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_arm_project_options_form.lfm"/>
-        <Type Value="LFM"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_arm_project_options_form.pas"/>
         <UnitName Value="Embedded_GUI_ARM_Project_Options_Form"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_arm_project_templates_form.lfm"/>
+        <Filename Value="embedded_gui_arm_project_options_form.lfm"/>
         <Type Value="LFM"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_arm_project_templates_form.pas"/>
         <UnitName Value="Embedded_GUI_ARM_Project_Templates_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_arm_project_templates_form.lfm"/>
+        <Type Value="LFM"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_arm_register.pas"/>
@@ -51,20 +51,20 @@
         <UnitName Value="Embedded_GUI_AVR_Common"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_avr_project_options_form.lfm"/>
-        <Type Value="LFM"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_avr_project_options_form.pas"/>
         <UnitName Value="Embedded_GUI_AVR_Project_Options_Form"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_avr_project_templates_form.lfm"/>
+        <Filename Value="embedded_gui_avr_project_options_form.lfm"/>
         <Type Value="LFM"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_avr_project_templates_form.pas"/>
         <UnitName Value="Embedded_GUI_AVR_Project_Templates_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_avr_project_templates_form.lfm"/>
+        <Type Value="LFM"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_avr_register.pas"/>
@@ -75,32 +75,32 @@
         <UnitName Value="Embedded_GUI_Common"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_cpu_info_form.lfm"/>
-        <Type Value="LFM"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_cpu_info_form.pas"/>
         <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_cpu_info_form.lfm"/>
+        <Type Value="LFM"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_find_comports.pas"/>
         <UnitName Value="Embedded_GUI_Find_Comports"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_ide_options.lfm"/>
-        <Type Value="LFM"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_ide_options.pas"/>
         <UnitName Value="Embedded_GUI_IDE_Options"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_package.lpk"/>
-        <Type Value="Text"/>
+        <Filename Value="embedded_gui_ide_options.lfm"/>
+        <Type Value="LFM"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_package.pas"/>
         <UnitName Value="Embedded_GUI_Package"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_package.lpk"/>
+        <Type Value="Text"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_register.pas"/>
@@ -112,20 +112,20 @@
         <UnitName Value="Embedded_GUI_Serial_Monitor_Form"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_subarch_list.pas"/>
-        <UnitName Value="Embedded_GUI_SubArch_List"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_serial_monitor_interface_options_frame.pas"/>
         <UnitName Value="Embedded_GUI_Serial_Monitor_Interface_Options_Frame"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_serial_monitor_options_form.pas"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Options_Form"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_serial_monitor_output_options_frame.pas"/>
         <UnitName Value="Embedded_GUI_Serial_Monitor_Output_Options_Frame"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_serial_monitor_options_form.pas"/>
-        <UnitName Value="Embedded_GUI_Serial_Monitor_Options_Form"/>
+        <Filename Value="embedded_gui_subarch_list.pas"/>
+        <UnitName Value="Embedded_GUI_SubArch_List"/>
       </Item>
     </Files>
     <i18n>

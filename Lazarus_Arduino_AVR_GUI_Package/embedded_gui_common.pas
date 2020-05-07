@@ -22,7 +22,11 @@ const
 
   Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
 
+  {$IFDEF Packages}
   Embedded_Options_File = 'embedded_gui_options.xml';
+  {$ELSE}
+  XMLConfigFile = 'config.xml'; // Bei normalen Anwendungen
+  {$ENDIF}
 
   Key_AVRdude = 'avrdude/';
   Key_STFlash = 'st_flash/';
@@ -66,8 +70,8 @@ const
 procedure LoadFormPos_from_XML(Form: TControl);
 procedure SaveFormPos_to_XML(Form: TControl);
 
-procedure LoadStringList_from_XML(sl: TStrings);
-procedure SaveStringList_to_XML(sl: TStrings);
+procedure LoadStrings_from_XML(const Key: string; sl: TStrings);
+procedure SaveStrings_to_XML(const Key: string; sl: TStrings);
 
 implementation
 
@@ -86,7 +90,7 @@ begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   {$ELSE}
   Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := 'config.xml';
+  Cfg.Filename := XMLConfigFile;
   {$ENDIF}
   Form.Left := Cfg.GetValue(Form.Name + FormPos + 'Left', Form.Left);
   Form.Top := Cfg.GetValue(Form.Name + FormPos + 'Top', Form.Top);
@@ -107,7 +111,7 @@ begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   {$ELSE}
   Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := 'config.xml';
+  Cfg.Filename := XMLConfigFile;
   {$ENDIF}
   Cfg.SetValue(Form.Name + FormPos + 'Left', Form.Left);
   Cfg.SetValue(Form.Name + FormPos + 'Top', Form.Top);
@@ -116,14 +120,51 @@ begin
   Cfg.Free;
 end;
 
-procedure LoadStringList_from_XML(sl: TStrings);
+procedure LoadStrings_from_XML(const Key: string; sl: TStrings);
+var
+  {$IFDEF Packages}
+  Cfg: TConfigStorage;
+  {$ELSE}
+  Cfg: TXMLConfig;
+  {$ENDIF}
+  ct, i: integer;
+  s: string;
 begin
-
+  {$IFDEF Packages}
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  {$ELSE}
+  Cfg := TXMLConfig.Create(nil);
+  Cfg.Filename := XMLConfigFile;
+  {$ENDIF}
+  ct := Cfg.GetValue(Key + '/Count', 0);
+  sl.Clear;
+  for i := 0 to ct - 1 do begin
+    s := Cfg.GetValue(Key + '/Item' + i.ToString+'/value', '');
+    sl.Add(s);
+  end;
+  Cfg.Free;
 end;
 
-procedure SaveStringList_to_XML(sl: TStrings);
+procedure SaveStrings_to_XML(const Key: string; sl: TStrings);
+var
+  {$IFDEF Packages}
+  Cfg: TConfigStorage;
+  {$ELSE}
+  Cfg: TXMLConfig;
+  {$ENDIF}
+  i: integer;
 begin
-
+  {$IFDEF Packages}
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  {$ELSE}
+  Cfg := TXMLConfig.Create(nil);
+  Cfg.Filename := XMLConfigFile;
+  {$ENDIF}
+  Cfg.SetValue(Key + '/Count', sl.Count);
+  for i := 0 to sl.Count - 1 do begin
+    Cfg.SetValue(Key + '/Item' + i.ToString+'/value', sl[i]);
+  end;
+  Cfg.Free;
 end;
 
 end.

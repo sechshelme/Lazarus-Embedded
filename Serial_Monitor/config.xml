@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CONFIG>
   <Serial_Monitor_Form>
-    <FormPos Top="203" Left="1676" Width="1015" Height="1031"/>
+    <FormPos Top="296" Left="1193" Width="1015" Height="1031"/>
     <COMPortPara Baud="9600" Bits="8" Port="/dev/ttyUSB0" Parity="none" TimeOut="10" StopBits="1" FlowControl="none" TimerInterval="200"/>
     <OutputScreenPara Wordwarp="False" LineBreak="0" AutoScroll="True"/>
+    <ComboBox_Send_Text Count="8">
+      <Item0 value="Hello World !"/>
+      <Item1 value="jhgj"/>
+      <Item2 value="7"/>
+      <Item3 value="2"/>
+      <Item4 value="end."/>
+      <Item5 value="test244"/>
+      <Item6 value="1"/>
+      <Item7 value="test24"/>
+    </ComboBox_Send_Text>
   </Serial_Monitor_Form>
   <SerialMonitor_Options_Form>
     <FormPos Top="198" Left="1011" Width="685" Height="329"/>

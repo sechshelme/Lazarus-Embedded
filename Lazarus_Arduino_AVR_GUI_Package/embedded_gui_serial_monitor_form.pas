@@ -54,6 +54,7 @@ type
     procedure Timer1Timer(Sender: TObject);
   private
     TempSL: TStrings;
+    Send_ComboBox_Key: string;
     ReadBuffer: array[0..4096] of byte;
     SubMenuItemArray: array[0..31] of TMenuItem;
     procedure MenuItemClick(Sender: TObject);
@@ -70,9 +71,6 @@ var
 implementation
 
 {$R *.lfm}
-
-//uses
-//    Embedded_GUI_IDE_Options;
 
 { TSerial_Monitor_Form }
 
@@ -108,6 +106,14 @@ begin
   SynEdit1.Font.Style := [fsBold];
   SynEdit1.DoubleBuffered := True;
   SynEdit1.ReadOnly := True;
+
+  Send_ComboBox_Key := Name + '/' + ComboBox_Send_Text.Name;
+  LoadStrings_from_XML(Send_ComboBox_Key, ComboBox_Send_Text.Items);
+  if ComboBox_Send_Text.Items.Count > 0 then begin
+    ComboBox_Send_Text.Text := ComboBox_Send_Text.Items[0];
+  end else begin
+    ComboBox_Send_Text.Text := 'Hello World !';
+  end;
 
   Timer1.Interval := 200;
 end;
@@ -175,6 +181,8 @@ begin
 end;
 
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
+const
+  maxCount = 30;
 var
   i: integer;
   s: string;
@@ -189,7 +197,13 @@ begin
     end;
 
     ComboBox_Send_Text.Items.Insert(0, s);
+
+    if ComboBox_Send_Text.Items.Count > maxCount then begin
+      ComboBox_Send_Text.Items.Delete(ComboBox_Send_Text.Items.Count - 1);
+    end;
+
     ComboBox_Send_Text.Text := s;
+    SaveStrings_to_XML(Send_ComboBox_Key, ComboBox_Send_Text.Items);
   end;
 end;
 
