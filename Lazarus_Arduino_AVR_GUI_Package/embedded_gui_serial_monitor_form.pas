@@ -29,11 +29,11 @@ type
     Button_Send: TButton;
     Clear_Button: TButton;
     Close_Button: TButton;
+    ComboBox_Send_Text: TComboBox;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem_Close: TMenuItem;
-    Edit_Send: TEdit;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -82,7 +82,7 @@ var
 begin
   Caption := Title + 'Serial-Monitor';
   SerialHandle := 0;
-  LoadFormPos(Self);
+  LoadFormPos_from_XML(Self);
 
   TempSL := TStringList.Create;
   TempSL.SkipLastLineBreak := True;
@@ -126,7 +126,7 @@ end;
 procedure TSerial_Monitor_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   CloseSerial;
-  SaveFormPos(Self);
+  SaveFormPos_to_XML(Self);
 end;
 
 procedure TSerial_Monitor_Form.OpenSerial;
@@ -175,9 +175,21 @@ begin
 end;
 
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
+var
+  i: integer;
+  s: string;
 begin
-  if Length(Edit_Send.Text) > 0 then begin
-    SerWrite(SerialHandle, Edit_Send.Text[1], Length(Edit_Send.Text));
+  s := ComboBox_Send_Text.Text;
+  if Length(s) > 0 then begin
+    SerWrite(SerialHandle, s[1], Length(s));
+
+    i := ComboBox_Send_Text.Items.IndexOf(s);
+    if i >= 0 then begin
+      ComboBox_Send_Text.Items.Delete(i);
+    end;
+
+    ComboBox_Send_Text.Items.Insert(0, s);
+    ComboBox_Send_Text.Text := s;
   end;
 end;
 

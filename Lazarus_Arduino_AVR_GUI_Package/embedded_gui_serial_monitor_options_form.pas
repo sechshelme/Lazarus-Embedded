@@ -167,7 +167,7 @@ end;
 procedure TSerialMonitor_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'Serial-Monitor Optionen';
-  LoadFormPos(Self);
+  LoadFormPos_from_XML(Self);
 
   SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
   SM_Interface_Frame.Parent := Self.TabSheet1;
@@ -190,7 +190,7 @@ end;
 
 procedure TSerialMonitor_Options_Form.FormHide(Sender: TObject);
 begin
-  SaveFormPos(Self);
+  SaveFormPos_to_XML(Self);
 end;
 
 procedure TSerialMonitor_Options_Form.Btn_OkClick(Sender: TObject);

@@ -11,7 +11,7 @@ uses
   {$ELSE}
   XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
-  SysUtils, Controls, Forms;
+  SysUtils, Controls, Classes, Forms;
 
 const
   UARTBaudRates =
@@ -63,15 +63,18 @@ const
 
   OutputLineBreaks: TStringArray = ('LF / #10', 'CR / #13', 'CRLF / #13#10');
 
-procedure LoadFormPos(Form: TControl);
-procedure SaveFormPos(Form: TControl);
+procedure LoadFormPos_from_XML(Form: TControl);
+procedure SaveFormPos_to_XML(Form: TControl);
+
+procedure LoadStringList_from_XML(sl: TStrings);
+procedure SaveStringList_to_XML(sl: TStrings);
 
 implementation
 
 const
   FormPos = '/FormPos/';
 
-procedure LoadFormPos(Form: TControl);
+procedure LoadFormPos_from_XML(Form: TControl);
 var
   {$IFDEF Packages}
   Cfg: TConfigStorage;
@@ -92,7 +95,7 @@ begin
   Cfg.Free;
 end;
 
-procedure SaveFormPos(Form: TControl);
+procedure SaveFormPos_to_XML(Form: TControl);
 var
   {$IFDEF Packages}
   Cfg: TConfigStorage;
@@ -111,6 +114,16 @@ begin
   Cfg.SetValue(Form.Name + FormPos + 'Width', Form.Width);
   Cfg.SetValue(Form.Name + FormPos + 'Height', Form.Height);
   Cfg.Free;
+end;
+
+procedure LoadStringList_from_XML(sl: TStrings);
+begin
+
+end;
+
+procedure SaveStringList_to_XML(sl: TStrings);
+begin
+
 end;
 
 end.

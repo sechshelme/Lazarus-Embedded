@@ -1,11 +1,11 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 1911
-  Height = 1013
-  Top = 221
-  Width = 1061
+  Left = 1592
+  Height = 1053
+  Top = 213
+  Width = 1110
   Caption = 'Serial_Monitor_Form'
-  ClientHeight = 989
-  ClientWidth = 1061
+  ClientHeight = 1029
+  ClientWidth = 1110
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
@@ -13,30 +13,21 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   OnShow = FormShow
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
-  object Edit_Send: TEdit
-    Left = 16
-    Height = 28
-    Top = 10
-    Width = 948
-    Anchors = [akTop, akLeft, akRight]
-    TabOrder = 0
-    Text = 'Edit_Send'
-  end
   object Button_Send: TButton
-    Left = 976
+    Left = 1025
     Height = 28
     Top = 10
     Width = 80
     Anchors = [akTop, akRight]
     Caption = 'Senden'
     OnClick = Button_SendClick
-    TabOrder = 1
+    TabOrder = 0
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 896
+    Height = 936
     Top = 48
-    Width = 1061
+    Width = 1110
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
     Font.Name = 'DejaVu Sans Mono'
@@ -44,7 +35,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Font.Quality = fqNonAntialiased
     ParentColor = False
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     Gutter.Width = 57
     Gutter.MouseActions = <>
     RightGutter.Width = 0
@@ -532,24 +523,34 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     end
   end
   object Clear_Button: TButton
-    Left = 864
+    Left = 913
     Height = 25
-    Top = 952
+    Top = 992
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Clear'
     OnClick = Clear_ButtonClick
-    TabOrder = 3
+    TabOrder = 2
   end
   object Close_Button: TButton
-    Left = 960
+    Left = 1009
     Height = 25
-    Top = 952
+    Top = 992
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Schliessen'
     OnClick = Close_ButtonClick
+    TabOrder = 3
+  end
+  object ComboBox_Send_Text: TComboBox
+    Left = 8
+    Height = 28
+    Top = 10
+    Width = 1009
+    Anchors = [akTop, akLeft, akRight]
+    ItemHeight = 0
     TabOrder = 4
+    Text = 'Hello World !'
   end
   object Timer1: TTimer
     Enabled = False

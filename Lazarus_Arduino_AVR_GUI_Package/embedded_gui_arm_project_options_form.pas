@@ -67,13 +67,13 @@ implementation
 procedure TARM_Project_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'ARM Project Options';
-  LoadFormPos(Self);
+  LoadFormPos_from_XML(Self);
 end;
 
 procedure TARM_Project_Options_Form.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  SaveFormPos(Self);
+  SaveFormPos_to_XML(Self);
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);

@@ -46,7 +46,7 @@ implementation
 procedure TCPU_InfoForm.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'CPU Info';
-  LoadFormPos(Self);
+  LoadFormPos_from_XML(Self);
 
   StringGrid1.FixedCols := 0;
   StringGrid1.DoubleBuffered := True;
@@ -62,7 +62,7 @@ end;
 
 procedure TCPU_InfoForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  SaveFormPos(Self);
+  SaveFormPos_to_XML(Self);
 end;
 
 procedure TCPU_InfoForm.StringGrid1CompareCells(Sender: TObject;
