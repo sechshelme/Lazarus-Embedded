@@ -19,6 +19,7 @@ uses
 
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
+  Embedded_GUI_Serial_Monitor_Send_File_Form,
   Embedded_GUI_Serial_Monitor_Options_Form;
 
 type
@@ -29,10 +30,11 @@ type
     Button_Send: TButton;
     Clear_Button: TButton;
     Close_Button: TButton;
-    ComboBox_Send_Text: TComboBox;
+    ComboBox_SendString: TComboBox;
     MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
-    MenuItem5: TMenuItem;
+    MenuItem_Options: TMenuItem;
+    MenuItem_Optionen: TMenuItem;
+    MenuItem_SendFile: TMenuItem;
     MenuItem_Close: TMenuItem;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
@@ -47,14 +49,15 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
-    procedure MenuItem5Click(Sender: TObject);
+    procedure MenuItem_OptionenClick(Sender: TObject);
     procedure MenuItem_CloseClick(Sender: TObject);
     procedure ComboBoxChange(Sender: TObject);
+    procedure MenuItem_SendFileClick(Sender: TObject);
     procedure RadioGroup_LineBreakSelectionChanged(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
     TempSL: TStrings;
-    Send_ComboBox_Key: string;
+    //    Send_ComboBox_Key: string;
     ReadBuffer: array[0..4096] of byte;
     SubMenuItemArray: array[0..31] of TMenuItem;
     procedure MenuItemClick(Sender: TObject);
@@ -87,6 +90,7 @@ begin
 
   SerialMonitor_Options := TSerialMonitor_Options.Create;
   SerialMonitor_Options_Form := TSerialMonitor_Options_Form.Create(Self);
+  SerialMonitor_SendFile_Form := TSerialMonitor_SendFile_Form.Create(Self);
 
   for i := 0 to Length(SubMenuItemArray) - 1 do begin
     SubMenuItemArray[i] := TMenuItem.Create(Self);
@@ -107,13 +111,7 @@ begin
   SynEdit1.DoubleBuffered := True;
   SynEdit1.ReadOnly := True;
 
-  Send_ComboBox_Key := Name + '/' + ComboBox_Send_Text.Name;
-  LoadStrings_from_XML(Send_ComboBox_Key, ComboBox_Send_Text.Items);
-  if ComboBox_Send_Text.Items.Count > 0 then begin
-    ComboBox_Send_Text.Text := ComboBox_Send_Text.Items[0];
-  end else begin
-    ComboBox_Send_Text.Text := 'Hello World !';
-  end;
+  LoadComboBox_from_XML(ComboBox_SendString);
 
   Timer1.Interval := 200;
 end;
@@ -181,29 +179,17 @@ begin
 end;
 
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
-const
-  maxCount = 30;
 var
   i: integer;
   s: string;
 begin
-  s := ComboBox_Send_Text.Text;
+  s := ComboBox_SendString.Text;
   if Length(s) > 0 then begin
     SerWrite(SerialHandle, s[1], Length(s));
 
-    i := ComboBox_Send_Text.Items.IndexOf(s);
-    if i >= 0 then begin
-      ComboBox_Send_Text.Items.Delete(i);
-    end;
+    ComboBox_Insert(ComboBox_SendString);
 
-    ComboBox_Send_Text.Items.Insert(0, s);
-
-    if ComboBox_Send_Text.Items.Count > maxCount then begin
-      ComboBox_Send_Text.Items.Delete(ComboBox_Send_Text.Items.Count - 1);
-    end;
-
-    ComboBox_Send_Text.Text := s;
-    SaveStrings_to_XML(Send_ComboBox_Key, ComboBox_Send_Text.Items);
+    SaveComboBox_to_XML(ComboBox_SendString);
   end;
 end;
 
@@ -211,6 +197,11 @@ procedure TSerial_Monitor_Form.ComboBoxChange(Sender: TObject);
 begin
   CloseSerial;
   OpenSerial;
+end;
+
+procedure TSerial_Monitor_Form.MenuItem_SendFileClick(Sender: TObject);
+begin
+  SerialMonitor_SendFile_Form.Show;
 end;
 
 procedure TSerial_Monitor_Form.RadioGroup_LineBreakSelectionChanged(Sender: TObject);
@@ -277,10 +268,8 @@ begin
         end;
       end;
 
-      with SerialMonitor_Options.Com_Interface do begin
-        if AutoScroll then begin
-          SynEdit1.CaretY := SynEdit1.Lines.Count;
-        end;
+      if SerialMonitor_Options.Output.AutoScroll then begin
+        SynEdit1.CaretY := SynEdit1.Lines.Count;
       end;
 
     end;
@@ -295,7 +284,7 @@ begin
   //  InputForm.Show;
 end;
 
-procedure TSerial_Monitor_Form.MenuItem5Click(Sender: TObject);
+procedure TSerial_Monitor_Form.MenuItem_OptionenClick(Sender: TObject);
 begin
   SerialMonitor_Options_Form.Show;
 end;

@@ -48,7 +48,7 @@ type
     Button_AVRDude_Config: TButton;
     ComboBox_STFlashPfad: TComboBox;
     Button_ST_Flash: TButton;
-    ComboBox_AVRdude_Path: TComboBox;
+    ComboBox_AVRdudePath: TComboBox;
     ComboBox_AVRdudeConf: TComboBox;
     Label1: TLabel;
     Label2: TLabel;
@@ -82,7 +82,7 @@ implementation
 constructor TEmbedded_IDE_Options.Create;
 begin
   inherited Create;
-  SerialMonitor_Options:=  TSerialMonitor_Options.Create;
+  SerialMonitor_Options := TSerialMonitor_Options.Create;
   Load_from_XML;
 end;
 
@@ -130,9 +130,9 @@ end;
 
 procedure TEmbedded_IDE_Options_Frame.Button_AVRDude_PathClick(Sender: TObject);
 begin
-  OpenDialog.FileName := ComboBox_AVRdude_Path.Text;
+  OpenDialog.FileName := ComboBox_AVRdudePath.Text;
   if OpenDialog.Execute then begin
-    ComboBox_AVRdude_Path.Text := OpenDialog.FileName;
+    ComboBox_AVRdudePath.Text := OpenDialog.FileName;
   end;
 end;
 
@@ -156,6 +156,33 @@ begin
   SM_Output_Frame := TSM_Output_Frame.Create(Self);
   SM_Output_Frame.Parent := Self.TabSheet4;
 
+//  ComboBox_AVRdudePath.Items.Add(Default_Avrdude_Path);
+LoadComboBox_from_XML(ComboBox_AVRdudePath, Default_Avrdude_Path);
+
+//  ShowMessage(ComboBox_AVRdudePath.Items.CommaText);
+//  ComboBox_AVRdudePath.Text := Default_Avrdude_Path;
+  Embedded_IDE_Options.AVR.avrdudePath := ComboBox_AVRdudePath.Text;
+
+//  ComboBox_AVRdudeConf.Items.Add(Default_Avrdude_Conf_Path);
+  LoadComboBox_from_XML(ComboBox_AVRdudeConf, Default_Avrdude_Conf_Path);
+//  ComboBox_AVRdudeConf.Text := Default_Avrdude_Conf_Path;
+  Embedded_IDE_Options.AVR.avrdudeConfigPath := ComboBox_AVRdudeConf.Text;
+
+//  ComboBox_STFlashPfad.Items.Add(Default_STFlash_Path);
+  LoadComboBox_from_XML(ComboBox_STFlashPfad, Default_STFlash_Path);
+//  ComboBox_STFlashPfad.Text := Default_STFlash_Path;
+  Embedded_IDE_Options.ARM.STFlashPath := ComboBox_STFlashPfad.Text;
+
+
+
+  //    SetComboBoxText(ComboBox_AVRdudePath, AVR.avrdudePath, cstFilename);
+
+  //    SetComboBoxText(ComboBox_AVRdudeConf, AVR.avrdudeConfigPath, cstFilename);
+
+  //    SetComboBoxText(ComboBox_STFlashPfad, ARM.STFlashPath, cstFilename);
+
+
+
   SM_Interface_Frame.ComboBox_Port.Items.CommaText := GetSerialPortNames;
   SM_Interface_Frame.ComboBox_Baud.Items.CommaText := UARTBaudRates;
   SM_Interface_Frame.ComboBox_Parity.Items.CommaText := UARTParitys;
@@ -169,11 +196,6 @@ end;
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 begin
   with Embedded_IDE_Options do begin
-    SetComboBoxText(ComboBox_AVRdude_Path, AVR.avrdudePath, cstFilename);
-    SetComboBoxText(ComboBox_AVRdudeConf, AVR.avrdudeConfigPath, cstFilename);
-
-    SetComboBoxText(ComboBox_STFlashPfad, ARM.STFlashPath, cstFilename);
-
     with SerialMonitor_Options do begin
       with Com_Interface do begin
         SM_Interface_Frame.ComboBox_Port.Text := Port;
@@ -199,7 +221,7 @@ end;
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
 begin
   with Embedded_IDE_Options do begin
-    AVR.avrdudePath := ComboBox_AVRdude_Path.Text;
+    AVR.avrdudePath := ComboBox_AVRdudePath.Text;
     AVR.avrdudeConfigPath := ComboBox_AVRdudeConf.Text;
     ARM.STFlashPath := ComboBox_STFlashPfad.Text;
 
@@ -222,6 +244,15 @@ begin
         WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
       end;
     end;
+
+    ComboBox_Insert(ComboBox_AVRdudePath);
+    SaveComboBox_to_XML(ComboBox_AVRdudePath);
+
+    ComboBox_Insert(ComboBox_AVRdudeConf);
+    SaveComboBox_to_XML(ComboBox_AVRdudeConf);
+
+    ComboBox_Insert(ComboBox_STFlashPfad);
+    SaveComboBox_to_XML(ComboBox_STFlashPfad);
 
     Embedded_IDE_Options.Save_to_XML;
   end;

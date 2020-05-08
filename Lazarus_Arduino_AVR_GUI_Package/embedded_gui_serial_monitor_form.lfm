@@ -1,11 +1,11 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 1592
-  Height = 1053
-  Top = 213
-  Width = 1110
+  Left = 1635
+  Height = 245
+  Top = 207
+  Width = 497
   Caption = 'Serial_Monitor_Form'
-  ClientHeight = 1029
-  ClientWidth = 1110
+  ClientHeight = 221
+  ClientWidth = 497
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
@@ -14,7 +14,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object Button_Send: TButton
-    Left = 1025
+    Left = 412
     Height = 28
     Top = 10
     Width = 80
@@ -25,9 +25,9 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 936
+    Height = 128
     Top = 48
-    Width = 1110
+    Width = 497
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
     Font.Name = 'DejaVu Sans Mono'
@@ -523,9 +523,9 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     end
   end
   object Clear_Button: TButton
-    Left = 913
+    Left = 300
     Height = 25
-    Top = 992
+    Top = 184
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Clear'
@@ -533,20 +533,20 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     TabOrder = 2
   end
   object Close_Button: TButton
-    Left = 1009
+    Left = 396
     Height = 25
-    Top = 992
+    Top = 184
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Schliessen'
     OnClick = Close_ButtonClick
     TabOrder = 3
   end
-  object ComboBox_Send_Text: TComboBox
+  object ComboBox_SendString: TComboBox
     Left = 8
     Height = 28
     Top = 10
-    Width = 1009
+    Width = 396
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 4
@@ -563,6 +563,10 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Top = 72
     object MenuItem3: TMenuItem
       Caption = 'Datei'
+      object MenuItem_SendFile: TMenuItem
+        Caption = '&Send File...'
+        OnClick = MenuItem_SendFileClick
+      end
       object MenuItem_Close: TMenuItem
         Caption = 'Schliessen'
         OnClick = MenuItem_CloseClick
@@ -575,11 +579,11 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
       Caption = 'Arduino'
       OnClick = MenuItem2Click
     end
-    object MenuItem4: TMenuItem
+    object MenuItem_Options: TMenuItem
       Caption = 'Optionen'
-      object MenuItem5: TMenuItem
-        Caption = 'Optionen...'
-        OnClick = MenuItem5Click
+      object MenuItem_Optionen: TMenuItem
+        Caption = '&Optionen...'
+        OnClick = MenuItem_OptionenClick
       end
     end
   end

@@ -18,7 +18,7 @@ uses
   Embedded_GUI_Serial_Monitor_Interface_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Options_Form, 
   Embedded_GUI_Serial_Monitor_Output_Options_Frame, Embedded_GUI_SubArch_List, 
-  LazarusPackageIntf;
+  Embedded_GUI_Serial_Monitor_Send_File_Form, LazarusPackageIntf;
 
 implementation
 

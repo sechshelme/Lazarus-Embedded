@@ -11,7 +11,7 @@ uses
   {$ELSE}
   XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
-  SysUtils, Controls, Classes, Forms;
+  SysUtils, StdCtrls, Controls, Classes, Dialogs, Forms;
 
 const
   UARTBaudRates =
@@ -67,16 +67,53 @@ const
 
   OutputLineBreaks: TStringArray = ('LF / #10', 'CR / #13', 'CRLF / #13#10');
 
+
+procedure ComboBox_Insert(cb: TComboBox);
+
 procedure LoadFormPos_from_XML(Form: TControl);
 procedure SaveFormPos_to_XML(Form: TControl);
 
-procedure LoadStrings_from_XML(const Key: string; sl: TStrings);
-procedure SaveStrings_to_XML(const Key: string; sl: TStrings);
+procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: string = '');
+procedure SaveComboBox_to_XML(cb: TComboBox);
 
 implementation
 
 const
+  maxComboBoxCount = 20;
   FormPos = '/FormPos/';
+
+function getParents(c: TWinControl): string;
+var
+  p: TWinControl;
+begin
+  Result := '';
+  p := c;
+  repeat
+    Result := p.Name + '/' + Result;
+    p := p.Parent;
+  until (p = nil) or (Pos('FRAME', UpCase(p.ClassName)) > 0) or (Pos('FORM', UpCase(p.ClassName)) > 0);
+  Result := p.Name + '/' + Result;
+end;
+
+procedure ComboBox_Insert(cb: TComboBox);
+var
+  i: integer;
+  s: string;
+begin
+  s := cb.Text;
+  i := cb.Items.IndexOf(s);
+  if i >= 0 then begin
+    cb.Items.Delete(i);
+  end;
+
+  cb.Items.Insert(0, s);
+
+  if cb.Items.Count > maxComboBoxCount then begin
+    cb.Items.Delete(cb.Items.Count - 1);
+  end;
+
+  cb.Text := s;
+end;
 
 procedure LoadFormPos_from_XML(Form: TControl);
 var
@@ -120,7 +157,7 @@ begin
   Cfg.Free;
 end;
 
-procedure LoadStrings_from_XML(const Key: string; sl: TStrings);
+procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: string = '');
 var
   {$IFDEF Packages}
   Cfg: TConfigStorage;
@@ -128,7 +165,7 @@ var
   Cfg: TXMLConfig;
   {$ENDIF}
   ct, i: integer;
-  s: string;
+  Key, s: string;
 begin
   {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
@@ -136,16 +173,27 @@ begin
   Cfg := TXMLConfig.Create(nil);
   Cfg.Filename := XMLConfigFile;
   {$ENDIF}
-  ct := Cfg.GetValue(Key + '/Count', 0);
-  sl.Clear;
+  Key := getParents(cb);
+  ct := Cfg.GetValue(Key + 'Count', 0);
+  cb.Text := Cfg.GetValue(Key + 'Text', Default_Text);
+  cb.Items.Clear;
+
   for i := 0 to ct - 1 do begin
-    s := Cfg.GetValue(Key + '/Item' + i.ToString+'/value', '');
-    sl.Add(s);
+    s := Cfg.GetValue(Key + 'Item' + i.ToString + '/value', '');
+    cb.Items.Add(s);
   end;
+
+  if (Default_Text <> '') and (cb.Items.Count < maxComboBoxCount) then begin
+    i := cb.Items.IndexOf(Default_Text);
+    if i < 0 then begin
+      cb.Items.Add(Default_Text);
+    end;
+  end;
+
   Cfg.Free;
 end;
 
-procedure SaveStrings_to_XML(const Key: string; sl: TStrings);
+procedure SaveComboBox_to_XML(cb: TComboBox);
 var
   {$IFDEF Packages}
   Cfg: TConfigStorage;
@@ -153,6 +201,7 @@ var
   Cfg: TXMLConfig;
   {$ENDIF}
   i: integer;
+  Key: string;
 begin
   {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
@@ -160,9 +209,11 @@ begin
   Cfg := TXMLConfig.Create(nil);
   Cfg.Filename := XMLConfigFile;
   {$ENDIF}
-  Cfg.SetValue(Key + '/Count', sl.Count);
-  for i := 0 to sl.Count - 1 do begin
-    Cfg.SetValue(Key + '/Item' + i.ToString+'/value', sl[i]);
+  Key := getParents(cb);
+  Cfg.SetValue(Key + 'Count', cb.Items.Count);
+  Cfg.SetValue(Key + 'Text', cb.Text);
+  for i := 0 to cb.Items.Count - 1 do begin
+    Cfg.SetValue(Key + 'Item' + i.ToString + '/value', cb.Items[i]);
   end;
   Cfg.Free;
 end;

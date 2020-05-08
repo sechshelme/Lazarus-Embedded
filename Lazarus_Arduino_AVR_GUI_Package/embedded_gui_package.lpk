@@ -20,7 +20,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="79"/>
+    <Version Release="80"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_arm_common.pas"/>
@@ -126,6 +126,10 @@
       <Item>
         <Filename Value="embedded_gui_subarch_list.pas"/>
         <UnitName Value="Embedded_GUI_SubArch_List"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_serial_monitor_send_file_form.pas"/>
+        <UnitName Value="Embedded_GUI_Serial_Monitor_Send_File_Form"/>
       </Item>
     </Files>
     <i18n>

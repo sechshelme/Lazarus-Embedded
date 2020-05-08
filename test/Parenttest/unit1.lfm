@@ -1,0 +1,50 @@
+object Form1: TForm1
+  Left = 468
+  Height = 670
+  Top = 164
+  Width = 891
+  Caption = 'ssssssss'
+  ClientHeight = 670
+  ClientWidth = 891
+  LCLVersion = '2.1.0.0'
+  object ScrollBox1: TScrollBox
+    Left = 465
+    Height = 488
+    Top = 128
+    Width = 446
+    HorzScrollBar.Page = 410
+    VertScrollBar.Page = 312
+    ClientHeight = 486
+    ClientWidth = 444
+    TabOrder = 0
+    object Panel2: TPanel
+      Left = 56
+      Height = 280
+      Top = 32
+      Width = 354
+      Caption = 'Panel2'
+      ClientHeight = 280
+      ClientWidth = 354
+      TabOrder = 0
+      object Panel1: TPanel
+        Left = 40
+        Height = 179
+        Top = 45
+        Width = 248
+        Caption = 'Panel1'
+        ClientHeight = 179
+        ClientWidth = 248
+        TabOrder = 0
+        object Button1: TButton
+          Left = 122
+          Height = 25
+          Top = 110
+          Width = 75
+          Caption = 'Button1'
+          OnClick = Button1Click
+          TabOrder = 0
+        end
+      end
+    end
+  end
+end
