@@ -1,4 +1,4 @@
-unit Embedded_GUI_IDE_Options;
+unit Embedded_GUI_IDE_Options_Frame;
 
 {$mode objfpc}{$H+}
 
@@ -14,26 +14,6 @@ uses
   Embedded_GUI_Serial_Monitor_Options_Form,
   Embedded_GUI_Serial_Monitor_Interface_Options_Frame,
   Embedded_GUI_Serial_Monitor_Output_Options_Frame;
-
-type
-
-  { TEmbedded_IDE_Options }
-
-  TEmbedded_IDE_Options = class
-  public
-    AVR: record
-      avrdudePath, avrdudeConfigPath: string;
-    end;
-    ARM: record
-      STFlashPath: string;
-    end;
-    SerialMonitor_Options: TSerialMonitor_Options;
-    constructor Create;
-    destructor Destroy; override;
-  private
-    procedure Save_to_XML;
-    procedure Load_from_XML;
-  end;
 
 var
   Embedded_IDE_Options: TEmbedded_IDE_Options;
@@ -76,47 +56,6 @@ type
 implementation
 
 {$R *.lfm}
-
-{ TEmbedded_IDE_Options }
-
-constructor TEmbedded_IDE_Options.Create;
-begin
-  inherited Create;
-  SerialMonitor_Options := TSerialMonitor_Options.Create;
-  Load_from_XML;
-end;
-
-destructor TEmbedded_IDE_Options.Destroy;
-begin
-  SerialMonitor_Options.Free;
-  inherited Destroy;
-end;
-
-procedure TEmbedded_IDE_Options.Load_from_XML;
-var
-  Cfg: TConfigStorage;
-begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  AVR.avrdudePath := Cfg.GetValue(Key_Avrdude_Path, Default_Avrdude_Path);
-  AVR.avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Path, Default_Avrdude_Conf_Path);
-  ARM.STFlashPath := Cfg.GetValue(Key_STFlash_Path, Default_STFlash_Path);
-
-  SerialMonitor_Options.Load_from_XML;
-  Cfg.Free;
-end;
-
-procedure TEmbedded_IDE_Options.Save_to_XML;
-var
-  Cfg: TConfigStorage;
-begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetValue(Key_Avrdude_Path, AVR.avrdudePath);
-  Cfg.SetValue(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
-  Cfg.SetValue(Key_STFlash_Path, ARM.STFlashPath);
-
-  SerialMonitor_Options.Save_to_XML;
-  Cfg.Free;
-end;
 
 { TEmbedded_IDE_Options_Frame }
 
@@ -245,13 +184,13 @@ begin
       end;
     end;
 
-    ComboBox_Insert(ComboBox_AVRdudePath);
+    ComboBox_Insert_Text(ComboBox_AVRdudePath);
     SaveComboBox_to_XML(ComboBox_AVRdudePath);
 
-    ComboBox_Insert(ComboBox_AVRdudeConf);
+    ComboBox_Insert_Text(ComboBox_AVRdudeConf);
     SaveComboBox_to_XML(ComboBox_AVRdudeConf);
 
-    ComboBox_Insert(ComboBox_STFlashPfad);
+    ComboBox_Insert_Text(ComboBox_STFlashPfad);
     SaveComboBox_to_XML(ComboBox_STFlashPfad);
 
     Embedded_IDE_Options.Save_to_XML;

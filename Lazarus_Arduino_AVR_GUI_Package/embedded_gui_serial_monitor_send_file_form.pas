@@ -14,12 +14,12 @@ type
   { TSerialMonitor_SendFile_Form }
 
   TSerialMonitor_SendFile_Form = class(TForm)
-    Button1: TButton;
+    Button_File_Open: TButton;
     Button_Close: TButton;
     Button_Send: TButton;
     ComboBox_Send_File: TComboBox;
     OpenDialog: TOpenDialog;
-    procedure Button1Click(Sender: TObject);
+    procedure Button_File_OpenClick(Sender: TObject);
     procedure Button_CloseClick(Sender: TObject);
     procedure Button_SendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -60,24 +60,27 @@ var
 begin
   sl := TStringList.Create;
   try
-    sl.LoadFromFile(ComboBox_Send_File.Text);
-    s := sl.Text;
+    if FileExists(ComboBox_Send_File.Text) then begin
+      sl.LoadFromFile(ComboBox_Send_File.Text);
+      s := sl.Text;
 
-    if Length(s) > 0 then begin
-      SerWrite(Serial_Monitor_Form.SerialHandle, s[1], Length(s));
-    end;
-
+      if Length(s) > 0 then begin
+        SerWrite(Serial_Monitor_Form.SerialHandle, s[1], Length(s));
+      end;
+      ComboBox_Insert_Text(ComboBox_Send_File);
+      SaveComboBox_to_XML(ComboBox_Send_File);
+    end else ShowMessage('Datei nicht gefunden !');
   finally
     sl.Free;
   end;
 end;
 
-procedure TSerialMonitor_SendFile_Form.Button1Click(Sender: TObject);
+procedure TSerialMonitor_SendFile_Form.Button_File_OpenClick(Sender: TObject);
 begin
   OpenDialog.FileName := ComboBox_Send_File.Text;
   if OpenDialog.Execute then begin
     ComboBox_Send_File.Text := OpenDialog.FileName;
-    ComboBox_Insert(ComboBox_Send_File);
+    ComboBox_Insert_Text(ComboBox_Send_File);
     SaveComboBox_to_XML(ComboBox_Send_File);
   end;
 end;

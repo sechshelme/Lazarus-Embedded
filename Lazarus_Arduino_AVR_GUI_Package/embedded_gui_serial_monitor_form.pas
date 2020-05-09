@@ -187,7 +187,7 @@ begin
   if Length(s) > 0 then begin
     SerWrite(SerialHandle, s[1], Length(s));
 
-    ComboBox_Insert(ComboBox_SendString);
+    ComboBox_Insert_Text(ComboBox_SendString);
 
     SaveComboBox_to_XML(ComboBox_SendString);
   end;

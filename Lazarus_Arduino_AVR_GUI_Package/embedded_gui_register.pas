@@ -17,7 +17,7 @@ uses
   // Embedded GUI ( Eigene Units )
   Embedded_GUI_AVR_Register,
   Embedded_GUI_ARM_Register,
-  Embedded_GUI_IDE_Options,
+  Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Common,
   Embedded_GUI_ARM_Common,

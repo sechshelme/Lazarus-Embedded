@@ -13,7 +13,7 @@ uses
 
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
-  Embedded_GUI_IDE_Options,
+  Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_ARM_Common,
   Embedded_GUI_ARM_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,

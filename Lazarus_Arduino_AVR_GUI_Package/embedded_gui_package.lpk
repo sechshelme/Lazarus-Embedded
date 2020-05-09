@@ -20,7 +20,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Release="80"/>
+    <Version Release="129"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_arm_common.pas"/>
@@ -87,12 +87,8 @@
         <UnitName Value="Embedded_GUI_Find_Comports"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_ide_options.pas"/>
-        <UnitName Value="Embedded_GUI_IDE_Options"/>
-      </Item>
-      <Item>
-        <Filename Value="embedded_gui_ide_options.lfm"/>
-        <Type Value="LFM"/>
+        <Filename Value="embedded_gui_ide_options_frame.pas"/>
+        <UnitName Value="Embedded_GUI_IDE_Options_Frame"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_package.pas"/>

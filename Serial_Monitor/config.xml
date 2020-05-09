@@ -4,27 +4,29 @@
     <FormPos Top="415" Left="826" Width="867" Height="909"/>
     <COMPortPara Baud="9600" Bits="8" Port="/dev/ttyUSB0" Parity="none" TimeOut="10" StopBits="1" FlowControl="none" TimerInterval="200"/>
     <OutputScreenPara Wordwarp="False" LineBreak="0" AutoScroll="True"/>
-    <ComboBox_SendString Text="Hello World !" Count="8">
-      <Item0 value="Hello World !"/>
-      <Item1 value="sggg"/>
-      <Item2 value="s"/>
-      <Item3 value="1"/>
-      <Item4 value="2"/>
-      <Item5 value="test2"/>
-      <Item6 value="test"/>
-      <Item7 value="Hello World"/>
+    <ComboBox_SendString Text="sggg" Count="9">
+      <Item0 value="sggg"/>
+      <Item1 value="1"/>
+      <Item2 value="Hallo Welt !"/>
+      <Item3 value="Hello World !"/>
+      <Item4 value="s"/>
+      <Item5 value="2"/>
+      <Item6 value="test2"/>
+      <Item7 value="test"/>
+      <Item8 value="Hello World"/>
     </ComboBox_SendString>
   </Serial_Monitor_Form>
   <SerialMonitor_Options_Form>
     <FormPos Top="174" Left="416" Width="685" Height="329"/>
   </SerialMonitor_Options_Form>
   <SerialMonitor_SendFile_Form>
-    <ComboBox_Send_File Text="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/SynEdit_Test/sm_unit.pas" Count="4">
-      <Item0 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/SynEdit_Test/sm_unit.pas"/>
-      <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lps"/>
-      <Item2 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lpi"/>
-      <Item3 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/unit1.pas"/>
+    <ComboBox_Send_File Text="/etc/fstab" Count="5">
+      <Item0 value="/etc/fstab"/>
+      <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lpi"/>
+      <Item2 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/SynEdit_Test/sm_unit.pas"/>
+      <Item3 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lps"/>
+      <Item4 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/unit1.pas"/>
     </ComboBox_Send_File>
-    <FormPos Top="248" Left="938" Width="822" Height="108"/>
+    <FormPos Top="248" Left="938" Width="845" Height="112"/>
   </SerialMonitor_SendFile_Form>
 </CONFIG>

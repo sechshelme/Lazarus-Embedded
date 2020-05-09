@@ -13,7 +13,7 @@ uses
   Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Options_Form, 
   Embedded_GUI_AVR_Project_Templates_Form, Embedded_GUI_AVR_Register, 
   Embedded_GUI_Common, Embedded_GUI_CPU_Info_Form, Embedded_GUI_Find_Comports, 
-  Embedded_GUI_IDE_Options, Embedded_GUI_Register, 
+  Embedded_GUI_IDE_Options_Frame, Embedded_GUI_Register, 
   Embedded_GUI_Serial_Monitor_Form, 
   Embedded_GUI_Serial_Monitor_Interface_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Options_Form, 

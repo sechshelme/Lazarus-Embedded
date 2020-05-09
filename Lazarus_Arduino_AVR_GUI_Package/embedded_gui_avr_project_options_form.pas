@@ -12,7 +12,7 @@ uses
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
   Embedded_GUI_Common,
-  Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options,
+  Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_SubArch_List;

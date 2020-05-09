@@ -19,14 +19,14 @@ object SerialMonitor_SendFile_Form: TSerialMonitor_SendFile_Form
     TabOrder = 0
     Text = 'ComboBox_Send_File'
   end
-  object Button1: TButton
+  object Button_File_Open: TButton
     Left = 418
     Height = 28
     Top = 16
     Width = 35
     Anchors = [akTop, akRight]
     Caption = '...'
-    OnClick = Button1Click
+    OnClick = Button_File_OpenClick
     TabOrder = 1
   end
   object Button_Send: TButton
