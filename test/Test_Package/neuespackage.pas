@@ -2,20 +2,21 @@
   This source is only used to compile and install the package.
  }
 
-unit Embedded_GUI_Package;
+unit NeuesPackage;
 
 {$warn 5023 off : no warning about unused units}
 interface
 
 uses
-  LazarusPackageIntf;
+  Test_Frame, Test_Register, LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
+  RegisterUnit('Test_Register', @Test_Register.Register);
 end;
 
 initialization
-  RegisterPackage('Embedded_GUI_Package', @Register);
+  RegisterPackage('NeuesPackage', @Register);
 end.
