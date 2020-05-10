@@ -190,14 +190,17 @@ procedure TAVR_Project_Options_Form.LoadDefaultMask;
 begin
 
   with avrdudePathComboBox do begin
-    Items.Add('avrdude');
-    Items.Add(Default_Avrdude_Path);
-    Text := Embedded_IDE_Options.AVR.avrdudePath;
+    Items.AddStrings(Embedded_IDE_Options.AVR.avrdudePath, True);
+    if Items.Count > 0 then begin
+      Text := Embedded_IDE_Options.AVR.avrdudePath[0];
+    end;
   end;
 
   with avrdudeConfigPathComboBox do begin
-    Items.Add(Default_Avrdude_Conf_Path);
-    Text := Embedded_IDE_Options.AVR.avrdudeConfigPath;
+    Items.AddStrings(Embedded_IDE_Options.AVR.avrdudeConfigPath,True);
+    if Items.Count > 0 then begin
+      Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
+    end;
   end;
 
   with AVR_SubArch_ComboBox do begin

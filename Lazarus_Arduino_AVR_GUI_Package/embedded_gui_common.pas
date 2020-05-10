@@ -21,29 +21,24 @@ const
   Title = '[Embedded GUI] ';
 
   Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
-
-  {$IFDEF Packages}
   Embedded_Options_File = 'embedded_gui_options.xml';
-  {$ELSE}
-  XMLConfigFile = 'config.xml'; // Bei normalen Anwendungen
-  {$ENDIF}
 
   Key_AVRdude = 'avrdude/';
   Key_STFlash = 'st_flash/';
 
-  Key_Avrdude_Path = Key_AVRdude + 'pfad/value';
-  Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/value';
-  Key_STFlash_Path = Key_STFlash + 'pfad/value';
+  Key_Avrdude_Path = Key_AVRdude + 'pfad/';
+  Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/';
+  Key_STFlash_Path = Key_STFlash + 'pfad/';
 
   {$IFDEF MSWINDOWS}
-  Default_Avrdude_Path = 'c:\avrdude\avrdude.exe';
-  Default_Avrdude_Conf_Path = 'c:\avrdude\avrdude.conf';
-  Default_STFlash_Path = 'c:\st-link\st-flash.exe';
+  Default_Avrdude_Path :TStringArray = ('c:\avrdude\avrdude.exe');
+  Default_Avrdude_Conf_Path :TStringArray = ('c:\avrdude\avrdude.conf');
+  Default_STFlash_Path = :TStringArray ('c:\st-link\st-flash.exe');
   UARTDefaultPort = 'COM8';
   {$ELSE}
-  Default_Avrdude_Path = '/usr/bin/avrdude';
-  Default_Avrdude_Conf_Path = '/etc/avrdude.conf';
-  Default_STFlash_Path = '/usr/local/bin/st-flash';
+  Default_Avrdude_Path :TStringArray= ('/usr/bin/avrdude','avrdude');
+  Default_Avrdude_Conf_Path:TStringArray = ('/etc/avrdude.conf','');
+  Default_STFlash_Path:TStringArray = ('/usr/local/bin/st-flash','st-flash');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
 
@@ -67,9 +62,10 @@ const
 
   OutputLineBreaks: TStringArray = ('LF / #10', 'CR / #13', 'CRLF / #13#10');
 
-  { TSerialMonitor_Options }
+{ TSerialMonitor_Options }
 
-type  TSerialMonitor_Options = class(TObject)
+type
+  TSerialMonitor_Options = class(TObject)
   public
     Com_Interface: record
       Port, Baud, Bits, Parity, StopBits, FlowControl: string;
@@ -89,10 +85,10 @@ type  TSerialMonitor_Options = class(TObject)
   TEmbedded_IDE_Options = class
   public
     AVR: record
-      avrdudePath, avrdudeConfigPath: string;
+      avrdudePath, avrdudeConfigPath: TStringList;
     end;
     ARM: record
-      STFlashPath: string;
+      STFlashPath: TStringList;
     end;
     SerialMonitor_Options: TSerialMonitor_Options;
     constructor Create;
@@ -107,10 +103,10 @@ procedure ComboBox_Insert_Text(cb: TComboBox);
 procedure LoadFormPos_from_XML(Form: TControl);
 procedure SaveFormPos_to_XML(Form: TControl);
 
-procedure LoadStrings_from_XML(Key: string; sl: TStrings; Default_Text: string = '');
+procedure LoadStrings_from_XML(Key: string; sl: TStrings; Default_Text: TStringArray = nil);
 procedure SaveStrings_to_XML(Key: string; sl: TStrings);
 
-procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: string = '');
+procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray = nil);
 procedure SaveComboBox_to_XML(cb: TComboBox);
 
 implementation
@@ -118,6 +114,19 @@ implementation
 const
   maxComboBoxCount = 20;
   FormPos = '/FormPos/';
+
+{$IFNDEF Packages}
+type
+  TConfigStorage = class(TXMLConfig)
+  end;
+
+function GetIDEConfigStorage(const Filename: string; LoadFromDisk: boolean): TConfigStorage;
+begin
+  Result := TConfigStorage.Create(nil);
+  Result.Filename := FileName;
+end;
+
+{$ENDIF}
 
 function getParents(c: TWinControl): string;
 var
@@ -154,18 +163,9 @@ end;
 
 procedure LoadFormPos_from_XML(Form: TControl);
 var
-  {$IFDEF Packages}
   Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
 begin
-  {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := XMLConfigFile;
-  {$ENDIF}
   Form.Left := Cfg.GetValue(Form.Name + FormPos + 'Left', Form.Left);
   Form.Top := Cfg.GetValue(Form.Name + FormPos + 'Top', Form.Top);
   Form.Width := Cfg.GetValue(Form.Name + FormPos + 'Width', Form.Width);
@@ -175,18 +175,9 @@ end;
 
 procedure SaveFormPos_to_XML(Form: TControl);
 var
-  {$IFDEF Packages}
   Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
 begin
-  {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := XMLConfigFile;
-  {$ENDIF}
   Cfg.SetValue(Form.Name + FormPos + 'Left', Form.Left);
   Cfg.SetValue(Form.Name + FormPos + 'Top', Form.Top);
   Cfg.SetValue(Form.Name + FormPos + 'Width', Form.Width);
@@ -194,24 +185,15 @@ begin
   Cfg.Free;
 end;
 
-procedure LoadStrings_from_XML(Key: string; sl: TStrings; Default_Text: string);
+procedure LoadStrings_from_XML(Key: string; sl: TStrings; Default_Text: TStringArray);
 var
-  {$IFDEF Packages}
   Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
   ct, i: integer;
   s: string;
 begin
-  {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := XMLConfigFile;
-  {$ENDIF}
   ct := Cfg.GetValue(Key + 'Count', 0);
-//  cb.Text := Cfg.GetValue(Key + 'Text', Default_Text);
+  //  cb.Text := Cfg.GetValue(Key + 'Text', Default_Text);
   sl.Clear;
 
   for i := 0 to ct - 1 do begin
@@ -219,10 +201,11 @@ begin
     sl.Add(s);
   end;
 
-  if (Default_Text <> '') and (sl.Count < maxComboBoxCount) then begin
-    i := sl.IndexOf(Default_Text);
-    if i < 0 then begin
-      sl.Add(Default_Text);
+  for i := 0 to Length(Default_Text) - 1 do begin
+    if sl.Count < maxComboBoxCount then begin
+      if sl.IndexOf(Default_Text[i]) < 0 then begin
+        sl.Add(Default_Text[i]);
+      end;
     end;
   end;
 
@@ -231,19 +214,10 @@ end;
 
 procedure SaveStrings_to_XML(Key: string; sl: TStrings);
 var
-  {$IFDEF Packages}
   Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
   i: integer;
 begin
-  {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := XMLConfigFile;
-  {$ENDIF}
   Cfg.SetValue(Key + 'Count', sl.Count);
   if sl.Count > 0 then begin
     Cfg.SetValue(Key + 'Text', sl[0]);
@@ -256,13 +230,17 @@ begin
   Cfg.Free;
 end;
 
-procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: string = '');
+procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
 var
   Key: string;
 begin
   Key := getParents(cb);
   LoadStrings_from_XML(Key, cb.Items, Default_Text);
-  if cb.Items.Count>0 then cb.Text:=cb.Items[0] else cb.Text:='';
+  if cb.Items.Count > 0 then begin
+    cb.Text := cb.Items[0];
+  end else begin
+    cb.Text := '';
+  end;
 end;
 
 procedure SaveComboBox_to_XML(cb: TComboBox);
@@ -286,8 +264,7 @@ var
   n: string;
 begin
   inherited Create;
-//  n := Copy(TSerial_Monitor_Form.ClassName, 2) + '/';// Besser lösen
-  n:= 'Serial_Monitor_Form';
+  n := 'Serial_Monitor_Config/';
 
   Key_SerialMonitorPort := n + i + 'Port';
   Key_SerialMonitorBaud := n + i + 'Baud';
@@ -306,18 +283,9 @@ end;
 
 procedure TSerialMonitor_Options.Load_from_XML;
 var
-  {$IFDEF Packages}
   Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
 begin
-  {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := 'config.xml';
-  {$ENDIF}
   with Com_Interface do begin
     Port := Cfg.GetValue(Key_SerialMonitorPort, UARTDefaultPort);
     Baud := Cfg.GetValue(Key_SerialMonitorBaud, UARTDefaultBaud);
@@ -339,18 +307,9 @@ end;
 
 procedure TSerialMonitor_Options.Save_to_XML;
 var
-  {$IFDEF Packages}
   Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
 begin
-  {$IFDEF Packages}
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := 'config.xml';
-  {$ENDIF}
   with Com_Interface do begin
     Cfg.SetValue(Key_SerialMonitorPort, Port);
     Cfg.SetValue(Key_SerialMonitorBaud, Baud);
@@ -376,57 +335,53 @@ constructor TEmbedded_IDE_Options.Create;
 begin
   inherited Create;
   SerialMonitor_Options := TSerialMonitor_Options.Create;
+
+ AVR.avrdudePath:=TStringList.Create; AVR.avrdudeConfigPath:= TStringList.Create;
+  ARM.STFlashPath:= TStringList.Create;
+
   Load_from_XML;
 end;
 
 destructor TEmbedded_IDE_Options.Destroy;
 begin
+  AVR.avrdudePath.Free; AVR.avrdudeConfigPath.Free;
+  ARM.STFlashPath.Free;
   SerialMonitor_Options.Free;
   inherited Destroy;
 end;
 
 procedure TEmbedded_IDE_Options.Load_from_XML;
-var
-  {$IFDEF Packages}
-  Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
+//var
+//  Cfg: TConfigStorage;
 begin
-  {$IFDEF Packages}
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := 'config.xml';
-  {$ENDIF}
-  AVR.avrdudePath := Cfg.GetValue(Key_Avrdude_Path, Default_Avrdude_Path);
-  AVR.avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Path, Default_Avrdude_Conf_Path);
-  ARM.STFlashPath := Cfg.GetValue(Key_STFlash_Path, Default_STFlash_Path);
+//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  LoadStrings_from_XML(Key_Avrdude_Path, AVR.avrdudePath, Default_Avrdude_Path);
+  LoadStrings_from_XML(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath, Default_Avrdude_Conf_Path);
+  LoadStrings_from_XML(Key_STFlash_Path, ARM.STFlashPath, Default_STFlash_Path);
+
+//  AVR.avrdudePath := Cfg.GetValue(Key_Avrdude_Path, Default_Avrdude_Path);
+//  AVR.avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Path, Default_Avrdude_Conf_Path);
+//  ARM.STFlashPath := Cfg.GetValue(Key_STFlash_Path, Default_STFlash_Path);
 
   SerialMonitor_Options.Load_from_XML;
-  Cfg.Free;
+//  Cfg.Free;
 end;
 
 procedure TEmbedded_IDE_Options.Save_to_XML;
-var
-  {$IFDEF Packages}
-  Cfg: TConfigStorage;
-  {$ELSE}
-  Cfg: TXMLConfig;
-  {$ENDIF}
+//var
+//  Cfg: TConfigStorage;
 begin
-  {$IFDEF Packages}
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  {$ELSE}
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := 'config.xml';
-  {$ENDIF}
-  Cfg.SetValue(Key_Avrdude_Path, AVR.avrdudePath);
-  Cfg.SetValue(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
-  Cfg.SetValue(Key_STFlash_Path, ARM.STFlashPath);
+  SaveStrings_to_XML(Key_Avrdude_Path, AVR.avrdudePath);
+  SaveStrings_to_XML(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
+  SaveStrings_to_XML(Key_STFlash_Path, ARM.STFlashPath);
+//
+//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+//  Cfg.SetValue(Key_Avrdude_Path, AVR.avrdudePath);
+//  Cfg.SetValue(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
+//  Cfg.SetValue(Key_STFlash_Path, ARM.STFlashPath);
 
   SerialMonitor_Options.Save_to_XML;
-  Cfg.Free;
+//  Cfg.Free;
 end;
 
 end.

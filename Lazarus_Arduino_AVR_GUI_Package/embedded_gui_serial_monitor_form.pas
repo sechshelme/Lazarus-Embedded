@@ -111,7 +111,7 @@ begin
   SynEdit1.DoubleBuffered := True;
   SynEdit1.ReadOnly := True;
 
-  LoadComboBox_from_XML(ComboBox_SendString);
+  LoadComboBox_from_XML(ComboBox_SendString, ['Hello World !', 'Hallo Welt !']);
 
   Timer1.Interval := 200;
 end;

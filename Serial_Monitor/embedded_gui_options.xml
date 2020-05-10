@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CONFIG>
+  <Serial_Monitor_Form>
+    <FormPos Top="207" Left="1635" Width="823" Height="1043"/>
+    <ComboBox_SendString Text="Hallo Welt !" Count="3">
+      <Item0 value="Hallo Welt !"/>
+      <Item1 value="test"/>
+      <Item2 value="Hello World !"/>
+    </ComboBox_SendString>
+  </Serial_Monitor_Form>
+  <SerialMonitor_SendFile_Form>
+    <ComboBox_Send_File Text="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lpi" Count="2">
+      <Item0 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lpi"/>
+      <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/unit1.pas"/>
+    </ComboBox_Send_File>
+    <FormPos Top="216" Left="935" Width="503" Height="115"/>
+  </SerialMonitor_SendFile_Form>
+  <SerialMonitor_Options_Form>
+    <FormPos Top="198" Left="1011" Width="687" Height="326"/>
+  </SerialMonitor_Options_Form>
+  <Serial_Monitor_Config>
+    <COMPortPara Baud="9600" Bits="8" Port="/dev/ttyUSB0" Parity="none" TimeOut="10" StopBits="1" FlowControl="none" TimerInterval="200"/>
+    <OutputScreenPara Wordwarp="False" LineBreak="0" AutoScroll="True"/>
+  </Serial_Monitor_Config>
+</CONFIG>

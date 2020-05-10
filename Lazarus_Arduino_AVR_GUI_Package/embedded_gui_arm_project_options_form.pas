@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, Buttons,
-//  LazConfigStorage, BaseIDEIntf,
+  //  LazConfigStorage, BaseIDEIntf,
   LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   IDEExternToolIntf,
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
@@ -70,8 +70,7 @@ begin
   LoadFormPos_from_XML(Self);
 end;
 
-procedure TARM_Project_Options_Form.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
+procedure TARM_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   SaveFormPos_to_XML(Self);
 end;
@@ -142,9 +141,10 @@ procedure TARM_Project_Options_Form.LoadDefaultMask;
 begin
 
   with STLinkPathComboBox do begin
-    Items.Add('st-flash');
-    Items.Add(Default_STFlash_Path);
-    Text := Embedded_IDE_Options.ARM.STFlashPath;
+    Items.AddStrings(Embedded_IDE_Options.ARM.STFlashPath, True);
+    if Items.Count > 0 then begin
+      Text := Embedded_IDE_Options.ARM.STFlashPath[0];
+    end;
   end;
 
   with ARM_SubArch_ComboBox do begin

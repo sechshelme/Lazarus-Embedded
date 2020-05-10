@@ -95,30 +95,29 @@ begin
   SM_Output_Frame := TSM_Output_Frame.Create(Self);
   SM_Output_Frame.Parent := Self.TabSheet4;
 
-//  ComboBox_AVRdudePath.Items.Add(Default_Avrdude_Path);
-LoadComboBox_from_XML(ComboBox_AVRdudePath, Default_Avrdude_Path);
-
-//  ShowMessage(ComboBox_AVRdudePath.Items.CommaText);
-//  ComboBox_AVRdudePath.Text := Default_Avrdude_Path;
-  Embedded_IDE_Options.AVR.avrdudePath := ComboBox_AVRdudePath.Text;
-
-//  ComboBox_AVRdudeConf.Items.Add(Default_Avrdude_Conf_Path);
-  LoadComboBox_from_XML(ComboBox_AVRdudeConf, Default_Avrdude_Conf_Path);
-//  ComboBox_AVRdudeConf.Text := Default_Avrdude_Conf_Path;
-  Embedded_IDE_Options.AVR.avrdudeConfigPath := ComboBox_AVRdudeConf.Text;
-
-//  ComboBox_STFlashPfad.Items.Add(Default_STFlash_Path);
-  LoadComboBox_from_XML(ComboBox_STFlashPfad, Default_STFlash_Path);
-//  ComboBox_STFlashPfad.Text := Default_STFlash_Path;
-  Embedded_IDE_Options.ARM.STFlashPath := ComboBox_STFlashPfad.Text;
-
-
-
-  //    SetComboBoxText(ComboBox_AVRdudePath, AVR.avrdudePath, cstFilename);
-
-  //    SetComboBoxText(ComboBox_AVRdudeConf, AVR.avrdudeConfigPath, cstFilename);
-
-  //    SetComboBoxText(ComboBox_STFlashPfad, ARM.STFlashPath, cstFilename);
+  ////  ComboBox_AVRdudePath.Items.Add(Default_Avrdude_Path);
+  //LoadComboBox_from_XML(ComboBox_AVRdudePath, Default_Avrdude_Path);
+  //
+  ////  ShowMessage(ComboBox_AVRdudePath.Items.CommaText);
+  ////  ComboBox_AVRdudePath.Text := Default_Avrdude_Path;
+  //
+  //  Embedded_IDE_Options.AVR.avrdudePath.AddStrings(ComboBox_AVRdudePath.Items, True);
+  //
+  ////  ComboBox_AVRdudeConf.Items.Add(Default_Avrdude_Conf_Path);
+  //  LoadComboBox_from_XML(ComboBox_AVRdudeConf, Default_Avrdude_Conf_Path);
+  ////  ComboBox_AVRdudeConf.Text := Default_Avrdude_Conf_Path;
+  //  Embedded_IDE_Options.AVR.avrdudeConfigPath.AddStrings(ComboBox_AVRdudeConf.Items, True);
+  //
+  ////  ComboBox_STFlashPfad.Items.Add(Default_STFlash_Path);
+  //  LoadComboBox_from_XML(ComboBox_STFlashPfad, Default_STFlash_Path);
+  ////  ComboBox_STFlashPfad.Text := Default_STFlash_Path;
+  //  Embedded_IDE_Options.ARM.STFlashPath.AddStrings(ComboBox_STFlashPfad.Items, True);
+  //
+  //  //    SetComboBoxText(ComboBox_AVRdudePath, AVR.avrdudePath, cstFilename);
+  //
+  //  //    SetComboBoxText(ComboBox_AVRdudeConf, AVR.avrdudeConfigPath, cstFilename);
+  //
+  //  //    SetComboBoxText(ComboBox_STFlashPfad, ARM.STFlashPath, cstFilename);
 
 
 
@@ -135,6 +134,22 @@ end;
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 begin
   with Embedded_IDE_Options do begin
+
+    ComboBox_AVRdudePath.Items.AddStrings(AVR.avrdudePath, True);
+    if ComboBox_AVRdudePath.Items.Count > 0 then begin
+      ComboBox_AVRdudePath.Text := ComboBox_AVRdudePath.Items[0];
+    end;
+
+    ComboBox_AVRdudeConf.Items.AddStrings(AVR.avrdudeConfigPath, True);
+    if ComboBox_AVRdudeConf.Items.Count > 0 then begin
+      ComboBox_AVRdudeConf.Text := ComboBox_AVRdudeConf.Items[0];
+    end;
+
+    ComboBox_STFlashPfad.Items.AddStrings(ARM.STFlashPath, True);
+    if ComboBox_STFlashPfad.Items.Count > 0 then begin
+      ComboBox_STFlashPfad.Text := ComboBox_STFlashPfad.Items[0];
+    end;
+
     with SerialMonitor_Options do begin
       with Com_Interface do begin
         SM_Interface_Frame.ComboBox_Port.Text := Port;
@@ -160,9 +175,6 @@ end;
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
 begin
   with Embedded_IDE_Options do begin
-    AVR.avrdudePath := ComboBox_AVRdudePath.Text;
-    AVR.avrdudeConfigPath := ComboBox_AVRdudeConf.Text;
-    ARM.STFlashPath := ComboBox_STFlashPfad.Text;
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
@@ -185,13 +197,17 @@ begin
     end;
 
     ComboBox_Insert_Text(ComboBox_AVRdudePath);
-    SaveComboBox_to_XML(ComboBox_AVRdudePath);
+    //    SaveComboBox_to_XML(ComboBox_AVRdudePath);
 
     ComboBox_Insert_Text(ComboBox_AVRdudeConf);
-    SaveComboBox_to_XML(ComboBox_AVRdudeConf);
+    //    SaveComboBox_to_XML(ComboBox_AVRdudeConf);
 
     ComboBox_Insert_Text(ComboBox_STFlashPfad);
-    SaveComboBox_to_XML(ComboBox_STFlashPfad);
+    //    SaveComboBox_to_XML(ComboBox_STFlashPfad);
+
+    AVR.avrdudePath.AddStrings(ComboBox_AVRdudePath.Items, True);
+    AVR.avrdudeConfigPath.AddStrings(ComboBox_AVRdudeConf.Items, True);
+    ARM.STFlashPath.AddStrings(ComboBox_STFlashPfad.Items, True);
 
     Embedded_IDE_Options.Save_to_XML;
   end;
@@ -203,8 +219,6 @@ begin
 end;
 
 end.
-
-
 
 
 
