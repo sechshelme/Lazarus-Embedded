@@ -137,8 +137,9 @@ begin
   repeat
     Result := p.Name + '/' + Result;
     p := p.Parent;
-  until (p = nil) or (Pos('FRAME', UpCase(p.ClassName)) > 0) or (Pos('FORM', UpCase(p.ClassName)) > 0);
-  Result := p.Name + '/' + Result;
+    until p = nil;
+//    until (p = nil) or (Pos('FRAME', UpCase(p.ClassName)) > 0) or (Pos('FORM', UpCase(p.ClassName)) > 0);
+//  Result := p.Name + '/' + Result;
 end;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
@@ -275,7 +276,7 @@ begin
   Key_SerialMonitorLineBreak := n + o + 'LineBreak';
   Key_SerialMonitorAutoScroll := n + o + 'AutoScroll';
   Key_SerialMonitorWordWarp := n + o + 'Wordwarp';
-  Load_from_XML;
+//  Load_from_XML;
 end;
 
 procedure TSerialMonitor_Options.Load_from_XML;
@@ -337,7 +338,7 @@ begin
   AVR.avrdudeConfigPath:= TStringList.Create;
   ARM.STFlashPath:= TStringList.Create;
 
-  Load_from_XML;
+//  Load_from_XML;
 end;
 
 destructor TEmbedded_IDE_Options.Destroy;

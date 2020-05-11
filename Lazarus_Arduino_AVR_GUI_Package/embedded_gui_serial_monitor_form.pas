@@ -89,6 +89,7 @@ begin
   TempSL.SkipLastLineBreak := True;
 
   SerialMonitor_Options := TSerialMonitor_Options.Create;
+  SerialMonitor_Options.Load_from_XML;
   SerialMonitor_Options_Form := TSerialMonitor_Options_Form.Create(Self);
   SerialMonitor_SendFile_Form := TSerialMonitor_SendFile_Form.Create(Self);
 

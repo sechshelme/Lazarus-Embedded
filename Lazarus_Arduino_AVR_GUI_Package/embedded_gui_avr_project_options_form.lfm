@@ -1,7 +1,7 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
-  Left = 426
+  Left = 1836
   Height = 490
-  Top = 548
+  Top = 543
   Width = 510
   Caption = 'AVR Embedded Project Options'
   ClientHeight = 490
@@ -261,7 +261,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
-    OnClick = BitBtn1Click
+    OnClick = Button_to_AVRDude_Typ_Click
     TabOrder = 7
   end
   object Label10: TLabel

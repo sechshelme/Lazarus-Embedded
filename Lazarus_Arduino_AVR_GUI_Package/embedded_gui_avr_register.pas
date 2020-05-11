@@ -89,7 +89,6 @@ var
   Form: TAVR_Project_Options_Form;
 begin
   Form := TAVR_Project_Options_Form.Create(nil);
-
   Form.LoadDefaultMask;
 
   Result := Form.ShowModal;
@@ -99,7 +98,6 @@ begin
 
   Form.Free;
 end;
-
 
 function TProjectAVRApp.InitProject(AProject: TLazProject): TModalResult;
 const
@@ -112,7 +110,6 @@ const
 
 var
   MainFile: TLazProjectFile;
-
 begin
   inherited InitProject(AProject);
 

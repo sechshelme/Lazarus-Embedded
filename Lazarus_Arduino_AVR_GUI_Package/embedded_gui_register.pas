@@ -117,6 +117,7 @@ const
 
 begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
+  Embedded_IDE_Options.Load_from_XML;
 
   AVR_ProjectOptions := TAVR_ProjectOptions.Create;
   RegisterProjectDescriptor(TProjectAVRApp.Create);

@@ -200,13 +200,8 @@ begin
     end;
 
     ComboBox_Insert_Text(ComboBox_AVRdudePath);
-    //    SaveComboBox_to_XML(ComboBox_AVRdudePath);
-
     ComboBox_Insert_Text(ComboBox_AVRdudeConf);
-    //    SaveComboBox_to_XML(ComboBox_AVRdudeConf);
-
     ComboBox_Insert_Text(ComboBox_STFlashPfad);
-    //    SaveComboBox_to_XML(ComboBox_STFlashPfad);
 
     AVR.avrdudePath.AddStrings(ComboBox_AVRdudePath.Items, True);
     AVR.avrdudeConfigPath.AddStrings(ComboBox_AVRdudeConf.Items, True);

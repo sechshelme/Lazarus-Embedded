@@ -1,7 +1,7 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 1266
+  Left = 2046
   Height = 350
-  Top = 247
+  Top = 130
   Width = 540
   Caption = 'ARM Embedded Project Options'
   ClientHeight = 350
@@ -54,6 +54,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Width = 32
     Anchors = [akTop, akRight]
     Caption = '...'
+    OnClick = Button_AVRDude_Path_Click
     TabOrder = 1
   end
   object TemplatesButton: TButton
@@ -93,6 +94,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Caption = 'Ok'
     Default = True
     ModalResult = 1
+    OnClick = OkButtonClick
     TabOrder = 9
   end
   object Memo1: TMemo
@@ -206,7 +208,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
-    OnClick = BitBtn1Click
+    OnClick = Button_to_FlashBase_Click
     TabOrder = 5
   end
   object ARM_FlashBase_ComboBox: TComboBox
@@ -234,5 +236,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Caption = 'CPU Info...'
     OnClick = CPU_InfoButtonClick
     TabOrder = 11
+  end
+  object OpenDialog: TOpenDialog
+    Left = 379
+    Top = 41
   end
 end
