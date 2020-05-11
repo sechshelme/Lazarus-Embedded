@@ -2,10 +2,9 @@
 <CONFIG>
   <Serial_Monitor_Form>
     <FormPos Top="207" Left="1635" Width="823" Height="1043"/>
-    <ComboBox_SendString Text="Hallo Welt !" Count="3">
-      <Item0 value="Hallo Welt !"/>
-      <Item1 value="test"/>
-      <Item2 value="Hello World !"/>
+    <ComboBox_SendString Count="2">
+      <Item0 value="Hello World !"/>
+      <Item1 value="Hallo Welt !"/>
     </ComboBox_SendString>
   </Serial_Monitor_Form>
   <SerialMonitor_SendFile_Form>

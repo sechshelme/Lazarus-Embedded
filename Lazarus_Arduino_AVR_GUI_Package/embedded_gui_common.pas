@@ -193,7 +193,6 @@ var
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   ct := Cfg.GetValue(Key + 'Count', 0);
-  //  cb.Text := Cfg.GetValue(Key + 'Text', Default_Text);
   sl.Clear;
 
   for i := 0 to ct - 1 do begin
@@ -219,11 +218,11 @@ var
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Cfg.SetValue(Key + 'Count', sl.Count);
-  if sl.Count > 0 then begin
-    Cfg.SetValue(Key + 'Text', sl[0]);
-  end else begin
-    Cfg.SetValue(Key + 'Text', '');
-  end;
+  //if sl.Count > 0 then begin
+  //  Cfg.SetValue(Key + 'Text', sl[0]);
+  //end else begin
+  //  Cfg.SetValue(Key + 'Text', '');
+  //end;
   for i := 0 to sl.Count - 1 do begin
     Cfg.SetValue(Key + 'Item' + i.ToString + '/value', sl[i]);
   end;
@@ -260,11 +259,9 @@ constructor TSerialMonitor_Options.Create;
 const
   i = 'COMPortPara/';
   o = 'OutputScreenPara/';
-var
-  n: string;
+  n = 'Serial_Monitor_Config/';
 begin
   inherited Create;
-  n := 'Serial_Monitor_Config/';
 
   Key_SerialMonitorPort := n + i + 'Port';
   Key_SerialMonitorBaud := n + i + 'Baud';
@@ -336,7 +333,8 @@ begin
   inherited Create;
   SerialMonitor_Options := TSerialMonitor_Options.Create;
 
- AVR.avrdudePath:=TStringList.Create; AVR.avrdudeConfigPath:= TStringList.Create;
+  AVR.avrdudePath:=TStringList.Create;
+  AVR.avrdudeConfigPath:= TStringList.Create;
   ARM.STFlashPath:= TStringList.Create;
 
   Load_from_XML;

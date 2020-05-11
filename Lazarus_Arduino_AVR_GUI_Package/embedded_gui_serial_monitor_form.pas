@@ -188,7 +188,6 @@ begin
     SerWrite(SerialHandle, s[1], Length(s));
 
     ComboBox_Insert_Text(ComboBox_SendString);
-
     SaveComboBox_to_XML(ComboBox_SendString);
   end;
 end;

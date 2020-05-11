@@ -59,19 +59,12 @@ implementation
 
 { TEmbedded_IDE_Options_Frame }
 
-procedure TEmbedded_IDE_Options_Frame.Button_ST_FlashClick(Sender: TObject);
-begin
-  OpenDialog.FileName := ComboBox_STFlashPfad.Text;
-  if OpenDialog.Execute then begin
-    ComboBox_STFlashPfad.Text := OpenDialog.FileName;
-  end;
-end;
-
 procedure TEmbedded_IDE_Options_Frame.Button_AVRDude_PathClick(Sender: TObject);
 begin
   OpenDialog.FileName := ComboBox_AVRdudePath.Text;
   if OpenDialog.Execute then begin
     ComboBox_AVRdudePath.Text := OpenDialog.FileName;
+    ComboBox_Insert_Text(ComboBox_AVRdudePath);
   end;
 end;
 
@@ -80,6 +73,16 @@ begin
   OpenDialog.FileName := ComboBox_AVRdudeConf.Text;
   if OpenDialog.Execute then begin
     ComboBox_AVRdudeConf.Text := OpenDialog.FileName;
+    ComboBox_Insert_Text(ComboBox_AVRdudeConf);
+  end;
+end;
+
+procedure TEmbedded_IDE_Options_Frame.Button_ST_FlashClick(Sender: TObject);
+begin
+  OpenDialog.FileName := ComboBox_STFlashPfad.Text;
+  if OpenDialog.Execute then begin
+    ComboBox_STFlashPfad.Text := OpenDialog.FileName;
+    ComboBox_Insert_Text(ComboBox_STFlashPfad);
   end;
 end;
 
