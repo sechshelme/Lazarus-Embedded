@@ -26,7 +26,7 @@ type
     procedure FormHide(Sender: TObject);
   private
   public
-
+    procedure SendBuffer(var Buffer: array of char; size: PtrInt);
   end;
 
 var
@@ -65,11 +65,15 @@ begin
       s := sl.Text;
 
       if Length(s) > 0 then begin
-        SerWrite(Serial_Monitor_Form.SerialHandle, s[1], Length(s));
+//        SerWrite(Serial_Monitor_Form.SerialHandle, s[1], Length(s));
+        SendBuffer(s[1], Length(s));
       end;
+
       ComboBox_Insert_Text(ComboBox_Send_File);
       SaveComboBox_to_XML(ComboBox_Send_File);
-    end else ShowMessage('Datei nicht gefunden !');
+    end else begin
+      ShowMessage('Datei nicht gefunden !');
+    end;
   finally
     sl.Free;
   end;
@@ -88,6 +92,13 @@ end;
 procedure TSerialMonitor_SendFile_Form.FormHide(Sender: TObject);
 begin
   SaveFormPos_to_XML(Self);
+end;
+
+procedure TSerialMonitor_SendFile_Form.SendBuffer(var Buffer: array of char; size: PtrInt);
+begin
+  if size > 0 then begin
+    SerWrite(Serial_Monitor_Form.SerialHandle, Buffer, size);
+  end;
 end;
 
 end.

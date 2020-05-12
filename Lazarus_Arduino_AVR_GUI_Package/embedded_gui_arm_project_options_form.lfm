@@ -67,7 +67,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     OnClick = TemplatesButtonClick
     TabOrder = 3
   end
-  object AsmFile_CheckBox: TCheckBox
+  object CheckBox_ASMFile: TCheckBox
     Left = 16
     Height = 23
     Top = 248

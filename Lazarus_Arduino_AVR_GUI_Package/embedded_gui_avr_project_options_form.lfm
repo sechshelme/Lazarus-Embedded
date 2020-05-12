@@ -33,7 +33,6 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
-    OnClick = Button_CancelClick
     TabOrder = 14
   end
   object avrdudePathComboBox: TComboBox

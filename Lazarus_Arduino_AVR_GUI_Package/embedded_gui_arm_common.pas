@@ -16,8 +16,7 @@ type
 
   TARM_ProjectOptions = class
     stlink_Command: record
-      Path,
-      FlashBase: string;
+      Path, FlashBase: string;
     end;
     ARM_SubArch, ARM_FPC_Typ: string;
     AsmFile: boolean;
@@ -38,7 +37,7 @@ const
     Name: 'STM32F103X8';
     ARM_SubArch: 'ARMV7M';
     ARM_FPC_Typ: 'STM32F103X8';
-    FlashBase: '0x08000000';),(
+    FlashBase: '0x08000000'; ), (
 
     Name: 'Arduino DUE';
     ARM_SubArch: 'ARMV7M';
@@ -53,6 +52,8 @@ implementation
 { TARM_ProjectOptions }
 
 procedure TARM_ProjectOptions.Save_to_Project(AProject: TLazProject);
+var
+  s: string;
 begin
   with AProject.LazCompilerOptions do begin
     TargetCPU := 'arm';
@@ -65,10 +66,9 @@ begin
     end;
   end;
 
-  AProject.LazCompilerOptions.ExecuteAfter.Command :=
-    'st-flash write ' + AProject.LazCompilerOptions.TargetFilename +
-    '.bin ' + stlink_Command.FlashBase;
+  s := stlink_Command.Path + ' write ' + AProject.LazCompilerOptions.TargetFilename + '.bin ' + stlink_Command.FlashBase;
 
+  AProject.LazCompilerOptions.ExecuteAfter.Command := s;
 end;
 
 procedure TARM_ProjectOptions.Load_from_Project(AProject: TLazProject);
@@ -99,10 +99,13 @@ begin
   ARM_FPC_Typ := Find(s, '-Wp');
 
   s := AProject.LazCompilerOptions.ExecuteAfter.Command;
+  stlink_Command.Path:=Copy(s, 0, pos(' ', s) - 1);;
   stlink_Command.FlashBase := '0x' + Find(s, '0x');
 end;
 
 end.
+
+
 
 
 

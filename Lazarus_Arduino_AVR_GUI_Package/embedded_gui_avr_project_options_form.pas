@@ -58,14 +58,11 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Button_OkClick(Sender: TObject);
-    procedure Button_CancelClick(Sender: TObject);
     procedure Button_TemplatesClick(Sender: TObject);
   private
     procedure ChangeAVR;
   public
-    procedure LoadDefaultMask;
-    procedure ProjectOptionsToMask;
-    procedure MaskToProjectOptions;
+    IsNewProject: boolean;
   end;
 
 var
@@ -77,10 +74,14 @@ implementation
 
 { TAVR_Project_Options_Form }
 
+
+// public
+
 procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'AVR Project Options';
   LoadFormPos_from_XML(Self);
+  IsNewProject := False;
 end;
 
 procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -88,128 +89,8 @@ begin
   SaveFormPos_to_XML(Self);
 end;
 
-procedure TAVR_Project_Options_Form.Button_CancelClick(Sender: TObject);
-begin
-  Close;
-end;
-
-procedure TAVR_Project_Options_Form.Button_CPU_InfoClick(Sender: TObject);
-var
-  Form: TCPU_InfoForm;
-begin
-  Form := TCPU_InfoForm.Create(nil);
-  Form.Load(AVR_ControllerDataList);
-  Form.ShowModal;
-  Form.Free;
-end;
-
-procedure TAVR_Project_Options_Form.Button_TemplatesClick(Sender: TObject);
-var
-  TemplatesForm: TAVRProjectTemplatesForm;
-  i: integer;
-
-begin
-  TemplatesForm := TAVRProjectTemplatesForm.Create(nil);
-
-  for i := 0 to Length(AVR_TemplatesPara) - 1 do begin
-    TemplatesForm.ListBox_Template.Items.AddStrings(AVR_TemplatesPara[i].Name);
-  end;
-  TemplatesForm.ListBox_Template.Caption := AVR_TemplatesPara[0].Name;
-  TemplatesForm.ListBox_Template.ItemIndex := 0;
-
-  if TemplatesForm.ShowModal = mrOk then begin
-    i := TemplatesForm.ListBox_Template.ItemIndex;
-
-    AVR_SubArch_ComboBox.Text := AVR_TemplatesPara[i].AVR_SubArch;
-    AVR_Typ_FPC_ComboBox.Text := AVR_TemplatesPara[i].AVR_FPC_Typ;
-    AVR_Typ_avrdude_Edit.Text := AVR_TemplatesPara[i].AVR_AVRDude_Typ;
-    ProgrammerComboBox.Text := AVR_TemplatesPara[i].Programmer;
-    COMPortComboBox.Text := AVR_TemplatesPara[i].COM_Port;
-    COMPortBaudComboBox.Text := AVR_TemplatesPara[i].Baud;
-    CheckBox_Disable_Auto_Erase.Checked := AVR_TemplatesPara[i].Disable_Auto_Erase;
-    AVR_SubArch_ComboBox.OnChange(Sender);
-  end;
-
-  TemplatesForm.Free;
-end;
-
 procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
 begin
-  ChangeAVR;
-end;
-
-procedure TAVR_Project_Options_Form.AVR_SubArch_ComboBoxChange(Sender: TObject);
-begin
-  ChangeAVR;
-end;
-
-procedure TAVR_Project_Options_Form.Button_OkClick(Sender: TObject);
-begin
-  ComboBox_Insert_Text(avrdudePathComboBox);
-  SaveComboBox_to_XML(avrdudePathComboBox);
-  ComboBox_Insert_Text(avrdudeConfigPathComboBox);
-  SaveComboBox_to_XML(avrdudeConfigPathComboBox);
-  //  Close;
-end;
-
-procedure TAVR_Project_Options_Form.Button_AVRDude_PathClick(Sender: TObject);
-begin
-  OpenDialog.FileName := avrdudePathComboBox.Text;
-  if OpenDialog.Execute then begin
-    avrdudePathComboBox.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(avrdudePathComboBox);
-  end;
-end;
-
-procedure TAVR_Project_Options_Form.Button_AVERDude_Config_PathClick(Sender: TObject);
-begin
-  OpenDialog.FileName := avrdudeConfigPathComboBox.Text;
-  if OpenDialog.Execute then begin
-    avrdudeConfigPathComboBox.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(avrdudeConfigPathComboBox);
-  end;
-end;
-
-procedure TAVR_Project_Options_Form.Button_to_AVRDude_Typ_Click(Sender: TObject);
-begin
-  AVR_Typ_avrdude_Edit.Text := AVR_Typ_FPC_ComboBox.Text;
-end;
-
-// private
-
-procedure TAVR_Project_Options_Form.ChangeAVR;
-var
-  ind: integer;
-begin
-  ind := AVR_SubArch_ComboBox.ItemIndex;
-  if (ind < 0) or (ind >= Length(AVR_SubArch_List)) then begin
-    AVR_Typ_FPC_ComboBox.Items.CommaText := '';
-  end else begin
-    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];
-  end;
-end;
-
-// public
-
-procedure TAVR_Project_Options_Form.LoadDefaultMask;
-begin
-  LoadComboBox_from_XML(avrdudePathComboBox);
-  if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
-    avrdudePathComboBox.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
-  end else begin
-    avrdudePathComboBox.Text := '';
-  end;
-  ComboBox_Insert_Text(avrdudePathComboBox);
-
-
-  LoadComboBox_from_XML(avrdudeConfigPathComboBox);
-  if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
-    avrdudeConfigPathComboBox.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
-  end else begin
-    avrdudeConfigPathComboBox.Text := '';
-  end;
-  ComboBox_Insert_Text(avrdudeConfigPathComboBox);
-
   with AVR_SubArch_ComboBox do begin
     Items.CommaText := avr_SubArch_List;
     //    ItemIndex := 3;                    // ???????????????
@@ -241,26 +122,51 @@ begin
 
   CheckBox_AsmFile.Checked := False;
   CheckBox_Disable_Auto_Erase.Checked := False;
-//  ShowMessage(avrdudePathComboBox.Text);
-//  ShowMessage(avrdudePathComboBox.Items[0]);
+
+  LoadComboBox_from_XML(avrdudePathComboBox);
+  LoadComboBox_from_XML(avrdudeConfigPathComboBox);
+
+  if IsNewProject then begin
+    if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
+      avrdudePathComboBox.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
+    end else begin
+      avrdudePathComboBox.Text := '';
+    end;
+
+    if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
+      avrdudeConfigPathComboBox.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
+    end else begin
+      avrdudeConfigPathComboBox.Text := '';
+    end;
+  end else begin
+    avrdudePathComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Path;
+    avrdudeConfigPathComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.ConfigPath;
+
+    AVR_SubArch_ComboBox.Text := AVR_ProjectOptions.AVR_SubArch;
+    AVR_Typ_FPC_ComboBox.Text := AVR_ProjectOptions.AVR_FPC_Typ;
+
+    ProgrammerComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Programmer;
+    COMPortComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.COM_Port;
+    COMPortBaudComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Baud;
+    AVR_Typ_avrdude_Edit.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
+
+    CheckBox_AsmFile.Checked := AVR_ProjectOptions.AsmFile;
+    CheckBox_Disable_Auto_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+  end;
+
+  ComboBox_Insert_Text(avrdudePathComboBox);
+  ComboBox_Insert_Text(avrdudeConfigPathComboBox);
+
+  ChangeAVR;
 end;
 
-procedure TAVR_Project_Options_Form.ProjectOptionsToMask;
+procedure TAVR_Project_Options_Form.Button_OkClick(Sender: TObject);
 begin
-  AVR_SubArch_ComboBox.Text := AVR_ProjectOptions.AVR_SubArch;
-  AVR_Typ_FPC_ComboBox.Text := AVR_ProjectOptions.AVR_FPC_Typ;
+  ComboBox_Insert_Text(avrdudePathComboBox);
+  SaveComboBox_to_XML(avrdudePathComboBox);
+  ComboBox_Insert_Text(avrdudeConfigPathComboBox);
+  SaveComboBox_to_XML(avrdudeConfigPathComboBox);
 
-  ProgrammerComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Programmer;
-  COMPortComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.COM_Port;
-  COMPortBaudComboBox.Text := AVR_ProjectOptions.AvrdudeCommand.Baud;
-  AVR_Typ_avrdude_Edit.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
-
-  CheckBox_AsmFile.Checked := AVR_ProjectOptions.AsmFile;
-  CheckBox_Disable_Auto_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
-end;
-
-procedure TAVR_Project_Options_Form.MaskToProjectOptions;
-begin
   AVR_ProjectOptions.AvrdudeCommand.Path := avrdudePathComboBox.Text;
   AVR_ProjectOptions.AvrdudeCommand.ConfigPath := avrdudeConfigPathComboBox.Text;
 
@@ -276,4 +182,84 @@ begin
   AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := CheckBox_Disable_Auto_Erase.Checked;
 end;
 
+procedure TAVR_Project_Options_Form.Button_AVRDude_PathClick(Sender: TObject);
+begin
+  OpenDialog.FileName := avrdudePathComboBox.Text;
+  if OpenDialog.Execute then begin
+    avrdudePathComboBox.Text := OpenDialog.FileName;
+    ComboBox_Insert_Text(avrdudePathComboBox);
+  end;
+end;
+
+procedure TAVR_Project_Options_Form.Button_AVERDude_Config_PathClick(Sender: TObject);
+begin
+  OpenDialog.FileName := avrdudeConfigPathComboBox.Text;
+  if OpenDialog.Execute then begin
+    avrdudeConfigPathComboBox.Text := OpenDialog.FileName;
+    ComboBox_Insert_Text(avrdudeConfigPathComboBox);
+  end;
+end;
+
+procedure TAVR_Project_Options_Form.AVR_SubArch_ComboBoxChange(Sender: TObject);
+begin
+  ChangeAVR;
+end;
+
+procedure TAVR_Project_Options_Form.Button_to_AVRDude_Typ_Click(Sender: TObject);
+begin
+  AVR_Typ_avrdude_Edit.Text := AVR_Typ_FPC_ComboBox.Text;
+end;
+
+procedure TAVR_Project_Options_Form.Button_TemplatesClick(Sender: TObject);
+var
+  TemplatesForm: TAVRProjectTemplatesForm;
+  i: integer;
+begin
+  TemplatesForm := TAVRProjectTemplatesForm.Create(nil);
+
+  for i := 0 to Length(AVR_TemplatesPara) - 1 do begin
+    TemplatesForm.ListBox_Template.Items.AddStrings(AVR_TemplatesPara[i].Name);
+  end;
+  TemplatesForm.ListBox_Template.Caption := AVR_TemplatesPara[0].Name;
+  TemplatesForm.ListBox_Template.ItemIndex := 0;
+
+  if TemplatesForm.ShowModal = mrOk then begin
+    i := TemplatesForm.ListBox_Template.ItemIndex;
+
+    AVR_SubArch_ComboBox.Text := AVR_TemplatesPara[i].AVR_SubArch;
+    AVR_Typ_FPC_ComboBox.Text := AVR_TemplatesPara[i].AVR_FPC_Typ;
+    AVR_Typ_avrdude_Edit.Text := AVR_TemplatesPara[i].AVR_AVRDude_Typ;
+    ProgrammerComboBox.Text := AVR_TemplatesPara[i].Programmer;
+    COMPortComboBox.Text := AVR_TemplatesPara[i].COM_Port;
+    COMPortBaudComboBox.Text := AVR_TemplatesPara[i].Baud;
+    CheckBox_Disable_Auto_Erase.Checked := AVR_TemplatesPara[i].Disable_Auto_Erase;
+    AVR_SubArch_ComboBox.OnChange(Sender);
+  end;
+
+  TemplatesForm.Free;
+end;
+
+procedure TAVR_Project_Options_Form.Button_CPU_InfoClick(Sender: TObject);
+var
+  Form: TCPU_InfoForm;
+begin
+  Form := TCPU_InfoForm.Create(nil);
+  Form.Load(AVR_ControllerDataList);
+  Form.ShowModal;
+  Form.Free;
+end;
+
+// private
+
+procedure TAVR_Project_Options_Form.ChangeAVR;
+var
+  ind: integer;
+begin
+  ind := AVR_SubArch_ComboBox.ItemIndex;
+  if (ind < 0) or (ind >= Length(AVR_SubArch_List)) then begin
+    AVR_Typ_FPC_ComboBox.Items.CommaText := '';
+  end else begin
+    AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];
+  end;
+end;
 end.

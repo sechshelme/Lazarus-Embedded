@@ -24,7 +24,7 @@ type
   { TARM_Project_Options_Form }
 
   TARM_Project_Options_Form = class(TForm)
-    AsmFile_CheckBox: TCheckBox;
+    CheckBox_ASMFile: TCheckBox;
     BitBtn1: TBitBtn;
     ARM_FlashBase_ComboBox: TComboBox;
     CPU_InfoButton: TButton;
@@ -53,9 +53,7 @@ type
   private
     procedure ChangeARM;
   public
-    procedure LoadDefaultMask;
-    procedure ProjectOptionsToMask;
-    procedure MaskToProjectOptions;
+    IsNewProject: boolean;
   end;
 
 var
@@ -67,21 +65,85 @@ implementation
 
 { TARM_Project_Options_Form }
 
+// public
+
 procedure TARM_Project_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'ARM Project Options';
   LoadFormPos_from_XML(Self);
+  IsNewProject := False;
+end;
+
+procedure TARM_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  SaveFormPos_to_XML(Self);
+end;
+
+procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
+begin
+  LoadComboBox_from_XML(STLinkPathComboBox);
+  if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
+    STLinkPathComboBox.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
+  end else begin
+    STLinkPathComboBox.Text := '';
+  end;
+  ComboBox_Insert_Text(STLinkPathComboBox);
+
+  with ARM_SubArch_ComboBox do begin
+    Items.CommaText := ARM_SubArch_List;
+    Style := csOwnerDrawFixed;
+    Text := 'ARMV7M';
+  end;
+
+  with ARM_Typ_FPC_ComboBox do begin
+    Sorted := True;
+    Text := 'STM32F103X8';
+  end;
+
+  with ARM_FlashBase_ComboBox do begin
+    Sorted := True;
+    Text := '0x08000000';
+    Items.Add('0x00000000');
+    Items.Add('0x08000000');
+  end;
+
+  CheckBox_ASMFile.Checked := False;
+
+  LoadComboBox_from_XML(STLinkPathComboBox);
+
+  if IsNewProject then begin
+    if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
+      STLinkPathComboBox.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
+    end else begin
+      STLinkPathComboBox.Text := '';
+    end;
+  end else begin
+    STLinkPathComboBox.Text := ARM_ProjectOptions.stlink_Command.Path;
+
+    ARM_SubArch_ComboBox.Text := ARM_ProjectOptions.ARM_SubArch;
+    ARM_Typ_FPC_ComboBox.Text := ARM_ProjectOptions.ARM_FPC_Typ;
+
+    ARM_FlashBase_ComboBox.Text := ARM_ProjectOptions.stlink_Command.FlashBase;
+
+    CheckBox_ASMFile.Checked := ARM_ProjectOptions.AsmFile;
+  end;
+  ComboBox_Insert_Text(STLinkPathComboBox);
+
+  ChangeARM;
 end;
 
 procedure TARM_Project_Options_Form.OkButtonClick(Sender: TObject);
 begin
   ComboBox_Insert_Text(STLinkPathComboBox);
   SaveComboBox_to_XML(STLinkPathComboBox);
-end;
 
-procedure TARM_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-begin
-  SaveFormPos_to_XML(Self);
+  ARM_ProjectOptions.ARM_SubArch := ARM_SubArch_ComboBox.Text;
+  ARM_ProjectOptions.ARM_FPC_Typ := ARM_Typ_FPC_ComboBox.Text;
+
+  ARM_ProjectOptions.stlink_Command.Path := STLinkPathComboBox.Text;
+  ARM_ProjectOptions.stlink_Command.FlashBase := ARM_FlashBase_ComboBox.Text;
+
+  ARM_ProjectOptions.AsmFile := CheckBox_ASMFile.Checked;
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
@@ -139,11 +201,6 @@ begin
   ChangeARM;
 end;
 
-procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
-begin
-  ChangeARM;
-end;
-
 procedure TARM_Project_Options_Form.Button_AVRDude_Path_Click(Sender: TObject);
 begin
   OpenDialog.FileName := STLinkPathComboBox.Text;
@@ -151,72 +208,6 @@ begin
     STLinkPathComboBox.Text := OpenDialog.FileName;
     ComboBox_Insert_Text(STLinkPathComboBox);
   end;
-//  SaveComboBox_to_XML(STLinkPathComboBox);
-end;
-
-// public
-
-procedure TARM_Project_Options_Form.LoadDefaultMask;
-begin
-  LoadComboBox_from_XML(STLinkPathComboBox);
-  if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
-    STLinkPathComboBox.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
-  end else begin
-    STLinkPathComboBox.Text := '';
-  end;
-  ComboBox_Insert_Text(STLinkPathComboBox);
-
-
-  //if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
-  //  if STLinkPathComboBox.Items.IndexOf(Embedded_IDE_Options.ARM.STFlashPath[0]) < 0 then begin
-  //    STLinkPathComboBox.Items.Add(Embedded_IDE_Options.ARM.STFlashPath[0]);
-  //  end;
-  //end;
-
-  with ARM_SubArch_ComboBox do begin
-    Items.CommaText := ARM_SubArch_List;
-    Style := csOwnerDrawFixed;
-    Text := 'ARMV7M';
-  end;
-
-  with ARM_Typ_FPC_ComboBox do begin
-    Sorted := True;
-    Text := 'STM32F103X8';
-  end;
-
-  with ARM_FlashBase_ComboBox do begin
-    Sorted := True;
-    Text := '0x08000000';
-    Items.Add('0x00000000');
-    Items.Add('0x08000000');
-  end;
-
-  AsmFile_CheckBox.Checked := False;
-end;
-
-procedure TARM_Project_Options_Form.ProjectOptionsToMask;
-begin
-//  STLinkPathComboBox.Text := ARM_ProjectOptions.stlink_Command.Path;
-//  ComboBox_Insert_Text(STLinkPathComboBox);
-//  SaveComboBox_to_XML(STLinkPathComboBox);
-
-  ARM_SubArch_ComboBox.Text := ARM_ProjectOptions.ARM_SubArch;
-  ARM_Typ_FPC_ComboBox.Text := ARM_ProjectOptions.ARM_FPC_Typ;
-
-  ARM_FlashBase_ComboBox.Text := ARM_ProjectOptions.stlink_Command.FlashBase;
-
-  AsmFile_CheckBox.Checked := ARM_ProjectOptions.AsmFile;
-end;
-
-procedure TARM_Project_Options_Form.MaskToProjectOptions;
-begin
-  ARM_ProjectOptions.ARM_SubArch := ARM_SubArch_ComboBox.Text;
-  ARM_ProjectOptions.ARM_FPC_Typ := ARM_Typ_FPC_ComboBox.Text;
-
-  ARM_ProjectOptions.stlink_Command.Path := STLinkPathComboBox.Text;
-  ARM_ProjectOptions.stlink_Command.FlashBase := ARM_FlashBase_ComboBox.Text;
-
-  ARM_ProjectOptions.AsmFile := AsmFile_CheckBox.Checked;
 end;
 
 // private

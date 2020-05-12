@@ -23,8 +23,9 @@ const
   Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
   Embedded_Options_File = 'embedded_gui_options.xml';
 
-  Key_AVRdude = 'avrdude/';
-  Key_STFlash = 'st_flash/';
+  Key_IDE_Options='IDEOptions/';
+  Key_AVRdude = Key_IDE_Options + 'avrdude/';
+  Key_STFlash = Key_IDE_Options + 'st_flash/';
 
   Key_Avrdude_Path = Key_AVRdude + 'pfad/';
   Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/';
@@ -137,9 +138,7 @@ begin
   repeat
     Result := p.Name + '/' + Result;
     p := p.Parent;
-    until p = nil;
-//    until (p = nil) or (Pos('FRAME', UpCase(p.ClassName)) > 0) or (Pos('FORM', UpCase(p.ClassName)) > 0);
-//  Result := p.Name + '/' + Result;
+  until p = nil;
 end;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
@@ -219,11 +218,6 @@ var
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Cfg.SetValue(Key + 'Count', sl.Count);
-  //if sl.Count > 0 then begin
-  //  Cfg.SetValue(Key + 'Text', sl[0]);
-  //end else begin
-  //  Cfg.SetValue(Key + 'Text', '');
-  //end;
   for i := 0 to sl.Count - 1 do begin
     Cfg.SetValue(Key + 'Item' + i.ToString + '/value', sl[i]);
   end;

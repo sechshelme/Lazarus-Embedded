@@ -57,11 +57,9 @@ begin
 
   ARM_ProjectOptions.Load_from_Project(LazProject);
 
-  ProjOptiForm.LoadDefaultMask;
-  ProjOptiForm.ProjectOptionsToMask;
+  ProjOptiForm.IsNewProject:=False;
 
   if ProjOptiForm.ShowModal = mrOk then begin
-    ProjOptiForm.MaskToProjectOptions;
     ARM_ProjectOptions.Save_to_Project(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
   end;
@@ -93,13 +91,9 @@ var
   Form: TARM_Project_Options_Form;
 begin
   Form := TARM_Project_Options_Form.Create(nil);
-
-  Form.LoadDefaultMask;
+  Form.IsNewProject:=True;
 
   Result := Form.ShowModal;
-  if Result = mrOk then begin
-    Form.MaskToProjectOptions;
-  end;
 
   Form.Free;
 end;

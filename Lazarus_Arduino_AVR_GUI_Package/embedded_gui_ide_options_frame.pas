@@ -19,7 +19,7 @@ var
   Embedded_IDE_Options: TEmbedded_IDE_Options;
 
 type
-  (* Frames ist sichtbar in der Lazarus-IDE unter: "Werkzeuge/Einstellungen.../Umgebung/AVR-Options" *)
+  (* Frames ist sichtbar in der Lazarus-IDE unter: "Werkzeuge/Einstellungen.../Umgebung/Embedded-GUI-Options" *)
 
   { TEmbedded_IDE_Options_Frame }
 
@@ -47,9 +47,9 @@ type
     SM_Output_Frame: TSM_Output_Frame;
   public
     function GetTitle: string; override;
-    procedure Setup({%H-}ADialog: TAbstractOptionsEditorDialog); override;
-    procedure ReadSettings({%H-}AOptions: TAbstractIDEOptions); override;
-    procedure WriteSettings({%H-}AOptions: TAbstractIDEOptions); override;
+    procedure Setup(ADialog: TAbstractOptionsEditorDialog); override;
+    procedure ReadSettings(AOptions: TAbstractIDEOptions); override;
+    procedure WriteSettings(AOptions: TAbstractIDEOptions); override;
     class function SupportedOptionsClass: TAbstractIDEOptionsClass; override;
   end;
 
@@ -88,7 +88,7 @@ end;
 
 function TEmbedded_IDE_Options_Frame.GetTitle: string;
 begin
-  Result := Title + 'Embedded GUI Optionen';
+  Result := Title + 'Optionen';
 end;
 
 procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
@@ -97,32 +97,6 @@ begin
   SM_Interface_Frame.Parent := Self.TabSheet3;
   SM_Output_Frame := TSM_Output_Frame.Create(Self);
   SM_Output_Frame.Parent := Self.TabSheet4;
-
-  ////  ComboBox_AVRdudePath.Items.Add(Default_Avrdude_Path);
-  //LoadComboBox_from_XML(ComboBox_AVRdudePath, Default_Avrdude_Path);
-  //
-  ////  ShowMessage(ComboBox_AVRdudePath.Items.CommaText);
-  ////  ComboBox_AVRdudePath.Text := Default_Avrdude_Path;
-  //
-  //  Embedded_IDE_Options.AVR.avrdudePath.AddStrings(ComboBox_AVRdudePath.Items, True);
-  //
-  ////  ComboBox_AVRdudeConf.Items.Add(Default_Avrdude_Conf_Path);
-  //  LoadComboBox_from_XML(ComboBox_AVRdudeConf, Default_Avrdude_Conf_Path);
-  ////  ComboBox_AVRdudeConf.Text := Default_Avrdude_Conf_Path;
-  //  Embedded_IDE_Options.AVR.avrdudeConfigPath.AddStrings(ComboBox_AVRdudeConf.Items, True);
-  //
-  ////  ComboBox_STFlashPfad.Items.Add(Default_STFlash_Path);
-  //  LoadComboBox_from_XML(ComboBox_STFlashPfad, Default_STFlash_Path);
-  ////  ComboBox_STFlashPfad.Text := Default_STFlash_Path;
-  //  Embedded_IDE_Options.ARM.STFlashPath.AddStrings(ComboBox_STFlashPfad.Items, True);
-  //
-  //  //    SetComboBoxText(ComboBox_AVRdudePath, AVR.avrdudePath, cstFilename);
-  //
-  //  //    SetComboBoxText(ComboBox_AVRdudeConf, AVR.avrdudeConfigPath, cstFilename);
-  //
-  //  //    SetComboBoxText(ComboBox_STFlashPfad, ARM.STFlashPath, cstFilename);
-
-
 
   SM_Interface_Frame.ComboBox_Port.Items.CommaText := GetSerialPortNames;
   SM_Interface_Frame.ComboBox_Baud.Items.CommaText := UARTBaudRates;
@@ -135,7 +109,13 @@ begin
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
+var
+  Cfg: TConfigStorage;
 begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  PageControl1.TabIndex := Cfg.GetValue(Key_IDE_Options + 'TabIndex', 0);
+  Cfg.Free;
+
   with Embedded_IDE_Options do begin
 
     ComboBox_AVRdudePath.Items.AddStrings(AVR.avrdudePath, True);
@@ -176,7 +156,13 @@ begin
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
+var
+  Cfg: TConfigStorage;
 begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.SetValue(Key_IDE_Options + 'TabIndex', PageControl1.TabIndex);
+  Cfg.Free;
+
   with Embedded_IDE_Options do begin
 
     with SerialMonitor_Options do begin
