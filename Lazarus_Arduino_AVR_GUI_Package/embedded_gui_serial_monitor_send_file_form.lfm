@@ -1,7 +1,7 @@
 object SerialMonitor_SendFile_Form: TSerialMonitor_SendFile_Form
-  Left = 935
+  Left = 1766
   Height = 108
-  Top = 216
+  Top = 48
   Width = 466
   Caption = 'SerialMonitor_SendFile_Form'
   ClientHeight = 108
@@ -46,7 +46,7 @@ object SerialMonitor_SendFile_Form: TSerialMonitor_SendFile_Form
     Width = 75
     Anchors = [akTop, akRight]
     Caption = '&Schliessen'
-    OnClick = Button_CloseClick
+    ModalResult = 11
     TabOrder = 3
   end
   object OpenDialog: TOpenDialog

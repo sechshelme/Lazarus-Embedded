@@ -41,4 +41,20 @@ object SM_Output_Frame: TSM_Output_Frame
     Caption = 'WordWarp'
     TabOrder = 2
   end
+  object Label1: TLabel
+    Left = 16
+    Height = 16
+    Top = 112
+    Width = 120
+    Caption = 'max Zeilen (0 = off):'
+    ParentColor = False
+  end
+  object ComboBox_maxRows: TComboBox
+    Left = 157
+    Height = 28
+    Top = 104
+    Width = 163
+    ItemHeight = 0
+    TabOrder = 3
+  end
 end

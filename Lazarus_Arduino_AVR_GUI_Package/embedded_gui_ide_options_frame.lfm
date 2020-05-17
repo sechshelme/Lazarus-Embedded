@@ -8,7 +8,7 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
   TabOrder = 0
   DesignLeft = 2060
   DesignTop = 358
-  object PageControl1: TPageControl
+  object PageControl_IDE_Options: TPageControl
     Left = 0
     Height = 641
     Top = 0

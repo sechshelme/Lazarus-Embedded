@@ -5,7 +5,7 @@ unit Embedded_GUI_Serial_Monitor_Send_File_Form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, FileUtil,
   Serial,
   Embedded_GUI_Common;
 
@@ -20,13 +20,12 @@ type
     ComboBox_Send_File: TComboBox;
     OpenDialog: TOpenDialog;
     procedure Button_File_OpenClick(Sender: TObject);
-    procedure Button_CloseClick(Sender: TObject);
     procedure Button_SendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormHide(Sender: TObject);
   private
+
   public
-    procedure SendBuffer(var Buffer: array of char; size: PtrInt);
   end;
 
 var
@@ -48,34 +47,28 @@ begin
   LoadComboBox_from_XML(ComboBox_Send_File);
 end;
 
-procedure TSerialMonitor_SendFile_Form.Button_CloseClick(Sender: TObject);
-begin
-  Close;
-end;
 
 procedure TSerialMonitor_SendFile_Form.Button_SendClick(Sender: TObject);
 var
-  sl: TStringList;
-  s: string;
+  path, s: string;
+  SrcHandle: THandle;
 begin
-  sl := TStringList.Create;
-  try
-    if FileExists(ComboBox_Send_File.Text) then begin
-      sl.LoadFromFile(ComboBox_Send_File.Text);
-      s := sl.Text;
+  path := ComboBox_Send_File.Text;
+  if FileExists(path) then begin
+    ComboBox_Insert_Text(ComboBox_Send_File);
+    SaveComboBox_to_XML(ComboBox_Send_File);
 
-      if Length(s) > 0 then begin
-//        SerWrite(Serial_Monitor_Form.SerialHandle, s[1], Length(s));
-        SendBuffer(s[1], Length(s));
-      end;
+    SetLength(s, FileSize(path));
+    SrcHandle := FileOpen(path, fmOpenRead or fmShareDenyWrite);
+    FileRead(SrcHandle, s[1], Length(s));
+    FileClose(SrcHandle);
 
-      ComboBox_Insert_Text(ComboBox_Send_File);
-      SaveComboBox_to_XML(ComboBox_Send_File);
-    end else begin
-      ShowMessage('Datei nicht gefunden !');
+    if Length(s) > 0 then begin
+      SerWrite(Serial_Monitor_Form.SerialHandle, s[1], Length(s));
     end;
-  finally
-    sl.Free;
+
+  end else begin
+    ShowMessage('Datei nicht gefunden !');
   end;
 end;
 
@@ -92,13 +85,6 @@ end;
 procedure TSerialMonitor_SendFile_Form.FormHide(Sender: TObject);
 begin
   SaveFormPos_to_XML(Self);
-end;
-
-procedure TSerialMonitor_SendFile_Form.SendBuffer(var Buffer: array of char; size: PtrInt);
-begin
-  if size > 0 then begin
-    SerWrite(Serial_Monitor_Form.SerialHandle, Buffer, size);
-  end;
 end;
 
 end.

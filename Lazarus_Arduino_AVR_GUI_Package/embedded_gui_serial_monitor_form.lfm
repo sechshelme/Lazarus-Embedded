@@ -1,7 +1,7 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 1635
+  Left = 1584
   Height = 245
-  Top = 207
+  Top = 316
   Width = 497
   Caption = 'Serial_Monitor_Form'
   ClientHeight = 221
@@ -539,6 +539,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Schliessen'
+    ModalResult = 11
     OnClick = Close_ButtonClick
     TabOrder = 3
   end

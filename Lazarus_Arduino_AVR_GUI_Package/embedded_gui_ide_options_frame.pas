@@ -34,7 +34,7 @@ type
     Label2: TLabel;
     Label3: TLabel;
     OpenDialog: TOpenDialog;
-    PageControl1: TPageControl;
+    PageControl_IDE_Options: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -106,15 +106,17 @@ begin
   SM_Interface_Frame.ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
 
   SM_Output_Frame.RadioGroup_LineBreak.Items.AddStrings(OutputLineBreaks, True);
+  SM_Output_Frame.ComboBox_maxRows.Items.CommaText := OutputDefaultmaxRows;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
-var
-  Cfg: TConfigStorage;
+//var
+//  Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  PageControl1.TabIndex := Cfg.GetValue(Key_IDE_Options + 'TabIndex', 0);
-  Cfg.Free;
+//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  LoadPageControl_from_XML(PageControl_IDE_Options);
+//  PageControl_IDE_Options.TabIndex := Cfg.GetValue(Key_IDE_Options + 'TabIndex', 0);
+//  Cfg.Free;
 
   with Embedded_IDE_Options do begin
 
@@ -150,18 +152,20 @@ begin
         SM_Output_Frame.RadioGroup_LineBreak.ItemIndex := LineBreak;
         SM_Output_Frame.CheckBox_AutoScroll.Checked := AutoScroll;
         SM_Output_Frame.CheckBox_WordWarp.Checked := WordWarp;
+        SM_Output_Frame.ComboBox_maxRows.Text := IntToStr(maxRows);
       end;
     end;
   end;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
-var
-  Cfg: TConfigStorage;
+//var
+//  Cfg: TConfigStorage;
 begin
-  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-  Cfg.SetValue(Key_IDE_Options + 'TabIndex', PageControl1.TabIndex);
-  Cfg.Free;
+//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+//  Cfg.SetValue(Key_IDE_Options + 'TabIndex', PageControl_IDE_Options.TabIndex);
+//  Cfg.Free;
+  SavePageControl_to_XML(PageControl_IDE_Options);
 
   with Embedded_IDE_Options do begin
 
@@ -182,6 +186,7 @@ begin
         LineBreak := SM_Output_Frame.RadioGroup_LineBreak.ItemIndex;
         AutoScroll := SM_Output_Frame.CheckBox_AutoScroll.Checked;
         WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
+        maxRows:= StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
       end;
     end;
 

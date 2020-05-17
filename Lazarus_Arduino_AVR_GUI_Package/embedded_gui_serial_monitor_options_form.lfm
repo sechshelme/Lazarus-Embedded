@@ -1,18 +1,17 @@
 object SerialMonitor_Options_Form: TSerialMonitor_Options_Form
-  Left = 1011
+  Left = 1957
   Height = 326
-  Top = 198
+  Top = 418
   Width = 687
   Caption = 'SerialMonitor_Options_Form'
   ClientHeight = 326
   ClientWidth = 687
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnHide = FormHide
   OnShow = FormShow
   Position = poDefaultSizeOnly
   LCLVersion = '2.1.0.0'
-  object PageControl1: TPageControl
+  object PageControl_SM_Options: TPageControl
     Left = 0
     Height = 268
     Top = 0
@@ -35,9 +34,9 @@ object SerialMonitor_Options_Form: TSerialMonitor_Options_Form
     Top = 284
     Width = 99
     Anchors = [akRight, akBottom]
-    Caption = '&Schliessen'
+    Caption = '&Abbruch'
     Kind = bkClose
-    OnClick = Btn_CloseClick
+    ModalResult = 11
     TabOrder = 1
   end
   object Btn_Apply: TBitBtn

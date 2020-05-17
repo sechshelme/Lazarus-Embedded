@@ -24,14 +24,12 @@ type
     Btn_Close: TBitBtn;
     Btn_Apply: TBitBtn;
     Btn_Ok: TBitBtn;
-    PageControl1: TPageControl;
+    PageControl_SM_Options: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     procedure Btn_ApplyClick(Sender: TObject);
-    procedure Btn_CloseClick(Sender: TObject);
     procedure Btn_OkClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -56,6 +54,7 @@ procedure TSerialMonitor_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'Serial-Monitor Optionen';
   LoadFormPos_from_XML(Self);
+  LoadPageControl_from_XML(PageControl_SM_Options);
 
   SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
   SM_Interface_Frame.Parent := Self.TabSheet1;
@@ -70,15 +69,13 @@ begin
   SM_Interface_Frame.ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
 
   SM_Output_Frame.RadioGroup_LineBreak.Items.AddStrings(OutputLineBreaks, True);
-end;
-
-procedure TSerialMonitor_Options_Form.FormDestroy(Sender: TObject);
-begin
+  SM_Output_Frame.ComboBox_maxRows.Items.CommaText:=OutputDefaultmaxRows;
 end;
 
 procedure TSerialMonitor_Options_Form.FormHide(Sender: TObject);
 begin
   SaveFormPos_to_XML(Self);
+  SavePageControl_to_XML(PageControl_SM_Options);
 end;
 
 procedure TSerialMonitor_Options_Form.Btn_OkClick(Sender: TObject);
@@ -105,17 +102,15 @@ begin
       LineBreak := SM_Output_Frame.RadioGroup_LineBreak.ItemIndex;
       AutoScroll := SM_Output_Frame.CheckBox_AutoScroll.Checked;
       WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
+      maxRows:=StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
     end;
+    {$IFNDEF Packages}
     Save_to_XML;
+    {$ENDIF}
   end;
 
   Serial_Monitor_Form.CloseSerial;
   Serial_Monitor_Form.OpenSerial;
-end;
-
-procedure TSerialMonitor_Options_Form.Btn_CloseClick(Sender: TObject);
-begin
-  Close;
 end;
 
 procedure TSerialMonitor_Options_Form.FormShow(Sender: TObject);
@@ -136,6 +131,7 @@ begin
       SM_Output_Frame.RadioGroup_LineBreak.ItemIndex := LineBreak;
       SM_Output_Frame.CheckBox_AutoScroll.Checked := AutoScroll;
       SM_Output_Frame.CheckBox_WordWarp.Checked := WordWarp;
+      SM_Output_Frame.ComboBox_maxRows.Text:=IntToStr(maxRows);
     end;
   end;
 end;

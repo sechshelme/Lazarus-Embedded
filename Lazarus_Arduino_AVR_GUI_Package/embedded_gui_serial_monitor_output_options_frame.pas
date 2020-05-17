@@ -14,6 +14,8 @@ type
   TSM_Output_Frame = class(TFrame)
     CheckBox_AutoScroll: TCheckBox;
     CheckBox_WordWarp: TCheckBox;
+    ComboBox_maxRows: TComboBox;
+    Label1: TLabel;
     RadioGroup_LineBreak: TRadioGroup;
   private
 

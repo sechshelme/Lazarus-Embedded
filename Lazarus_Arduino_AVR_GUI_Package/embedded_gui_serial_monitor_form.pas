@@ -272,6 +272,12 @@ begin
         SynEdit1.CaretY := SynEdit1.Lines.Count;
       end;
 
+      if SerialMonitor_Options.Output.maxRows > 0 then begin
+        while SynEdit1.Lines.Count > SerialMonitor_Options.Output.maxRows do begin
+          SynEdit1.Lines.Delete(0);
+        end;
+      end;
+
     end;
   finally
     Timer1.Enabled := True;

@@ -11,7 +11,7 @@ uses
   {$ELSE}
   XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
-  SysUtils, StdCtrls, Controls, Classes, Dialogs, Forms;
+  SysUtils, StdCtrls, Controls, Classes, Dialogs, ComCtrls, Forms;
 
 const
   UARTBaudRates =
@@ -22,14 +22,6 @@ const
 
   Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
   Embedded_Options_File = 'embedded_gui_options.xml';
-
-  Key_IDE_Options='IDEOptions/';
-  Key_AVRdude = Key_IDE_Options + 'avrdude/';
-  Key_STFlash = Key_IDE_Options + 'st_flash/';
-
-  Key_Avrdude_Path = Key_AVRdude + 'pfad/';
-  Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/';
-  Key_STFlash_Path = Key_STFlash + 'pfad/';
 
   {$IFDEF MSWINDOWS}
   Default_Avrdude_Path :TStringArray = ('c:\avrdude\avrdude.exe');
@@ -55,6 +47,8 @@ const
   OutputDefaultLineBreak = 0; // 0 = #10
   OutputDefaultAutoScroll = True;
   OutputDefaultWordWarp = False;
+  OutputDefaultmaxRow = 5000;
+  OutputDefaultmaxRows = '0,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000,200000,500000';
 
   UARTParitys = 'none,odd,even';
   UARTBitss = '5,6,7,8';
@@ -75,8 +69,8 @@ type
     Output: record
       LineBreak: integer;
       AutoScroll, WordWarp: boolean;
+      maxRows: Integer;
     end;
-    constructor Create;
     procedure Load_from_XML;
     procedure Save_to_XML;
   end;
@@ -110,11 +104,41 @@ procedure SaveStrings_to_XML(Key: string; sl: TStrings);
 procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray = nil);
 procedure SaveComboBox_to_XML(cb: TComboBox);
 
+procedure LoadPageControl_from_XML(pc: TPageControl);
+procedure SavePageControl_to_XML(pc: TPageControl);
+
 implementation
 
 const
   maxComboBoxCount = 20;
   FormPos = '/FormPos/';
+
+  Key_IDE_Options = 'IDEOptions/';
+  Key_AVRdude = Key_IDE_Options + 'avrdude/';
+  Key_Avrdude_Path = Key_AVRdude + 'pfad/';
+  Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/';
+
+  Key_STFlash = Key_IDE_Options + 'st_flash/';
+  Key_STFlash_Path = Key_STFlash + 'pfad/';
+
+  Key_ComPara = 'COMPortPara/';
+  Key_Output = 'OutputScreenPara/';
+  Key_SM_Config = 'Serial_Monitor_Config/';
+
+  Key_SerialMonitorPort = Key_SM_Config + Key_ComPara + 'Port';
+  Key_SerialMonitorBaud = Key_SM_Config + Key_ComPara + 'Baud';
+  Key_SerialMonitorParity = Key_SM_Config + Key_ComPara + 'Parity';
+  Key_SerialMonitorBits = Key_SM_Config + Key_ComPara + 'Bits';
+  Key_SerialMonitorStopBits = Key_SM_Config + Key_ComPara + 'StopBits';
+  Key_SerialMonitorFlowControl = Key_SM_Config + Key_ComPara + 'FlowControl';
+  Key_SerialMonitorTimeOut = Key_SM_Config + Key_ComPara + 'TimeOut';
+  Key_SerialMonitorTimer = Key_SM_Config + Key_ComPara + 'TimerInterval';
+
+  Key_SerialMonitorLineBreak = Key_SM_Config + Key_Output + 'LineBreak';
+  Key_SerialMonitorAutoScroll = Key_SM_Config + Key_Output + 'AutoScroll';
+  Key_SerialMonitorWordWarp = Key_SM_Config + Key_Output + 'Wordwarp';
+  Key_SerialMonitorMaxRows = Key_SM_Config + Key_Output + 'maxRows';
+
 
 {$IFNDEF Packages}
 type
@@ -245,33 +269,29 @@ begin
   SaveStrings_to_XML(Key, cb.Items);
 end;
 
+procedure LoadPageControl_from_XML(pc: TPageControl);
 var
-  Key_SerialMonitorPort, Key_SerialMonitorBaud, Key_SerialMonitorParity, Key_SerialMonitorBits, Key_SerialMonitorStopBits, Key_SerialMonitorFlowControl, Key_SerialMonitorTimeOut, Key_SerialMonitorTimer, Key_SerialMonitorLineBreak, Key_SerialMonitorAutoScroll, Key_SerialMonitorWordWarp: string;
+  Cfg: TConfigStorage;
+  Key: string;
+begin
+  Key := getParents(pc);
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  pc.PageIndex := Cfg.GetValue(Key + 'PageIndex', 0);
+  Cfg.Free;
+end;
+
+procedure SavePageControl_to_XML(pc: TPageControl);
+var
+  Cfg: TConfigStorage;
+  Key: string;
+begin
+  Key := getParents(pc);
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.SetValue(Key + 'PageIndex', pc.PageIndex);
+  Cfg.Free;
+end;
 
 { TSerialMonitor_Options }
-
-constructor TSerialMonitor_Options.Create;
-const
-  i = 'COMPortPara/';
-  o = 'OutputScreenPara/';
-  n = 'Serial_Monitor_Config/';
-begin
-  inherited Create;
-
-  Key_SerialMonitorPort := n + i + 'Port';
-  Key_SerialMonitorBaud := n + i + 'Baud';
-  Key_SerialMonitorParity := n + i + 'Parity';
-  Key_SerialMonitorBits := n + i + 'Bits';
-  Key_SerialMonitorStopBits := n + i + 'StopBits';
-  Key_SerialMonitorFlowControl := n + i + 'FlowControl';
-  Key_SerialMonitorTimeOut := n + i + 'TimeOut';
-  Key_SerialMonitorTimer := n + i + 'TimerInterval';
-
-  Key_SerialMonitorLineBreak := n + o + 'LineBreak';
-  Key_SerialMonitorAutoScroll := n + o + 'AutoScroll';
-  Key_SerialMonitorWordWarp := n + o + 'Wordwarp';
-//  Load_from_XML;
-end;
 
 procedure TSerialMonitor_Options.Load_from_XML;
 var
@@ -293,6 +313,7 @@ begin
     LineBreak := Cfg.GetValue(Key_SerialMonitorLineBreak, OutputDefaultLineBreak);
     AutoScroll := Cfg.GetValue(Key_SerialMonitorAutoScroll, OutputDefaultAutoScroll);
     WordWarp := Cfg.GetValue(Key_SerialMonitorWordWarp, OutputDefaultWordWarp);
+    maxRows := Cfg.GetValue(Key_SerialMonitorMaxRows, OutputDefaultmaxRow);
   end;
   Cfg.Free;
 end;
@@ -317,6 +338,7 @@ begin
     Cfg.SetValue(Key_SerialMonitorLineBreak, LineBreak);
     Cfg.SetValue(Key_SerialMonitorAutoScroll, AutoScroll);
     Cfg.SetValue(Key_SerialMonitorWordWarp, WordWarp);
+    Cfg.SetValue(Key_SerialMonitorMaxRows, maxRows);
   end;
   Cfg.Free;
 end;
@@ -331,8 +353,6 @@ begin
   AVR.avrdudePath:=TStringList.Create;
   AVR.avrdudeConfigPath:= TStringList.Create;
   ARM.STFlashPath:= TStringList.Create;
-
-//  Load_from_XML;
 end;
 
 destructor TEmbedded_IDE_Options.Destroy;
@@ -344,37 +364,21 @@ begin
 end;
 
 procedure TEmbedded_IDE_Options.Load_from_XML;
-//var
-//  Cfg: TConfigStorage;
 begin
-//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   LoadStrings_from_XML(Key_Avrdude_Path, AVR.avrdudePath, Default_Avrdude_Path);
   LoadStrings_from_XML(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath, Default_Avrdude_Conf_Path);
   LoadStrings_from_XML(Key_STFlash_Path, ARM.STFlashPath, Default_STFlash_Path);
 
-//  AVR.avrdudePath := Cfg.GetValue(Key_Avrdude_Path, Default_Avrdude_Path);
-//  AVR.avrdudeConfigPath := Cfg.GetValue(Key_Avrdude_Conf_Path, Default_Avrdude_Conf_Path);
-//  ARM.STFlashPath := Cfg.GetValue(Key_STFlash_Path, Default_STFlash_Path);
-
   SerialMonitor_Options.Load_from_XML;
-//  Cfg.Free;
 end;
 
 procedure TEmbedded_IDE_Options.Save_to_XML;
-//var
-//  Cfg: TConfigStorage;
 begin
   SaveStrings_to_XML(Key_Avrdude_Path, AVR.avrdudePath);
   SaveStrings_to_XML(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
   SaveStrings_to_XML(Key_STFlash_Path, ARM.STFlashPath);
-//
-//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-//  Cfg.SetValue(Key_Avrdude_Path, AVR.avrdudePath);
-//  Cfg.SetValue(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
-//  Cfg.SetValue(Key_STFlash_Path, ARM.STFlashPath);
 
   SerialMonitor_Options.Save_to_XML;
-//  Cfg.Free;
 end;
 
 end.
