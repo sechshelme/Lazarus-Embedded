@@ -110,13 +110,8 @@ begin
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
-//var
-//  Cfg: TConfigStorage;
 begin
-//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   LoadPageControl_from_XML(PageControl_IDE_Options);
-//  PageControl_IDE_Options.TabIndex := Cfg.GetValue(Key_IDE_Options + 'TabIndex', 0);
-//  Cfg.Free;
 
   with Embedded_IDE_Options do begin
 
@@ -159,12 +154,7 @@ begin
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
-//var
-//  Cfg: TConfigStorage;
 begin
-//  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
-//  Cfg.SetValue(Key_IDE_Options + 'TabIndex', PageControl_IDE_Options.TabIndex);
-//  Cfg.Free;
   SavePageControl_to_XML(PageControl_IDE_Options);
 
   with Embedded_IDE_Options do begin

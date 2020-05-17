@@ -181,7 +181,6 @@ end;
 
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
 var
-  i: integer;
   s: string;
 begin
   s := ComboBox_SendString.Text;
