@@ -105,12 +105,15 @@ begin
 
   SynEdit1.ScrollBars := ssAutoBoth;
   SynEdit1.ParentFont := False;
-  SynEdit1.Color := clBlack;
-  SynEdit1.Font.Color := clLtGray;
-  SynEdit1.Font.Name := 'Monospace';
-  SynEdit1.Font.Style := [fsBold];
+  //SynEdit1.Color := clBlack;
+  //SynEdit1.Font.Color := clLtGray;
+  //SynEdit1.Font.Name := 'Monospace';
+  //SynEdit1.Font.Style := [fsBold, fsItalic];
   SynEdit1.DoubleBuffered := True;
   SynEdit1.ReadOnly := True;
+
+  SynEdit1.Color := SerialMonitor_Options.Output.BKColor;
+  SynEdit1.Font.Assign(SerialMonitor_Options.Output.Font);
 
   LoadComboBox_from_XML(ComboBox_SendString, ['Hello World !', 'Hallo Welt !']);
 

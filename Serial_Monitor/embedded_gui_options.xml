@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CONFIG>
   <Serial_Monitor_Form>
-    <FormPos Top="186" Left="1738" Width="872" Height="1084"/>
+    <FormPos Top="187" Left="1738" Width="872" Height="1083"/>
     <ComboBox_SendString Count="3">
       <Item0 value="abc"/>
       <Item1 value="Hello World !"/>
@@ -18,11 +18,15 @@
     <FormPos Top="496" Left="389" Width="1029" Height="115"/>
   </SerialMonitor_SendFile_Form>
   <SerialMonitor_Options_Form>
-    <FormPos Top="198" Left="1011" Width="687" Height="326"/>
-    <PageControl_SM_Options PageIndex="0"/>
+    <FormPos Top="293" Left="729" Width="687" Height="435"/>
+    <PageControl_SM_Options PageIndex="1"/>
   </SerialMonitor_Options_Form>
   <Serial_Monitor_Config>
     <COMPortPara Baud="115200" Bits="8" Port="/dev/ttyUSB0" Parity="none" TimeOut="11" StopBits="1" FlowControl="none" TimerInterval="201"/>
-    <OutputScreenPara maxRows="10" Wordwarp="False" LineBreak="0" AutoScroll="True"/>
+    <OutputScreenPara BKColor="0" maxRows="5000" Wordwarp="False" LineBreak="0" AutoScroll="True">
+      <Font Name="Monospace" Size="12" Color="12632256">
+        <Style Bold="True" Italic="False" StrikeOut="False" UnderLine="False"/>
+      </Font>
+    </OutputScreenPara>
   </Serial_Monitor_Config>
 </CONFIG>

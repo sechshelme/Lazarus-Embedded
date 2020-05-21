@@ -103,8 +103,7 @@ begin
   with ARM_FlashBase_ComboBox do begin
     Sorted := True;
     Text := '0x08000000';
-    Items.Add('0x00000000');
-    Items.Add('0x08000000');
+    Items.AddStrings(['0x00000000', '0x08000000']);
   end;
 
   CheckBox_ASMFile.Checked := False;

@@ -11,7 +11,7 @@ uses
   {$ELSE}
   XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
-  SysUtils, StdCtrls, Controls, Classes, Dialogs, ComCtrls, Forms;
+  SysUtils, StdCtrls, Controls, Classes, Dialogs, ComCtrls,Graphics, Forms;
 
 const
   UARTBaudRates =
@@ -57,9 +57,10 @@ const
 
   OutputLineBreaks: TStringArray = ('LF / #10', 'CR / #13', 'CRLF / #13#10');
 
-{ TSerialMonitor_Options }
-
 type
+
+   { TSerialMonitor_Options }
+
   TSerialMonitor_Options = class(TObject)
   public
     Com_Interface: record
@@ -70,7 +71,11 @@ type
       LineBreak: integer;
       AutoScroll, WordWarp: boolean;
       maxRows: Integer;
+      Font: TFont;
+      BKColor: TColor;
     end;
+    constructor Create;
+    destructor Destroy; override;
     procedure Load_from_XML;
     procedure Save_to_XML;
   end;
@@ -107,6 +112,10 @@ procedure SaveComboBox_to_XML(cb: TComboBox);
 procedure LoadPageControl_from_XML(pc: TPageControl);
 procedure SavePageControl_to_XML(pc: TPageControl);
 
+procedure LoadFont_from_XML(Key: string; f: TFont);
+procedure SaveFont_to_XML(Key: string; f: TFont);
+
+
 implementation
 
 const
@@ -138,6 +147,8 @@ const
   Key_SerialMonitorAutoScroll = Key_SM_Config + Key_Output + 'AutoScroll';
   Key_SerialMonitorWordWarp = Key_SM_Config + Key_Output + 'Wordwarp';
   Key_SerialMonitorMaxRows = Key_SM_Config + Key_Output + 'maxRows';
+  Key_SerialMonitorFont = Key_SM_Config + Key_Output + 'Font';
+  Key_SerialMonitorBKColor = Key_SM_Config + Key_Output + 'BKColor';
 
 
 {$IFNDEF Packages}
@@ -291,7 +302,52 @@ begin
   Cfg.Free;
 end;
 
+procedure LoadFont_from_XML(Key: string; f: TFont);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  f.Color := Cfg.GetValue(Key + '/Color', 0);
+  f.Name := Cfg.GetValue(Key + '/Name', '');
+  f.Size := Cfg.GetValue(Key + '/Size', 0);
+  f.Style:=[];
+  if Cfg.GetValue(Key + '/Style/Bold', True) then f.Style:=f.Style+[fsBold];
+  if Cfg.GetValue(Key + '/Style/Italic', False) then f.Style:=f.Style+[fsItalic];
+  if Cfg.GetValue(Key + '/Style/StrikeOut', False) then f.Style:=f.Style+[fsStrikeOut];
+  if Cfg.GetValue(Key + '/Style/UnderLine', False) then f.Style:=f.Style+[fsUnderline];
+  Cfg.Free;
+end;
+
+procedure SaveFont_to_XML(Key: string; f: TFont);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.SetValue(Key + '/Color', f.Color);
+  Cfg.SetValue(Key + '/Name', f.Name);
+  Cfg.SetValue(Key + '/Size', f.Size);
+
+  Cfg.SetValue(Key + '/Style/Bold', fsBold in f.Style);
+  Cfg.SetValue(Key + '/Style/Italic', fsItalic in f.Style);
+  Cfg.SetValue(Key + '/Style/StrikeOut', fsStrikeOut in f.Style);
+  Cfg.SetValue(Key + '/Style/UnderLine', fsUnderline in f.Style);
+
+  Cfg.Free;
+end;
+
 { TSerialMonitor_Options }
+
+constructor TSerialMonitor_Options.Create;
+begin
+  inherited Create;
+  Output.Font := TFont.Create;
+end;
+
+destructor TSerialMonitor_Options.Destroy;
+begin
+  inherited Destroy;
+  Output.Font.Free;
+end;
 
 procedure TSerialMonitor_Options.Load_from_XML;
 var
@@ -314,8 +370,10 @@ begin
     AutoScroll := Cfg.GetValue(Key_SerialMonitorAutoScroll, OutputDefaultAutoScroll);
     WordWarp := Cfg.GetValue(Key_SerialMonitorWordWarp, OutputDefaultWordWarp);
     maxRows := Cfg.GetValue(Key_SerialMonitorMaxRows, OutputDefaultmaxRow);
+    BKColor:=Cfg.GetValue(Key_SerialMonitorBKColor, clRed);
   end;
   Cfg.Free;
+  LoadFont_from_XML(Key_SerialMonitorFont, Output.Font);
 end;
 
 procedure TSerialMonitor_Options.Save_to_XML;
@@ -339,8 +397,10 @@ begin
     Cfg.SetValue(Key_SerialMonitorAutoScroll, AutoScroll);
     Cfg.SetValue(Key_SerialMonitorWordWarp, WordWarp);
     Cfg.SetValue(Key_SerialMonitorMaxRows, maxRows);
+    Cfg.SetValue(Key_SerialMonitorBKColor, BKColor);
   end;
   Cfg.Free;
+  SaveFont_to_XML(Key_SerialMonitorFont, Output.Font);
 end;
 
 { TEmbedded_IDE_Options }

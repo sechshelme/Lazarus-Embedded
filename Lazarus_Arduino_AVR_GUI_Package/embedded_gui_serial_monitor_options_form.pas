@@ -60,16 +60,6 @@ begin
   SM_Interface_Frame.Parent := Self.TabSheet1;
   SM_Output_Frame := TSM_Output_Frame.Create(Self);
   SM_Output_Frame.Parent := Self.TabSheet2;
-
-  SM_Interface_Frame.ComboBox_Port.Items.CommaText := GetSerialPortNames;
-  SM_Interface_Frame.ComboBox_Baud.Items.CommaText := UARTBaudRates;
-  SM_Interface_Frame.ComboBox_Parity.Items.CommaText := UARTParitys;
-  SM_Interface_Frame.ComboBox_Bits.Items.CommaText := UARTBitss;
-  SM_Interface_Frame.ComboBox_StopBits.Items.CommaText := UARTStopBitss;
-  SM_Interface_Frame.ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
-
-  SM_Output_Frame.RadioGroup_LineBreak.Items.AddStrings(OutputLineBreaks, True);
-  SM_Output_Frame.ComboBox_maxRows.Items.CommaText:=OutputDefaultmaxRows;
 end;
 
 procedure TSerialMonitor_Options_Form.FormHide(Sender: TObject);
@@ -102,7 +92,12 @@ begin
       LineBreak := SM_Output_Frame.RadioGroup_LineBreak.ItemIndex;
       AutoScroll := SM_Output_Frame.CheckBox_AutoScroll.Checked;
       WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
-      maxRows:=StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
+      maxRows := StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
+      BKColor:=SM_Output_Frame.Label_Color.Color;
+      Font.Assign(SM_Output_Frame.Label_Color.Font);
+
+      Serial_Monitor_Form.SynEdit1.Font.Assign(Font);
+      Serial_Monitor_Form.SynEdit1.Color := BKColor;
     end;
     {$IFNDEF Packages}
     Save_to_XML;
@@ -131,7 +126,10 @@ begin
       SM_Output_Frame.RadioGroup_LineBreak.ItemIndex := LineBreak;
       SM_Output_Frame.CheckBox_AutoScroll.Checked := AutoScroll;
       SM_Output_Frame.CheckBox_WordWarp.Checked := WordWarp;
-      SM_Output_Frame.ComboBox_maxRows.Text:=IntToStr(maxRows);
+      SM_Output_Frame.ComboBox_maxRows.Text := IntToStr(maxRows);
+
+      SM_Output_Frame.Label_Color.Color:=BKColor;
+      SM_Output_Frame.Label_Color.Font.Assign(Font);
     end;
   end;
 end;

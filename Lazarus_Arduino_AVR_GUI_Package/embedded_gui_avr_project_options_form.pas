@@ -116,7 +116,7 @@ begin
   end;
 
   with COMPortBaudComboBox do begin
-    Items.CommaText := '19200,57600,115200';
+    Items.AddStrings(['19200', '57600', '115200']);
     Text := '57600';
   end;
 
@@ -262,4 +262,5 @@ begin
     AVR_Typ_FPC_ComboBox.Items.CommaText := AVR_List[ind];
   end;
 end;
+
 end.

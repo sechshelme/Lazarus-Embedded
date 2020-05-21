@@ -93,20 +93,14 @@ end;
 
 procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
-  SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
-  SM_Interface_Frame.Parent := Self.TabSheet3;
-  SM_Output_Frame := TSM_Output_Frame.Create(Self);
-  SM_Output_Frame.Parent := Self.TabSheet4;
-
-  SM_Interface_Frame.ComboBox_Port.Items.CommaText := GetSerialPortNames;
-  SM_Interface_Frame.ComboBox_Baud.Items.CommaText := UARTBaudRates;
-  SM_Interface_Frame.ComboBox_Parity.Items.CommaText := UARTParitys;
-  SM_Interface_Frame.ComboBox_Bits.Items.CommaText := UARTBitss;
-  SM_Interface_Frame.ComboBox_StopBits.Items.CommaText := UARTStopBitss;
-  SM_Interface_Frame.ComboBox_FlowControl.Items.CommaText := UARTFlowControls;
-
-  SM_Output_Frame.RadioGroup_LineBreak.Items.AddStrings(OutputLineBreaks, True);
-  SM_Output_Frame.ComboBox_maxRows.Items.CommaText := OutputDefaultmaxRows;
+  if not Assigned(SM_Interface_Frame) then begin
+    SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
+    SM_Interface_Frame.Parent := Self.TabSheet3;
+  end;
+  if not Assigned(SM_Output_Frame) then begin
+    SM_Output_Frame := TSM_Output_Frame.Create(Self);
+    SM_Output_Frame.Parent := Self.TabSheet4;
+  end;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
@@ -148,6 +142,9 @@ begin
         SM_Output_Frame.CheckBox_AutoScroll.Checked := AutoScroll;
         SM_Output_Frame.CheckBox_WordWarp.Checked := WordWarp;
         SM_Output_Frame.ComboBox_maxRows.Text := IntToStr(maxRows);
+
+        SM_Output_Frame.Label_Color.Color := BKColor;
+        SM_Output_Frame.Label_Color.Font.Assign(Font);
       end;
     end;
   end;
@@ -176,7 +173,10 @@ begin
         LineBreak := SM_Output_Frame.RadioGroup_LineBreak.ItemIndex;
         AutoScroll := SM_Output_Frame.CheckBox_AutoScroll.Checked;
         WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
-        maxRows:= StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
+        maxRows := StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
+
+        BKColor := SM_Output_Frame.Label_Color.Color;
+        Font.Assign(SM_Output_Frame.Label_Color.Font);
       end;
     end;
 
@@ -198,7 +198,6 @@ begin
 end;
 
 end.
-
 
 
 
