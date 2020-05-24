@@ -252,6 +252,7 @@ var
   i: integer;
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.DeletePath(Key);
   Cfg.SetValue(Key + 'Count', sl.Count);
   for i := 0 to sl.Count - 1 do begin
     Cfg.SetValue(Key + 'Item' + i.ToString + '/value', sl[i]);

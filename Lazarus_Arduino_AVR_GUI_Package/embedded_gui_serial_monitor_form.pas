@@ -105,10 +105,6 @@ begin
 
   SynEdit1.ScrollBars := ssAutoBoth;
   SynEdit1.ParentFont := False;
-  //SynEdit1.Color := clBlack;
-  //SynEdit1.Font.Color := clLtGray;
-  //SynEdit1.Font.Name := 'Monospace';
-  //SynEdit1.Font.Style := [fsBold, fsItalic];
   SynEdit1.DoubleBuffered := True;
   SynEdit1.ReadOnly := True;
 

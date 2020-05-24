@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CONFIG>
   <Serial_Monitor_Form>
-    <FormPos Top="187" Left="1738" Width="872" Height="1083"/>
+    <FormPos Top="188" Left="1641" Width="872" Height="1083"/>
     <ComboBox_SendString Count="3">
-      <Item0 value="abc"/>
+      <Item0 value="test"/>
       <Item1 value="Hello World !"/>
       <Item2 value="Hallo Welt !"/>
     </ComboBox_SendString>
   </Serial_Monitor_Form>
   <SerialMonitor_SendFile_Form>
-    <ComboBox_Send_File Text="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lpi" Count="4">
-      <Item0 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.lpi"/>
-      <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas"/>
-      <Item2 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/project1.res"/>
-      <Item3 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/Parenttest/unit1.pas"/>
+    <FormPos Top="540" Left="485" Width="1029" Height="115"/>
+    <ComboBox_Send_File Count="4">
+      <Item0 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_Arduino_AVR_GUI_Package/embedded_gui_serial_monitor_form.pas"/>
+      <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_Arduino_AVR_GUI_Package/embedded_gui_register.pas"/>
+      <Item2 value="/n4800/DATEN/Programmierung/Lazarus/Weka/Kabel-pruefer/source/LadenUnit.pas"/>
+      <Item3 value="/n4800/DATEN/Programmierung/Lazarus/Weka/Kabel-pruefer/source/Error.pas"/>
     </ComboBox_Send_File>
-    <FormPos Top="496" Left="389" Width="1029" Height="115"/>
   </SerialMonitor_SendFile_Form>
   <SerialMonitor_Options_Form>
     <FormPos Top="293" Left="729" Width="687" Height="435"/>

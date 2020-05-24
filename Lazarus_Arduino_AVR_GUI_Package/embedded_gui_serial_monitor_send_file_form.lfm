@@ -47,6 +47,7 @@ object SerialMonitor_SendFile_Form: TSerialMonitor_SendFile_Form
     Anchors = [akTop, akRight]
     Caption = '&Schliessen'
     ModalResult = 11
+    OnClick = Button_CloseClick
     TabOrder = 3
   end
   object OpenDialog: TOpenDialog

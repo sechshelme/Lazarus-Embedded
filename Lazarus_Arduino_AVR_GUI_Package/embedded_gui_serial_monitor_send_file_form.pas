@@ -19,6 +19,7 @@ type
     Button_Send: TButton;
     ComboBox_Send_File: TComboBox;
     OpenDialog: TOpenDialog;
+    procedure Button_CloseClick(Sender: TObject);
     procedure Button_File_OpenClick(Sender: TObject);
     procedure Button_SendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -80,6 +81,11 @@ begin
     ComboBox_Insert_Text(ComboBox_Send_File);
     SaveComboBox_to_XML(ComboBox_Send_File);
   end;
+end;
+
+procedure TSerialMonitor_SendFile_Form.Button_CloseClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TSerialMonitor_SendFile_Form.FormHide(Sender: TObject);
