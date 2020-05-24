@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s123 xmlns="http://www.w3.org/2000/svg" width="800.000" height="600.000" viewBox="0.0 0.0 800.000 600.000" version="1.1">
+  <title>Produce by Acme CAD Converter</title>
+  <desc>Produce by Acme CAD Converter</desc>
+  <test1>
+    <xmltest a="1" b="2" c="3"/>
+    <xmltest>blaa</xmltest>
+    <xmltest>blab</xmltest>
+    <xmltest>blac</xmltest>
+    <xmltest2 a="1" b="2" c="3">      Hello world    </xmltest2>
+    <xmltest>blad</xmltest>
+    <xmltest>blae</xmltest>
+    <xmltest>blaf</xmltest>
+
+    xmltest1 
+    xmltest2 
+  </test1>
+  <test2 s="mein Test">
+    <xmltest>bla bla</xmltest> 
+    <xmltest>
+      bla bla
+      <br>
+       hi hi
+      </br>
+      <br>hi hi</br>
+      <xmltest>bla bla</xmltest>
+      <xmltest>bla bla</xmltest>
+    </xmltest>
+  </test2>
+  <polyline points="201.02,101.02 134.57,98.56" style="fill:none;stroke:black;stroke-width:0.5"/>
+  <polyline points="134.57,137.59 201.02,135.13" style="fill:none;stroke:black;stroke-width:0.5"/>
+</s123>
+
+<!--
+<abc a="1" b="2" c="3">
+  <polyline points="201.02,101.02 134.57,98.56" style="fill:none;stroke:black;stroke-width:0.5"/>
+  <polyline points="134.57,137.59 201.02,135.13" style="fill:none;stroke:black;stroke-width:0.5"/>
+</abc>-->

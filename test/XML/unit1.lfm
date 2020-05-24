@@ -1,0 +1,50 @@
+object Form1: TForm1
+  Left = 1437
+  Height = 969
+  Top = 201
+  Width = 1091
+  Caption = 'Form1'
+  ClientHeight = 969
+  ClientWidth = 1091
+  OnDestroy = FormDestroy
+  LCLVersion = '2.0.8.0'
+  object Memo1: TMemo
+    Left = 848
+    Height = 144
+    Top = 776
+    Width = 216
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      'Memo1'
+    )
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 1000
+    Height = 25
+    Top = 933
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object TreeView1: TTreeView
+    Left = 0
+    Height = 912
+    Top = 0
+    Width = 1091
+    Align = alTop
+    TabOrder = 2
+  end
+  object Button2: TButton
+    Left = 920
+    Height = 25
+    Top = 933
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Button2'
+    OnClick = Button2Click
+    TabOrder = 3
+  end
+end
