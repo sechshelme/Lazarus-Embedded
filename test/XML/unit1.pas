@@ -16,7 +16,6 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
-    Memo1: TMemo;
     TreeView1: TTreeView;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -32,6 +31,11 @@ var
 implementation
 
 {$R *.lfm}
+
+
+const
+    path = 'test.xml';
+//  path = 'XML/attiny4.xml';
 
 const
   Options_File = 'config.xml';
@@ -66,9 +70,6 @@ end;
 { TForm1 }
 
 procedure TForm1.Button1Click(Sender: TObject);
-const
-//  path = 'test.xml';
-  path = 'XML/attiny4.xml';
 var
   doc: TXMLDocument;
   poly_Node: TDOMNode;
@@ -81,22 +82,19 @@ var
   begin
     for i := 0 to n.Count - 1 do begin
       if n.Item[i].NodeName = '#text' then begin
-        Memo1.Lines.Add(StringOfChar(' ', schachtel * 4) + n.Item[i].NodeValue);
         TreeView1.Items.AddChild(t, n.Item[i].NodeValue);
       end else begin
-        Memo1.Lines.Add(StringOfChar(' ', schachtel * 4) + n.Item[i].NodeName);
         TreeView1.Items.AddChild(t, n.Item[i].NodeName);
       end;
 
       if n.Item[i].HasAttributes then begin
         for j := 0 to n.Item[i].Attributes.Length - 1 do begin
-          Memo1.Lines.Add(StringOfChar(' ', schachtel * 4 + 4) + n.Item[i].Attributes.Item[j].NodeName + ': ' + n.Item[i].Attributes.Item[j].NodeValue);
-          TreeView1.Items.AddChild(t.Items[i], n.Item[i].Attributes.Item[j].NodeName + ': ' + n.Item[i].Attributes.Item[j].NodeValue);
+          TreeView1.Items.AddChild(t.Items[i], n.Item[i].Attributes.Item[j].NodeName +
+            '= "' + n.Item[i].Attributes.Item[j].NodeValue+'"');
         end;
       end;
 
       if n.Item[i].HasChildNodes then begin
-        //        TreeView1.Items.AddChild(t,'bla bla');
         Node(n.Item[i].ChildNodes, t.Items[i], schachtel + 1);
       end;
 
@@ -104,7 +102,6 @@ var
   end;
 
 begin
-  Memo1.Clear;
   TreeView1.Items.Clear;
   ReadXMLFile(doc, path);
 
@@ -134,15 +131,43 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
-  t: TTreeNode;
+  doc: TXMLDocument;
+
+  s, nodeName: string;
+
+  procedure Node(ANode: TDOMNode; t: TTreeNode; schachtel: integer);
+  var
+    i, j: integer;
+    child: TDOMNode;
+  begin
+    nodeName := ANode.NodeName;
+    if ANode.NodeName = '#text' then begin
+      TreeView1.Items.AddChild(t, ANode.NodeValue);
+    end else begin
+
+      TreeView1.Items.AddChild(t, ANode.NodeName);
+    end;
+
+    if ANode.HasAttributes then begin
+      for j := 0 to ANode.Attributes.Length - 1 do begin
+        TreeView1.Items.AddChild(t.Items[i], ANode.Attributes.Item[j].NodeName +          '= "' + ANode.Attributes.Item[j].NodeValue+'"');
+      end;
+    end;
+
+    child := ANode.FirstChild;
+    while child <> nil do begin
+      Node(child, t.Items[i], schachtel + 1);
+      child := child.NextSibling;
+    end;
+
+  end;
+
 begin
+  TreeView1.Items.Clear;
+  ReadXMLFile(doc, path);
   TreeView1.Items.Add(nil, 'abc');
-
-  TreeView1.Items.AddChild(TreeView1.Items[0], '123');
-  TreeView1.Items.AddChild(nil, '456');
-  TreeView1.Items.AddChild(TreeView1.Items[0].Items[0], '789');
-  TreeView1.Items.Add(nil, 'abc');
-
+  Node(doc.DocumentElement, TreeView1.Items[0], 0);
+  doc.Free;
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
