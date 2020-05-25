@@ -127,6 +127,7 @@ begin
   //Doc := TXMLDocument.Create;
   //WriteXMLFile(doc, path);
   //doc.Free;
+  TreeView1.FullExpand;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
