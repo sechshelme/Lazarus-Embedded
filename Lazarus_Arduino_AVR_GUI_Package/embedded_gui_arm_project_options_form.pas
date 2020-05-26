@@ -30,18 +30,18 @@ type
     CPU_InfoButton: TButton;
     Label2: TLabel;
     OpenDialog: TOpenDialog;
-    STLinkPathComboBox: TComboBox;
-    ARM_Typ_FPC_ComboBox: TComboBox;
+    ComboBox_STLinkPath: TComboBox;
+    ComboBox_ARM_Typ_FPC: TComboBox;
     Button1: TButton;
     CancelButton: TButton;
-    ARM_SubArch_ComboBox: TComboBox;
+    ComboBox_ARM_SubArch: TComboBox;
     Label1: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Memo1: TMemo;
     OkButton: TButton;
     TemplatesButton: TButton;
-    procedure ARM_SubArch_ComboBoxChange(Sender: TObject);
+    procedure ComboBox_ARM_SubArchChange(Sender: TObject);
     procedure Button_AVRDude_Path_Click(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
     procedure CPU_InfoButtonClick(Sender: TObject);
@@ -81,21 +81,21 @@ end;
 
 procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
 begin
-  LoadComboBox_from_XML(STLinkPathComboBox);
+  LoadComboBox_from_XML(ComboBox_STLinkPath);
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
-    STLinkPathComboBox.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
+    ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
   end else begin
-    STLinkPathComboBox.Text := '';
+    ComboBox_STLinkPath.Text := '';
   end;
-  ComboBox_Insert_Text(STLinkPathComboBox);
+  ComboBox_Insert_Text(ComboBox_STLinkPath);
 
-  with ARM_SubArch_ComboBox do begin
+  with ComboBox_ARM_SubArch do begin
     Items.CommaText := ARM_SubArch_List;
     Style := csOwnerDrawFixed;
     Text := 'ARMV7M';
   end;
 
-  with ARM_Typ_FPC_ComboBox do begin
+  with ComboBox_ARM_Typ_FPC do begin
     Sorted := True;
     Text := 'STM32F103X8';
   end;
@@ -108,38 +108,38 @@ begin
 
   CheckBox_ASMFile.Checked := False;
 
-  LoadComboBox_from_XML(STLinkPathComboBox);
+  LoadComboBox_from_XML(ComboBox_STLinkPath);
 
   if IsNewProject then begin
     if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
-      STLinkPathComboBox.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
+      ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
     end else begin
-      STLinkPathComboBox.Text := '';
+      ComboBox_STLinkPath.Text := '';
     end;
   end else begin
-    STLinkPathComboBox.Text := ARM_ProjectOptions.stlink_Command.Path;
+    ComboBox_STLinkPath.Text := ARM_ProjectOptions.stlink_Command.Path;
 
-    ARM_SubArch_ComboBox.Text := ARM_ProjectOptions.ARM_SubArch;
-    ARM_Typ_FPC_ComboBox.Text := ARM_ProjectOptions.ARM_FPC_Typ;
+    ComboBox_ARM_SubArch.Text := ARM_ProjectOptions.ARM_SubArch;
+    ComboBox_ARM_Typ_FPC.Text := ARM_ProjectOptions.ARM_FPC_Typ;
 
     ARM_FlashBase_ComboBox.Text := ARM_ProjectOptions.stlink_Command.FlashBase;
 
     CheckBox_ASMFile.Checked := ARM_ProjectOptions.AsmFile;
   end;
-  ComboBox_Insert_Text(STLinkPathComboBox);
+  ComboBox_Insert_Text(ComboBox_STLinkPath);
 
   ChangeARM;
 end;
 
 procedure TARM_Project_Options_Form.OkButtonClick(Sender: TObject);
 begin
-  ComboBox_Insert_Text(STLinkPathComboBox);
-  SaveComboBox_to_XML(STLinkPathComboBox);
+  ComboBox_Insert_Text(ComboBox_STLinkPath);
+  SaveComboBox_to_XML(ComboBox_STLinkPath);
 
-  ARM_ProjectOptions.ARM_SubArch := ARM_SubArch_ComboBox.Text;
-  ARM_ProjectOptions.ARM_FPC_Typ := ARM_Typ_FPC_ComboBox.Text;
+  ARM_ProjectOptions.ARM_SubArch := ComboBox_ARM_SubArch.Text;
+  ARM_ProjectOptions.ARM_FPC_Typ := ComboBox_ARM_Typ_FPC.Text;
 
-  ARM_ProjectOptions.stlink_Command.Path := STLinkPathComboBox.Text;
+  ARM_ProjectOptions.stlink_Command.Path := ComboBox_STLinkPath.Text;
   ARM_ProjectOptions.stlink_Command.FlashBase := ARM_FlashBase_ComboBox.Text;
 
   ARM_ProjectOptions.AsmFile := CheckBox_ASMFile.Checked;
@@ -172,10 +172,10 @@ begin
   if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
-    ARM_SubArch_ComboBox.Text := ARM_TemplatesPara[i].ARM_SubArch;
-    ARM_Typ_FPC_ComboBox.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
+    ComboBox_ARM_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
+    ComboBox_ARM_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
     ARM_FlashBase_ComboBox.Text := ARM_TemplatesPara[i].FlashBase;
-    ARM_SubArch_ComboBox.OnChange(Sender);
+    ComboBox_ARM_SubArch.OnChange(Sender);
   end;
 
   TemplatesForm.Free;
@@ -187,7 +187,7 @@ var
   s: string;
 begin
   for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
-    if ARM_ControllerDataList[i, 0] = ARM_Typ_FPC_ComboBox.Text then begin
+    if ARM_ControllerDataList[i, 0] = ComboBox_ARM_Typ_FPC.Text then begin
       s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
       ARM_FlashBase_ComboBox.Text := '0x' + s;
       Break;
@@ -195,17 +195,17 @@ begin
   end;
 end;
 
-procedure TARM_Project_Options_Form.ARM_SubArch_ComboBoxChange(Sender: TObject);
+procedure TARM_Project_Options_Form.ComboBox_ARM_SubArchChange(Sender: TObject);
 begin
   ChangeARM;
 end;
 
 procedure TARM_Project_Options_Form.Button_AVRDude_Path_Click(Sender: TObject);
 begin
-  OpenDialog.FileName := STLinkPathComboBox.Text;
+  OpenDialog.FileName := ComboBox_STLinkPath.Text;
   if OpenDialog.Execute then begin
-    STLinkPathComboBox.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(STLinkPathComboBox);
+    ComboBox_STLinkPath.Text := OpenDialog.FileName;
+    ComboBox_Insert_Text(ComboBox_STLinkPath);
   end;
 end;
 
@@ -215,11 +215,11 @@ procedure TARM_Project_Options_Form.ChangeARM;
 var
   ind: integer;
 begin
-  ind := ARM_SubArch_ComboBox.ItemIndex;
+  ind := ComboBox_ARM_SubArch.ItemIndex;
   if (ind < 0) or (ind >= Length(ARM_SubArch_List)) then begin
-    ARM_Typ_FPC_ComboBox.Items.CommaText := '';
+    ComboBox_ARM_Typ_FPC.Items.CommaText := '';
   end else begin
-    ARM_Typ_FPC_ComboBox.Items.CommaText := ARM_List[ind];
+    ComboBox_ARM_Typ_FPC.Items.CommaText := ARM_List[ind];
   end;
 end;
 

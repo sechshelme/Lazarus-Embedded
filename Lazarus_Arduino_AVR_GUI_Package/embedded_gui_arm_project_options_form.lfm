@@ -13,13 +13,13 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   OnCreate = FormCreate
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
-  object ARM_SubArch_ComboBox: TComboBox
+  object ComboBox_ARM_SubArch: TComboBox
     Left = 16
     Height = 28
     Top = 128
     Width = 168
     ItemHeight = 0
-    OnChange = ARM_SubArch_ComboBoxChange
+    OnChange = ComboBox_ARM_SubArchChange
     TabOrder = 2
   end
   object Label1: TLabel
@@ -38,7 +38,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Caption = 'ST-Link Aufruf:'
     ParentColor = False
   end
-  object STLinkPathComboBox: TComboBox
+  object ComboBox_STLinkPath: TComboBox
     Left = 16
     Height = 28
     Top = 56
@@ -118,7 +118,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Caption = 'ARM FPC Typ:'
     ParentColor = False
   end
-  object ARM_Typ_FPC_ComboBox: TComboBox
+  object ComboBox_ARM_Typ_FPC: TComboBox
     Left = 16
     Height = 28
     Top = 192

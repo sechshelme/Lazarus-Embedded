@@ -1,17 +1,18 @@
 object Form1: TForm1
   Left = 1437
-  Height = 969
+  Height = 986
   Top = 201
-  Width = 1091
+  Width = 1097
   Caption = 'Form1'
-  ClientHeight = 969
-  ClientWidth = 1091
+  ClientHeight = 986
+  ClientWidth = 1097
+  OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.0.8.0'
   object Button1: TButton
-    Left = 1000
+    Left = 1006
     Height = 25
-    Top = 933
+    Top = 950
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Button1'
@@ -20,16 +21,17 @@ object Form1: TForm1
   end
   object TreeView1: TTreeView
     Left = 0
-    Height = 912
+    Height = 929
     Top = 0
-    Width = 1091
+    Width = 1097
     Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 1
   end
   object Button2: TButton
-    Left = 920
+    Left = 926
     Height = 25
-    Top = 933
+    Top = 950
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Button2'

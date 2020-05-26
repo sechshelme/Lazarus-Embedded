@@ -11,8 +11,6 @@
     <xmltest>blad</xmltest>
     <xmltest>blae</xmltest>
     <xmltest>blaf</xmltest>
-
-    xmltest1 
     xmltest2 
   </test1>
   <test2 s="mein Test">
@@ -31,8 +29,3 @@
   <polyline points="134.57,137.59 201.02,135.13" style="fill:none;stroke:black;stroke-width:0.5"/>
 </s123>
 
-<!--
-<abc a="1" b="2" c="3">
-  <polyline points="201.02,101.02 134.57,98.56" style="fill:none;stroke:black;stroke-width:0.5"/>
-  <polyline points="134.57,137.59 201.02,135.13" style="fill:none;stroke:black;stroke-width:0.5"/>
-</abc>-->

@@ -1,7 +1,7 @@
 object SerialMonitor_SendFile_Form: TSerialMonitor_SendFile_Form
-  Left = 1766
+  Left = 1791
   Height = 108
-  Top = 48
+  Top = 49
   Width = 466
   Caption = 'SerialMonitor_SendFile_Form'
   ClientHeight = 108

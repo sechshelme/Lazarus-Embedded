@@ -75,14 +75,14 @@ procedure TARM_ProjectOptions.Load_from_Project(AProject: TLazProject);
 var
   s: string;
 
-  function Find(const Source, v: string): string;
+  function Find(const Source: string; const Sub: string): string;
   var
     p, Index: integer;
   begin
-    p := pos(v, Source);
+    p := pos(Sub, Source);
     Result := '';
     if p > 0 then begin
-      p += Length(v);
+      p += Length(Sub);
       Index := p;
       while (Index <= Length(Source)) and (s[Index] > #32) do begin
         Result += Source[Index];
@@ -99,12 +99,12 @@ begin
   ARM_FPC_Typ := Find(s, '-Wp');
 
   s := AProject.LazCompilerOptions.ExecuteAfter.Command;
-  stlink_Command.Path:=Copy(s, 0, pos(' ', s) - 1);;
+  stlink_Command.Path := Copy(s, 0, pos(' ', s) - 1);
+  ;
   stlink_Command.FlashBase := '0x' + Find(s, '0x');
 end;
 
 end.
-
 
 
 

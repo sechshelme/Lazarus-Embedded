@@ -1,10 +1,10 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
-  Left = 1836
-  Height = 490
-  Top = 543
+  Left = 1822
+  Height = 601
+  Top = 102
   Width = 510
   Caption = 'AVR Embedded Project Options'
-  ClientHeight = 490
+  ClientHeight = 601
   ClientWidth = 510
   Constraints.MinHeight = 490
   Constraints.MinWidth = 510
@@ -16,7 +16,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   object Button_Ok: TButton
     Left = 423
     Height = 25
-    Top = 407
+    Top = 518
     Width = 82
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -28,14 +28,14 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   object Button_Cancel: TButton
     Left = 311
     Height = 25
-    Top = 407
+    Top = 518
     Width = 82
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
     TabOrder = 14
   end
-  object avrdudePathComboBox: TComboBox
+  object ComboBox_AvrdudePath: TComboBox
     Left = 16
     Height = 28
     Top = 56
@@ -60,7 +60,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'AVR FPC Typ:'
     ParentColor = False
   end
-  object AVR_Typ_FPC_ComboBox: TComboBox
+  object ComboBox_AVR_Typ_FPC: TComboBox
     Left = 16
     Height = 28
     Top = 256
@@ -84,7 +84,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'Programmer:'
     ParentColor = False
   end
-  object ProgrammerComboBox: TComboBox
+  object ComboBox_Programmer: TComboBox
     Left = 16
     Height = 28
     Top = 328
@@ -92,7 +92,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     ItemHeight = 0
     TabOrder = 9
   end
-  object COMPortComboBox: TComboBox
+  object ComboBox_COMPort: TComboBox
     Left = 144
     Height = 28
     Top = 328
@@ -116,7 +116,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'AVRdude Config-Pfad ( Leer = default Konfig. )'
     ParentColor = False
   end
-  object avrdudeConfigPathComboBox: TComboBox
+  object ComboBox_AvrdudeConfigPath: TComboBox
     Left = 16
     Height = 28
     Top = 119
@@ -125,7 +125,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     ItemHeight = 0
     TabOrder = 2
   end
-  object COMPortBaudComboBox: TComboBox
+  object ComboBox_COMPortBaud: TComboBox
     Left = 288
     Height = 28
     Top = 328
@@ -171,7 +171,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     OnClick = Button_TemplatesClick
     TabOrder = 5
   end
-  object AVR_Typ_avrdude_Edit: TEdit
+  object Edit_AVR_Typ_Avrdude: TEdit
     Left = 264
     Height = 28
     Top = 256
@@ -274,7 +274,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 443
+    Top = 554
     Width = 510
     Align = alBottom
     Color = clAqua
@@ -284,13 +284,13 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     ReadOnly = True
     TabOrder = 16
   end
-  object AVR_SubArch_ComboBox: TComboBox
+  object ComboBox_AVR_SubArch: TComboBox
     Left = 16
     Height = 28
     Top = 192
     Width = 128
     ItemHeight = 0
-    OnChange = AVR_SubArch_ComboBoxChange
+    OnChange = ComboBox_AVR_SubArchChange
     TabOrder = 4
   end
   object Label1: TLabel
@@ -318,6 +318,22 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'CPU Info...'
     OnClick = Button_CPU_InfoClick
     TabOrder = 17
+  end
+  object Label2: TLabel
+    Left = 288
+    Height = 16
+    Top = 368
+    Width = 52
+    Caption = 'Verbose:'
+    ParentColor = False
+  end
+  object ComboBox_Verbose: TComboBox
+    Left = 288
+    Height = 28
+    Top = 392
+    Width = 112
+    ItemHeight = 0
+    TabOrder = 18
   end
   object OpenDialog: TOpenDialog
     Left = 416

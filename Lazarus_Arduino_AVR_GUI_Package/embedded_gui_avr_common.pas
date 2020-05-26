@@ -11,6 +11,7 @@ uses
 
 const
   AVR_Programmer = 'arduino,usbasp,stk500v1,wiring';
+  AVR_Verboses: TStringArray = ('0 off', '1 einfach', '2 genau', '3 sehr genau', '4 Ultra genau');
 
 type
 
@@ -18,8 +19,8 @@ type
 
   TAVR_ProjectOptions = class
     AvrdudeCommand: record
-      Path, ConfigPath, AVR_AVRDude_Typ, Programmer,
-      COM_Port, Baud: string;
+      Path, ConfigPath, AVR_AVRDude_Typ, Programmer, COM_Port, Baud: string;
+      Verbose: integer;
       Disable_Auto_Erase: boolean;
     end;
     AVR_SubArch, AVR_FPC_Typ: string;
@@ -37,6 +38,7 @@ type
     Programmer,
     COM_Port,
     Baud: string;
+    Verbose: integer;
     Disable_Auto_Erase: boolean;
   end;
 
@@ -49,6 +51,7 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyACM0';
     Baud: '115200';
+    Verbose: 1;
     Disable_Auto_Erase: False; ), (
 
     Name: 'Arduino Nano (old Bootloader)';
@@ -58,6 +61,7 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyUSB0';
     Baud: '57600';
+    Verbose: 1;
     Disable_Auto_Erase: False; ), (
 
     Name: 'Arduino Nano';
@@ -67,6 +71,7 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyUSB0';
     Baud: '115200';
+    Verbose: 1;
     Disable_Auto_Erase: False; ), (
 
     Name: 'Arduino Mega';
@@ -76,6 +81,7 @@ const
     Programmer: 'wiring';
     COM_Port: '/dev/ttyUSB0';
     Baud: '115200';
+    Verbose: 1;
     Disable_Auto_Erase: True; ), (
 
     Name: 'ATmega328P';
@@ -85,6 +91,7 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
+    Verbose: 1;
     Disable_Auto_Erase: False; ), (
 
     Name: 'ATtiny2313A';
@@ -94,6 +101,7 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
+    Verbose: 1;
     Disable_Auto_Erase: False; ), (
 
     Name: 'ATtiny13A';
@@ -103,6 +111,7 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
+    Verbose: 1;
     Disable_Auto_Erase: False; ));
 
 var
@@ -115,6 +124,7 @@ implementation
 procedure TAVR_ProjectOptions.Save_to_Project(AProject: TLazProject);
 var
   pr, s: string;
+  i: integer;
 begin
   with AProject.LazCompilerOptions do begin
     TargetCPU := 'avr';
@@ -132,8 +142,11 @@ begin
     s += '-C' + AvrdudeCommand.ConfigPath + ' ';
   end;
 
-  s += '-v ' + '-p' + AvrdudeCommand.AVR_AVRDude_Typ + ' ' + '-c' +
-    AvrdudeCommand.Programmer + ' ';
+  for i := 0 to AvrdudeCommand.Verbose - 1 do begin
+    s += '-v ';
+  end;
+
+  s += {'-v ' +} '-p' + AvrdudeCommand.AVR_AVRDude_Typ + ' ' + '-c' + AvrdudeCommand.Programmer + ' ';
   pr := upCase(AvrdudeCommand.Programmer);
   if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') then begin
     s += '-P' + AvrdudeCommand.COM_Port + ' ' + '-b' + AvrdudeCommand.Baud + ' ';
@@ -151,20 +164,35 @@ procedure TAVR_ProjectOptions.Load_from_Project(AProject: TLazProject);
 var
   s: string;
 
-  function Find(const Source, v: string): string;
+  function Find(const Source: string; const Sub: string): string;
   var
     p, Index: integer;
   begin
-    p := pos(v, Source);
+    p := pos(Sub, Source);
     Result := '';
     if p > 0 then begin
-      p += Length(v);
+      p += Length(Sub);
       Index := p;
       while (Index <= Length(Source)) and (s[Index] > #32) do begin
         Result += Source[Index];
         Inc(Index);
       end;
     end;
+  end;
+
+  function FindVerbose(Source: string): integer;
+  var
+    ofs: integer = 1;
+    p: integer;
+  begin
+    Result := 0;
+    repeat
+      p := pos('-v', Source, ofs);
+      if p > 0 then begin
+        Inc(Result);
+        ofs := p + 2;
+      end;
+    until p = 0;
   end;
 
 begin
@@ -181,6 +209,7 @@ begin
   AvrdudeCommand.Programmer := Find(s, '-c');
   AvrdudeCommand.COM_Port := Find(s, '-P');
   AvrdudeCommand.Baud := Find(s, '-b');
+  AvrdudeCommand.Verbose := FindVerbose(s);
   AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
 end;
 
