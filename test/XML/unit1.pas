@@ -141,17 +141,17 @@ var
     child: TDOMNode;
     tree:TTreeNode;
   begin
+    if ADOMNode.NodeName = '#text' then begin
+      TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeValue);
+    end else begin
+      TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeName);
+    end;
+
     if ADOMNode.HasAttributes then begin
       for j := 0 to ADOMNode.Attributes.Length - 1 do begin
         TreeView1.Items.AddChild(ATreeNode, ADOMNode.Attributes.Item[j].NodeName +
           '= "' + ADOMNode.Attributes.Item[j].NodeValue + '"');
       end;
-    end;
-
-    if ADOMNode.NodeName = '#text' then begin
-      TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeValue);
-    end else begin
-      TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeName);
     end;
 
     child := ADOMNode.FirstChild;

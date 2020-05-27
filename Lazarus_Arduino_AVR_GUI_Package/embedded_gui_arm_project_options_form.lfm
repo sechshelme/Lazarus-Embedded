@@ -73,7 +73,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Top = 248
     Width = 138
     Caption = 'ASM-File erzeugen'
-    TabOrder = 7
+    TabOrder = 8
   end
   object CancelButton: TButton
     Left = 344
@@ -83,7 +83,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
-    TabOrder = 8
+    TabOrder = 9
   end
   object OkButton: TButton
     Left = 452
@@ -95,7 +95,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Default = True
     ModalResult = 1
     OnClick = OkButtonClick
-    TabOrder = 9
+    TabOrder = 10
   end
   object Memo1: TMemo
     Left = 0
@@ -108,7 +108,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für ARM-Embedde erstellt wurde. Auch muss das ARM-SubArch stimmen.'
     )
     ReadOnly = True
-    TabOrder = 10
+    TabOrder = 11
+    TabStop = False
   end
   object Label5: TLabel
     Left = 16
@@ -235,7 +236,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Anchors = [akTop, akRight]
     Caption = 'CPU Info...'
     OnClick = CPU_InfoButtonClick
-    TabOrder = 11
+    TabOrder = 7
   end
   object OpenDialog: TOpenDialog
     Left = 379

@@ -11,7 +11,7 @@ uses
 
 const
   AVR_Programmer = 'arduino,usbasp,stk500v1,wiring';
-  AVR_Verboses: TStringArray = ('0 off', '1 einfach', '2 genau', '3 sehr genau', '4 Ultra genau');
+  AVR_Verboses: TStringArray = ('0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau');
 
 type
 
@@ -146,7 +146,7 @@ begin
     s += '-v ';
   end;
 
-  s += {'-v ' +} '-p' + AvrdudeCommand.AVR_AVRDude_Typ + ' ' + '-c' + AvrdudeCommand.Programmer + ' ';
+  s += '-p' + AvrdudeCommand.AVR_AVRDude_Typ + ' ' + '-c' + AvrdudeCommand.Programmer + ' ';
   pr := upCase(AvrdudeCommand.Programmer);
   if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') then begin
     s += '-P' + AvrdudeCommand.COM_Port + ' ' + '-b' + AvrdudeCommand.Baud + ' ';
