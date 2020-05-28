@@ -149,18 +149,16 @@ var
 
     if ADOMNode.HasAttributes then begin
       for j := 0 to ADOMNode.Attributes.Length - 1 do begin
-        TreeView1.Items.AddChild(ATreeNode, ADOMNode.Attributes.Item[j].NodeName +
+        TreeView1.Items.AddChild(ATreeNode.GetLastChild, ADOMNode.Attributes.Item[j].NodeName +
           '= "' + ADOMNode.Attributes.Item[j].NodeValue + '"');
       end;
     end;
 
     child := ADOMNode.FirstChild;
-    tree:=ATreeNode.GetFirstChild;
+    tree:=ATreeNode.GetLastChild;
     while child <> nil do begin
-//      Node(child, ATreeNode.GetNext, schachtel + 1);
       Node(child, tree);
       child := child.NextSibling;
-//      tree:=tree.GetNextSibling;
     end;
 
   end;
@@ -169,7 +167,8 @@ begin
   TreeView1.Items.Clear;
   ReadXMLFile(doc, path);
   TreeView1.Items.Add(nil, doc.DocumentElement.NodeName);
-  Node(doc.DocumentElement, TreeView1.Items[0]);
+//  Node(doc.DocumentElement, TreeView1.Items[0]);
+  Node(doc.DocumentElement, TreeView1.BottomItem);
   doc.Free;
   TreeView1.FullExpand;
 end;

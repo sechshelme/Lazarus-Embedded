@@ -7,11 +7,11 @@
     <xmltest>blaa</xmltest>
     <xmltest>blab</xmltest>
     <xmltest>blac</xmltest>
-    <xmltest2 a="1" b="2" c="3">      Hello world    </xmltest2>
+    <xmltest2 a="4" b="5" c="6">      Hello world    </xmltest2>
     <xmltest>blad</xmltest>
     <xmltest>blae</xmltest>
     <xmltest>blaf</xmltest>
-    xmltest2 
+    xmltest22 
   </test1>
   <test2 s="mein Test">
     <xmltest>bla bla</xmltest> 
