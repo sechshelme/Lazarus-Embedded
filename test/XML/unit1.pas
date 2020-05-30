@@ -16,9 +16,11 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
     TreeView1: TTreeView;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -90,8 +92,9 @@ var
 
       if ADOMNodeList.Item[i].HasAttributes then begin
         for j := 0 to ADOMNodeList.Item[i].Attributes.Length - 1 do begin
-          TreeView1.Items.AddChild(ATreeNode.Items[i], ADOMNodeList.Item[i].Attributes.Item[j].NodeName +
-            '= "' + ADOMNodeList.Item[i].Attributes.Item[j].NodeValue + '"');
+          TreeView1.Items.AddChild(ATreeNode.Items[i],
+            ADOMNodeList.Item[i].Attributes.Item[j].NodeName + '= "' +
+            ADOMNodeList.Item[i].Attributes.Item[j].NodeValue + '"');
         end;
       end;
 
@@ -139,7 +142,7 @@ var
   var
     j: integer;
     child: TDOMNode;
-    tree:TTreeNode;
+    tree: TTreeNode;
   begin
     if ADOMNode.NodeName = '#text' then begin
       TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeValue);
@@ -149,13 +152,14 @@ var
 
     if ADOMNode.HasAttributes then begin
       for j := 0 to ADOMNode.Attributes.Length - 1 do begin
-        TreeView1.Items.AddChild(ATreeNode.GetLastChild, ADOMNode.Attributes.Item[j].NodeName +
-          '= "' + ADOMNode.Attributes.Item[j].NodeValue + '"');
+        TreeView1.Items.AddChild(ATreeNode.GetLastChild,
+          ADOMNode.Attributes.Item[j].NodeName + '= "' +
+          ADOMNode.Attributes.Item[j].NodeValue + '"');
       end;
     end;
 
     child := ADOMNode.FirstChild;
-    tree:=ATreeNode.GetLastChild;
+    tree := ATreeNode.GetLastChild;
     while child <> nil do begin
       Node(child, tree);
       child := child.NextSibling;
@@ -166,11 +170,59 @@ var
 begin
   TreeView1.Items.Clear;
   ReadXMLFile(doc, path);
-  TreeView1.Items.Add(nil, doc.DocumentElement.NodeName);
-//  Node(doc.DocumentElement, TreeView1.Items[0]);
+  TreeView1.Items.Add(nil, path);
   Node(doc.DocumentElement, TreeView1.BottomItem);
   doc.Free;
   TreeView1.FullExpand;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var
+  doc: TXMLDocument;
+  Node, ChildNode, FNode: TDOMNode;
+begin
+  TreeView1.Items.Clear;
+  ReadXMLFile(doc, path);
+
+  Node := doc.DocumentElement.FindNode('MyForm');
+
+  if Node <> nil then begin
+    ChildNode := Node.FindNode('sl');
+
+    if ChildNode <> nil then begin
+
+      FNode := ChildNode.FirstChild;
+
+      if ChildNode.FindNode('item') <> nil then begin
+        TreeView1.Items.Add(nil, 'item');
+      end;
+
+      while FNode <> nil do begin
+        //        if (FNode <> nil) and (FNode.FindNode('item') <> nil) then begin
+        if (FNode <> nil) then begin
+          if FNode.NodeName = 'item' then begin
+            TreeView1.Items.Add(nil, 'item gefunden');
+          end;
+        end;
+        FNode := FNode.NextSibling;
+      end;
+
+
+      //      ChildNode := ChildNode.FindNode('item');
+      //      if ChildNode <> nil then begin
+      //      end;
+    end;
+  end;
+
+  doc.Free;
+
+
+  //TreeView1.Items.Clear;
+  //TreeView1.Items.AddChild(nil, 'bla bla 1');
+  //TreeView1.Items.AddChild(TreeView1.TopItem, 'bla bla 2');
+  //TreeView1.Items.AddChild(nil, 'bla bla 3');
+  //TreeView1.Items.AddChild(TreeView1.TopItem, 'bla bla 4');
+  //TreeView1.FullExpand;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

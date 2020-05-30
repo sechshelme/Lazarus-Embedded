@@ -1,0 +1,2518 @@
+<?xml version="1.0"?>
+<AVRPART>
+  <MODULE_LIST>[ADMIN:CORE:INTERRUPT_VECTOR:MEMORY:PACKAGE:FUSE:PROGRAMMING:LOCKBIT:IO_MODULE:ICE_SETTINGS]</MODULE_LIST>
+  <ADMIN>
+    <PART_NAME>ATtiny15</PART_NAME>
+    <SPEED>1.6MHZ</SPEED>
+    <BUILD>216</BUILD>
+    <RELEASE_STATUS>RELEASED</RELEASE_STATUS>
+    <SIGNATURE>
+      <ADDR000>$1E</ADDR000>
+      <ADDR001>$90</ADDR001>
+      <ADDR002>$06</ADDR002>
+    </SIGNATURE>
+  </ADMIN>
+  <CORE>
+    <CORE_VERSION>V0E</CORE_VERSION>
+    <ID>AVRSimCoreV0.SimCoreV0</ID>
+    <NEW_INSTRUCTIONS>[]</NEW_INSTRUCTIONS>
+    <INSTRUCTIONS_NOT_SUPPORTED>[]</INSTRUCTIONS_NOT_SUPPORTED>
+    <RAMP_REGISTERS>[]</RAMP_REGISTERS>
+    <GP_REG_FILE>
+      <NMB_REG>32</NMB_REG>
+      <START_ADDR>$00</START_ADDR>
+      <X_REG_HIGH>$1B</X_REG_HIGH>
+      <X_REG_LOW>$1A</X_REG_LOW>
+      <Y_REG_HIGH>$1D</Y_REG_HIGH>
+      <Y_REG_LOW>$1C</Y_REG_LOW>
+      <Z_REG_HIGH>$1F</Z_REG_HIGH>
+      <Z_REG_LOW>$1E</Z_REG_LOW>
+    </GP_REG_FILE>
+  </CORE>
+  <INTERRUPT_VECTOR>
+    <NMB_VECTORS>9</NMB_VECTORS>
+    <VECTOR1>
+      <PROGRAM_ADDRESS>$000</PROGRAM_ADDRESS>
+      <SOURCE>RESET</SOURCE>
+      <DEFINITION>External Reset, Power-on Reset and Watchdog Reset</DEFINITION>
+    </VECTOR1>
+    <VECTOR2>
+      <PROGRAM_ADDRESS>$001</PROGRAM_ADDRESS>
+      <SOURCE>INT0</SOURCE>
+      <DEFINITION>External Interrupt 0</DEFINITION>
+    </VECTOR2>
+    <VECTOR3>
+      <PROGRAM_ADDRESS>$002</PROGRAM_ADDRESS>
+      <SOURCE>I/O_PINS</SOURCE>
+      <DEFINITION>External Interrupt Request 0</DEFINITION>
+    </VECTOR3>
+    <VECTOR4>
+      <PROGRAM_ADDRESS>$003</PROGRAM_ADDRESS>
+      <SOURCE>TIMER1_COMP</SOURCE>
+      <DEFINITION>Timer/Counter1 Compare Match</DEFINITION>
+    </VECTOR4>
+    <VECTOR5>
+      <PROGRAM_ADDRESS>$004</PROGRAM_ADDRESS>
+      <SOURCE>TIMER1_OVF</SOURCE>
+      <DEFINITION>Timer/Counter1 Overflow</DEFINITION>
+    </VECTOR5>
+    <VECTOR6>
+      <PROGRAM_ADDRESS>$005</PROGRAM_ADDRESS>
+      <SOURCE>TIMER0_OVF</SOURCE>
+      <DEFINITION>Timer/Counter0 Overflow</DEFINITION>
+    </VECTOR6>
+    <VECTOR7>
+      <PROGRAM_ADDRESS>$006</PROGRAM_ADDRESS>
+      <SOURCE>EE_RDY</SOURCE>
+      <DEFINITION>EEPROM Ready</DEFINITION>
+    </VECTOR7>
+    <VECTOR8>
+      <PROGRAM_ADDRESS>$007</PROGRAM_ADDRESS>
+      <SOURCE>ANA_COMP</SOURCE>
+      <DEFINITION>Analog Comparator</DEFINITION>
+    </VECTOR8>
+    <VECTOR9>
+      <PROGRAM_ADDRESS>$008</PROGRAM_ADDRESS>
+      <SOURCE>ADC</SOURCE>
+      <DEFINITION>ADC Conversion Ready</DEFINITION>
+    </VECTOR9>
+  </INTERRUPT_VECTOR>
+  <MEMORY>
+    <ID>AVRSimMemory8bit.SimMemory8bit</ID>
+    <PROG_FLASH>1024</PROG_FLASH>
+    <EEPROM>64</EEPROM>
+    <INT_SRAM>
+      <SIZE>0</SIZE>
+      <START_ADDR>NA</START_ADDR>
+    </INT_SRAM>
+    <EXT_SRAM>
+      <SIZE>0</SIZE>
+      <START_ADDR>NA</START_ADDR>
+    </EXT_SRAM>
+    <IO_MEMORY>
+      <IO_START_ADDR>$00</IO_START_ADDR>
+      <IO_STOP_ADDR>$3F</IO_STOP_ADDR>
+      <EXT_IO_START_ADDR>NA</EXT_IO_START_ADDR>
+      <EXT_IO_STOP_ADDR>NA</EXT_IO_STOP_ADDR>
+      <MEM_START_ADDR>$20</MEM_START_ADDR>
+      <MEM_STOP_ADDR>$5F</MEM_STOP_ADDR>
+      <SREG>
+        <IO_ADDR>$3F</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <C_MASK>0x01</C_MASK>
+        <Z_MASK>0x02</Z_MASK>
+        <N_MASK>0x04</N_MASK>
+        <V_MASK>0x08</V_MASK>
+        <S_MASK>0x10</S_MASK>
+        <H_MASK>0x20</H_MASK>
+        <T_MASK>0x40</T_MASK>
+        <I_MASK>0x80</I_MASK>
+      </SREG>
+      <GIMSK>
+        <IO_ADDR>$3B</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <PCIE_MASK>0x20</PCIE_MASK>
+        <INT0_MASK>0x40</INT0_MASK>
+      </GIMSK>
+      <GIFR>
+        <IO_ADDR>$3A</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <PCIF_MASK>0x20</PCIF_MASK>
+        <INTF0_MASK>0x40</INTF0_MASK>
+      </GIFR>
+      <TIMSK>
+        <IO_ADDR>$39</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <TOIE0_MASK>0x02</TOIE0_MASK>
+        <TOIE1_MASK>0x04</TOIE1_MASK>
+        <OCIE1A_MASK>0x40</OCIE1A_MASK>
+      </TIMSK>
+      <TIFR>
+        <IO_ADDR>$38</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <TOV0_MASK>0x02</TOV0_MASK>
+        <TOV1_MASK>0x04</TOV1_MASK>
+        <OCF1A_MASK>0x40</OCF1A_MASK>
+      </TIFR>
+      <MCUCR>
+        <IO_ADDR>$35</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ISC00_MASK>0x01</ISC00_MASK>
+        <ISC01_MASK>0x02</ISC01_MASK>
+        <SM0_MASK>0x08</SM0_MASK>
+        <SM1_MASK>0x10</SM1_MASK>
+        <SE_MASK>0x20</SE_MASK>
+        <PUD_MASK>0x40</PUD_MASK>
+      </MCUCR>
+      <MCUSR>
+        <IO_ADDR>$34</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <PORF_MASK>0x01</PORF_MASK>
+        <EXTRF_MASK>0x02</EXTRF_MASK>
+        <BORF_MASK>0x04</BORF_MASK>
+        <WDRF_MASK>0x08</WDRF_MASK>
+      </MCUSR>
+      <TCCR0>
+        <IO_ADDR>$33</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <CS00_MASK>0x01</CS00_MASK>
+        <CS01_MASK>0x02</CS01_MASK>
+        <CS02_MASK>0x04</CS02_MASK>
+      </TCCR0>
+      <TCNT0>
+        <IO_ADDR>$32</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <TCNT00_MASK>0x01</TCNT00_MASK>
+        <TCNT01_MASK>0x02</TCNT01_MASK>
+        <TCNT02_MASK>0x04</TCNT02_MASK>
+        <TCNT03_MASK>0x08</TCNT03_MASK>
+        <TCNT04_MASK>0x10</TCNT04_MASK>
+        <TCNT05_MASK>0x20</TCNT05_MASK>
+        <TCNT06_MASK>0x40</TCNT06_MASK>
+        <TCNT07_MASK>0x80</TCNT07_MASK>
+      </TCNT0>
+      <OSCCAL>
+        <IO_ADDR>$31</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <CAL0_MASK>0x01</CAL0_MASK>
+        <CAL1_MASK>0x02</CAL1_MASK>
+        <CAL2_MASK>0x04</CAL2_MASK>
+        <CAL3_MASK>0x08</CAL3_MASK>
+        <CAL4_MASK>0x10</CAL4_MASK>
+        <CAL5_MASK>0x20</CAL5_MASK>
+        <CAL6_MASK>0x40</CAL6_MASK>
+        <CAL7_MASK>0x80</CAL7_MASK>
+      </OSCCAL>
+      <TCCR1>
+        <IO_ADDR>$30</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <CS10_MASK>0x01</CS10_MASK>
+        <CS11_MASK>0x02</CS11_MASK>
+        <CS12_MASK>0x04</CS12_MASK>
+        <CS13_MASK>0x08</CS13_MASK>
+        <COM1A0_MASK>0x10</COM1A0_MASK>
+        <COM1A1_MASK>0x20</COM1A1_MASK>
+        <PWM1_MASK>0x40</PWM1_MASK>
+        <CTC1_MASK>0x80</CTC1_MASK>
+      </TCCR1>
+      <TCNT1>
+        <IO_ADDR>$2F</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <TCNT1_0_MASK>0x01</TCNT1_0_MASK>
+        <TCNT1_1_MASK>0x02</TCNT1_1_MASK>
+        <TCNT1_2_MASK>0x04</TCNT1_2_MASK>
+        <TCNT1_3_MASK>0x08</TCNT1_3_MASK>
+        <TCNT1_4_MASK>0x10</TCNT1_4_MASK>
+        <TCNT1_5_MASK>0x20</TCNT1_5_MASK>
+        <TCNT1_6_MASK>0x40</TCNT1_6_MASK>
+        <TCNT1_7_MASK>0x80</TCNT1_7_MASK>
+      </TCNT1>
+      <OCR1A>
+        <IO_ADDR>$2E</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <OCR1A0_MASK>0x01</OCR1A0_MASK>
+        <OCR1A1_MASK>0x02</OCR1A1_MASK>
+        <OCR1A2_MASK>0x04</OCR1A2_MASK>
+        <OCR1A3_MASK>0x08</OCR1A3_MASK>
+        <OCR1A4_MASK>0x10</OCR1A4_MASK>
+        <OCR1A5_MASK>0x20</OCR1A5_MASK>
+        <OCR1A6_MASK>0x40</OCR1A6_MASK>
+        <OCR1A7_MASK>0x80</OCR1A7_MASK>
+      </OCR1A>
+      <OCR1B>
+        <IO_ADDR>$2D</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <OCR1B0_MASK>0x01</OCR1B0_MASK>
+        <OCR1B1_MASK>0x02</OCR1B1_MASK>
+        <OCR1B2_MASK>0x04</OCR1B2_MASK>
+        <OCR1B3_MASK>0x08</OCR1B3_MASK>
+        <OCR1B4_MASK>0x10</OCR1B4_MASK>
+        <OCR1B5_MASK>0x20</OCR1B5_MASK>
+        <OCR1B6_MASK>0x40</OCR1B6_MASK>
+        <OCR1B7_MASK>0x80</OCR1B7_MASK>
+      </OCR1B>
+      <SFIOR>
+        <IO_ADDR>$2C</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <PSR0_MASK>0x01</PSR0_MASK>
+        <PSR1_MASK>0x02</PSR1_MASK>
+        <FOC1A_MASK>0x04</FOC1A_MASK>
+      </SFIOR>
+      <WDTCR>
+        <IO_ADDR>$21</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <WDP0_MASK>0x01</WDP0_MASK>
+        <WDP1_MASK>0x02</WDP1_MASK>
+        <WDP2_MASK>0x04</WDP2_MASK>
+        <WDE_MASK>0x08</WDE_MASK>
+        <WDTOE_MASK>0x10</WDTOE_MASK>
+      </WDTCR>
+      <EEAR>
+        <IO_ADDR>$1E</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <EEAR0_MASK>0x01</EEAR0_MASK>
+        <EEAR1_MASK>0x02</EEAR1_MASK>
+        <EEAR2_MASK>0x04</EEAR2_MASK>
+        <EEAR3_MASK>0x08</EEAR3_MASK>
+        <EEAR4_MASK>0x10</EEAR4_MASK>
+        <EEAR5_MASK>0x20</EEAR5_MASK>
+      </EEAR>
+      <EEDR>
+        <IO_ADDR>$1D</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <EEDR0_MASK>0x01</EEDR0_MASK>
+        <EEDR1_MASK>0x02</EEDR1_MASK>
+        <EEDR2_MASK>0x04</EEDR2_MASK>
+        <EEDR3_MASK>0x08</EEDR3_MASK>
+        <EEDR4_MASK>0x10</EEDR4_MASK>
+        <EEDR5_MASK>0x20</EEDR5_MASK>
+        <EEDR6_MASK>0x40</EEDR6_MASK>
+        <EEDR7_MASK>0x80</EEDR7_MASK>
+      </EEDR>
+      <EECR>
+        <IO_ADDR>$1C</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <EERE_MASK>0x01</EERE_MASK>
+        <EEWE_MASK>0x02</EEWE_MASK>
+        <EEMWE_MASK>0x04</EEMWE_MASK>
+        <EERIE_MASK>0x08</EERIE_MASK>
+      </EECR>
+      <PORTB>
+        <IO_ADDR>$18</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <MASK>$1f</MASK>
+        <PORTB0_MASK>0x01</PORTB0_MASK>
+        <PORTB1_MASK>0x02</PORTB1_MASK>
+        <PORTB2_MASK>0x04</PORTB2_MASK>
+        <PORTB3_MASK>0x08</PORTB3_MASK>
+        <PORTB4_MASK>0x10</PORTB4_MASK>
+      </PORTB>
+      <DDRB>
+        <IO_ADDR>$17</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <MASK>$3f</MASK>
+        <DDB0_MASK>0x01</DDB0_MASK>
+        <DDB1_MASK>0x02</DDB1_MASK>
+        <DDB2_MASK>0x04</DDB2_MASK>
+        <DDB3_MASK>0x08</DDB3_MASK>
+        <DDB4_MASK>0x10</DDB4_MASK>
+        <DDB5_MASK>0x20</DDB5_MASK>
+      </DDRB>
+      <PINB>
+        <IO_ADDR>$16</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <MASK>$3f</MASK>
+        <PINB0_MASK>0x01</PINB0_MASK>
+        <PINB1_MASK>0x02</PINB1_MASK>
+        <PINB2_MASK>0x04</PINB2_MASK>
+        <PINB3_MASK>0x08</PINB3_MASK>
+        <PINB4_MASK>0x10</PINB4_MASK>
+        <PINB5_MASK>0x20</PINB5_MASK>
+      </PINB>
+      <ACSR>
+        <IO_ADDR>$08</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ACIS0_MASK>0x01</ACIS0_MASK>
+        <ACIS1_MASK>0x02</ACIS1_MASK>
+        <ACIE_MASK>0x08</ACIE_MASK>
+        <ACI_MASK>0x10</ACI_MASK>
+        <ACO_MASK>0x20</ACO_MASK>
+        <ACBG_MASK>0x40</ACBG_MASK>
+        <ACD_MASK>0x80</ACD_MASK>
+      </ACSR>
+      <ADMUX>
+        <IO_ADDR>$07</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <MUX0_MASK>0x01</MUX0_MASK>
+        <MUX1_MASK>0x02</MUX1_MASK>
+        <MUX2_MASK>0x04</MUX2_MASK>
+        <ADLAR_MASK>0x20</ADLAR_MASK>
+        <REFS0_MASK>0x40</REFS0_MASK>
+        <REFS1_MASK>0x80</REFS1_MASK>
+      </ADMUX>
+      <ADCSR>
+        <IO_ADDR>$06</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ADPS0_MASK>0x01</ADPS0_MASK>
+        <ADPS1_MASK>0x02</ADPS1_MASK>
+        <ADPS2_MASK>0x04</ADPS2_MASK>
+        <ADIE_MASK>0x08</ADIE_MASK>
+        <ADIF_MASK>0x10</ADIF_MASK>
+        <ADFR_MASK>0x20</ADFR_MASK>
+        <ADSC_MASK>0x40</ADSC_MASK>
+        <ADEN_MASK>0x80</ADEN_MASK>
+      </ADCSR>
+      <ADCH>
+        <IO_ADDR>$05</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ADCH0_MASK>0x01</ADCH0_MASK>
+        <ADCH1_MASK>0x02</ADCH1_MASK>
+        <ADCH2_MASK>0x04</ADCH2_MASK>
+        <ADCH3_MASK>0x08</ADCH3_MASK>
+        <ADCH4_MASK>0x10</ADCH4_MASK>
+        <ADCH5_MASK>0x20</ADCH5_MASK>
+        <ADCH6_MASK>0x40</ADCH6_MASK>
+        <ADCH7_MASK>0x80</ADCH7_MASK>
+      </ADCH>
+      <ADCL>
+        <IO_ADDR>$04</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ADCL0_MASK>0x01</ADCL0_MASK>
+        <ADCL1_MASK>0x02</ADCL1_MASK>
+        <ADCL2_MASK>0x04</ADCL2_MASK>
+        <ADCL3_MASK>0x08</ADCL3_MASK>
+        <ADCL4_MASK>0x10</ADCL4_MASK>
+        <ADCL5_MASK>0x20</ADCL5_MASK>
+        <ADCL6_MASK>0x40</ADCL6_MASK>
+        <ADCL7_MASK>0x80</ADCL7_MASK>
+      </ADCL>
+    </IO_MEMORY>
+  </MEMORY>
+  <PACKAGE>
+    <PACKAGES>[DIP]</PACKAGES>
+    <DIP>
+      <NMB_PIN>8</NMB_PIN>
+      <PIN1>
+        <NAME>[PB5:'RESET:ADC0]</NAME>
+        <TEXT/>
+      </PIN1>
+      <PIN2>
+        <NAME>[PB4:ADC3]</NAME>
+        <TEXT/>
+      </PIN2>
+      <PIN3>
+        <NAME>[PB3:ADC2]</NAME>
+        <TEXT/>
+      </PIN3>
+      <PIN4>
+        <NAME>[GND]</NAME>
+        <TEXT/>
+      </PIN4>
+      <PIN5>
+        <NAME>[PB0:MOSI:AIN0:AREF]</NAME>
+        <TEXT/>
+      </PIN5>
+      <PIN6>
+        <NAME>[PB1:MISO:AIN1:OCP]</NAME>
+        <TEXT/>
+      </PIN6>
+      <PIN7>
+        <NAME>[PB2:SCK:ADC1:T0:INT0]</NAME>
+        <TEXT/>
+      </PIN7>
+      <PIN8>
+        <NAME>[VCC]</NAME>
+        <TEXT/>
+      </PIN8>
+    </DIP>
+  </PACKAGE>
+  <FUSE>
+    <LIST>[LOW]</LIST>
+    <ICON/>
+    <ID/>
+    <TEXT/>
+    <LOW>
+      <NMB_TEXT>9</NMB_TEXT>
+      <NMB_FUSE_BITS>6</NMB_FUSE_BITS>
+      <TEXT1>
+        <MASK>0x80</MASK>
+        <VALUE>0x80</VALUE>
+        <TEXT>Brown-out detection level at VCC=2.7 V</TEXT>
+      </TEXT1>
+      <TEXT2>
+        <MASK>0x80</MASK>
+        <VALUE>0x00</VALUE>
+        <TEXT>Brown-out detection level at VCC=4.0 V</TEXT>
+      </TEXT2>
+      <TEXT3>
+        <MASK>0x40</MASK>
+        <VALUE>0x00</VALUE>
+        <TEXT>Brown-out detection enabled</TEXT>
+      </TEXT3>
+      <TEXT4>
+        <MASK>0x20</MASK>
+        <VALUE>0x00</VALUE>
+        <TEXT>Serial program downloading (SPI) enabled</TEXT>
+      </TEXT4>
+      <TEXT5>
+        <MASK>0x10</MASK>
+        <VALUE>0x00</VALUE>
+        <TEXT>External reset function of PB5 disabled</TEXT>
+      </TEXT5>
+      <TEXT6>
+        <MASK>0x03</MASK>
+        <VALUE>0x03</VALUE>
+        <TEXT>CKSEL=11 Very quickly rising power</TEXT>
+      </TEXT6>
+      <TEXT7>
+        <MASK>0x03</MASK>
+        <VALUE>0x02</VALUE>
+        <TEXT>CKSEL=10 Quickly rising power</TEXT>
+      </TEXT7>
+      <TEXT8>
+        <MASK>0x03</MASK>
+        <VALUE>0x01</VALUE>
+        <TEXT>CKSEL=01 Slowly rising power</TEXT>
+      </TEXT8>
+      <TEXT9>
+        <MASK>0x03</MASK>
+        <VALUE>0x00</VALUE>
+        <TEXT>CKSEL=00 Slowly rising power</TEXT>
+      </TEXT9>
+    </LOW>
+  </FUSE>
+  <PROGRAMMING>
+    <ISPInterface>
+      <FuseWarning>0,0x20,0x20,WARNING! These fuse settings will disable the ISP interface!</FuseWarning>
+      <FuseWarning>0,0x10,0x00,WARNING! Disabling external reset will make the ISP interface inaccessible!</FuseWarning>
+    </ISPInterface>
+    <HVInterface>
+      <FuseWarning>0,0x20,0x20,WARNING! These fuse settings will disable the ISP interface!</FuseWarning>
+      <FuseWarning>0,0x10,0x00,WARNING! Disabling external reset will make the ISP interface inaccessible!</FuseWarning>
+    </HVInterface>
+    <OscCal>
+      <OCEntry>0x00,1.6 MHz</OCEntry>
+    </OscCal>
+    <FlashPageSize>0</FlashPageSize>
+    <EepromPageSize>2</EepromPageSize>
+  </PROGRAMMING>
+  <LOCKBIT>
+    <ICON/>
+    <ID/>
+    <TEXT>[LB1 = 1 :  LB2 = 1] No memory lock features enabled. [LB1 = 0 :  LB2 = 1] Further programming of Flash and EEPROM is enabled. [LB1 = 0 :  LB2 = 0] Same as previous, but verify is also disabled</TEXT>
+    <NMB_TEXT>3</NMB_TEXT>
+    <NMB_LOCK_BITS>2</NMB_LOCK_BITS>
+    <TEXT1>
+      <MASK>0x06</MASK>
+      <VALUE>0x06</VALUE>
+      <TEXT>Mode 1: No memory lock features enabled</TEXT>
+    </TEXT1>
+    <TEXT2>
+      <MASK>0x06</MASK>
+      <VALUE>0x04</VALUE>
+      <TEXT>Mode 2: Further programming disabled</TEXT>
+    </TEXT2>
+    <TEXT3>
+      <MASK>0x06</MASK>
+      <VALUE>0x00</VALUE>
+      <TEXT>Mode 3: Further programming and verification disabled</TEXT>
+    </TEXT3>
+    <LOCKBIT0>
+      <NAME>LB1</NAME>
+      <TEXT>Lockbit</TEXT>
+    </LOCKBIT0>
+    <LOCKBIT1>
+      <NAME>LB2</NAME>
+      <TEXT>Lockbit</TEXT>
+    </LOCKBIT1>
+  </LOCKBIT>
+  <IO_MODULE>
+    <MODULE_LIST>[AD_CONVERTER:ANALOG_COMPARATOR:EEPROM:PORTB:TIMER_COUNTER_0:WATCHDOG:CPU:EXTERNAL_INTERRUPT:TIMER_COUNTER_1]</MODULE_LIST>
+    <AD_CONVERTER>
+      <LIST>[ADMUX:ADCSR:ADCH:ADCL]</LIST>
+      <LINK/>
+      <RULES>((IF ADMUX.ADLAR = 1) LINK [ADCH(1:0):ADCL(7:0)]); (IF ADMUX.ADLAR = 0) LINK [ADCH(7:0):ADCL(7:6)]);</RULES>
+      <ICON>io_analo.bmp</ICON>
+      <ID/>
+      <TEXT>AD Converter Feature list: 10-bit Resolution. 0.5 LSB Integral Non-Linearity. +-2 LSB Absolute Accuracy. TBD - 260 &#xB5;s Conversion Time. Up to TBD kSPS at maximum resolution. 8 Multiplexed Single Ended Input Channels. 7 Differential input channels (TQFP package only).  2 Differential input channels with optional gain of 10x and 200x (TQFP package only). Optional left adjustment for ADC result readout. 0 - VCC ADC Input Voltage Range. Selectable 2.56 V ADC reference voltage. Free Running or Single Conversion Mode. Interrupt on ADC Conversion Complete. Sleep Mode Noise</TEXT>
+      <ADMUX>
+        <NAME>ADMUX</NAME>
+        <DESCRIPTION>The ADC multiplexer Selection Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$07</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_analo.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT7>
+          <NAME>REFS1</NAME>
+          <DESCRIPTION>Reference Selection Bit 1</DESCRIPTION>
+          <TEXT>These bits select the voltage reference for the ADC, as shown in Table 91. If these bits are changed during a conversion, the change will not go in effect until this conversion is complete (ADIF in ADCSR is set). If differential channels are used, the selected reference should not be closer to AV CC than indicated in Table 94 on page 200. The internal voltage reference options may not be used if an external reference voltage is being applied to the AREF pin.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>REFS0</NAME>
+          <DESCRIPTION>Reference Selection Bit 0</DESCRIPTION>
+          <TEXT>These bits select the voltage reference for the ADC, as shown in Table 91. If these bits are changed during a conversion, the change will not go in effect until this conversion is complete (ADIF in ADCSR is set). If differential channels are used, the selected reference should not be closer to AV CC than indicated in Table 94 on page 200. The internal voltage reference options may not be used if an external reference voltage is being applied to the AREF pin.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <ENUM>ANALOG_ADC_V_REF</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>ADLAR</NAME>
+          <DESCRIPTION>Left Adjust Result</DESCRIPTION>
+          <TEXT>The ADLAR bit affects the presentation of the ADC conversion result in the ADC data register. If ADLAR is cleared, the result is right adjusted. If ADLAR is set, the result is left adjusted. Changing the ADLAR bit will affect the ADC data register immediately, regardless of any ongoing conversions. For a complete description of this bit, see &#x201C;The ADC Data Register -ADCL and ADCH&#x201D; on page 198. </TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT2>
+          <NAME>MUX2</NAME>
+          <DESCRIPTION>Analog Channel and Gain Selection Bits</DESCRIPTION>
+          <TEXT>The value of these bits selects which combination of analog inputs are connected to the ADC. These bits also select the gain for the differential channels. See Table 92 for details. If these bits are changed during a conversion, the change will not go in effect until this conversion is complete (ADIF in ADCSR is set).</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>MUX1</NAME>
+          <DESCRIPTION>Analog Channel and Gain Selection Bits</DESCRIPTION>
+          <TEXT>The value of these bits selects which combination of analog inputs are connected to the ADC. These bits also select the gain for the differential channels. See Table 92 for details. If these bits are changed during a conversion, the change will not go in effect until this conversion is complete (ADIF in ADCSR is set).</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>MUX0</NAME>
+          <DESCRIPTION>Analog Channel and Gain Selection Bits</DESCRIPTION>
+          <TEXT>The value of these bits selects which combination of analog inputs are connected to the ADC. These bits also select the gain for the differential channels. See Table 92 for details. If these bits are changed during a conversion, the change will not go in effect until this conversion is complete (ADIF in ADCSR is set).</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </ADMUX>
+      <ADCSR>
+        <NAME>ADCSR</NAME>
+        <DESCRIPTION>The ADC Control and Status register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$06</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT7>
+          <NAME>ADEN</NAME>
+          <DESCRIPTION>ADC Enable</DESCRIPTION>
+          <TEXT>Writing a logical &#x2018;1&#x2019; to this bit enables the ADC. By clearing this bit to zero, the ADC is turned off. Turning the ADC off while a conversion is in progress, will terminate this conversion.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>ADSC</NAME>
+          <DESCRIPTION>ADC Start Conversion</DESCRIPTION>
+          <TEXT>In Single Conversion Mode, a logical &#x2018;1&#x2019; must be written to this bit to start each conversion. In Free Running Mode, a logical &#x2018;1&#x2019; must be written to this bit to start the first conversion. The first time ADSC has been written after the ADC has been enabled, or if ADSC is written at the same time as the ADC is enabled, an extended conversion will result. This extended conversion performs initialization of the ADC. ADSC will read as one as long as a conversion is in progress. When the conversion is complete, it returns to zero. When a dummy conversion precedes a real conversion, ADSC will stay high until the real conversion completes. Writing a 0 to this bit has no effect</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>ADFR</NAME>
+          <DESCRIPTION>ADC  Free Running Select</DESCRIPTION>
+          <TEXT>When this bit is set (one) the ADC operates in Free Running Mode. In this mode, the ADC samples and updates the data registers continuously. Clearing this bit (zero) will terminate Free Running Mode.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>ADIF</NAME>
+          <DESCRIPTION>ADC Interrupt Flag</DESCRIPTION>
+          <TEXT>This bit is set (one) when an ADC conversion completes and the data registers are updated. The ADC Conversion Complete Interrupt is executed if the ADIE bit and the I-bit in SREG are set (one). ADIF is cleared by hardware when executing the corresponding interrupt handling vector. Alternatively, ADIF is cleared by writing a logical one to the flag. Beware that if doing a read-modify-write on ADCSR, a pending interrupt can be disabled. This also applies if the SBI and CBI instructions are used.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>ADIE</NAME>
+          <DESCRIPTION>ADC Interrupt Enable</DESCRIPTION>
+          <TEXT>When this bit is set (one) and the I-bit in SREG is set (one), the ADC Conversion Complete Interrupt is activated.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>ADPS2</NAME>
+          <DESCRIPTION>ADC  Prescaler Select Bits</DESCRIPTION>
+          <TEXT>These bits determine the division factor between the XTAL frequency and the input clock to the ADC.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>ADPS1</NAME>
+          <DESCRIPTION>ADC  Prescaler Select Bits</DESCRIPTION>
+          <TEXT>These bits determine the division factor between the XTAL frequency and the input clock to the ADC.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>ADPS0</NAME>
+          <DESCRIPTION>ADC  Prescaler Select Bits</DESCRIPTION>
+          <TEXT>These bits determine the division factor between the XTAL frequency and the input clock to the ADC.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <ENUM>ANALIG_ADC_PRESCALER</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </ADCSR>
+      <ADCH>
+        <NAME>ADCH</NAME>
+        <DESCRIPTION>ADC Data Register High Byte</DESCRIPTION>
+        <TEXT>When an ADC conversion is complete, the result is found in these two registers. If differential channels are used, the result is presented in two&#x2019;s complement form. The selected channel is differential if MUX4..0 are between &#x2018;01000&#x2019; and &#x2018;11101&#x2019;, otherwise the selected channel is single ended. When ADCL is read, the ADC Data Register is not updated until ADCH is read. Consequently, if the result is left adjusted and no more than 8 bit precision (7 bit + sign bit for differential input channels) is required, it is sufficient to read ADCH. Otherwise, ADCL must be read first, then ADCH. The ADLAR bit in ADMUX, and the MUX4..0 bits in ADMUX affect the way the result is read from the registers. If ADLAR is set, the result is left adjusted. If ADLAR is cleared (default), the result is right adju</TEXT>
+        <IO_ADDR>$05</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_analo.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>ADCH7</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>ADCH6</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>ADCH5</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>ADCH4</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>ADCH3</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>ADCH2</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>ADCH1</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>ADCH0</NAME>
+          <DESCRIPTION>ADC Data Register High Byte Bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </ADCH>
+      <ADCL>
+        <NAME>ADCL</NAME>
+        <DESCRIPTION>ADC Data Register Low Byte</DESCRIPTION>
+        <TEXT>When an ADC conversion is complete, the result is found in these two registers. If differential channels are used, the result is presented in two&#x2019;s complement form. The selected channel is differential if MUX4..0 are between &#x2018;01000&#x2019; and &#x2018;11101&#x2019;, otherwise the selected channel is single ended. When ADCL is read, the ADC Data Register is not updated until ADCH is read. Consequently, if the result is left adjusted and no more than 8 bit precision (7 bit + sign bit for differential input channels) is required, it is sufficient to read ADCH. Otherwise, ADCL must be read first, then ADCH. The ADLAR bit in ADMUX, and the MUX4..0 bits in ADMUX affect the way the result is read from the registers. If ADLAR is set, the result is left adjusted. If ADLAR is cleared (default), the result is right ad</TEXT>
+        <IO_ADDR>$04</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_analo.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>ADCL7</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>ADCL6</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>ADCL5</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>ADCL4</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>ADCL3</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>ADCL2</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>ADCL1</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>ADCL0</NAME>
+          <DESCRIPTION>ADC Data Register Low Byte Bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </ADCL>
+    </AD_CONVERTER>
+    <ANALOG_COMPARATOR>
+      <LIST>[ACSR]</LIST>
+      <LINK/>
+      <ICON>io_analo.bmp</ICON>
+      <ID>AlgComp_06</ID>
+      <TEXT/>
+      <ACSR>
+        <NAME>ACSR</NAME>
+        <DESCRIPTION>Analog Comparator Control And Status Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$08</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_analo.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT7>
+          <NAME>ACD</NAME>
+          <DESCRIPTION>Analog Comparator Disable</DESCRIPTION>
+          <TEXT>When this bit is written logic one, the power to the analog comparator is switched off. This bit can be set at any time to turn off the analog comparator. This will reduce power consumption in active and idle mode. When changing the ACD bit, the Analog Comparator Interrupt must be disabled by clearing the ACIE bit in ACSR. Otherwise an interrupt can occur when the bit is changed.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>ACBG</NAME>
+          <ALIAS>AINBG6</ALIAS>
+          <DESCRIPTION>Analog Comparator Bandgap Select</DESCRIPTION>
+          <TEXT>When this bit is set, a fixed bandgap reference voltage replaces the positive input to the Analog Comparator. When this bit is cleared, AIN0 is applied to the positive input of the Analog Comparator. See &#x201C;Internal Voltage Reference&#x201D; on page 42.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>ACO</NAME>
+          <DESCRIPTION>Analog Compare Output</DESCRIPTION>
+          <TEXT>The output of the analog comparator is synchronized and then directly connected to ACO. The synchronization introduces a delay of 1-2 clock cycles.</TEXT>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>NA</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>ACI</NAME>
+          <DESCRIPTION>Analog Comparator Interrupt Flag</DESCRIPTION>
+          <TEXT>This bit is set by hardware when a comparator output event triggers the interrupt mode defined by ACIS1 and ACIS0. The Analog Comparator Interrupt routine is executed if the ACIE bit is set and the I-bit in SREG is set. ACI is cleared by hard-ware when executing the corresponding interrupt handling vector. Alternatively, ACI is cleared by writing a logic one to the flag.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>ACIE</NAME>
+          <DESCRIPTION>Analog Comparator Interrupt Enable</DESCRIPTION>
+          <TEXT>When the ACIE bit is written logic one and the I-bit in the Status Register is set, the analog comparator interrupt is acti-vated. When written logic zero, the interrupt is disabled.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT1>
+          <NAME>ACIS1</NAME>
+          <DESCRIPTION>Analog Comparator Interrupt Mode Select bit 1</DESCRIPTION>
+          <TEXT>These bits determine which comparator events that trigger the Analog Comparator interrupt.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>ACIS0</NAME>
+          <DESCRIPTION>Analog Comparator Interrupt Mode Select bit 0</DESCRIPTION>
+          <TEXT>These bits determine which comparator events that trigger the Analog Comparator interrupt.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <ENUM>ANALOG_COMP_INTERRUPT</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </ACSR>
+    </ANALOG_COMPARATOR>
+    <EEPROM>
+      <LIST>[EEAR:EEDR:EECR]</LIST>
+      <LINK/>
+      <ICON>io_cpu.bmp</ICON>
+      <ID>EEPROM_02.xml</ID>
+      <TEXT/>
+      <EEAR>
+        <NAME>EEAR</NAME>
+        <DESCRIPTION>EEPROM Read/Write Access</DESCRIPTION>
+        <TEXT>The EEPROM access register is accessible in the I/O space. The write access time is in the range of 2.5 - 4ms, depending on the V CC voltages. A self-timing function, however, lets the user software detect when the next byte can be written. If the user code contains code that writes the EEPROM, some pre-caution must be taken. In heavily filtered power supplies, V CC is likely to rise or fall slowly on power-up/down. This causes the device for some period of time to run at a voltage lower than specified as minimum for the clock frequency used. CPU operation under these conditions is likely cause the program counter to perform unintentional jumps and eventually execute the EEPROM write code. To secure EEPROM integrity, the user is advised to use an external under-voltage reset circuit in this case. In order to prevent unintentional EEPROM writes, a specific write procedure must be followed. Refer to the description of the EEPROM Control Register for details on this. When the EEPROM is written, the CPU is halted for two clock cycles before the next instruction is executed. When the EEPROM is read, the CPU is halted for four clock cycles before the next instruction</TEXT>
+        <IO_ADDR>$1E</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_cpu.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT5>
+          <NAME>EEAR5</NAME>
+          <DESCRIPTION>EEPROM Read/Write Access bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>EEAR4</NAME>
+          <DESCRIPTION>EEPROM Read/Write Access bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>EEAR3</NAME>
+          <DESCRIPTION>EEPROM Read/Write Access bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>EEAR2</NAME>
+          <DESCRIPTION>EEPROM Read/Write Access bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>EEAR1</NAME>
+          <DESCRIPTION>EEPROM Read/Write Access bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>EEAR0</NAME>
+          <DESCRIPTION>EEPROM Read/Write Access bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </EEAR>
+      <EEDR>
+        <NAME>EEDR</NAME>
+        <DESCRIPTION>EEPROM Data Register</DESCRIPTION>
+        <TEXT>For the EEPROM write operation, the EEDR register contains the data to be written to the EEPROM in the address given by the EEAR register. For the EEPROM read operation, the EEDR contains the data read out from the EEPROM at the address given by EEAR.</TEXT>
+        <IO_ADDR>$1D</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_cpu.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>EEDR7</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>EEDR6</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>EEDR5</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>EEDR4</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>EEDR3</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>EEDR2</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>EEDR1</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>EEDR0</NAME>
+          <DESCRIPTION>EEPROM Data Register bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </EEDR>
+      <EECR>
+        <NAME>EECR</NAME>
+        <DESCRIPTION>EEPROM Control Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$1C</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT3>
+          <NAME>EERIE</NAME>
+          <DESCRIPTION>EEProm Ready Interrupt Enable</DESCRIPTION>
+          <TEXT>When the I-bit in SREG and EERIE are set (one), the EEPROM Ready Interrupt is enabled. When cleared (zero), the interrupt is disabled. The EEPROM Ready Interrupt generates a constant interrupt when EEWE is cleared (zero).</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>EEMWE</NAME>
+          <DESCRIPTION>EEPROM Master Write Enable</DESCRIPTION>
+          <TEXT>The EEMWE bit determines whether setting EEWE to one causes the EEPROM to be written. When EEMWE is set(one) setting EEWE will write data to the EEPROM at the selected address If EEMWE is zero, setting EEWE will have no effect. When EEMWE has been set (one) by software, hardware clears the bit to zero after four clock cycles. See the description of the EEWE bit for a EEPROM write procedure.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>EEWE</NAME>
+          <DESCRIPTION>EEPROM Write Enable</DESCRIPTION>
+          <TEXT>The EEPROM Write Enable Signal EEWE is the write strobe to the EEPROM. When address and data are correctly set up, the EEWE bit must be set to write the value into the EEPROM. The EEMWE bit must be set when the logical one is written to EEWE, otherwise no EEPROM write takes place. The following procedure should be followed when writing the EEPROM (the order of steps 2 and 3 is unessential): 1. Wait until EEWE becomes zero. 2. Write new EEPROM address to EEARL and EEARH (optional). 3. Write new EEPROM data to EEDR (optional). 4. Write a logical one to the EEMWE bit in EECR (to be able to write a logical one to the EEMWE bit, the EEWE bit mustbewritten to zero in thesamecycle). 5. Within four clock cycles after setting EEMWE, write a logical one to EEWE. When the write access time (typically 2.5 ms at V CC =5Vor 4msatV CC = 2.7V) has elapsed, the EEWE bit is cleared (zero) by hardware. The user software can poll this bit and wait for a zero before writing the next byte. When EEWE has been set, the CPU is halted or two cycles before the next instruction is executed. Caution: An interrupt between step 4 and step 5 will make the write cycle fail, since the EEPROM Master Write Enable will time-out. If an interrupt routine accessing the EEPROM is interrupting another EEPROM access, the EEAR or EEDR regis-ter will be modified, causing the interrupted EEPROM access to fail. It is recommended to have the global interrupt flag cleared during the 4 last steps to avoid these problems.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>EERE</NAME>
+          <DESCRIPTION>EEPROM Read Enable</DESCRIPTION>
+          <TEXT>The EEPROM Read Enable Signal EERE is the read strobe to the EEPROM. When the correct address is set up in the EEAR register, the EERE bit must be set. When the EERE bit is cleared (zero) by hardware, requested data is found in the EEDR register. The EEPROM read access takes one instruction and there is no need to poll the EERE bit. When EERE has been set, the CPU is halted for four cycles before the next instruction is executed. The user should poll the EEWE bit before starting the read operation. If a write operation is in progress when new data or address is written to the EEPROM I/O registers, the write operation will be interrupted, and the result is undefined.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </EECR>
+    </EEPROM>
+    <PORTB>
+      <LIST>[PORTB:DDRB:PINB]</LIST>
+      <LINK/>
+      <ICON>io_port.bmp</ICON>
+      <ID>AVRSimIOPort.SimIOPort</ID>
+      <TEXT/>
+      <PORTB>
+        <NAME>PORTB</NAME>
+        <DESCRIPTION>Data Register, Port B</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$18</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_port.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT4>
+          <NAME>PORTB4</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>PORTB3</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>PORTB2</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>PORTB1</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>PORTB0</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </PORTB>
+      <DDRB>
+        <NAME>DDRB</NAME>
+        <DESCRIPTION>Data Direction Register, Port B</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$17</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT5>
+          <NAME>DDB5</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>DDB4</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>DDB3</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>DDB2</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>DDB1</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>DDB0</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </DDRB>
+      <PINB>
+        <NAME>PINB</NAME>
+        <DESCRIPTION>Input Pins, Port B</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$16</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_port.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT5>
+          <NAME>PINB5</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>PINB4</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>PINB3</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>PINB2</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>PINB1</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>PINB0</NAME>
+          <DESCRIPTION/>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </PINB>
+    </PORTB>
+    <TIMER_COUNTER_0>
+      <LIST>[TIMSK:TIFR:TCCR0:TCNT0]</LIST>
+      <LINK/>
+      <ICON>io_timer.bmp</ICON>
+      <ID>t81</ID>
+      <TEXT>The 8-bit Timer/Counter0 can select clock source from CK, prescaled CK, or an external pin. In addition it can be stopped as described in &#x201C;Timer/Counter0 Control Register - TCCR0&#x201D; on page 35. The overflow status flag is found in &#x201C;The Timer/Counter Interrupt Flag Register - TIFR&#x201D; on page 29. Control signals are found in the Timer/Counter0 Control Register - TCCR0. The interrupt enable/disable settings for Timer/Counter0 are found in &#x201C;The Timer/Counter Interrupt Mask Regis-ter - TIMSK&#x201D; on page 28. When Timer/Counter0 is externally clocked, the external signal is synchronized with the oscillator frequency of the CPU. To assure proper sampling of the external clock, the minimum time between two external clock transitions must be at least one internal CPU clock period. The external clock signal is sampled on the rising edge of the internal CPU clock. The 8-bit Timer/Counter0 features both a high resolution and a high accuracy usage with the lower prescaling opportuni-ties. Similarly, the high prescaling opportuni ties make the Timer/Counter0 useful for lower speed functions or exact timing functions with infrequent actions</TEXT>
+      <TIMSK>
+        <NAME>TIMSK</NAME>
+        <DESCRIPTION>Timer/Counter Interrupt Mask Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$39</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT1>
+          <NAME>TOIE0</NAME>
+          <DESCRIPTION>Timer/Counter0 Overflow Interrupt Enable</DESCRIPTION>
+          <TEXT>When the TOIE0 bit is set (one) and the I-bit in the Status Register is set (one), the Timer/Counter0 Overflow interrupt is enabled. The corresponding interrupt  is executed if an overflow in Timer/Counter0 occurs, i.e., when the TOV0 bit is set in the Timer/Counter Interrupt Flag Register - TIFR.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+      </TIMSK>
+      <TIFR>
+        <NAME>TIFR</NAME>
+        <DESCRIPTION>Timer/Counter Interrupt Flag register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$38</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT1>
+          <NAME>TOV0</NAME>
+          <DESCRIPTION>Timer/Counter0 Overflow Flag</DESCRIPTION>
+          <TEXT>The bit TOV0 is set (one) when an overflow occurs in Timer/Counter0. TOV0 is cleared by hardware when executing the corresponding interrupt handling vector. Alternatively, TOV0 is cleared by writing a logic one to the flag. When the SREG I-bit, and TOIE0 (Timer/Counter0 Overflow Interrupt Enable), and TOV0 are set (one), the Timer/Counter0 Overflow interrupt is executed.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+      </TIFR>
+      <TCCR0>
+        <NAME>TCCR0</NAME>
+        <DESCRIPTION>Timer/Counter0 Control Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$33</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT2>
+          <NAME>CS02</NAME>
+          <DESCRIPTION>Clock Select0 bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <ENUM>CLK_SEL_3BIT_EXT</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>CS01</NAME>
+          <DESCRIPTION>Clock Select0 bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>CS00</NAME>
+          <DESCRIPTION>Clock Select0 bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </TCCR0>
+      <TCNT0>
+        <NAME>TCNT0</NAME>
+        <DESCRIPTION>Timer Counter 0</DESCRIPTION>
+        <TEXT>The Timer/Counter0 is realized as an up-counter with read and write access. If the Timer/Counter0 is written and a clock source is present, the Timer/Counter0 continues counting in the clock cycle following the write operation.</TEXT>
+        <IO_ADDR>$32</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_timer.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>TCNT07</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>TCNT06</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>TCNT05</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>TCNT04</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>TCNT03</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>TCNT02</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>TCNT01</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>TCNT00</NAME>
+          <DESCRIPTION>Timer Counter 0 bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </TCNT0>
+    </TIMER_COUNTER_0>
+    <WATCHDOG>
+      <LIST>[WDTCR]</LIST>
+      <LINK/>
+      <ICON>io_watch.bmp</ICON>
+      <ID/>
+      <TEXT/>
+      <WDTCR>
+        <NAME>WDTCR</NAME>
+        <DESCRIPTION>Watchdog Timer Control Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$21</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT4>
+          <NAME>WDTOE</NAME>
+          <ALIAS>WDDE</ALIAS>
+          <DESCRIPTION>RW</DESCRIPTION>
+          <TEXT>This bit must be set (one) when the WDE bit is cleared. Otherwise, the watchdog will not be disabled. Once set, hardware will clear this bit to zero after four clock cycles. Refer to the description of the WDE bit for a watchdog disable procedure.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>WDE</NAME>
+          <DESCRIPTION>Watch Dog Enable</DESCRIPTION>
+          <TEXT>When the WDE is set (one) the Watchdog Timer is enabled, and if the WDE is cleared (zero) the Watchdog Timer function is disabled. WDE can only be cleared if the WDTOE bit is set(one). To disable an enabled watchdog timer, the following procedure must be followed: 1. In the same operation, write a logical one to WDTOE and WDE. A logical one must be written to WDE even though it is set to one before the disable operation starts. 2. Within the next four clock cycles, write a logical 0 to WDE. This disables the watchdog</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>WDP2</NAME>
+          <DESCRIPTION>Watch Dog Timer Prescaler bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <ENUM>WDOG_TIMER_PRESCALE_3BITS</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>WDP1</NAME>
+          <DESCRIPTION>Watch Dog Timer Prescaler bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>WDP0</NAME>
+          <DESCRIPTION>Watch Dog Timer Prescaler bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </WDTCR>
+    </WATCHDOG>
+    <CPU>
+      <LIST>[SREG:MCUCR:MCUSR:OSCCAL]</LIST>
+      <LINK/>
+      <ICON>io_cpu.com</ICON>
+      <ID/>
+      <TEXT/>
+      <SREG>
+        <NAME>SREG</NAME>
+        <DESCRIPTION>Status Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$3F</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_sreg.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT7>
+          <NAME>I</NAME>
+          <DESCRIPTION>Global Interrupt Enable</DESCRIPTION>
+          <TEXT>The global interrupt enable bit must be set (one) for the interrupts to be enabled. The individual interrupt enable control is then performed in separate control registers. If the global interrupt enable bit is cleared (zero), none of the interrupts are enabled independent of the individual interrupt enable settings. The I-bit is cleared by hardware after an interrupt has occurred, and is set by the RETI instruction to enable subsequent interrupts.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>T</NAME>
+          <DESCRIPTION>Bit Copy Storage</DESCRIPTION>
+          <TEXT>The bit copy instructions BLD (Bit LoaD) and BST (Bit STore) use the T bit as source and destination for the operated bit. A bit from a register in the register file can be copied into T by the BST instruction, and a bit in T can be copied into a bit in a register in the register file by the BLD instruction.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>H</NAME>
+          <DESCRIPTION>Half Carry Flag</DESCRIPTION>
+          <TEXT>The half carry flag H indicates a half carry in some arithmetic operations. See the Instruction Set Description for detailed information.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>S</NAME>
+          <DESCRIPTION>Sign Bit</DESCRIPTION>
+          <TEXT>The S-bit is always an exclusive or between the negative flag N and the two&#x2019;s complement overflow flag V. See the Instruc-tion Set Description for detailed information.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>V</NAME>
+          <DESCRIPTION>Two's Complement Overflow Flag</DESCRIPTION>
+          <TEXT>The two&#x2019;s complement overflow flag V supports two&#x2019;s complement arithmetics. See the Instruction Set Description for detailed information.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>N</NAME>
+          <DESCRIPTION>Negative Flag</DESCRIPTION>
+          <TEXT>The negative flag N indicates a negative result after the different arithmetic and logic operations. See the Instruction Set Description for detailed information.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>Z</NAME>
+          <DESCRIPTION>Zero Flag</DESCRIPTION>
+          <TEXT>The zero flag Z indicates a zero result after the different arithmetic and logic operations. See the Instruction Set Description for detailed information.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>C</NAME>
+          <DESCRIPTION>Carry Flag</DESCRIPTION>
+          <TEXT>The carry flag C indicates a carry in an arithmetic or logic operation. See the Instruction Set Description for detailed information. Note that the status register is not automatically stored when entering an interrupt routine and restored when returning from an interrupt routine. This must be handled by software.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </SREG>
+      <MCUCR>
+        <NAME>MCUCR</NAME>
+        <DESCRIPTION>MCU Control Register</DESCRIPTION>
+        <TEXT>The MCU Control Register contains control bits for general MCU functions.</TEXT>
+        <IO_ADDR>$35</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_cpu.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT6>
+          <NAME>PUD</NAME>
+          <DESCRIPTION>Pull-up Disable</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>SE</NAME>
+          <DESCRIPTION>Sleep Enable</DESCRIPTION>
+          <TEXT>The SE bit must be set (one) to make the MCU enter the sleep mode when the SLEEP instruction is executed. To avoid the MCU entering the sleep mode unless it is the programmers purpose, it is recommended to set the Sleep Enable SE bit just before the execution of the SLEEP instruction.</TEXT>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>SM1</NAME>
+          <DESCRIPTION>Sleep Mode Select Bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>SM0</NAME>
+          <DESCRIPTION>Sleep Mode Select Bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <ENUM>CPU_SLEEP_MODE2</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT1>
+          <NAME>ISC01</NAME>
+          <DESCRIPTION>Interrupt Sense Control 0 bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>ISC00</NAME>
+          <DESCRIPTION>Interrupt Sense Control 0 bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>R</ACCESS>
+          <ENUM>INTERRUPT_SENSE_CONTROL2</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </MCUCR>
+      <MCUSR>
+        <NAME>MCUSR</NAME>
+        <DESCRIPTION>MCU Status register</DESCRIPTION>
+        <TEXT>The MCU Status Registerprovides information on which reset source caused a MCU reset.</TEXT>
+        <IO_ADDR>$34</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_cpu.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT3>
+          <NAME>WDRF</NAME>
+          <DESCRIPTION>Watchdog Reset Flag</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>BORF</NAME>
+          <DESCRIPTION>Brown-out Reset Flag</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>EXTRF</NAME>
+          <DESCRIPTION>External Reset Flag</DESCRIPTION>
+          <TEXT>After a power-on reset, this bit is undefined (X). It will be set by an external reset. A watchdog reset will leave this bit unchanged.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>PORF</NAME>
+          <DESCRIPTION>Power-On Reset Flag</DESCRIPTION>
+          <TEXT>This bit is set by a power-on reset. A watchdog reset or an external reset will leave this bit unchanged</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </MCUSR>
+      <OSCCAL>
+        <NAME>OSCCAL</NAME>
+        <DESCRIPTION>Status Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$31</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_sreg.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>CAL7</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>CAL6</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>CAL5</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>CAL4</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>CAL3</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>CAL2</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>CAL1</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>CAL0</NAME>
+          <DESCRIPTION>Oscillator Calibration Value Bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </OSCCAL>
+    </CPU>
+    <EXTERNAL_INTERRUPT>
+      <LIST>[GIMSK:GIFR]</LIST>
+      <LINK/>
+      <ICON>io_ext.bmp</ICON>
+      <ID/>
+      <TEXT/>
+      <GIMSK>
+        <NAME>GIMSK</NAME>
+        <DESCRIPTION>General Interrupt Mask Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$3B</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT6>
+          <NAME>INT0</NAME>
+          <DESCRIPTION>External Interrupt Request 0 Enable</DESCRIPTION>
+          <TEXT>When the INT0 bit is set (one) and the I-bit in the Status Register (SREG) is set (one), the external pin interrupt is enabled. The Interrupt Sense Control0 bits 1/0 (ISC01 and ISC00) in the MCU general Control Register (MCUCR) defines whether the external interrupt is activated on rising or falling edge of the INT0 pin or level sensed. Activity on the pin will cause an interrupt request even if INT0 is configured as an output. The corresponding interrupt of External Interrupt Request 0 is executed from program memory address $001. See also &#x201C;External Interrupts.&#x201D; &#x2022; Bits 5..0 - Res: Reserved bits</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>PCIE</NAME>
+          <DESCRIPTION>Pin Change Interrupt Enable</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+      </GIMSK>
+      <GIFR>
+        <NAME>GIFR</NAME>
+        <DESCRIPTION>General Interrupt Flag register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$3A</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT6>
+          <NAME>INTF0</NAME>
+          <DESCRIPTION>External Interrupt Flag 0</DESCRIPTION>
+          <TEXT>When an event on the INT0 pin triggers an interrupt request, INTF0 becomes set (one). If the I-bit in SREG and the INT0 bit in GIMSK are set (one), the MCU will jump to the interrupt vector at address $001. The flag is cleared when the interrupt routine is executed. Alternatively, the flag can be cleared by writing a logical one to it. </TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>PCIF</NAME>
+          <DESCRIPTION>Pin Change Interrupt Flag</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+      </GIFR>
+    </EXTERNAL_INTERRUPT>
+    <TIMER_COUNTER_1>
+      <LIST>[TCCR1:TCNT1:OCR1A:OCR1B:TIMSK:TIFR:SFIOR]</LIST>
+      <LINK/>
+      <ICON>io_timer.bmp</ICON>
+      <ID>t8pwm1_00</ID>
+      <TEXT/>
+      <TCCR1>
+        <NAME>TCCR1</NAME>
+        <DESCRIPTION>Timer/Counter Control Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$30</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT7>
+          <NAME>CTC1</NAME>
+          <DESCRIPTION>Clear Timer/Counter on Compare Match</DESCRIPTION>
+          <TEXT>When the CTC1 control bit is set (one), Timer/Counter1 is reset to $00 in the CPU clock cycle after a compare match with OCR1A register value. If the control bit is cleared, Timer/Counter1 continues counting and is unaffected by a compare match.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>PWM1</NAME>
+          <DESCRIPTION>Pulse Width Modulator Enable</DESCRIPTION>
+          <TEXT>When set (one), this bit enables PWM mode for Timer/Counter1.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>COM1A1</NAME>
+          <DESCRIPTION>Compare Output Mode, Bit 0</DESCRIPTION>
+          <TEXT>The COM1A1 and COM1A0 control bits determine any output pin action following a compare match A in Timer/Counter1. Output pin actions affect pin PB1(OC1A). Since this is an alternative function to an I/O port, the corresponding direction control bit must be set (one) to control an output pin.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>COM1A0</NAME>
+          <DESCRIPTION>Compare Output Mode, Bit 1</DESCRIPTION>
+          <TEXT>The COM1A1 and COM1A0 control bits determine any output pin action following a compare match A in Timer/Counter1. Output pin actions affect pin PB1(OC1A). Since this is an alternative function to an I/O port, the corresponding direction control bit must be set (one) to control an output pin.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <ENUM>CLK_COMP_MATCH_OUT_MODE</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>CS13</NAME>
+          <DESCRIPTION>Clock Select Bits</DESCRIPTION>
+          <TEXT>The Clock Select bits 3, 2, 1, and 0 define the prescaling source of Timer/Counter1.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>CS12</NAME>
+          <DESCRIPTION>Clock Select Bits</DESCRIPTION>
+          <TEXT>The Clock Select bits 3, 2, 1, and 0 define the prescaling source of Timer/Counter1.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>CS11</NAME>
+          <DESCRIPTION>Clock Select Bits</DESCRIPTION>
+          <TEXT>The Clock Select bits 3, 2, 1, and 0 define the prescaling source of Timer/Counter1.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>CS10</NAME>
+          <DESCRIPTION>Clock Select Bits</DESCRIPTION>
+          <TEXT>The Clock Select bits 3, 2, 1, and 0 define the prescaling source of Timer/Counter1.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <ENUM>CLK_SEL_4BIT_FAST</ENUM>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </TCCR1>
+      <TCNT1>
+        <NAME>TCNT1</NAME>
+        <DESCRIPTION>Timer/Counter Register</DESCRIPTION>
+        <TEXT>The Timer/Counter Register gives direct access, both for read and write operations, to the Timer/Counter unit 8-bit counter. Writing to the TCNT1 register blocks (removes) the compare match on the following timer clock. Modifying the counter (TCNT1) while the counter is running, introduces a risk of missing a compare match between TCNT1 the OCR2 register. </TEXT>
+        <IO_ADDR>$2F</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_timer.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>TCNT1_7</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>TCNT1_6</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>TCNT1_5</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>TCNT1_4</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>TCNT1_3</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>TCNT1_2</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>TCNT1_1</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>TCNT1_0</NAME>
+          <DESCRIPTION>Timer/Counter Register Bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </TCNT1>
+      <OCR1A>
+        <NAME>OCR1A</NAME>
+        <DESCRIPTION>Output Compare Register</DESCRIPTION>
+        <TEXT>The Output Compare Register contains an 8-bit value that is continuously compared with the counter value (TCNT1). A match can be used to generate an output compare interrupt, or to generate a waveform output on the OC2 pin.</TEXT>
+        <IO_ADDR>$2E</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_timer.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>OCR1A7</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>OCR1A6</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>OCR1A5</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>OCR1A4</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>OCR1A3</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>OCR1A2</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>OCR1A1</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>OCR1A0</NAME>
+          <DESCRIPTION>Output Compare Register A Bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </OCR1A>
+      <OCR1B>
+        <NAME>OCR1B</NAME>
+        <DESCRIPTION>Output Compare Register</DESCRIPTION>
+        <TEXT>The Output Compare Register contains an 8-bit value that is continuously compared with the counter value (TCNT1). A match can be used to generate an output compare interrupt, or to generate a waveform output on the OC2 pin.</TEXT>
+        <IO_ADDR>$2D</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_timer.bmp</ICON>
+        <DISPLAY_BITS>N</DISPLAY_BITS>
+        <BIT7>
+          <NAME>OCR1B7</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 7</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT7>
+        <BIT6>
+          <NAME>OCR1B6</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 6</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT5>
+          <NAME>OCR1B5</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 5</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT5>
+        <BIT4>
+          <NAME>OCR1B4</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 4</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT4>
+        <BIT3>
+          <NAME>OCR1B3</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 3</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT3>
+        <BIT2>
+          <NAME>OCR1B2</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 2</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>OCR1B1</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 1</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>OCR1B0</NAME>
+          <DESCRIPTION>Output Compare Register B Bit 0</DESCRIPTION>
+          <TEXT/>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </OCR1B>
+      <TIMSK>
+        <NAME>TIMSK</NAME>
+        <DESCRIPTION>Timer/Counter Interrupt Mask Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$39</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT6>
+          <NAME>OCIE1A</NAME>
+          <DESCRIPTION>OCIE1A: Timer/Counter1 Output Compare Interrupt Enable</DESCRIPTION>
+          <TEXT>When the OCIE1A bit is set (one) and the I-bit in the Status Register is set (one), the Timer/Counter1 Compare Match, interrupt is enabled. The corresponding interrupt (at vector $003) is executed if a compare match A in Timer/Counter1 occurs, i.e., when the OCF1A bit is set (one) in the Timer/Counter Interrupt Flag Register (TIFR).</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT2>
+          <NAME>TOIE1</NAME>
+          <DESCRIPTION>Timer/Counter1 Overflow Interrupt Enable</DESCRIPTION>
+          <TEXT>When the TOIE1 bit is set (one) and the I-bit in the Status Register is set (one), the Timer/Counter1 Overflow interrupt is enabled. The corresponding interrupt (at vector $004) is executed if an overflow in Timer/Counter1 occurs (i.e., when the TOV1 bit is set in the Timer/Counter Interrupt Flag Register [TIFR]).</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+      </TIMSK>
+      <TIFR>
+        <NAME>TIFR</NAME>
+        <DESCRIPTION>Timer/Counter Interrupt Flag Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$38</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <DISPLAY_BITS>Y</DISPLAY_BITS>
+        <BIT6>
+          <NAME>OCF1A</NAME>
+          <DESCRIPTION>Timer/Counter1 Output Compare Flag 1A</DESCRIPTION>
+          <TEXT>The OCF1A bit is set (one) when compare match occurs between Timer/Counter1 and the data value in OCR1A (Output Compare Register 1A). OCF1A is cleared by hard-ware when executing the corresponding interrupt handling vector. Alternatively, OCF1A is cleared by writing a logical &#x201C;1&#x201D; to the flag. When the I-bit in SREG, OCIE1A, and OCF1A are set (one), the Timer/Counter1 compare match A interrupt is executed.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT6>
+        <BIT2>
+          <NAME>TOV1</NAME>
+          <DESCRIPTION>Timer/Counter1 Overflow Flag</DESCRIPTION>
+          <TEXT>The bit TOV0 is set (one) when an overflow occurs in Timer/Counter0. TOV0 is cleared by hardware when executing the corresponding interrupt handling vector. Alternatively, TOV0 is cleared by writing a logical &#x201C;1&#x201D; to the flag. When the SREG I-bit, TOIE0 (Timer/Counter0 Overf low Interrupt Enable) and TOV0 are set (one), the Timer/Counter0 Overflow interrupt is executed.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+      </TIFR>
+      <SFIOR>
+        <NAME>SFIOR</NAME>
+        <DESCRIPTION>Special Function IO Register</DESCRIPTION>
+        <TEXT/>
+        <IO_ADDR>$2C</IO_ADDR>
+        <MEM_ADDR>NA</MEM_ADDR>
+        <ICON>io_flag.bmp</ICON>
+        <BIT2>
+          <NAME>FOC1A</NAME>
+          <DESCRIPTION>Force Output Compare 1A</DESCRIPTION>
+          <TEXT>Writing a logical &#x201C;1&#x201D; to this bit forces a change in the compare match output pin PB1 (OC1A) according to the values already set in COM1A1 and COM1A0. The Force Output Compare bit can be used to change the output pin without waiting for a compare match in timer. The automatic action programmed in COM1A1 and COM1A0 happens as if a Compare Match had occurred, but no interrupt is generated and the Timer/Counter1 will not be cleared even if CTC1 is set. The FOC1A bit will always be read as zero. The setting of the FOC1A bit has no effect in PWM mode</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT2>
+        <BIT1>
+          <NAME>PSR1</NAME>
+          <DESCRIPTION>Prescaler Reset Timer/Counter1</DESCRIPTION>
+          <TEXT>When this bit is set (one) the Timer/Counter1 prescaler will be reset. The bit will be cleared by hardware after the operation is performed. Writing a &#x201C;0&#x201D; to this bit will have no effect. This bit will always be read as zero.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT1>
+        <BIT0>
+          <NAME>PSR0</NAME>
+          <DESCRIPTION>Prescaler Reset Timer/Counter0</DESCRIPTION>
+          <TEXT>When this bit is set (one) the Timer/Counter0 prescaler will be reset. The bit will be cleared by hardware after the operation is performed. Writing a &#x201C;0&#x201D; to this bit will have no effect. This bit will always be read as zero.</TEXT>
+          <ACCESS>RW</ACCESS>
+          <INIT_VAL>0</INIT_VAL>
+        </BIT0>
+      </SFIOR>
+    </TIMER_COUNTER_1>
+  </IO_MODULE>
+  <ICE_SETTINGS>
+    <MODULE_LIST>[SIMULATOR:STK500:STK500_2:AVRISPmkII:AVRDragon:STK600]</MODULE_LIST>
+    <SIMULATOR>
+      <CoreID>AVRSimCoreV2.SimCoreV2</CoreID>
+      <MemoryID>AVRSimMemory8bit.SimMemory8bit</MemoryID>
+      <InterruptID>AVRSimInterrupt.SimInterrupt</InterruptID>
+      <EEINTERRUPT>0x06</EEINTERRUPT>
+      <EEAR_EXTRA_BIT>0</EEAR_EXTRA_BIT>
+      <NmbIOModules>7</NmbIOModules>
+      <PORTB>
+        <ID>AVRSimIOPort.SimIOPort</ID>
+        <MASK>0xff</MASK>
+        <TOGGLE_PIN>N</TOGGLE_PIN>
+      </PORTB>
+      <EXTINT0>
+        <ID>AVRSimIOExtInterrupt.SimIOExtInterrupt</ID>
+        <IntVector>0x01</IntVector>
+        <EnableIOAdr>0x3b</EnableIOAdr>
+        <EnableMask>0x40</EnableMask>
+        <FlagIOAdr>0x3a</FlagIOAdr>
+        <FlagMask>0x40</FlagMask>
+        <ExtPinIOAdr>0x16</ExtPinIOAdr>
+        <ExtPinMask>0x04</ExtPinMask>
+        <SenseIOAdr>0x35</SenseIOAdr>
+        <SenseMask>0x03</SenseMask>
+      </EXTINT0>
+      <PININT0>
+        <ID>AVRSimIOPinChangeInterrupt.SimIOPinChangeInterrupt</ID>
+        <IntVector>0x02</IntVector>
+        <EnableIOAdr>0x3B</EnableIOAdr>
+        <EnableMask>0x20</EnableMask>
+        <FlagIOAdr>0x3A</FlagIOAdr>
+        <FlagMask>0x20</FlagMask>
+        <PCMaskIOAdr>0x00</PCMaskIOAdr>
+        <ExtPinIOAdr>0x16</ExtPinIOAdr>
+        <ExtPinMask>0x3F</ExtPinMask>
+      </PININT0>
+      <TIMER0>
+        <ID>AVRSimIOTimert81.SimIOTimert81</ID>
+        <IntVector>0x05</IntVector>
+        <ExtPinIOAdr>0x16</ExtPinIOAdr>
+        <ExtPinMask>0x04</ExtPinMask>
+      </TIMER0>
+      <TIMER1>
+        <ID>AVRSimIOtimer8t15.SimIOtimer8t15</ID>
+      </TIMER1>
+      <ANALOGCOMPARATOR>
+        <ID>AVRSimAC.SimIOAC</ID>
+        <IntVector>0x07</IntVector>
+      </ANALOGCOMPARATOR>
+      <ADC>
+        <ID>AVRSimADC.SimADC</ID>
+        <IntVector>0x08</IntVector>
+      </ADC>
+    </SIMULATOR>
+    <STK500>
+      <DeviceId>0x13</DeviceId>
+      <SelfTimed>1</SelfTimed>
+      <FullParallel>0</FullParallel>
+      <Polled>1</Polled>
+      <FPoll>0xFF</FPoll>
+      <EPol1>0xFF</EPol1>
+      <EPol2>0xFF</EPol2>
+      <ComLockFuseRead>0</ComLockFuseRead>
+      <ResetDisable>1</ResetDisable>
+    </STK500>
+    <STK500_2>
+      <IspEnterProgMode>
+        <timeout>200</timeout>
+        <stabDelay>100</stabDelay>
+        <cmdexeDelay>25</cmdexeDelay>
+        <synchLoops>32</synchLoops>
+        <byteDelay>0</byteDelay>
+        <pollIndex>3</pollIndex>
+        <pollValue>0x53</pollValue>
+      </IspEnterProgMode>
+      <IspLeaveProgMode>
+        <preDelay>1</preDelay>
+        <postDelay>1</postDelay>
+      </IspLeaveProgMode>
+      <IspChipErase>
+        <eraseDelay>100</eraseDelay>
+        <pollMethod>0</pollMethod>
+      </IspChipErase>
+      <IspProgramFlash>
+        <mode>0x04</mode>
+        <blockSize>128</blockSize>
+        <delay>10</delay>
+        <cmd1>0x40</cmd1>
+        <cmd2>0x00</cmd2>
+        <cmd3>0x20</cmd3>
+        <pollVal1>0xFF</pollVal1>
+        <pollVal2>0x00</pollVal2>
+      </IspProgramFlash>
+      <IspProgramEeprom>
+        <mode>0x04</mode>
+        <blockSize>64</blockSize>
+        <delay>20</delay>
+        <cmd1>0xC0</cmd1>
+        <cmd2>0x00</cmd2>
+        <cmd3>0xA0</cmd3>
+        <pollVal1>0xFF</pollVal1>
+        <pollVal2>0xFF</pollVal2>
+      </IspProgramEeprom>
+      <IspReadFlash>
+        <blockSize>256</blockSize>
+      </IspReadFlash>
+      <IspReadEeprom>
+        <blockSize>256</blockSize>
+      </IspReadEeprom>
+      <IspReadFuse>
+        <pollIndex>4</pollIndex>
+      </IspReadFuse>
+      <IspReadLock>
+        <pollIndex>4</pollIndex>
+      </IspReadLock>
+      <IspReadSign>
+        <pollIndex>4</pollIndex>
+      </IspReadSign>
+      <IspReadOsccal>
+        <pollIndex>4</pollIndex>
+      </IspReadOsccal>
+      <HvspControlStack>0x4C 0x0C 0x1C 0x2C 0x3C 0x64 0x74 0x00 0x68 0x78 0x68 0x68 0x00 0x00 0x68 0x78 0x78 0x00 0x6D 0x0C 0x80 0x40 0x20 0x10 0x11 0x08 0x04 0x02 0x03 0x08 0x04 0x00</HvspControlStack>
+      <HvspEnterProgMode>
+        <stabDelay>100</stabDelay>
+        <cmdexeDelay>5</cmdexeDelay>
+        <synchCycles>6</synchCycles>
+        <latchCycles>16</latchCycles>
+        <toggleVtg>1</toggleVtg>
+        <powoffDelay>25</powoffDelay>
+        <resetDelay1>1</resetDelay1>
+        <resetDelay2>0</resetDelay2>
+      </HvspEnterProgMode>
+      <HvspLeaveProgMode>
+        <stabDelay>100</stabDelay>
+        <resetDelay>25</resetDelay>
+      </HvspLeaveProgMode>
+      <HvspChipErase>
+        <pollTimeout>40</pollTimeout>
+        <eraseTime>0</eraseTime>
+      </HvspChipErase>
+      <HvspProgramFlash>
+        <mode>0</mode>
+        <blockSize>256</blockSize>
+        <pollTimeout>5</pollTimeout>
+      </HvspProgramFlash>
+      <HvspReadFlash>
+        <blockSize>256</blockSize>
+      </HvspReadFlash>
+      <HvspProgramEeprom>
+        <mode>0</mode>
+        <blockSize>256</blockSize>
+        <pollTimeout>5</pollTimeout>
+      </HvspProgramEeprom>
+      <HvspReadEeprom>
+        <blockSize>256</blockSize>
+      </HvspReadEeprom>
+      <HvspProgramFuse>
+        <pollTimeout>25</pollTimeout>
+      </HvspProgramFuse>
+      <HvspProgramLock>
+        <pollTimeout>25</pollTimeout>
+      </HvspProgramLock>
+    </STK500_2>
+    <AVRISPmkII/>
+    <AVRDragon/>
+    <STK600>
+      <IspEnterProgMode>
+        <timeout>200</timeout>
+        <stabDelay>100</stabDelay>
+        <cmdexeDelay>25</cmdexeDelay>
+        <synchLoops>32</synchLoops>
+        <byteDelay>0</byteDelay>
+        <pollIndex>3</pollIndex>
+        <pollValue>0x53</pollValue>
+      </IspEnterProgMode>
+      <IspLeaveProgMode>
+        <preDelay>1</preDelay>
+        <postDelay>1</postDelay>
+      </IspLeaveProgMode>
+      <IspChipErase>
+        <eraseDelay>100</eraseDelay>
+        <pollMethod>0</pollMethod>
+      </IspChipErase>
+      <IspProgramFlash>
+        <mode>0x04</mode>
+        <blockSize>128</blockSize>
+        <delay>5</delay>
+        <cmd1>0x40</cmd1>
+        <cmd2>0x00</cmd2>
+        <cmd3>0x20</cmd3>
+        <pollVal1>0xFF</pollVal1>
+        <pollVal2>0x00</pollVal2>
+      </IspProgramFlash>
+      <IspProgramEeprom>
+        <mode>0x04</mode>
+        <blockSize>64</blockSize>
+        <delay>10</delay>
+        <cmd1>0xC0</cmd1>
+        <cmd2>0x00</cmd2>
+        <cmd3>0xA0</cmd3>
+        <pollVal1>0xFF</pollVal1>
+        <pollVal2>0xFF</pollVal2>
+      </IspProgramEeprom>
+      <IspReadFlash>
+        <blockSize>256</blockSize>
+      </IspReadFlash>
+      <IspReadEeprom>
+        <blockSize>256</blockSize>
+      </IspReadEeprom>
+      <IspReadFuse>
+        <pollIndex>4</pollIndex>
+      </IspReadFuse>
+      <IspReadLock>
+        <pollIndex>4</pollIndex>
+      </IspReadLock>
+      <IspReadSign>
+        <pollIndex>4</pollIndex>
+      </IspReadSign>
+      <IspReadOsccal>
+        <pollIndex>4</pollIndex>
+      </IspReadOsccal>
+      <HvspControlStack>0x4C 0x0C 0x1C 0x2C 0x3C 0x64 0x74 0x00 0x68 0x78 0x68 0x68 0x00 0x00 0x68 0x78 0x78 0x00 0x6D 0x0C 0x80 0x40 0x20 0x10 0x11 0x08 0x04 0x02 0x03 0x08 0x04 0x00</HvspControlStack>
+      <HvspEnterProgMode>
+        <stabDelay>100</stabDelay>
+        <cmdexeDelay>5</cmdexeDelay>
+        <synchCycles>6</synchCycles>
+        <latchCycles>16</latchCycles>
+        <toggleVtg>1</toggleVtg>
+        <powoffDelay>20</powoffDelay>
+        <resetDelay1>0</resetDelay1>
+        <resetDelay2>50</resetDelay2>
+      </HvspEnterProgMode>
+      <HvspLeaveProgMode>
+        <stabDelay>100</stabDelay>
+        <resetDelay>25</resetDelay>
+      </HvspLeaveProgMode>
+      <HvspChipErase>
+        <pollTimeout>40</pollTimeout>
+        <eraseTime>0</eraseTime>
+      </HvspChipErase>
+      <HvspProgramFlash>
+        <mode>0</mode>
+        <blockSize>64</blockSize>
+        <pollTimeout>5</pollTimeout>
+      </HvspProgramFlash>
+      <HvspReadFlash>
+        <blockSize>256</blockSize>
+      </HvspReadFlash>
+      <HvspProgramEeprom>
+        <mode>0</mode>
+        <blockSize>256</blockSize>
+        <pollTimeout>5</pollTimeout>
+      </HvspProgramEeprom>
+      <HvspReadEeprom>
+        <blockSize>256</blockSize>
+      </HvspReadEeprom>
+      <HvspProgramFuse>
+        <pollTimeout>25</pollTimeout>
+      </HvspProgramFuse>
+      <HvspProgramLock>
+        <pollTimeout>25</pollTimeout>
+      </HvspProgramLock>
+    </STK600>
+  </ICE_SETTINGS>
+  <V2>
+    <templates>
+      <module class="FUSE">
+        <registers name="FUSE" memspace="FUSE">
+          <reg size="1" name="LOW" offset="0x00">
+            <bitfield name="BODLEVEL" mask="0x80" text="Brown-out Detection Level" icon="" enum="ENUM_BODLEVEL"/>
+            <bitfield name="BODEN" mask="0x40" text="Brown-out Detection Enabled" icon=""/>
+            <bitfield name="SPIEN" mask="0x20" text="Serial program downloading (SPI) enabled" icon=""/>
+            <bitfield name="RSTDISBL" mask="0x10" text="External reset function of PB5 disabled" icon=""/>
+            <bitfield name="CKSEL" mask="0x03" text="Clock Select" icon="" enum="ENUM_SUT_CKSEL"/>
+          </reg>
+        </registers>
+        <enumerator name="ENUM_BODLEVEL">
+          <enum val="0x01" text="Brown-out detection at VCC=2.7 V" constname="2V7"/>
+          <enum val="0x00" text="Brown-out detection at VCC=4.0 V" constname="4V0"/>
+        </enumerator>
+        <enumerator name="ENUM_SUT_CKSEL">
+          <enum val="0x03" text="Very quickly rising power" constname="VQUICKPWR"/>
+          <enum val="0x02" text="Quickly rising power" constname="QUICKPWR"/>
+          <enum val="0x01" text="Slowly rising power" constname="SLOWPWR"/>
+          <enum val="0x00" text="Slowly rising power" constname="SLOWPWR"/>
+        </enumerator>
+      </module>
+      <module class="LOCKBIT">
+        <registers name="LOCKBIT" memspace="LOCKBIT">
+          <reg size="1" name="LOCKBIT" offset="0x00">
+            <bitfield name="LB" mask="0x06" text="Memory Lock" icon="" enum="ENUM_LB"/>
+          </reg>
+        </registers>
+        <enumerator name="ENUM_LB">
+          <enum val="0x00" text="Further programming and verification disabled" constname="PROG_VER_DISABLED"/>
+          <enum val="0x01" text="Further programming disabled" constname="PROG_DISABLED"/>
+          <enum val="0x03" text="No memory lock features enabled" constname="NO_LOCK"/>
+        </enumerator>
+      </module>
+      <module class="AD_CONVERTER" text="">
+        <registers name="AD_CONVERTER" memspace="IOMEM" text="" icon="io_analo.bmp">
+          <reg size="1" name="ADMUX" offset="0x07" text="The ADC multiplexer Selection Register" icon="io_analo.bmp">
+            <bitfield name="REFS" mask="0xC0" text="Reference Selection Bits" icon="" enum="ANALOG_ADC_V_REF"/>
+            <bitfield name="ADLAR" mask="0x20" text="Left Adjust Result" icon=""/>
+            <bitfield name="MUX" mask="0x07" text="Analog Channel and Gain Selection Bits" icon=""/>
+          </reg>
+          <reg size="1" name="ADCSR" offset="0x06" text="The ADC Control and Status register" icon="io_flag.bmp">
+            <bitfield name="ADEN" mask="0x80" text="ADC Enable" icon=""/>
+            <bitfield name="ADSC" mask="0x40" text="ADC Start Conversion" icon=""/>
+            <bitfield name="ADFR" mask="0x20" text="ADC  Free Running Select" icon=""/>
+            <bitfield name="ADIF" mask="0x10" text="ADC Interrupt Flag" icon=""/>
+            <bitfield name="ADIE" mask="0x08" text="ADC Interrupt Enable" icon=""/>
+            <bitfield name="ADPS" mask="0x07" text="ADC  Prescaler Select Bits" icon="" enum="ANALIG_ADC_PRESCALER"/>
+          </reg>
+          <reg size="2" name="ADC" offset="0x04" text="ADC Data Register  Bytes" icon="io_analo.bmp" mask="0xFFFF"/>
+        </registers>
+        <enumerator name="ANALOG_ADC_V_REF">
+          <enum val="0x00" text="AVCC"/>
+          <enum val="0x01" text="AREF"/>
+          <enum val="0x02" text="Internal Voltage Referance"/>
+          <enum val="0x03" text="Internal Voltage Reference With External Capacitor at AREF Pin."/>
+        </enumerator>
+        <enumerator name="ANALIG_ADC_PRESCALER">
+          <enum val="0x00" text="2"/>
+          <enum val="0x01" text="2"/>
+          <enum val="0x02" text="4"/>
+          <enum val="0x03" text="8"/>
+          <enum val="0x04" text="16"/>
+          <enum val="0x05" text="32"/>
+          <enum val="0x06" text="64"/>
+          <enum val="0x07" text="128"/>
+        </enumerator>
+      </module>
+      <module class="ANALOG_COMPARATOR" text="">
+        <registers name="ANALOG_COMPARATOR" memspace="IOMEM" text="" icon="io_analo.bmp">
+          <reg size="1" name="ACSR" offset="0x08" text="Analog Comparator Control And Status Register" icon="io_analo.bmp">
+            <bitfield name="ACD" mask="0x80" text="Analog Comparator Disable" icon=""/>
+            <bitfield name="ACBG" mask="0x40" text="Analog Comparator Bandgap Select" icon=""/>
+            <bitfield name="ACO" mask="0x20" text="Analog Compare Output" icon=""/>
+            <bitfield name="ACI" mask="0x10" text="Analog Comparator Interrupt Flag" icon=""/>
+            <bitfield name="ACIE" mask="0x08" text="Analog Comparator Interrupt Enable" icon=""/>
+            <bitfield name="ACIS" mask="0x03" text="Analog Comparator Interrupt Mode Select bits" icon="" enum="ANALOG_COMP_INTERRUPT"/>
+          </reg>
+        </registers>
+        <enumerator name="ANALOG_COMP_INTERRUPT">
+          <enum val="0x00" text="Interrupt on Toggle"/>
+          <enum val="0x01" text="Reserved"/>
+          <enum val="0x02" text="Interrupt on Falling Edge"/>
+          <enum val="0x03" text="Interrupt on Rising Edge"/>
+        </enumerator>
+      </module>
+      <module class="EEPROM" text="">
+        <registers name="EEPROM" memspace="IOMEM" text="" icon="io_cpu.bmp">
+          <reg size="1" name="EEAR" offset="0x1E" text="EEPROM Read/Write Access" icon="io_cpu.bmp" mask="0x3F"/>
+          <reg size="1" name="EEDR" offset="0x1D" text="EEPROM Data Register" icon="io_cpu.bmp" mask="0xFF"/>
+          <reg size="1" name="EECR" offset="0x1C" text="EEPROM Control Register" icon="io_flag.bmp">
+            <bitfield name="EERIE" mask="0x08" text="EEProm Ready Interrupt Enable" icon=""/>
+            <bitfield name="EEMWE" mask="0x04" text="EEPROM Master Write Enable" icon=""/>
+            <bitfield name="EEWE" mask="0x02" text="EEPROM Write Enable" icon=""/>
+            <bitfield name="EERE" mask="0x01" text="EEPROM Read Enable" icon=""/>
+          </reg>
+        </registers>
+      </module>
+      <module class="PORTB" text="">
+        <registers name="PORTB" memspace="IOMEM" text="" icon="io_port.bmp">
+          <reg size="1" name="PORTB" offset="0x18" text="Data Register, Port B" icon="io_port.bmp" mask="0x1F"/>
+          <reg size="1" name="DDRB" offset="0x17" text="Data Direction Register, Port B" icon="io_flag.bmp" mask="0x3F"/>
+          <reg size="1" name="PINB" offset="0x16" text="Input Pins, Port B" icon="io_port.bmp" mask="0x3F"/>
+        </registers>
+      </module>
+      <module class="TIMER_COUNTER_0" text="">
+        <registers name="TIMER_COUNTER_0" memspace="IOMEM" text="" icon="io_timer.bmp">
+          <reg size="1" name="TIMSK" offset="0x39" text="Timer/Counter Interrupt Mask Register" icon="io_flag.bmp">
+            <bitfield name="TOIE0" mask="0x02" text="Timer/Counter0 Overflow Interrupt Enable" icon=""/>
+          </reg>
+          <reg size="1" name="TIFR" offset="0x38" text="Timer/Counter Interrupt Flag register" icon="io_flag.bmp">
+            <bitfield name="TOV0" mask="0x02" text="Timer/Counter0 Overflow Flag" icon=""/>
+          </reg>
+          <reg size="1" name="TCCR0" offset="0x33" text="Timer/Counter0 Control Register" icon="io_flag.bmp">
+            <bitfield name="CS02" mask="0x04" text="Clock Select0 bit 2" icon="" enum="CLK_SEL_3BIT_EXT"/>
+            <bitfield name="CS01" mask="0x02" text="Clock Select0 bit 1" icon=""/>
+            <bitfield name="CS00" mask="0x01" text="Clock Select0 bit 0" icon=""/>
+          </reg>
+          <reg size="1" name="TCNT0" offset="0x32" text="Timer Counter 0" icon="io_timer.bmp" mask="0xFF"/>
+        </registers>
+        <enumerator name="CLK_SEL_3BIT_EXT">
+          <enum val="0x00" text="No Clock Source (Stopped)"/>
+          <enum val="0x01" text="Running, No Prescaling"/>
+          <enum val="0x02" text="Running, CLK/8"/>
+          <enum val="0x03" text="Running, CLK/64"/>
+          <enum val="0x04" text="Running, CLK/256"/>
+          <enum val="0x05" text="Running, CLK/1024"/>
+          <enum val="0x06" text="Running, ExtClk Tx Falling Edge"/>
+          <enum val="0x07" text="Running, ExtClk Tx Rising Edge"/>
+        </enumerator>
+      </module>
+      <module class="WATCHDOG" text="">
+        <registers name="WATCHDOG" memspace="IOMEM" text="" icon="io_watch.bmp">
+          <reg size="1" name="WDTCR" offset="0x21" text="Watchdog Timer Control Register" icon="io_flag.bmp">
+            <bitfield name="WDTOE" mask="0x10" text="RW" icon=""/>
+            <bitfield name="WDE" mask="0x08" text="Watch Dog Enable" icon=""/>
+            <bitfield name="WDP" mask="0x07" text="Watch Dog Timer Prescaler bits" icon="" enum="WDOG_TIMER_PRESCALE_3BITS"/>
+          </reg>
+        </registers>
+        <enumerator name="WDOG_TIMER_PRESCALE_3BITS">
+          <enum val="0x00" text="Oscillator Cycles 16K"/>
+          <enum val="0x01" text="Oscillator Cycles 32K"/>
+          <enum val="0x02" text="Oscillator Cycles 64K"/>
+          <enum val="0x03" text="Oscillator Cycles 128K"/>
+          <enum val="0x04" text="Oscillator Cycles 256K"/>
+          <enum val="0x05" text="Oscillator Cycles 512K"/>
+          <enum val="0x06" text="Oscillator Cycles 1024K"/>
+          <enum val="0x07" text="Oscillator Cycles 2048K"/>
+        </enumerator>
+      </module>
+      <module class="CPU" text="">
+        <registers name="CPU" memspace="IOMEM" text="" icon="io_cpu.com">
+          <reg size="1" name="SREG" offset="0x3F" text="Status Register" icon="io_sreg.bmp">
+            <bitfield name="I" mask="0x80" text="Global Interrupt Enable" icon=""/>
+            <bitfield name="T" mask="0x40" text="Bit Copy Storage" icon=""/>
+            <bitfield name="H" mask="0x20" text="Half Carry Flag" icon=""/>
+            <bitfield name="S" mask="0x10" text="Sign Bit" icon=""/>
+            <bitfield name="V" mask="0x08" text="Two's Complement Overflow Flag" icon=""/>
+            <bitfield name="N" mask="0x04" text="Negative Flag" icon=""/>
+            <bitfield name="Z" mask="0x02" text="Zero Flag" icon=""/>
+            <bitfield name="C" mask="0x01" text="Carry Flag" icon=""/>
+          </reg>
+          <reg size="1" name="MCUCR" offset="0x35" text="MCU Control Register" icon="io_cpu.bmp">
+            <bitfield name="PUD" mask="0x40" text="Pull-up Disable" icon=""/>
+            <bitfield name="SE" mask="0x20" text="Sleep Enable" icon=""/>
+            <bitfield name="SM" mask="0x18" text="Sleep Mode Select Bits" icon="" enum="CPU_SLEEP_MODE2"/>
+            <bitfield name="ISC0" mask="0x03" text="Interrupt Sense Control 0 bits" icon="" enum="INTERRUPT_SENSE_CONTROL2"/>
+          </reg>
+          <reg size="1" name="MCUSR" offset="0x34" text="MCU Status register" icon="io_cpu.bmp">
+            <bitfield name="WDRF" mask="0x08" text="Watchdog Reset Flag" icon=""/>
+            <bitfield name="BORF" mask="0x04" text="Brown-out Reset Flag" icon=""/>
+            <bitfield name="EXTRF" mask="0x02" text="External Reset Flag" icon=""/>
+            <bitfield name="PORF" mask="0x01" text="Power-On Reset Flag" icon=""/>
+          </reg>
+          <reg size="1" name="OSCCAL" offset="0x31" text="Status Register" icon="io_sreg.bmp" mask="0xFF"/>
+        </registers>
+        <enumerator name="CPU_SLEEP_MODE2">
+          <enum val="0x00" text="Idle"/>
+          <enum val="0x01" text="ADC Noise Reduction (If Available)"/>
+          <enum val="0x02" text="Power Down"/>
+          <enum val="0x03" text="Reserved"/>
+        </enumerator>
+        <enumerator name="INTERRUPT_SENSE_CONTROL2">
+          <enum val="0x00" text="Low Level of INTX"/>
+          <enum val="0x01" text="Any Logical Change in INTX"/>
+          <enum val="0x02" text="Falling Edge of INTX"/>
+          <enum val="0x03" text="Rising Edge of INTX"/>
+        </enumerator>
+      </module>
+      <module class="EXTERNAL_INTERRUPT" text="">
+        <registers name="EXTERNAL_INTERRUPT" memspace="IOMEM" text="" icon="io_ext.bmp">
+          <reg size="1" name="GIMSK" offset="0x3B" text="General Interrupt Mask Register" icon="io_flag.bmp">
+            <bitfield name="INT0" mask="0x40" text="External Interrupt Request 0 Enable" icon=""/>
+            <bitfield name="PCIE" mask="0x20" text="Pin Change Interrupt Enable" icon=""/>
+          </reg>
+          <reg size="1" name="GIFR" offset="0x3A" text="General Interrupt Flag register" icon="io_flag.bmp">
+            <bitfield name="INTF0" mask="0x40" text="External Interrupt Flag 0" icon=""/>
+            <bitfield name="PCIF" mask="0x20" text="Pin Change Interrupt Flag" icon=""/>
+          </reg>
+        </registers>
+      </module>
+      <module class="TIMER_COUNTER_1" text="">
+        <registers name="TIMER_COUNTER_1" memspace="IOMEM" text="" icon="io_timer.bmp">
+          <reg size="1" name="TCCR1" offset="0x30" text="Timer/Counter Control Register" icon="io_flag.bmp">
+            <bitfield name="CTC1" mask="0x80" text="Clear Timer/Counter on Compare Match" icon=""/>
+            <bitfield name="PWM1" mask="0x40" text="Pulse Width Modulator Enable" icon=""/>
+            <bitfield name="COM1A" mask="0x30" text="Compare Output Mode, Bits" icon="" enum="CLK_COMP_MATCH_OUT_MODE"/>
+            <bitfield name="CS1" mask="0x0F" text="Clock Select Bits" icon="" enum="CLK_SEL_4BIT_FAST"/>
+          </reg>
+          <reg size="1" name="TCNT1" offset="0x2F" text="Timer/Counter Register" icon="io_timer.bmp" mask="0xFF"/>
+          <reg size="1" name="OCR1A" offset="0x2E" text="Output Compare Register" icon="io_timer.bmp" mask="0xFF"/>
+          <reg size="1" name="OCR1B" offset="0x2D" text="Output Compare Register" icon="io_timer.bmp" mask="0xFF"/>
+          <reg size="1" name="TIMSK" offset="0x39" text="Timer/Counter Interrupt Mask Register" icon="io_flag.bmp">
+            <bitfield name="OCIE1A" mask="0x40" text="OCIE1A: Timer/Counter1 Output Compare Interrupt Enable" icon=""/>
+            <bitfield name="TOIE1" mask="0x04" text="Timer/Counter1 Overflow Interrupt Enable" icon=""/>
+          </reg>
+          <reg size="1" name="TIFR" offset="0x38" text="Timer/Counter Interrupt Flag Register" icon="io_flag.bmp">
+            <bitfield name="OCF1A" mask="0x40" text="Timer/Counter1 Output Compare Flag 1A" icon=""/>
+            <bitfield name="TOV1" mask="0x04" text="Timer/Counter1 Overflow Flag" icon=""/>
+          </reg>
+          <reg size="1" name="SFIOR" offset="0x2C" text="Special Function IO Register" icon="io_flag.bmp">
+            <bitfield name="FOC1A" mask="0x04" text="Force Output Compare 1A" icon=""/>
+            <bitfield name="PSR1" mask="0x02" text="Prescaler Reset Timer/Counter1" icon=""/>
+            <bitfield name="PSR0" mask="0x01" text="Prescaler Reset Timer/Counter0" icon=""/>
+          </reg>
+        </registers>
+        <enumerator name="CLK_COMP_MATCH_OUT_MODE">
+          <enum val="0x00" text="Disconnected from OCn/PWMn"/>
+          <enum val="0x01" text="Toggle OCn/PWMn output line"/>
+          <enum val="0x02" text="Clear OCn/PWMn output line"/>
+          <enum val="0x03" text="set OCn/PWMn output line"/>
+        </enumerator>
+        <enumerator name="CLK_SEL_4BIT_FAST">
+          <enum val="0x00" text="No Clock Source (Stopped)"/>
+          <enum val="0x01" text="Running, CLK*16"/>
+          <enum val="0x02" text="Running, CLK*8"/>
+          <enum val="0x03" text="Running, CLK*4"/>
+          <enum val="0x04" text="Running, CLK*2"/>
+          <enum val="0x05" text="Running, No Prescaling"/>
+          <enum val="0x06" text="Running, CLK/2"/>
+          <enum val="0x07" text="Running, CLK/4"/>
+          <enum val="0x08" text="Running, CLK/8"/>
+          <enum val="0x09" text="Running, CLK/16"/>
+          <enum val="0x0A" text="Running, CLK/32"/>
+          <enum val="0x0B" text="Running, CLK/64"/>
+          <enum val="0x0C" text="Running, CLK/128"/>
+          <enum val="0x0D" text="Running, CLK/256"/>
+          <enum val="0x0E" text="Running, CLK/512"/>
+          <enum val="0x0F" text="Running, CLK/1024"/>
+        </enumerator>
+      </module>
+    </templates>
+    <modules>
+      <module implements="AD_CONVERTER" name="AD_CONVERTER">
+        <registers implements="AD_CONVERTER" name="AD_CONVERTER" offset="0x00" text=""/>
+      </module>
+      <module implements="ANALOG_COMPARATOR" name="ANALOG_COMPARATOR">
+        <registers implements="ANALOG_COMPARATOR" name="ANALOG_COMPARATOR" offset="0x00" text=""/>
+      </module>
+      <module implements="EEPROM" name="EEPROM">
+        <registers implements="EEPROM" name="EEPROM" offset="0x00" text=""/>
+      </module>
+      <module implements="PORTB" name="PORTB">
+        <registers implements="PORTB" name="PORTB" offset="0x00" text=""/>
+      </module>
+      <module implements="TIMER_COUNTER_0" name="TIMER_COUNTER_0">
+        <registers implements="TIMER_COUNTER_0" name="TIMER_COUNTER_0" offset="0x00" text=""/>
+      </module>
+      <module implements="WATCHDOG" name="WATCHDOG">
+        <registers implements="WATCHDOG" name="WATCHDOG" offset="0x00" text=""/>
+      </module>
+      <module implements="CPU" name="CPU">
+        <registers implements="CPU" name="CPU" offset="0x00" text=""/>
+      </module>
+      <module implements="EXTERNAL_INTERRUPT" name="EXTERNAL_INTERRUPT">
+        <registers implements="EXTERNAL_INTERRUPT" name="EXTERNAL_INTERRUPT" offset="0x00" text=""/>
+      </module>
+      <module implements="TIMER_COUNTER_1" name="TIMER_COUNTER_1">
+        <registers implements="TIMER_COUNTER_1" name="TIMER_COUNTER_1" offset="0x00" text=""/>
+      </module>
+    </modules>
+    <fuses>
+      <fuse implements="FUSE" name="FUSE">
+        <registers implements="FUSE" name="FUSE"/>
+      </fuse>
+    </fuses>
+    <lockbits>
+      <lockbit implements="LOCKBIT" name="LOCKBIT">
+        <registers implements="LOCKBIT" name="LOCKBIT"/>
+      </lockbit>
+    </lockbits>
+  </V2>
+</AVRPART>
