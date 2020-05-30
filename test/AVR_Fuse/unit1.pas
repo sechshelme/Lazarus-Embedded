@@ -72,7 +72,7 @@ end;
 procedure TForm1.Button3Click(Sender: TObject);
 var
   s: string;
-  i, j,k: integer;
+  i, j, k: integer;
   doc: TXMLDocument;
   Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
 begin
@@ -98,16 +98,19 @@ begin
                     if Node_Register.HasAttributes then begin
                       for j := 0 to Node_Register.Attributes.Length - 1 do begin
                         if Node_Register.Attributes.Item[j].NodeName = 'name' then begin
-                          TreeView1.Items.Add(nil, Node_Register.Attributes.Item[j].NodeValue);
+                          TreeView1.Items.Add(nil,
+                            Node_Register.Attributes.Item[j].NodeValue);
                         end;
                       end;
                     end;
-                    Node_Bitfield:=Node_Register.FirstChild;
+                    Node_Bitfield := Node_Register.FirstChild;
                     while Node_Bitfield <> nil do begin
                       if Node_Bitfield.HasAttributes then begin
-                        for k:=0 to Node_Bitfield.Attributes.Length-1 do begin
-                          if Node_Bitfield.Attributes.Item[k].NodeName = 'caption' then begin
-                            TreeView1.Items.Add(nil, Node_Bitfield.Attributes.Item[k].NodeValue);
+                        for k := 0 to Node_Bitfield.Attributes.Length - 1 do begin
+                          if Node_Bitfield.Attributes.Item[k].NodeName = 'caption' then
+                          begin
+                            TreeView1.Items.Add(nil,
+                              Node_Bitfield.Attributes.Item[k].NodeValue);
                           end;
 
                         end;
@@ -122,7 +125,6 @@ begin
                   end;
 
                 end;
-
 
               end;
             end;
