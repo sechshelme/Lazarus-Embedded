@@ -84,22 +84,22 @@ var
     i, j: integer;
   begin
     for i := 0 to ADOMNodeList.Count - 1 do begin
-      if ADOMNodeList.Item[i].NodeName = '#text' then begin
-        TreeView1.Items.AddChild(ATreeNode, ADOMNodeList.Item[i].NodeValue);
+      if ADOMNodeList[i].NodeName = '#text' then begin
+        TreeView1.Items.AddChild(ATreeNode, ADOMNodeList[i].NodeValue);
       end else begin
-        TreeView1.Items.AddChild(ATreeNode, ADOMNodeList.Item[i].NodeName);
+        TreeView1.Items.AddChild(ATreeNode, ADOMNodeList[i].NodeName);
       end;
 
       if ADOMNodeList.Item[i].HasAttributes then begin
-        for j := 0 to ADOMNodeList.Item[i].Attributes.Length - 1 do begin
-          TreeView1.Items.AddChild(ATreeNode.Items[i],
-            ADOMNodeList.Item[i].Attributes.Item[j].NodeName + '= "' +
-            ADOMNodeList.Item[i].Attributes.Item[j].NodeValue + '"');
+        for j := 0 to ADOMNodeList[i].Attributes.Length - 1 do begin
+          TreeView1.Items.AddChild(ATreeNode[i],
+            ADOMNodeList[i].Attributes[j].NodeName + '= "' +
+            ADOMNodeList[i].Attributes[j].NodeValue + '"');
         end;
       end;
 
-      if ADOMNodeList.Item[i].HasChildNodes then begin
-        Node(ADOMNodeList.Item[i].ChildNodes, ATreeNode.Items[i], schachtel + 1);
+      if ADOMNodeList[i].HasChildNodes then begin
+        Node(ADOMNodeList[i].ChildNodes, ATreeNode[i], schachtel + 1);
       end;
 
     end;
@@ -142,26 +142,28 @@ var
   var
     j: integer;
     child: TDOMNode;
-    tree: TTreeNode;
+    treeNode: TTreeNode;
   begin
     if ADOMNode.NodeName = '#text' then begin
-      TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeValue);
+      treeNode := TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeValue);
     end else begin
-      TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeName);
+      treeNode := TreeView1.Items.AddChild(ATreeNode, ADOMNode.NodeName);
     end;
 
     if ADOMNode.HasAttributes then begin
       for j := 0 to ADOMNode.Attributes.Length - 1 do begin
-        TreeView1.Items.AddChild(ATreeNode.GetLastChild,
-          ADOMNode.Attributes.Item[j].NodeName + '= "' +
-          ADOMNode.Attributes.Item[j].NodeValue + '"');
+        TreeView1.Items.AddChild(treeNode,
+          ADOMNode.Attributes[j].NodeName + '= "' +
+          ADOMNode.Attributes[j].NodeValue + '"');
+//        with ADOMNode.Attributes[j] do
+//         TreeView1.Items.AddChild(treeNode, Format('%s = "%""', [NodeName, NodeValue]));
       end;
     end;
 
     child := ADOMNode.FirstChild;
-    tree := ATreeNode.GetLastChild;
+    //    treeNode := ATreeNode.GetFirstChild;
     while child <> nil do begin
-      Node(child, tree);
+      Node(child, treeNode);
       child := child.NextSibling;
     end;
 
@@ -170,8 +172,9 @@ var
 begin
   TreeView1.Items.Clear;
   ReadXMLFile(doc, path);
-  TreeView1.Items.Add(nil, path);
-  Node(doc.DocumentElement, TreeView1.BottomItem);
+  //  TreeView1.Items.Add(nil, path);
+  //  Node(doc.DocumentElement, TreeView1.BottomItem);
+  Node(doc.DocumentElement, nil);
   doc.Free;
   TreeView1.FullExpand;
 end;

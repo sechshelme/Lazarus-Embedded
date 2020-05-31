@@ -6,20 +6,25 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  XMLConf,
-  XMLRead, XMLWrite, DOM;
+  FileUtil, SynEdit, SynHighlighterXML, XMLConf, XMLRead, XMLWrite, DOM;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
     Button3: TButton;
-    TreeView1: TTreeView;
+    ListBox1: TListBox;
+    SynEdit1: TSynEdit;
+    SynXMLSyn1: TSynXMLSyn;
+    procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ListBox1DblClick(Sender: TObject);
   private
+    function Check(path: string): boolean;
   public
 
   end;
@@ -34,7 +39,7 @@ implementation
 
 const
   //  path = 'test.xml';
-//  path = 'XML/attiny13a.xml';
+  //  path = 'XML/attiny13a.xml';
   path = 'XML/atmega328p.xml';
 //  path = 'XML/attiny4.xml';
 
@@ -70,14 +75,72 @@ end;
 
 { TForm1 }
 
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  fl: TStringList;
+  i: integer;
+begin
+  SynEdit1.Clear;
+  fl := FindAllFiles('../AVR_Fuse/XML');
+  Caption:=fl.Count.ToString;
+  for i := 0 to fl.Count - 1 do begin
+    if Check(fl[i]) then begin
+      SynEdit1.Lines.Add(fl[i]);
+    end else begin
+      SynEdit1.Lines.Add('       ' + fl[i]);
+    end;
+  end;
+  fl.Free;
+end;
+
 procedure TForm1.Button3Click(Sender: TObject);
 var
-  s: string;
+  fl: TStringList;
+  i: Integer;
+begin
+  fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
+  for i := 0 to fl.Count - 1 do begin
+    if Check(fl[i]) then begin
+      ListBox1.Items.Add(fl[i]);
+    end else begin
+      ListBox1.Items.Add(fl[i] +'      ******');
+    end;
+
+  end;
+  fl.Free;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  LoadFormPos_from_XML(self);
+  SynEdit1.ScrollBars:=ssAutoBoth;
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  SaveFormPos_to_XML(self);
+end;
+
+procedure TForm1.ListBox1DblClick(Sender: TObject);
+var path:String;
+begin
+  path:=ListBox1.Items[ListBox1.ItemIndex];
+  Caption:=path;
+  path:=StringReplace(path, '*', '', [rfIgnoreCase, rfReplaceAll]);
+  path:=StringReplace(path, ' ', '', [rfIgnoreCase, rfReplaceAll]);
+  if FileExists(path) then
+  SynEdit1.Lines.LoadFromFile(path);
+end;
+
+function TForm1.Check(path: string): boolean;
+var
   i, j, k: integer;
   doc: TXMLDocument;
   Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
 begin
-  TreeView1.Items.Clear;
+  Result := False;
+
+
   ReadXMLFile(doc, path);
 
   Node_Modules := doc.DocumentElement.FindNode('modules');
@@ -95,12 +158,9 @@ begin
                 if Node_Register_group <> nil then begin
                   Node_Register := Node_Register_group.FirstChild;
                   while Node_Register <> nil do begin
-                    TreeView1.Items.Add(nil, 'register');
                     if Node_Register.HasAttributes then begin
                       for j := 0 to Node_Register.Attributes.Length - 1 do begin
                         if Node_Register.Attributes.Item[j].NodeName = 'name' then begin
-                          TreeView1.Items.Add(nil,
-                            Node_Register.Attributes.Item[j].NodeValue);
                         end;
                       end;
                     end;
@@ -108,9 +168,9 @@ begin
                     while Node_Bitfield <> nil do begin
                       if Node_Bitfield.HasAttributes then begin
                         for k := 0 to Node_Bitfield.Attributes.Length - 1 do begin
-                          if Node_Bitfield.Attributes.Item[k].NodeName = 'caption' then begin
-                            TreeView1.Items.Add(nil,
-                              Node_Bitfield.Attributes.Item[k].NodeValue);
+                          if Node_Bitfield.Attributes.Item[k].NodeName = 'caption' then
+                          begin
+                            Result := True;
                           end;
 
                         end;
@@ -139,18 +199,6 @@ begin
 
   end;
 
-  doc.Free;
-
-end;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-  LoadFormPos_from_XML(self);
-end;
-
-procedure TForm1.FormDestroy(Sender: TObject);
-begin
-  SaveFormPos_to_XML(self);
 end;
 
 end.
