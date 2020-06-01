@@ -8,45 +8,26 @@ object Form1: TForm1
   ClientWidth = 642
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.0.8.0'
-  object TreeView1: TTreeView
-    Left = 0
-    Height = 756
+  LCLVersion = '2.1.0.0'
+  object PageControl1: TPageControl
+    Left = 248
+    Height = 752
     Top = 0
-    Width = 280
-    Anchors = [akTop, akLeft, akBottom]
+    Width = 394
+    Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
   end
-  object Button3: TButton
-    Left = 549
-    Height = 25
-    Top = 768
-    Width = 75
-    Anchors = [akRight, akBottom]
-    Caption = 'Button3'
-    OnClick = Button3Click
+  object ListBox1: TListBox
+    Left = 0
+    Height = 752
+    Top = 0
+    Width = 240
+    Anchors = [akTop, akLeft, akBottom]
+    ItemHeight = 0
+    OnDblClick = ListBox1DblClick
+    ScrollWidth = 238
+    Sorted = True
     TabOrder = 1
-  end
-  object PageControl1: TPageControl
-    Left = 296
-    Height = 608
-    Top = 16
-    Width = 328
-    ActivePage = TabSheet_Low_Fuse
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
-    TabOrder = 2
-    object TabSheet_Low_Fuse: TTabSheet
-      Caption = 'Low Fuse'
-    end
-    object TabSheet_High_Fuse: TTabSheet
-      Caption = 'High Fuse'
-    end
-    object TabSheet_Ext_Fuse: TTabSheet
-      Caption = 'Ext Fuse'
-    end
-    object TabSheet_Lok_Bit: TTabSheet
-      Caption = 'Lok Bit'
-    end
+    TopIndex = -1
   end
 end
