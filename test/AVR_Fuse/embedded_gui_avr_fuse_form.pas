@@ -1,4 +1,4 @@
-unit Unit1;
+unit Embedded_GUI_AVR_Fuse_Form;
 
 {$mode objfpc}{$H+}
 
@@ -8,7 +8,8 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   FileUtil,
   XMLConf,
-  XMLRead, XMLWrite, DOM;
+  XMLRead, XMLWrite, DOM,
+  Embedded_GUI_AVR_Fuse_Common;
 
 type
 
@@ -24,13 +25,14 @@ type
   private
     function IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
     function GetAttribut(Node: TDOMNode; const NodeName: string): string;
+    procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; cm: TFuseComboBox);
     procedure ClearTabs;
   public
     TabSheet: array[0..3] of record
       Tab: TTabSheet;
       ofs: integer;
-      CheckBox: array of TCheckBox;
-      ComboBox: array of TComboBox;
+      CheckBox: array of TFuseCheckBox;
+      ComboBox: array of TFuseComboBox;
       StaticText: array of TStaticText;
     end;
   end;
@@ -133,6 +135,30 @@ begin
   end;
 end;
 
+procedure TForm1.Read_Value_Group(const Attr_name: string; Node: TDOMNode; cm: TFuseComboBox);
+var
+  Node_Value_Group, Node_Value: TDOMNode;
+  s:String;
+begin
+  Node_Value_Group := Node.FirstChild;
+  while Node_Value_Group <> nil do begin
+    if IsAttribut(Node_Value_Group, 'name', Attr_name) then begin
+      Node_Value:=Node_Value_Group.FirstChild;
+      while Node_Value <> nil do begin
+        s:=GetAttribut(Node_Value, 'caption');
+        s+= ' ('+GetAttribut(Node_Value, 'name')+')';
+        cm.Add(s, GetAttribut(Node_Value, 'value').ToInteger);
+
+        Node_Value := Node_Value.NextSibling;
+      end;
+
+    end;
+
+    Node_Value_Group := Node_Value_Group.NextSibling;
+  end;
+
+end;
+
 /// --- public
 
 procedure TForm1.CreateTab(Sender: TObject);
@@ -203,24 +229,30 @@ begin
                       GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):';
                     StaticText[l].Top := ofs;
                     StaticText[l].Width := Tab.Width;
-                    Inc(ofs, StaticText[l].Height);
+                    Inc(ofs, StaticText[l].Height+5);
 
                     l := Length(ComboBox);
                     SetLength(ComboBox, l + 1);
 
-                    ComboBox[l] := TComboBox.Create(Self);
+                    ComboBox[l] := TFuseComboBox.Create(Self);
                     ComboBox[l].Parent := Tab;
-                    ComboBox[l].Items.Add(GetAttribut(Node_Bitfield, 'caption'));
+                    ComboBox[l].Style := csOwnerDrawFixed;
+                    ComboBox[l].Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
+                    Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module, ComboBox[l]);
+                    //                    ComboBox[l].Items.Add(GetAttribut(Node_Bitfield, 'caption'));
                     ComboBox[l].Top := ofs;
+                    ComboBox[l].Width:=Tab.Width;
+                    ComboBox[l].Anchors:=[akLeft,akRight];
                     Inc(ofs, ComboBox[l].Height + 10);
                   end else begin
                     l := Length(CheckBox);
                     SetLength(CheckBox, l + 1);
 
-                    CheckBox[l] := TCheckBox.Create(Self);
+                    CheckBox[l] := TFuseCheckBox.Create(Self);
                     CheckBox[l].Parent := Tab;
-                    CheckBox[l].Caption :=
-                      GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')';
+                    CheckBox[l].Caption := GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')';
+                    CheckBox[l].Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
+
                     CheckBox[l].Top := ofs;
                     Inc(ofs, CheckBox[l].Height);
                   end;
