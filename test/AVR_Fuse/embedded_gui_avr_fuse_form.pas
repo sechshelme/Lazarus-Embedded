@@ -7,8 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   FileUtil,
-  XMLConf,
-  XMLRead, XMLWrite, DOM,
+  Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
+  //  XMLConf, XMLRead, XMLWrite, DOM,
   Embedded_GUI_AVR_Fuse_Common;
 
 type
@@ -23,17 +23,20 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
   private
+    procedure FuseTabCheckBoxChange(Sender: TObject);
     function IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
     function GetAttribut(Node: TDOMNode; const NodeName: string): string;
     procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; cm: TFuseComboBox);
     procedure ClearTabs;
   public
-    TabSheet: array[0..3] of record
-      Tab: TTabSheet;
+    FuseTab: array[0..3] of record
+      TabSheet: TTabSheet;
       ofs: integer;
       CheckBox: array of TFuseCheckBox;
       ComboBox: array of TFuseComboBox;
       StaticText: array of TStaticText;
+      FuseText: TStaticText;
+      FuseEdit: TEdit;
     end;
   end;
 
@@ -115,9 +118,9 @@ procedure TForm1.ClearTabs;
 var
   i, j: integer;
 begin
-  for i := 0 to Length(TabSheet) - 1 do begin
-    TabSheet[i].Tab.TabVisible := False;
-    with TabSheet[i] do begin
+  for i := 0 to Length(FuseTab) - 1 do begin
+    FuseTab[i].TabSheet.TabVisible := False;
+    with FuseTab[i] do begin
       for j := 0 to Length(StaticText) - 1 do begin
         StaticText[j].Free;
       end;
@@ -130,6 +133,8 @@ begin
         CheckBox[j].Free;
       end;
       SetLength(CheckBox, 0);
+      FuseText.Enabled := False;
+      FuseEdit.Enabled := False;
       ofs := 5;
     end;
   end;
@@ -138,22 +143,19 @@ end;
 procedure TForm1.Read_Value_Group(const Attr_name: string; Node: TDOMNode; cm: TFuseComboBox);
 var
   Node_Value_Group, Node_Value: TDOMNode;
-  s:String;
+  s: string;
 begin
   Node_Value_Group := Node.FirstChild;
   while Node_Value_Group <> nil do begin
     if IsAttribut(Node_Value_Group, 'name', Attr_name) then begin
-      Node_Value:=Node_Value_Group.FirstChild;
+      Node_Value := Node_Value_Group.FirstChild;
       while Node_Value <> nil do begin
-        s:=GetAttribut(Node_Value, 'caption');
-        s+= ' ('+GetAttribut(Node_Value, 'name')+')';
+        s := GetAttribut(Node_Value, 'caption');
+        s += ' (' + GetAttribut(Node_Value, 'name') + ')';
         cm.Add(s, GetAttribut(Node_Value, 'value').ToInteger);
-
         Node_Value := Node_Value.NextSibling;
       end;
-
     end;
-
     Node_Value_Group := Node_Value_Group.NextSibling;
   end;
 
@@ -193,8 +195,8 @@ var
 begin
   ReadXMLFile(doc, path);
 
-  for i := 0 to Length(TabSheet) - 1 do begin
-    TabSheet[i].ofs := 5;
+  for i := 0 to Length(FuseTab) - 1 do begin
+    FuseTab[i].ofs := 5;
   end;
 
   Node_Modules := doc.DocumentElement.FindNode('modules');
@@ -212,49 +214,54 @@ begin
 
               FuseName := GetAttribut(Node_Register, 'name');
               aktFuse := GetFuse(FuseName);
-              TabSheet[aktFuse].Tab.TabVisible := True;
+              FuseTab[aktFuse].TabSheet.TabVisible := True;
+              FuseTab[aktFuse].FuseText.Enabled := True;
+              FuseTab[aktFuse].FuseEdit.Enabled := True;
 
               Node_Bitfield := Node_Register.FirstChild;
               while Node_Bitfield <> nil do begin
 
-                with TabSheet[aktFuse] do begin
+                with FuseTab[aktFuse] do begin
                   if GetAttribut(Node_Bitfield, 'values') <> '' then begin
-                    l := Length(StaticText);
-                    SetLength(StaticText, l + 1);
                     Inc(ofs, 10);
 
+                    l := Length(StaticText);
+                    SetLength(StaticText, l + 1);
                     StaticText[l] := TStaticText.Create(Self);
-                    StaticText[l].Parent := Tab;
-                    StaticText[l].Caption :=
-                      GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):';
-                    StaticText[l].Top := ofs;
-                    StaticText[l].Width := Tab.Width;
-                    Inc(ofs, StaticText[l].Height+5);
+                    with StaticText[l] do begin
+                      Parent := TabSheet;
+                      Caption := GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):';
+                      Top := ofs;
+                      Width := TabSheet.Width;
+                      Inc(ofs, Height + 5);
+                    end;
 
                     l := Length(ComboBox);
                     SetLength(ComboBox, l + 1);
-
                     ComboBox[l] := TFuseComboBox.Create(Self);
-                    ComboBox[l].Parent := Tab;
-                    ComboBox[l].Style := csOwnerDrawFixed;
-                    ComboBox[l].Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
-                    Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module, ComboBox[l]);
-                    //                    ComboBox[l].Items.Add(GetAttribut(Node_Bitfield, 'caption'));
-                    ComboBox[l].Top := ofs;
-                    ComboBox[l].Width:=Tab.Width;
-                    ComboBox[l].Anchors:=[akLeft,akRight];
-                    Inc(ofs, ComboBox[l].Height + 10);
+                    with ComboBox[l] do begin
+                      Parent := TabSheet;
+                      Style := csOwnerDrawFixed;
+                      Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
+                      Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module, ComboBox[l]);
+                      Top := ofs;
+                      Width := TabSheet.Width;
+                      Anchors := [akLeft, akRight, akTop];
+                      OnChange := @FuseTabCheckBoxChange;
+                      Inc(ofs, Height + 10);
+                    end;
                   end else begin
                     l := Length(CheckBox);
                     SetLength(CheckBox, l + 1);
-
                     CheckBox[l] := TFuseCheckBox.Create(Self);
-                    CheckBox[l].Parent := Tab;
-                    CheckBox[l].Caption := GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')';
-                    CheckBox[l].Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
-
-                    CheckBox[l].Top := ofs;
-                    Inc(ofs, CheckBox[l].Height);
+                    with CheckBox[l] do begin
+                      Parent := TabSheet;
+                      Caption := GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')';
+                      Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
+                      Top := ofs;
+                      OnChange := @FuseTabCheckBoxChange;
+                      Inc(ofs, Height);
+                    end;
                   end;
                 end;
 
@@ -277,17 +284,38 @@ var
   fl: TStringList;
   i: integer;
 begin
-  for i := 0 to Length(TabSheet) - 1 do begin
-    with TabSheet[i] do begin
-      Tab := TTabSheet.Create(Self);
-      Tab.TabVisible := False;
-      Tab.PageControl := PageControl1;
+  for i := 0 to Length(FuseTab) - 1 do begin
+    with FuseTab[i] do begin
+      TabSheet := TTabSheet.Create(Self);
+      TabSheet.TabVisible := False;
+      TabSheet.PageControl := PageControl1;
+      FuseText := TStaticText.Create(Self);
+      with FuseText do begin
+        Parent := Self;
+        Enabled := False;
+        Left := PageControl1.Left + i * 120;
+        Top := PageControl1.Top + PageControl1.Height + 10;
+        Anchors := [akBottom, akLeft];
+      end;
+      FuseEdit := TEdit.Create(Self);
+      with FuseEdit do begin
+        Parent := Self;
+        Enabled := False;
+        Left := PageControl1.Left + i * 120 + 70;
+        Top := PageControl1.Top + PageControl1.Height + 10 + 4;
+        Width := 30;
+        Text := 'FF';
+        Anchors := [akBottom, akLeft];
+      end;
     end;
   end;
-  TabSheet[0].Tab.Caption := 'Low Fuse';
-  TabSheet[1].Tab.Caption := 'High Fuse';
-  TabSheet[2].Tab.Caption := 'Ext Fuse';
-  TabSheet[3].Tab.Caption := 'Lock Bit';
+  FuseTab[0].TabSheet.Caption := 'Low Fuse';
+  FuseTab[1].TabSheet.Caption := 'High Fuse';
+  FuseTab[2].TabSheet.Caption := 'Ext Fuse';
+  FuseTab[3].TabSheet.Caption := 'Lock Bit';
+  for i := 0 to 3 do begin
+    FuseTab[i].FuseText.Caption := FuseTab[i].TabSheet.Caption + ':';
+  end;
 
   fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
   for i := 0 to fl.Count - 1 do begin
@@ -307,8 +335,12 @@ var
   i: integer;
 begin
   SaveFormPos_to_XML(self);
-  for i := 0 to Length(TabSheet) - 1 do begin
-    TabSheet[i].Tab.Free;
+  for i := 0 to Length(FuseTab) - 1 do begin
+    with FuseTab[i] do begin
+      TabSheet.Free;
+      FuseEdit.Free;
+      FuseText.Free;
+    end;
   end;
 end;
 
@@ -320,6 +352,12 @@ begin
     ClearTabs;
     CreateTab(Sender);
   end;
+end;
+
+procedure TForm1.FuseTabCheckBoxChange(Sender: TObject);
+begin
+  Color:=Random($ffffff);
+
 end;
 
 end.

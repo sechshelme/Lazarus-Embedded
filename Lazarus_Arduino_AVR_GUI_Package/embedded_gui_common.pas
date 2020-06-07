@@ -9,7 +9,8 @@ uses
   {$IFDEF Packages}
   BaseIDEIntf, LazConfigStorage,  // Bei Packages
   {$ELSE}
-  XMLConf,  // Bei normalen Anwendungen
+  Laz2_XMLCfg,  // Bei normalen Anwendungen
+//  XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
   SysUtils, StdCtrls, Controls, Classes, Dialogs, ComCtrls,Graphics, Forms;
 

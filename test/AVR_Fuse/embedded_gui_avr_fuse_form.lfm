@@ -1,25 +1,25 @@
 object Form1: TForm1
   Left = 1760
-  Height = 813
+  Height = 847
   Top = 299
-  Width = 642
+  Width = 654
   Caption = 'Form1'
-  ClientHeight = 813
-  ClientWidth = 642
+  ClientHeight = 847
+  ClientWidth = 654
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.1.0.0'
   object PageControl1: TPageControl
     Left = 248
-    Height = 752
+    Height = 768
     Top = 0
-    Width = 394
+    Width = 406
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
   end
   object ListBox1: TListBox
     Left = 0
-    Height = 752
+    Height = 786
     Top = 0
     Width = 240
     Anchors = [akTop, akLeft, akBottom]

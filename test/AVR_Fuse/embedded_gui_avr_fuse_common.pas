@@ -26,15 +26,21 @@ type
   private
     fMask: byte;
     fMasks: array of byte;
+    function GetMask: byte;
   public
     constructor Create(TheOwner: TComponent); override;
-    property Mask: byte write fMask;
+    property Mask: byte read GetMask  write fMask;
     procedure Add(const s: string; AMask: byte);
   end;
 
 implementation
 
 { TFuseComboBox }
+
+function TFuseComboBox.GetMask: byte;
+begin
+
+end;
 
 constructor TFuseComboBox.Create(TheOwner: TComponent);
 begin
