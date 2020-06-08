@@ -1,33 +1,39 @@
 object Form1: TForm1
-  Left = 1760
-  Height = 847
-  Top = 299
-  Width = 654
+  Left = 1721
+  Height = 890
+  Top = 187
+  Width = 734
   Caption = 'Form1'
-  ClientHeight = 847
-  ClientWidth = 654
+  ClientHeight = 890
+  ClientWidth = 734
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.1.0.0'
   object PageControl1: TPageControl
-    Left = 248
-    Height = 768
-    Top = 0
-    Width = 406
+    Left = 0
+    Height = 715
+    Top = 48
+    Width = 734
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
   end
-  object ListBox1: TListBox
-    Left = 0
-    Height = 786
-    Top = 0
-    Width = 240
-    Anchors = [akTop, akLeft, akBottom]
+  object ComboBox1: TComboBox
+    Left = 16
+    Height = 28
+    Top = 8
+    Width = 328
     ItemHeight = 0
-    OnDblClick = ListBox1DblClick
-    ScrollWidth = 238
-    Sorted = True
+    OnChange = ComboBox1Change
     TabOrder = 1
-    TopIndex = -1
+    Text = '../AVR_Fuse/XML/ATtiny2313A'
+  end
+  object Label1: TLabel
+    Left = 85
+    Height = 16
+    Top = 826
+    Width = 41
+    Anchors = [akLeft, akBottom]
+    Caption = 'Label1'
+    ParentColor = False
   end
 end

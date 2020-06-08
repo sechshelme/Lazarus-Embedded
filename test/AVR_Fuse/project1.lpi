@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -49,6 +49,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Embedded_GUI_AVR_Fuse_Common"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_common.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -58,6 +62,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../../Lazarus_Arduino_AVR_GUI_Package"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

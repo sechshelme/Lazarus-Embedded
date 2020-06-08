@@ -170,11 +170,7 @@ begin
     end;
     Delete(Result, Length(Result), 1);
     Result := Result + #39 + ',';
-
-
-    //  Result:='    ' + #39 + sl.CommaText + #39 + ',';
   end;
-
 end;
 
 procedure TForm1.AddCPUData(sl, SubArchList: TStrings; cpu: string);
@@ -240,7 +236,6 @@ begin
       sl.Add('');
       sl.Add('    // ' + SubArchList[i]);
       sl.Add(AddNewCommaText(SubArchData[i]));
-      //      sl.Add('    ' + #39 + SubArchData[i].CommaText + #39 + ',');
     end;
     s := sl[sl.Count - 1];
     Delete(s, Length(s), 1);

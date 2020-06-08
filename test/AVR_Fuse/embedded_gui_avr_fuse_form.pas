@@ -9,6 +9,7 @@ uses
   FileUtil,
   Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
   //  XMLConf, XMLRead, XMLWrite, DOM,
+  Embedded_GUI_Common,
   Embedded_GUI_AVR_Fuse_Common;
 
 type
@@ -16,20 +17,23 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    ListBox1: TListBox;
+    ComboBox1: TComboBox;
+    Label1: TLabel;
     PageControl1: TPageControl;
+    procedure ComboBox1Change(Sender: TObject);
     procedure CreateTab(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure ListBox1DblClick(Sender: TObject);
   private
     procedure FuseTabCheckBoxChange(Sender: TObject);
     function IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
     function GetAttribut(Node: TDOMNode; const NodeName: string): string;
     procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; cm: TFuseComboBox);
     procedure ClearTabs;
-  public
+  private
+    path: string;
     FuseTab: array[0..3] of record
+      FuseByte: byte;
       TabSheet: TTabSheet;
       ofs: integer;
       CheckBox: array of TFuseCheckBox;
@@ -38,6 +42,7 @@ type
       FuseText: TStaticText;
       FuseEdit: TEdit;
     end;
+  public
   end;
 
 var
@@ -46,39 +51,6 @@ var
 implementation
 
 {$R *.lfm}
-
-
-const
-  path: string = 'XML/atmega328p.xml';
-
-  Options_File = 'config.xml';
-  FormPos = '/';
-
-procedure LoadFormPos_from_XML(Form: TControl);
-var
-  Cfg: TXMLConfig;     // Auf Package anpassen !!!!!!!!!!
-begin
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := Options_File;
-  Form.Left := Cfg.GetValue(Form.Name + FormPos + 'Left', Form.Left);
-  Form.Top := Cfg.GetValue(Form.Name + FormPos + 'Top', Form.Top);
-  Form.Width := Cfg.GetValue(Form.Name + FormPos + 'Width', Form.Width);
-  Form.Height := Cfg.GetValue(Form.Name + FormPos + 'Height', Form.Height);
-  Cfg.Free;
-end;
-
-procedure SaveFormPos_to_XML(Form: TControl);
-var
-  Cfg: TXMLConfig;          // Auf Package anpassen !!!!!!!!!!
-begin
-  Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := Options_File;
-  Cfg.SetValue(Form.Name + FormPos + 'Left', Form.Left);
-  Cfg.SetValue(Form.Name + FormPos + 'Top', Form.Top);
-  Cfg.SetValue(Form.Name + FormPos + 'Width', Form.Width);
-  Cfg.SetValue(Form.Name + FormPos + 'Height', Form.Height);
-  Cfg.Free;
-end;
 
 { TForm1 }
 
@@ -275,8 +247,22 @@ begin
       Node_Module := Node_Module.NextSibling;
     end;
   end;
+  if PageControl1.PageCount > 0 then begin
+    PageControl1.TabIndex := 0;
+  end;
 
   doc.Free;
+end;
+
+procedure TForm1.ComboBox1Change(Sender: TObject);
+begin
+  //  path := ComboBox1.Items[ComboBox1.ItemIndex];
+  path := ComboBox1.Text;
+  Caption := path;
+  if FileExists(path) then begin
+    ClearTabs;
+    CreateTab(Sender);
+  end;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -303,7 +289,7 @@ begin
         Enabled := False;
         Left := PageControl1.Left + i * 120 + 70;
         Top := PageControl1.Top + PageControl1.Height + 10 + 4;
-        Width := 30;
+        Width := 40;
         Text := 'FF';
         Anchors := [akBottom, akLeft];
       end;
@@ -317,13 +303,12 @@ begin
     FuseTab[i].FuseText.Caption := FuseTab[i].TabSheet.Caption + ':';
   end;
 
+  ComboBox1.Sorted := True;
+  ComboBox1.Style := csOwnerDrawFixed;
+
   fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
   for i := 0 to fl.Count - 1 do begin
-    //    if Check(fl[i]) then begin
-    ListBox1.Items.Add(fl[i]);
-    //    end else begin
-    //      ListBox1.Items.Add(fl[i] +'      ******');
-    //    end;
+    ComboBox1.Items.Add(fl[i]);
   end;
   fl.Free;
 
@@ -344,20 +329,24 @@ begin
   end;
 end;
 
-procedure TForm1.ListBox1DblClick(Sender: TObject);
-begin
-  path := ListBox1.Items[ListBox1.ItemIndex];
-  Caption := path;
-  if FileExists(path) then begin
-    ClearTabs;
-    CreateTab(Sender);
-  end;
-end;
-
 procedure TForm1.FuseTabCheckBoxChange(Sender: TObject);
+var
+  i, j, m: integer;
 begin
-  Color:=Random($ffffff);
-
+  Label1.Caption := '';
+  for i := 0 to Length(FuseTab) - 1 do begin
+    with FuseTab[i] do begin
+      FuseByte := $FF;
+      for j := 0 to Length(CheckBox) - 1 do begin
+        FuseByte -= CheckBox[j].Mask;
+      end;
+      for j := 0 to Length(ComboBox) - 1 do begin
+        FuseByte -= ComboBox[j].Mask;
+      end;
+      FuseEdit.Text := IntToHex(FuseByte, 3);
+      Label1.Caption := Label1.Caption + '    ' +  (byte($FF-FuseByte)).ToBinString;
+    end;
+  end;
 end;
 
 end.
