@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Embedded_GUI_SubArch_List,
+  //  Embedded_GUI_SubArch_List,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
   Buttons, FileUtil, SynEdit, SynHighlighterPas, IniFiles;
 
@@ -27,6 +27,7 @@ type
     function Comma(sl: TStringList): string;
     function ControllerDataType(s: string): string;
     function AddSubArch(sl: TStrings; cpu: string): TStringList;
+    function AddNewCommaText(sl: TStrings): string;
     procedure AddCPUData(sl, SubArchList: TStrings; cpu: string);
     procedure AddControllerDataList(sl: TStrings; cpu: string);
   public
@@ -152,6 +153,30 @@ begin
   end;
 end;
 
+function TForm1.AddNewCommaText(sl: TStrings): string;
+var
+  i: integer;
+begin
+  if sl.Count = 0 then begin
+    Result := '    '#39#39',';
+  end else begin
+    Result := '    ' + #39;
+    for i := 0 to sl.Count - 1 do begin
+      Result := Result + sl[i] + ',';
+      if (i <> sl.Count - 1) and (i mod 4 = 3) then begin
+        Result += #39 + ' +' + LineEnding + '    ' + #39;
+      end;
+
+    end;
+    Delete(Result, Length(Result), 1);
+    Result := Result + #39 + ',';
+
+
+    //  Result:='    ' + #39 + sl.CommaText + #39 + ',';
+  end;
+
+end;
+
 procedure TForm1.AddCPUData(sl, SubArchList: TStrings; cpu: string);
 var
   source_SL: TStringList;
@@ -214,7 +239,8 @@ begin
     for i := 0 to Length(SubArchData) - 1 do begin
       sl.Add('');
       sl.Add('    // ' + SubArchList[i]);
-      sl.Add('    ' + #39 + SubArchData[i].CommaText + #39 + ',');
+      sl.Add(AddNewCommaText(SubArchData[i]));
+      //      sl.Add('    ' + #39 + SubArchData[i].CommaText + #39 + ',');
     end;
     s := sl[sl.Count - 1];
     Delete(s, Length(s), 1);
