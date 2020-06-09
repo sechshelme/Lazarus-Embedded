@@ -31,9 +31,9 @@ object Form1: TForm1
     Left = 85
     Height = 16
     Top = 826
-    Width = 41
+    Width = 45
     Anchors = [akLeft, akBottom]
-    Caption = 'Label1'
+    Caption = 'fffffffff'
     ParentColor = False
   end
 end

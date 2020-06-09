@@ -39,7 +39,7 @@ type
       CheckBox: array of TFuseCheckBox;
       ComboBox: array of TFuseComboBox;
       StaticText: array of TStaticText;
-      FuseText: TStaticText;
+      FuseLabel: TLabel;
       FuseEdit: TEdit;
     end;
   public
@@ -105,7 +105,7 @@ begin
         CheckBox[j].Free;
       end;
       SetLength(CheckBox, 0);
-      FuseText.Enabled := False;
+      FuseLabel.Enabled := False;
       FuseEdit.Enabled := False;
       ofs := 5;
     end;
@@ -134,6 +134,53 @@ begin
 end;
 
 /// --- public
+
+procedure TForm1.FormCreate(Sender: TObject);
+const
+  LabelName: TStringArray = ('Low Fuse', 'High Fuse', 'Ext Fuse', 'Lock Bit');
+var
+  fl: TStringList;
+  i: integer;
+begin
+  for i := 0 to Length(FuseTab) - 1 do begin
+    with FuseTab[i] do begin
+      TabSheet := TTabSheet.Create(Self);
+      TabSheet.TabVisible := False;
+      TabSheet.PageControl := PageControl1;
+      TabSheet.Caption := LabelName[i];
+      FuseLabel := TLabel.Create(Self);
+      with FuseLabel do begin
+        Caption := TabSheet.Caption + ':';
+        Parent := Self;
+        Enabled := False;
+        Left := PageControl1.Left + i * 130;
+        Top := PageControl1.Top + PageControl1.Height + 10;
+        Anchors := [akBottom, akLeft];
+      end;
+      FuseEdit := TEdit.Create(Self);
+      with FuseEdit do begin
+        Parent := Self;
+        Enabled := False;
+        Left := PageControl1.Left + i * 130 + FuseLabel.Width;
+        Top := PageControl1.Top + PageControl1.Height + 10 + 4;
+        Width := 50;
+        Text := 'FF';
+        Anchors := [akBottom, akLeft];
+      end;
+    end;
+  end;
+
+  ComboBox1.Sorted := True;
+  ComboBox1.Style := csOwnerDrawFixed;
+
+  fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
+  for i := 0 to fl.Count - 1 do begin
+    ComboBox1.Items.Add(fl[i]);
+  end;
+  fl.Free;
+
+  LoadFormPos_from_XML(self);
+end;
 
 procedure TForm1.CreateTab(Sender: TObject);
 var
@@ -187,7 +234,7 @@ begin
               FuseName := GetAttribut(Node_Register, 'name');
               aktFuse := GetFuse(FuseName);
               FuseTab[aktFuse].TabSheet.TabVisible := True;
-              FuseTab[aktFuse].FuseText.Enabled := True;
+              FuseTab[aktFuse].FuseLabel.Enabled := True;
               FuseTab[aktFuse].FuseEdit.Enabled := True;
 
               Node_Bitfield := Node_Register.FirstChild;
@@ -265,56 +312,6 @@ begin
   end;
 end;
 
-procedure TForm1.FormCreate(Sender: TObject);
-var
-  fl: TStringList;
-  i: integer;
-begin
-  for i := 0 to Length(FuseTab) - 1 do begin
-    with FuseTab[i] do begin
-      TabSheet := TTabSheet.Create(Self);
-      TabSheet.TabVisible := False;
-      TabSheet.PageControl := PageControl1;
-      FuseText := TStaticText.Create(Self);
-      with FuseText do begin
-        Parent := Self;
-        Enabled := False;
-        Left := PageControl1.Left + i * 120;
-        Top := PageControl1.Top + PageControl1.Height + 10;
-        Anchors := [akBottom, akLeft];
-      end;
-      FuseEdit := TEdit.Create(Self);
-      with FuseEdit do begin
-        Parent := Self;
-        Enabled := False;
-        Left := PageControl1.Left + i * 120 + 70;
-        Top := PageControl1.Top + PageControl1.Height + 10 + 4;
-        Width := 40;
-        Text := 'FF';
-        Anchors := [akBottom, akLeft];
-      end;
-    end;
-  end;
-  FuseTab[0].TabSheet.Caption := 'Low Fuse';
-  FuseTab[1].TabSheet.Caption := 'High Fuse';
-  FuseTab[2].TabSheet.Caption := 'Ext Fuse';
-  FuseTab[3].TabSheet.Caption := 'Lock Bit';
-  for i := 0 to 3 do begin
-    FuseTab[i].FuseText.Caption := FuseTab[i].TabSheet.Caption + ':';
-  end;
-
-  ComboBox1.Sorted := True;
-  ComboBox1.Style := csOwnerDrawFixed;
-
-  fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
-  for i := 0 to fl.Count - 1 do begin
-    ComboBox1.Items.Add(fl[i]);
-  end;
-  fl.Free;
-
-  LoadFormPos_from_XML(self);
-end;
-
 procedure TForm1.FormDestroy(Sender: TObject);
 var
   i: integer;
@@ -324,7 +321,7 @@ begin
     with FuseTab[i] do begin
       TabSheet.Free;
       FuseEdit.Free;
-      FuseText.Free;
+      FuseLabel.Free;
     end;
   end;
 end;
@@ -336,15 +333,15 @@ begin
   Label1.Caption := '';
   for i := 0 to Length(FuseTab) - 1 do begin
     with FuseTab[i] do begin
-      FuseByte := $FF;
+      FuseByte := 0;
       for j := 0 to Length(CheckBox) - 1 do begin
-        FuseByte -= CheckBox[j].Mask;
+        FuseByte += CheckBox[j].Mask;
       end;
       for j := 0 to Length(ComboBox) - 1 do begin
-        FuseByte -= ComboBox[j].Mask;
+        FuseByte += ComboBox[j].Mask;
       end;
-      FuseEdit.Text := IntToHex(FuseByte, 3);
-      Label1.Caption := Label1.Caption + '    ' +  (byte($FF-FuseByte)).ToBinString;
+      FuseEdit.Text := '0x' + IntToHex(not FuseByte, 2);
+      Label1.Caption := Label1.Caption + '    ' + FuseByte.ToBinString;
     end;
   end;
 end;

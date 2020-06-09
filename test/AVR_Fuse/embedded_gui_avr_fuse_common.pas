@@ -14,34 +14,68 @@ type
 
   TFuseCheckBox = class(TCheckBox)
   private
-    fMask: Byte;
-    function GetMask: Byte;
+    fMask: byte;
+    function GetMask: byte;
   public
-    property Mask: Byte read GetMask write fMask;
+    property Mask: byte read GetMask write fMask;
   end;
 
   { TFuseComboBox }
 
   TFuseComboBox = class(TComboBox)
   private
-    fMask: Byte;
-    fMasks: array of Byte;
-    function GetMask: Byte;
+    fMask: byte;
+    fMasks: array of byte;
+    BitStart, BitSize: integer;
+    function GetMask: byte;
+    procedure SetMask(AValue: byte);
   public
     constructor Create(TheOwner: TComponent); override;
-    property Mask: Byte read GetMask write fMask;
+    property Mask: byte read GetMask write SetMask;
     procedure Add(const s: string; AMask: byte);
   end;
 
 implementation
 
+{ TFuseCheckBox }
+
+function TFuseCheckBox.GetMask: byte;
+begin
+  if Checked then begin
+    Result := fMask;
+  end else begin
+    Result := 0;
+  end;
+end;
+
 { TFuseComboBox }
 
-function TFuseComboBox.GetMask: Byte;
+function TFuseComboBox.GetMask: byte;
 begin
- // Result := fMasks[ItemIndex] * fMask;
-  Result := (Items.Count-1-fMasks[ItemIndex]) * (fMask-Items.Count);
-//    Result:=Items.Count-Result;
+  Result := (not(fMasks[ItemIndex] shl BitStart)) and fMask;
+//  Result := not Result;
+//  Result := Result and fMask;
+end;
+
+procedure TFuseComboBox.SetMask(AValue: byte);
+var
+  s: string;
+  i: integer;
+begin
+  fMask := AValue;
+  s := BinStr(AValue, 8);
+  i := 8;
+  while (s[i] = '0') and (i >= 1) do begin
+    Dec(i);
+  end;
+  BitStart := i;
+  while (s[i] = '1') and (i >= 1) do begin
+    Dec(i);
+  end;
+  BitSize := BitStart - i;
+  BitStart := 8 - BitStart;
+  //    ShowMessage(BinStr(AValue,8)+'   '+BitStart.ToString+'   '+i.ToString+'   '+BitSize.ToString);
+
 end;
 
 constructor TFuseComboBox.Create(TheOwner: TComponent);
@@ -54,22 +88,11 @@ procedure TFuseComboBox.Add(const s: string; AMask: byte);
 var
   l: integer;
 begin
-  Items.Add(s);
-  ItemIndex:=0;
+  Items.Add(s + ' (' + (BinStr(AMask, BitSize)) + ')');
+  ItemIndex := 0;
   l := Length(fMasks);
   SetLength(fMasks, l + 1);
   fMasks[l] := AMask;
-end;
-
-{ TFuseCheckBox }
-
-function TFuseCheckBox.GetMask: Byte;
-begin
-  if Checked then begin
-    Result := fMask;
-  end else begin
-    Result := 0;
-  end;
 end;
 
 end.
