@@ -60,9 +60,9 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpatmega328p"/>
+      <CustomOptions Value="-WpATMEGA328P"/>
       <ExecuteAfter>
-        <Command Value="/usr/bin/avrdude -C/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -patmega328p -cusbasp -D -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

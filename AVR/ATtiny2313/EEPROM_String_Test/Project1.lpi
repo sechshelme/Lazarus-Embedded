@@ -50,7 +50,7 @@
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="AVR5"/>
+      <TargetProcessor Value="AVR25"/>
       <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>
@@ -60,9 +60,9 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpatmega328p"/>
+      <CustomOptions Value="-Wpattiny2313a"/>
       <ExecuteAfter>
-        <Command Value="/usr/bin/avrdude -C/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -pattiny2313 -cusbasp -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

@@ -61,7 +61,7 @@ const
   end;
 
 const
-  sc = 'DoomAVR code ist so schön';
+  sc = 'Hello  World !';
 
 var
   i: integer;
@@ -72,7 +72,7 @@ begin
 
   // String schreiben, inklusive Längenbyte.
   for i := 0 to Length(sc) do begin
-//    EEPROM_write(i, byte(sc[i]));
+    EEPROM_write(i, byte(sc[i]));
   end;
 
   // String lesen, inklusive Längenbyte.
