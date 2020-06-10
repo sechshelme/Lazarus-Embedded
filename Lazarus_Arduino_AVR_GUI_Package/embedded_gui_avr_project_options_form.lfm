@@ -1,4 +1,5 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
+  Cursor = crDrag
   Left = 1822
   Height = 601
   Top = 102
@@ -74,7 +75,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 411
     Width = 138
     Caption = 'ASM-File erzeugen'
-    TabOrder = 15
+    TabOrder = 18
   end
   object Label6: TLabel
     Left = 16
@@ -282,7 +283,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für AVR-Embedded erstellt wurde. Auch muss das AVR-SubArch stimmen.'
     )
     ReadOnly = True
-    TabOrder = 18
+    TabOrder = 15
     TabStop = False
   end
   object ComboBox_AVR_SubArch: TComboBox

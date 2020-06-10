@@ -206,6 +206,7 @@ begin
   Form.Top := Cfg.GetValue(Form.Name + FormPos + 'Top', Form.Top);
   Form.Width := Cfg.GetValue(Form.Name + FormPos + 'Width', Form.Width);
   Form.Height := Cfg.GetValue(Form.Name + FormPos + 'Height', Form.Height);
+  Form.Color:=$E0F0E0;
   Cfg.Free;
 end;
 
