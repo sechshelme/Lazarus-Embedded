@@ -86,7 +86,7 @@ object SM_Output_Frame: TSM_Output_Frame
       TabOrder = 1
     end
     object Label_Color: TLabel
-      Left = 112
+      Left = 120
       Height = 16
       Top = 24
       Width = 91

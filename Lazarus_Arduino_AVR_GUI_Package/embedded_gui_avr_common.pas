@@ -10,7 +10,7 @@ uses
   Embedded_GUI_SubArch_List; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
 const
-  AVR_Programmer = 'arduino,usbasp,stk500v1,wiring';
+  AVR_Programmer:TStringArray = ('arduino','usbasp','stk500v1','wiring','avr109');
   AVR_Verboses: TStringArray = ('0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau');
 
 type
@@ -150,6 +150,9 @@ begin
   pr := upCase(AvrdudeCommand.Programmer);
   if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') then begin
     s += '-P' + AvrdudeCommand.COM_Port + ' ' + '-b' + AvrdudeCommand.Baud + ' ';
+  end;
+  if (pr = 'AVR109') then begin
+    s += '-P' + AvrdudeCommand.COM_Port + ' ';
   end;
 
   if AvrdudeCommand.Disable_Auto_Erase then begin

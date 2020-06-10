@@ -108,7 +108,8 @@ begin
   Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
 
   with ComboBox_Programmer do begin
-    Items.CommaText := AVR_Programmer;
+    Items.AddStrings(AVR_Programmer, True);
+//    Items.CommaText := AVR_Programmer;
     Text := 'arduino';
   end;
 
