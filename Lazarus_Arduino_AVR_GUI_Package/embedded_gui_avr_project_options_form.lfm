@@ -1,8 +1,8 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
   Cursor = crDrag
-  Left = 1822
+  Left = 1858
   Height = 601
-  Top = 102
+  Top = 94
   Width = 510
   Caption = 'AVR Embedded Project Options'
   ClientHeight = 601

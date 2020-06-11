@@ -28,12 +28,11 @@ object Form1: TForm1
     Text = '../AVR_Fuse/XML/ATtiny2313A'
   end
   object Label1: TLabel
-    Left = 85
-    Height = 16
-    Top = 826
-    Width = 45
+    Left = 45
+    Height = 1
+    Top = 841
+    Width = 1
     Anchors = [akLeft, akBottom]
-    Caption = 'fffffffff'
     ParentColor = False
   end
 end

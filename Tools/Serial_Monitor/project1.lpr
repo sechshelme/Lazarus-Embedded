@@ -5,11 +5,9 @@ program project1;
 uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms,
-  Input,
-  Embedded_GUI_Find_Comports,
   Embedded_GUI_Serial_Monitor_Form,
-Embedded_GUI_Serial_Monitor_Interface_Options_Frame { you can add units after this };
+  Forms,
+  Input;
 
 {$R *.res}
 

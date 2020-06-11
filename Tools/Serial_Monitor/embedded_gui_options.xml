@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Serial_Monitor_Form>
     <FormPos Top="188" Left="1641" Width="872" Height="1083"/>
@@ -19,7 +19,7 @@
   </SerialMonitor_SendFile_Form>
   <SerialMonitor_Options_Form>
     <FormPos Top="293" Left="729" Width="687" Height="435"/>
-    <PageControl_SM_Options PageIndex="1"/>
+    <PageControl_SM_Options PageIndex="0"/>
   </SerialMonitor_Options_Form>
   <Serial_Monitor_Config>
     <COMPortPara Baud="115200" Bits="8" Port="/dev/ttyUSB0" Parity="none" TimeOut="11" StopBits="1" FlowControl="none" TimerInterval="201"/>

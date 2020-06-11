@@ -28,11 +28,11 @@ type
     procedure FuseTabCheckBoxChange(Sender: TObject);
     function IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
     function GetAttribut(Node: TDOMNode; const NodeName: string): string;
-    procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; cm: TFuseComboBox);
+    procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; ComboBox: TFuseComboBox);
     procedure ClearTabs;
   private
     path: string;
-    FuseTab: array[0..3] of record
+    FuseTab: array of record
       FuseByte: byte;
       TabSheet: TTabSheet;
       ofs: integer;
@@ -91,28 +91,36 @@ var
   i, j: integer;
 begin
   for i := 0 to Length(FuseTab) - 1 do begin
-    FuseTab[i].TabSheet.TabVisible := False;
     with FuseTab[i] do begin
       for j := 0 to Length(StaticText) - 1 do begin
         StaticText[j].Free;
       end;
       SetLength(StaticText, 0);
+
       for j := 0 to Length(ComboBox) - 1 do begin
         ComboBox[j].Free;
       end;
       SetLength(ComboBox, 0);
+
       for j := 0 to Length(CheckBox) - 1 do begin
         CheckBox[j].Free;
       end;
       SetLength(CheckBox, 0);
-      FuseLabel.Enabled := False;
-      FuseEdit.Enabled := False;
-      ofs := 5;
+
+      //      FuseLabel.Enabled := False;
+      //      FuseEdit.Enabled := False;
+      FuseLabel.Free;
+      FuseEdit.Free;
+      //      ofs := 5;
+
+      TabSheet.Free;
     end;
+
   end;
+  SetLength(FuseTab, 0);
 end;
 
-procedure TForm1.Read_Value_Group(const Attr_name: string; Node: TDOMNode; cm: TFuseComboBox);
+procedure TForm1.Read_Value_Group(const Attr_name: string; Node: TDOMNode; ComboBox: TFuseComboBox);
 var
   Node_Value_Group, Node_Value: TDOMNode;
   s: string;
@@ -124,7 +132,7 @@ begin
       while Node_Value <> nil do begin
         s := GetAttribut(Node_Value, 'caption');
         s += ' (' + GetAttribut(Node_Value, 'name') + ')';
-        cm.Add(s, GetAttribut(Node_Value, 'value').ToInteger);
+        ComboBox.Add(s, GetAttribut(Node_Value, 'value').ToInteger);
         Node_Value := Node_Value.NextSibling;
       end;
     end;
@@ -136,18 +144,52 @@ end;
 /// --- public
 
 procedure TForm1.FormCreate(Sender: TObject);
-const
-  LabelName: TStringArray = ('Low Fuse', 'High Fuse', 'Ext Fuse', 'Lock Bit');
 var
   fl: TStringList;
   i: integer;
 begin
-  for i := 0 to Length(FuseTab) - 1 do begin
+  ComboBox1.Sorted := True;
+  ComboBox1.Style := csOwnerDrawFixed;
+
+  fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
+  for i := 0 to fl.Count - 1 do begin
+    ComboBox1.Items.Add(fl[i]);
+  end;
+  fl.Free;
+
+  LoadFormPos_from_XML(self);
+end;
+
+procedure TForm1.ComboBox1Change(Sender: TObject);
+begin
+  //  path := ComboBox1.Items[ComboBox1.ItemIndex];
+  path := ComboBox1.Text;
+  Caption := path;
+  if FileExists(path) then begin
+    ClearTabs;
+    CreateTab(Sender);
+  end;
+end;
+
+procedure TForm1.CreateTab(Sender: TObject);
+var
+  l: integer;
+  doc: TXMLDocument;
+  Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
+
+  procedure AddFuse(Node_Register: TDOMNode);
+  var
+    i: integer;
+  begin
+    i := Length(FuseTab);
+    SetLength(FuseTab, i + 1);
     with FuseTab[i] do begin
+      ofs := 5;
       TabSheet := TTabSheet.Create(Self);
-      TabSheet.TabVisible := False;
       TabSheet.PageControl := PageControl1;
-      TabSheet.Caption := LabelName[i];
+
+      TabSheet.Caption := GetAttribut(Node_Register, 'name');
+
       FuseLabel := TLabel.Create(Self);
       with FuseLabel do begin
         Caption := TabSheet.Caption + ':';
@@ -164,59 +206,15 @@ begin
         Left := PageControl1.Left + i * 130 + FuseLabel.Width;
         Top := PageControl1.Top + PageControl1.Height + 10 + 4;
         Width := 50;
-        Text := 'FF';
+        Text := '';
         Anchors := [akBottom, akLeft];
       end;
     end;
-  end;
 
-  ComboBox1.Sorted := True;
-  ComboBox1.Style := csOwnerDrawFixed;
-
-  fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
-  for i := 0 to fl.Count - 1 do begin
-    ComboBox1.Items.Add(fl[i]);
-  end;
-  fl.Free;
-
-  LoadFormPos_from_XML(self);
-end;
-
-procedure TForm1.CreateTab(Sender: TObject);
-var
-  FuseName: string;
-  aktFuse, i, l: integer;
-  doc: TXMLDocument;
-  Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
-
-  function GetFuse(FuseName: string): integer;
-  begin
-    case FuseName of
-      'LOW', 'BYTE0': begin
-        Result := 0;
-      end;
-      'HIGH': begin
-        Result := 1;
-      end;
-      'EXTENDED': begin
-        Result := 2;
-      end;
-      'LOCKBIT': begin
-        Result := 3;
-      end;
-      else begin
-        ShowMessage('Ungültiger Fuse-Name');
-        Result := 0;
-      end;
-    end;
   end;
 
 begin
   ReadXMLFile(doc, path);
-
-  for i := 0 to Length(FuseTab) - 1 do begin
-    FuseTab[i].ofs := 5;
-  end;
 
   Node_Modules := doc.DocumentElement.FindNode('modules');
   if Node_Modules <> nil then begin
@@ -231,16 +229,12 @@ begin
             Node_Register := Node_Register_group.FirstChild;
             while Node_Register <> nil do begin
 
-              FuseName := GetAttribut(Node_Register, 'name');
-              aktFuse := GetFuse(FuseName);
-              FuseTab[aktFuse].TabSheet.TabVisible := True;
-              FuseTab[aktFuse].FuseLabel.Enabled := True;
-              FuseTab[aktFuse].FuseEdit.Enabled := True;
+              AddFuse(Node_Register);
 
               Node_Bitfield := Node_Register.FirstChild;
               while Node_Bitfield <> nil do begin
 
-                with FuseTab[aktFuse] do begin
+                with FuseTab[Length(FuseTab) - 1] do begin
                   if GetAttribut(Node_Bitfield, 'values') <> '' then begin
                     Inc(ofs, 10);
 
@@ -301,17 +295,6 @@ begin
   doc.Free;
 end;
 
-procedure TForm1.ComboBox1Change(Sender: TObject);
-begin
-  //  path := ComboBox1.Items[ComboBox1.ItemIndex];
-  path := ComboBox1.Text;
-  Caption := path;
-  if FileExists(path) then begin
-    ClearTabs;
-    CreateTab(Sender);
-  end;
-end;
-
 procedure TForm1.FormDestroy(Sender: TObject);
 var
   i: integer;
@@ -324,6 +307,7 @@ begin
       FuseLabel.Free;
     end;
   end;
+  SetLength(FuseTab, 0);
 end;
 
 procedure TForm1.FuseTabCheckBoxChange(Sender: TObject);
