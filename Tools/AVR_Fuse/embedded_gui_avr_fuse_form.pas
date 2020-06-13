@@ -6,8 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  FileUtil,
-  Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
+  ExtCtrls, FileUtil, Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
   //  XMLConf, XMLRead, XMLWrite, DOM,
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Fuse_Common;
@@ -25,6 +24,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
+    procedure FuseTabBurnButtonClick(Sender: TObject);
     procedure FuseTabCheckBoxChange(Sender: TObject);
     function IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
     function GetAttribut(Node: TDOMNode; const NodeName: string): string;
@@ -39,8 +39,10 @@ type
       CheckBox: array of TFuseCheckBox;
       ComboBox: array of TFuseComboBox;
       StaticText: array of TStaticText;
+      Panel: TPanel;
       FuseLabel: TLabel;
       FuseEdit: TEdit;
+      BurnButton: TButton;
     end;
   public
   end;
@@ -107,12 +109,8 @@ begin
       end;
       SetLength(CheckBox, 0);
 
-      //      FuseLabel.Enabled := False;
-      //      FuseEdit.Enabled := False;
       FuseLabel.Free;
       FuseEdit.Free;
-      //      ofs := 5;
-
       TabSheet.Free;
     end;
 
@@ -186,28 +184,57 @@ var
     with FuseTab[i] do begin
       ofs := 5;
       TabSheet := TTabSheet.Create(Self);
-      TabSheet.PageControl := PageControl1;
+      with TabSheet do begin
+        Tag := i;
+        PageControl := PageControl1;
+        Caption := GetAttribut(Node_Register, 'name');
+      end;
 
-      TabSheet.Caption := GetAttribut(Node_Register, 'name');
+      //      PageControl1.Pages[i].Hint:=GetAttribut(Node_Register, 'caption');
+      //      PageControl1.Pages[i].ShowHint:=True;
+
+      Panel := TPanel.Create(Self);
+      with Panel do begin
+        Parent := TabSheet;
+        Top := PageControl1.Height - 90;
+        Height := 2;
+        Left := 0;
+        Width := TabSheet.Width;
+        Anchors := [akBottom, akLeft, akRight];
+      end;
 
       FuseLabel := TLabel.Create(Self);
       with FuseLabel do begin
+        Tag := i;
         Caption := TabSheet.Caption + ':';
-        Parent := Self;
-        Enabled := False;
-        Left := PageControl1.Left + i * 130;
-        Top := PageControl1.Top + PageControl1.Height + 10;
+        Parent := TabSheet;
+        Left := 10;
+        Top := PageControl1.Height - 80;
         Anchors := [akBottom, akLeft];
       end;
+
       FuseEdit := TEdit.Create(Self);
       with FuseEdit do begin
-        Parent := Self;
+        Tag := i;
+        Parent := TabSheet;
         Enabled := False;
-        Left := PageControl1.Left + i * 130 + FuseLabel.Width;
-        Top := PageControl1.Top + PageControl1.Height + 10 + 4;
+        Left := 230;
+        Top := PageControl1.Height - 80;
         Width := 50;
         Text := '';
         Anchors := [akBottom, akLeft];
+      end;
+
+      BurnButton := TButton.Create(Self);
+      with BurnButton do begin
+        Tag := i;
+        Parent := TabSheet;
+        Left := 330;
+        Top := PageControl1.Height - 80;
+        Width := 50;
+        Text := 'Burn';
+        Anchors := [akBottom, akLeft];
+        OnClick := @FuseTabBurnButtonClick;
       end;
     end;
 
@@ -303,29 +330,41 @@ begin
   for i := 0 to Length(FuseTab) - 1 do begin
     with FuseTab[i] do begin
       TabSheet.Free;
+      Panel.Free;
       FuseEdit.Free;
       FuseLabel.Free;
+      BurnButton.Free;
     end;
   end;
   SetLength(FuseTab, 0);
+end;
+
+procedure TForm1.FuseTabBurnButtonClick(Sender: TObject);
+begin
+  if Sender is TButton then begin
+    ShowMessage('Button ' + TButton(Sender).Tag.ToString + ' gedrückt');
+  end;
 end;
 
 procedure TForm1.FuseTabCheckBoxChange(Sender: TObject);
 var
   i, j, m: integer;
 begin
-  Label1.Caption := '';
-  for i := 0 to Length(FuseTab) - 1 do begin
-    with FuseTab[i] do begin
-      FuseByte := 0;
-      for j := 0 to Length(CheckBox) - 1 do begin
-        FuseByte += CheckBox[j].Mask;
+  if Sender is TCheckBox then begin
+    Label1.Caption := '';
+    for i := 0 to Length(FuseTab) - 1 do begin
+      with FuseTab[i] do begin
+        FuseByte := 0;
+        for j := 0 to Length(CheckBox) - 1 do begin
+          FuseByte += CheckBox[j].Mask;
+        end;
+        for j := 0 to Length(ComboBox) - 1 do begin
+          FuseByte += ComboBox[j].Mask;
+        end;
+        FuseEdit.Enabled := True;
+        FuseEdit.Text := '0x' + IntToHex(not FuseByte, 2);
+        Label1.Caption := Label1.Caption + '    ' + FuseByte.ToBinString;
       end;
-      for j := 0 to Length(ComboBox) - 1 do begin
-        FuseByte += ComboBox[j].Mask;
-      end;
-      FuseEdit.Text := '0x' + IntToHex(not FuseByte, 2);
-      Label1.Caption := Label1.Caption + '    ' + FuseByte.ToBinString;
     end;
   end;
 end;
