@@ -20,7 +20,8 @@ type
   TAVR_ProjectOptions = class
     AvrdudeCommand: record
       Path, ConfigPath, AVR_AVRDude_Typ, Programmer, COM_Port, Baud: string;
-      Verbose: integer;
+      BitClock,         // neu ???????
+      Verbose: Integer;
       Disable_Auto_Erase: boolean;
     end;
     AVR_SubArch, AVR_FPC_Typ: string;
@@ -38,7 +39,7 @@ type
     Programmer,
     COM_Port,
     Baud: string;
-    Verbose: integer;
+    Verbose: Integer;
     Disable_Auto_Erase: boolean;
   end;
 
