@@ -1,12 +1,12 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
   Cursor = crDrag
-  Left = 1858
-  Height = 601
-  Top = 94
-  Width = 510
+  Left = 1901
+  Height = 724
+  Top = 79
+  Width = 593
   Caption = 'AVR Embedded Project Options'
-  ClientHeight = 601
-  ClientWidth = 510
+  ClientHeight = 724
+  ClientWidth = 593
   Constraints.MinHeight = 490
   Constraints.MinWidth = 510
   OnActivate = FormActivate
@@ -15,176 +15,176 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object Button_Ok: TButton
-    Left = 423
+    Left = 506
     Height = 25
-    Top = 518
+    Top = 641
     Width = 82
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
     Default = True
     ModalResult = 1
     OnClick = Button_OkClick
-    TabOrder = 17
+    TabOrder = 19
   end
   object Button_Cancel: TButton
-    Left = 311
+    Left = 394
     Height = 25
-    Top = 518
+    Top = 641
     Width = 82
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
-    TabOrder = 16
+    TabOrder = 18
   end
   object ComboBox_AvrdudePath: TComboBox
-    Left = 16
+    Left = 15
     Height = 28
-    Top = 56
-    Width = 439
+    Top = 216
+    Width = 522
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
-    TabOrder = 0
+    TabOrder = 5
   end
   object Label4: TLabel
-    Left = 16
+    Left = 15
     Height = 16
-    Top = 32
+    Top = 192
     Width = 102
     Caption = 'AVRdude Aufruf:'
     ParentColor = False
   end
   object Label5: TLabel
-    Left = 16
+    Left = 144
     Height = 16
-    Top = 232
+    Top = 16
     Width = 80
     Caption = 'AVR FPC Typ:'
     ParentColor = False
   end
   object ComboBox_AVR_Typ_FPC: TComboBox
-    Left = 16
+    Left = 143
     Height = 28
-    Top = 256
+    Top = 40
     Width = 168
     ItemHeight = 0
-    TabOrder = 6
+    TabOrder = 1
   end
   object CheckBox_AsmFile: TCheckBox
-    Left = 16
+    Left = 15
     Height = 23
-    Top = 411
-    Width = 138
-    Caption = 'ASM-File erzeugen'
-    TabOrder = 18
+    Top = 88
+    Width = 164
+    Caption = 'ASM-File erzeugen (-al)'
+    TabOrder = 3
   end
   object Label6: TLabel
-    Left = 16
+    Left = 15
     Height = 16
-    Top = 304
-    Width = 78
-    Caption = 'Programmer:'
+    Top = 344
+    Width = 99
+    Caption = 'Programmer (-c):'
     ParentColor = False
   end
   object ComboBox_Programmer: TComboBox
-    Left = 16
+    Left = 15
     Height = 28
-    Top = 328
+    Top = 368
     Width = 112
+    ItemHeight = 0
+    TabOrder = 9
+  end
+  object ComboBox_COMPort: TComboBox
+    Left = 143
+    Height = 28
+    Top = 368
+    Width = 128
     ItemHeight = 0
     TabOrder = 10
   end
-  object ComboBox_COMPort: TComboBox
-    Left = 144
-    Height = 28
-    Top = 328
-    Width = 128
-    ItemHeight = 0
-    TabOrder = 11
-  end
   object Label7: TLabel
-    Left = 144
+    Left = 143
     Height = 16
-    Top = 304
-    Width = 63
-    Caption = 'COM-Port:'
+    Top = 344
+    Width = 124
+    Caption = 'Connection port (-P):'
     ParentColor = False
   end
   object Label8: TLabel
-    Left = 16
+    Left = 15
     Height = 16
-    Top = 96
+    Top = 256
     Width = 280
     Caption = 'AVRdude Config-Pfad ( Leer = default Konfig. )'
     ParentColor = False
   end
   object ComboBox_AvrdudeConfigPath: TComboBox
-    Left = 16
+    Left = 15
     Height = 28
-    Top = 119
-    Width = 439
+    Top = 279
+    Width = 522
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
-    TabOrder = 2
+    TabOrder = 7
   end
   object ComboBox_COMPortBaud: TComboBox
-    Left = 288
+    Left = 287
     Height = 28
-    Top = 328
+    Top = 368
     Width = 112
     ItemHeight = 0
-    TabOrder = 12
+    TabOrder = 11
   end
   object Label9: TLabel
-    Left = 288
+    Left = 287
     Height = 16
-    Top = 304
-    Width = 98
-    Caption = 'COM-Port Baud:'
+    Top = 344
+    Width = 126
+    Caption = 'RS232 baud rate (-b):'
     ParentColor = False
   end
   object Button_AVRDude_Path: TButton
-    Left = 464
+    Left = 546
     Height = 28
-    Top = 56
+    Top = 216
     Width = 35
     Anchors = [akTop, akRight]
     Caption = '...'
     OnClick = Button_AVRDude_PathClick
-    TabOrder = 1
+    TabOrder = 6
   end
   object Button_AVERDude_Config_Path: TButton
-    Left = 466
+    Left = 548
     Height = 28
-    Top = 119
+    Top = 279
     Width = 32
     Anchors = [akTop, akRight]
     Caption = '...'
     OnClick = Button_AVERDude_Config_PathClick
-    TabOrder = 3
+    TabOrder = 8
   end
   object Button_Templates: TButton
-    Left = 411
+    Left = 494
     Height = 28
-    Top = 192
+    Top = 128
     Width = 87
     Anchors = [akTop, akRight]
     Caption = 'Vorlagen...'
     OnClick = Button_TemplatesClick
-    TabOrder = 5
+    TabOrder = 4
   end
   object Edit_AVR_Typ_Avrdude: TEdit
-    Left = 264
+    Left = 15
     Height = 28
-    Top = 256
+    Top = 440
     Width = 122
-    TabOrder = 8
+    TabOrder = 12
   end
   object BitBtn1: TBitBtn
-    Left = 200
+    Left = 152
     Height = 28
-    Top = 256
+    Top = 440
     Width = 51
-    Caption = '-->'
+    Caption = 'auto'
     Glyph.Data = {
       36090000424D3609000000000000360000002800000018000000180000000100
       2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
@@ -262,83 +262,107 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     OnClick = Button_to_AVRDude_Typ_Click
-    TabOrder = 7
+    TabOrder = 13
   end
   object Label10: TLabel
-    Left = 264
+    Left = 15
     Height = 16
-    Top = 232
-    Width = 115
-    Caption = 'AVR AVRDude Typ:'
+    Top = 416
+    Width = 198
+    Caption = 'Required. Specify AVR device (-p):'
     ParentColor = False
   end
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 554
-    Width = 510
+    Top = 677
+    Width = 593
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für AVR-Embedded erstellt wurde. Auch muss das AVR-SubArch stimmen.'
     )
     ReadOnly = True
-    TabOrder = 15
+    TabOrder = 20
     TabStop = False
   end
   object ComboBox_AVR_SubArch: TComboBox
-    Left = 16
+    Left = 15
     Height = 28
-    Top = 192
-    Width = 128
+    Top = 40
+    Width = 100
     ItemHeight = 0
     OnChange = ComboBox_AVR_SubArchChange
-    TabOrder = 4
+    TabOrder = 0
   end
   object Label1: TLabel
-    Left = 16
+    Left = 15
     Height = 16
-    Top = 168
+    Top = 16
     Width = 79
     Caption = 'AVR SubArch'
     ParentColor = False
   end
   object CheckBox_Disable_Auto_Erase: TCheckBox
-    Left = 16
+    Left = 15
     Height = 23
-    Top = 368
-    Width = 165
-    Caption = 'Disable Auto Erase (-D)'
-    TabOrder = 13
+    Top = 568
+    Width = 268
+    Caption = 'Disable auto erase for flash memory (-D)'
+    TabOrder = 16
   end
   object Button_CPU_Info: TButton
-    Left = 411
+    Left = 494
     Height = 28
-    Top = 256
+    Top = 64
     Width = 87
     Anchors = [akTop, akRight]
     Caption = 'CPU Info...'
     OnClick = Button_CPU_InfoClick
-    TabOrder = 9
+    TabOrder = 2
   end
   object Label2: TLabel
-    Left = 288
+    Left = 18
     Height = 16
-    Top = 368
-    Width = 52
-    Caption = 'Verbose:'
+    Top = 488
+    Width = 119
+    Caption = 'Verbose output (-v):'
     ParentColor = False
   end
   object ComboBox_Verbose: TComboBox
-    Left = 288
+    Left = 18
     Height = 28
-    Top = 392
+    Top = 512
     Width = 112
     ItemHeight = 0
     TabOrder = 14
   end
+  object Label3: TLabel
+    Left = 168
+    Height = 16
+    Top = 488
+    Width = 154
+    Caption = 'Bit Clock(default = 1) (-B):'
+    ParentColor = False
+  end
+  object ComboBox_BitClock: TComboBox
+    Left = 168
+    Height = 28
+    Top = 512
+    Width = 154
+    ItemHeight = 0
+    TabOrder = 15
+  end
+  object CheckBox_Chip_Erase: TCheckBox
+    Left = 14
+    Height = 23
+    Top = 600
+    Width = 173
+    Caption = 'Perform a chip erase. (-e)'
+    TabOrder = 17
+  end
   object OpenDialog: TOpenDialog
-    Left = 416
-    Top = 16
+    Left = 344
+    Top = 40
   end
 end

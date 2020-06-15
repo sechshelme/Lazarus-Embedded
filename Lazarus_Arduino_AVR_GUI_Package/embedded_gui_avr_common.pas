@@ -9,9 +9,10 @@ uses
   ProjectIntf,
   Embedded_GUI_SubArch_List; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
-const
-  AVR_Programmer:TStringArray = ('arduino','usbasp','stk500v1','wiring','avr109');
-  AVR_Verboses: TStringArray = ('0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau');
+//const
+//  AVR_Programmer:TStringArray = ('arduino','usbasp','stk500v1','wiring','avr109');
+//  AVR_Verboses: TStringArray = ('0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau');
+//  AVR_BitClocks: TStringArray = ('1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024');
 
 type
 
@@ -20,9 +21,9 @@ type
   TAVR_ProjectOptions = class
     AvrdudeCommand: record
       Path, ConfigPath, AVR_AVRDude_Typ, Programmer, COM_Port, Baud: string;
-      BitClock,         // neu ???????
-      Verbose: Integer;
-      Disable_Auto_Erase: boolean;
+      BitClock: string;
+      Verbose: integer;
+      Disable_Auto_Erase, Chip_Erase: boolean;
     end;
     AVR_SubArch, AVR_FPC_Typ: string;
     AsmFile: boolean;
@@ -39,8 +40,10 @@ type
     Programmer,
     COM_Port,
     Baud: string;
-    Verbose: Integer;
-    Disable_Auto_Erase: boolean;
+    BitClock: string;
+    Verbose: integer;
+    Disable_Auto_Erase,
+    Chip_Erase: boolean;
   end;
 
 const
@@ -52,8 +55,10 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyACM0';
     Baud: '115200';
+    BitClock: '1';
     Verbose: 1;
-    Disable_Auto_Erase: False; ), (
+    Disable_Auto_Erase: False;
+    Chip_Erase: False; ), (
 
     Name: 'Arduino Nano (old Bootloader)';
     AVR_SubArch: 'AVR5';
@@ -62,8 +67,10 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyUSB0';
     Baud: '57600';
+    BitClock: '1';
     Verbose: 1;
-    Disable_Auto_Erase: False; ), (
+    Disable_Auto_Erase: False;
+    Chip_Erase: False; ), (
 
     Name: 'Arduino Nano';
     AVR_SubArch: 'AVR5';
@@ -72,8 +79,10 @@ const
     Programmer: 'arduino';
     COM_Port: '/dev/ttyUSB0';
     Baud: '115200';
+    BitClock: '1';
     Verbose: 1;
-    Disable_Auto_Erase: False; ), (
+    Disable_Auto_Erase: False;
+    Chip_Erase: False; ), (
 
     Name: 'Arduino Mega';
     AVR_SubArch: 'AVR6';
@@ -82,8 +91,10 @@ const
     Programmer: 'wiring';
     COM_Port: '/dev/ttyUSB0';
     Baud: '115200';
+    BitClock: '1';
     Verbose: 1;
-    Disable_Auto_Erase: True; ), (
+    Disable_Auto_Erase: True;
+    Chip_Erase: False; ), (
 
     Name: 'ATmega328P';
     AVR_SubArch: 'AVR5';
@@ -92,8 +103,10 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
+    BitClock: '1';
     Verbose: 1;
-    Disable_Auto_Erase: False; ), (
+    Disable_Auto_Erase: False;
+    Chip_Erase: False; ), (
 
     Name: 'ATtiny2313A';
     AVR_SubArch: 'AVR25';
@@ -102,8 +115,10 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
+    BitClock: '1';
     Verbose: 1;
-    Disable_Auto_Erase: False; ), (
+    Disable_Auto_Erase: False;
+    Chip_Erase: False; ), (
 
     Name: 'ATtiny13A';
     AVR_SubArch: 'AVR25';
@@ -112,8 +127,10 @@ const
     Programmer: 'usbasp';
     COM_Port: '';
     Baud: '';
+    BitClock: '1';
     Verbose: 1;
-    Disable_Auto_Erase: False; ));
+    Disable_Auto_Erase: False;
+    Chip_Erase: False; ));
 
 var
   AVR_ProjectOptions: TAVR_ProjectOptions;
@@ -127,17 +144,6 @@ var
   pr, s: string;
   i: integer;
 begin
-  with AProject.LazCompilerOptions do begin
-    TargetCPU := 'avr';
-    TargetOS := 'embedded';
-    TargetProcessor := AVR_SubArch;
-
-    CustomOptions := '-Wp' + AVR_FPC_Typ;
-    if AsmFile then begin
-      CustomOptions := CustomOptions + LineEnding + '-al';
-    end;
-  end;
-
   s := AvrdudeCommand.Path + ' ';
   if AvrdudeCommand.ConfigPath <> '' then begin
     s += '-C' + AvrdudeCommand.ConfigPath + ' ';
@@ -156,12 +162,31 @@ begin
     s += '-P' + AvrdudeCommand.COM_Port + ' ';
   end;
 
+  if AvrdudeCommand.BitClock <> '1' then begin
+    s += '-B' + AvrdudeCommand.BitClock + ' ';
+  end;
+
   if AvrdudeCommand.Disable_Auto_Erase then begin
     s += '-D ';
   end;
-  s += '-Uflash:w:' + AProject.LazCompilerOptions.TargetFilename + '.hex:i';
 
-  AProject.LazCompilerOptions.ExecuteAfter.Command := s;
+  if AvrdudeCommand.Chip_Erase then begin
+    s += '-e ';
+  end;
+
+  with AProject.LazCompilerOptions do begin
+    s += '-Uflash:w:' + TargetFilename + '.hex:i';
+    ExecuteAfter.Command := s;
+    TargetCPU := 'avr';
+    TargetOS := 'embedded';
+    TargetProcessor := AVR_SubArch;
+
+    CustomOptions := '-Wp' + AVR_FPC_Typ;
+    if AsmFile then begin
+      CustomOptions := CustomOptions + LineEnding + '-al';
+    end;
+  end;
+
 end;
 
 procedure TAVR_ProjectOptions.Load_from_Project(AProject: TLazProject);
@@ -209,12 +234,15 @@ begin
   s := AProject.LazCompilerOptions.ExecuteAfter.Command;
   AvrdudeCommand.Path := Copy(s, 0, pos(' ', s) - 1);
   AvrdudeCommand.ConfigPath := Find(s, '-C');
+
   AvrdudeCommand.AVR_AVRDude_Typ := Find(s, '-p');
   AvrdudeCommand.Programmer := Find(s, '-c');
   AvrdudeCommand.COM_Port := Find(s, '-P');
   AvrdudeCommand.Baud := Find(s, '-b');
   AvrdudeCommand.Verbose := FindVerbose(s);
+  AvrdudeCommand.BitClock := Find(s, '-B');
   AvrdudeCommand.Disable_Auto_Erase := pos('-D', s) > 0;
+  AvrdudeCommand.Chip_Erase := pos('-e', s) > 0;
 end;
 
 end.

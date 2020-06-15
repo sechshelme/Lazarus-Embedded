@@ -9,13 +9,14 @@ uses
   ExtCtrls, FileUtil, Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
   //  XMLConf, XMLRead, XMLWrite, DOM,
   Embedded_GUI_Common,
-  Embedded_GUI_AVR_Fuse_Common;
+  Embedded_GUI_AVR_Fuse_Common,
+  Embedded_GUI_AVR_Fuse_Burn_Form;
 
 type
 
-  { TForm1 }
+  { TForm_AVR_Fuse }
 
-  TForm1 = class(TForm)
+  TForm_AVR_Fuse = class(TForm)
     ComboBox1: TComboBox;
     Label1: TLabel;
     PageControl1: TPageControl;
@@ -48,17 +49,17 @@ type
   end;
 
 var
-  Form1: TForm1;
+  Form_AVR_Fuse: TForm_AVR_Fuse;
 
 implementation
 
 {$R *.lfm}
 
-{ TForm1 }
+{ TForm_AVR_Fuse }
 
 /// --- private
 
-function TForm1.IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
+function TForm_AVR_Fuse.IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
 var
   i: integer;
 begin
@@ -74,7 +75,7 @@ begin
   end;
 end;
 
-function TForm1.GetAttribut(Node: TDOMNode; const NodeName: string): string;
+function TForm_AVR_Fuse.GetAttribut(Node: TDOMNode; const NodeName: string): string;
 var
   i: integer;
 begin
@@ -88,7 +89,7 @@ begin
   end;
 end;
 
-procedure TForm1.ClearTabs;
+procedure TForm_AVR_Fuse.ClearTabs;
 var
   i, j: integer;
 begin
@@ -118,7 +119,7 @@ begin
   SetLength(FuseTab, 0);
 end;
 
-procedure TForm1.Read_Value_Group(const Attr_name: string; Node: TDOMNode; ComboBox: TFuseComboBox);
+procedure TForm_AVR_Fuse.Read_Value_Group(const Attr_name: string; Node: TDOMNode; ComboBox: TFuseComboBox);
 var
   Node_Value_Group, Node_Value: TDOMNode;
   s: string;
@@ -141,11 +142,12 @@ end;
 
 /// --- public
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TForm_AVR_Fuse.FormCreate(Sender: TObject);
 var
   fl: TStringList;
   i: integer;
 begin
+  Caption := Title + 'AVR Fuse';
   ComboBox1.Sorted := True;
   ComboBox1.Style := csOwnerDrawFixed;
 
@@ -158,7 +160,7 @@ begin
   LoadFormPos_from_XML(self);
 end;
 
-procedure TForm1.ComboBox1Change(Sender: TObject);
+procedure TForm_AVR_Fuse.ComboBox1Change(Sender: TObject);
 begin
   //  path := ComboBox1.Items[ComboBox1.ItemIndex];
   path := ComboBox1.Text;
@@ -169,7 +171,7 @@ begin
   end;
 end;
 
-procedure TForm1.CreateTab(Sender: TObject);
+procedure TForm_AVR_Fuse.CreateTab(Sender: TObject);
 var
   l: integer;
   doc: TXMLDocument;
@@ -322,7 +324,7 @@ begin
   doc.Free;
 end;
 
-procedure TForm1.FormDestroy(Sender: TObject);
+procedure TForm_AVR_Fuse.FormDestroy(Sender: TObject);
 var
   i: integer;
 begin
@@ -339,14 +341,21 @@ begin
   SetLength(FuseTab, 0);
 end;
 
-procedure TForm1.FuseTabBurnButtonClick(Sender: TObject);
+procedure TForm_AVR_Fuse.FuseTabBurnButtonClick(Sender: TObject);
+var
+  f:TForm_AVR_Fuse_Burn;
+
 begin
   if Sender is TButton then begin
-    ShowMessage('Button ' + TButton(Sender).Tag.ToString + ' gedrückt');
+    f:=TForm_AVR_Fuse_Burn.Create(Self);
+
+    f.ShowModal;
+    f.Free;
+//    ShowMessage('Button ' + TButton(Sender).Tag.ToString + ' gedrückt');
   end;
 end;
 
-procedure TForm1.FuseTabCheckBoxChange(Sender: TObject);
+procedure TForm_AVR_Fuse.FuseTabCheckBoxChange(Sender: TObject);
 var
   i, j, m: integer;
 begin

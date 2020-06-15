@@ -23,12 +23,14 @@ type
 
   TAVR_Project_Options_Form = class(TForm)
     CheckBox_AsmFile: TCheckBox;
+    CheckBox_Chip_Erase: TCheckBox;
     ComboBox_AvrdudeConfigPath: TComboBox;
     ComboBox_AvrdudePath: TComboBox;
     ComboBox_AVR_Typ_FPC: TComboBox;
     BitBtn1: TBitBtn;
     Button_AVRDude_Path: TButton;
     Button_AVERDude_Config_Path: TButton;
+    ComboBox_BitClock: TComboBox;
     Edit_AVR_Typ_Avrdude: TEdit;
     ComboBox_AVR_SubArch: TComboBox;
     CheckBox_Disable_Auto_Erase: TCheckBox;
@@ -36,6 +38,7 @@ type
     Label1: TLabel;
     Label10: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     Memo1: TMemo;
     Button_Templates: TButton;
     ComboBox_COMPortBaud: TComboBox;
@@ -105,11 +108,12 @@ begin
     Text := 'ATMEGA328P';
   end;
 
+  CheckBox_AsmFile.Checked := False;
+
   Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
 
   with ComboBox_Programmer do begin
-    Items.AddStrings(AVR_Programmer, True);
-//    Items.CommaText := AVR_Programmer;
+    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109'], True);
     Text := 'arduino';
   end;
 
@@ -118,19 +122,25 @@ begin
     Text := '/dev/ttyUSB0';
   end;
 
+  with ComboBox_BitClock do begin
+    Style := csOwnerDrawFixed;
+    Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
+    Text := Items[0];
+  end;
+
   with ComboBox_COMPortBaud do begin
     Items.AddStrings(['19200', '57600', '115200'], True);
     Text := '57600';
   end;
 
   with ComboBox_Verbose do begin
-    Items.AddStrings(AVR_Verboses, True);
     Style := csOwnerDrawFixed;
+    Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
     Text := Items[1];
   end;
 
-  CheckBox_AsmFile.Checked := False;
   CheckBox_Disable_Auto_Erase.Checked := False;
+  CheckBox_Chip_Erase.Checked := False;
 
   LoadComboBox_from_XML(ComboBox_AvrdudePath);
   LoadComboBox_from_XML(ComboBox_AvrdudeConfigPath);
@@ -148,21 +158,28 @@ begin
       ComboBox_AvrdudeConfigPath.Text := '';
     end;
   end else begin
-    ComboBox_AvrdudePath.Text := AVR_ProjectOptions.AvrdudeCommand.Path;
-    ComboBox_AvrdudeConfigPath.Text := AVR_ProjectOptions.AvrdudeCommand.ConfigPath;
-
     ComboBox_AVR_SubArch.Text := AVR_ProjectOptions.AVR_SubArch;
     ComboBox_AVR_Typ_FPC.Text := AVR_ProjectOptions.AVR_FPC_Typ;
+
+    CheckBox_AsmFile.Checked := AVR_ProjectOptions.AsmFile;
+
+    ComboBox_AvrdudePath.Text := AVR_ProjectOptions.AvrdudeCommand.Path;
+    ComboBox_AvrdudeConfigPath.Text := AVR_ProjectOptions.AvrdudeCommand.ConfigPath;
 
     ComboBox_Programmer.Text := AVR_ProjectOptions.AvrdudeCommand.Programmer;
     ComboBox_COMPort.Text := AVR_ProjectOptions.AvrdudeCommand.COM_Port;
     ComboBox_COMPortBaud.Text := AVR_ProjectOptions.AvrdudeCommand.Baud;
     Edit_AVR_Typ_Avrdude.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
 
-    CheckBox_Disable_Auto_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
-    ComboBox_Verbose.Text := AVR_Verboses[AVR_ProjectOptions.AvrdudeCommand.Verbose];
+    ComboBox_Verbose.Text := ComboBox_Verbose.Items[AVR_ProjectOptions.AvrdudeCommand.Verbose];
+    if AVR_ProjectOptions.AvrdudeCommand.BitClock = '' then begin
+      ComboBox_BitClock.Text := '1';
+    end else begin
+      ComboBox_BitClock.Text := AVR_ProjectOptions.AvrdudeCommand.BitClock;
+    end;
 
-    CheckBox_AsmFile.Checked := AVR_ProjectOptions.AsmFile;
+    CheckBox_Disable_Auto_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
+    CheckBox_Chip_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Chip_Erase;
   end;
 
   ComboBox_Insert_Text(ComboBox_AvrdudePath);
@@ -173,6 +190,11 @@ end;
 
 procedure TAVR_Project_Options_Form.Button_OkClick(Sender: TObject);
 begin
+  AVR_ProjectOptions.AsmFile := CheckBox_AsmFile.Checked;
+
+  AVR_ProjectOptions.AVR_SubArch := ComboBox_AVR_SubArch.Text;
+  AVR_ProjectOptions.AVR_FPC_Typ := ComboBox_AVR_Typ_FPC.Text;
+
   ComboBox_Insert_Text(ComboBox_AvrdudePath);
   SaveComboBox_to_XML(ComboBox_AvrdudePath);
   ComboBox_Insert_Text(ComboBox_AvrdudeConfigPath);
@@ -181,19 +203,16 @@ begin
   AVR_ProjectOptions.AvrdudeCommand.Path := ComboBox_AvrdudePath.Text;
   AVR_ProjectOptions.AvrdudeCommand.ConfigPath := ComboBox_AvrdudeConfigPath.Text;
 
-  AVR_ProjectOptions.AVR_SubArch := ComboBox_AVR_SubArch.Text;
-  AVR_ProjectOptions.AVR_FPC_Typ := ComboBox_AVR_Typ_FPC.Text;
-
   AVR_ProjectOptions.AvrdudeCommand.Programmer := ComboBox_Programmer.Text;
   AVR_ProjectOptions.AvrdudeCommand.COM_Port := ComboBox_COMPort.Text;
   AVR_ProjectOptions.AvrdudeCommand.Baud := ComboBox_COMPortBaud.Text;
   AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := Edit_AVR_Typ_Avrdude.Text;
 
-  AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := CheckBox_Disable_Auto_Erase.Checked;
   AVR_ProjectOptions.AvrdudeCommand.Verbose := ComboBox_Verbose.ItemIndex;
-  //  AVR_ProjectOptions.AvrdudeCommand.Verbose := ComboBox_Verbose.Items.IndexOf(ComboBox_Verbose.Text);
+  AVR_ProjectOptions.AvrdudeCommand.BitClock := ComboBox_BitClock.Text;
 
-  AVR_ProjectOptions.AsmFile := CheckBox_AsmFile.Checked;
+  AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := CheckBox_Disable_Auto_Erase.Checked;
+  AVR_ProjectOptions.AvrdudeCommand.Chip_Erase := CheckBox_Chip_Erase.Checked;
 end;
 
 procedure TAVR_Project_Options_Form.Button_AVRDude_PathClick(Sender: TObject);
@@ -227,27 +246,29 @@ end;
 procedure TAVR_Project_Options_Form.Button_TemplatesClick(Sender: TObject);
 var
   TemplatesForm: TAVRProjectTemplatesForm;
-  i: integer;
+  index: integer;
 begin
   TemplatesForm := TAVRProjectTemplatesForm.Create(nil);
 
-  for i := 0 to Length(AVR_TemplatesPara) - 1 do begin
-    TemplatesForm.ListBox_Template.Items.AddStrings(AVR_TemplatesPara[i].Name);
+  for index := 0 to Length(AVR_TemplatesPara) - 1 do begin
+    TemplatesForm.ListBox_Template.Items.AddStrings(AVR_TemplatesPara[index].Name);
   end;
   TemplatesForm.ListBox_Template.Caption := AVR_TemplatesPara[0].Name;
   TemplatesForm.ListBox_Template.ItemIndex := 0;
 
   if TemplatesForm.ShowModal = mrOk then begin
-    i := TemplatesForm.ListBox_Template.ItemIndex;
+    index := TemplatesForm.ListBox_Template.ItemIndex;
 
-    ComboBox_AVR_SubArch.Text := AVR_TemplatesPara[i].AVR_SubArch;
-    ComboBox_AVR_Typ_FPC.Text := AVR_TemplatesPara[i].AVR_FPC_Typ;
-    Edit_AVR_Typ_Avrdude.Text := AVR_TemplatesPara[i].AVR_AVRDude_Typ;
-    ComboBox_Programmer.Text := AVR_TemplatesPara[i].Programmer;
-    ComboBox_COMPort.Text := AVR_TemplatesPara[i].COM_Port;
-    ComboBox_COMPortBaud.Text := AVR_TemplatesPara[i].Baud;
-    CheckBox_Disable_Auto_Erase.Checked := AVR_TemplatesPara[i].Disable_Auto_Erase;
-    ComboBox_Verbose.Text := AVR_Verboses[AVR_TemplatesPara[i].Verbose];
+    ComboBox_AVR_SubArch.Text := AVR_TemplatesPara[index].AVR_SubArch;
+    ComboBox_AVR_Typ_FPC.Text := AVR_TemplatesPara[index].AVR_FPC_Typ;
+    Edit_AVR_Typ_Avrdude.Text := AVR_TemplatesPara[index].AVR_AVRDude_Typ;
+    ComboBox_Programmer.Text := AVR_TemplatesPara[index].Programmer;
+    ComboBox_COMPort.Text := AVR_TemplatesPara[index].COM_Port;
+    ComboBox_COMPortBaud.Text := AVR_TemplatesPara[index].Baud;
+    CheckBox_Disable_Auto_Erase.Checked := AVR_TemplatesPara[index].Disable_Auto_Erase;
+    CheckBox_Chip_Erase.Checked := AVR_TemplatesPara[index].Chip_Erase;
+    ComboBox_Verbose.Text := ComboBox_Verbose.Items[AVR_TemplatesPara[index].Verbose];
+    ComboBox_BitClock.Text := AVR_TemplatesPara[index].BitClock;
     ComboBox_AVR_SubArch.OnChange(Sender);
   end;
 

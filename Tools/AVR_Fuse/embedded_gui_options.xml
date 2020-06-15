@@ -3,4 +3,10 @@
   <Form1>
     <FormPos Left="1309" Top="293" Width="1255" Height="631"/>
   </Form1>
+  <Form_AVR_Fuse>
+    <FormPos Left="2080" Top="203" Width="734" Height="890"/>
+  </Form_AVR_Fuse>
+  <Form_AVR_Fuse_Burn>
+    <FormPos Left="468" Top="164" Width="320" Height="240"/>
+  </Form_AVR_Fuse_Burn>
 </CONFIG>

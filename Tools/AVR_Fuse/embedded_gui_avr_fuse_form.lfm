@@ -1,9 +1,9 @@
-object Form1: TForm1
-  Left = 1721
+object Form_AVR_Fuse: TForm_AVR_Fuse
+  Left = 2080
   Height = 890
-  Top = 187
+  Top = 203
   Width = 734
-  Caption = 'Form1'
+  Caption = 'Form_AVR_Fuse'
   ClientHeight = 890
   ClientWidth = 734
   OnCreate = FormCreate
