@@ -4,7 +4,7 @@
     <FormPos Left="1309" Top="293" Width="1255" Height="631"/>
   </Form1>
   <Form_AVR_Fuse>
-    <FormPos Left="2080" Top="203" Width="734" Height="890"/>
+    <FormPos Left="1544" Top="373" Width="958" Height="714"/>
   </Form_AVR_Fuse>
   <Form_AVR_Fuse_Burn>
     <FormPos Left="468" Top="164" Width="320" Height="240"/>

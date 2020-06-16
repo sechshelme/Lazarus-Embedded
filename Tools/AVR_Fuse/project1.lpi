@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="5">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -39,7 +39,7 @@
       <Unit1>
         <Filename Value="embedded_gui_avr_fuse_burn_form.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="Form_AVR_Fuse_Burn"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Embedded_GUI_AVR_Fuse_Burn_Form"/>
@@ -61,13 +61,6 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Embedded_GUI_AVR_Fuse_Form"/>
       </Unit4>
-      <Unit5>
-        <Filename Value="embedded_gui_avr_fuse_burn_form.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form_AVR_Fuse_Burn"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Embedded_GUI_AVR_Fuse_Burn_Form"/>
-      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

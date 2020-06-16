@@ -1,17 +1,17 @@
 object Form_AVR_Fuse: TForm_AVR_Fuse
   Left = 2080
-  Height = 890
+  Height = 884
   Top = 203
   Width = 734
   Caption = 'Form_AVR_Fuse'
-  ClientHeight = 890
+  ClientHeight = 884
   ClientWidth = 734
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.1.0.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 715
+    Height = 778
     Top = 48
     Width = 734
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -30,9 +30,20 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
   object Label1: TLabel
     Left = 45
     Height = 1
-    Top = 841
+    Top = 835
     Width = 1
     Anchors = [akLeft, akBottom]
     ParentColor = False
+  end
+  object Button_Close: TButton
+    Left = 648
+    Height = 25
+    Top = 848
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Close'
+    ModalResult = 11
+    OnClick = Button_CloseClick
+    TabOrder = 2
   end
 end

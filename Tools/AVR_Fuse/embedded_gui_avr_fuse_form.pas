@@ -17,34 +17,23 @@ type
   { TForm_AVR_Fuse }
 
   TForm_AVR_Fuse = class(TForm)
+    Button_Close: TButton;
     ComboBox1: TComboBox;
     Label1: TLabel;
     PageControl1: TPageControl;
+    procedure Button_CloseClick(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure CreateTab(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
-    procedure FuseTabBurnButtonClick(Sender: TObject);
-    procedure FuseTabCheckBoxChange(Sender: TObject);
     function IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
     function GetAttribut(Node: TDOMNode; const NodeName: string): string;
-    procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; ComboBox: TFuseComboBox);
+    procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; TabSheet: TFuseTabSheet);
     procedure ClearTabs;
   private
     path: string;
-    FuseTab: array of record
-      FuseByte: byte;
-      TabSheet: TTabSheet;
-      ofs: integer;
-      CheckBox: array of TFuseCheckBox;
-      ComboBox: array of TFuseComboBox;
-      StaticText: array of TStaticText;
-      Panel: TPanel;
-      FuseLabel: TLabel;
-      FuseEdit: TEdit;
-      BurnButton: TButton;
-    end;
+      FuseTabSheet: array of TFuseTabSheet;
   public
   end;
 
@@ -93,33 +82,13 @@ procedure TForm_AVR_Fuse.ClearTabs;
 var
   i, j: integer;
 begin
-  for i := 0 to Length(FuseTab) - 1 do begin
-    with FuseTab[i] do begin
-      for j := 0 to Length(StaticText) - 1 do begin
-        StaticText[j].Free;
-      end;
-      SetLength(StaticText, 0);
-
-      for j := 0 to Length(ComboBox) - 1 do begin
-        ComboBox[j].Free;
-      end;
-      SetLength(ComboBox, 0);
-
-      for j := 0 to Length(CheckBox) - 1 do begin
-        CheckBox[j].Free;
-      end;
-      SetLength(CheckBox, 0);
-
-      FuseLabel.Free;
-      FuseEdit.Free;
-      TabSheet.Free;
-    end;
-
+  for i := 0 to Length(FuseTabSheet) - 1 do begin
+    FuseTabSheet[i].Free;
   end;
-  SetLength(FuseTab, 0);
+  SetLength(FuseTabSheet, 0);
 end;
 
-procedure TForm_AVR_Fuse.Read_Value_Group(const Attr_name: string; Node: TDOMNode; ComboBox: TFuseComboBox);
+procedure TForm_AVR_Fuse.Read_Value_Group(const Attr_name: string; Node: TDOMNode; TabSheet: TFuseTabSheet);
 var
   Node_Value_Group, Node_Value: TDOMNode;
   s: string;
@@ -131,7 +100,7 @@ begin
       while Node_Value <> nil do begin
         s := GetAttribut(Node_Value, 'caption');
         s += ' (' + GetAttribut(Node_Value, 'name') + ')';
-        ComboBox.Add(s, GetAttribut(Node_Value, 'value').ToInteger);
+        TabSheet.AddComboxItem(s, GetAttribut(Node_Value, 'value').ToInteger);
         Node_Value := Node_Value.NextSibling;
       end;
     end;
@@ -171,6 +140,11 @@ begin
   end;
 end;
 
+procedure TForm_AVR_Fuse.Button_CloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TForm_AVR_Fuse.CreateTab(Sender: TObject);
 var
   l: integer;
@@ -181,65 +155,14 @@ var
   var
     i: integer;
   begin
-    i := Length(FuseTab);
-    SetLength(FuseTab, i + 1);
-    with FuseTab[i] do begin
-      ofs := 5;
-      TabSheet := TTabSheet.Create(Self);
-      with TabSheet do begin
+    i := Length(FuseTabSheet);
+    SetLength(FuseTabSheet, i + 1);
+      FuseTabSheet[i] := TFuseTabSheet.Create(Self);
+      with FuseTabSheet[i] do begin
         Tag := i;
         PageControl := PageControl1;
         Caption := GetAttribut(Node_Register, 'name');
-      end;
-
-      //      PageControl1.Pages[i].Hint:=GetAttribut(Node_Register, 'caption');
-      //      PageControl1.Pages[i].ShowHint:=True;
-
-      Panel := TPanel.Create(Self);
-      with Panel do begin
-        Parent := TabSheet;
-        Top := PageControl1.Height - 90;
-        Height := 2;
-        Left := 0;
-        Width := TabSheet.Width;
-        Anchors := [akBottom, akLeft, akRight];
-      end;
-
-      FuseLabel := TLabel.Create(Self);
-      with FuseLabel do begin
-        Tag := i;
-        Caption := TabSheet.Caption + ':';
-        Parent := TabSheet;
-        Left := 10;
-        Top := PageControl1.Height - 80;
-        Anchors := [akBottom, akLeft];
-      end;
-
-      FuseEdit := TEdit.Create(Self);
-      with FuseEdit do begin
-        Tag := i;
-        Parent := TabSheet;
-        Enabled := False;
-        Left := 230;
-        Top := PageControl1.Height - 80;
-        Width := 50;
-        Text := '';
-        Anchors := [akBottom, akLeft];
-      end;
-
-      BurnButton := TButton.Create(Self);
-      with BurnButton do begin
-        Tag := i;
-        Parent := TabSheet;
-        Left := 330;
-        Top := PageControl1.Height - 80;
-        Width := 50;
-        Text := 'Burn';
-        Anchors := [akBottom, akLeft];
-        OnClick := @FuseTabBurnButtonClick;
-      end;
     end;
-
   end;
 
 begin
@@ -263,48 +186,14 @@ begin
               Node_Bitfield := Node_Register.FirstChild;
               while Node_Bitfield <> nil do begin
 
-                with FuseTab[Length(FuseTab) - 1] do begin
-                  if GetAttribut(Node_Bitfield, 'values') <> '' then begin
-                    Inc(ofs, 10);
-
-                    l := Length(StaticText);
-                    SetLength(StaticText, l + 1);
-                    StaticText[l] := TStaticText.Create(Self);
-                    with StaticText[l] do begin
-                      Parent := TabSheet;
-                      Caption := GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):';
-                      Top := ofs;
-                      Width := TabSheet.Width;
-                      Inc(ofs, Height + 5);
-                    end;
-
-                    l := Length(ComboBox);
-                    SetLength(ComboBox, l + 1);
-                    ComboBox[l] := TFuseComboBox.Create(Self);
-                    with ComboBox[l] do begin
-                      Parent := TabSheet;
-                      Style := csOwnerDrawFixed;
-                      Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
-                      Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module, ComboBox[l]);
-                      Top := ofs;
-                      Width := TabSheet.Width;
-                      Anchors := [akLeft, akRight, akTop];
-                      OnChange := @FuseTabCheckBoxChange;
-                      Inc(ofs, Height + 10);
-                    end;
-                  end else begin
-                    l := Length(CheckBox);
-                    SetLength(CheckBox, l + 1);
-                    CheckBox[l] := TFuseCheckBox.Create(Self);
-                    with CheckBox[l] do begin
-                      Parent := TabSheet;
-                      Caption := GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')';
-                      Mask := StrToInt(GetAttribut(Node_Bitfield, 'mask'));
-                      Top := ofs;
-                      OnChange := @FuseTabCheckBoxChange;
-                      Inc(ofs, Height);
-                    end;
-                  end;
+                l:=Length(FuseTabSheet) - 1;
+                if GetAttribut(Node_Bitfield, 'values') <> '' then begin
+                  FuseTabSheet[l].NewComboBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):',
+                    StrToInt(GetAttribut(Node_Bitfield, 'mask')));
+                  Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module, FuseTabSheet[l]);
+                end else begin
+                  FuseTabSheet[l].AddCheckBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')',
+                    StrToInt(GetAttribut(Node_Bitfield, 'mask')));
                 end;
 
                 Node_Bitfield := Node_Bitfield.NextSibling;
@@ -329,53 +218,10 @@ var
   i: integer;
 begin
   SaveFormPos_to_XML(self);
-  for i := 0 to Length(FuseTab) - 1 do begin
-    with FuseTab[i] do begin
-      TabSheet.Free;
-      Panel.Free;
-      FuseEdit.Free;
-      FuseLabel.Free;
-      BurnButton.Free;
-    end;
+  for i := 0 to Length(FuseTabSheet) - 1 do begin
+    FuseTabSheet[i].Free;
   end;
-  SetLength(FuseTab, 0);
-end;
-
-procedure TForm_AVR_Fuse.FuseTabBurnButtonClick(Sender: TObject);
-var
-  f:TForm_AVR_Fuse_Burn;
-
-begin
-  if Sender is TButton then begin
-    f:=TForm_AVR_Fuse_Burn.Create(Self);
-
-    f.ShowModal;
-    f.Free;
-//    ShowMessage('Button ' + TButton(Sender).Tag.ToString + ' gedrückt');
-  end;
-end;
-
-procedure TForm_AVR_Fuse.FuseTabCheckBoxChange(Sender: TObject);
-var
-  i, j, m: integer;
-begin
-  if Sender is TCheckBox then begin
-    Label1.Caption := '';
-    for i := 0 to Length(FuseTab) - 1 do begin
-      with FuseTab[i] do begin
-        FuseByte := 0;
-        for j := 0 to Length(CheckBox) - 1 do begin
-          FuseByte += CheckBox[j].Mask;
-        end;
-        for j := 0 to Length(ComboBox) - 1 do begin
-          FuseByte += ComboBox[j].Mask;
-        end;
-        FuseEdit.Enabled := True;
-        FuseEdit.Text := '0x' + IntToHex(not FuseByte, 2);
-        Label1.Caption := Label1.Caption + '    ' + FuseByte.ToBinString;
-      end;
-    end;
-  end;
+  SetLength(FuseTabSheet, 0);
 end;
 
 end.
