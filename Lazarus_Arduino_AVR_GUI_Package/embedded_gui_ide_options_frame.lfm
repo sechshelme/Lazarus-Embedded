@@ -6,16 +6,16 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
   ClientHeight = 641
   ClientWidth = 803
   TabOrder = 0
-  DesignLeft = 2060
-  DesignTop = 358
+  DesignLeft = 1944
+  DesignTop = 239
   object PageControl_IDE_Options: TPageControl
     Left = 0
     Height = 641
     Top = 0
     Width = 803
-    ActivePage = TabSheet3
+    ActivePage = TabSheet5
     Align = alClient
-    TabIndex = 2
+    TabIndex = 4
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'AVR'
@@ -114,9 +114,86 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     object TabSheet4: TTabSheet
       Caption = 'Serial-Monitor-Output'
     end
+    object TabSheet5: TTabSheet
+      Caption = 'Ebedded GUI'
+      ClientHeight = 611
+      ClientWidth = 793
+      object GroupBox1: TGroupBox
+        Left = 16
+        Height = 144
+        Top = 24
+        Width = 400
+        Caption = 'Color'
+        ClientHeight = 127
+        ClientWidth = 398
+        TabOrder = 0
+        object Button_Color_OS_Default: TButton
+          Left = 8
+          Height = 25
+          Top = 16
+          Width = 176
+          Caption = 'OS Default'
+          OnClick = Button_Color_OS_DefaultClick
+          TabOrder = 0
+        end
+        object Button_Color_GUI_Default: TButton
+          Left = 8
+          Height = 25
+          Top = 48
+          Width = 176
+          Caption = 'Ebedded GUI Default'
+          OnClick = Button_Color_GUI_DefaultClick
+          TabOrder = 1
+        end
+        object Button_Color_Custom: TButton
+          Left = 8
+          Height = 25
+          Top = 80
+          Width = 176
+          Caption = 'Custom'
+          OnClick = Button_Color_CustomClick
+          TabOrder = 2
+        end
+        object Panel_Preview: TPanel
+          Left = 208
+          Height = 89
+          Top = 16
+          Width = 170
+          Caption = 'Preview'
+          TabOrder = 3
+        end
+      end
+    end
   end
   object OpenDialog: TOpenDialog
     Left = 544
     Top = 56
+  end
+  object ColorDialog1: TColorDialog
+    Color = clBlack
+    CustomColors.Strings = (
+      'ColorA=000000'
+      'ColorB=000080'
+      'ColorC=008000'
+      'ColorD=008080'
+      'ColorE=800000'
+      'ColorF=800080'
+      'ColorG=808000'
+      'ColorH=808080'
+      'ColorI=C0C0C0'
+      'ColorJ=0000FF'
+      'ColorK=00FF00'
+      'ColorL=00FFFF'
+      'ColorM=FF0000'
+      'ColorN=FF00FF'
+      'ColorO=FFFF00'
+      'ColorP=FFFFFF'
+      'ColorQ=C0DCC0'
+      'ColorR=F0CAA6'
+      'ColorS=F0FBFF'
+      'ColorT=A4A0A0'
+    )
+    Left = 544
+    Top = 128
   end
 end

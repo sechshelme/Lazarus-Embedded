@@ -10,9 +10,9 @@ uses
   BaseIDEIntf, LazConfigStorage,  // Bei Packages
   {$ELSE}
   Laz2_XMLCfg,  // Bei normalen Anwendungen
-//  XMLConf,  // Bei normalen Anwendungen
+  //  XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
-  SysUtils, StdCtrls, Controls, Classes, Dialogs, ComCtrls,Graphics, Forms;
+  SysUtils, StdCtrls, Controls, Classes, Dialogs, ComCtrls, Graphics, Forms;
 
 const
   UARTBaudRates =
@@ -25,14 +25,14 @@ const
   Embedded_Options_File = 'embedded_gui_options.xml';
 
   {$IFDEF MSWINDOWS}
-  Default_Avrdude_Path :TStringArray = ('c:\avrdude\avrdude.exe');
-  Default_Avrdude_Conf_Path :TStringArray = ('c:\avrdude\avrdude.conf');
-  Default_STFlash_Path = :TStringArray ('c:\st-link\st-flash.exe');
+  Default_Avrdude_Path: TStringArray = ('c:\avrdude\avrdude.exe');
+  Default_Avrdude_Conf_Path: TStringArray = ('c:\avrdude\avrdude.conf');
+  Default_STFlash_Path: TStringArray = ('c:\st-link\st-flash.exe');
   UARTDefaultPort = 'COM8';
   {$ELSE}
-  Default_Avrdude_Path :TStringArray= ('/usr/bin/avrdude','avrdude');
-  Default_Avrdude_Conf_Path:TStringArray = ('/etc/avrdude.conf','');
-  Default_STFlash_Path:TStringArray = ('/usr/local/bin/st-flash','st-flash');
+  Default_Avrdude_Path: TStringArray = ('/usr/bin/avrdude', 'avrdude');
+  Default_Avrdude_Conf_Path: TStringArray = ('/etc/avrdude.conf', '');
+  Default_STFlash_Path: TStringArray = ('/usr/local/bin/st-flash', 'st-flash');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
 
@@ -60,7 +60,7 @@ const
 
 type
 
-   { TSerialMonitor_Options }
+  { TSerialMonitor_Options }
 
   TSerialMonitor_Options = class(TObject)
   public
@@ -71,7 +71,7 @@ type
     Output: record
       LineBreak: integer;
       AutoScroll, WordWarp: boolean;
-      maxRows: Integer;
+      maxRows: integer;
       Font: TFont;
       BKColor: TColor;
     end;
@@ -116,6 +116,9 @@ procedure SavePageControl_to_XML(pc: TPageControl);
 procedure LoadFont_from_XML(Key: string; f: TFont);
 procedure SaveFont_to_XML(Key: string; f: TFont);
 
+procedure Load_IDE_Color_from_XML(var col: TColor);
+procedure Save_IDE_Color_to_XML(var col: TColor);
+
 
 implementation
 
@@ -124,6 +127,7 @@ const
   FormPos = '/FormPos/';
 
   Key_IDE_Options = 'IDEOptions/';
+  Key_IDE_Color = Key_IDE_Options + 'Color';
   Key_AVRdude = Key_IDE_Options + 'avrdude/';
   Key_Avrdude_Path = Key_AVRdude + 'pfad/';
   Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/';
@@ -200,14 +204,16 @@ end;
 procedure LoadFormPos_from_XML(Form: TControl);
 var
   Cfg: TConfigStorage;
+  col: TColor;
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Form.Left := Cfg.GetValue(Form.Name + FormPos + 'Left', Form.Left);
   Form.Top := Cfg.GetValue(Form.Name + FormPos + 'Top', Form.Top);
   Form.Width := Cfg.GetValue(Form.Name + FormPos + 'Width', Form.Width);
   Form.Height := Cfg.GetValue(Form.Name + FormPos + 'Height', Form.Height);
-  Form.Color:=$E0F0E0;
   Cfg.Free;
+  Load_IDE_Color_from_XML(col);
+  Form.Color := col;
 end;
 
 procedure SaveFormPos_to_XML(Form: TControl);
@@ -313,11 +319,19 @@ begin
   f.Color := Cfg.GetValue(Key + '/Color', 0);
   f.Name := Cfg.GetValue(Key + '/Name', '');
   f.Size := Cfg.GetValue(Key + '/Size', 0);
-  f.Style:=[];
-  if Cfg.GetValue(Key + '/Style/Bold', True) then f.Style:=f.Style+[fsBold];
-  if Cfg.GetValue(Key + '/Style/Italic', False) then f.Style:=f.Style+[fsItalic];
-  if Cfg.GetValue(Key + '/Style/StrikeOut', False) then f.Style:=f.Style+[fsStrikeOut];
-  if Cfg.GetValue(Key + '/Style/UnderLine', False) then f.Style:=f.Style+[fsUnderline];
+  f.Style := [];
+  if Cfg.GetValue(Key + '/Style/Bold', True) then begin
+    f.Style := f.Style + [fsBold];
+  end;
+  if Cfg.GetValue(Key + '/Style/Italic', False) then begin
+    f.Style := f.Style + [fsItalic];
+  end;
+  if Cfg.GetValue(Key + '/Style/StrikeOut', False) then begin
+    f.Style := f.Style + [fsStrikeOut];
+  end;
+  if Cfg.GetValue(Key + '/Style/UnderLine', False) then begin
+    f.Style := f.Style + [fsUnderline];
+  end;
   Cfg.Free;
 end;
 
@@ -334,6 +348,26 @@ begin
   Cfg.SetValue(Key + '/Style/Italic', fsItalic in f.Style);
   Cfg.SetValue(Key + '/Style/StrikeOut', fsStrikeOut in f.Style);
   Cfg.SetValue(Key + '/Style/UnderLine', fsUnderline in f.Style);
+
+  Cfg.Free;
+end;
+
+procedure Load_IDE_Color_from_XML(var col: TColor);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  col := Cfg.GetValue(Key_IDE_Color, $E0F0E0);
+
+  Cfg.Free;
+end;
+
+procedure Save_IDE_Color_to_XML(var col: TColor);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.SetValue(Key_IDE_Color, col);
 
   Cfg.Free;
 end;
@@ -373,7 +407,7 @@ begin
     AutoScroll := Cfg.GetValue(Key_SerialMonitorAutoScroll, OutputDefaultAutoScroll);
     WordWarp := Cfg.GetValue(Key_SerialMonitorWordWarp, OutputDefaultWordWarp);
     maxRows := Cfg.GetValue(Key_SerialMonitorMaxRows, OutputDefaultmaxRow);
-    BKColor:=Cfg.GetValue(Key_SerialMonitorBKColor, clRed);
+    BKColor := Cfg.GetValue(Key_SerialMonitorBKColor, clRed);
   end;
   Cfg.Free;
   LoadFont_from_XML(Key_SerialMonitorFont, Output.Font);
@@ -413,14 +447,15 @@ begin
   inherited Create;
   SerialMonitor_Options := TSerialMonitor_Options.Create;
 
-  AVR.avrdudePath:=TStringList.Create;
-  AVR.avrdudeConfigPath:= TStringList.Create;
-  ARM.STFlashPath:= TStringList.Create;
+  AVR.avrdudePath := TStringList.Create;
+  AVR.avrdudeConfigPath := TStringList.Create;
+  ARM.STFlashPath := TStringList.Create;
 end;
 
 destructor TEmbedded_IDE_Options.Destroy;
 begin
-  AVR.avrdudePath.Free; AVR.avrdudeConfigPath.Free;
+  AVR.avrdudePath.Free;
+  AVR.avrdudeConfigPath.Free;
   ARM.STFlashPath.Free;
   SerialMonitor_Options.Free;
   inherited Destroy;

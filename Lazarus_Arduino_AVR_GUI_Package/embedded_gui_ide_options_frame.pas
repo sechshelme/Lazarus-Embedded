@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, ComCtrls, EditBtn,
-  Spin, ExtCtrls, IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf,
+  Spin, ExtCtrls, Graphics,
+  IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf,
   ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common,
@@ -24,21 +25,31 @@ type
   { TEmbedded_IDE_Options_Frame }
 
   TEmbedded_IDE_Options_Frame = class(TAbstractIDEOptionsEditor)
+    Button_Color_OS_Default: TButton;
+    Button_Color_GUI_Default: TButton;
+    Button_Color_Custom: TButton;
     Button_AVRDude_Path: TButton;
     Button_AVRDude_Config: TButton;
+    ColorDialog1: TColorDialog;
     ComboBox_STFlashPfad: TComboBox;
     Button_ST_Flash: TButton;
     ComboBox_AVRdudePath: TComboBox;
     ComboBox_AVRdudeConf: TComboBox;
+    GroupBox1: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     OpenDialog: TOpenDialog;
     PageControl_IDE_Options: TPageControl;
+    Panel_Preview: TPanel;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
+    procedure Button_Color_OS_DefaultClick(Sender: TObject);
+    procedure Button_Color_GUI_DefaultClick(Sender: TObject);
+    procedure Button_Color_CustomClick(Sender: TObject);
     procedure Button_AVRDude_ConfigClick(Sender: TObject);
     procedure Button_AVRDude_PathClick(Sender: TObject);
     procedure Button_ST_FlashClick(Sender: TObject);
@@ -77,6 +88,24 @@ begin
   end;
 end;
 
+procedure TEmbedded_IDE_Options_Frame.Button_Color_OS_DefaultClick(Sender: TObject);
+begin
+  Panel_Preview.Color := clDefault;
+end;
+
+procedure TEmbedded_IDE_Options_Frame.Button_Color_GUI_DefaultClick(Sender: TObject);
+begin
+  Panel_Preview.Color := $E0F0E0;
+end;
+
+procedure TEmbedded_IDE_Options_Frame.Button_Color_CustomClick(Sender: TObject);
+begin
+  ColorDialog1.Color := Panel_Preview.Color;
+  if ColorDialog1.Execute then begin
+    Panel_Preview.Color := ColorDialog1.Color;
+  end;
+end;
+
 procedure TEmbedded_IDE_Options_Frame.Button_ST_FlashClick(Sender: TObject);
 begin
   OpenDialog.FileName := ComboBox_STFlashPfad.Text;
@@ -104,6 +133,8 @@ begin
 end;
 
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
+var
+  col: TColor;
 begin
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
@@ -148,9 +179,13 @@ begin
       end;
     end;
   end;
+  Load_IDE_Color_from_XML(col);
+  Panel_Preview.Color := col;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
+var
+  col: TColor;
 begin
   SavePageControl_to_XML(PageControl_IDE_Options);
 
@@ -190,6 +225,9 @@ begin
 
     Embedded_IDE_Options.Save_to_XML;
   end;
+
+  col := Panel_Preview.Color;
+  Save_IDE_Color_to_XML(col);
 end;
 
 class function TEmbedded_IDE_Options_Frame.SupportedOptionsClass: TAbstractIDEOptionsClass;
@@ -198,6 +236,4 @@ begin
 end;
 
 end.
-
-
 

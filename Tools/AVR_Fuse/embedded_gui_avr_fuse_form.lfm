@@ -1,7 +1,7 @@
 object Form_AVR_Fuse: TForm_AVR_Fuse
-  Left = 2080
+  Left = 2046
   Height = 884
-  Top = 203
+  Top = 209
   Width = 734
   Caption = 'Form_AVR_Fuse'
   ClientHeight = 884
