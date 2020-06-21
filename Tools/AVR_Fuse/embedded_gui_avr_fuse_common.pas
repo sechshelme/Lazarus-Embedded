@@ -36,18 +36,29 @@ type
     procedure Add(const s: string; AMask: byte);
   end;
 
+  { TBitMaskCheckBox }
+
+  TBitMaskCheckBox = class(TGroupBox)
+  private
+    Field: array[0..7] of record StaticText:TStaticText; CheckBox:TCheckBox;end;
+
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+  end;
+
   { TFuseTabSheet }
 
   TFuseTabSheet = class(TTabSheet)
   private
     FuseByte: byte;
-    //    TabSheet: TTabSheet;
     ofs: integer;
-    CheckBox: array of TFuseCheckBox;
-    ComboBox: array of TFuseComboBox;
-    StaticText: array of TStaticText;
+    CheckBoxes: array of TFuseCheckBox;
+    ComboBoxes: array of TFuseComboBox;
+    StaticTexts: array of TStaticText;
     Panel: TPanel;
     FuseLabel: TLabel;
+    BitCheckBox:TBitMaskCheckBox;
     FuseEdit: TEdit;
     BurnButton: TButton;
     procedure BurnButtonClick(Sender: TObject);
@@ -64,18 +75,74 @@ type
 
 implementation
 
+{ TBitMaskCheckBox }
+
+constructor TBitMaskCheckBox.Create(AOwner: TComponent);
+var
+  i,l: Integer;
+begin
+  inherited Create(AOwner);
+  Caption:='Bitmask';    Height:=60;
+  l:=                 Length(Field);
+  for i := 0 to l - 1 do begin
+    Field[i].StaticText := TStaticText.Create(Self);
+    Field[i].CheckBox := TCheckBox.Create(Self);
+    Field[i].StaticText.Parent :=Self;
+    Field[i].CheckBox.Parent :=Self;
+    Field[i].StaticText.Top :=10;
+    Field[i].StaticText.Caption :=IntToStr(l-i);
+    Field[i].CheckBox.Top :=30;
+    Field[i].StaticText.Left :=Width div 9*i;
+    Field[i].CheckBox.Left :=Width div 9*i;
+  end;
+end;
+
+destructor TBitMaskCheckBox.Destroy;
+var
+  i: Integer;
+begin
+  for i := 0 to Length(Field) - 1 do begin
+    Field[i].CheckBox.Free;
+    Field[i].StaticText.Free;
+  end;
+  inherited Destroy;
+end;
+
+
 { TFuseTabSheet }
+
+constructor TFuseTabSheet.Create(TheOwner: TComponent);
+begin
+  inherited Create(TheOwner);
+  ofs := 5;
+  Panel := TPanel.Create(Self);
+  FuseLabel := TLabel.Create(Self);
+  FuseEdit := TEdit.Create(Self);
+  BurnButton := TButton.Create(Self);
+  BitCheckBox:=TBitMaskCheckBox.Create(Self);
+end;
+
+destructor TFuseTabSheet.Destroy;
+begin
+  Clear;
+  Panel.Free;
+  FuseEdit.Free;
+  FuseLabel.Free;
+  BurnButton.Free;
+  BitCheckBox.Free;
+  inherited Destroy;
+end;
 
 procedure TFuseTabSheet.SelfChange(Sender: TObject);
 var
   i: integer;
 begin
   FuseByte := 0;
-  for i := 0 to Length(CheckBox) - 1 do begin
-    FuseByte += CheckBox[i].Mask;
+  for i := 0 to Length(CheckBoxes) - 1 do begin
+    FuseByte += CheckBoxes[i].Mask;
   end;
-  for i := 0 to Length(ComboBox) - 1 do begin
-    FuseByte += ComboBox[i].Mask;
+  for i := 0 to Length(ComboBoxes) - 1 do begin
+    FuseByte += ComboBoxes[i].Mask;
   end;
   FuseEdit.Enabled := True;
 
@@ -92,26 +159,6 @@ begin
     f.ShowModal;
     f.Free;
   end;
-end;
-
-constructor TFuseTabSheet.Create(TheOwner: TComponent);
-begin
-  inherited Create(TheOwner);
-  ofs := 5;
-  Panel := TPanel.Create(Self);
-  FuseLabel := TLabel.Create(Self);
-  FuseEdit := TEdit.Create(Self);
-  BurnButton := TButton.Create(Self);
-end;
-
-destructor TFuseTabSheet.Destroy;
-begin
-  Clear;
-  Panel.Free;
-  FuseEdit.Free;
-  FuseLabel.Free;
-  BurnButton.Free;
-  inherited Destroy;
 end;
 
 procedure TFuseTabSheet.Resize;
@@ -146,7 +193,7 @@ begin
 
   with BurnButton do begin
     Parent := Self;
-    Left := 330;
+    Left := 530;
     Top := Self.Height - 80;
     Width := 50;
     Text := 'Burn';
@@ -154,8 +201,15 @@ begin
     OnClick := @BurnButtonClick;
   end;
 
-  for i := 0 to Length(ComboBox) - 1 do begin
-    ComboBox[i].Width := Width;
+  with BitCheckBox do begin
+  Parent:=Self;
+  Left:=330;
+  Top := Self.Height - 80;
+  Anchors := [akBottom, akLeft];
+  end;
+
+  for i := 0 to Length(ComboBoxes) - 1 do begin
+    ComboBoxes[i].Width := Width;
   end;
 end;
 
@@ -165,10 +219,10 @@ var
 begin
   Inc(ofs, 10);
 
-  l := Length(StaticText);
-  SetLength(StaticText, l + 1);
-  StaticText[l] := TStaticText.Create(Self);
-  with StaticText[l] do begin
+  l := Length(StaticTexts);
+  SetLength(StaticTexts, l + 1);
+  StaticTexts[l] := TStaticText.Create(Self);
+  with StaticTexts[l] do begin
     Parent := Self;
     Caption := Title;
     Top := ofs;
@@ -176,10 +230,10 @@ begin
     Inc(ofs, Height + 5);
   end;
 
-  l := Length(ComboBox);
-  SetLength(ComboBox, l + 1);
-  ComboBox[l] := TFuseComboBox.Create(Self);
-  with ComboBox[l] do begin
+  l := Length(ComboBoxes);
+  SetLength(ComboBoxes, l + 1);
+  ComboBoxes[l] := TFuseComboBox.Create(Self);
+  with ComboBoxes[l] do begin
     Parent := Self;
     Style := csOwnerDrawFixed;
     Mask := AMask;
@@ -191,8 +245,8 @@ end;
 
 procedure TFuseTabSheet.AddComboxItem(const s: string; AMask: byte);
 begin
-  if Length(ComboBox) > 0 then begin
-    ComboBox[Length(ComboBox) - 1].Add(s, AMask);
+  if Length(ComboBoxes) > 0 then begin
+    ComboBoxes[Length(ComboBoxes) - 1].Add(s, AMask);
   end;
 end;
 
@@ -200,10 +254,10 @@ procedure TFuseTabSheet.AddCheckBox(const s: string; AMask: byte);
 var
   l: integer;
 begin
-  l := Length(CheckBox);
-  SetLength(CheckBox, l + 1);
-  CheckBox[l] := TFuseCheckBox.Create(Self);
-  with CheckBox[l] do begin
+  l := Length(CheckBoxes);
+  SetLength(CheckBoxes, l + 1);
+  CheckBoxes[l] := TFuseCheckBox.Create(Self);
+  with CheckBoxes[l] do begin
     Parent := Self;
     Caption := s;
     Mask := AMask;
@@ -217,20 +271,20 @@ procedure TFuseTabSheet.Clear;
 var
   j: integer;
 begin
-  for j := 0 to Length(StaticText) - 1 do begin
-    StaticText[j].Free;
+  for j := 0 to Length(StaticTexts) - 1 do begin
+    StaticTexts[j].Free;
   end;
-  SetLength(StaticText, 0);
+  SetLength(StaticTexts, 0);
 
-  for j := 0 to Length(ComboBox) - 1 do begin
-    ComboBox[j].Free;
+  for j := 0 to Length(ComboBoxes) - 1 do begin
+    ComboBoxes[j].Free;
   end;
-  SetLength(ComboBox, 0);
+  SetLength(ComboBoxes, 0);
 
-  for j := 0 to Length(CheckBox) - 1 do begin
-    CheckBox[j].Free;
+  for j := 0 to Length(CheckBoxes) - 1 do begin
+    CheckBoxes[j].Free;
   end;
-  SetLength(CheckBox, 0);
+  SetLength(CheckBoxes, 0);
 end;
 
 { TFuseCheckBox }

@@ -181,6 +181,7 @@ begin
   end;
   Load_IDE_Color_from_XML(col);
   Panel_Preview.Color := col;
+  Color:=col;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);

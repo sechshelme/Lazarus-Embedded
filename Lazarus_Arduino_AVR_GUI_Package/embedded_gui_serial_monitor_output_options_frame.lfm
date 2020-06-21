@@ -63,7 +63,7 @@ object SM_Output_Frame: TSM_Output_Frame
     Top = 152
     Width = 792
     Anchors = [akTop, akLeft, akRight]
-    Caption = 'GroupBox1'
+    Caption = 'SynEdit Font'
     ClientHeight = 143
     ClientWidth = 790
     TabOrder = 4
