@@ -36,16 +36,30 @@ type
     procedure Add(const s: string; AMask: byte);
   end;
 
-  { TBitMaskCheckBox }
+  { TBitMaskGroupBox }
 
-  TBitMaskCheckBox = class(TGroupBox)
+  TBitMaskGroupBox = class(TGroupBox)
   private
-    Field: array[0..7] of record StaticText:TStaticText; CheckBox:TCheckBox;end;
+    Field: array[0..7] of record
+      StaticText: TStaticText;
+      CheckBox: TCheckBox;
+    end;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure Resize; override;
+  end;
 
+  { THexGroupBox }
+
+  THexGroupBox = class(TGroupBox)
+  private
+    Edit:TEdit;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   end;
+
 
   { TFuseTabSheet }
 
@@ -58,8 +72,9 @@ type
     StaticTexts: array of TStaticText;
     Panel: TPanel;
     FuseLabel: TLabel;
-    BitCheckBox:TBitMaskCheckBox;
-    FuseEdit: TEdit;
+    BitCheckBox: TBitMaskGroupBox;
+    HexEdit:THexGroupBox;
+//    FuseEdit: TEdit;
     BurnButton: TButton;
     procedure BurnButtonClick(Sender: TObject);
     procedure SelfChange(Sender: TObject);
@@ -75,31 +90,44 @@ type
 
 implementation
 
-{ TBitMaskCheckBox }
+{ THexGroupBox }
 
-constructor TBitMaskCheckBox.Create(AOwner: TComponent);
-var
-  i,l: Integer;
+constructor THexGroupBox.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Caption:='Bitmask';    Height:=60;
-  l:=                 Length(Field);
-  for i := 0 to l - 1 do begin
-    Field[i].StaticText := TStaticText.Create(Self);
-    Field[i].CheckBox := TCheckBox.Create(Self);
-    Field[i].StaticText.Parent :=Self;
-    Field[i].CheckBox.Parent :=Self;
-    Field[i].StaticText.Top :=10;
-    Field[i].StaticText.Caption :=IntToStr(l-i);
-    Field[i].CheckBox.Top :=30;
-    Field[i].StaticText.Left :=Width div 9*i;
-    Field[i].CheckBox.Left :=Width div 9*i;
+  Edit:=TEdit.Create(Self);
+  with Edit do begin
+    Parent:=Self;
   end;
 end;
 
-destructor TBitMaskCheckBox.Destroy;
+destructor THexGroupBox.Destroy;
+begin
+  Edit.Free;
+  inherited Destroy;
+end;
+
+{ TBitMaskGroupBox }
+
+constructor TBitMaskGroupBox.Create(AOwner: TComponent);
 var
-  i: Integer;
+  i, l: integer;
+begin
+  inherited Create(AOwner);
+  Caption := 'Bitmask';
+  Height := 60;
+  l := Length(Field);
+  for i := 0 to l - 1 do begin
+    with Field[i] do begin
+      StaticText := TStaticText.Create(Self);
+      CheckBox := TCheckBox.Create(Self);
+    end;
+  end;
+end;
+
+destructor TBitMaskGroupBox.Destroy;
+var
+  i: integer;
 begin
   for i := 0 to Length(Field) - 1 do begin
     Field[i].CheckBox.Free;
@@ -108,6 +136,28 @@ begin
   inherited Destroy;
 end;
 
+procedure TBitMaskGroupBox.Resize;
+var
+  i,l: integer;
+begin
+  inherited Resize;
+  l:=Length(Field);
+  for i := 0 to l - 1 do begin
+    with Field[i] do begin
+      if Assigned(StaticText) then begin
+        StaticText.Parent := Self;
+        StaticText.Top := 2;
+        StaticText.Caption := IntToStr(l - i - 1);
+        StaticText.Left := Width div l * i + 7;
+      end;
+      if Assigned(CheckBox) then begin
+        CheckBox.Parent := Self;
+        CheckBox.Top := 18;
+        CheckBox.Left := Width div l * i;
+      end;
+    end;
+  end;
+end;
 
 { TFuseTabSheet }
 
@@ -117,16 +167,16 @@ begin
   ofs := 5;
   Panel := TPanel.Create(Self);
   FuseLabel := TLabel.Create(Self);
-  FuseEdit := TEdit.Create(Self);
+  HexEdit := THexGroupBox.Create(Self);
   BurnButton := TButton.Create(Self);
-  BitCheckBox:=TBitMaskCheckBox.Create(Self);
+  BitCheckBox := TBitMaskGroupBox.Create(Self);
 end;
 
 destructor TFuseTabSheet.Destroy;
 begin
   Clear;
   Panel.Free;
-  FuseEdit.Free;
+  HexEdit.Free;
   FuseLabel.Free;
   BurnButton.Free;
   BitCheckBox.Free;
@@ -144,9 +194,9 @@ begin
   for i := 0 to Length(ComboBoxes) - 1 do begin
     FuseByte += ComboBoxes[i].Mask;
   end;
-  FuseEdit.Enabled := True;
+//  FuseEdit.Enabled := True;
 
-  FuseEdit.Text := '0x' + IntToHex(not FuseByte, 2);
+  HexEdit.Text := '0x' + IntToHex(not FuseByte, 2);
   FuseLabel.Caption := FuseByte.ToBinString;
 end;
 
@@ -182,9 +232,8 @@ begin
     Anchors := [akBottom, akLeft];
   end;
 
-  with FuseEdit do begin
+  with HexEdit do begin
     Parent := Self;
-    Enabled := False;
     Left := 230;
     Top := Self.Height - 80;
     Width := 50;
@@ -202,10 +251,11 @@ begin
   end;
 
   with BitCheckBox do begin
-  Parent:=Self;
-  Left:=330;
-  Top := Self.Height - 80;
-  Anchors := [akBottom, akLeft];
+    Parent := Self;
+    Left := 330;
+    Width:=150;
+    Top := Self.Height - 80;
+    Anchors := [akBottom, akLeft];
   end;
 
   for i := 0 to Length(ComboBoxes) - 1 do begin
