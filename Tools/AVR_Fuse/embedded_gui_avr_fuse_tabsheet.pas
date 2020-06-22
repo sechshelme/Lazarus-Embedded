@@ -22,13 +22,13 @@ type
     ComboBoxes: array of TFuseComboBox;
     StaticTexts: array of TStaticText;
     Panel: TPanel;
-//    FuseLabel: TLabel;
     BitCheckBox: TBitMaskGroup;
     HexEdit: THexGroup;
     BurnButton: TButton;
-    procedure BitCheckBoxBitMaskGroupChange(Sender: TObject);
+    procedure BitMaskChange(Sender: TObject);
     procedure BurnButtonClick(Sender: TObject);
     procedure FeatureChange(Sender: TObject);
+    procedure HexEditChange(Sender: TObject);
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -48,11 +48,14 @@ begin
   inherited Create(TheOwner);
   ofs := 5;
   Panel := TPanel.Create(Self);
-//  FuseLabel := TLabel.Create(Self);
   HexEdit := THexGroup.Create(Self);
+  HexEdit.OnChange:=@HexEditChange;
+
   BurnButton := TButton.Create(Self);
+  BurnButton.OnClick := @BurnButtonClick;
+
   BitCheckBox := TBitMaskGroup.Create(Self);
-  BitCheckBox.OnBitMaskGroupChange := @BitCheckBoxBitMaskGroupChange;
+  BitCheckBox.OnChange := @BitMaskChange;
 end;
 
 destructor TFuseTabSheet.Destroy;
@@ -60,7 +63,6 @@ begin
   Clear;
   Panel.Free;
   HexEdit.Free;
-//  FuseLabel.Free;
   BurnButton.Free;
   BitCheckBox.Free;
   inherited Destroy;
@@ -75,23 +77,44 @@ begin
     FuseByte += CheckBoxes[i].Value;
   end;
   for i := 0 to Length(ComboBoxes) - 1 do begin
-    FuseByte += ComboBoxes[i].Mask;
+    FuseByte += ComboBoxes[i].Value;
   end;
 
   HexEdit.Caption := IntToHex(FuseByte, 2);              // zum Test
   HexEdit.Value := FuseByte;
   BitCheckBox.Value := FuseByte;
-
-
-//  FuseLabel.Caption := FuseByte.ToBinString; // zum Test
 end;
 
-procedure TFuseTabSheet.BitCheckBoxBitMaskGroupChange(Sender: TObject);
+procedure TFuseTabSheet.BitMaskChange(Sender: TObject);
+var
+  i: Integer;
 begin
   FuseByte := BitCheckBox.Value;
+
+  for i := 0 to Length(CheckBoxes) - 1 do begin
+    CheckBoxes[i].Value:=FuseByte;
+  end;
+  for i := 0 to Length(ComboBoxes) - 1 do begin
+    ComboBoxes[i].Value:=FuseByte;
+  end;
   HexEdit.Caption := IntToHex(FuseByte, 2); // zum Test
   HexEdit.Value := FuseByte;
+end;
 
+procedure TFuseTabSheet.HexEditChange(Sender: TObject);
+var
+  i: Integer;
+begin
+  FuseByte:=HexEdit.Value;
+
+  for i := 0 to Length(CheckBoxes) - 1 do begin
+    CheckBoxes[i].Value:=FuseByte;
+  end;
+  for i := 0 to Length(ComboBoxes) - 1 do begin
+    ComboBoxes[i].Value:=FuseByte;
+  end;
+  HexEdit.Caption := IntToHex(FuseByte, 2); // zum Test
+  BitCheckBox.Value := FuseByte;
 end;
 
 procedure TFuseTabSheet.BurnButtonClick(Sender: TObject);
@@ -118,13 +141,6 @@ begin
     Width := Self.Width;
     Anchors := [akBottom, akLeft, akRight];
   end;
-
-//  with FuseLabel do begin
-//    Parent := Self;
-//    Left := 400;
-//    Top := Self.Height - 80;
-//    Anchors := [akBottom, akLeft];
-//  end;
 
   with HexEdit do begin
     Parent := Self;
@@ -211,20 +227,20 @@ end;
 
 procedure TFuseTabSheet.Clear;
 var
-  j: integer;
+  i: integer;
 begin
-  for j := 0 to Length(StaticTexts) - 1 do begin
-    StaticTexts[j].Free;
+  for i := 0 to Length(StaticTexts) - 1 do begin
+    StaticTexts[i].Free;
   end;
   SetLength(StaticTexts, 0);
 
-  for j := 0 to Length(ComboBoxes) - 1 do begin
-    ComboBoxes[j].Free;
+  for i := 0 to Length(ComboBoxes) - 1 do begin
+    ComboBoxes[i].Free;
   end;
   SetLength(ComboBoxes, 0);
 
-  for j := 0 to Length(CheckBoxes) - 1 do begin
-    CheckBoxes[j].Free;
+  for i := 0 to Length(CheckBoxes) - 1 do begin
+    CheckBoxes[i].Free;
   end;
   SetLength(CheckBoxes, 0);
 end;

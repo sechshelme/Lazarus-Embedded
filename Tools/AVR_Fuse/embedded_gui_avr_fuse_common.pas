@@ -10,7 +10,7 @@ uses
   Embedded_GUI_AVR_Fuse_Burn_Form;
 
 type
-  TSenderProc=    procedure(Sender: TObject) of object;
+  TSenderProc = procedure(Sender: TObject) of object;
 
   { TFuseCheckBox }
 
@@ -31,11 +31,13 @@ type
     FMask: byte;
     FMasks: array of byte;
     BitStart, BitSize: integer;
-    function GetMask: byte;
     procedure SetMask(AValue: byte);
+    function GetValue: byte;
+    procedure SetValue(AValue: byte);
   public
+    property Mask: byte write SetMask;
+    property Value: byte read GetValue write SetValue;
     constructor Create(TheOwner: TComponent); override;
-    property Mask: byte read GetMask write SetMask;
     procedure Add(const s: string; AMask: byte);
   end;
 
@@ -51,7 +53,7 @@ type
     function GetValue: byte;
     procedure SetValue(AValue: byte);
   public
-    OnBitMaskGroupChange:  TSenderProc;
+    OnChange: TSenderProc;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure Resize; override;
@@ -64,9 +66,11 @@ type
   private
     StaticText: TStaticText;
     Edit: TEdit;
+    procedure EditChange(Sender: TObject);
     function GetValue: byte;
     procedure SetValue(AValue: byte);
   public
+    OnChange: TSenderProc;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     property Value: byte read GetValue write SetValue;
@@ -77,13 +81,34 @@ implementation
 { THexGroup }
 
 function THexGroup.GetValue: byte;
+var
+  i: Longint;
 begin
-  Result := StrToInt(Edit.Text);
+  if (Edit.Caption <> '') and TryStrToInt(Edit.Caption, i) and (i in [0..255]) then begin
+    Result := not (StrToInt(Edit.Text));
+  end else begin
+    Result := 0;
+  end;
+end;
+
+procedure THexGroup.EditChange(Sender: TObject);
+var
+  i: integer;
+begin
+  if (Edit.Caption <> '') and TryStrToInt(Edit.Caption, i) and (i in [0..255]) then begin
+    Edit.Color := clYellow;
+    if Assigned(OnChange) then begin
+      OnChange(Sender);
+    end;
+  end else begin
+    Edit.Color := $D0D0FF;
+  end;
 end;
 
 procedure THexGroup.SetValue(AValue: byte);
 begin
   Edit.Text := '0x' + IntToHex(not AValue, 2);
+//  Edit.Text := IntToHex(not AValue, 2);
 end;
 
 constructor THexGroup.Create(AOwner: TComponent);
@@ -96,12 +121,12 @@ begin
   StaticText := TStaticText.Create(Self);
   with StaticText do begin
     Parent := Self;
-    //    Text := '0x';
   end;
   with Edit do begin
     Parent := Self;
     Left := 20;
     Width := 60;
+    OnChange := @EditChange;
   end;
 end;
 
@@ -128,8 +153,8 @@ end;
 
 procedure TBitMaskGroup.CheckBoxChange(Sender: TObject);
 begin
-  if Assigned(OnBitMaskGroupChange) then begin
-    OnBitMaskGroupChange(Sender);
+  if Assigned(OnChange) then begin
+    OnChange(Sender);
   end;
 end;
 
@@ -207,12 +232,12 @@ end;
 
 procedure TFuseCheckBox.SetValue(AValue: byte);
 begin
-  // ??????????????
+  Checked:=(AValue and FMask)>0;
 end;
 
 { TFuseComboBox }
 
-function TFuseComboBox.GetMask: byte;
+function TFuseComboBox.GetValue: byte;
 begin
   Result := (not (FMasks[ItemIndex] shl BitStart)) and FMask;
 end;
@@ -234,6 +259,11 @@ begin
   end;
   BitSize := BitStart - i;
   BitStart := 8 - BitStart;
+end;
+
+procedure TFuseComboBox.SetValue(AValue: byte);
+begin
+ // ????????????????????????????'
 end;
 
 constructor TFuseComboBox.Create(TheOwner: TComponent);
