@@ -236,7 +236,6 @@ begin
   for i := 0 to Length(ComboBoxes) - 1 do begin
     FuseByte += ComboBoxes[i].Mask;
   end;
-  //  FuseEdit.Enabled := True;
 
   HexEdit.Text := IntToHex(FuseByte, 2);
   HexEdit.Mask := FuseByte;
@@ -426,7 +425,7 @@ procedure TFuseComboBox.Add(const s: string; AMask: byte);
 var
   l: integer;
 begin
-  Items.Add(s + ' (' + (BinStr(AMask, BitSize)) + ')');
+  Items.Add(s + ' (' + (BinStr(not AMask, BitSize)) + ')');
   ItemIndex := 0;
   l := Length(fMasks);
   SetLength(fMasks, l + 1);
