@@ -7,7 +7,8 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   Interfaces, // this includes the LCL widgetset
   Forms,
   Embedded_GUI_AVR_Fuse_Form,
-  Embedded_GUI_AVR_Fuse_Common, Embedded_GUI_AVR_Fuse_Burn_Form;
+  Embedded_GUI_AVR_Fuse_Common, Embedded_GUI_AVR_Fuse_Burn_Form, 
+Embedded_GUI_AVR_Fuse_TabSheet;
 
 {$R *.res}
 

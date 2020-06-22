@@ -10,6 +10,7 @@ uses
   //  XMLConf, XMLRead, XMLWrite, DOM,
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Fuse_Common,
+  Embedded_GUI_AVR_Fuse_TabSheet,
   Embedded_GUI_AVR_Fuse_Burn_Form;
 
 type
