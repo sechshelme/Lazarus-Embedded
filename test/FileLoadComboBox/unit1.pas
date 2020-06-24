@@ -14,9 +14,12 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
+    OpenDialog1: TOpenDialog;
+    procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    fb: TFileNameComboBox;
+    LoadFile, SaveFile: TFileNameComboBox;
   public
 
   end;
@@ -34,13 +37,28 @@ implementation
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  fb := TFileNameComboBox.Create(Self);
-  fb.Parent := Self;
-  fb.Caption := 'Send File';
-  fb.Anchors := [akTop, akLeft, akRight];
-  fb.Left := 5;
-  fb.Width := Self.Width - 10;
-  fb.Top := 5;
+  LoadFile := TFileNameComboBox.Create(Self, 'Load');
+  LoadFile.Parent := Self;
+  LoadFile.Anchors := [akTop, akLeft, akRight];
+  LoadFile.Left := 5;
+  LoadFile.Width := Self.Width - 10;
+  LoadFile.Top := 5;
+
+  SaveFile := TFileNameComboBox.Create(Self, 'Save');
+  SaveFile.Parent := Self;
+  SaveFile.Anchors := [akTop, akLeft, akRight];
+  SaveFile.Left := 5;
+  SaveFile.Width := Self.Width - 10;
+  SaveFile.Top := 65;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Caption := LoadFile.ClassName + '    ' + LoadFile.Name;
+  LoadFile.Name:='test';
+  SaveFile.Name:='test';
 end;
 
 end.
+
+

@@ -17,6 +17,8 @@ type
     FmaxCount: integer;
     ComboBox: TComboBox;
     Button: TButton;
+    OpenDialog:TOpenDialog;
+    procedure ButtonClick(Sender: TObject);
     procedure ComboBox_Insert_Text(cb: TComboBox);
     procedure LoadStrings_from_XML(Key: string; sl: TStrings;
       Default_Text: TStringArray);
@@ -25,7 +27,7 @@ type
     procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
     procedure SaveComboBox_to_XML(cb: TComboBox);
   public
-    constructor Create(TheOwner: TComponent); override;
+    constructor Create(TheOwner: TComponent; AName: string);
     destructor Destroy;
     property ConfigFile: string read FConfigFile write FConfigFile;
     property maxCount: integer read FmaxCount write FmaxCount;
@@ -60,12 +62,17 @@ end;
 
 { TFileNameComboBox }
 
-constructor TFileNameComboBox.Create(TheOwner: TComponent);
+constructor TFileNameComboBox.Create(TheOwner: TComponent; AName: string);
 begin
   inherited Create(TheOwner);
+  if AName = '' then begin
+    ShowMessage('TFileNameComboBox.Name ist zwingend');
+  end;
+
+  Name := AName;
+  Caption := Name;
   FConfigFile := 'config.xml';
   ComboBox := TComboBox.Create(Self);
-  Caption := 'FileComboBox';
   Height := 55;
   with ComboBox do begin
     Parent := Self;
@@ -75,6 +82,7 @@ begin
     Width := Self.Width - 43;
     Anchors := [akBottom, akLeft, akRight];
   end;
+
   Button := TButton.Create(Self);
   with Button do begin
     Parent := Self;
@@ -84,11 +92,15 @@ begin
     Height := 28;
     Caption := '...';
     Anchors := [akBottom, akRight];
+    OnClick:=@ButtonClick;
   end;
+
+  OpenDialog:=TOpenDialog.Create(Self);
 end;
 
 destructor TFileNameComboBox.Destroy;
 begin
+  OpenDialog.Free;
   Button.Free;
   ComboBox.Free;
   inherited Destroy;
@@ -113,6 +125,15 @@ begin
 
   cb.Text := s;
 end;
+
+procedure TFileNameComboBox.ButtonClick(Sender: TObject);
+begin
+  OpenDialog.FileName := ComboBox.Text;
+  if OpenDialog.Execute then begin
+    ComboBox.Text := OpenDialog.FileName;
+    ComboBox_Insert_Text(ComboBox);
+    SaveComboBox_to_XML(ComboBox);
+  end;end;
 
 procedure TFileNameComboBox.LoadStrings_from_XML(Key: string; sl: TStrings;
   Default_Text: TStringArray);
@@ -146,6 +167,7 @@ var
   Cfg: TConfigStorage;
   i: integer;
 begin
+  ShowMessage(Key + 'Count');
   Cfg := GetIDEConfigStorage(FConfigFile, True);
   Cfg.DeletePath(Key);
   Cfg.SetValue(Key + 'Count', sl.Count);
