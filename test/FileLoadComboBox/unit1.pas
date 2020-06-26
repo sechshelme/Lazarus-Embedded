@@ -15,11 +15,13 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
+    Button2: TButton;
     OpenDialog1: TOpenDialog;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    LoadFile, SaveFile: TFileNameComboBox;
+    LoadFile, SaveFile, ModifFile: TFileNameComboBox;
   public
 
   end;
@@ -38,25 +40,40 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   LoadFile := TFileNameComboBox.Create(Self, 'Load',['a,','c,','d,']);
-  LoadFile.Parent := Self;
-  LoadFile.Anchors := [akTop, akLeft, akRight];
-  LoadFile.Left := 5;
-  LoadFile.Width := Self.Width - 10;
-  LoadFile.Top := 5;
+  with LoadFile do begin
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 10;
+    Top := 5;
+  end;
 
   SaveFile := TFileNameComboBox.Create(Self, 'Save');
-  SaveFile.Parent := Self;
-  SaveFile.Anchors := [akTop, akLeft, akRight];
-  SaveFile.Left := 5;
-  SaveFile.Width := Self.Width - 10;
-  SaveFile.Top := 65;
+  with SaveFile do begin
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 10;
+    Top := 65;
+  end;
+
+  ModifFile := TFileNameComboBox.Create(Self, 'Modif');
+  with ModifFile do begin
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 10;
+    Top := 126;
+  end;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   Caption := LoadFile.ClassName + '    ' + LoadFile.Name;
 //  LoadFile.Name:='test';
-  SaveFile.Name:='test';
+//  SaveFile.Name:='test';
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  Close;
 end;
 
 end.

@@ -4,7 +4,8 @@ unit Embedded_GUI_Common_FileComboBox;
 
 interface
 
-uses Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+uses
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   Laz2_XMLCfg;
 
 type
@@ -19,16 +20,14 @@ type
     Button: TButton;
     OpenDialog: TOpenDialog;
     procedure ButtonClick(Sender: TObject);
+    procedure ComboBoxEditingDone(Sender: TObject);
     procedure ComboBox_Insert_Text(cb: TComboBox);
-    procedure LoadStrings_from_XML(Key: string; sl: TStrings; Default_Text: TStringArray);
-    procedure SaveStrings_to_XML(Key: string; sl: TStrings);
-
     procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
     procedure SaveComboBox_to_XML(cb: TComboBox);
   public
-    constructor Create(TheOwner: TComponent; AName: string);
-    constructor Create(TheOwner: TComponent; AName: string; ADefaultText: TStringArray);
-    destructor Destroy;
+    constructor Create(AParent: TWinControl; AName: string);
+    constructor Create(AParent: TWinControl; AName: string; ADefaultText: TStringArray);
+    destructor Destroy; override;
     property ConfigFile: string read FConfigFile write FConfigFile;
     property maxCount: integer read FmaxCount write FmaxCount;
   end;
@@ -45,7 +44,6 @@ begin
   Result := TConfigStorage.Create(nil);
   Result.Filename := FileName;
 end;
-
 {$ENDIF}
 
 function getParents(c: TWinControl): string;
@@ -57,18 +55,18 @@ begin
   repeat
     Result := p.Name + '/' + Result;
     p := p.Parent;
-    //    ShowMessage(Result);
   until p = nil;
 end;
 
 { TFileNameComboBox }
 
-constructor TFileNameComboBox.Create(TheOwner: TComponent; AName: string; ADefaultText: TStringArray);
+constructor TFileNameComboBox.Create(AParent: TWinControl; AName: string; ADefaultText: TStringArray);
 begin
-  inherited Create(TheOwner);
+  inherited Create(AParent);
   if AName = '' then begin
     raise EComponentError.Create('TFileNameComboBox.Name ist zwingend');
   end;
+  Parent := AParent;
   Caption := AName;
   Name := AName;
   FConfigFile := 'config.xml';
@@ -83,6 +81,7 @@ begin
     Left := 5;
     Width := Self.Width - 43;
     Anchors := [akBottom, akLeft, akRight];
+    OnEditingDone := @ComboBoxEditingDone;
   end;
   LoadComboBox_from_XML(ComboBox, ADefaultText);
 
@@ -101,9 +100,9 @@ begin
   OpenDialog := TOpenDialog.Create(Self);
 end;
 
-constructor TFileNameComboBox.Create(TheOwner: TComponent; AName: string);
+constructor TFileNameComboBox.Create(AParent: TWinControl; AName: string);
 begin
-  Create(TheOwner, AName, []);
+  Create(AParent, AName, []);
 end;
 
 destructor TFileNameComboBox.Destroy;
@@ -144,52 +143,39 @@ begin
   end;
 end;
 
-procedure TFileNameComboBox.LoadStrings_from_XML(Key: string; sl: TStrings; Default_Text: TStringArray);
-var
-  Cfg: TConfigStorage;
-  ct, i: integer;
-  s: string;
+procedure TFileNameComboBox.ComboBoxEditingDone(Sender: TObject);
 begin
-  Cfg := GetIDEConfigStorage(FConfigFile, True);
-  ct := Cfg.GetValue(Key + 'Count', 0);
-  sl.Clear;
-
-  for i := 0 to ct - 1 do begin
-    s := Cfg.GetValue(Key + 'Item' + i.ToString + '/value', '');
-    sl.Add(s);
-  end;
-
-  for i := 0 to Length(Default_Text) - 1 do begin
-    if sl.Count < FmaxCount then begin
-      if sl.IndexOf(Default_Text[i]) < 0 then begin
-        sl.Add(Default_Text[i]);
-      end;
-    end;
-  end;
-
-  Cfg.Free;
-end;
-
-procedure TFileNameComboBox.SaveStrings_to_XML(Key: string; sl: TStrings);
-var
-  Cfg: TConfigStorage;
-  i: integer;
-begin
-  Cfg := GetIDEConfigStorage(FConfigFile, True);
-  Cfg.DeletePath(Key);
-  Cfg.SetValue(Key + 'Count', sl.Count);
-  for i := 0 to sl.Count - 1 do begin
-    Cfg.SetValue(Key + 'Item' + i.ToString + '/value', sl[i]);
-  end;
-  Cfg.Free;
+  ComboBox_Insert_Text(ComboBox);
+  SaveComboBox_to_XML(ComboBox);
 end;
 
 procedure TFileNameComboBox.LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
 var
   Key: string;
+  Cfg: TConfigStorage;
+  ct, i: integer;
+  s: string;
 begin
   Key := getParents(cb);
-  LoadStrings_from_XML(Key, cb.Items, Default_Text);
+
+  Cfg := GetIDEConfigStorage(FConfigFile, True);
+  ct := Cfg.GetValue(Key + 'Count', 0);
+  cb.Items.Clear;
+
+  for i := 0 to ct - 1 do begin
+    s := Cfg.GetValue(Key + 'Item' + i.ToString + '/value', '');
+    cb.Items.Add(s);
+  end;
+
+  for i := 0 to Length(Default_Text) - 1 do begin
+    if cb.Items.Count < FmaxCount then begin
+      if cb.Items.IndexOf(Default_Text[i]) < 0 then begin
+        cb.Items.Add(Default_Text[i]);
+      end;
+    end;
+  end;
+
+  Cfg.Free;
   if cb.Items.Count > 0 then begin
     cb.Text := cb.Items[0];
   end else begin
@@ -199,10 +185,18 @@ end;
 
 procedure TFileNameComboBox.SaveComboBox_to_XML(cb: TComboBox);
 var
+  Cfg: TConfigStorage;
+  i: integer;
   Key: string;
 begin
   Key := getParents(cb);
-  SaveStrings_to_XML(Key, cb.Items);
+  Cfg := GetIDEConfigStorage(FConfigFile, True);
+  Cfg.DeletePath(Key);
+  Cfg.SetValue(Key + 'Count', cb.Items.Count);
+  for i := 0 to cb.Items.Count - 1 do begin
+    Cfg.SetValue(Key + 'Item' + i.ToString + '/value', cb.Items[i]);
+  end;
+  Cfg.Free;
 end;
 
 end.
