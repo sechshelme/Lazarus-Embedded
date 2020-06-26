@@ -37,7 +37,7 @@ implementation
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  LoadFile := TFileNameComboBox.Create(Self, 'Load');
+  LoadFile := TFileNameComboBox.Create(Self, 'Load',['a,','c,','d,']);
   LoadFile.Parent := Self;
   LoadFile.Anchors := [akTop, akLeft, akRight];
   LoadFile.Left := 5;
@@ -55,7 +55,7 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   Caption := LoadFile.ClassName + '    ' + LoadFile.Name;
-  LoadFile.Name:='test';
+//  LoadFile.Name:='test';
   SaveFile.Name:='test';
 end;
 

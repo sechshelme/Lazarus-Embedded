@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG test="test/test">
+  <Form1>
+    <Save>
+      <ComboBox Count="2">
+        <Item0 value="/n4800/DATEN/Programmierung/Lazarus/Beispiele/Edit_und_Label_Dynamsch/project1.res"/>
+        <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Beispiele/Edit_und_Label_Dynamsch/unit1.pas"/>
+      </ComboBox>
+    </Save>
+    <Load>
+      <ComboBox Count="5">
+        <Item0 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/config.xml"/>
+        <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/project1.lpi"/>
+        <Item2 value="a,"/>
+        <Item3 value="c,"/>
+        <Item4 value="d,"/>
+      </ComboBox>
+    </Load>
+  </Form1>
+</CONFIG>

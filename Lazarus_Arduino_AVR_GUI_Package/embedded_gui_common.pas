@@ -166,7 +166,6 @@ begin
   Result := TConfigStorage.Create(nil);
   Result.Filename := FileName;
 end;
-
 {$ENDIF}
 
 function getParents(c: TWinControl): string;
