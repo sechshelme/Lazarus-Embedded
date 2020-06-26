@@ -5,8 +5,13 @@ unit Embedded_GUI_Common_FileComboBox;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Laz2_XMLCfg;
+  {$IFDEF Packages}
+  BaseIDEIntf, LazConfigStorage,  // Bei Packages
+  {$ELSE}
+  Laz2_XMLCfg,  // Bei normalen Anwendungen
+  //  XMLConf,  // Bei normalen Anwendungen
+  {$ENDIF}
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
 
 type
 
@@ -22,17 +27,22 @@ type
     procedure ButtonClick(Sender: TObject);
     procedure ComboBoxEditingDone(Sender: TObject);
     procedure ComboBox_Insert_Text(cb: TComboBox);
+    function GetText: string;
     procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
     procedure SaveComboBox_to_XML(cb: TComboBox);
   public
     constructor Create(AParent: TWinControl; AName: string);
     constructor Create(AParent: TWinControl; AName: string; ADefaultText: TStringArray);
     destructor Destroy; override;
+    property Text: string read GetText;
     property ConfigFile: string read FConfigFile write FConfigFile;
     property maxCount: integer read FmaxCount write FmaxCount;
   end;
 
 implementation
+
+uses
+  Embedded_GUI_Common;
 
 {$IFNDEF Packages}
 type
@@ -44,6 +54,7 @@ begin
   Result := TConfigStorage.Create(nil);
   Result.Filename := FileName;
 end;
+
 {$ENDIF}
 
 function getParents(c: TWinControl): string;
@@ -66,10 +77,17 @@ begin
   if AName = '' then begin
     raise EComponentError.Create('TFileNameComboBox.Name ist zwingend');
   end;
+  if not IsValidIdent(AName) then begin
+    raise EComponentError.Create('Ungültiger Name');
+  end;
   Parent := AParent;
   Caption := AName;
   Name := AName;
+  {$IFDEF Packages}
+  FConfigFile := Embedded_Options_File;
+  {$ELSE}
   FConfigFile := 'config.xml';
+  {$ENDIF}
   FmaxCount := 20;
   Height := 55;
   ComboBox := TComboBox.Create(Self);
@@ -131,6 +149,11 @@ begin
   end;
 
   cb.Text := s;
+end;
+
+function TFileNameComboBox.GetText: string;
+begin
+  Result := ComboBox.Text;
 end;
 
 procedure TFileNameComboBox.ButtonClick(Sender: TObject);

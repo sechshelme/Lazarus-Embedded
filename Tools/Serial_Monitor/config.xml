@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <SerialMonitor_SendFile_Form>
+    <FormPos Left="1791" Top="49" Width="833" Height="108"/>
+    <SendFile>
+      <ComboBox Count="4">
+        <Item0 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/freevision.sh"/>
+        <Item1 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/unit1.pas"/>
+        <Item2 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/config.xml "/>
+        <Item3 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/project1.lpi"/>
+      </ComboBox>
+    </SendFile>
+  </SerialMonitor_SendFile_Form>
+  <Serial_Monitor_Form>
+    <FormPos Left="1584" Top="316" Width="659" Height="793"/>
+  </Serial_Monitor_Form>
+  <Serial_Monitor_Config>
+    <COMPortPara Port="/dev/ttyUSB0" Baud="9600" Parity="none" Bits="8" StopBits="1" FlowControl="none" TimeOut="10" TimerInterval="200"/>
+    <OutputScreenPara LineBreak="0" AutoScroll="True" Wordwarp="False" maxRows="5000" BKColor="0">
+      <Font Color="12632256" Name="Monospace" Size="10">
+        <Style Bold="False" Italic="False" StrikeOut="False" UnderLine="False"/>
+      </Font>
+    </OutputScreenPara>
+  </Serial_Monitor_Config>
+  <SerialMonitor_Options_Form>
+    <FormPos Left="1957" Top="418" Width="687" Height="410"/>
+    <PageControl_SM_Options PageIndex="1"/>
+  </SerialMonitor_Options_Form>
+</CONFIG>

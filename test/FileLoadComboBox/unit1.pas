@@ -47,8 +47,9 @@ begin
     Top := 5;
   end;
 
-  SaveFile := TFileNameComboBox.Create(Self, 'Save');
+  SaveFile := TFileNameComboBox.Create(Self, 'SaveFile');
   with SaveFile do begin
+    Caption:='Hallo';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 10;
@@ -66,9 +67,7 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  Caption := LoadFile.ClassName + '    ' + LoadFile.Name;
-//  LoadFile.Name:='test';
-//  SaveFile.Name:='test';
+  Caption := LoadFile.Text;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);

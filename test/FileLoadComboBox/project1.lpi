@@ -45,7 +45,7 @@
         <UnitName Value="Unit1"/>
       </Unit1>
       <Unit2>
-        <Filename Value="embedded_gui_common_filecombobox.pas"/>
+        <Filename Value="../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_common_filecombobox.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Embedded_GUI_Common_FileComboBox"/>
       </Unit2>
@@ -58,6 +58,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../../Lazarus_Arduino_AVR_GUI_Package"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

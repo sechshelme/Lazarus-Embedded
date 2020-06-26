@@ -22,7 +22,11 @@ const
   Title = '[Embedded GUI] ';
 
   Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
+  {$IFDEF Packages}
   Embedded_Options_File = 'embedded_gui_options.xml';
+  {$ELSE}
+  Embedded_Options_File = 'config.xml';
+  {$ENDIF}
 
   {$IFDEF MSWINDOWS}
   Default_Avrdude_Path: TStringArray = ('c:\avrdude\avrdude.exe');

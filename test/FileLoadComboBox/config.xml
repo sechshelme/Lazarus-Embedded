@@ -9,25 +9,32 @@
         <Item3 value="/n4800/DATEN/Programmierung/Lazarus/Beispiele/Edit_und_Label_Dynamsch/unit1.pas"/>
       </ComboBox>
     </Save>
-    <Load>
-      <ComboBox Count="10">
-        <Item0 value="a,"/>
-        <Item1 value="c,"/>
-        <Item2 value="aaaaaaaaaaaaaaaaaaaaaaaaaa"/>
-        <Item3 value="kkkkkkkk"/>
-        <Item4 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/lib/ggggggggggggggggg64-linux/project1.o"/>
-        <Item5 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/lib/x86_64-linux/project1.o"/>
-        <Item6 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/lib/x86_64-linux/unit1.ppu"/>
-        <Item7 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/project1.ico"/>
-        <Item8 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/unit1.lfm"/>
-        <Item9 value="d,"/>
-      </ComboBox>
-    </Load>
     <Modif>
       <ComboBox Count="2">
         <Item0 value="test"/>
         <Item1 value="gh"/>
       </ComboBox>
     </Modif>
+    <SaveFile>
+      <ComboBox Count="2">
+        <Item0 value="ghgfhgfhgfhfg"/>
+        <Item1 value=""/>
+      </ComboBox>
+    </SaveFile>
+    <Load>
+      <ComboBox Count="11">
+        <Item0 value="gfdgfdgfdgfdgfdgfdgfdgffgggd"/>
+        <Item1 value="kkkkkkkk"/>
+        <Item2 value="a,"/>
+        <Item3 value="c,"/>
+        <Item4 value="aaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+        <Item5 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/lib/ggggggggggggggggg64-linux/project1.o"/>
+        <Item6 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/lib/x86_64-linux/project1.o"/>
+        <Item7 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/lib/x86_64-linux/unit1.ppu"/>
+        <Item8 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/project1.ico"/>
+        <Item9 value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/test/FileLoadComboBox/unit1.lfm"/>
+        <Item10 value="d,"/>
+      </ComboBox>
+    </Load>
   </Form1>
 </CONFIG>
