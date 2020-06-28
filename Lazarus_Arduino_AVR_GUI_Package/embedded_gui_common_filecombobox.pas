@@ -179,7 +179,7 @@ var
   ct, i: integer;
   s: string;
 begin
-  Key := getParents(cb);
+  Key := getParents(Self);
 
   Cfg := GetIDEConfigStorage(FConfigFile, True);
   ct := Cfg.GetValue(Key + 'Count', 0);
@@ -212,7 +212,7 @@ var
   i: integer;
   Key: string;
 begin
-  Key := getParents(cb);
+  Key := getParents(Self);
   Cfg := GetIDEConfigStorage(FConfigFile, True);
   Cfg.DeletePath(Key);
   Cfg.SetValue(Key + 'Count', cb.Items.Count);
