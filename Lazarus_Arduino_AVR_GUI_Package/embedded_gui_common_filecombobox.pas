@@ -30,11 +30,12 @@ type
     function GetText: string;
     procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
     procedure SaveComboBox_to_XML(cb: TComboBox);
+    procedure SetText(AValue: string);
   public
     constructor Create(AParent: TWinControl; AName: string);
     constructor Create(AParent: TWinControl; AName: string; ADefaultText: TStringArray);
     destructor Destroy; override;
-    property Text: string read GetText;
+    property Text: string read GetText write SetText;
     property ConfigFile: string read FConfigFile write FConfigFile;
     property maxCount: integer read FmaxCount write FmaxCount;
   end;
@@ -149,6 +150,28 @@ begin
   end;
 
   cb.Text := s;
+end;
+
+procedure TFileNameComboBox.SetText(AValue: string);
+var
+  i: integer;
+//  s: string;
+begin
+//  ComboBox.Text:=AValue;
+
+  //  s := cb.Text;
+    i := ComboBox.Items.IndexOf(AValue);
+    if i >= 0 then begin
+      ComboBox.Items.Delete(i);
+    end;
+
+    ComboBox.Items.Insert(0, AValue);
+
+    if ComboBox.Items.Count > FmaxCount then begin
+      ComboBox.Items.Delete(ComboBox.Items.Count - 1);
+    end;
+
+    ComboBox.Text := AValue;
 end;
 
 function TFileNameComboBox.GetText: string;

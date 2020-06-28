@@ -12,6 +12,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
   object Button_Ok: TButton
@@ -24,7 +25,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Default = True
     ModalResult = 1
     OnClick = Button_OkClick
-    TabOrder = 19
+    TabOrder = 15
   end
   object Button_Cancel: TButton
     Left = 394
@@ -34,24 +35,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
-    TabOrder = 18
-  end
-  object ComboBox_AvrdudePath: TComboBox
-    Left = 15
-    Height = 28
-    Top = 216
-    Width = 522
-    Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 0
-    TabOrder = 5
-  end
-  object Label4: TLabel
-    Left = 15
-    Height = 16
-    Top = 192
-    Width = 102
-    Caption = 'AVRdude Aufruf:'
-    ParentColor = False
+    TabOrder = 14
   end
   object Label5: TLabel
     Left = 144
@@ -91,7 +75,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 368
     Width = 112
     ItemHeight = 0
-    TabOrder = 9
+    TabOrder = 5
   end
   object ComboBox_COMPort: TComboBox
     Left = 143
@@ -99,7 +83,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 368
     Width = 128
     ItemHeight = 0
-    TabOrder = 10
+    TabOrder = 6
   end
   object Label7: TLabel
     Left = 143
@@ -109,30 +93,13 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Caption = 'Connection port (-P):'
     ParentColor = False
   end
-  object Label8: TLabel
-    Left = 15
-    Height = 16
-    Top = 256
-    Width = 280
-    Caption = 'AVRdude Config-Pfad ( Leer = default Konfig. )'
-    ParentColor = False
-  end
-  object ComboBox_AvrdudeConfigPath: TComboBox
-    Left = 15
-    Height = 28
-    Top = 279
-    Width = 522
-    Anchors = [akTop, akLeft, akRight]
-    ItemHeight = 0
-    TabOrder = 7
-  end
   object ComboBox_COMPortBaud: TComboBox
     Left = 287
     Height = 28
     Top = 368
     Width = 112
     ItemHeight = 0
-    TabOrder = 11
+    TabOrder = 7
   end
   object Label9: TLabel
     Left = 287
@@ -141,26 +108,6 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Width = 126
     Caption = 'RS232 baud rate (-b):'
     ParentColor = False
-  end
-  object Button_AVRDude_Path: TButton
-    Left = 546
-    Height = 28
-    Top = 216
-    Width = 35
-    Anchors = [akTop, akRight]
-    Caption = '...'
-    OnClick = Button_AVRDude_PathClick
-    TabOrder = 6
-  end
-  object Button_AVERDude_Config_Path: TButton
-    Left = 548
-    Height = 28
-    Top = 279
-    Width = 32
-    Anchors = [akTop, akRight]
-    Caption = '...'
-    OnClick = Button_AVERDude_Config_PathClick
-    TabOrder = 8
   end
   object Button_Templates: TButton
     Left = 494
@@ -177,7 +124,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Height = 28
     Top = 440
     Width = 122
-    TabOrder = 12
+    TabOrder = 8
   end
   object BitBtn1: TBitBtn
     Left = 152
@@ -262,7 +209,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     OnClick = Button_to_AVRDude_Typ_Click
-    TabOrder = 13
+    TabOrder = 9
   end
   object Label10: TLabel
     Left = 15
@@ -283,7 +230,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für AVR-Embedded erstellt wurde. Auch muss das AVR-SubArch stimmen.'
     )
     ReadOnly = True
-    TabOrder = 20
+    TabOrder = 16
     TabStop = False
   end
   object ComboBox_AVR_SubArch: TComboBox
@@ -309,7 +256,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 568
     Width = 268
     Caption = 'Disable auto erase for flash memory (-D)'
-    TabOrder = 16
+    TabOrder = 12
   end
   object Button_CPU_Info: TButton
     Left = 494
@@ -335,7 +282,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 512
     Width = 112
     ItemHeight = 0
-    TabOrder = 14
+    TabOrder = 10
   end
   object Label3: TLabel
     Left = 168
@@ -351,7 +298,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 512
     Width = 154
     ItemHeight = 0
-    TabOrder = 15
+    TabOrder = 11
   end
   object CheckBox_Chip_Erase: TCheckBox
     Left = 14
@@ -359,10 +306,6 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 600
     Width = 173
     Caption = 'Perform a chip erase. (-e)'
-    TabOrder = 17
-  end
-  object OpenDialog: TOpenDialog
-    Left = 344
-    Top = 40
+    TabOrder = 13
   end
 end

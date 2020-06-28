@@ -12,8 +12,11 @@ uses
   //  Laz2_XMLCfg, // Für direkte *.lpi Zugriff
 
   Embedded_GUI_Common,
-  Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options_Frame,
-  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Templates_Form,
+  Embedded_GUI_Find_Comports,
+  Embedded_GUI_IDE_Options_Frame,
+  Embedded_GUI_AVR_Common,
+  Embedded_GUI_Common_FileComboBox,
+  Embedded_GUI_AVR_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_SubArch_List;
 
@@ -24,12 +27,8 @@ type
   TAVR_Project_Options_Form = class(TForm)
     CheckBox_AsmFile: TCheckBox;
     CheckBox_Chip_Erase: TCheckBox;
-    ComboBox_AvrdudeConfigPath: TComboBox;
-    ComboBox_AvrdudePath: TComboBox;
     ComboBox_AVR_Typ_FPC: TComboBox;
     BitBtn1: TBitBtn;
-    Button_AVRDude_Path: TButton;
-    Button_AVERDude_Config_Path: TButton;
     ComboBox_BitClock: TComboBox;
     Edit_AVR_Typ_Avrdude: TEdit;
     ComboBox_AVR_SubArch: TComboBox;
@@ -43,28 +42,26 @@ type
     Button_Templates: TButton;
     ComboBox_COMPortBaud: TComboBox;
     ComboBox_COMPort: TComboBox;
-    Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
-    Label8: TLabel;
     Label9: TLabel;
     Button_Ok: TButton;
     Button_Cancel: TButton;
-    OpenDialog: TOpenDialog;
     ComboBox_Programmer: TComboBox;
     Button_CPU_Info: TButton;
     procedure ComboBox_AVR_SubArchChange(Sender: TObject);
     procedure Button_to_AVRDude_Typ_Click(Sender: TObject);
-    procedure Button_AVRDude_PathClick(Sender: TObject);
-    procedure Button_AVERDude_Config_PathClick(Sender: TObject);
     procedure Button_CPU_InfoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure Button_OkClick(Sender: TObject);
     procedure Button_TemplatesClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
+    ComboBox_AvrdudePath,
+    ComboBox_AvrdudeConfigPath: TFileNameComboBox;
     procedure ChangeAVR;
   public
     IsNewProject: boolean;
@@ -85,6 +82,25 @@ implementation
 procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'AVR Project Options';
+
+  ComboBox_AvrdudePath:=TFileNameComboBox.Create(Self, 'AVRDudePath');
+  with ComboBox_AvrdudePath do begin
+  Caption:='AVRdude Aufruf';
+  Anchors := [akTop, akLeft, akRight];
+  Left := 5;
+  Width := Self.Width - 10;
+  Top := 216-24;
+  end;
+
+  ComboBox_AvrdudeConfigPath:= TFileNameComboBox.Create(Self, 'AVRDudeConfig');
+  with ComboBox_AvrdudeConfigPath do begin
+    Caption:='AVRdude Config-Pfad ( Leer = default Konfig. )';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 10;
+    Top := 279-24;
+  end;
+
   LoadFormPos_from_XML(Self);
   IsNewProject := False;
 end;
@@ -142,8 +158,8 @@ begin
   CheckBox_Disable_Auto_Erase.Checked := False;
   CheckBox_Chip_Erase.Checked := False;
 
-  LoadComboBox_from_XML(ComboBox_AvrdudePath);
-  LoadComboBox_from_XML(ComboBox_AvrdudeConfigPath);
+//  LoadComboBox_from_XML(ComboBox_AvrdudePath);
+//  LoadComboBox_from_XML(ComboBox_AvrdudeConfigPath);
 
   if IsNewProject then begin
     if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
@@ -182,8 +198,8 @@ begin
     CheckBox_Chip_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Chip_Erase;
   end;
 
-  ComboBox_Insert_Text(ComboBox_AvrdudePath);
-  ComboBox_Insert_Text(ComboBox_AvrdudeConfigPath);
+//  ComboBox_Insert_Text(ComboBox_AvrdudePath);
+//  ComboBox_Insert_Text(ComboBox_AvrdudeConfigPath);
 
   ChangeAVR;
 end;
@@ -195,10 +211,10 @@ begin
   AVR_ProjectOptions.AVR_SubArch := ComboBox_AVR_SubArch.Text;
   AVR_ProjectOptions.AVR_FPC_Typ := ComboBox_AVR_Typ_FPC.Text;
 
-  ComboBox_Insert_Text(ComboBox_AvrdudePath);
-  SaveComboBox_to_XML(ComboBox_AvrdudePath);
-  ComboBox_Insert_Text(ComboBox_AvrdudeConfigPath);
-  SaveComboBox_to_XML(ComboBox_AvrdudeConfigPath);
+//  ComboBox_Insert_Text(ComboBox_AvrdudePath);
+//  SaveComboBox_to_XML(ComboBox_AvrdudePath);
+//  ComboBox_Insert_Text(ComboBox_AvrdudeConfigPath);
+//  SaveComboBox_to_XML(ComboBox_AvrdudeConfigPath);
 
   AVR_ProjectOptions.AvrdudeCommand.Path := ComboBox_AvrdudePath.Text;
   AVR_ProjectOptions.AvrdudeCommand.ConfigPath := ComboBox_AvrdudeConfigPath.Text;
@@ -213,24 +229,6 @@ begin
 
   AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := CheckBox_Disable_Auto_Erase.Checked;
   AVR_ProjectOptions.AvrdudeCommand.Chip_Erase := CheckBox_Chip_Erase.Checked;
-end;
-
-procedure TAVR_Project_Options_Form.Button_AVRDude_PathClick(Sender: TObject);
-begin
-  OpenDialog.FileName := ComboBox_AvrdudePath.Text;
-  if OpenDialog.Execute then begin
-    ComboBox_AvrdudePath.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(ComboBox_AvrdudePath);
-  end;
-end;
-
-procedure TAVR_Project_Options_Form.Button_AVERDude_Config_PathClick(Sender: TObject);
-begin
-  OpenDialog.FileName := ComboBox_AvrdudeConfigPath.Text;
-  if OpenDialog.Execute then begin
-    ComboBox_AvrdudeConfigPath.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(ComboBox_AvrdudeConfigPath);
-  end;
 end;
 
 procedure TAVR_Project_Options_Form.ComboBox_AVR_SubArchChange(Sender: TObject);
@@ -273,6 +271,12 @@ begin
   end;
 
   TemplatesForm.Free;
+end;
+
+procedure TAVR_Project_Options_Form.FormDestroy(Sender: TObject);
+begin
+  ComboBox_AvrdudePath.Free;
+  ComboBox_AvrdudeConfigPath.Free;
 end;
 
 procedure TAVR_Project_Options_Form.Button_CPU_InfoClick(Sender: TObject);
