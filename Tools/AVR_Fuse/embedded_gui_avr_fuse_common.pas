@@ -82,7 +82,7 @@ implementation
 
 function THexGroup.GetValue: byte;
 var
-  i: Longint;
+  i: longint;
 begin
   if (Edit.Caption <> '') and TryStrToInt(Edit.Caption, i) and (i in [0..255]) then begin
     Result := not (StrToInt(Edit.Text));
@@ -108,7 +108,7 @@ end;
 procedure THexGroup.SetValue(AValue: byte);
 begin
   Edit.Text := '0x' + IntToHex(not AValue, 2);
-//  Edit.Text := IntToHex(not AValue, 2);
+  //  Edit.Text := IntToHex(not AValue, 2);
 end;
 
 constructor THexGroup.Create(AOwner: TComponent);
@@ -232,7 +232,7 @@ end;
 
 procedure TFuseCheckBox.SetValue(AValue: byte);
 begin
-  Checked:=(AValue and FMask)>0;
+  Checked := (AValue and FMask) > 0;
 end;
 
 { TFuseComboBox }
@@ -262,8 +262,23 @@ begin
 end;
 
 procedure TFuseComboBox.SetValue(AValue: byte);
+var
+  b: byte;
+  i: integer;
 begin
- // ????????????????????????????'
+  //b := AValue and fMask;
+  //b := b shr BitStart;
+  //i := 0;
+  //while (i < Items.Count) and (fMasks[i] <> b) do begin
+  //  Inc(i);
+  //end;
+  //if i < Items.Count then begin
+  //  Text := Items[i];
+  //end else begin
+  //  Text := 'none';
+  //end;
+
+  // ????????????????????????????'
 end;
 
 constructor TFuseComboBox.Create(TheOwner: TComponent);
