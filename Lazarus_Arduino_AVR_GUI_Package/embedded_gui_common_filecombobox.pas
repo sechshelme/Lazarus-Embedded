@@ -19,6 +19,7 @@ type
 
   TFileNameComboBox = class(TGroupBox)
   private
+    IsXML: boolean;
     FConfigFile: string;
     FmaxCount: integer;
     ComboBox: TComboBox;
@@ -27,14 +28,17 @@ type
     procedure ButtonClick(Sender: TObject);
     procedure ComboBoxEditingDone(Sender: TObject);
     procedure ComboBox_Insert_Text(cb: TComboBox);
+    function GetItems: TStrings;
     function GetText: string;
-    procedure LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
+    procedure LoadComboBox_from_XML(cb: TComboBox);
     procedure SaveComboBox_to_XML(cb: TComboBox);
+    procedure SetItems(AValue: TStrings);
     procedure SetText(AValue: string);
   public
     constructor Create(AParent: TWinControl; AName: string);
-    constructor Create(AParent: TWinControl; AName: string; ADefaultText: TStringArray);
+    constructor Create(AParent: TWinControl; AName: string; AIsXML: boolean);
     destructor Destroy; override;
+    property Items: TStrings read GetItems write SetItems;
     property Text: string read GetText write SetText;
     property ConfigFile: string read FConfigFile write FConfigFile;
     property maxCount: integer read FmaxCount write FmaxCount;
@@ -72,7 +76,7 @@ end;
 
 { TFileNameComboBox }
 
-constructor TFileNameComboBox.Create(AParent: TWinControl; AName: string; ADefaultText: TStringArray);
+constructor TFileNameComboBox.Create(AParent: TWinControl; AName: string; AIsXML: boolean);
 begin
   inherited Create(AParent);
   if AName = '' then begin
@@ -102,7 +106,11 @@ begin
     Anchors := [akBottom, akLeft, akRight];
     OnEditingDone := @ComboBoxEditingDone;
   end;
-  LoadComboBox_from_XML(ComboBox, ADefaultText);
+
+  IsXML := AIsXML;
+  if IsXML then begin
+    LoadComboBox_from_XML(ComboBox);
+  end;
 
   Button := TButton.Create(Self);
   with Button do begin
@@ -121,7 +129,7 @@ end;
 
 constructor TFileNameComboBox.Create(AParent: TWinControl; AName: string);
 begin
-  Create(AParent, AName, []);
+  Create(AParent, AName, True);
 end;
 
 destructor TFileNameComboBox.Destroy;
@@ -152,26 +160,35 @@ begin
   cb.Text := s;
 end;
 
+procedure TFileNameComboBox.SetItems(AValue: TStrings);
+begin
+  ComboBox.Items.AddStrings(AValue, True);
+  if ComboBox.Items.Count > 0 then begin
+    ComboBox.Text := ComboBox.Items[0];
+  end;
+end;
+
+function TFileNameComboBox.GetItems: TStrings;
+begin
+  Result := ComboBox.Items;
+end;
+
 procedure TFileNameComboBox.SetText(AValue: string);
 var
   i: integer;
-//  s: string;
 begin
-//  ComboBox.Text:=AValue;
+  i := ComboBox.Items.IndexOf(AValue);
+  if i >= 0 then begin
+    ComboBox.Items.Delete(i);
+  end;
 
-  //  s := cb.Text;
-    i := ComboBox.Items.IndexOf(AValue);
-    if i >= 0 then begin
-      ComboBox.Items.Delete(i);
-    end;
+  ComboBox.Items.Insert(0, AValue);
 
-    ComboBox.Items.Insert(0, AValue);
+  if ComboBox.Items.Count > FmaxCount then begin
+    ComboBox.Items.Delete(ComboBox.Items.Count - 1);
+  end;
 
-    if ComboBox.Items.Count > FmaxCount then begin
-      ComboBox.Items.Delete(ComboBox.Items.Count - 1);
-    end;
-
-    ComboBox.Text := AValue;
+  ComboBox.Text := AValue;
 end;
 
 function TFileNameComboBox.GetText: string;
@@ -185,17 +202,21 @@ begin
   if OpenDialog.Execute then begin
     ComboBox.Text := OpenDialog.FileName;
     ComboBox_Insert_Text(ComboBox);
-    SaveComboBox_to_XML(ComboBox);
+    if IsXML then begin
+      SaveComboBox_to_XML(ComboBox);
+    end;
   end;
 end;
 
 procedure TFileNameComboBox.ComboBoxEditingDone(Sender: TObject);
 begin
   ComboBox_Insert_Text(ComboBox);
-  SaveComboBox_to_XML(ComboBox);
+  if IsXML then begin
+    SaveComboBox_to_XML(ComboBox);
+  end;
 end;
 
-procedure TFileNameComboBox.LoadComboBox_from_XML(cb: TComboBox; Default_Text: TStringArray);
+procedure TFileNameComboBox.LoadComboBox_from_XML(cb: TComboBox);
 var
   Key: string;
   Cfg: TConfigStorage;
@@ -213,13 +234,13 @@ begin
     cb.Items.Add(s);
   end;
 
-  for i := 0 to Length(Default_Text) - 1 do begin
-    if cb.Items.Count < FmaxCount then begin
-      if cb.Items.IndexOf(Default_Text[i]) < 0 then begin
-        cb.Items.Add(Default_Text[i]);
-      end;
-    end;
-  end;
+  //for i := 0 to Length(Default_Text) - 1 do begin
+  //  if cb.Items.Count < FmaxCount then begin
+  //    if cb.Items.IndexOf(Default_Text[i]) < 0 then begin
+  //      cb.Items.Add(Default_Text[i]);
+  //    end;
+  //  end;
+  //end;
 
   Cfg.Free;
   if cb.Items.Count > 0 then begin

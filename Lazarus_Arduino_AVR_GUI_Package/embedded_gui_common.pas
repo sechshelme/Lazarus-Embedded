@@ -87,7 +87,7 @@ type
 
   { TEmbedded_IDE_Options }
 
-  TEmbedded_IDE_Options = class
+  TEmbedded_IDE_Options = class(TObject)
   public
     AVR: record
       avrdudePath, avrdudeConfigPath: TStringList;

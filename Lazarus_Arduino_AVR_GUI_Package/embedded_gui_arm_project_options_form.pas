@@ -71,13 +71,13 @@ procedure TARM_Project_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'ARM Project Options';
 
-  ComboBox_STLinkPath:=TFileNameComboBox.Create(Self, 'STLinkPath');
+  ComboBox_STLinkPath := TFileNameComboBox.Create(Self, 'STLinkPath');
   with ComboBox_STLinkPath do begin
-  Caption:='ST-Link Aufruf:';
-  Anchors := [akTop, akLeft, akRight];
-  Left := 5;
-  Width := Self.Width - 10;
-  Top := 192;
+    Caption := 'ST-Link Aufruf:';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 10;
+    Top := 192;
   end;
 
   LoadFormPos_from_XML(Self);
@@ -96,13 +96,13 @@ end;
 
 procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
 begin
-//  LoadComboBox_from_XML(ComboBox_STLinkPath);
+  //  LoadComboBox_from_XML(ComboBox_STLinkPath);
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
     ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
   end else begin
     ComboBox_STLinkPath.Text := '';
   end;
-//  ComboBox_Insert_Text(ComboBox_STLinkPath);
+  //  ComboBox_Insert_Text(ComboBox_STLinkPath);
 
   with ComboBox_ARM_SubArch do begin
     Items.CommaText := ARM_SubArch_List;
@@ -123,7 +123,7 @@ begin
 
   CheckBox_ASMFile.Checked := False;
 
-//  LoadComboBox_from_XML(ComboBox_STLinkPath);
+  //  LoadComboBox_from_XML(ComboBox_STLinkPath);
 
   if IsNewProject then begin
     if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
@@ -141,15 +141,15 @@ begin
 
     CheckBox_ASMFile.Checked := ARM_ProjectOptions.AsmFile;
   end;
-//  ComboBox_Insert_Text(ComboBox_STLinkPath);
+  //  ComboBox_Insert_Text(ComboBox_STLinkPath);
 
   ChangeARM;
 end;
 
 procedure TARM_Project_Options_Form.OkButtonClick(Sender: TObject);
 begin
-//  ComboBox_Insert_Text(ComboBox_STLinkPath);
-//  SaveComboBox_to_XML(ComboBox_STLinkPath);
+  //  ComboBox_Insert_Text(ComboBox_STLinkPath);
+  //  SaveComboBox_to_XML(ComboBox_STLinkPath);
 
   ARM_ProjectOptions.ARM_SubArch := ComboBox_ARM_SubArch.Text;
   ARM_ProjectOptions.ARM_FPC_Typ := ComboBox_ARM_Typ_FPC.Text;

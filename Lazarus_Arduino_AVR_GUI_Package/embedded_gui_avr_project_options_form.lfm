@@ -1,8 +1,8 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
   Cursor = crDrag
-  Left = 1892
+  Left = 2154
   Height = 724
-  Top = 85
+  Top = 84
   Width = 593
   Caption = 'AVR Embedded Project Options'
   ClientHeight = 724
@@ -277,7 +277,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     ParentColor = False
   end
   object ComboBox_Verbose: TComboBox
-    Left = 18
+    Left = 14
     Height = 28
     Top = 512
     Width = 112

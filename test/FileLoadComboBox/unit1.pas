@@ -39,8 +39,10 @@ implementation
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  LoadFile := TFileNameComboBox.Create(Self, 'Load',['a,','c,','d,']);
+//  LoadFile := TFileNameComboBox.Create(Self, 'Load',['a,','c,','d,']);
+  LoadFile := TFileNameComboBox.Create(Self, 'Load');
   with LoadFile do begin
+    Items.AddStrings(['a,','c,','d,']);
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 10;

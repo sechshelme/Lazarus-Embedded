@@ -11,6 +11,7 @@ uses
   ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common,
+  Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_AVR_Common,
   Embedded_GUI_Serial_Monitor_Options_Form,
   Embedded_GUI_Serial_Monitor_Interface_Options_Frame,
@@ -28,32 +29,21 @@ type
     Button_Color_OS_Default: TButton;
     Button_Color_GUI_Default: TButton;
     Button_Color_Custom: TButton;
-    Button_AVRDude_Path: TButton;
-    Button_AVRDude_Config: TButton;
     ColorDialog1: TColorDialog;
-    ComboBox_STFlashPfad: TComboBox;
-    Button_ST_Flash: TButton;
-    ComboBox_AVRdudePath: TComboBox;
-    ComboBox_AVRdudeConf: TComboBox;
     GroupBox1: TGroupBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
     OpenDialog: TOpenDialog;
     PageControl_IDE_Options: TPageControl;
     Panel_Preview: TPanel;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
-    TabSheet4: TTabSheet;
-    TabSheet5: TTabSheet;
+    TabSheetAVR: TTabSheet;
+    TabSheetARM: TTabSheet;
+    TabSheet_SM_Interface: TTabSheet;
+    TabSheet_SM_Output: TTabSheet;
+    TabSheetEmbeddedGUI: TTabSheet;
     procedure Button_Color_OS_DefaultClick(Sender: TObject);
     procedure Button_Color_GUI_DefaultClick(Sender: TObject);
     procedure Button_Color_CustomClick(Sender: TObject);
-    procedure Button_AVRDude_ConfigClick(Sender: TObject);
-    procedure Button_AVRDude_PathClick(Sender: TObject);
-    procedure Button_ST_FlashClick(Sender: TObject);
   private
+    ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPfad: TFileNameComboBox;
     SM_Interface_Frame: TSM_Interface_Frame;
     SM_Output_Frame: TSM_Output_Frame;
   public
@@ -69,24 +59,6 @@ implementation
 {$R *.lfm}
 
 { TEmbedded_IDE_Options_Frame }
-
-procedure TEmbedded_IDE_Options_Frame.Button_AVRDude_PathClick(Sender: TObject);
-begin
-  OpenDialog.FileName := ComboBox_AVRdudePath.Text;
-  if OpenDialog.Execute then begin
-    ComboBox_AVRdudePath.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(ComboBox_AVRdudePath);
-  end;
-end;
-
-procedure TEmbedded_IDE_Options_Frame.Button_AVRDude_ConfigClick(Sender: TObject);
-begin
-  OpenDialog.FileName := ComboBox_AVRdudeConf.Text;
-  if OpenDialog.Execute then begin
-    ComboBox_AVRdudeConf.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(ComboBox_AVRdudeConf);
-  end;
-end;
 
 procedure TEmbedded_IDE_Options_Frame.Button_Color_OS_DefaultClick(Sender: TObject);
 begin
@@ -106,15 +78,6 @@ begin
   end;
 end;
 
-procedure TEmbedded_IDE_Options_Frame.Button_ST_FlashClick(Sender: TObject);
-begin
-  OpenDialog.FileName := ComboBox_STFlashPfad.Text;
-  if OpenDialog.Execute then begin
-    ComboBox_STFlashPfad.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(ComboBox_STFlashPfad);
-  end;
-end;
-
 function TEmbedded_IDE_Options_Frame.GetTitle: string;
 begin
   Result := Title + 'Optionen';
@@ -124,11 +87,11 @@ procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialo
 begin
   if not Assigned(SM_Interface_Frame) then begin
     SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
-    SM_Interface_Frame.Parent := Self.TabSheet3;
+    SM_Interface_Frame.Parent := Self.TabSheet_SM_Interface;
   end;
   if not Assigned(SM_Output_Frame) then begin
     SM_Output_Frame := TSM_Output_Frame.Create(Self);
-    SM_Output_Frame.Parent := Self.TabSheet4;
+    SM_Output_Frame.Parent := Self.TabSheet_SM_Output;
   end;
 end;
 
@@ -138,22 +101,38 @@ var
 begin
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
+  ComboBox_AvrdudePath := TFileNameComboBox.Create(TabSheetAVR, 'AVRDudePath', False);
+  with ComboBox_AvrdudePath do begin
+    Caption := 'AVRdude Pfad';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 24;
+  end;
+
+  ComboBox_AVRdudeConf := TFileNameComboBox.Create(TabSheetAVR, 'AVRDudeConfig', False);
+  with ComboBox_AVRdudeConf do begin
+    Caption := 'AVRdude Config-Pfad ( Leer = default Konfig. )';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 104;
+  end;
+
+  ComboBox_STFlashPfad := TFileNameComboBox.Create(TabSheetARM, 'STFlashPath', False);
+  with ComboBox_STFlashPfad do begin
+    Caption := 'ST Flash Pfad';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 24;
+  end;
+
   with Embedded_IDE_Options do begin
 
-    ComboBox_AVRdudePath.Items.AddStrings(AVR.avrdudePath, True);
-    if ComboBox_AVRdudePath.Items.Count > 0 then begin
-      ComboBox_AVRdudePath.Text := ComboBox_AVRdudePath.Items[0];
-    end;
-
-    ComboBox_AVRdudeConf.Items.AddStrings(AVR.avrdudeConfigPath, True);
-    if ComboBox_AVRdudeConf.Items.Count > 0 then begin
-      ComboBox_AVRdudeConf.Text := ComboBox_AVRdudeConf.Items[0];
-    end;
-
-    ComboBox_STFlashPfad.Items.AddStrings(ARM.STFlashPath, True);
-    if ComboBox_STFlashPfad.Items.Count > 0 then begin
-      ComboBox_STFlashPfad.Text := ComboBox_STFlashPfad.Items[0];
-    end;
+    ComboBox_AVRdudePath.Items := AVR.avrdudePath;
+    ComboBox_AVRdudeConf.Items := AVR.avrdudeConfigPath;
+    ComboBox_STFlashPfad.Items := ARM.STFlashPath;
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
@@ -181,7 +160,7 @@ begin
   end;
   Load_IDE_Color_from_XML(col);
   Panel_Preview.Color := col;
-  Color:=col;
+  Color := col;
 end;
 
 procedure TEmbedded_IDE_Options_Frame.WriteSettings(AOptions: TAbstractIDEOptions);
@@ -216,10 +195,6 @@ begin
       end;
     end;
 
-    ComboBox_Insert_Text(ComboBox_AVRdudePath);
-    ComboBox_Insert_Text(ComboBox_AVRdudeConf);
-    ComboBox_Insert_Text(ComboBox_STFlashPfad);
-
     AVR.avrdudePath.AddStrings(ComboBox_AVRdudePath.Items, True);
     AVR.avrdudeConfigPath.AddStrings(ComboBox_AVRdudeConf.Items, True);
     ARM.STFlashPath.AddStrings(ComboBox_STFlashPfad.Items, True);
@@ -237,4 +212,5 @@ begin
 end;
 
 end.
+
 
