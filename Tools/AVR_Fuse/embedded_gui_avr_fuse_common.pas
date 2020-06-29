@@ -266,17 +266,24 @@ var
   b: byte;
   i: integer;
 begin
-  //b := AValue and fMask;
-  //b := b shr BitStart;
-  //i := 0;
-  //while (i < Items.Count) and (fMasks[i] <> b) do begin
-  //  Inc(i);
-  //end;
-  //if i < Items.Count then begin
-  //  Text := Items[i];
-  //end else begin
-  //  Text := 'none';
-  //end;
+  b:= AValue;
+  b:=not b;
+  b := b and fMask;
+  b := b shr BitStart;
+  i := 0;
+  while (i < Items.Count) and (fMasks[i] <> b) do begin
+    Inc(i);
+  end;
+  if i < Items.Count then begin
+    Text := Items[i];
+    WriteLn(Items[i]);
+  end else begin
+    Text := 'none';
+    WriteLn('none');
+  end;
+
+  Text := 'none';
+  WriteLn(BinStr(b, 8));
 
   // ????????????????????????????'
 end;
