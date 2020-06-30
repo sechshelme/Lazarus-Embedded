@@ -275,14 +275,15 @@ begin
     Inc(i);
   end;
   if i < Items.Count then begin
-    Text := Items[i];
-    WriteLn(Items[i]);
+    ItemIndex:=i;
+//    Text := Items[i];
+//    WriteLn(Items[i]);
   end else begin
     Text := 'none';
-    WriteLn('none');
+//    WriteLn('none');
   end;
 
-  Text := 'none';
+//  Text := 'none';
   WriteLn(BinStr(b, 8));
 
   // ????????????????????????????'
