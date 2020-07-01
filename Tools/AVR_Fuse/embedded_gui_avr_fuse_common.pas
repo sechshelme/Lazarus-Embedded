@@ -266,8 +266,8 @@ var
   b: byte;
   i: integer;
 begin
-  b:= AValue;
-  b:=not b;
+  b := AValue;
+  b := not b;
   b := b and fMask;
   b := b shr BitStart;
   i := 0;
@@ -275,18 +275,10 @@ begin
     Inc(i);
   end;
   if i < Items.Count then begin
-    ItemIndex:=i;
-//    Text := Items[i];
-//    WriteLn(Items[i]);
+    ItemIndex := i;
   end else begin
     Text := 'none';
-//    WriteLn('none');
   end;
-
-//  Text := 'none';
-  WriteLn(BinStr(b, 8));
-
-  // ????????????????????????????'
 end;
 
 constructor TFuseComboBox.Create(TheOwner: TComponent);
