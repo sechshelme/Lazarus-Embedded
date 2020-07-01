@@ -17,11 +17,11 @@ type
     Button_AVR_Project: TButton;
     Button_ARM_Project1: TButton;
     Button_AVR_Project1: TButton;
-    Button_Save: TButton;
+    Button_Create: TButton;
     SynEdit1: TSynEdit;
     procedure Button_ARM_Project1Click(Sender: TObject);
     procedure Button_AVR_ProjectClick(Sender: TObject);
-    procedure Button_SaveClick(Sender: TObject);
+    procedure Button_CreateClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
@@ -43,7 +43,7 @@ implementation
 const
   path = '/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_Arduino_AVR_GUI_Package/embedded_gui_help_const.pas';
 
-procedure TForm1.Button_SaveClick(Sender: TObject);
+procedure TForm1.Button_CreateClick(Sender: TObject);
 var
   sl: TStringList;
   s: string;
@@ -71,7 +71,7 @@ begin
 
   SynEdit1.Lines.SaveToFile('help.hlp');
   sl.Free;
-  HelpForm.Show;
+//  HelpForm.Show;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);

@@ -15,7 +15,7 @@ type
 
   THelpForm = class(TForm)
     Button_Close: TButton;
-    SynEdit1: TSynEdit;
+    Memo1: TMemo;
     procedure Button_CloseClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -52,8 +52,8 @@ end;
 
 procedure THelpForm.ShowText(s: string);
 begin
-  SynEdit1.Text := HelpText;
-
+  Memo1.Text := HelpText;
+  Memo1.SelStart:=2;
 end;
 
 end.

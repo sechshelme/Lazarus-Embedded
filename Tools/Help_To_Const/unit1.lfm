@@ -1,30 +1,30 @@
 object Form1: TForm1
-  Left = 533
+  Left = 489
   Height = 356
-  Top = 379
-  Width = 424
+  Top = 639
+  Width = 677
   Caption = 'Form1'
   ClientHeight = 356
-  ClientWidth = 424
+  ClientWidth = 677
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
-  object Button_Save: TButton
+  object Button_Create: TButton
     Left = 590
     Height = 25
     Top = 316
     Width = 75
-    Anchors = [akLeft, akBottom]
-    Caption = 'Save'
-    OnClick = Button_SaveClick
+    Anchors = [akRight, akBottom]
+    Caption = 'Create'
+    OnClick = Button_CreateClick
     TabOrder = 0
   end
   inline SynEdit1: TSynEdit
     Left = 0
     Height = 312
     Top = 0
-    Width = 424
+    Width = 677
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
