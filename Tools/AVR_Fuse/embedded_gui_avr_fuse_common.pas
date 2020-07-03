@@ -29,15 +29,15 @@ type
   TFuseComboBox = class(TComboBox)
   private
     FMask: byte;
-    FMasks: array of byte;
+    //    FMasks: array of byte;
     BitStart, BitSize: integer;
-    procedure SetMask(AValue: byte);
+    //    procedure SetMask(AValue: byte);
     function GetValue: byte;
     procedure SetValue(AValue: byte);
   public
-    property Mask: byte write SetMask;
+    //    property Mask: byte write SetMask;
     property Value: byte read GetValue write SetValue;
-    constructor Create(TheOwner: TComponent); override;
+    constructor Create(TheOwner: TComponent; AMask: byte);// override;
     procedure Add(const s: string; AMask: byte);
   end;
 
@@ -239,16 +239,23 @@ end;
 
 function TFuseComboBox.GetValue: byte;
 begin
-  Result := (not (FMasks[ItemIndex] shl BitStart)) and FMask;
+  Result := (not ((Items.Count - 1 - ItemIndex) shl BitStart)) and FMask;
 end;
 
-procedure TFuseComboBox.SetMask(AValue: byte);
+procedure TFuseComboBox.SetValue(AValue: byte);
+begin
+  ItemIndex := (Items.Count - 1 - ((not AValue) and FMask) shr BitStart);
+  Text := Items[ItemIndex];
+end;
+
+constructor TFuseComboBox.Create(TheOwner: TComponent; AMask: byte);
 var
   s: string;
   i: integer;
 begin
-  FMask := AValue;
-  s := BinStr(AValue, 8);
+  inherited Create(TheOwner);
+  FMask := AMask;
+  s := BinStr(AMask, 8);
   i := 8;
   while (s[i] = '0') and (i >= 1) do begin
     Dec(i);
@@ -259,43 +266,22 @@ begin
   end;
   BitSize := BitStart - i;
   BitStart := 8 - BitStart;
-end;
 
-procedure TFuseComboBox.SetValue(AValue: byte);
-var
-  b: byte;
-  i: integer;
-begin
-  b := AValue;
-  b := not b;
-  b := b and fMask;
-  b := b shr BitStart;
-  i := 0;
-  while (i < Items.Count) and (fMasks[i] <> b) do begin
-    Inc(i);
+  for i := 0 to 1 shl BitSize - 1 do begin
+    Items.Add('-- unknow -- (' + (BinStr(i, BitSize)) + ')');
   end;
-  if i < Items.Count then begin
-    ItemIndex := i;
-  end else begin
-    Text := 'none';
+  if Items.Count > 0 then begin
+    ItemIndex := 0;
   end;
-end;
-
-constructor TFuseComboBox.Create(TheOwner: TComponent);
-begin
-  inherited Create(TheOwner);
-  SetLength(FMasks, 0);
 end;
 
 procedure TFuseComboBox.Add(const s: string; AMask: byte);
 var
   l: integer;
 begin
-  Items.Add(s + ' (' + (BinStr(not AMask, BitSize)) + ')');
-  ItemIndex := 0;
-  l := Length(FMasks);
-  SetLength(FMasks, l + 1);
-  FMasks[l] := AMask;
+  if AMask < Items.Count then begin
+    Items[Items.Count - 1 - AMask] := s + ' (' + (BinStr(not AMask, BitSize)) + ')';
+  end;
 end;
 
 end.

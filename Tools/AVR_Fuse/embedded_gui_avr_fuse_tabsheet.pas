@@ -190,11 +190,10 @@ begin
 
   l := Length(ComboBoxes);
   SetLength(ComboBoxes, l + 1);
-  ComboBoxes[l] := TFuseComboBox.Create(Self);
+  ComboBoxes[l] := TFuseComboBox.Create(Self, AMask);
   with ComboBoxes[l] do begin
     Parent := Self;
     Style := csOwnerDrawFixed;
-    Mask := AMask;
     Top := ofs;
     OnChange := @FeatureChange;
     Inc(ofs, Height + 10);
