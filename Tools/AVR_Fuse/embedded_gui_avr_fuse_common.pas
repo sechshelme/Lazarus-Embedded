@@ -64,10 +64,7 @@ type
 
   THexGroup = class(TGroupBox)
   private
-    Field: array[0..1] of record
-      StaticText: TStaticText;
-      ComboBox: TComboBox;
-    end;
+    ComboBox: TComboBox;
     procedure CheckBoxChange(Sender: TObject);
     function GetValue: byte;
     procedure SetValue(AValue: byte);
@@ -85,16 +82,15 @@ implementation
 
 function THexGroup.GetValue: byte;
 begin
-  Result := not (Field[0].ComboBox.ItemIndex + Field[1].ComboBox.ItemIndex shl 4);
+  Result := not ComboBox.ItemIndex;
 end;
 
 procedure THexGroup.SetValue(AValue: byte);
 var
   i: integer;
 begin
-  AValue:=not AValue;
-  Field[0].ComboBox.ItemIndex := AValue mod 16;
-  Field[1].ComboBox.ItemIndex := AValue div 16;
+  AValue := not AValue;
+  ComboBox.ItemIndex := AValue;
 end;
 
 procedure THexGroup.CheckBoxChange(Sender: TObject);
@@ -106,52 +102,32 @@ end;
 
 constructor THexGroup.Create(AOwner: TComponent);
 var
-  i, j: integer;
+  j: integer;
 begin
   inherited Create(AOwner);
-  Caption := 'Hex';
-  Height := 75;
-  Width := 150;
-  for i := 0 to 1 do begin
-    with Field[i] do begin
-      StaticText := TStaticText.Create(Self);
-      with StaticText do begin
-        Parent := Self;
-        Top := 2;
-        Width:=30;
-      end;
-
-      ComboBox := TComboBox.Create(Self);
-      with ComboBox do begin
-        Width := 45;
-        Parent := Self;
-        Top := 18;
-        Style := csOwnerDrawFixed;
-        for j := 0 to 15 do begin
-          Items.Add('$'+IntToHex(j, 1));
-        end;
-        Text := '$F';
-      end;
-      ComboBox.OnChange := @CheckBoxChange;
+  Caption := 'Fuse';
+  Height := 60;
+  Width := 100;
+  ComboBox := TComboBox.Create(Self);
+  with ComboBox do begin
+    Left := 5;
+    Width := 60;
+    Parent := Self;
+    Top := 5;
+    Style := csOwnerDrawFixed;
+    for j := 0 to $FF do begin
+      Items.Add('$' + IntToHex(j, 2));
     end;
+    Text := '$FF';
   end;
-  Field[0].StaticText.Caption := 'L';
-  Field[0].StaticText.Left := 60;
-  Field[0].ComboBox.Left := 50;
-
-  Field[1].StaticText.Caption := 'H';
-  Field[1].StaticText.Left := 10;
-  Field[1].ComboBox.Left := 0;
+  ComboBox.OnChange := @CheckBoxChange;
 end;
 
 destructor THexGroup.Destroy;
 var
   i: integer;
 begin
-  for i := 0 to 1 do begin
-    Field[i].ComboBox.Free;
-    Field[i].StaticText.Free;
-  end;
+  ComboBox.Free;
   inherited Destroy;
 end;
 
@@ -191,7 +167,7 @@ var
 begin
   inherited Create(AOwner);
   Caption := 'Bitmask';
-  Height := 75;
+  Height := 60;
   Width := 150;
   l := Length(Field);
   for i := 0 to l - 1 do begin

@@ -9,11 +9,6 @@ uses
   ProjectIntf,
   Embedded_GUI_SubArch_List; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
-//const
-//  AVR_Programmer:TStringArray = ('arduino','usbasp','stk500v1','wiring','avr109');
-//  AVR_Verboses: TStringArray = ('0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau');
-//  AVR_BitClocks: TStringArray = ('1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024');
-
 type
 
   { TAVR_ProjectOptions }
