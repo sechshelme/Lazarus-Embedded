@@ -64,9 +64,11 @@ type
 
   THexGroup = class(TGroupBox)
   private
-    StaticText: TStaticText;
-    Edit: TEdit;
-    procedure EditChange(Sender: TObject);
+    Field: array[0..1] of record
+      StaticText: TStaticText;
+      ComboBox: TComboBox;
+    end;
+    procedure CheckBoxChange(Sender: TObject);
     function GetValue: byte;
     procedure SetValue(AValue: byte);
   public
@@ -76,64 +78,80 @@ type
     property Value: byte read GetValue write SetValue;
   end;
 
+
 implementation
 
 { THexGroup }
 
 function THexGroup.GetValue: byte;
-var
-  i: longint;
 begin
-  if (Edit.Caption <> '') and TryStrToInt(Edit.Caption, i) and (i in [0..255]) then begin
-    Result := not (StrToInt(Edit.Text));
-  end else begin
-    Result := 0;
-  end;
-end;
-
-procedure THexGroup.EditChange(Sender: TObject);
-var
-  i: integer;
-begin
-  if (Edit.Caption <> '') and TryStrToInt(Edit.Caption, i) and (i in [0..255]) then begin
-    Edit.Color := clYellow;
-    if Assigned(OnChange) then begin
-      OnChange(Sender);
-    end;
-  end else begin
-    Edit.Color := $D0D0FF;
-  end;
+  Result := not (Field[0].ComboBox.ItemIndex + Field[1].ComboBox.ItemIndex shl 4);
 end;
 
 procedure THexGroup.SetValue(AValue: byte);
+var
+  i: integer;
 begin
-  Edit.Text := '0x' + IntToHex(not AValue, 2);
-  //  Edit.Text := IntToHex(not AValue, 2);
+  AValue:=not AValue;
+  Field[0].ComboBox.ItemIndex := AValue mod 16;
+  Field[1].ComboBox.ItemIndex := AValue div 16;
+end;
+
+procedure THexGroup.CheckBoxChange(Sender: TObject);
+begin
+  if Assigned(OnChange) then begin
+    OnChange(Sender);
+  end;
 end;
 
 constructor THexGroup.Create(AOwner: TComponent);
+var
+  i, j: integer;
 begin
   inherited Create(AOwner);
-  Caption := 'Fuse';
-  Height := 60;
-  Width := 100;
-  Edit := TEdit.Create(Self);
-  StaticText := TStaticText.Create(Self);
-  with StaticText do begin
-    Parent := Self;
+  Caption := 'Hex';
+  Height := 75;
+  Width := 150;
+  for i := 0 to 1 do begin
+    with Field[i] do begin
+      StaticText := TStaticText.Create(Self);
+      with StaticText do begin
+        Parent := Self;
+        Top := 2;
+        Width:=30;
+      end;
+
+      ComboBox := TComboBox.Create(Self);
+      with ComboBox do begin
+        Width := 45;
+        Parent := Self;
+        Top := 18;
+        Style := csOwnerDrawFixed;
+        for j := 0 to 15 do begin
+          Items.Add('$'+IntToHex(j, 1));
+        end;
+        Text := '$F';
+      end;
+      ComboBox.OnChange := @CheckBoxChange;
+    end;
   end;
-  with Edit do begin
-    Parent := Self;
-    Left := 20;
-    Width := 60;
-    OnChange := @EditChange;
-  end;
+  Field[0].StaticText.Caption := 'L';
+  Field[0].StaticText.Left := 60;
+  Field[0].ComboBox.Left := 50;
+
+  Field[1].StaticText.Caption := 'H';
+  Field[1].StaticText.Left := 10;
+  Field[1].ComboBox.Left := 0;
 end;
 
 destructor THexGroup.Destroy;
+var
+  i: integer;
 begin
-  Edit.Free;
-  StaticText.Free;
+  for i := 0 to 1 do begin
+    Field[i].ComboBox.Free;
+    Field[i].StaticText.Free;
+  end;
   inherited Destroy;
 end;
 
@@ -151,13 +169,6 @@ begin
   end;
 end;
 
-procedure TBitMaskGroup.CheckBoxChange(Sender: TObject);
-begin
-  if Assigned(OnChange) then begin
-    OnChange(Sender);
-  end;
-end;
-
 procedure TBitMaskGroup.SetValue(AValue: byte);
 var
   i: integer;
@@ -167,13 +178,20 @@ begin
   end;
 end;
 
+procedure TBitMaskGroup.CheckBoxChange(Sender: TObject);
+begin
+  if Assigned(OnChange) then begin
+    OnChange(Sender);
+  end;
+end;
+
 constructor TBitMaskGroup.Create(AOwner: TComponent);
 var
   i, l: integer;
 begin
   inherited Create(AOwner);
   Caption := 'Bitmask';
-  Height := 60;
+  Height := 75;
   Width := 150;
   l := Length(Field);
   for i := 0 to l - 1 do begin
