@@ -17,7 +17,6 @@ begin
   Application.Scaled := True;
   Application.Initialize;
   Application.CreateForm(TForm_AVR_Fuse, Form_AVR_Fuse);
-//  Application.CreateForm(TForm_AVR_Fuse_Burn, Form_AVR_Fuse_Burn);
   Application.Run;
 end.
 

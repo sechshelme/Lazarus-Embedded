@@ -5,7 +5,7 @@ unit Embedded_GUI_AVR_Fuse_Burn_Form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,    process,
   Embedded_GUI_Common;
 
 type
@@ -50,9 +50,16 @@ begin
 end;
 
 procedure TForm_AVR_Fuse_Burn.Button_BurnClick(Sender: TObject);
+var
+  s:String;
+  AProcess: TProcess;
 begin
-  if ssCtrl in GetKeyShiftState then begin
-    ShowMessage('brennen');
+  //  RunCommand('avrdude', ['-patmega328p', '-cusbasp', '-v'], s,[poWaitOnExit, poUsePipes]);
+  //  if RunCommand('/bin/bash',['-c','echo $PATH'],s) then begin
+  if RunCommand('avrdude', ['-patmega328p', '-cusbasp', '-v'], s) then begin
+    // if RunCommand('avrdude', ['-patmega328p', '-cusbasp', '-v'], s, [poWaitOnExit]) then begin
+    Memo1.Lines.Add('geklappt');
+    Memo1.Lines.Add(s);
   end;
 end;
 

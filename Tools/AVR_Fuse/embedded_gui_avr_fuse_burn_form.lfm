@@ -27,7 +27,7 @@ object Form_AVR_Fuse_Burn: TForm_AVR_Fuse_Burn
     Top = 200
     Width = 91
     Anchors = [akRight, akBottom]
-    Caption = 'Button_Burn'
+    Caption = 'Burn'
     OnClick = Button_BurnClick
     TabOrder = 1
   end
@@ -37,7 +37,7 @@ object Form_AVR_Fuse_Burn: TForm_AVR_Fuse_Burn
     Top = 200
     Width = 99
     Anchors = [akRight, akBottom]
-    Caption = 'Button_Close'
+    Caption = 'Close'
     ModalResult = 11
     TabOrder = 2
   end

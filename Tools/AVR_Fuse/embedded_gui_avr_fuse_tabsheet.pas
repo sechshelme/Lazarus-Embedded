@@ -80,7 +80,6 @@ begin
     FuseByte += ComboBoxes[i].Value;
   end;
 
-//  HexFuse.Caption := IntToHex(FuseByte, 2);              // zum Test
   HexFuse.Value := FuseByte;
   BitCheckBox.Value := FuseByte;
 end;
@@ -98,7 +97,6 @@ begin
   for i := 0 to Length(ComboBoxes) - 1 do begin
     ComboBoxes[i].Value := FuseByte;
   end;
-  //  HexFuse.Caption := IntToHex(FuseByte, 2); // zum Test
 end;
 
 procedure TFuseTabSheet.HexEditChange(Sender: TObject);
@@ -114,17 +112,16 @@ begin
   for i := 0 to Length(ComboBoxes) - 1 do begin
     ComboBoxes[i].Value := FuseByte;
   end;
-  //  HexFuse.Caption := IntToHex(FuseByte, 2); // zum Test
 end;
 
 procedure TFuseTabSheet.BurnButtonClick(Sender: TObject);
 var
-  f: TForm_AVR_Fuse_Burn;
+  Form: TForm_AVR_Fuse_Burn;
 begin
   if Sender is TButton then begin
-    f := TForm_AVR_Fuse_Burn.Create(Self);
-    f.ShowModal;
-    f.Free;
+    Form := TForm_AVR_Fuse_Burn.Create(Self);
+    Form.ShowModal;
+    Form.Free;
   end;
 end;
 

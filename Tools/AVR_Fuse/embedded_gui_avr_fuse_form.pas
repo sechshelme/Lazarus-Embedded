@@ -7,7 +7,6 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   ExtCtrls, FileUtil, Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
-  //  XMLConf, XMLRead, XMLWrite, DOM,
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Fuse_Common,
   Embedded_GUI_AVR_Fuse_TabSheet,
@@ -34,7 +33,7 @@ type
     procedure ClearTabs;
   private
     path: string;
-      FuseTabSheet: array of TFuseTabSheet;
+    FuseTabSheet: array of TFuseTabSheet;
   public
   end;
 
@@ -109,6 +108,7 @@ begin
   end;
 
 end;
+
 /// --- public
 
 procedure TForm_AVR_Fuse.FormCreate(Sender: TObject);
@@ -157,11 +157,11 @@ var
   begin
     i := Length(FuseTabSheet);
     SetLength(FuseTabSheet, i + 1);
-      FuseTabSheet[i] := TFuseTabSheet.Create(Self);
-      with FuseTabSheet[i] do begin
-        Tag := i;
-        PageControl := PageControl1;
-        Caption := GetAttribut(Node_Register, 'name');
+    FuseTabSheet[i] := TFuseTabSheet.Create(Self);
+    with FuseTabSheet[i] do begin
+      Tag := i;
+      PageControl := PageControl1;
+      Caption := GetAttribut(Node_Register, 'name');
     end;
   end;
 
@@ -186,7 +186,7 @@ begin
               Node_Bitfield := Node_Register.FirstChild;
               while Node_Bitfield <> nil do begin
 
-                l:=Length(FuseTabSheet) - 1;
+                l := Length(FuseTabSheet) - 1;
                 if GetAttribut(Node_Bitfield, 'values') <> '' then begin
                   FuseTabSheet[l].NewComboBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):',
                     StrToInt(GetAttribut(Node_Bitfield, 'mask')));
