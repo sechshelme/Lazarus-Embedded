@@ -23,7 +23,7 @@ type
     StaticTexts: array of TStaticText;
     Panel: TPanel;
     BitCheckBox: TBitMaskGroup;
-    HexEdit: THexGroup;
+    HexFuse: THexGroup;
     BurnButton: TButton;
     procedure BitMaskChange(Sender: TObject);
     procedure BurnButtonClick(Sender: TObject);
@@ -48,8 +48,8 @@ begin
   inherited Create(TheOwner);
   ofs := 5;
   Panel := TPanel.Create(Self);
-  HexEdit := THexGroup.Create(Self);
-  HexEdit.OnChange := @HexEditChange;
+  HexFuse := THexGroup.Create(Self);
+  HexFuse.OnChange := @HexEditChange;
 
   BurnButton := TButton.Create(Self);
   BurnButton.OnClick := @BurnButtonClick;
@@ -62,7 +62,7 @@ destructor TFuseTabSheet.Destroy;
 begin
   Clear;
   Panel.Free;
-  HexEdit.Free;
+  HexFuse.Free;
   BurnButton.Free;
   BitCheckBox.Free;
   inherited Destroy;
@@ -80,8 +80,8 @@ begin
     FuseByte += ComboBoxes[i].Value;
   end;
 
-//  HexEdit.Caption := IntToHex(FuseByte, 2);              // zum Test
-  HexEdit.Value := FuseByte;
+//  HexFuse.Caption := IntToHex(FuseByte, 2);              // zum Test
+  HexFuse.Value := FuseByte;
   BitCheckBox.Value := FuseByte;
 end;
 
@@ -90,7 +90,7 @@ var
   i: integer;
 begin
   FuseByte := BitCheckBox.Value;
-  HexEdit.Value := FuseByte;
+  HexFuse.Value := FuseByte;
 
   for i := 0 to Length(CheckBoxes) - 1 do begin
     CheckBoxes[i].Value := FuseByte;
@@ -98,14 +98,14 @@ begin
   for i := 0 to Length(ComboBoxes) - 1 do begin
     ComboBoxes[i].Value := FuseByte;
   end;
-  //  HexEdit.Caption := IntToHex(FuseByte, 2); // zum Test
+  //  HexFuse.Caption := IntToHex(FuseByte, 2); // zum Test
 end;
 
 procedure TFuseTabSheet.HexEditChange(Sender: TObject);
 var
   i: integer;
 begin
-  FuseByte := HexEdit.Value;
+  FuseByte := HexFuse.Value;
   BitCheckBox.Value := FuseByte;
 
   for i := 0 to Length(CheckBoxes) - 1 do begin
@@ -114,7 +114,7 @@ begin
   for i := 0 to Length(ComboBoxes) - 1 do begin
     ComboBoxes[i].Value := FuseByte;
   end;
-  //  HexEdit.Caption := IntToHex(FuseByte, 2); // zum Test
+  //  HexFuse.Caption := IntToHex(FuseByte, 2); // zum Test
 end;
 
 procedure TFuseTabSheet.BurnButtonClick(Sender: TObject);
@@ -135,31 +135,31 @@ begin
   inherited Resize;
   with Panel do begin
     Parent := Self;
-    Top := Self.Height - 90;
+    Top := Self.Height - 110;
     Height := 2;
     Left := 0;
     Width := Self.Width;
     Anchors := [akBottom, akLeft, akRight];
   end;
 
-  with HexEdit do begin
+  with HexFuse do begin
     Parent := Self;
-    Left := 300;
-    Top := Self.Height - 80;
+    Left := 200;
+    Top := Self.Height - 100;
     Anchors := [akBottom, akLeft];
   end;
 
   with BitCheckBox do begin
     Parent := Self;
     Left := 10;
-    Top := Self.Height - 80;
+    Top := Self.Height - 100;
     Anchors := [akBottom, akLeft];
   end;
 
   with BurnButton do begin
     Parent := Self;
     Left := 530;
-    Top := Self.Height - 80;
+    Top := Self.Height - 100;
     Width := 50;
     Text := 'Burn';
     Anchors := [akBottom, akLeft];

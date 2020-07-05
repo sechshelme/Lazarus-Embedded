@@ -60,12 +60,28 @@ type
     property Value: byte read GetValue write SetValue;
   end;
 
+  { THexPanel }
+
+  THexPanel = class(TPanel)
+  private
+    ButtonUp, ButtonDn: TButton;
+    FValue: byte;
+    procedure ButtonClick(Sender: TObject);
+    procedure SetValue(AValue: byte);
+  public
+    OnChange: TSenderProc;
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    property Value: byte read FValue write SetValue;
+  end;
+
   { THexGroup }
 
   THexGroup = class(TGroupBox)
   private
-    ComboBox: TComboBox;
-    procedure CheckBoxChange(Sender: TObject);
+    PanelH, PanelL: THexPanel;
+    StaticText: TStaticText;
+    procedure PanelChange(Sender: TObject);
     function GetValue: byte;
     procedure SetValue(AValue: byte);
   public
@@ -78,22 +94,88 @@ type
 
 implementation
 
+{ THexPanel }
+
+procedure THexPanel.ButtonClick(Sender: TObject);
+begin
+  if TButton(Sender).Name = 'up' then begin
+    if FValue = $F then begin
+      FValue := $0;
+    end else begin
+      Inc(FValue);
+    end;
+  end else if TButton(Sender).Name = 'dn' then begin
+    if FValue = $0 then begin
+      FValue := $F;
+    end else begin
+      Dec(FValue);
+    end;
+  end;
+
+  Caption := IntToHex(FValue, 1);
+  if Assigned(OnChange) then begin
+    OnChange(Sender);
+  end;
+end;
+
+procedure THexPanel.SetValue(AValue: byte);
+begin
+  FValue := AValue;
+  Caption := IntToHex(FValue, 1);
+end;
+
+constructor THexPanel.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  FValue := $F;
+  Caption := IntToHex(FValue, 1);
+
+  Font.Style := [fsBold];
+  Color := clDefault;
+
+  ButtonUp := TButton.Create(Self);
+  with ButtonUp do begin
+    Align := alTop;
+    Name := 'up';
+    Height := Self.Height div 3;
+    Caption := '+';
+    Parent := Self;
+    OnClick := @ButtonClick;
+  end;
+
+  ButtonDn := TButton.Create(Self);
+  with ButtonDn do begin
+    Align := alBottom;
+    Name := 'dn';
+    Height := Self.Height div 3;
+    Caption := '-';
+    Parent := Self;
+    OnClick := @ButtonClick;
+  end;
+end;
+
+destructor THexPanel.Destroy;
+begin
+  ButtonUp.Free;
+  ButtonDn.Free;
+  inherited Destroy;
+end;
+
 { THexGroup }
 
 function THexGroup.GetValue: byte;
 begin
-  Result := not ComboBox.ItemIndex;
+  Result := not (PanelH.Value * 16 + PanelL.Value);
 end;
 
 procedure THexGroup.SetValue(AValue: byte);
-var
-  i: integer;
 begin
   AValue := not AValue;
-  ComboBox.ItemIndex := AValue;
+  PanelL.Value := AValue mod 16;
+  PanelH.Value := AValue div 16;
 end;
 
-procedure THexGroup.CheckBoxChange(Sender: TObject);
+procedure THexGroup.PanelChange(Sender: TObject);
 begin
   if Assigned(OnChange) then begin
     OnChange(Sender);
@@ -101,33 +183,50 @@ begin
 end;
 
 constructor THexGroup.Create(AOwner: TComponent);
-var
-  j: integer;
+const
+  h = 50;
+  w = 20;
 begin
   inherited Create(AOwner);
   Caption := 'Fuse';
-  Height := 60;
+  Height := 80;
   Width := 100;
-  ComboBox := TComboBox.Create(Self);
-  with ComboBox do begin
-    Left := 5;
-    Width := 60;
+
+  StaticText := TStaticText.Create(Self);
+  with StaticText do begin
+    Left := 10;
+    Top := 21;
+    Font.Style := [fsBold];
+    Text := '$';
     Parent := Self;
-    Top := 5;
-    Style := csOwnerDrawFixed;
-    for j := 0 to $FF do begin
-      Items.Add('$' + IntToHex(j, 2));
-    end;
-    Text := '$FF';
   end;
-  ComboBox.OnChange := @CheckBoxChange;
+
+  PanelL := THexPanel.Create(Self);
+  with PanelL do begin
+    Left := 20 + w;
+    Width := w;
+    Top := 5;
+    Height := h;
+    Parent := Self;
+    OnChange := @PanelChange;
+  end;
+
+  PanelH := THexPanel.Create(Self);
+  with PanelH do begin
+    Left := 20;
+    Width := w;
+    Top := 5;
+    Height := h;
+    Parent := Self;
+    OnChange := @PanelChange;
+  end;
 end;
 
 destructor THexGroup.Destroy;
-var
-  i: integer;
 begin
-  ComboBox.Free;
+  PanelL.Free;
+  PanelH.Free;
+  StaticText.Free;
   inherited Destroy;
 end;
 
@@ -167,7 +266,7 @@ var
 begin
   inherited Create(AOwner);
   Caption := 'Bitmask';
-  Height := 60;
+  Height := 80;
   Width := 150;
   l := Length(Field);
   for i := 0 to l - 1 do begin

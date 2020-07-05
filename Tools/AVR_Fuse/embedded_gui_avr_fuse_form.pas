@@ -109,7 +109,6 @@ begin
   end;
 
 end;
-
 /// --- public
 
 procedure TForm_AVR_Fuse.FormCreate(Sender: TObject);
