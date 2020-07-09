@@ -1,0 +1,35 @@
+object Run_Command_Form: TRun_Command_Form
+  Left = 1715
+  Height = 264
+  Top = 842
+  Width = 348
+  Caption = 'Run_Command_Form'
+  ClientHeight = 264
+  ClientWidth = 348
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '2.1.0.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 216
+    Top = 0
+    Width = 348
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Lines.Strings = (
+      'Memo1'
+    )
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Button_Close: TButton
+    Left = 251
+    Height = 25
+    Top = 224
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Close'
+    OnClick = Button_CloseClick
+    TabOrder = 1
+  end
+end

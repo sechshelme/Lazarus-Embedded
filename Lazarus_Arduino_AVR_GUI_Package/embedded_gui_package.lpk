@@ -71,10 +71,6 @@
         <UnitName Value="Embedded_GUI_AVR_Register"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_common.pas"/>
-        <UnitName Value="Embedded_GUI_Common"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_cpu_info_form.pas"/>
         <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
       </Item>
@@ -130,6 +126,9 @@
       <Item>
         <Filename Value="embedded_gui_common_filecombobox.pas"/>
         <UnitName Value="Embedded_GUI_Common_FileComboBox"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_common.pas"/>
       </Item>
     </Files>
     <i18n>

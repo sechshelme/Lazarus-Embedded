@@ -2,13 +2,13 @@ object Form1: TForm1
   Left = 361
   Height = 240
   Top = 266
-  Width = 320
+  Width = 451
   Caption = 'Form1'
   ClientHeight = 240
-  ClientWidth = 320
+  ClientWidth = 451
   LCLVersion = '2.1.0.0'
   object Button1: TButton
-    Left = 232
+    Left = 363
     Height = 25
     Top = 200
     Width = 75
@@ -21,7 +21,7 @@ object Form1: TForm1
     Left = 0
     Height = 184
     Top = 0
-    Width = 320
+    Width = 451
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Lines.Strings = (
@@ -30,7 +30,7 @@ object Form1: TForm1
     TabOrder = 1
   end
   object Button2: TButton
-    Left = 152
+    Left = 283
     Height = 25
     Top = 200
     Width = 75
@@ -40,7 +40,7 @@ object Form1: TForm1
     TabOrder = 2
   end
   object Button3: TButton
-    Left = 72
+    Left = 203
     Height = 25
     Top = 200
     Width = 75
@@ -48,5 +48,15 @@ object Form1: TForm1
     Caption = 'Button3'
     OnClick = Button3Click
     TabOrder = 3
+  end
+  object avr: TButton
+    Left = 112
+    Height = 25
+    Top = 200
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'avr'
+    OnClick = avrClick
+    TabOrder = 4
   end
 end
