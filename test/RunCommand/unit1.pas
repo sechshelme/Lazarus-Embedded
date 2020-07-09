@@ -56,9 +56,9 @@ begin
     RunCommandForm := TRun_Command_Form.Create(nil);
   end;
 
-  //  RunCommandForm.RunCommand('ls /home/tux/fpcupdeluxe_avr25 -R    ');
+    RunCommandForm.RunCommand('ls /home/tux/fpcupdeluxe_avr25 -R    ');
 
-  RunCommandForm.RunCommand('avrdude -cusbasp -pattiny2313', False);
+//  RunCommandForm.RunCommand('avrdude -cusbasp -pattiny2313', False);
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);

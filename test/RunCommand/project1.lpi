@@ -45,6 +45,7 @@
         <Filename Value="embedded_gui_run_command.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Run_Command_Form"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Embedded_GUI_Run_Command"/>
       </Unit>
