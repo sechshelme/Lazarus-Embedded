@@ -21,7 +21,7 @@ type
   private
 
   public
-    procedure RunCommand(command: string; StdErr: boolean = False);
+    procedure RunCommand(command: string);
   end;
 
 var
@@ -52,7 +52,7 @@ begin
   Memo1.Font.Name := 'Ubuntu Mono';
 end;
 
-procedure TRun_Command_Form.RunCommand(command: string; StdErr: boolean);
+procedure TRun_Command_Form.RunCommand(command: string);
 const
   READ_BYTES = 2048;
 
@@ -69,16 +69,11 @@ begin
 
   AProcess := TProcess.Create(Self);
   AProcess.CommandLine := command;
-  AProcess.Options := [poUsePipes];
+  AProcess.Options := [poUsePipes, poStderrToOutPut];
   AProcess.Execute;
   while AProcess.Running do begin
     ms.SetSize(BytesRead + READ_BYTES);
-
-    if StdErr then begin
-      n := AProcess.Stderr.Read((ms.Memory + BytesRead)^, READ_BYTES);
-    end else begin
-      n := AProcess.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
-    end;
+    n := AProcess.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
     if n > 0 then begin
       Inc(BytesRead, n);
     end else begin
@@ -87,11 +82,7 @@ begin
   end;
   repeat
     ms.SetSize(BytesRead + READ_BYTES);
-    if StdErr then begin
-      n := AProcess.Stderr.Read((ms.Memory + BytesRead)^, READ_BYTES);
-    end else begin
-      n := AProcess.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
-    end;
+    n := AProcess.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
     Inc(BytesRead, n);
   until n <= 0;
   if BytesRead > 0 then begin
