@@ -6,6 +6,7 @@ object Form1: TForm1
   Caption = 'Form1'
   ClientHeight = 240
   ClientWidth = 451
+  OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
   object Button1: TButton
     Left = 363
@@ -36,7 +37,6 @@ object Form1: TForm1
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Button2'
-    OnClick = Button2Click
     TabOrder = 2
   end
   object Button3: TButton
@@ -46,7 +46,6 @@ object Form1: TForm1
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Button3'
-    OnClick = Button3Click
     TabOrder = 3
   end
   object avr: TButton

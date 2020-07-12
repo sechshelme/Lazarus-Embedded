@@ -52,6 +52,7 @@
       <Unit>
         <Filename Value="../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_common.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="Embedded_GUI_Common"/>
       </Unit>
     </Units>
   </ProjectOptions>

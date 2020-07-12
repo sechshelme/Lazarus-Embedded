@@ -18,10 +18,13 @@ type
     procedure Button_CloseClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
-
+    Process: TProcess;
+    function getExitCode: Integer;
   public
     procedure RunCommand(command: string);
+    property ExitCode:Integer read getExitCode;
   end;
 
 var
@@ -47,19 +50,29 @@ procedure TRun_Command_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'ARM Vorlagen';
   LoadFormPos_from_XML(Self);
+  Memo1.ReadOnly:=True;
   Memo1.WordWrap := False;
   Memo1.ScrollBars := ssAutoBoth;
   Memo1.Font.Name := 'Ubuntu Mono';
+  Process := TProcess.Create(Self);
+end;
+
+procedure TRun_Command_Form.FormDestroy(Sender: TObject);
+begin
+  Process.Free;
+end;
+
+function TRun_Command_Form.getExitCode: Integer;
+begin
+  Result:=Process.ExitCode;
 end;
 
 procedure TRun_Command_Form.RunCommand(command: string);
 const
   READ_BYTES = 2048;
-
 var
   sl: TStringList;
   ms: TMemoryStream;
-  AProcess: TProcess;
   n, BytesRead: integer;
 
 begin
@@ -67,13 +80,12 @@ begin
   ms := TMemoryStream.Create;
   BytesRead := 0;
 
-  AProcess := TProcess.Create(Self);
-  AProcess.CommandLine := command;
-  AProcess.Options := [poUsePipes, poStderrToOutPut];
-  AProcess.Execute;
-  while AProcess.Running do begin
+  Process.CommandLine := command;
+  Process.Options := [poUsePipes, poStderrToOutPut];
+  Process.Execute;
+  while Process.Running do begin
     ms.SetSize(BytesRead + READ_BYTES);
-    n := AProcess.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
+    n := Process.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
     if n > 0 then begin
       Inc(BytesRead, n);
     end else begin
@@ -82,7 +94,7 @@ begin
   end;
   repeat
     ms.SetSize(BytesRead + READ_BYTES);
-    n := AProcess.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
+    n := Process.Output.Read((ms.Memory + BytesRead)^, READ_BYTES);
     Inc(BytesRead, n);
   until n <= 0;
   if BytesRead > 0 then begin
@@ -94,7 +106,6 @@ begin
   sl.LoadFromStream(ms);
   Memo1.Lines.AddStrings(sl);
   sl.Free;
-  AProcess.Free;
   ms.Free;
 end;
 

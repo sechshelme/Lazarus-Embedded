@@ -105,8 +105,8 @@ type
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
 
-procedure LoadFormPos_from_XML(Form: TControl);
-procedure SaveFormPos_to_XML(Form: TControl);
+procedure LoadFormPos_from_XML(Form: TForm);
+procedure SaveFormPos_to_XML(Form: TForm);
 
 procedure LoadStrings_from_XML(Key: string; sl: TStrings; Default_Text: TStringArray = nil);
 procedure SaveStrings_to_XML(Key: string; sl: TStrings);
@@ -204,7 +204,7 @@ begin
   cb.Text := s;
 end;
 
-procedure LoadFormPos_from_XML(Form: TControl);
+procedure LoadFormPos_from_XML(Form: TForm);
 var
   Cfg: TConfigStorage;
   col: TColor;
@@ -217,9 +217,10 @@ begin
   Cfg.Free;
   Load_IDE_Color_from_XML(col);
   Form.Color := col;
+  Form.Position := poDefaultPosOnly;
 end;
 
-procedure SaveFormPos_to_XML(Form: TControl);
+procedure SaveFormPos_to_XML(Form: TForm);
 var
   Cfg: TConfigStorage;
 begin
