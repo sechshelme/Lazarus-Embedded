@@ -8,6 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   ExtCtrls, FileUtil, Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
   Embedded_GUI_Common,
+  Embedded_GUI_Run_Command,
   Embedded_GUI_AVR_Fuse_Common,
   Embedded_GUI_AVR_Fuse_TabSheet,
   Embedded_GUI_AVR_Fuse_Burn_Form;
@@ -17,11 +18,13 @@ type
   { TForm_AVR_Fuse }
 
   TForm_AVR_Fuse = class(TForm)
+    Button_ReadFuse: TButton;
     Button_Close: TButton;
     ComboBox1: TComboBox;
     Label1: TLabel;
     PageControl1: TPageControl;
     procedure Button_CloseClick(Sender: TObject);
+    procedure Button_ReadFuseClick(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure CreateTab(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -80,7 +83,7 @@ end;
 
 procedure TForm_AVR_Fuse.ClearTabs;
 var
-  i, j: integer;
+  i: integer;
 begin
   for i := 0 to Length(FuseTabSheet) - 1 do begin
     FuseTabSheet[i].Free;
@@ -153,6 +156,7 @@ var
 
   procedure AddFuse(Node_Register: TDOMNode);
   var
+    ofs: string;
     i: integer;
   begin
     i := Length(FuseTabSheet);
@@ -161,7 +165,9 @@ var
     with FuseTabSheet[i] do begin
       Tag := i;
       PageControl := PageControl1;
-      Caption := GetAttribut(Node_Register, 'name');
+      ofs := GetAttribut(Node_Register, 'offset');
+      Caption := GetAttribut(Node_Register, 'name') + ' (' + ofs + ')';
+      Offset := StrToInt(ofs);
     end;
   end;
 
@@ -211,6 +217,25 @@ begin
   end;
 
   doc.Free;
+end;
+
+procedure TForm_AVR_Fuse.Button_ReadFuseClick(Sender: TObject);
+var
+  s: string;
+begin
+  if not Assigned(Run_Command_Form) then begin
+    Run_Command_Form := TRun_Command_Form.Create(nil);
+  end;
+
+  s := ExtractFileName(path);
+  s := ExtractFileNameWithoutExt(s);
+  WriteLn(s);
+
+  //    RunCommandForm.RunCommand('ls /home/tux/fpcupdeluxe_avr25 -R    ');
+
+  //RunCommandForm.RunCommand('avrdude -cusbasp -pattiny2313');
+  Run_Command_Form.RunCommand('avrdude -cusbasp -p' + s + ' -Uhfuse:r:-:h -Ulfuse:r:-:h -Uefuse:r:-:h -Ulock:r:-:h');
+  Caption := Run_Command_Form.ExitCode.ToString;
 end;
 
 procedure TForm_AVR_Fuse.FormDestroy(Sender: TObject);

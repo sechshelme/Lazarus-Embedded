@@ -3,4 +3,7 @@
   <Run_Command_Form_1>
     <FormPos Left="1288" Top="498" Width="1028" Height="660"/>
   </Run_Command_Form_1>
+  <Run_Command_Form>
+    <FormPos Left="1428" Top="515" Width="928" Height="521"/>
+  </Run_Command_Form>
 </CONFIG>

@@ -16,6 +16,7 @@ type
 
   TFuseTabSheet = class(TTabSheet)
   private
+    fOffset: Byte;
     FuseByte: byte;
     ofs: integer;
     CheckBoxes: array of TFuseCheckBox;
@@ -37,6 +38,7 @@ type
     procedure AddComboxItem(const s: string; AMask: byte);
     procedure AddCheckBox(const s: string; AMask: byte);
     procedure Clear;
+    property Offset:Byte read fOffset write fOffset;
   end;
 
 implementation

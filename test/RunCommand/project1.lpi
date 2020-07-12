@@ -42,17 +42,17 @@
         <UnitName Value="Unit1"/>
       </Unit>
       <Unit>
-        <Filename Value="embedded_gui_run_command.pas"/>
+        <Filename Value="../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_common.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Embedded_GUI_Common"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_run_command.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Run_Command_Form"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Embedded_GUI_Run_Command"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_common.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Embedded_GUI_Common"/>
       </Unit>
     </Units>
   </ProjectOptions>

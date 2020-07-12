@@ -1,7 +1,7 @@
 object Form_AVR_Fuse: TForm_AVR_Fuse
-  Left = 1923
+  Left = 1812
   Height = 576
-  Top = 52
+  Top = 59
   Width = 657
   Caption = 'Form_AVR_Fuse'
   ClientHeight = 576
@@ -19,7 +19,7 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
   end
   object ComboBox1: TComboBox
     Left = 16
-    Height = 28
+    Height = 27
     Top = 8
     Width = 328
     ItemHeight = 0
@@ -45,5 +45,15 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
     ModalResult = 11
     OnClick = Button_CloseClick
     TabOrder = 2
+  end
+  object Button_ReadFuse: TButton
+    Left = 480
+    Height = 25
+    Top = 540
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Read Fuse'
+    OnClick = Button_ReadFuseClick
+    TabOrder = 3
   end
 end

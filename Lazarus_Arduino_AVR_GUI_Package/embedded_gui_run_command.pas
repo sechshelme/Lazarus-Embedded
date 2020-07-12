@@ -50,6 +50,7 @@ procedure TRun_Command_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'ARM Vorlagen';
   LoadFormPos_from_XML(Self);
+  Memo1.Clear;
   Memo1.ReadOnly:=True;
   Memo1.WordWrap := False;
   Memo1.ScrollBars := ssAutoBoth;
