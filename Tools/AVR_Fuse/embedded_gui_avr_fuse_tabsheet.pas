@@ -16,8 +16,8 @@ type
 
   TFuseTabSheet = class(TTabSheet)
   private
-    fOffset: Byte;
-    FuseByte: byte;
+    FFuseName: String;
+    FFuseByte: Byte;
     ofs: integer;
     CheckBoxes: array of TFuseCheckBox;
     ComboBoxes: array of TFuseComboBox;
@@ -30,6 +30,7 @@ type
     procedure BurnButtonClick(Sender: TObject);
     procedure FeatureChange(Sender: TObject);
     procedure HexEditChange(Sender: TObject);
+    procedure setFuseByte(AValue: Byte);
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -38,7 +39,8 @@ type
     procedure AddComboxItem(const s: string; AMask: byte);
     procedure AddCheckBox(const s: string; AMask: byte);
     procedure Clear;
-    property Offset:Byte read fOffset write fOffset;
+    property FuseName:String read FFuseName write FFuseName;
+    property FuseByte:Byte read FFuseByte write setFuseByte;
   end;
 
 implementation
@@ -74,30 +76,30 @@ procedure TFuseTabSheet.FeatureChange(Sender: TObject);
 var
   i: integer;
 begin
-  FuseByte := 0;
+  FFuseByte := 0;
   for i := 0 to Length(CheckBoxes) - 1 do begin
-    FuseByte += CheckBoxes[i].Value;
+    FFuseByte += CheckBoxes[i].Value;
   end;
   for i := 0 to Length(ComboBoxes) - 1 do begin
-    FuseByte += ComboBoxes[i].Value;
+    FFuseByte += ComboBoxes[i].Value;
   end;
 
-  HexFuse.Value := FuseByte;
-  BitCheckBox.Value := FuseByte;
+  HexFuse.Value := FFuseByte;
+  BitCheckBox.Value := FFuseByte;
 end;
 
 procedure TFuseTabSheet.BitMaskChange(Sender: TObject);
 var
   i: integer;
 begin
-  FuseByte := BitCheckBox.Value;
-  HexFuse.Value := FuseByte;
+  FFuseByte := BitCheckBox.Value;
+  HexFuse.Value := FFuseByte;
 
   for i := 0 to Length(CheckBoxes) - 1 do begin
-    CheckBoxes[i].Value := FuseByte;
+    CheckBoxes[i].Value := FFuseByte;
   end;
   for i := 0 to Length(ComboBoxes) - 1 do begin
-    ComboBoxes[i].Value := FuseByte;
+    ComboBoxes[i].Value := FFuseByte;
   end;
 end;
 
@@ -105,14 +107,31 @@ procedure TFuseTabSheet.HexEditChange(Sender: TObject);
 var
   i: integer;
 begin
-  FuseByte := HexFuse.Value;
-  BitCheckBox.Value := FuseByte;
+  FFuseByte := HexFuse.Value;
+  BitCheckBox.Value := FFuseByte;
 
   for i := 0 to Length(CheckBoxes) - 1 do begin
-    CheckBoxes[i].Value := FuseByte;
+    CheckBoxes[i].Value := FFuseByte;
   end;
   for i := 0 to Length(ComboBoxes) - 1 do begin
-    ComboBoxes[i].Value := FuseByte;
+    ComboBoxes[i].Value := FFuseByte;
+  end;
+end;
+
+procedure TFuseTabSheet.setFuseByte(AValue: Byte);
+var
+  i: Integer;
+begin
+  FFuseByte:=AValue;
+
+  BitCheckBox.Value := FFuseByte;
+  HexFuse.Value := FFuseByte;
+
+  for i := 0 to Length(CheckBoxes) - 1 do begin
+    CheckBoxes[i].Value := FFuseByte;
+  end;
+  for i := 0 to Length(ComboBoxes) - 1 do begin
+    ComboBoxes[i].Value := FFuseByte;
   end;
 end;
 
@@ -122,6 +141,7 @@ var
 begin
   if Sender is TButton then begin
     Form := TForm_AVR_Fuse_Burn.Create(Self);
+//    Achtung: Fuse negieren !!!!!!
     Form.ShowModal;
     Form.Free;
   end;

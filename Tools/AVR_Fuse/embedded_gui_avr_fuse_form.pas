@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  ExtCtrls, FileUtil, Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
+  ExtCtrls, FileUtil, LazFileUtils, Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
   Embedded_GUI_Common,
   Embedded_GUI_Run_Command,
   Embedded_GUI_AVR_Fuse_Common,
@@ -156,7 +156,8 @@ var
 
   procedure AddFuse(Node_Register: TDOMNode);
   var
-    ofs: string;
+    n: string;
+    ofs: byte;
     i: integer;
   begin
     i := Length(FuseTabSheet);
@@ -165,9 +166,28 @@ var
     with FuseTabSheet[i] do begin
       Tag := i;
       PageControl := PageControl1;
-      ofs := GetAttribut(Node_Register, 'offset');
-      Caption := GetAttribut(Node_Register, 'name') + ' (' + ofs + ')';
-      Offset := StrToInt(ofs);
+      ofs := StrToInt(GetAttribut(Node_Register, 'offset'));
+      n := GetAttribut(Node_Register, 'name');
+      case n of
+        'EXTENDED': begin
+          FuseName := 'efuse';
+        end;
+        'HIGH': begin
+          FuseName := 'hfuse';
+        end;
+        'LOW': begin
+          FuseName := 'lfuse';
+        end;
+        'LOCKBIT': begin
+          FuseName := 'lock';
+        end;
+        'BYTE0': begin
+          FuseName := 'BYTE0';
+        end else begin
+          FuseName := 'fuse' + IntToStr(ofs);
+        end;
+      end;
+      Caption := n + ' (' + FuseName + ')';
     end;
   end;
 
@@ -221,21 +241,37 @@ end;
 
 procedure TForm_AVR_Fuse.Button_ReadFuseClick(Sender: TObject);
 var
-  s: string;
+  avr, fuse: string;
+  i, l, j: integer;
 begin
   if not Assigned(Run_Command_Form) then begin
     Run_Command_Form := TRun_Command_Form.Create(nil);
   end;
+  Run_Command_Form.Memo1.Clear;
 
-  s := ExtractFileName(path);
-  s := ExtractFileNameWithoutExt(s);
-  WriteLn(s);
+  avr := ExtractFileName(path);
+  avr := ExtractFileNameWithoutExt(avr);
+  WriteLn(avr);
 
-  //    RunCommandForm.RunCommand('ls /home/tux/fpcupdeluxe_avr25 -R    ');
+  l := Length(FuseTabSheet);
+  for i := 0 to l - 1 do begin
+    fuse := ' -U' + FuseTabSheet[i].FuseName + ':r:-:h';
+    Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + fuse);
+    if Run_Command_Form.ExitCode = 0 then begin
+      j := Run_Command_Form.Memo1.Lines.Count - 1;
+      while j >= 0 do begin
+        if Pos('0x', Run_Command_Form.Memo1.Lines[j]) = 1 then begin
+          FuseTabSheet[i].FuseByte := not StrToInt(Run_Command_Form.Memo1.Lines[j]);
+          j := 0;
+        end;
+        Dec(j);
+      end;
+    end;
+  end;
 
   //RunCommandForm.RunCommand('avrdude -cusbasp -pattiny2313');
-  Run_Command_Form.RunCommand('avrdude -cusbasp -p' + s + ' -Uhfuse:r:-:h -Ulfuse:r:-:h -Uefuse:r:-:h -Ulock:r:-:h');
-  Caption := Run_Command_Form.ExitCode.ToString;
+  //  Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + ' -Uhfuse:r:-:h -Ulfuse:r:-:h -Uefuse:r:-:h -Ulock:r:-:h');
+  //  Caption := Run_Command_Form.ExitCode.ToString;
 end;
 
 procedure TForm_AVR_Fuse.FormDestroy(Sender: TObject);
