@@ -6,8 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  ExtCtrls, FileUtil,
-  Embedded_GUI_AVR_Fuse_Burn_Form;
+  ExtCtrls, FileUtil;
 
 type
   TSenderProc = procedure(Sender: TObject) of object;
@@ -37,7 +36,7 @@ type
   public
     //    property Mask: byte write SetMask;
     property Value: byte read GetValue write SetValue;
-    constructor Create(TheOwner: TComponent; AMask: byte);// override;
+    constructor Create(TheOwner: TComponent; AMask: byte);
     procedure Add(const s: string; AMask: byte);
   end;
 
@@ -90,7 +89,6 @@ type
     destructor Destroy; override;
     property Value: byte read GetValue write SetValue;
   end;
-
 
 implementation
 
@@ -369,8 +367,6 @@ begin
 end;
 
 procedure TFuseComboBox.Add(const s: string; AMask: byte);
-var
-  l: integer;
 begin
   if AMask < Items.Count then begin
     Items[Items.Count - 1 - AMask] := s + ' (' + (BinStr(not AMask, BitSize)) + ')';

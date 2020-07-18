@@ -10,8 +10,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Run_Command,
   Embedded_GUI_AVR_Fuse_Common,
-  Embedded_GUI_AVR_Fuse_TabSheet,
-  Embedded_GUI_AVR_Fuse_Burn_Form;
+  Embedded_GUI_AVR_Fuse_TabSheet;
 
 type
 
@@ -35,7 +34,6 @@ type
     procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; TabSheet: TFuseTabSheet);
     procedure ClearTabs;
   private
-    path: string;
     FuseTabSheet: array of TFuseTabSheet;
   public
   end;
@@ -134,10 +132,10 @@ end;
 
 procedure TForm_AVR_Fuse.ComboBox1Change(Sender: TObject);
 begin
-  //  path := ComboBox1.Items[ComboBox1.ItemIndex];
-  path := ComboBox1.Text;
-  Caption := path;
-  if FileExists(path) then begin
+  //  AVR_XML_Path := ComboBox1.Items[ComboBox1.ItemIndex];
+  AVR_XML_Path := ComboBox1.Text;
+  Caption := AVR_XML_Path;
+  if FileExists(AVR_XML_Path) then begin
     ClearTabs;
     CreateTab(Sender);
   end;
@@ -192,7 +190,7 @@ var
   end;
 
 begin
-  ReadXMLFile(doc, path);
+  ReadXMLFile(doc, AVR_XML_Path);
 
   Node_Modules := doc.DocumentElement.FindNode('modules');
   if Node_Modules <> nil then begin
@@ -249,9 +247,9 @@ begin
   end;
   Run_Command_Form.Memo1.Clear;
 
-  avr := ExtractFileName(path);
+  avr := ExtractFileName(AVR_XML_Path);
   avr := ExtractFileNameWithoutExt(avr);
-  WriteLn(avr);
+//  WriteLn(avr);
 
   l := Length(FuseTabSheet);
   for i := 0 to l - 1 do begin

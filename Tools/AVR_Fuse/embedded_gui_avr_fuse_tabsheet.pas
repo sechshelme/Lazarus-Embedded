@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  ExtCtrls, FileUtil,
+  ExtCtrls, FileUtil, LazFileUtils,
   Embedded_GUI_AVR_Fuse_Common,
-  Embedded_GUI_AVR_Fuse_Burn_Form;
+  Embedded_GUI_Run_Command;
 
 type
 
@@ -16,8 +16,8 @@ type
 
   TFuseTabSheet = class(TTabSheet)
   private
-    FFuseName: String;
-    FFuseByte: Byte;
+    FFuseName: string;
+    FFuseByte: byte;
     ofs: integer;
     CheckBoxes: array of TFuseCheckBox;
     ComboBoxes: array of TFuseComboBox;
@@ -30,7 +30,7 @@ type
     procedure BurnButtonClick(Sender: TObject);
     procedure FeatureChange(Sender: TObject);
     procedure HexEditChange(Sender: TObject);
-    procedure setFuseByte(AValue: Byte);
+    procedure setFuseByte(AValue: byte);
   public
     constructor Create(TheOwner: TComponent); override;
     destructor Destroy; override;
@@ -39,9 +39,12 @@ type
     procedure AddComboxItem(const s: string; AMask: byte);
     procedure AddCheckBox(const s: string; AMask: byte);
     procedure Clear;
-    property FuseName:String read FFuseName write FFuseName;
-    property FuseByte:Byte read FFuseByte write setFuseByte;
+    property FuseName: string read FFuseName write FFuseName;
+    property FuseByte: byte write setFuseByte;
   end;
+
+var
+  AVR_XML_Path: string;
 
 implementation
 
@@ -118,11 +121,11 @@ begin
   end;
 end;
 
-procedure TFuseTabSheet.setFuseByte(AValue: Byte);
+procedure TFuseTabSheet.setFuseByte(AValue: byte);
 var
-  i: Integer;
+  i: integer;
 begin
-  FFuseByte:=AValue;
+  FFuseByte := AValue;
 
   BitCheckBox.Value := FFuseByte;
   HexFuse.Value := FFuseByte;
@@ -137,13 +140,22 @@ end;
 
 procedure TFuseTabSheet.BurnButtonClick(Sender: TObject);
 var
-  Form: TForm_AVR_Fuse_Burn;
+  avr, fuse: string;
 begin
   if Sender is TButton then begin
-    Form := TForm_AVR_Fuse_Burn.Create(Self);
-//    Achtung: Fuse negieren !!!!!!
-    Form.ShowModal;
-    Form.Free;
+    if MessageDlg('Warnung !', 'Folgende Funktion kann den AVR zerstören' + LineEnding + 'Funktion ausführen ?', mtWarning, [mbYes, mbNo, mbCancel], 0) = mrYes then begin
+
+      if not Assigned(Run_Command_Form) then begin
+        Run_Command_Form := TRun_Command_Form.Create(nil);
+      end;
+      Run_Command_Form.Memo1.Clear;
+
+      avr := ExtractFileName(AVR_XML_Path);
+      avr := ExtractFileNameWithoutExt(avr);
+
+      fuse := ' -U' + FFuseName + ':r:-:h';   // negieren !!!!!
+      Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + fuse);
+    end;
   end;
 end;
 
@@ -264,4 +276,7 @@ begin
 end;
 
 end.
+
+
+
 
