@@ -26,6 +26,7 @@ type
     BitCheckBox: TBitMaskGroup;
     HexFuse: THexGroup;
     BurnButton: TButton;
+    StaticTexts_Ctrl: TStaticText;
     procedure BitMaskChange(Sender: TObject);
     procedure BurnButtonClick(Sender: TObject);
     procedure FeatureChange(Sender: TObject);
@@ -54,12 +55,15 @@ constructor TFuseTabSheet.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
   ofs := 5;
+  FFuseByte := 0;
   Panel := TPanel.Create(Self);
   HexFuse := THexGroup.Create(Self);
   HexFuse.OnChange := @HexEditChange;
 
   BurnButton := TButton.Create(Self);
   BurnButton.OnClick := @BurnButtonClick;
+
+  StaticTexts_Ctrl := TStaticText.Create(Self);
 
   BitCheckBox := TBitMaskGroup.Create(Self);
   BitCheckBox.OnChange := @BitMaskChange;
@@ -71,6 +75,7 @@ begin
   Panel.Free;
   HexFuse.Free;
   BurnButton.Free;
+  StaticTexts_Ctrl.Free;
   BitCheckBox.Free;
   inherited Destroy;
 end;
@@ -87,8 +92,9 @@ begin
     FFuseByte += ComboBoxes[i].Value;
   end;
 
-  HexFuse.Value := FFuseByte;
-  BitCheckBox.Value := FFuseByte;
+  setFuseByte(FFuseByte);
+  //   HexFuse.Value := FFuseByte;
+  // BitCheckBox.Value := FFuseByte;
 end;
 
 procedure TFuseTabSheet.BitMaskChange(Sender: TObject);
@@ -96,14 +102,16 @@ var
   i: integer;
 begin
   FFuseByte := BitCheckBox.Value;
-  HexFuse.Value := FFuseByte;
 
-  for i := 0 to Length(CheckBoxes) - 1 do begin
-    CheckBoxes[i].Value := FFuseByte;
-  end;
-  for i := 0 to Length(ComboBoxes) - 1 do begin
-    ComboBoxes[i].Value := FFuseByte;
-  end;
+  setFuseByte(FFuseByte);
+  //HexFuse.Value := FFuseByte;
+  //
+  //for i := 0 to Length(CheckBoxes) - 1 do begin
+  //  CheckBoxes[i].Value := FFuseByte;
+  //end;
+  //for i := 0 to Length(ComboBoxes) - 1 do begin
+  //  ComboBoxes[i].Value := FFuseByte;
+  //end;
 end;
 
 procedure TFuseTabSheet.HexEditChange(Sender: TObject);
@@ -111,14 +119,16 @@ var
   i: integer;
 begin
   FFuseByte := HexFuse.Value;
-  BitCheckBox.Value := FFuseByte;
 
-  for i := 0 to Length(CheckBoxes) - 1 do begin
-    CheckBoxes[i].Value := FFuseByte;
-  end;
-  for i := 0 to Length(ComboBoxes) - 1 do begin
-    ComboBoxes[i].Value := FFuseByte;
-  end;
+  setFuseByte(FFuseByte);
+  //BitCheckBox.Value := FFuseByte;
+  //
+  //for i := 0 to Length(CheckBoxes) - 1 do begin
+  //  CheckBoxes[i].Value := FFuseByte;
+  //end;
+  //for i := 0 to Length(ComboBoxes) - 1 do begin
+  //  ComboBoxes[i].Value := FFuseByte;
+  //end;
 end;
 
 procedure TFuseTabSheet.setFuseByte(AValue: byte);
@@ -143,18 +153,21 @@ var
   avr, fuse: string;
 begin
   if Sender is TButton then begin
-    if MessageDlg('Warnung !', 'Folgende Funktion kann den AVR zerstören' + LineEnding + 'Funktion ausführen ?', mtWarning, [mbYes, mbNo, mbCancel], 0) = mrYes then begin
+    if ssCtrl in GetKeyShiftState then begin
+      if MessageDlg('Warnung !', 'Folgende Funktion kann den AVR zerstören' + LineEnding + 'Funktion ausführen ?', mtWarning, [mbYes, mbNo, mbCancel], 0) = mrYes then begin
 
-      if not Assigned(Run_Command_Form) then begin
-        Run_Command_Form := TRun_Command_Form.Create(nil);
+        if not Assigned(Run_Command_Form) then begin
+          Run_Command_Form := TRun_Command_Form.Create(nil);
+        end;
+        Run_Command_Form.Memo1.Clear;
+
+        avr := ExtractFileName(AVR_XML_Path);
+        avr := ExtractFileNameWithoutExt(avr);
+
+        fuse := ' -B32 -U' + FFuseName + ':w:0x' + IntToHex(not FFuseByte, 2) + ':m';  // -B32 muss weg ?????????
+
+        Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + fuse);
       end;
-      Run_Command_Form.Memo1.Clear;
-
-      avr := ExtractFileName(AVR_XML_Path);
-      avr := ExtractFileNameWithoutExt(avr);
-
-      fuse := ' -U' + FFuseName + ':r:-:h';   // negieren !!!!!
-      Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + fuse);
     end;
   end;
 end;
@@ -189,12 +202,21 @@ begin
 
   with BurnButton do begin
     Parent := Self;
-    Left := 530;
-    Top := Self.Height - 100;
+    Left := 330;
+    Top := Self.Height - 50;
     Width := 50;
     Text := 'Burn';
     Anchors := [akBottom, akLeft];
     OnClick := @BurnButtonClick;
+  end;
+
+  with StaticTexts_Ctrl do begin
+    Parent := Self;
+    Left := 390;
+    Width := 100;
+    Top := Self.Height - 47;
+    Text := '(Press [Ctrl])';
+    Anchors := [akBottom, akLeft];
   end;
 
   for i := 0 to Length(ComboBoxes) - 1 do begin
@@ -276,7 +298,6 @@ begin
 end;
 
 end.
-
 
 
 

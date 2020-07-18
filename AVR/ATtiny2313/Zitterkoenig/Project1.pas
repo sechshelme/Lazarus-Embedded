@@ -120,7 +120,13 @@ var
   procedure Timer0_Interrupt; public Name 'TIMER0_COMPA_ISR'; interrupt;
   const
     p: byte = 0;
+    z:Integer=0;
   begin
+    inc(z);
+    if z<100 then exit;
+    z:=0;
+
+
     p := p + 1;
     if (p > 3) then begin
       p := 0;
@@ -144,6 +150,7 @@ begin
 
   // -- Timer initialisieren
   TCCR0A := (1 shl WGM01);
+//  TCCR0B := TCCR0B or %101;
   TCCR0B := TCCR0B or %101;
   TIMSK := TIMSK or (1 shl OCIE0A);
   avr_sei();

@@ -28,13 +28,10 @@ type
   TFuseComboBox = class(TComboBox)
   private
     FMask: byte;
-    //    FMasks: array of byte;
     BitStart, BitSize: integer;
-    //    procedure SetMask(AValue: byte);
     function GetValue: byte;
     procedure SetValue(AValue: byte);
   public
-    //    property Mask: byte write SetMask;
     property Value: byte read GetValue write SetValue;
     constructor Create(TheOwner: TComponent; AMask: byte);
     procedure Add(const s: string; AMask: byte);
