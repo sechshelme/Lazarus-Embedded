@@ -11,7 +11,7 @@ uses
   Embedded_GUI_Run_Command,
   Embedded_GUI_AVR_Fuse_Common,
 
-   Embedded_GUI_AVR_Fuse_Const,
+  //   Embedded_GUI_AVR_Fuse_Const,
 
   Embedded_GUI_AVR_Fuse_TabSheet;
 
@@ -271,10 +271,6 @@ begin
       end;
     end;
   end;
-
-  //RunCommandForm.RunCommand('avrdude -cusbasp -pattiny2313');
-  //  Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + ' -Uhfuse:r:-:h -Ulfuse:r:-:h -Uefuse:r:-:h -Ulock:r:-:h');
-  //  Caption := Run_Command_Form.ExitCode.ToString;
 end;
 
 procedure TForm_AVR_Fuse.Button_CreateConstClick(Sender: TObject);
@@ -282,17 +278,9 @@ var
   fl, sl: TStringList;
   ii: integer;
   l: integer;
- s : string;
+  s: string;
   doc: TXMLDocument;
   Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
-
-  procedure BlockEnd(sl:TStrings);
-  var s:String;
-  begin
-      s:=sl[sl.Count-1];
-      Delete(s, Length(s),1);
-      sl[sl.Count-1]:=s+');';
-  end;
 
   procedure AddFuse(Node_Register: TDOMNode);
   var
@@ -328,7 +316,7 @@ var
         end;
       end;
       Caption := n + ' (' + FuseName + ')';
-      sl.Add('      Caption: '#39 + n + #39'; FuseName: '#39 + FuseName + #39'; ofs: '#39'$' + IntToHex(ofs, 2) + #39';');
+      sl.Add('     (Caption: '#39 + n + #39'; FuseName: '#39 + FuseName + #39'; ofs: $' + IntToHex(ofs, 2) + '; BitField:(');
 
     end;
   end;
@@ -365,13 +353,13 @@ begin
 
   fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
   for ii := 0 to 3 do begin
-//    for ii := 0 to fl.Count - 1 do begin
+    //    for ii := 0 to fl.Count - 1 do begin
     ReadXMLFile(doc, fl[ii]);
     s := ExtractFileName(fl[ii]);
-    s:= ExtractFileNameWithoutExt(s);
+    s := ExtractFileNameWithoutExt(s);
 
     sl.Add('    Name: '#39 + s + #39';');
-    sl.Add('    Fuses(');
+    sl.Add('    Fuses:(');
 
 
     Node_Modules := doc.DocumentElement.FindNode('modules');
@@ -397,13 +385,28 @@ begin
                     FuseTabSheet[l].NewComboBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):',
                       StrToInt(GetAttribut(Node_Bitfield, 'mask')));
                     Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module, FuseTabSheet[l]);
+
+                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' +
+                    'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' +
+                    'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' +
+                    ' Values: ((Caption: '#39'abc'#39'))),');
+
+
                   end else begin
                     FuseTabSheet[l].AddCheckBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')',
                       StrToInt(GetAttribut(Node_Bitfield, 'mask')));
+                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' +
+                    'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' +
+                    'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' +
+                    ' Values: ()),');
                   end;
 
                   Node_Bitfield := Node_Bitfield.NextSibling;
                 end;
+                s:=sl[sl.Count-1];
+                Insert('))',s, Length(s)-1);
+                sl[sl.Count-1]:=s;
+
                 Node_Register := Node_Register.NextSibling;
               end;
             end;
@@ -422,7 +425,10 @@ begin
 
   end;
 
-  BlockEnd(sl);  fl.Free;
+  s := sl[sl.Count - 1];
+  Delete(s, Length(s), 1);
+  sl[sl.Count - 1] := s + ');';
+  fl.Free;
   sl.Add('');
   sl.Add('implementation');
   sl.Add('');

@@ -1,19 +1,19 @@
 object Form_AVR_Fuse: TForm_AVR_Fuse
-  Left = 1812
-  Height = 576
-  Top = 59
-  Width = 657
+  Left = 1719
+  Height = 200
+  Top = 203
+  Width = 393
   Caption = 'Form_AVR_Fuse'
-  ClientHeight = 576
-  ClientWidth = 657
+  ClientHeight = 200
+  ClientWidth = 393
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.1.0.0'
   object PageControl1: TPageControl
     Left = 0
-    Height = 470
+    Height = 94
     Top = 48
-    Width = 657
+    Width = 393
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabOrder = 0
   end
@@ -30,15 +30,15 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
   object Label1: TLabel
     Left = 45
     Height = 1
-    Top = 527
+    Top = 151
     Width = 1
     Anchors = [akLeft, akBottom]
     ParentColor = False
   end
   object Button_Close: TButton
-    Left = 571
+    Left = 307
     Height = 25
-    Top = 540
+    Top = 164
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Close'
@@ -47,9 +47,9 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
     TabOrder = 2
   end
   object Button_ReadFuse: TButton
-    Left = 480
+    Left = 216
     Height = 25
-    Top = 540
+    Top = 164
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Read Fuse'
@@ -59,7 +59,7 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
   object Button_CreateConst: TButton
     Left = 74
     Height = 25
-    Top = 544
+    Top = 168
     Width = 86
     Anchors = [akLeft, akBottom]
     Caption = 'CreateConst'
