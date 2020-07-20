@@ -334,18 +334,17 @@ var
           s := GetAttribut(Node_Value, 'caption');
           s += ' (' + GetAttribut(Node_Value, 'name') + ')';
           TabSheet.AddComboxItem(s, GetAttribut(Node_Value, 'value').ToInteger);
+          Node_Value := Node_Value.NextSibling;
 
-          sl.Add('          (Caption: '#39+GetAttribut(Node_Value, 'caption')+#39'; Name: '#39+
+          sl.Add('(Caption: '#39+GetAttribut(Node_Value, 'caption')+#39'; Name: '#39+
           GetAttribut(Node_Value, 'name')+#39'; Value: $' +IntToHex(StrToInt(GetAttribut(Node_Value, 'value')), 2)+'),');
 
-          Node_Value := Node_Value.NextSibling;
         end;
       end;
       Node_Value_Group := Node_Value_Group.NextSibling;
     end;
 
   end;
-
 
 const
   UName = 'Embedded_GUI_AVR_Fuse_Const';
@@ -411,29 +410,22 @@ begin
                     FuseTabSheet[l].NewComboBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):',
                       StrToInt(GetAttribut(Node_Bitfield, 'mask')));
 
-                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' +
-                    'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' +
-                    'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' +
-                    ' Values: (');
-//                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: (');
+                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: (');
                     //                    ' Values: ((Caption: '#39'abc'#39'))),');
-                    Read_Value_Group2(GetAttribut(Node_Bitfield, 'values'), Node_Module, FuseTabSheet[l]);
 
+                    Read_Value_Group2(GetAttribut(Node_Bitfield, 'values'), Node_Module, FuseTabSheet[l]);
 
                   end else begin
                     FuseTabSheet[l].AddCheckBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')',
                       StrToInt(GetAttribut(Node_Bitfield, 'mask')));
-                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' +
-                    'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' +
-                    'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' +
-                    ' Values: ()),');
+                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: ()),');
                   end;
 
                   Node_Bitfield := Node_Bitfield.NextSibling;
                 end;
-                s:=sl[sl.Count-1];
-                Insert('))',s, Length(s)-1);
-                sl[sl.Count-1]:=s;
+                s := sl[sl.Count - 1];
+                Insert('))', s, Length(s) - 1);
+                sl[sl.Count - 1] := s;
 
                 Node_Register := Node_Register.NextSibling;
               end;

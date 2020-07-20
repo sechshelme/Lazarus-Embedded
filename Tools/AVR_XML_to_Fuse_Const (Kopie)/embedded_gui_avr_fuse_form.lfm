@@ -1,0 +1,69 @@
+object Form_AVR_Fuse: TForm_AVR_Fuse
+  Left = 1719
+  Height = 200
+  Top = 203
+  Width = 393
+  Caption = 'Form_AVR_Fuse'
+  ClientHeight = 200
+  ClientWidth = 393
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.1.0.0'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 94
+    Top = 48
+    Width = 393
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabOrder = 0
+  end
+  object ComboBox1: TComboBox
+    Left = 16
+    Height = 27
+    Top = 8
+    Width = 328
+    ItemHeight = 0
+    OnChange = ComboBox1Change
+    TabOrder = 1
+    Text = '../AVR_Fuse/XML/ATtiny2313A'
+  end
+  object Label1: TLabel
+    Left = 45
+    Height = 1
+    Top = 151
+    Width = 1
+    Anchors = [akLeft, akBottom]
+    ParentColor = False
+  end
+  object Button_Close: TButton
+    Left = 307
+    Height = 25
+    Top = 164
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Close'
+    ModalResult = 11
+    OnClick = Button_CloseClick
+    TabOrder = 2
+  end
+  object Button_ReadFuse: TButton
+    Left = 216
+    Height = 25
+    Top = 164
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Read Fuse'
+    OnClick = Button_ReadFuseClick
+    TabOrder = 3
+  end
+  object Button_CreateConst: TButton
+    Left = 74
+    Height = 25
+    Top = 168
+    Width = 86
+    Anchors = [akLeft, akBottom]
+    Caption = 'CreateConst'
+    OnClick = Button_CreateConstClick
+    TabOrder = 4
+  end
+end
