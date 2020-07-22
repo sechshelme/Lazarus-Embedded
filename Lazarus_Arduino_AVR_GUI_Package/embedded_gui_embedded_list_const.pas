@@ -3,7 +3,7 @@
 // Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und
 // "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.
 
-unit Embedded_GUI_SubArch_List;
+unit Embedded_GUI_Embedded_List_Const;
 
 interface
 
@@ -1198,7 +1198,7 @@ type
 const
   xtensa_ControllerDataList : Txtensa_ControllerDataList = (
     ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'abi', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'),
-    ('ESP8266', 'ESP8266', 'lx106', 'soft', 'abi_xtensa_call0', '$40000000', '448', '$40070000', '520'),
+    ('ESP8266', 'ESP8266', 'lx106', 'soft', 'abi_xtensa_call0', '$40000000', '1024', '$40070000', '520'),
     ('ESP32', 'ESP32', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '2'),
     ('ESP32_D0WD', 'ESP32_D0WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448', '$40070000', '520'),
     ('ESP32_D2WD', 'ESP32_D2WD', 'lx6', 'hard', 'abi_xtensa_windowed', '$40000000', '448', '$40070000', '520'),

@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Dialogs, LCLType, Controls,
   ProjectIntf,
   Embedded_GUI_Common,
-  Embedded_GUI_SubArch_List; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
+  Embedded_GUI_Embedded_List_Const; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
 type
 

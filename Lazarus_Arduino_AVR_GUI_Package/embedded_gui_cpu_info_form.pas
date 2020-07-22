@@ -10,7 +10,7 @@ uses
 
   // Embedded ( Eigene Units )
   Embedded_GUI_Common,
-  Embedded_GUI_SubArch_List;
+  Embedded_GUI_Embedded_List_Const;
 
 type
 

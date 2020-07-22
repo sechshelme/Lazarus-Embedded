@@ -18,7 +18,7 @@ uses
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_AVR_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
-  Embedded_GUI_SubArch_List;
+  Embedded_GUI_Embedded_List_Const;
 
 type
 

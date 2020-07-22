@@ -17,9 +17,10 @@ uses
   Embedded_GUI_Serial_Monitor_Form, 
   Embedded_GUI_Serial_Monitor_Interface_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Options_Form, 
-  Embedded_GUI_Serial_Monitor_Output_Options_Frame, Embedded_GUI_SubArch_List, 
+  Embedded_GUI_Serial_Monitor_Output_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Send_File_Form, 
-  Embedded_GUI_Common_FileComboBox, Embedded_GUI_Common, LazarusPackageIntf;
+  Embedded_GUI_Common_FileComboBox, Embedded_GUI_Common, 
+  Embedded_GUI_Embedded_List_Const, LazarusPackageIntf;
 
 implementation
 

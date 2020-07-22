@@ -329,6 +329,8 @@ begin
 end;
 
 procedure TForm1.Generate_BitBtnClick(Sender: TObject);
+const
+  UName = 'Embedded_GUI_Embedded_List_Const';
 var
   i: integer;
   CPU_SL, SubArchList: TStringList;
@@ -342,7 +344,7 @@ begin
   SynEdit1.Lines.Add('// Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und');
   SynEdit1.Lines.Add('// "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.');
   SynEdit1.Lines.Add('');
-  SynEdit1.Lines.Add('unit Embedded_GUI_SubArch_List;');
+  SynEdit1.Lines.Add('unit ' + UName + ';');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
@@ -363,7 +365,7 @@ begin
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/embedded_gui_subarch_list.pas');
+  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/' + LowerCase(UName) + '.pas');
   CPU_SL.Free;
 end;
 

@@ -1,4 +1,4 @@
-// Diese Unit wird durch das Tool "AVR_XML_to_Fuse_Const" generiert
+// Diese Unit wird durch das Tool "Tools/AVR_XML_to_Fuse_Const" generiert !
 
 unit Embedded_GUI_AVR_Fuse_Const;
 

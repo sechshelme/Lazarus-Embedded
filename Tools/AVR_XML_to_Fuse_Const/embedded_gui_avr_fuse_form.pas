@@ -6,10 +6,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  ExtCtrls, FileUtil, LazFileUtils, laz2_XMLRead, laz2_DOM,
-  Embedded_GUI_Common,
+  ExtCtrls, FileUtil, LazFileUtils, laz2_XMLRead, laz2_DOM, SynEdit,
+  SynHighlighterPas,
   Embedded_GUI_AVR_Fuse_Const,
-  Embedded_GUI_AVR_Fuse_TabSheet;
+  Embedded_GUI_Common;
 
 type
 
@@ -19,6 +19,8 @@ type
     Button_CreateConst: TButton;
     Button_Close: TButton;
     Label1: TLabel;
+    SynEdit1: TSynEdit;
+    SynPasSyn1: TSynPasSyn;
     procedure Button_CloseClick(Sender: TObject);
     procedure Button_CreateConstClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -75,6 +77,7 @@ end;
 
 procedure TForm_AVR_Fuse.FormCreate(Sender: TObject);
 begin
+  SynEdit1.Clear;
   Caption := Title + 'Create AVR Fuse Const';
   LoadFormPos_from_XML(self);
 end;
@@ -122,7 +125,7 @@ var
     sl.Add('      (Caption: '#39 + n + #39'; Name: '#39 + FuseName + #39'; ofs: $' + IntToHex(ofs, 2) + '; BitField:(');
   end;
 
-  procedure Read_Value_Group2(const Attr_name: string; Node: TDOMNode);
+  procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode);
   var
     Node_Value_Group, Node_Value: TDOMNode;
     s: string;
@@ -142,14 +145,13 @@ var
       end;
       Node_Value_Group := Node_Value_Group.NextSibling;
     end;
-
   end;
 
 const
   UName = 'Embedded_GUI_AVR_Fuse_Const';
 begin
   sl := TStringList.Create;
-  sl.Add('// Diese Unit wird durch das Tool "AVR_XML_to_Fuse_Const" generiert');
+  sl.Add('// Diese Unit wird durch das Tool "Tools/AVR_XML_to_Fuse_Const" generiert !');
   sl.Add('');
   sl.Add('unit ' + UName + ';');
   sl.Add('');
@@ -205,7 +207,7 @@ begin
 
                   if GetAttribut(Node_Bitfield, 'values') <> '' then begin
                     sl.Add('         (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: (');
-                    Read_Value_Group2(GetAttribut(Node_Bitfield, 'values'), Node_Module);
+                    Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module);
                   end else begin
                     sl.Add('         (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: ()),');
                   end;
@@ -242,7 +244,9 @@ begin
   sl.Add('begin');
   sl.Add('end.');
 
-  sl.SaveToFile(LowerCase(UName) + '.pas');
+  sl.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/' + LowerCase(UName) + '.pas');
+  SynEdit1.Lines.Text := sl.Text;
+
   sl.Free;
 end;
 
