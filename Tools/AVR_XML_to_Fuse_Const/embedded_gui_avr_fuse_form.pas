@@ -177,7 +177,8 @@ begin
   sl.Add('const');
   sl.Add('  AVR_Fuse_Data: TAVR_Fuse_Data = (');
 
-  fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
+  fl := FindAllFiles('../AVR_Fuse_from_XML/XML', '*.XML', False);
+  fl.Sorted := True;
   for ii := 0 to fl.Count - 1 do begin
     ReadXMLFile(doc, fl[ii]);
     s := ExtractFileName(fl[ii]);

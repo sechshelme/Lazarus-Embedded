@@ -10,6 +10,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Run_Command,
   Embedded_GUI_AVR_Fuse_Common,
+  Embedded_GUI_AVR_Fuse_Const,
   Embedded_GUI_AVR_Fuse_TabSheet;
 
 type
@@ -29,8 +30,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
-    function IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
-    function GetAttribut(Node: TDOMNode; const NodeName: string): string;
     procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; TabSheet: TFuseTabSheet);
     procedure ClearTabs;
   private
@@ -49,36 +48,6 @@ implementation
 
 /// --- private
 
-function TForm_AVR_Fuse.IsAttribut(Node: TDOMNode; const NodeName, NodeValue: string): boolean;
-var
-  i: integer;
-begin
-  Result := False;
-  if Node.HasAttributes then begin
-    for i := 0 to Node.Attributes.Length - 1 do begin
-      if Node.Attributes[i].NodeName = NodeName then begin
-        if Node.Attributes[i].NodeValue = NodeValue then begin
-          Result := True;
-        end;
-      end;
-    end;
-  end;
-end;
-
-function TForm_AVR_Fuse.GetAttribut(Node: TDOMNode; const NodeName: string): string;
-var
-  i: integer;
-begin
-  Result := '';
-  if Node.HasAttributes then begin
-    for i := 0 to Node.Attributes.Length - 1 do begin
-      if Node.Attributes[i].NodeName = NodeName then begin
-        Result := Node.Attributes[i].NodeValue;
-      end;
-    end;
-  end;
-end;
-
 procedure TForm_AVR_Fuse.ClearTabs;
 var
   i: integer;
@@ -94,38 +63,35 @@ var
   Node_Value_Group, Node_Value: TDOMNode;
   s: string;
 begin
-  Node_Value_Group := Node.FirstChild;
-  while Node_Value_Group <> nil do begin
-    if IsAttribut(Node_Value_Group, 'name', Attr_name) then begin
-      Node_Value := Node_Value_Group.FirstChild;
-      while Node_Value <> nil do begin
-        s := GetAttribut(Node_Value, 'caption');
-        s += ' (' + GetAttribut(Node_Value, 'name') + ')';
-        TabSheet.AddComboxItem(s, GetAttribut(Node_Value, 'value').ToInteger);
-        Node_Value := Node_Value.NextSibling;
-      end;
-    end;
-    Node_Value_Group := Node_Value_Group.NextSibling;
-  end;
-
+  //Node_Value_Group := Node.FirstChild;
+  //while Node_Value_Group <> nil do begin
+  //  if IsAttribut(Node_Value_Group, 'name', Attr_name) then begin
+  //    Node_Value := Node_Value_Group.FirstChild;
+  //    while Node_Value <> nil do begin
+  //      s := GetAttribut(Node_Value, 'caption');
+  //      s += ' (' + GetAttribut(Node_Value, 'name') + ')';
+  //      TabSheet.AddComboxItem(s, GetAttribut(Node_Value, 'value').ToInteger);
+  //      Node_Value := Node_Value.NextSibling;
+  //    end;
+  //  end;
+  //  Node_Value_Group := Node_Value_Group.NextSibling;
+  //end;
+  //
 end;
 
 /// --- public
 
 procedure TForm_AVR_Fuse.FormCreate(Sender: TObject);
 var
-  fl: TStringList;
   i: integer;
 begin
   Caption := Title + 'AVR Fuse';
-  ComboBox1.Sorted := True;
   ComboBox1.Style := csOwnerDrawFixed;
 
-  fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
-  for i := 0 to fl.Count - 1 do begin
-    ComboBox1.Items.Add(fl[i]);
+  for i := 0 to Length(AVR_Fuse_Data) - 1 do begin
+    ComboBox1.Items.Add(AVR_Fuse_Data[i].Name);
   end;
-  fl.Free;
+  ComboBox1.ItemIndex := 0;
 
   LoadFormPos_from_XML(self);
 end;
@@ -135,10 +101,11 @@ begin
   //  AVR_XML_Path := ComboBox1.Items[ComboBox1.ItemIndex];
   AVR_XML_Path := ComboBox1.Text;
   Caption := AVR_XML_Path;
-  if FileExists(AVR_XML_Path) then begin
-    ClearTabs;
-    CreateTab(Sender);
-  end;
+  //  if FileExists(AVR_XML_Path) then begin
+  ClearTabs;
+  CreateTab(Sender);
+
+  //end;
 end;
 
 procedure TForm_AVR_Fuse.Button_CloseClick(Sender: TObject);
@@ -147,25 +114,25 @@ begin
 end;
 
 procedure TForm_AVR_Fuse.CreateTab(Sender: TObject);
-var
-  l: integer;
-  doc: TXMLDocument;
-  Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
+//  doc: TXMLDocument;
+//  Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
 
-  procedure AddFuse(Node_Register: TDOMNode);
+  procedure AddFuse;
   var
     n: string;
     ofs: byte;
-    i: integer;
+    l: integer;
   begin
-    i := Length(FuseTabSheet);
-    SetLength(FuseTabSheet, i + 1);
-    FuseTabSheet[i] := TFuseTabSheet.Create(Self);
-    with FuseTabSheet[i] do begin
-      Tag := i;
+    l := Length(FuseTabSheet);
+    SetLength(FuseTabSheet, l + 1);
+    FuseTabSheet[l] := TFuseTabSheet.Create(Self);
+    with FuseTabSheet[l] do begin
+      Tag := l;
       PageControl := PageControl1;
-      ofs := StrToInt(GetAttribut(Node_Register, 'offset'));
-      n := GetAttribut(Node_Register, 'name');
+      ofs := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[l].ofs;
+      n := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[l].Name;
+      //      ofs := StrToInt(GetAttribut(Node_Register, 'offset'));
+      //      n := GetAttribut(Node_Register, 'name');
       case n of
         'EXTENDED': begin
           FuseName := 'efuse';
@@ -189,52 +156,35 @@ var
     end;
   end;
 
+var
+  i, j, k, l: integer;
+  s: string;
 begin
-  ReadXMLFile(doc, AVR_XML_Path);
+  for i := 0 to Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses) - 1 do begin
+    AddFuse;
 
-  Node_Modules := doc.DocumentElement.FindNode('modules');
-  if Node_Modules <> nil then begin
+    for j := 0 to Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField) - 1 do begin
+      l := i;
+      if Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values) > 0 then begin
+        FuseTabSheet[l].NewComboBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption + ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
+          AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Mask);
+        for k := 0 to length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values) - 1 do begin
 
-    Node_Module := Node_Modules.FirstChild;
-    while Node_Module <> nil do begin
-      if Node_Module.NodeName = 'module' then begin
-        if (IsAttribut(Node_Module, 'name', 'FUSE')) or (IsAttribut(Node_Module, 'name', 'LOCKBIT')) then begin
+          s := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Caption;
+          s += ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Name + ')';
 
-          Node_Register_group := Node_Module.FirstChild;
-          if Node_Register_group <> nil then begin
-            Node_Register := Node_Register_group.FirstChild;
-            while Node_Register <> nil do begin
-
-              AddFuse(Node_Register);
-
-              Node_Bitfield := Node_Register.FirstChild;
-              while Node_Bitfield <> nil do begin
-
-                l := Length(FuseTabSheet) - 1;
-                if GetAttribut(Node_Bitfield, 'values') <> '' then begin
-                  FuseTabSheet[l].NewComboBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):',
-                    StrToInt(GetAttribut(Node_Bitfield, 'mask')));
-                  Read_Value_Group(GetAttribut(Node_Bitfield, 'values'), Node_Module, FuseTabSheet[l]);
-                end else begin
-                  FuseTabSheet[l].AddCheckBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')',
-                    StrToInt(GetAttribut(Node_Bitfield, 'mask')));
-                end;
-
-                Node_Bitfield := Node_Bitfield.NextSibling;
-              end;
-              Node_Register := Node_Register.NextSibling;
-            end;
-          end;
+          FuseTabSheet[l].AddComboxItem(s, AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Value);
         end;
+
+      end else begin
+        FuseTabSheet[l].AddCheckBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption + ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
+          AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Mask);
       end;
-      Node_Module := Node_Module.NextSibling;
     end;
   end;
   if PageControl1.PageCount > 0 then begin
     PageControl1.TabIndex := 0;
   end;
-
-  doc.Free;
 end;
 
 procedure TForm_AVR_Fuse.Button_ReadFuseClick(Sender: TObject);
@@ -249,7 +199,6 @@ begin
 
   avr := ExtractFileName(AVR_XML_Path);
   avr := ExtractFileNameWithoutExt(avr);
-//  WriteLn(avr);
 
   l := Length(FuseTabSheet);
   for i := 0 to l - 1 do begin
