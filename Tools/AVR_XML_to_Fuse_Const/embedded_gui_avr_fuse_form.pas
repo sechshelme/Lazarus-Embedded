@@ -316,7 +316,7 @@ var
         end;
       end;
       Caption := n + ' (' + FuseName + ')';
-      sl.Add('     (Caption: '#39 + n + #39'; FuseName: '#39 + FuseName + #39'; ofs: $' + IntToHex(ofs, 2) + '; BitField:(');
+      sl.Add('      (Caption: '#39 + n + #39'; FuseName: '#39 + FuseName + #39'; ofs: $' + IntToHex(ofs, 2) + '; BitField:(');
 
     end;
   end;
@@ -335,17 +335,16 @@ var
           s += ' (' + GetAttribut(Node_Value, 'name') + ')';
           TabSheet.AddComboxItem(s, GetAttribut(Node_Value, 'value').ToInteger);
 
-          sl.Add('          (Caption: '#39+GetAttribut(Node_Value, 'caption')+#39'; Name: '#39+
-          GetAttribut(Node_Value, 'name')+#39'; Value: $' +IntToHex(StrToInt(GetAttribut(Node_Value, 'value')), 2)+'),');
+          sl.Add('           (Caption: '#39 + GetAttribut(Node_Value, 'caption') + #39'; Name: '#39 + GetAttribut(Node_Value, 'name') + #39'; Value: $' + IntToHex(StrToInt(GetAttribut(Node_Value, 'value')), 2) + '),');
 
           Node_Value := Node_Value.NextSibling;
         end;
+        sl[sl.Count - 1] := StringReplace(sl[sl.Count - 1], '),', '))),', []);
       end;
       Node_Value_Group := Node_Value_Group.NextSibling;
     end;
 
   end;
-
 
 const
   UName = 'Embedded_GUI_AVR_Fuse_Const';
@@ -375,18 +374,16 @@ begin
   sl.Add('  end;');
   sl.Add('');
   sl.Add('const');
-  sl.Add('  AVR_Fuse_Data: TAVR_Fuse_Data = ((');
+  sl.Add('  AVR_Fuse_Data: TAVR_Fuse_Data = (');
 
   fl := FindAllFiles('../AVR_Fuse/XML', '*.XML', False);
-  for ii := 0 to 3 do begin
+  for ii := 0 to 13 do begin
     //    for ii := 0 to fl.Count - 1 do begin
     ReadXMLFile(doc, fl[ii]);
     s := ExtractFileName(fl[ii]);
     s := ExtractFileNameWithoutExt(s);
 
-    sl.Add('    Name: '#39 + s + #39';');
-    sl.Add('    Fuses:(');
-
+    sl.Add('    (Name: '#39 + s + #39'; Fuses:(');
 
     Node_Modules := doc.DocumentElement.FindNode('modules');
     if Node_Modules <> nil then begin
@@ -399,6 +396,7 @@ begin
             Node_Register_group := Node_Module.FirstChild;
             if Node_Register_group <> nil then begin
               Node_Register := Node_Register_group.FirstChild;
+              //              if Node_Register=nil then;  sl.Add(')),');
               while Node_Register <> nil do begin
 
                 AddFuse(Node_Register);
@@ -411,29 +409,22 @@ begin
                     FuseTabSheet[l].NewComboBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + '):',
                       StrToInt(GetAttribut(Node_Bitfield, 'mask')));
 
-                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' +
-                    'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' +
-                    'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' +
-                    ' Values: (');
-//                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: (');
-                    //                    ' Values: ((Caption: '#39'abc'#39'))),');
+                    sl.Add('         (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: (');
                     Read_Value_Group2(GetAttribut(Node_Bitfield, 'values'), Node_Module, FuseTabSheet[l]);
-
-
                   end else begin
                     FuseTabSheet[l].AddCheckBox(GetAttribut(Node_Bitfield, 'caption') + ' (' + GetAttribut(Node_Bitfield, 'name') + ')',
                       StrToInt(GetAttribut(Node_Bitfield, 'mask')));
-                    sl.Add('        (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' +
-                    'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' +
-                    'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' +
-                    ' Values: ()),');
+                    sl.Add('         (Caption: '#39 + GetAttribut(Node_Bitfield, 'caption') + #39'; ' + 'Name: '#39 + GetAttribut(Node_Bitfield, 'name') + #39'; ' + 'Mask: $' + IntToHex(StrToInt(GetAttribut(Node_Bitfield, 'mask')), 2) + ';' + ' Values: ()),');
                   end;
 
                   Node_Bitfield := Node_Bitfield.NextSibling;
                 end;
-                s:=sl[sl.Count-1];
-                Insert('))',s, Length(s)-1);
-                sl[sl.Count-1]:=s;
+
+                if Pos('),', sl[sl.Count - 1]) > 0 then begin
+                  sl[sl.Count - 1] := StringReplace(sl[sl.Count - 1], '),', '))),', []);
+                end else begin
+                  sl[sl.Count - 1]:=sl[sl.Count - 1]+')),';
+                end;
 
                 Node_Register := Node_Register.NextSibling;
               end;
@@ -447,10 +438,8 @@ begin
       PageControl1.TabIndex := 0;
     end;
 
-
-
     doc.Free;
-
+    sl[sl.Count - 1] := StringReplace(sl[sl.Count - 1], '),', '))),', []);
   end;
 
   s := sl[sl.Count - 1];
