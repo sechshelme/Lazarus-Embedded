@@ -27,5 +27,5 @@ The package is located at: Lazarus_Arduino_AVR_GUI_Package
 <br><br><br>
 
 <img src="avr_package.png">
-<img src="fuse.png">
+<img src="avr_fuse.png">
 
