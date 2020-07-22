@@ -10,9 +10,9 @@ Nachträglich kann man mit <i>"Projekt/AVR-Optionen (Arduino)..."</i> die Parame
 Voraussetzung ist ein funktionstüchtige AVR/ARM-Cross-Compiler.
 
 Die Package befindet sich unter: Lazarus_Arduino_AVR_GUI_Package
-
-
 <br><br><br>
+
+
 <b> Lazarus Arduino / AVR / STM32 / ARM GUI </b> (german)
 
 This package extends Lazarus with a GUI for Arduino / AVR / STM32 / ARM GUI.
@@ -24,6 +24,7 @@ You can edit the parameters later with <i> "Project / AVR options (Arduino) ..."
 A working AVR / ARM cross compiler is required.
 
 The package is located at: Lazarus_Arduino_AVR_GUI_Package
+<br><br><br>
 
 <img src="avr_package.png">
 <img src="fuse.png">
