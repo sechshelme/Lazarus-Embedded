@@ -60,7 +60,7 @@
       <CustomOptions Value="-WpATMEGA32U4
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -pATMEGA32U4 -cusbasp -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -v -pATMEGA32U4 -cavr109 -P/dev/ttyACM0 -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

@@ -3,7 +3,7 @@ program Project1;
 const
   BP5 = 5; // Pin 13 des Arduino
   PC7 = 7;
-  sl = 25000;
+  sl = 21000;
 
   procedure mysleep(t: int32);
   var

@@ -8,6 +8,7 @@ uses
   Classes, SysUtils,
   // LCL
   Forms, Controls, StdCtrls, Dialogs, ExtCtrls,
+  Serial,
   // LazUtils
   LazLoggerBase,
   // IdeIntf
@@ -47,8 +48,27 @@ type
 
   end;
 
+procedure ResetCom;
+var
+  SerialHandle: TSerialHandle;
+begin
+  exit;
+  SerialHandle := SerOpen('/dev/ttyACM0');
+  SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
+
+  SerSetDTR(SerialHandle, True);
+  SerSetRTS(SerialHandle, True);
+  SerSetDTR(SerialHandle, False);
+  SerSetRTS(SerialHandle, False);
+
+//  SerSync(SerialHandle);
+//  SerFlushOutput(SerialHandle);
+  SerClose(SerialHandle);
+end;
+
 function TNewIDEHandle.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
+  ResetCom;
   if Assigned(Serial_Monitor_Form) then begin
     if Serial_Monitor_Form.Timer1.Enabled then begin
       Active := True;
@@ -61,6 +81,7 @@ end;
 
 function TNewIDEHandle.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
+  ResetCom;
   if Assigned(Serial_Monitor_Form) then begin
     if Serial_Monitor_Form.Timer1.Enabled then begin
       Active := True;
