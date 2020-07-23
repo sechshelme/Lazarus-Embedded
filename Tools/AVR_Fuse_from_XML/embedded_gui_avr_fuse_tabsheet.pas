@@ -93,8 +93,6 @@ begin
   end;
 
   setFuseByte(FFuseByte);
-  //   HexFuse.Value := FFuseByte;
-  // BitCheckBox.Value := FFuseByte;
 end;
 
 procedure TFuseTabSheet.BitMaskChange(Sender: TObject);
@@ -104,14 +102,6 @@ begin
   FFuseByte := BitCheckBox.Value;
 
   setFuseByte(FFuseByte);
-  //HexFuse.Value := FFuseByte;
-  //
-  //for i := 0 to Length(CheckBoxes) - 1 do begin
-  //  CheckBoxes[i].Value := FFuseByte;
-  //end;
-  //for i := 0 to Length(ComboBoxes) - 1 do begin
-  //  ComboBoxes[i].Value := FFuseByte;
-  //end;
 end;
 
 procedure TFuseTabSheet.HexEditChange(Sender: TObject);
@@ -121,14 +111,6 @@ begin
   FFuseByte := HexFuse.Value;
 
   setFuseByte(FFuseByte);
-  //BitCheckBox.Value := FFuseByte;
-  //
-  //for i := 0 to Length(CheckBoxes) - 1 do begin
-  //  CheckBoxes[i].Value := FFuseByte;
-  //end;
-  //for i := 0 to Length(ComboBoxes) - 1 do begin
-  //  ComboBoxes[i].Value := FFuseByte;
-  //end;
 end;
 
 procedure TFuseTabSheet.setFuseByte(AValue: byte);

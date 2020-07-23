@@ -121,7 +121,7 @@ begin
   ComboBox1.Sorted := True;
   ComboBox1.Style := csOwnerDrawFixed;
 
-  fl := FindAllFiles('../AVR_Fuse_from_XML/XML', '*.XML', False);
+  fl := FindAllFiles('../AVR_XML_to_Fuse_Const/XML', '*.XML', False);
   for i := 0 to fl.Count - 1 do begin
     ComboBox1.Items.Add(fl[i]);
   end;
@@ -132,7 +132,6 @@ end;
 
 procedure TForm_AVR_Fuse.ComboBox1Change(Sender: TObject);
 begin
-  //  AVR_XML_Path := ComboBox1.Items[ComboBox1.ItemIndex];
   AVR_XML_Path := ComboBox1.Text;
   Caption := AVR_XML_Path;
   if FileExists(AVR_XML_Path) then begin
@@ -249,7 +248,6 @@ begin
 
   avr := ExtractFileName(AVR_XML_Path);
   avr := ExtractFileNameWithoutExt(avr);
-//  WriteLn(avr);
 
   l := Length(FuseTabSheet);
   for i := 0 to l - 1 do begin

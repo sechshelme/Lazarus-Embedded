@@ -52,17 +52,20 @@ procedure ResetCom;
 var
   SerialHandle: TSerialHandle;
 begin
-  exit;
+    exit;
   SerialHandle := SerOpen('/dev/ttyACM0');
   SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
-  SerSetDTR(SerialHandle, True);
-  SerSetRTS(SerialHandle, True);
+  Sleep(250);
   SerSetDTR(SerialHandle, False);
   SerSetRTS(SerialHandle, False);
+  Sleep(250);
+  SerSetDTR(SerialHandle, True);
+  SerSetRTS(SerialHandle, True);
+  Sleep(250);
 
-//  SerSync(SerialHandle);
-//  SerFlushOutput(SerialHandle);
+  //  SerSync(SerialHandle);
+  //  SerFlushOutput(SerialHandle);
   SerClose(SerialHandle);
 end;
 

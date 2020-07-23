@@ -207,7 +207,7 @@ begin
     Width := 50;
     Text := 'Burn';
     Anchors := [akBottom, akLeft];
-    OnClick := @BurnButtonClick;
+//    OnClick := @BurnButtonClick;
   end;
 
   with StaticTexts_Ctrl do begin

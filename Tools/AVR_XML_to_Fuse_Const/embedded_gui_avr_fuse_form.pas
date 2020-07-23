@@ -121,8 +121,7 @@ var
         FuseName := 'fuse' + IntToStr(ofs);
       end;
     end;
-    Caption := n + ' (' + FuseName + ')';
-    sl.Add('      (Caption: '#39 + n + #39'; Name: '#39 + FuseName + #39'; ofs: $' + IntToHex(ofs, 2) + '; BitField:(');
+    sl.Add('      (Caption: '#39 +n + ' (' + FuseName + ')' + #39'; Name: '#39 + FuseName + #39'; ofs: $' + IntToHex(ofs, 2) + '; BitField:(');
   end;
 
   procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode);
@@ -177,7 +176,7 @@ begin
   sl.Add('const');
   sl.Add('  AVR_Fuse_Data: TAVR_Fuse_Data = (');
 
-  fl := FindAllFiles('../AVR_Fuse_from_XML/XML', '*.XML', False);
+  fl := FindAllFiles('XML', '*.XML', False);
   fl.Sorted := True;
   for ii := 0 to fl.Count - 1 do begin
     ReadXMLFile(doc, fl[ii]);

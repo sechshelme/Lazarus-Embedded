@@ -26,8 +26,8 @@ const
 
 // ---------- AAAAAATmega4809 (Kopie)-----------
     (Name: 'AAAAAATmega4809 (Kopie)'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -49,13 +49,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -65,7 +65,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -75,7 +75,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -102,16 +102,16 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- AAAAATtiny2313A (Kopie)-----------
     (Name: 'AAAAATtiny2313A (Kopie)'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -122,7 +122,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))),
          (Caption: 'External reset disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -170,7 +170,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -178,7 +178,7 @@ const
 
 // ---------- AAAATtiny13-----------
     (Name: 'AAAATtiny13'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $10; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Enable BOD and select level'; Name: 'BODLEVEL'; Mask: $06; Values: (
@@ -187,7 +187,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03))),
          (Caption: 'Reset Disabled (Enable PB5 as i/o pin)'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $20; Values: ()),
@@ -205,7 +205,7 @@ const
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 0 ms'; Name: 'INTRCOSC_128KHZ_14CK_0MS'; Value: $03),
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 4 ms'; Name: 'INTRCOSC_128KHZ_14CK_4MS'; Value: $07),
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 64 ms'; Name: 'INTRCOSC_128KHZ_14CK_64MS'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -213,7 +213,7 @@ const
 
 // ---------- AT90CAN128-----------
     (Name: 'AT90CAN128'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=4.1 V'; Name: '4V1'; Value: $06),
@@ -224,7 +224,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.5 V'; Name: '2V5'; Value: $00))),
          (Caption: 'Reserved for factory tests'; Name: 'TA0SEL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -236,7 +236,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally; [CKDIV8=0]'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7; [CKOUT=0]'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -290,7 +290,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -308,7 +308,7 @@ const
 
 // ---------- AT90CAN32-----------
     (Name: 'AT90CAN32'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=4.1 V'; Name: '4V1'; Value: $06),
@@ -319,7 +319,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.5 V'; Name: '2V5'; Value: $00))),
          (Caption: 'Reserved for factory tests'; Name: 'TA0SEL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -331,7 +331,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$3000'; Name: '4096W_3000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally; [CKDIV8=0]'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7; [CKOUT=0]'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -373,7 +373,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time: 1K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_1KCK_0MS'; Value: $2E),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time: 1K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_1KCK_4MS1'; Value: $3E),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time: 1K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_1KCK_65MS'; Value: $0F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -391,7 +391,7 @@ const
 
 // ---------- AT90CAN64-----------
     (Name: 'AT90CAN64'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection level at VCC=4.1 V'; Name: '4V1'; Value: $06),
@@ -402,7 +402,7 @@ const
            (Caption: 'Brown-out detection level at VCC=2.6 V'; Name: '2V6'; Value: $01),
            (Caption: 'Brown-out detection level at VCC=2.5 V'; Name: '2V5'; Value: $00))),
          (Caption: 'Reserved for factory tests'; Name: 'TA0SEL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -414,7 +414,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally; [CKDIV8=0]'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7; [CKOUT=0]'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -456,7 +456,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time: 1K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_1KCK_0MS'; Value: $2E),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time: 1K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_1KCK_4MS1'; Value: $3E),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time: 1K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_1KCK_65MS'; Value: $0F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -474,7 +474,7 @@ const
 
 // ---------- AT90PWM161-----------
     (Name: 'AT90PWM161'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC2 Reset Behavior'; Name: 'PSC2RB'; Mask: $80; Values: ()),
          (Caption: 'PSC2 Reset Behavior for 22 and 23'; Name: 'PSC2RBA'; Mask: $40; Values: ()),
          (Caption: 'PSC0 Reset Behavior'; Name: 'PSC0RB'; Mask: $20; Values: ()),
@@ -489,7 +489,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PE0 as I/O pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -501,7 +501,7 @@ const
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -561,7 +561,7 @@ const
            (Caption: 'RC 1 MHz; SUT: 1KCK/14CK+0 ms; [CKSEL=0110 SUT=00]'; Name: 'RC_1MHZ_1KCK_14CK_0MS'; Value: $06),
            (Caption: 'RC 1 MHz; SUT: 1KCK/14CK+4.1 ms; [CKSEL=0110 SUT=01]'; Name: 'RC_1MHZ_1KCK_14CK_4MS1'; Value: $16),
            (Caption: 'RC 1 MHz; SUT: 1KCK/14CK+65 ms;  [CKSEL=0110 SUT=10]'; Name: 'RC_1MHZ_1KCK_14CK_65MS'; Value: $26))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -579,7 +579,7 @@ const
 
 // ---------- AT90PWM1-----------
     (Name: 'AT90PWM1'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC2 Reset Behavior'; Name: 'PSC2RB'; Mask: $80; Values: ()),
          (Caption: 'PSC0 Reset Behavior'; Name: 'PSC0RB'; Mask: $20; Values: ()),
          (Caption: 'PSCOUT Reset Value'; Name: 'PSCRV'; Mask: $10; Values: ()),
@@ -589,7 +589,7 @@ const
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -604,7 +604,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -650,7 +650,7 @@ const
            (Caption: 'PLL clock 16 MHz; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4.1 ms'; Name: 'PLLCLK_16MHZ_1KCK_14CK_4MS1'; Value: $13),
            (Caption: 'PLL clock 16 MHz; Start-up time PWRDWN/RESET: 1K CK/14 CK + 65 ms'; Name: 'PLLCLK_16MHZ_1KCK_14CK_65MS'; Value: $23),
            (Caption: 'PLL clock 16 MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'PLLCLK_16MHZ_16KCK_14CK_0MS'; Value: $33))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -668,7 +668,7 @@ const
 
 // ---------- AT90PWM216-----------
     (Name: 'AT90PWM216'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC2 Reset Behavior'; Name: 'PSC2RB'; Mask: $80; Values: ()),
          (Caption: 'PSC1 Reset Behavior'; Name: 'PSC1RB'; Mask: $40; Values: ()),
          (Caption: 'PSC0 Reset Behavior'; Name: 'PSC0RB'; Mask: $20; Values: ()),
@@ -679,7 +679,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -694,7 +694,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -740,7 +740,7 @@ const
            (Caption: 'PLL clock 16 MHz; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4.1 ms'; Name: 'PLLCLK_16MHZ_1KCK_14CK_4MS1'; Value: $13),
            (Caption: 'PLL clock 16 MHz; Start-up time PWRDWN/RESET: 1K CK/14 CK + 65 ms'; Name: 'PLLCLK_16MHZ_1KCK_14CK_65MS'; Value: $23),
            (Caption: 'PLL clock 16 MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'PLLCLK_16MHZ_16KCK_14CK_0MS'; Value: $33))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -758,7 +758,7 @@ const
 
 // ---------- AT90PWM2B-----------
     (Name: 'AT90PWM2B'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC2 Reset Behavior'; Name: 'PSC2RB'; Mask: $80; Values: ()),
          (Caption: 'PSC1 Reset Behavior'; Name: 'PSC1RB'; Mask: $40; Values: ()),
          (Caption: 'PSC0 Reset Behavior'; Name: 'PSC0RB'; Mask: $20; Values: ()),
@@ -769,7 +769,7 @@ const
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -784,7 +784,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -841,7 +841,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -859,7 +859,7 @@ const
 
 // ---------- AT90PWM316-----------
     (Name: 'AT90PWM316'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC2 Reset Behavior'; Name: 'PSC2RB'; Mask: $80; Values: ()),
          (Caption: 'PSC1 Reset Behavior'; Name: 'PSC1RB'; Mask: $40; Values: ()),
          (Caption: 'PSC0 Reset Behavior'; Name: 'PSC0RB'; Mask: $20; Values: ()),
@@ -870,7 +870,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -885,7 +885,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -942,7 +942,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -960,7 +960,7 @@ const
 
 // ---------- AT90PWM3B-----------
     (Name: 'AT90PWM3B'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC2 Reset Behavior'; Name: 'PSC2RB'; Mask: $80; Values: ()),
          (Caption: 'PSC1 Reset Behavior'; Name: 'PSC1RB'; Mask: $40; Values: ()),
          (Caption: 'PSC0 Reset Behavior'; Name: 'PSC0RB'; Mask: $20; Values: ()),
@@ -971,7 +971,7 @@ const
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -986,7 +986,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1043,7 +1043,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1061,7 +1061,7 @@ const
 
 // ---------- AT90PWM81-----------
     (Name: 'AT90PWM81'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC2 Reset Behavior'; Name: 'PSC2RB'; Mask: $80; Values: ()),
          (Caption: 'PSC2 Reset Behavior for 22 and 23'; Name: 'PSC2RBA'; Mask: $40; Values: ()),
          (Caption: 'PSC0 Reset Behavior'; Name: 'PSC0RB'; Mask: $20; Values: ()),
@@ -1076,7 +1076,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PE0 as I/O pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1088,7 +1088,7 @@ const
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1148,7 +1148,7 @@ const
            (Caption: 'RC 1 MHz; SUT: 1KCK/14CK+0 ms; [CKSEL=0110 SUT=00]'; Name: 'RC_1MHZ_1KCK_14CK_0MS'; Value: $06),
            (Caption: 'RC 1 MHz; SUT: 1KCK/14CK+4.1 ms; [CKSEL=0110 SUT=01]'; Name: 'RC_1MHZ_1KCK_14CK_4MS1'; Value: $16),
            (Caption: 'RC 1 MHz; SUT: 1KCK/14CK+65 ms;  [CKSEL=0110 SUT=10]'; Name: 'RC_1MHZ_1KCK_14CK_65MS'; Value: $26))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1166,7 +1166,7 @@ const
 
 // ---------- AT90USB1286-----------
     (Name: 'AT90USB1286'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $06),
@@ -1177,7 +1177,7 @@ const
            (Caption: 'Brown-out detection at VCC=3.5 V'; Name: '3V5'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1189,7 +1189,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1243,7 +1243,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1261,7 +1261,7 @@ const
 
 // ---------- AT90USB1287-----------
     (Name: 'AT90USB1287'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $06),
@@ -1272,7 +1272,7 @@ const
            (Caption: 'Brown-out detection at VCC=3.5 V'; Name: '3V5'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1284,7 +1284,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1338,7 +1338,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1356,7 +1356,7 @@ const
 
 // ---------- AT90USB162-----------
     (Name: 'AT90USB162'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection level at VCC=2.7 V'; Name: '2V7'; Value: $06),
@@ -1367,7 +1367,7 @@ const
            (Caption: 'Brown-out detection level at VCC=4.0 V'; Name: '4V0'; Value: $01),
            (Caption: 'Brown-out detection level at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1379,7 +1379,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1433,7 +1433,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1451,7 +1451,7 @@ const
 
 // ---------- AT90USB646-----------
     (Name: 'AT90USB646'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $06),
@@ -1462,7 +1462,7 @@ const
            (Caption: 'Brown-out detection at VCC=3.5 V'; Name: '3V5'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1474,7 +1474,7 @@ const
            (Caption: 'Boot Flash size=2408 words start address=$7C00'; Name: '2408W_7C00'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$7800'; Name: '4096W_7800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1528,7 +1528,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1546,7 +1546,7 @@ const
 
 // ---------- AT90USB647-----------
     (Name: 'AT90USB647'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $06),
@@ -1557,7 +1557,7 @@ const
            (Caption: 'Brown-out detection at VCC=3.5 V'; Name: '3V5'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1569,7 +1569,7 @@ const
            (Caption: 'Boot Flash size=2408 words start address=$7C00'; Name: '2408W_7C00'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$7800'; Name: '4096W_7800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1623,7 +1623,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1641,7 +1641,7 @@ const
 
 // ---------- AT90USB82-----------
     (Name: 'AT90USB82'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection level at VCC=2.7 V'; Name: '2V7'; Value: $06),
@@ -1652,7 +1652,7 @@ const
            (Caption: 'Brown-out detection level at VCC=4.0 V'; Name: '4V0'; Value: $01),
            (Caption: 'Brown-out detection level at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1664,7 +1664,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1718,7 +1718,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1736,13 +1736,13 @@ const
 
 // ---------- ATmega1280-----------
     (Name: 'ATmega1280'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1754,7 +1754,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1813,7 +1813,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1831,13 +1831,13 @@ const
 
 // ---------- ATmega1281-----------
     (Name: 'ATmega1281'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1849,7 +1849,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -1908,7 +1908,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -1926,13 +1926,13 @@ const
 
 // ---------- ATmega1284P-----------
     (Name: 'ATmega1284P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -1944,7 +1944,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -2003,7 +2003,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2021,7 +2021,7 @@ const
 
 // ---------- ATmega1284RFR2-----------
     (Name: 'ATmega1284RFR2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -2031,7 +2031,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.4 V'; Name: '2V4'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2043,7 +2043,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source : Start-up time'; Name: 'CKSEL_SUT'; Mask: $3F; Values: (
@@ -2096,7 +2096,7 @@ const
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 0 ms'; Name: 'TOSC_16KCK_0MS'; Value: $1F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 4.1 ms'; Name: 'TOSC_16KCK_4MS1'; Value: $2F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 65 ms'; Name: 'TOSC_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2114,13 +2114,13 @@ const
 
 // ---------- ATmega1284-----------
     (Name: 'ATmega1284'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2132,7 +2132,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -2191,7 +2191,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2209,10 +2209,10 @@ const
 
 // ---------- ATmega128A-----------
     (Name: 'ATmega128A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'ATmega103 Compatibility Mode'; Name: 'M103C'; Mask: $02; Values: ()),
          (Caption: 'Watchdog Timer always on'; Name: 'WDTON'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2224,7 +2224,7 @@ const
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection level at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection level at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -2288,7 +2288,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2306,7 +2306,7 @@ const
 
 // ---------- ATmega128RFA1-----------
     (Name: 'ATmega128RFA1'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -2316,7 +2316,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.4 V'; Name: '2V4'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2328,7 +2328,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source : Start-up time'; Name: 'CKSEL_SUT'; Mask: $3F; Values: (
@@ -2349,7 +2349,7 @@ const
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 0 ms'; Name: 'TRXOSC_16KCK_0MS'; Value: $17),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 4.1 ms'; Name: 'TRXOSC_16KCK_4MS1'; Value: $27),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 65 ms'; Name: 'TRXOSC_16KCK_65MS'; Value: $37))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2367,7 +2367,7 @@ const
 
 // ---------- ATmega128RFR2-----------
     (Name: 'ATmega128RFR2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -2377,7 +2377,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.4 V'; Name: '2V4'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2389,7 +2389,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$F800'; Name: '2048W_F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source : Start-up time'; Name: 'CKSEL_SUT'; Mask: $3F; Values: (
@@ -2442,7 +2442,7 @@ const
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 0 ms'; Name: 'TOSC_16KCK_0MS'; Value: $1F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 4.1 ms'; Name: 'TOSC_16KCK_4MS1'; Value: $2F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 65 ms'; Name: 'TOSC_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2460,10 +2460,10 @@ const
 
 // ---------- ATmega128-----------
     (Name: 'ATmega128'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'ATmega103 Compatibility Mode'; Name: 'M103C'; Mask: $02; Values: ()),
          (Caption: 'Watchdog Timer always on'; Name: 'WDTON'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2475,7 +2475,7 @@ const
            (Caption: 'Boot Flash size=4096 words start address=$F000'; Name: '4096W_F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection level at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection level at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -2539,7 +2539,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2557,8 +2557,8 @@ const
 
 // ---------- ATmega1608-----------
     (Name: 'ATmega1608'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -2580,13 +2580,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -2596,7 +2596,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -2606,7 +2606,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -2633,15 +2633,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega1609-----------
     (Name: 'ATmega1609'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -2663,13 +2663,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -2679,7 +2679,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -2689,7 +2689,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -2716,14 +2716,14 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega162-----------
     (Name: 'ATmega162'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'ATmega161 compability mode'; Name: 'M161C'; Mask: $10; Values: ()),
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
@@ -2731,7 +2731,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $03),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2743,7 +2743,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -2797,7 +2797,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2815,13 +2815,13 @@ const
 
 // ---------- ATmega164A-----------
     (Name: 'ATmega164A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2833,7 +2833,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -2892,7 +2892,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -2910,13 +2910,13 @@ const
 
 // ---------- ATmega164PA-----------
     (Name: 'ATmega164PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -2928,7 +2928,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -2987,7 +2987,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3005,13 +3005,13 @@ const
 
 // ---------- ATmega164P-----------
     (Name: 'ATmega164P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3023,7 +3023,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3082,7 +3082,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3100,14 +3100,14 @@ const
 
 // ---------- ATmega165A-----------
     (Name: 'ATmega165A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out Detection Disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out Detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out Detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out Detection at VCC=4.3 V'; Name: '4V3'; Value: $04))),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3119,7 +3119,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3167,7 +3167,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3185,14 +3185,14 @@ const
 
 // ---------- ATmega165PA-----------
     (Name: 'ATmega165PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out Detection Disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out Detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out Detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out Detection at VCC=4.3 V'; Name: '4V3'; Value: $04))),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3204,7 +3204,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3252,7 +3252,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3270,14 +3270,14 @@ const
 
 // ---------- ATmega165P-----------
     (Name: 'ATmega165P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out Detection Disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out Detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out Detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out Detection at VCC=4.3 V'; Name: '4V3'; Value: $04))),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3289,7 +3289,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3337,7 +3337,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3355,14 +3355,14 @@ const
 
 // ---------- ATmega168A-----------
     (Name: 'ATmega168A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words start address=$1F80'; Name: '128W_1F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words start address=$1F00'; Name: '256W_1F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3373,7 +3373,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3432,7 +3432,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3450,14 +3450,14 @@ const
 
 // ---------- ATmega168PA-----------
     (Name: 'ATmega168PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words start address=$1F80'; Name: '128W_1F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words start address=$1F00'; Name: '256W_1F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3468,7 +3468,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3527,7 +3527,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3545,14 +3545,14 @@ const
 
 // ---------- ATmega168PB-----------
     (Name: 'ATmega168PB'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words start address=$1F80'; Name: '128W_1F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words start address=$1F00'; Name: '256W_1F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3563,7 +3563,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3614,7 +3614,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3632,14 +3632,14 @@ const
 
 // ---------- ATmega168P-----------
     (Name: 'ATmega168P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words start address=$1F80'; Name: '128W_1F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words start address=$1F00'; Name: '256W_1F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3650,7 +3650,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3709,7 +3709,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3727,14 +3727,14 @@ const
 
 // ---------- ATmega168-----------
     (Name: 'ATmega168'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words start address=$1F80'; Name: '128W_1F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words start address=$1F00'; Name: '256W_1F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3745,7 +3745,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3804,7 +3804,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3822,14 +3822,14 @@ const
 
 // ---------- ATmega169A-----------
     (Name: 'ATmega169A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out Detection Disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out Detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out Detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out Detection at VCC=4.3 V'; Name: '4V3'; Value: $04))),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3841,7 +3841,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3889,7 +3889,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3907,14 +3907,14 @@ const
 
 // ---------- ATmega169PA-----------
     (Name: 'ATmega169PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out Detection Disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out Detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out Detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out Detection at VCC=4.3 V'; Name: '4V3'; Value: $04))),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -3926,7 +3926,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -3974,7 +3974,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -3992,14 +3992,14 @@ const
 
 // ---------- ATmega169P-----------
     (Name: 'ATmega169P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $0E; Values: (
            (Caption: 'Brown-out Detection Disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out Detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out Detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out Detection at VCC=4.3 V'; Name: '4V3'; Value: $04))),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4011,7 +4011,7 @@ const
            (Caption: 'Boot Flash size=512 words start address=$1E00'; Name: '512W_1E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -4059,7 +4059,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4077,7 +4077,7 @@ const
 
 // ---------- ATmega16A-----------
     (Name: 'ATmega16A'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4089,7 +4089,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -4153,7 +4153,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4171,7 +4171,7 @@ const
 
 // ---------- ATmega16HVA-----------
     (Name: 'ATmega16HVA'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4186,7 +4186,7 @@ const
            (Caption: 'Start-up time 6 CK/14 CK + 128 ms'; Name: '6CK_14CK_128MS'; Value: $05),
            (Caption: 'Start-up time 6 CK/14 CK + 256 ms'; Name: '6CK_14CK_256MS'; Value: $06),
            (Caption: 'Start-up time 6 CK/14 CK + 512 ms'; Name: '6CK_14CK_512MS'; Value: $07))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4194,7 +4194,7 @@ const
 
 // ---------- ATmega16HVBrevB-----------
     (Name: 'ATmega16HVBrevB'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4209,7 +4209,7 @@ const
            (Caption: 'Start-up time 14 CK + 512 ms'; Name: '14CK_512MS'; Value: $07))),
          (Caption: 'Oscillator select'; Name: 'OSCSEL'; Mask: $03; Values: (
            (Caption: 'Default'; Name: 'DEFAULT'; Value: $01))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'DUVR mode on'; Name: 'DUVRDINIT'; Mask: $10; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Select Boot Size'; Name: 'BOOTSZ'; Mask: $06; Values: (
@@ -4218,7 +4218,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4236,7 +4236,7 @@ const
 
 // ---------- ATmega16HVB-----------
     (Name: 'ATmega16HVB'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4251,7 +4251,7 @@ const
            (Caption: 'Start-up time 14 CK + 512 ms'; Name: '14CK_512MS'; Value: $07))),
          (Caption: 'Oscillator select'; Name: 'OSCSEL'; Mask: $03; Values: (
            (Caption: 'Default'; Name: 'DEFAULT'; Value: $01))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Clock Divide mode'; Name: 'CKDIV8'; Mask: $10; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Select Boot Size'; Name: 'BOOTSZ'; Mask: $06; Values: (
@@ -4260,7 +4260,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4278,7 +4278,7 @@ const
 
 // ---------- ATmega16M1-----------
     (Name: 'ATmega16M1'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC Reset Behavior'; Name: 'PSCRB'; Mask: $20; Values: ()),
          (Caption: 'PSCOUTnA Reset Value'; Name: 'PSCRVA'; Mask: $10; Values: ()),
          (Caption: 'PSC0UTnB Reset Value'; Name: 'PSCRVB'; Mask: $08; Values: ()),
@@ -4291,7 +4291,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4303,7 +4303,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -4360,7 +4360,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4378,7 +4378,7 @@ const
 
 // ---------- ATmega16U2-----------
     (Name: 'ATmega16U2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection level at VCC=2.7 V'; Name: '2V7'; Value: $06),
@@ -4389,7 +4389,7 @@ const
            (Caption: 'Brown-out detection level at VCC=4.0 V'; Name: '4V0'; Value: $01),
            (Caption: 'Brown-out detection level at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4401,7 +4401,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -4455,7 +4455,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4473,7 +4473,7 @@ const
 
 // ---------- ATmega16U4-----------
     (Name: 'ATmega16U4'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $06),
@@ -4484,7 +4484,7 @@ const
            (Caption: 'Brown-out detection at VCC=3.5 V'; Name: '3V5'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4496,7 +4496,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$1800'; Name: '2048W_1800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -4550,7 +4550,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4568,7 +4568,7 @@ const
 
 // ---------- ATmega16-----------
     (Name: 'ATmega16'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4580,7 +4580,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$1C00'; Name: '1024W_1C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -4644,7 +4644,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4662,13 +4662,13 @@ const
 
 // ---------- ATmega2560-----------
     (Name: 'ATmega2560'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4680,7 +4680,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$1F800'; Name: '2048W_1F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$1F000'; Name: '4096W_1F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -4739,7 +4739,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4757,13 +4757,13 @@ const
 
 // ---------- ATmega2561-----------
     (Name: 'ATmega2561'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4775,7 +4775,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$1F800'; Name: '2048W_1F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$1F000'; Name: '4096W_1F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -4834,7 +4834,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4852,7 +4852,7 @@ const
 
 // ---------- ATmega2564RFR2-----------
     (Name: 'ATmega2564RFR2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -4862,7 +4862,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.4 V'; Name: '2V4'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4874,7 +4874,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$1F800'; Name: '2048W_1F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$1F000'; Name: '4096W_1F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source : Start-up time'; Name: 'CKSEL_SUT'; Mask: $3F; Values: (
@@ -4927,7 +4927,7 @@ const
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 0 ms'; Name: 'TOSC_16KCK_0MS'; Value: $1F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 4.1 ms'; Name: 'TOSC_16KCK_4MS1'; Value: $2F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 65 ms'; Name: 'TOSC_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -4945,7 +4945,7 @@ const
 
 // ---------- ATmega256RFR2-----------
     (Name: 'ATmega256RFR2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -4955,7 +4955,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.4 V'; Name: '2V4'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -4967,7 +4967,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$1F800'; Name: '2048W_1F800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$1F000'; Name: '4096W_1F000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source : Start-up time'; Name: 'CKSEL_SUT'; Mask: $3F; Values: (
@@ -5020,7 +5020,7 @@ const
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 0 ms'; Name: 'TOSC_16KCK_0MS'; Value: $1F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 4.1 ms'; Name: 'TOSC_16KCK_4MS1'; Value: $2F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 65 ms'; Name: 'TOSC_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5038,8 +5038,8 @@ const
 
 // ---------- ATmega3208-----------
     (Name: 'ATmega3208'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -5061,13 +5061,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -5077,7 +5077,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -5087,7 +5087,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -5114,15 +5114,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega3209-----------
     (Name: 'ATmega3209'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -5144,13 +5144,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -5160,7 +5160,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -5170,7 +5170,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -5197,20 +5197,20 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega324A-----------
     (Name: 'ATmega324A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5222,7 +5222,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5281,7 +5281,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5299,13 +5299,13 @@ const
 
 // ---------- ATmega324PA-----------
     (Name: 'ATmega324PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5317,7 +5317,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5376,7 +5376,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5394,7 +5394,7 @@ const
 
 // ---------- ATmega324PB-----------
     (Name: 'ATmega324PB'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Clock Failure Detection'; Name: 'CFD'; Mask: $08; Values: (
            (Caption: 'Disabled'; Name: 'CFD_DISABLED'; Value: $00),
            (Caption: 'Enabled'; Name: 'CFD_ENABLED'; Value: $01))),
@@ -5403,7 +5403,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5415,7 +5415,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5466,7 +5466,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5484,13 +5484,13 @@ const
 
 // ---------- ATmega324P-----------
     (Name: 'ATmega324P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5502,7 +5502,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5561,7 +5561,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5579,14 +5579,14 @@ const
 
 // ---------- ATmega3250A-----------
     (Name: 'ATmega3250A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5598,7 +5598,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5646,7 +5646,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5664,14 +5664,14 @@ const
 
 // ---------- ATmega3250PA-----------
     (Name: 'ATmega3250PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5683,7 +5683,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5731,7 +5731,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5749,14 +5749,14 @@ const
 
 // ---------- ATmega3250P-----------
     (Name: 'ATmega3250P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5768,7 +5768,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5816,7 +5816,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5834,14 +5834,14 @@ const
 
 // ---------- ATmega3250-----------
     (Name: 'ATmega3250'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5853,7 +5853,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5901,7 +5901,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -5919,14 +5919,14 @@ const
 
 // ---------- ATmega325A-----------
     (Name: 'ATmega325A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -5938,7 +5938,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -5986,7 +5986,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6004,14 +6004,14 @@ const
 
 // ---------- ATmega325PA-----------
     (Name: 'ATmega325PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6023,7 +6023,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6071,7 +6071,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6089,14 +6089,14 @@ const
 
 // ---------- ATmega325P-----------
     (Name: 'ATmega325P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6108,7 +6108,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6156,7 +6156,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6174,14 +6174,14 @@ const
 
 // ---------- ATmega325-----------
     (Name: 'ATmega325'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6193,7 +6193,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6241,7 +6241,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6259,7 +6259,7 @@ const
 
 // ---------- ATmega328PB-----------
     (Name: 'ATmega328PB'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Clock Failure Detection'; Name: 'CFD'; Mask: $08; Values: (
            (Caption: 'Disabled'; Name: 'CFD_DISABLED'; Value: $00),
            (Caption: 'Enabled'; Name: 'CFD_ENABLED'; Value: $01))),
@@ -6268,7 +6268,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6280,7 +6280,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6331,7 +6331,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6349,13 +6349,13 @@ const
 
 // ---------- ATmega328P-----------
     (Name: 'ATmega328P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6367,7 +6367,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6426,7 +6426,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6444,13 +6444,13 @@ const
 
 // ---------- ATmega328-----------
     (Name: 'ATmega328'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6462,7 +6462,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6521,7 +6521,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6539,14 +6539,14 @@ const
 
 // ---------- ATmega3290A-----------
     (Name: 'ATmega3290A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6558,7 +6558,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6606,7 +6606,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6624,14 +6624,14 @@ const
 
 // ---------- ATmega3290PA-----------
     (Name: 'ATmega3290PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6643,7 +6643,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6691,7 +6691,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6709,14 +6709,14 @@ const
 
 // ---------- ATmega3290P-----------
     (Name: 'ATmega3290P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6728,7 +6728,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6776,7 +6776,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6794,14 +6794,14 @@ const
 
 // ---------- ATmega3290-----------
     (Name: 'ATmega3290'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6813,7 +6813,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6861,7 +6861,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6879,14 +6879,14 @@ const
 
 // ---------- ATmega329A-----------
     (Name: 'ATmega329A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6898,7 +6898,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -6946,7 +6946,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -6964,14 +6964,14 @@ const
 
 // ---------- ATmega329PA-----------
     (Name: 'ATmega329PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -6983,7 +6983,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -7031,7 +7031,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7049,14 +7049,14 @@ const
 
 // ---------- ATmega329P-----------
     (Name: 'ATmega329P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7068,7 +7068,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -7116,7 +7116,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7134,14 +7134,14 @@ const
 
 // ---------- ATmega329-----------
     (Name: 'ATmega329'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7153,7 +7153,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -7201,7 +7201,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7219,7 +7219,7 @@ const
 
 // ---------- ATmega32A-----------
     (Name: 'ATmega32A'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7231,7 +7231,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -7295,7 +7295,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7313,7 +7313,7 @@ const
 
 // ---------- ATmega32C1-----------
     (Name: 'ATmega32C1'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC Reset Behavior'; Name: 'PSCRB'; Mask: $20; Values: ()),
          (Caption: 'PSCOUTnA Reset Value'; Name: 'PSCRVA'; Mask: $10; Values: ()),
          (Caption: 'PSC0UTnB Reset Value'; Name: 'PSCRVB'; Mask: $08; Values: ()),
@@ -7326,7 +7326,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7338,7 +7338,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -7395,7 +7395,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7413,7 +7413,7 @@ const
 
 // ---------- ATmega32HVBrevB-----------
     (Name: 'ATmega32HVBrevB'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7428,7 +7428,7 @@ const
            (Caption: 'Start-up time 14 CK + 512 ms'; Name: '14CK_512MS'; Value: $07))),
          (Caption: 'Oscillator select'; Name: 'OSCSEL'; Mask: $03; Values: (
            (Caption: 'Default'; Name: 'DEFAULT'; Value: $01))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'DUVR mode on'; Name: 'DUVRDINIT'; Mask: $10; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Select Boot Size'; Name: 'BOOTSZ'; Mask: $06; Values: (
@@ -7437,7 +7437,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7455,7 +7455,7 @@ const
 
 // ---------- ATmega32HVB-----------
     (Name: 'ATmega32HVB'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7470,7 +7470,7 @@ const
            (Caption: 'Start-up time 14 CK + 512 ms'; Name: '14CK_512MS'; Value: $07))),
          (Caption: 'Oscillator select'; Name: 'OSCSEL'; Mask: $03; Values: (
            (Caption: 'Default'; Name: 'DEFAULT'; Value: $01))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Clock Divide mode'; Name: 'CKDIV8'; Mask: $10; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Select Boot Size'; Name: 'BOOTSZ'; Mask: $06; Values: (
@@ -7479,7 +7479,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7497,7 +7497,7 @@ const
 
 // ---------- ATmega32M1-----------
     (Name: 'ATmega32M1'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC Reset Behavior'; Name: 'PSCRB'; Mask: $20; Values: ()),
          (Caption: 'PSCOUTnA Reset Value'; Name: 'PSCRVA'; Mask: $10; Values: ()),
          (Caption: 'PSC0UTnB Reset Value'; Name: 'PSCRVB'; Mask: $08; Values: ()),
@@ -7510,7 +7510,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7522,7 +7522,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words Boot address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -7579,7 +7579,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7597,7 +7597,7 @@ const
 
 // ---------- ATmega32U2-----------
     (Name: 'ATmega32U2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection level at VCC=2.7 V'; Name: '2V7'; Value: $06),
@@ -7608,7 +7608,7 @@ const
            (Caption: 'Brown-out detection level at VCC=4.0 V'; Name: '4V0'; Value: $01),
            (Caption: 'Brown-out detection level at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7620,7 +7620,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -7674,7 +7674,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7692,7 +7692,7 @@ const
 
 // ---------- ATmega32U4-----------
     (Name: 'ATmega32U4'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $06),
@@ -7703,7 +7703,7 @@ const
            (Caption: 'Brown-out detection at VCC=3.5 V'; Name: '3V5'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7715,7 +7715,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -7769,7 +7769,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7787,7 +7787,7 @@ const
 
 // ---------- ATmega32-----------
     (Name: 'ATmega32'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -7799,7 +7799,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$3C00'; Name: '1024W_3C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$3800'; Name: '2048W_3800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -7863,7 +7863,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7881,10 +7881,10 @@ const
 
 // ---------- ATmega406-----------
     (Name: 'ATmega406'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $02; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watchdog timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $30; Values: (
@@ -7900,7 +7900,7 @@ const
            (Caption: 'Start-up time: 14 CK + 0 ms'; Name: '14CK_0MS'; Value: $01),
            (Caption: 'Start-up time: 14 CK + 3.9 ms'; Name: '14CK_3MS9'; Value: $03),
            (Caption: 'Start-up time: 14 CK + 62.5 ms'; Name: '14CK_62MS5'; Value: $05))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -7918,8 +7918,8 @@ const
 
 // ---------- ATmega4808-----------
     (Name: 'ATmega4808'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -7941,13 +7941,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -7957,7 +7957,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -7967,7 +7967,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -7994,15 +7994,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega4809-----------
     (Name: 'ATmega4809'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -8024,13 +8024,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -8040,7 +8040,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -8050,7 +8050,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -8077,16 +8077,16 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega48A-----------
     (Name: 'ATmega48A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8097,7 +8097,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8156,7 +8156,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8164,9 +8164,9 @@ const
 
 // ---------- ATmega48PA-----------
     (Name: 'ATmega48PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8177,7 +8177,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8236,7 +8236,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8244,9 +8244,9 @@ const
 
 // ---------- ATmega48PB-----------
     (Name: 'ATmega48PB'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8257,7 +8257,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8308,7 +8308,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8316,9 +8316,9 @@ const
 
 // ---------- ATmega48P-----------
     (Name: 'ATmega48P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8329,7 +8329,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8388,7 +8388,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8396,9 +8396,9 @@ const
 
 // ---------- ATmega48-----------
     (Name: 'ATmega48'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8409,7 +8409,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8468,7 +8468,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8476,13 +8476,13 @@ const
 
 // ---------- ATmega640-----------
     (Name: 'ATmega640'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8494,7 +8494,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled (default address=$0000)'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8553,7 +8553,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8571,13 +8571,13 @@ const
 
 // ---------- ATmega644A-----------
     (Name: 'ATmega644A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8589,7 +8589,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8648,7 +8648,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8666,13 +8666,13 @@ const
 
 // ---------- ATmega644PA-----------
     (Name: 'ATmega644PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8684,7 +8684,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8743,7 +8743,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8761,13 +8761,13 @@ const
 
 // ---------- ATmega644P-----------
     (Name: 'ATmega644P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8779,7 +8779,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -8838,7 +8838,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8856,7 +8856,7 @@ const
 
 // ---------- ATmega644RFR2-----------
     (Name: 'ATmega644RFR2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -8866,7 +8866,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.4 V'; Name: '2V4'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8878,7 +8878,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source : Start-up time'; Name: 'CKSEL_SUT'; Mask: $3F; Values: (
@@ -8931,7 +8931,7 @@ const
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 0 ms'; Name: 'TOSC_16KCK_0MS'; Value: $1F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 4.1 ms'; Name: 'TOSC_16KCK_4MS1'; Value: $2F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 65 ms'; Name: 'TOSC_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -8949,13 +8949,13 @@ const
 
 // ---------- ATmega644-----------
     (Name: 'ATmega644'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -8967,7 +8967,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9026,7 +9026,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9044,14 +9044,14 @@ const
 
 // ---------- ATmega6450A-----------
     (Name: 'ATmega6450A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9063,7 +9063,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9111,7 +9111,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9129,14 +9129,14 @@ const
 
 // ---------- ATmega6450P-----------
     (Name: 'ATmega6450P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9148,7 +9148,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9196,7 +9196,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9214,14 +9214,14 @@ const
 
 // ---------- ATmega6450-----------
     (Name: 'ATmega6450'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9233,7 +9233,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9281,7 +9281,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9299,14 +9299,14 @@ const
 
 // ---------- ATmega645A-----------
     (Name: 'ATmega645A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9318,7 +9318,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9366,7 +9366,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9384,14 +9384,14 @@ const
 
 // ---------- ATmega645P-----------
     (Name: 'ATmega645P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9403,7 +9403,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9451,7 +9451,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9469,14 +9469,14 @@ const
 
 // ---------- ATmega645-----------
     (Name: 'ATmega645'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9488,7 +9488,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9536,7 +9536,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9554,14 +9554,14 @@ const
 
 // ---------- ATmega6490A-----------
     (Name: 'ATmega6490A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9573,7 +9573,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9621,7 +9621,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9639,14 +9639,14 @@ const
 
 // ---------- ATmega6490P-----------
     (Name: 'ATmega6490P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9658,7 +9658,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9706,7 +9706,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9724,14 +9724,14 @@ const
 
 // ---------- ATmega6490-----------
     (Name: 'ATmega6490'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9743,7 +9743,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9791,7 +9791,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9809,14 +9809,14 @@ const
 
 // ---------- ATmega649A-----------
     (Name: 'ATmega649A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9828,7 +9828,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9876,7 +9876,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9894,14 +9894,14 @@ const
 
 // ---------- ATmega649P-----------
     (Name: 'ATmega649P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9913,7 +9913,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -9961,7 +9961,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -9979,14 +9979,14 @@ const
 
 // ---------- ATmega649-----------
     (Name: 'ATmega649'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $06; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'External Reset Disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -9998,7 +9998,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -10046,7 +10046,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10064,10 +10064,10 @@ const
 
 // ---------- ATmega64A-----------
     (Name: 'ATmega64A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'ATmega103 Compatibility Mode'; Name: 'M103C'; Mask: $02; Values: ()),
          (Caption: 'Watchdog Timer always on'; Name: 'WDTON'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10079,7 +10079,7 @@ const
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -10143,7 +10143,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10161,7 +10161,7 @@ const
 
 // ---------- ATmega64C1-----------
     (Name: 'ATmega64C1'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC Reset Behavior'; Name: 'PSCRB'; Mask: $20; Values: ()),
          (Caption: 'PSCOUTnA Reset Value'; Name: 'PSCRVA'; Mask: $10; Values: ()),
          (Caption: 'PSC0UTnB Reset Value'; Name: 'PSCRVB'; Mask: $08; Values: ()),
@@ -10174,7 +10174,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10186,7 +10186,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -10243,7 +10243,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10261,7 +10261,7 @@ const
 
 // ---------- ATmega64HVE2-----------
     (Name: 'ATmega64HVE2'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10273,7 +10273,7 @@ const
            (Caption: 'Start-up time 14 CK + 32 ms'; Name: '14CK_32MS'; Value: $02),
            (Caption: 'Start-up time 14 CK + 64 ms'; Name: '14CK_64MS'; Value: $03))),
          (Caption: 'Oscillator select'; Name: 'OSCSEL0'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Select Boot Size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=512 words Boot address=$7E00'; Name: '512W_7E00'; Value: $03),
@@ -10281,7 +10281,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10299,7 +10299,7 @@ const
 
 // ---------- ATmega64M1-----------
     (Name: 'ATmega64M1'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'PSC Reset Behavior'; Name: 'PSCRB'; Mask: $20; Values: ()),
          (Caption: 'PSCOUTnA Reset Value'; Name: 'PSCRVA'; Mask: $10; Values: ()),
          (Caption: 'PSC0UTnB Reset Value'; Name: 'PSCRVB'; Mask: $08; Values: ()),
@@ -10312,7 +10312,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.2 V'; Name: '4V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.8 V'; Name: '2V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.6 V'; Name: '2V6'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10324,7 +10324,7 @@ const
            (Caption: 'Boot Flash size=2048 words Boot address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Select Reset Vector'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD1'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -10381,7 +10381,7 @@ const
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 1K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_1KCK_14CK_4MS'; Value: $14),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_4MS'; Value: $24),
            (Caption: 'Ext. Crystal Osc.; PLL input: Ext. Crystal Osc.; Start-up time PWRDWN/RESET: 16K CK/14 CK + 64 ms'; Name: 'EXTXOSC_PLLIN_EXTXOSC_16KCK_14CK_64MS'; Value: $34))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10399,7 +10399,7 @@ const
 
 // ---------- ATmega64RFR2-----------
     (Name: 'ATmega64RFR2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -10409,7 +10409,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.2 V'; Name: '2V2'; Value: $02),
            (Caption: 'Brown-out detection at VCC=2.3 V'; Name: '2V3'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.4 V'; Name: '2V4'; Value: $00))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10421,7 +10421,7 @@ const
            (Caption: 'Boot Flash size=2048 words start address=$7800'; Name: '2048W_7800'; Value: $01),
            (Caption: 'Boot Flash size=4096 words start address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTE7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source : Start-up time'; Name: 'CKSEL_SUT'; Mask: $3F; Values: (
@@ -10474,7 +10474,7 @@ const
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 0 ms'; Name: 'TOSC_16KCK_0MS'; Value: $1F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 4.1 ms'; Name: 'TOSC_16KCK_4MS1'; Value: $2F),
            (Caption: 'Tranceiver Oscillator; Start-up time: 16K CK + 65 ms'; Name: 'TOSC_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10492,10 +10492,10 @@ const
 
 // ---------- ATmega64-----------
     (Name: 'ATmega64'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'ATmega103 Compatibility Mode'; Name: 'M103C'; Mask: $02; Values: ()),
          (Caption: 'Watchdog Timer always on'; Name: 'WDTON'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'On-Chip Debug Enabled'; Name: 'OCDEN'; Mask: $80; Values: ()),
          (Caption: 'JTAG Interface Enabled'; Name: 'JTAGEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10507,7 +10507,7 @@ const
            (Caption: 'Boot Flash size=4096 words Boot address=$7000'; Name: '4096W_7000'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -10571,7 +10571,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10589,8 +10589,8 @@ const
 
 // ---------- ATmega808-----------
     (Name: 'ATmega808'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -10612,13 +10612,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -10628,7 +10628,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -10638,7 +10638,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -10665,15 +10665,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega809-----------
     (Name: 'ATmega809'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -10695,13 +10695,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -10711,7 +10711,7 @@ const
          (Caption: 'Reset Pin Configuration'; Name: 'RSTPINCFG'; Mask: $08; Values: (
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $01))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -10721,7 +10721,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -10748,14 +10748,14 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATmega8515-----------
     (Name: 'ATmega8515'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'AT90S4414/8515 compatibility mode'; Name: 'S8515C'; Mask: $80; Values: ()),
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10767,7 +10767,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)]'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -10831,7 +10831,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10849,7 +10849,7 @@ const
 
 // ---------- ATmega8535-----------
     (Name: 'ATmega8535'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'AT90S4434/8535 compatibility mode'; Name: 'S8535C'; Mask: $80; Values: ()),
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10861,7 +10861,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -10925,7 +10925,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -10943,14 +10943,14 @@ const
 
 // ---------- ATmega88A-----------
     (Name: 'ATmega88A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words Boot address=$0F80'; Name: '128W_0F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words Boot address=$0F00'; Name: '256W_0F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)]'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -10961,7 +10961,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -11020,7 +11020,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11038,14 +11038,14 @@ const
 
 // ---------- ATmega88PA-----------
     (Name: 'ATmega88PA'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words Boot address=$0F80'; Name: '128W_0F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words Boot address=$0F00'; Name: '256W_0F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)]'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11056,7 +11056,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -11115,7 +11115,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11133,14 +11133,14 @@ const
 
 // ---------- ATmega88PB-----------
     (Name: 'ATmega88PB'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words Boot address=$0F80'; Name: '128W_0F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words Boot address=$0F00'; Name: '256W_0F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11151,7 +11151,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -11202,7 +11202,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11220,14 +11220,14 @@ const
 
 // ---------- ATmega88P-----------
     (Name: 'ATmega88P'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words Boot address=$0F80'; Name: '128W_0F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words Boot address=$0F00'; Name: '256W_0F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)]'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11238,7 +11238,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -11297,7 +11297,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11315,14 +11315,14 @@ const
 
 // ---------- ATmega88-----------
     (Name: 'ATmega88'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words Boot address=$0F80'; Name: '128W_0F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words Boot address=$0F00'; Name: '256W_0F00'; Value: $02),
            (Caption: 'Boot Flash size=512 words Boot address=$0E00'; Name: '512W_0E00'; Value: $01),
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)]'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11333,7 +11333,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -11392,7 +11392,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11410,7 +11410,7 @@ const
 
 // ---------- ATmega8A-----------
     (Name: 'ATmega8A'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11422,7 +11422,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -11486,7 +11486,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11504,7 +11504,7 @@ const
 
 // ---------- ATmega8HVA-----------
     (Name: 'ATmega8HVA'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11519,7 +11519,7 @@ const
            (Caption: 'Start-up time 6 CK/14 CK + 128 ms'; Name: '6CK_14CK_128MS'; Value: $05),
            (Caption: 'Start-up time 6 CK/14 CK + 256 ms'; Name: '6CK_14CK_256MS'; Value: $06),
            (Caption: 'Start-up time 6 CK/14 CK + 512 ms'; Name: '6CK_14CK_512MS'; Value: $07))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11527,7 +11527,7 @@ const
 
 // ---------- ATmega8U2-----------
     (Name: 'ATmega8U2'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $07; Values: (
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection level at VCC=2.7 V'; Name: '2V7'; Value: $06),
@@ -11538,7 +11538,7 @@ const
            (Caption: 'Brown-out detection level at VCC=4.0 V'; Name: '4V0'; Value: $01),
            (Caption: 'Brown-out detection level at VCC=4.3 V'; Name: '4V3'; Value: $00))),
          (Caption: 'Hardware Boot Enable'; Name: 'HWBE'; Mask: $08; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11550,7 +11550,7 @@ const
            (Caption: 'Boot Flash size=1024 words start address=$C00'; Name: '1024W_C00'; Value: $01),
            (Caption: 'Boot Flash size=2048 words start address=$800'; Name: '2048W_800'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC7'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -11604,7 +11604,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 16K CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11622,7 +11622,7 @@ const
 
 // ---------- ATmega8-----------
     (Name: 'ATmega8'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -11634,7 +11634,7 @@ const
            (Caption: 'Boot Flash size=1024 words Boot address=$0C00'; Name: '1024W_0C00'; Value: $00))),
          (Caption: 'Boot Reset vector Enabled'; Name: 'BOOTRST'; Mask: $01; Values: ()),
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $10; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brownout detector trigger level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
@@ -11698,7 +11698,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $2F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11716,12 +11716,12 @@ const
 
 // ---------- ATtiny102-----------
     (Name: 'ATtiny102'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Self programming enable'; Name: 'SELFPROGEN'; Mask: $08; Values: ()),
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11729,12 +11729,12 @@ const
 
 // ---------- ATtiny104-----------
     (Name: 'ATtiny104'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Self programming enable'; Name: 'SELFPROGEN'; Mask: $08; Values: ()),
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11742,11 +11742,11 @@ const
 
 // ---------- ATtiny10-----------
     (Name: 'ATtiny10'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11754,7 +11754,7 @@ const
 
 // ---------- ATtiny11-----------
     (Name: 'ATtiny11'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Short start-up time selected'; Name: 'FSTRT'; Mask: $10; Values: ()),
          (Caption: 'External reset function of PB5 disabled'; Name: 'RSTDISBL'; Mask: $08; Values: ()),
          (Caption: 'Clock Select'; Name: 'CKSEL'; Mask: $07; Values: (
@@ -11763,7 +11763,7 @@ const
            (Caption: 'External RC Oscillator'; Name: 'EXTRCOSC'; Value: $05),
            (Caption: 'Internal RC Oscillator'; Name: 'INTRCOSC'; Value: $04),
            (Caption: 'External Clock'; Name: 'EXTCLK'; Value: $00))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $06; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $01),
@@ -11771,7 +11771,7 @@ const
 
 // ---------- ATtiny12-----------
     (Name: 'ATtiny12'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brown-out Detection Level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $00))),
@@ -11795,7 +11795,7 @@ const
            (Caption: 'Internal RC Ocsillator'; Name: 'INTRCOSC'; Value: $02),
            (Caption: 'External Clock'; Name: 'EXTCLK'; Value: $01),
            (Caption: 'External Clock'; Name: 'EXTCLK'; Value: $00))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $06; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $01),
@@ -11803,7 +11803,7 @@ const
 
 // ---------- ATtiny13A-----------
     (Name: 'ATtiny13A'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $10; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Enable BOD and select level'; Name: 'BODLEVEL'; Mask: $06; Values: (
@@ -11812,7 +11812,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03))),
          (Caption: 'Reset Disabled (Enable PB5 as i/o pin)'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $20; Values: ()),
@@ -11830,7 +11830,7 @@ const
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 0 ms'; Name: 'INTRCOSC_128KHZ_14CK_0MS'; Value: $03),
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 4 ms'; Name: 'INTRCOSC_128KHZ_14CK_4MS'; Value: $07),
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 64 ms'; Name: 'INTRCOSC_128KHZ_14CK_64MS'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11838,7 +11838,7 @@ const
 
 // ---------- ATtiny13-----------
     (Name: 'ATtiny13'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $10; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $08; Values: ()),
          (Caption: 'Enable BOD and select level'; Name: 'BODLEVEL'; Mask: $06; Values: (
@@ -11847,7 +11847,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $02),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $03))),
          (Caption: 'Reset Disabled (Enable PB5 as i/o pin)'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Watch-dog Timer always on'; Name: 'WDTON'; Mask: $20; Values: ()),
@@ -11865,7 +11865,7 @@ const
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 0 ms'; Name: 'INTRCOSC_128KHZ_14CK_0MS'; Value: $03),
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 4 ms'; Name: 'INTRCOSC_128KHZ_14CK_4MS'; Value: $07),
            (Caption: 'Int. RC Osc. 128 kHz; Start-up time: 14 CK + 64 ms'; Name: 'INTRCOSC_128KHZ_14CK_64MS'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -11873,7 +11873,7 @@ const
 
 // ---------- ATtiny15-----------
     (Name: 'ATtiny15'; Fuses:(
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Brown-out Detection Level'; Name: 'BODLEVEL'; Mask: $80; Values: (
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01),
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00))),
@@ -11885,7 +11885,7 @@ const
            (Caption: 'Quickly rising power'; Name: 'QUICKPWR'; Value: $02),
            (Caption: 'Slowly rising power'; Name: 'SLOWPWR'; Value: $01),
            (Caption: 'Slowly rising power'; Name: 'SLOWPWR'; Value: $00))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $06; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $01),
@@ -11893,8 +11893,8 @@ const
 
 // ---------- ATtiny1604-----------
     (Name: 'ATtiny1604'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -11916,13 +11916,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -11933,7 +11933,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -11943,7 +11943,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -11952,7 +11952,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -11979,15 +11979,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny1606-----------
     (Name: 'ATtiny1606'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12009,13 +12009,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12026,7 +12026,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12036,7 +12036,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12045,7 +12045,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12072,15 +12072,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny1607-----------
     (Name: 'ATtiny1607'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12102,13 +12102,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12119,7 +12119,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12129,7 +12129,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12138,7 +12138,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12165,15 +12165,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny1614-----------
     (Name: 'ATtiny1614'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12195,13 +12195,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12212,7 +12212,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12222,7 +12222,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12231,7 +12231,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12258,15 +12258,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny1616-----------
     (Name: 'ATtiny1616'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12288,13 +12288,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12305,7 +12305,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12315,7 +12315,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12324,7 +12324,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12351,15 +12351,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny1617-----------
     (Name: 'ATtiny1617'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12381,13 +12381,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12398,7 +12398,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12408,7 +12408,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12417,7 +12417,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12444,14 +12444,14 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny1634-----------
     (Name: 'ATtiny1634'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'BOD mode of operation when the device is in sleep mode'; Name: 'BODPD'; Mask: $18; Values: (
            (Caption: 'Sampled'; Name: 'BOD_SAMPLED'; Value: $01),
            (Caption: 'Enabled'; Name: 'BOD_ENABLED'; Value: $02),
@@ -12461,7 +12461,7 @@ const
            (Caption: 'Enabled'; Name: 'BOD_ENABLED'; Value: $02),
            (Caption: 'Disabled'; Name: 'BOD_DISABLED'; Value: $03))),
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC2 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -12471,7 +12471,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $1F; Values: (
@@ -12490,7 +12490,7 @@ const
            (Caption: 'Ext. Ceramic Res. 8.0- MHz; Start-up time PWRDWN/RESET: 258 CK/16 CK + 16 ms'; Name: 'EXTCRES_8MHZ_XX_258CK_16CK_16MS'; Value: $0E),
            (Caption: 'Ext. Ceramic Res. 8.0- MHz; Start-up time PWRDWN/RESET: 1K CK/16 CK + 16 ms'; Name: 'EXTCRES_8MHZ_XX_1KCK_16CK_16MS'; Value: $1E),
            (Caption: 'Ext. Crystal Osc. 8.0- MHz; Start-up time PWRDWN/RESET: 16 K CK/16 CK + 16 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_16CK_16MS'; Value: $0F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -12498,9 +12498,9 @@ const
 
 // ---------- ATtiny167-----------
     (Name: 'ATtiny167'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -12515,7 +12515,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -12563,7 +12563,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time PWRDWN/RESET: 16384 CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time PWRDWN/RESET: 16384 CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time PWRDWN/RESET: 16384 CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -12571,8 +12571,8 @@ const
 
 // ---------- ATtiny202-----------
     (Name: 'ATtiny202'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12594,13 +12594,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12611,7 +12611,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12621,7 +12621,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12630,7 +12630,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12657,15 +12657,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny204-----------
     (Name: 'ATtiny204'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12687,13 +12687,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12704,7 +12704,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12714,7 +12714,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12723,7 +12723,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12750,14 +12750,14 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny20-----------
     (Name: 'ATtiny20'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $70; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -12766,7 +12766,7 @@ const
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -12774,8 +12774,8 @@ const
 
 // ---------- ATtiny212-----------
     (Name: 'ATtiny212'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12797,13 +12797,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12814,7 +12814,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12824,7 +12824,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12833,7 +12833,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12860,15 +12860,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny214-----------
     (Name: 'ATtiny214'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -12890,13 +12890,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -12907,7 +12907,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -12917,7 +12917,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -12926,7 +12926,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -12953,16 +12953,16 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny2313A-----------
     (Name: 'ATtiny2313A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -12973,7 +12973,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))),
          (Caption: 'External reset disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -13021,7 +13021,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13029,9 +13029,9 @@ const
 
 // ---------- ATtiny2313-----------
     (Name: 'ATtiny2313'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -13042,7 +13042,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))),
          (Caption: 'External reset disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -13090,7 +13090,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13098,9 +13098,9 @@ const
 
 // ---------- ATtiny24A-----------
     (Name: 'ATtiny24A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB3 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -13111,7 +13111,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -13159,7 +13159,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13167,9 +13167,9 @@ const
 
 // ---------- ATtiny24-----------
     (Name: 'ATtiny24'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB3 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -13180,7 +13180,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -13228,7 +13228,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13236,9 +13236,9 @@ const
 
 // ---------- ATtiny25-----------
     (Name: 'ATtiny25'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB5 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -13249,7 +13249,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB4'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -13304,7 +13304,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13312,9 +13312,9 @@ const
 
 // ---------- ATtiny261A-----------
     (Name: 'ATtiny261A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -13329,7 +13329,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -13381,7 +13381,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13389,9 +13389,9 @@ const
 
 // ---------- ATtiny261-----------
     (Name: 'ATtiny261'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -13406,7 +13406,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -13458,7 +13458,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13466,7 +13466,7 @@ const
 
 // ---------- ATtiny26-----------
     (Name: 'ATtiny26'; Fuses:(
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $10; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $08; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $04; Values: ()),
@@ -13474,7 +13474,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.0 V'; Name: '4V0'; Value: $00),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $01))),
          (Caption: 'Brown-out detection enabled'; Name: 'BODEN'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'CKOPT fuse (operation dependent of CKSEL fuses)'; Name: 'CKOPT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'PLLCK_SUT_CKSEL'; Mask: $BF; Values: (
            (Caption: 'PLL Clock; Start-up time: 1K CK + 0 ms'; Name: 'PLLCLK_1KCK_0MS'; Value: $01),
@@ -13539,7 +13539,7 @@ const
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 0 ms'; Name: 'EXTHIFXTALRES_16KCK_0MS'; Value: $9F),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 4 ms'; Name: 'EXTHIFXTALRES_16KCK_4MS'; Value: $AF),
            (Caption: 'Ext. Crystal/Resonator High Freq.; Start-up time: 16K CK + 64 ms'; Name: 'EXTHIFXTALRES_16KCK_64MS'; Value: $BF))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -13547,8 +13547,8 @@ const
 
 // ---------- ATtiny3214-----------
     (Name: 'ATtiny3214'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -13570,13 +13570,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -13587,7 +13587,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -13597,7 +13597,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -13606,7 +13606,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -13633,15 +13633,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny3216-----------
     (Name: 'ATtiny3216'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -13663,13 +13663,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -13680,7 +13680,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -13690,7 +13690,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -13699,7 +13699,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -13726,15 +13726,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny3217-----------
     (Name: 'ATtiny3217'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -13756,13 +13756,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -13773,7 +13773,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -13783,7 +13783,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -13792,7 +13792,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -13819,15 +13819,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny402-----------
     (Name: 'ATtiny402'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -13849,13 +13849,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -13866,7 +13866,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -13876,7 +13876,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -13885,7 +13885,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -13912,15 +13912,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny404-----------
     (Name: 'ATtiny404'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -13942,13 +13942,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -13959,7 +13959,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -13969,7 +13969,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -13978,7 +13978,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -14005,15 +14005,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny406-----------
     (Name: 'ATtiny406'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -14035,13 +14035,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -14052,7 +14052,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -14062,7 +14062,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -14071,7 +14071,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -14098,14 +14098,14 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny40-----------
     (Name: 'ATtiny40'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Brown-out Detector trigger level'; Name: 'BODLEVEL'; Mask: $70; Values: (
            (Caption: 'Brown-out detection disabled; [BODLEVEL=111]'; Name: 'DISABLED'; Value: $07),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
@@ -14114,7 +14114,7 @@ const
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14122,8 +14122,8 @@ const
 
 // ---------- ATtiny412-----------
     (Name: 'ATtiny412'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -14145,13 +14145,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -14162,7 +14162,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -14172,7 +14172,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -14181,7 +14181,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -14208,15 +14208,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny414-----------
     (Name: 'ATtiny414'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -14238,13 +14238,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -14255,7 +14255,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -14265,7 +14265,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -14274,7 +14274,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -14301,15 +14301,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny416-----------
     (Name: 'ATtiny416'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -14331,13 +14331,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -14348,7 +14348,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -14358,7 +14358,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -14367,7 +14367,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -14394,15 +14394,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny417-----------
     (Name: 'ATtiny417'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -14424,13 +14424,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -14441,7 +14441,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -14451,7 +14451,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -14460,7 +14460,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -14487,16 +14487,16 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny4313-----------
     (Name: 'ATtiny4313'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $80; Values: ()),
          (Caption: 'Preserve EEPROM through the Chip Erase cycle'; Name: 'EESAVE'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enable'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -14507,7 +14507,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))),
          (Caption: 'External reset disable'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTD2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -14555,7 +14555,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time: 14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14563,9 +14563,9 @@ const
 
 // ---------- ATtiny43U-----------
     (Name: 'ATtiny43U'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -14580,7 +14580,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -14632,7 +14632,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14640,7 +14640,7 @@ const
 
 // ---------- ATtiny441-----------
     (Name: 'ATtiny441'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Frequency selection for internal ULP oscillator. The selection only affects system clock, watchdog and reset timeout always use 32 kHz clock.'; Name: 'ULPOSCSEL'; Mask: $E0; Values: (
            (Caption: '32 kHz'; Name: 'ULPOSC_32KHZ'; Value: $07),
            (Caption: '64 kHz'; Name: 'ULPOSC_64KHZ'; Value: $06),
@@ -14656,7 +14656,7 @@ const
            (Caption: 'Enabled'; Name: 'BOD_ENABLED'; Value: $02),
            (Caption: 'Disabled'; Name: 'BOD_DISABLED'; Value: $03))),
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC2 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -14666,7 +14666,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $1F; Values: (
@@ -14687,7 +14687,7 @@ const
            (Caption: 'Ext. Ceramic Res. 8.0- MHz; Start-up time PWRDWN/RESET: 258 CK/16 CK + 16 ms'; Name: 'EXTCRES_8MHZ_XX_258CK_16CK_16MS'; Value: $0E),
            (Caption: 'Ext. Ceramic Res. 8.0- MHz; Start-up time PWRDWN/RESET: 1K CK/16 CK + 16 ms'; Name: 'EXTCRES_8MHZ_XX_1KCK_16CK_16MS'; Value: $1E),
            (Caption: 'Ext. Crystal Osc. 8.0- MHz; Start-up time PWRDWN/RESET: 16 K CK/16 CK + 16 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_16CK_16MS'; Value: $0F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14695,9 +14695,9 @@ const
 
 // ---------- ATtiny44A-----------
     (Name: 'ATtiny44A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB3 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -14708,7 +14708,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -14756,7 +14756,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14764,9 +14764,9 @@ const
 
 // ---------- ATtiny44-----------
     (Name: 'ATtiny44'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB3 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -14777,7 +14777,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -14825,7 +14825,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14833,9 +14833,9 @@ const
 
 // ---------- ATtiny45-----------
     (Name: 'ATtiny45'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB5 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -14846,7 +14846,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB4'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -14901,7 +14901,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14909,9 +14909,9 @@ const
 
 // ---------- ATtiny461A-----------
     (Name: 'ATtiny461A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -14926,7 +14926,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -14978,7 +14978,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -14986,9 +14986,9 @@ const
 
 // ---------- ATtiny461-----------
     (Name: 'ATtiny461'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -15003,7 +15003,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -15055,7 +15055,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15063,9 +15063,9 @@ const
 
 // ---------- ATtiny48-----------
     (Name: 'ATtiny48'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -15076,7 +15076,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -15089,7 +15089,7 @@ const
            (Caption: 'Int. RC Osc. 128kHz; Start-up time PWRDWN/RESET: 6 CK/14 CK + 0 ms'; Name: 'INTRCOSC_128KHZ_6CK_14CK_0MS'; Value: $0F),
            (Caption: 'Int. RC Osc. 128kHz; Start-up time PWRDWN/RESET: 6 CK/14 CK + 4.1 ms'; Name: 'INTRCOSC_128KHZ_6CK_14CK_4MS1'; Value: $1F),
            (Caption: 'Int. RC Osc. 128kHz; Start-up time PWRDWN/RESET: 6 CK/14 CK + 65 ms'; Name: 'INTRCOSC_128KHZ_6CK_14CK_65MS'; Value: $2F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15097,11 +15097,11 @@ const
 
 // ---------- ATtiny4-----------
     (Name: 'ATtiny4'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15109,11 +15109,11 @@ const
 
 // ---------- ATtiny5-----------
     (Name: 'ATtiny5'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15121,8 +15121,8 @@ const
 
 // ---------- ATtiny804-----------
     (Name: 'ATtiny804'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -15144,13 +15144,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -15161,7 +15161,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -15171,7 +15171,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -15180,7 +15180,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -15207,15 +15207,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny806-----------
     (Name: 'ATtiny806'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -15237,13 +15237,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -15254,7 +15254,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -15264,7 +15264,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -15273,7 +15273,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -15300,15 +15300,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny807-----------
     (Name: 'ATtiny807'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -15330,13 +15330,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -15347,7 +15347,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -15357,7 +15357,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -15366,7 +15366,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -15393,15 +15393,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny814-----------
     (Name: 'ATtiny814'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -15423,13 +15423,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -15440,7 +15440,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -15450,7 +15450,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -15459,7 +15459,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -15486,15 +15486,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny816-----------
     (Name: 'ATtiny816'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -15516,13 +15516,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -15533,7 +15533,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -15543,7 +15543,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -15552,7 +15552,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -15579,15 +15579,15 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny817-----------
     (Name: 'ATtiny817'; Fuses:(
-      (Caption: 'APPEND'; Name: 'fuse7'; ofs: $07; BitField:()),
-      (Caption: 'BODCFG'; Name: 'fuse1'; ofs: $01; BitField:(
+      (Caption: 'APPEND (fuse7)'; Name: 'fuse7'; ofs: $07; BitField:()),
+      (Caption: 'BODCFG (fuse1)'; Name: 'fuse1'; ofs: $01; BitField:(
          (Caption: 'BOD Operation in Active Mode'; Name: 'ACTIVE'; Mask: $0C; Values: (
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
@@ -15609,13 +15609,13 @@ const
            (Caption: 'Disabled'; Name: 'DIS'; Value: $00),
            (Caption: 'Enabled'; Name: 'ENABLED'; Value: $01),
            (Caption: 'Sampled'; Name: 'SAMPLED'; Value: $02))))),
-      (Caption: 'BOOTEND'; Name: 'fuse8'; ofs: $08; BitField:()),
-      (Caption: 'OSCCFG'; Name: 'fuse2'; ofs: $02; BitField:(
+      (Caption: 'BOOTEND (fuse8)'; Name: 'fuse8'; ofs: $08; BitField:()),
+      (Caption: 'OSCCFG (fuse2)'; Name: 'fuse2'; ofs: $02; BitField:(
          (Caption: 'Frequency Select'; Name: 'FREQSEL'; Mask: $03; Values: (
            (Caption: '16 MHz'; Name: '16MHZ'; Value: $01),
            (Caption: '20 MHz'; Name: '20MHZ'; Value: $02))),
          (Caption: 'Oscillator Lock'; Name: 'OSCLOCK'; Mask: $80; Values: ()))),
-      (Caption: 'SYSCFG0'; Name: 'fuse5'; ofs: $05; BitField:(
+      (Caption: 'SYSCFG0 (fuse5)'; Name: 'fuse5'; ofs: $05; BitField:(
          (Caption: 'CRC Source'; Name: 'CRCSRC'; Mask: $C0; Values: (
            (Caption: 'The CRC is performed on the entire Flash (boot, application code and application data section).'; Name: 'FLASH'; Value: $00),
            (Caption: 'The CRC is performed on the boot section of Flash'; Name: 'BOOT'; Value: $01),
@@ -15626,7 +15626,7 @@ const
            (Caption: 'GPIO mode'; Name: 'GPIO'; Value: $00),
            (Caption: 'UPDI mode'; Name: 'UPDI'; Value: $01),
            (Caption: 'Reset mode'; Name: 'RST'; Value: $02))))),
-      (Caption: 'SYSCFG1'; Name: 'fuse6'; ofs: $06; BitField:(
+      (Caption: 'SYSCFG1 (fuse6)'; Name: 'fuse6'; ofs: $06; BitField:(
          (Caption: 'Startup Time'; Name: 'SUT'; Mask: $07; Values: (
            (Caption: '0 ms'; Name: '0MS'; Value: $00),
            (Caption: '1 ms'; Name: '1MS'; Value: $01),
@@ -15636,7 +15636,7 @@ const
            (Caption: '16 ms'; Name: '16MS'; Value: $05),
            (Caption: '32 ms'; Name: '32MS'; Value: $06),
            (Caption: '64 ms'; Name: '64MS'; Value: $07))))),
-      (Caption: 'TCD0CFG'; Name: 'fuse4'; ofs: $04; BitField:(
+      (Caption: 'TCD0CFG (fuse4)'; Name: 'fuse4'; ofs: $04; BitField:(
          (Caption: 'Compare A Default Output Value'; Name: 'CMPA'; Mask: $01; Values: ()),
          (Caption: 'Compare A Output Enable'; Name: 'CMPAEN'; Mask: $10; Values: ()),
          (Caption: 'Compare B Default Output Value'; Name: 'CMPB'; Mask: $02; Values: ()),
@@ -15645,7 +15645,7 @@ const
          (Caption: 'Compare C Output Enable'; Name: 'CMPCEN'; Mask: $40; Values: ()),
          (Caption: 'Compare D Default Output Value'; Name: 'CMPD'; Mask: $08; Values: ()),
          (Caption: 'Compare D Output Enable'; Name: 'CMPDEN'; Mask: $80; Values: ()))),
-      (Caption: 'WDTCFG'; Name: 'fuse0'; ofs: $00; BitField:(
+      (Caption: 'WDTCFG (fuse0)'; Name: 'fuse0'; ofs: $00; BitField:(
          (Caption: 'Watchdog Timeout Period'; Name: 'PERIOD'; Mask: $0F; Values: (
            (Caption: 'Watch-Dog timer Off'; Name: 'OFF'; Value: $00),
            (Caption: '8 cycles (8ms)'; Name: '8CLK'; Value: $01),
@@ -15672,14 +15672,14 @@ const
            (Caption: '2K cycles (2.0s)'; Name: '2KCLK'; Value: $09),
            (Caption: '4K cycles (4.1s)'; Name: '4KCLK'; Value: $0A),
            (Caption: '8K cycles (8.2s)'; Name: '8KCLK'; Value: $0B))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Lock Bits'; Name: 'LB'; Mask: $FF; Values: (
            (Caption: 'Read and write lock'; Name: 'RWLOCK'; Value: $3A),
            (Caption: 'No locks'; Name: 'NOLOCK'; Value: $C5))))))),
 
 // ---------- ATtiny828-----------
     (Name: 'ATtiny828'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Select boot size'; Name: 'BOOTSZ'; Mask: $06; Values: (
            (Caption: 'Boot Flash size=128 words Boot address=$0F80'; Name: '128W_0F80'; Value: $03),
            (Caption: 'Boot Flash size=256 words Boot address=$0F00'; Name: '256W_0F00'; Value: $02),
@@ -15694,7 +15694,7 @@ const
            (Caption: 'Sampled'; Name: 'BOD_SAMPLED'; Value: $01),
            (Caption: 'Enabled'; Name: 'BOD_ENABLED'; Value: $02),
            (Caption: 'Disabled'; Name: 'BOD_DISABLED'; Value: $03))))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)]'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -15705,7 +15705,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $33; Values: (
@@ -15725,7 +15725,7 @@ const
            (Caption: 'Int. ULP Osc. 32kHz; Start-up time PWRDWN/RESET: 6 + 14 CK + 4.1 ms'; Name: 'INTULPOSC_32KHZ_6CK_14CK_4MS1'; Value: $13),
            (Caption: 'Int. ULP Osc. 32kHz; Start-up time PWRDWN/RESET: 6 + 14 CK + 65 ms'; Name: 'INTULPOSC_32KHZ_6CK_14CK_65MS'; Value: $23),
            (Caption: 'Int. ULP Osc. 32kHz; Start-up time PWRDWN/RESET: 6 + 14 CK + 65 ms'; Name: 'INTULPOSC_32KHZ_6CK_14CK_65MS'; Value: $33))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15743,7 +15743,7 @@ const
 
 // ---------- ATtiny841-----------
     (Name: 'ATtiny841'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Frequency selection for internal ULP oscillator. The selection only affects system clock, watchdog and reset timeout always use 32 kHz clock.'; Name: 'ULPOSCSEL'; Mask: $E0; Values: (
            (Caption: '32 kHz'; Name: 'ULPOSC_32KHZ'; Value: $07),
            (Caption: '64 kHz'; Name: 'ULPOSC_64KHZ'; Value: $06),
@@ -15759,7 +15759,7 @@ const
            (Caption: 'Enabled'; Name: 'BOD_ENABLED'; Value: $02),
            (Caption: 'Disabled'; Name: 'BOD_DISABLED'; Value: $03))),
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC2 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -15769,7 +15769,7 @@ const
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTC2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $1F; Values: (
@@ -15790,7 +15790,7 @@ const
            (Caption: 'Ext. Ceramic Res. 8.0- MHz; Start-up time PWRDWN/RESET: 258 CK/16 CK + 16 ms'; Name: 'EXTCRES_8MHZ_XX_258CK_16CK_16MS'; Value: $0E),
            (Caption: 'Ext. Ceramic Res. 8.0- MHz; Start-up time PWRDWN/RESET: 1K CK/16 CK + 16 ms'; Name: 'EXTCRES_8MHZ_XX_1KCK_16CK_16MS'; Value: $1E),
            (Caption: 'Ext. Crystal Osc. 8.0- MHz; Start-up time PWRDWN/RESET: 16 K CK/16 CK + 16 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_16CK_16MS'; Value: $0F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15798,9 +15798,9 @@ const
 
 // ---------- ATtiny84A-----------
     (Name: 'ATtiny84A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB3 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -15811,7 +15811,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -15859,7 +15859,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15867,9 +15867,9 @@ const
 
 // ---------- ATtiny84-----------
     (Name: 'ATtiny84'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB3 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -15880,7 +15880,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB2'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -15928,7 +15928,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -15936,9 +15936,9 @@ const
 
 // ---------- ATtiny85-----------
     (Name: 'ATtiny85'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB5 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -15949,7 +15949,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=4.3 V'; Name: '4V3'; Value: $04))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB4'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -16004,7 +16004,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -16012,9 +16012,9 @@ const
 
 // ---------- ATtiny861A-----------
     (Name: 'ATtiny861A'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -16029,7 +16029,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -16081,7 +16081,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -16089,9 +16089,9 @@ const
 
 // ---------- ATtiny861-----------
     (Name: 'ATtiny861'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -16106,7 +16106,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -16158,7 +16158,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-    MHz; Start-up time PWRDWN/RESET: 16K CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_XX_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -16166,9 +16166,9 @@ const
 
 // ---------- ATtiny87-----------
     (Name: 'ATtiny87'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PB7 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -16183,7 +16183,7 @@ const
            (Caption: 'Brown-out detection at VCC=1.9 V'; Name: '1V9'; Value: $01),
            (Caption: 'Brown-out detection at VCC=2.0 V'; Name: '2V0'; Value: $00),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB5'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -16231,7 +16231,7 @@ const
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time PWRDWN/RESET: 16384 CK/14 CK + 0 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_16KCK_14CK_0MS'; Value: $1F),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time PWRDWN/RESET: 16384 CK/14 CK + 4.1 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_16KCK_14CK_4MS1'; Value: $2F),
            (Caption: 'Ext. Crystal Osc. 8.0-16.0 MHz; Start-up time PWRDWN/RESET: 16384 CK/14 CK + 65 ms'; Name: 'EXTXOSC_8MHZ_16MHZ_16KCK_14CK_65MS'; Value: $3F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -16239,9 +16239,9 @@ const
 
 // ---------- ATtiny88-----------
     (Name: 'ATtiny88'; Fuses:(
-      (Caption: 'EXTENDED'; Name: 'efuse'; ofs: $02; BitField:(
+      (Caption: 'EXTENDED (efuse)'; Name: 'efuse'; ofs: $02; BitField:(
          (Caption: 'Self Programming enable'; Name: 'SELFPRGEN'; Mask: $01; Values: ()))),
-      (Caption: 'HIGH'; Name: 'hfuse'; ofs: $01; BitField:(
+      (Caption: 'HIGH (hfuse)'; Name: 'hfuse'; ofs: $01; BitField:(
          (Caption: 'Reset Disabled (Enable PC6 as i/o pin)'; Name: 'RSTDISBL'; Mask: $80; Values: ()),
          (Caption: 'Debug Wire enable'; Name: 'DWEN'; Mask: $40; Values: ()),
          (Caption: 'Serial program downloading (SPI) enabled'; Name: 'SPIEN'; Mask: $20; Values: ()),
@@ -16252,7 +16252,7 @@ const
            (Caption: 'Brown-out detection at VCC=2.7 V'; Name: '2V7'; Value: $05),
            (Caption: 'Brown-out detection at VCC=1.8 V'; Name: '1V8'; Value: $06),
            (Caption: 'Brown-out detection disabled'; Name: 'DISABLED'; Value: $07))))),
-      (Caption: 'LOW'; Name: 'lfuse'; ofs: $00; BitField:(
+      (Caption: 'LOW (lfuse)'; Name: 'lfuse'; ofs: $00; BitField:(
          (Caption: 'Divide clock by 8 internally'; Name: 'CKDIV8'; Mask: $80; Values: ()),
          (Caption: 'Clock output on PORTB0'; Name: 'CKOUT'; Mask: $40; Values: ()),
          (Caption: 'Select Clock Source'; Name: 'SUT_CKSEL'; Mask: $3F; Values: (
@@ -16265,7 +16265,7 @@ const
            (Caption: 'Int. RC Osc. 128kHz; Start-up time PWRDWN/RESET: 6 CK/14 CK + 0 ms'; Name: 'INTRCOSC_128KHZ_6CK_14CK_0MS'; Value: $0F),
            (Caption: 'Int. RC Osc. 128kHz; Start-up time PWRDWN/RESET: 6 CK/14 CK + 4.1 ms'; Name: 'INTRCOSC_128KHZ_6CK_14CK_4MS1'; Value: $1F),
            (Caption: 'Int. RC Osc. 128kHz; Start-up time PWRDWN/RESET: 6 CK/14 CK + 65 ms'; Name: 'INTRCOSC_128KHZ_6CK_14CK_65MS'; Value: $2F))))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),
@@ -16273,11 +16273,11 @@ const
 
 // ---------- ATtiny9-----------
     (Name: 'ATtiny9'; Fuses:(
-      (Caption: 'BYTE0'; Name: 'BYTE0'; ofs: $00; BitField:(
+      (Caption: 'BYTE0 (BYTE0)'; Name: 'BYTE0'; ofs: $00; BitField:(
          (Caption: 'Output external clock'; Name: 'CKOUT'; Mask: $04; Values: ()),
          (Caption: 'Watch dog timer always on'; Name: 'WDTON'; Mask: $02; Values: ()),
          (Caption: 'Disable external reset'; Name: 'RSTDISBL'; Mask: $01; Values: ()))),
-      (Caption: 'LOCKBIT'; Name: 'lock'; ofs: $00; BitField:(
+      (Caption: 'LOCKBIT (lock)'; Name: 'lock'; ofs: $00; BitField:(
          (Caption: 'Memory Lock'; Name: 'LB'; Mask: $03; Values: (
            (Caption: 'Further programming and verification disabled'; Name: 'PROG_VER_DISABLED'; Value: $00),
            (Caption: 'Further programming disabled'; Name: 'PROG_DISABLED'; Value: $02),

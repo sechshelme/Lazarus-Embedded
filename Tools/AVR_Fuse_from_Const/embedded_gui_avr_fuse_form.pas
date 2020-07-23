@@ -6,10 +6,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
-  ExtCtrls, FileUtil, LazFileUtils, Laz2_XMLCfg, laz2_XMLRead, laz2_XMLWrite, laz2_DOM,
+  ExtCtrls, FileUtil, LazFileUtils, laz2_XMLRead, laz2_DOM,
   Embedded_GUI_Common,
   Embedded_GUI_Run_Command,
-  Embedded_GUI_AVR_Fuse_Common,
+//  Embedded_GUI_AVR_Fuse_Common,
   Embedded_GUI_AVR_Fuse_Const,
   Embedded_GUI_AVR_Fuse_TabSheet;
 
@@ -30,7 +30,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
-    procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode; TabSheet: TFuseTabSheet);
     procedure ClearTabs;
   private
     FuseTabSheet: array of TFuseTabSheet;
@@ -58,26 +57,6 @@ begin
   SetLength(FuseTabSheet, 0);
 end;
 
-procedure TForm_AVR_Fuse.Read_Value_Group(const Attr_name: string; Node: TDOMNode; TabSheet: TFuseTabSheet);
-var
-  Node_Value_Group, Node_Value: TDOMNode;
-  s: string;
-begin
-  //Node_Value_Group := Node.FirstChild;
-  //while Node_Value_Group <> nil do begin
-  //  if IsAttribut(Node_Value_Group, 'name', Attr_name) then begin
-  //    Node_Value := Node_Value_Group.FirstChild;
-  //    while Node_Value <> nil do begin
-  //      s := GetAttribut(Node_Value, 'caption');
-  //      s += ' (' + GetAttribut(Node_Value, 'name') + ')';
-  //      TabSheet.AddComboxItem(s, GetAttribut(Node_Value, 'value').ToInteger);
-  //      Node_Value := Node_Value.NextSibling;
-  //    end;
-  //  end;
-  //  Node_Value_Group := Node_Value_Group.NextSibling;
-  //end;
-  //
-end;
 
 /// --- public
 
@@ -101,11 +80,8 @@ begin
   //  AVR_XML_Path := ComboBox1.Items[ComboBox1.ItemIndex];
   AVR_XML_Path := ComboBox1.Text;
   Caption := AVR_XML_Path;
-  //  if FileExists(AVR_XML_Path) then begin
   ClearTabs;
   CreateTab(Sender);
-
-  //end;
 end;
 
 procedure TForm_AVR_Fuse.Button_CloseClick(Sender: TObject);
@@ -114,70 +90,34 @@ begin
 end;
 
 procedure TForm_AVR_Fuse.CreateTab(Sender: TObject);
-//  doc: TXMLDocument;
-//  Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
-
-  procedure AddFuse;
-  var
-    n: string;
-    ofs: byte;
-    l: integer;
-  begin
-    l := Length(FuseTabSheet);
-    SetLength(FuseTabSheet, l + 1);
-    FuseTabSheet[l] := TFuseTabSheet.Create(Self);
-    with FuseTabSheet[l] do begin
-      Tag := l;
-      PageControl := PageControl1;
-      ofs := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[l].ofs;
-      n := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[l].Name;
-      //      ofs := StrToInt(GetAttribut(Node_Register, 'offset'));
-      //      n := GetAttribut(Node_Register, 'name');
-      case n of
-        'EXTENDED': begin
-          FuseName := 'efuse';
-        end;
-        'HIGH': begin
-          FuseName := 'hfuse';
-        end;
-        'LOW': begin
-          FuseName := 'lfuse';
-        end;
-        'LOCKBIT': begin
-          FuseName := 'lock';
-        end;
-        'BYTE0': begin
-          FuseName := 'BYTE0';
-        end else begin
-          FuseName := 'fuse' + IntToStr(ofs);
-        end;
-      end;
-      Caption := n + ' (' + FuseName + ')';
-    end;
-  end;
 
 var
-  i, j, k, l: integer;
+  i, j, k: integer;
   s: string;
 begin
   for i := 0 to Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses) - 1 do begin
-    AddFuse;
+
+    SetLength(FuseTabSheet, i + 1);
+    FuseTabSheet[i] := TFuseTabSheet.Create(Self);
+    FuseTabSheet[i].Tag := i;
+    FuseTabSheet[i].PageControl := PageControl1;
+    FuseTabSheet[i].FuseName := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].Name;
+    FuseTabSheet[i].Caption := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].Caption;
 
     for j := 0 to Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField) - 1 do begin
-      l := i;
       if Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values) > 0 then begin
-        FuseTabSheet[l].NewComboBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption + ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
+        FuseTabSheet[i].NewComboBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption + ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
           AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Mask);
         for k := 0 to length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values) - 1 do begin
+          s := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Caption +
+          ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Name + ')';
 
-          s := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Caption;
-          s += ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Name + ')';
-
-          FuseTabSheet[l].AddComboxItem(s, AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Value);
+          FuseTabSheet[i].AddComboxItem(s, AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Value);
         end;
 
       end else begin
-        FuseTabSheet[l].AddCheckBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption + ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
+        FuseTabSheet[i].AddCheckBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption +
+        ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
           AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Mask);
       end;
     end;

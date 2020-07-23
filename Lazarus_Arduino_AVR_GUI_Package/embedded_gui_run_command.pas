@@ -105,6 +105,7 @@ begin
 
   sl := TStringList.Create;
   sl.LoadFromStream(ms);
+  Memo1.Lines.Add(command);
   Memo1.Lines.AddStrings(sl);
   sl.Free;
   ms.Free;
