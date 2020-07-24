@@ -44,15 +44,18 @@ type
     constructor Create;
     function RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
     function RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
+
     procedure StopHandler(Sender: TObject);
 
+    function RunBuilding(Sender: TObject): TModalResult;
+    procedure StopBuilding(Sender: TObject; BuildSuccessful: Boolean);
   end;
 
 procedure ResetCom;
 var
   SerialHandle: TSerialHandle;
 begin
-//  ShowMessage('hallo0    '+AVR_ProjectOptions.AvrdudeCommand.Programmer);
+//  WriteLn('hallo0    '+AVR_ProjectOptions.AvrdudeCommand.Programmer);
   if AVR_ProjectOptions.AvrdudeCommand.Programmer = 'avr109' then begin
 //    ShowMessage('hallo1');
     SerialHandle := SerOpen(AVR_ProjectOptions.AvrdudeCommand.COM_Port);
@@ -68,7 +71,7 @@ end;
 
 function TNewIDEHandle.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
-  ResetCom;
+//  ResetCom;
   if Assigned(Serial_Monitor_Form) then begin
     if Serial_Monitor_Form.Timer1.Enabled then begin
       Active := True;
@@ -82,7 +85,7 @@ end;
 
 function TNewIDEHandle.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
 begin
-  ResetCom;
+//  ResetCom;
   if Assigned(Serial_Monitor_Form) then begin
     if Serial_Monitor_Form.Timer1.Enabled then begin
       Active := True;
@@ -102,6 +105,21 @@ begin
     end;
   end;
 end;
+
+function TNewIDEHandle.RunBuilding(Sender: TObject): TModalResult;
+begin
+  ResetCom;
+  Result:=mrOK;
+
+end;
+
+procedure TNewIDEHandle.StopBuilding(Sender: TObject; BuildSuccessful: Boolean);
+begin
+  ResetCom;
+
+end;
+
+
 
 constructor TNewIDEHandle.Create;
 begin
@@ -150,9 +168,15 @@ begin
 
   // Run ( without or with debugger ) hooks
   NewIDEHandle := TNewIDEHandle.Create;
+
+  // Serialmonitor
   LazarusIDE.AddHandlerOnRunDebug(@NewIDEHandle.RunHandler, False);
   LazarusIDE.AddHandlerOnRunWithoutDebugInit(@NewIDEHandle.RunNoDebugHandler, False);
   LazarusIDE.AddHandlerOnRunFinished(@NewIDEHandle.StopHandler, True);
+
+  // COM-Reset
+  LazarusIDE.AddHandlerOnProjectBuilding(@NewIDEHandle.RunBuilding, False);
+//  LazarusIDE.AddHandlerOnProjectBuildingFinished(@NewIDEHandle.StopBuilding, True);
 
   // Werkzeuge --> Einstellungen --> Umgebung
   Embbed_IDE_OptionsFrameID :=
