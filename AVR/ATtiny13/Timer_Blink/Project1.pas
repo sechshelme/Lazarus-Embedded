@@ -19,7 +19,7 @@ var
   procedure Timer0_Interrupt; public Name 'TIM0_COMPA_ISR'; interrupt;
   begin
     TCNT0 := 10;
-    SPI_PORT.Clock := Zaehler > 30000;
+    SPI_PORT.Clock := Zaehler > 30001;
   end;
 
 begin

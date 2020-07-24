@@ -52,7 +52,9 @@ procedure ResetCom;
 var
   SerialHandle: TSerialHandle;
 begin
+//  ShowMessage('hallo0    '+AVR_ProjectOptions.AvrdudeCommand.Programmer);
   if AVR_ProjectOptions.AvrdudeCommand.Programmer = 'avr109' then begin
+//    ShowMessage('hallo1');
     SerialHandle := SerOpen(AVR_ProjectOptions.AvrdudeCommand.COM_Port);
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
@@ -75,7 +77,7 @@ begin
       Active := False;
     end;
   end;
-  Result:=mrNone;
+//  Result:=mrNone;
 end;
 
 function TNewIDEHandle.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
@@ -89,7 +91,7 @@ begin
       Active := False;
     end;
   end;
-  Result:=mrNone;
+//  Result:=mrNone;
 end;
 
 procedure TNewIDEHandle.StopHandler(Sender: TObject);
@@ -148,8 +150,8 @@ begin
 
   // Run ( without or with debugger ) hooks
   NewIDEHandle := TNewIDEHandle.Create;
-  LazarusIDE.AddHandlerOnRunDebug(@NewIDEHandle.RunHandler);
-  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@NewIDEHandle.RunNoDebugHandler);
+  LazarusIDE.AddHandlerOnRunDebug(@NewIDEHandle.RunHandler, False);
+  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@NewIDEHandle.RunNoDebugHandler, False);
   LazarusIDE.AddHandlerOnRunFinished(@NewIDEHandle.StopHandler, True);
 
   // Werkzeuge --> Einstellungen --> Umgebung
