@@ -52,21 +52,16 @@ procedure ResetCom;
 var
   SerialHandle: TSerialHandle;
 begin
-    exit;
-  SerialHandle := SerOpen('/dev/ttyACM0');
-  SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
+  if AVR_ProjectOptions.AvrdudeCommand.Programmer = 'avr109' then begin
+    SerialHandle := SerOpen(AVR_ProjectOptions.AvrdudeCommand.COM_Port);
+    SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
-  Sleep(250);
-  SerSetDTR(SerialHandle, False);
-  SerSetRTS(SerialHandle, False);
-  Sleep(250);
-  SerSetDTR(SerialHandle, True);
-  SerSetRTS(SerialHandle, True);
-  Sleep(250);
-
-  //  SerSync(SerialHandle);
-  //  SerFlushOutput(SerialHandle);
-  SerClose(SerialHandle);
+    SerSetDTR(SerialHandle, True);
+    SerSetDTR(SerialHandle, False);
+    Sleep(500);
+    SerClose(SerialHandle);
+    Sleep(500);
+  end;
 end;
 
 function TNewIDEHandle.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
@@ -80,6 +75,7 @@ begin
       Active := False;
     end;
   end;
+  Result:=mrNone;
 end;
 
 function TNewIDEHandle.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
@@ -93,6 +89,7 @@ begin
       Active := False;
     end;
   end;
+  Result:=mrNone;
 end;
 
 procedure TNewIDEHandle.StopHandler(Sender: TObject);

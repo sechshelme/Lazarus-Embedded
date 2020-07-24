@@ -9,7 +9,7 @@ uses
   ExtCtrls, FileUtil, LazFileUtils, laz2_XMLRead, laz2_DOM,
   Embedded_GUI_Common,
   Embedded_GUI_Run_Command,
-//  Embedded_GUI_AVR_Fuse_Common,
+  //  Embedded_GUI_AVR_Fuse_Common,
   Embedded_GUI_AVR_Fuse_Const,
   Embedded_GUI_AVR_Fuse_TabSheet;
 
@@ -95,30 +95,28 @@ var
   i, j, k: integer;
   s: string;
 begin
-  for i := 0 to Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses) - 1 do begin
+  with AVR_Fuse_Data[ComboBox1.ItemIndex] do begin
+    for i := 0 to Length(Fuses) - 1 do begin
 
-    SetLength(FuseTabSheet, i + 1);
-    FuseTabSheet[i] := TFuseTabSheet.Create(Self);
-    FuseTabSheet[i].Tag := i;
-    FuseTabSheet[i].PageControl := PageControl1;
-    FuseTabSheet[i].FuseName := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].Name;
-    FuseTabSheet[i].Caption := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].Caption;
+      SetLength(FuseTabSheet, i + 1);
+      FuseTabSheet[i] := TFuseTabSheet.Create(Self);
+      FuseTabSheet[i].Tag := i;
+      FuseTabSheet[i].PageControl := PageControl1;
+      FuseTabSheet[i].FuseName := Fuses[i].Name;
+      FuseTabSheet[i].Caption := Fuses[i].Caption;
 
-    for j := 0 to Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField) - 1 do begin
-      if Length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values) > 0 then begin
-        FuseTabSheet[i].NewComboBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption + ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
-          AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Mask);
-        for k := 0 to length(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values) - 1 do begin
-          s := AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Caption +
-          ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Name + ')';
-
-          FuseTabSheet[i].AddComboxItem(s, AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Values[k].Value);
+      for j := 0 to Length(Fuses[i].BitField) - 1 do begin
+        if Length(Fuses[i].BitField[j].Values) > 0 then begin
+          FuseTabSheet[i].NewComboBox(Fuses[i].BitField[j].Caption + ' (' + Fuses[i].BitField[j].Name + '):',
+            Fuses[i].BitField[j].Mask);
+          for k := 0 to length(Fuses[i].BitField[j].Values) - 1 do begin
+            s := Fuses[i].BitField[j].Values[k].Caption + ' (' + Fuses[i].BitField[j].Values[k].Name + ')';
+            FuseTabSheet[i].AddComboxItem(s, Fuses[i].BitField[j].Values[k].Value);
+          end;
+        end else begin
+          FuseTabSheet[i].AddCheckBox(Fuses[i].BitField[j].Caption + ' (' + Fuses[i].BitField[j].Name + '):',
+            Fuses[i].BitField[j].Mask);
         end;
-
-      end else begin
-        FuseTabSheet[i].AddCheckBox(AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Caption +
-        ' (' + AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Name + '):',
-          AVR_Fuse_Data[ComboBox1.ItemIndex].Fuses[i].BitField[j].Mask);
       end;
     end;
   end;
