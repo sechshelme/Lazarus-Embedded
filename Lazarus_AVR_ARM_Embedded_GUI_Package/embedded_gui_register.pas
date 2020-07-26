@@ -59,7 +59,7 @@ begin
   LazProject := LazarusIDE.ActiveProject;
 
   if UpCase(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-c'))= 'AVR109' then begin
-    ShowMessage('Leonardo');
+//    ShowMessage('Leonardo');
     SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 

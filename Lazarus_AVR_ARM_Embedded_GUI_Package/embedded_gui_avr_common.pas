@@ -192,8 +192,6 @@ procedure TAvrdudeCommand.SetPara(s: string);
   end;
 
 begin
-  //AVR_SubArch := AProject.LazCompilerOptions.TargetProcessor;
-
   Path := Copy(s, 0, pos(' ', s) - 1);
   ConfigPath := FindPara(s, '-C');
   AVR_AVRDude_Typ := FindPara(s, '-p');
@@ -222,12 +220,12 @@ begin
 
   Result += '-p' + AVR_AVRDude_Typ + ' ' + '-c' + Programmer + ' ';
   pr := upCase(Programmer);
-  if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') then begin
+  if (pr = 'ARDUINO') or (pr = 'STK500V1') or (pr = 'WIRING') or (pr = 'AVR109') then begin
     Result += '-P' + COM_Port + ' ' + '-b' + Baud + ' ';
   end;
-  if (pr = 'AVR109') then begin
-    Result += '-P' + COM_Port + ' ';
-  end;
+  //if (pr = 'AVR109') then begin
+  //  Result += '-P' + COM_Port + ' ';
+  //end;
 
   if BitClock <> '1' then begin
     Result += '-B' + BitClock + ' ';

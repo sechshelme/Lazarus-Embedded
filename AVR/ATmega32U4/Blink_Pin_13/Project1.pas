@@ -3,7 +3,7 @@ program Project1;
 const
   BP5 = 5; // Pin 13 des Arduino
   PC7 = 7;
-  sl = 13000;
+  sl = 19000;
 
   procedure mysleep(t: int32);
   var
@@ -17,7 +17,7 @@ const
   end;
 
 begin
-//  DDRB := DDRB or (1 shl BP5);
+  DDRB := DDRB or (1 shl BP5);
   DDRC := DDRC or (1 shl PC7);
   DDRD := $FF;
   repeat
@@ -28,5 +28,5 @@ begin
     PORTC := PORTC and not (1 shl PC7);
     PORTD:=0;
     mysleep(sl);
-  until 1 = 2;
+  until 1 = 4;
 end.

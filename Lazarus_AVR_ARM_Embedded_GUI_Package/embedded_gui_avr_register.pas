@@ -57,7 +57,6 @@ begin
     end;
   end;
 
-  AVR_OptionsForm.IsNewProject := False;
   AVR_OptionsForm.LazProjectToMask(LazProject);
 
   if AVR_OptionsForm.ShowModal = mrOk then begin
@@ -96,7 +95,7 @@ end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
 begin
-  AVR_OptionsForm.IsNewProject := True;
+  AVR_OptionsForm.DefaultMask;
   Result := AVR_OptionsForm.ShowModal;
 end;
 
