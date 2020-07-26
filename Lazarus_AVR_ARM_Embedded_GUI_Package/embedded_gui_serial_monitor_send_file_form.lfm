@@ -1,0 +1,34 @@
+object SerialMonitor_SendFile_Form: TSerialMonitor_SendFile_Form
+  Left = 1791
+  Height = 108
+  Top = 49
+  Width = 466
+  Caption = 'SerialMonitor_SendFile_Form'
+  ClientHeight = 108
+  ClientWidth = 466
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnHide = FormHide
+  LCLVersion = '2.1.0.0'
+  object Button_Send: TButton
+    Left = 290
+    Height = 25
+    Top = 72
+    Width = 75
+    Anchors = [akTop, akRight]
+    Caption = 'Send'
+    OnClick = Button_SendClick
+    TabOrder = 0
+  end
+  object Button_Close: TButton
+    Left = 378
+    Height = 25
+    Top = 72
+    Width = 75
+    Anchors = [akTop, akRight]
+    Caption = '&Schliessen'
+    ModalResult = 11
+    OnClick = Button_CloseClick
+    TabOrder = 1
+  end
+end

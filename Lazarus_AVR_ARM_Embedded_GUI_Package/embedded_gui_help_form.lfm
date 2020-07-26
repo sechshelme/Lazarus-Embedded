@@ -1,0 +1,38 @@
+object HelpForm: THelpForm
+  Left = 1562
+  Height = 332
+  Top = 211
+  Width = 573
+  Caption = 'HelpForm'
+  ClientHeight = 332
+  ClientWidth = 573
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '2.1.0.0'
+  object Button_Close: TButton
+    Left = 485
+    Height = 25
+    Top = 292
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = '&Close'
+    ModalResult = 2
+    OnClick = Button_CloseClick
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 282
+    Top = 0
+    Width = 573
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Color = clAqua
+    Font.Color = clBlack
+    Lines.Strings = (
+      'Memo1'
+    )
+    ParentFont = False
+    TabOrder = 1
+  end
+end
