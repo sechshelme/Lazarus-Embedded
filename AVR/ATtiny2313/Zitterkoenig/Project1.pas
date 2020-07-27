@@ -123,7 +123,7 @@ var
     z:Integer=0;
   begin
     inc(z);
-    if z<100 then exit;
+    if z<101 then exit;
     z:=0;
 
 

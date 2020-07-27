@@ -77,7 +77,6 @@ implementation
 
 { TAVR_Project_Options_Form }
 
-
 // public
 
 procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
@@ -90,7 +89,7 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 10;
-    Top := 216 - 24;
+    Top := 216 - 75;
   end;
 
   ComboBox_AvrdudeConfigPath := TFileNameComboBox.Create(Self, 'AVRDudeConfig');
@@ -99,7 +98,7 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 10;
-    Top := 279 - 24;
+    Top := 279 - 75;
   end;
 
   LoadFormPos_from_XML(Self);
@@ -108,12 +107,10 @@ begin
     Items.CommaText := avr_SubArch_List;
     //    ItemIndex := 3;                    // ???????????????
     Style := csOwnerDrawFixed;
-    //    Text := 'AVR5';
   end;
 
   with ComboBox_AVR_Typ_FPC do begin
     Sorted := True;
-    //    Text := 'ATMEGA328P';
   end;
 
   CheckBox_AsmFile.Checked := False;
@@ -122,29 +119,24 @@ begin
 
   with ComboBox_Programmer do begin
     Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109'], True);
-    //    Text := 'arduino';
   end;
 
   with ComboBox_COMPort do begin
     Items.CommaText := GetSerialPortNames;
-    //    Text := '/dev/ttyUSB0';
   end;
 
   with ComboBox_BitClock do begin
     Style := csOwnerDrawFixed;
     Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
-    //    Text := Items[0];
   end;
 
   with ComboBox_COMPortBaud do begin
     Items.AddStrings(['19200', '57600', '115200'], True);
-    //    Text := '57600';
   end;
 
   with ComboBox_Verbose do begin
     Style := csOwnerDrawFixed;
     Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
-    //    Text := Items[1];
   end;
 end;
 
@@ -155,69 +147,10 @@ end;
 
 procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
 begin
-  //if IsNewProject then begin
-  //  CheckBox_Disable_Auto_Erase.Checked := False;
-  //  CheckBox_Chip_Erase.Checked := False;
-  //
-  //  if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
-  //    ComboBox_AvrdudePath.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
-  //  end else begin
-  //    ComboBox_AvrdudePath.Text := '';
-  //  end;
-  //
-  //  if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
-  //    ComboBox_AvrdudeConfigPath.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
-  //  end else begin
-  //    ComboBox_AvrdudeConfigPath.Text := '';
-  //  end;
-  //end else begin
-  //  ComboBox_AVR_SubArch.Text := AVR_ProjectOptions.AVR_SubArch;
-  //  ComboBox_AVR_Typ_FPC.Text := AVR_ProjectOptions.AVR_FPC_Typ;
-  //
-  //  CheckBox_AsmFile.Checked := AVR_ProjectOptions.AsmFile;
-  //
-  //  ComboBox_AvrdudePath.Text := AVR_ProjectOptions.AvrdudeCommand.Path;
-  //  ComboBox_AvrdudeConfigPath.Text := AVR_ProjectOptions.AvrdudeCommand.ConfigPath;
-  //
-  //  ComboBox_Programmer.Text := AVR_ProjectOptions.AvrdudeCommand.Programmer;
-  //  ComboBox_COMPort.Text := AVR_ProjectOptions.AvrdudeCommand.COM_Port;
-  //  ComboBox_COMPortBaud.Text := AVR_ProjectOptions.AvrdudeCommand.Baud;
-  //  Edit_AVR_Typ_Avrdude.Text := AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ;
-  //
-  //  ComboBox_Verbose.Text := ComboBox_Verbose.Items[AVR_ProjectOptions.AvrdudeCommand.Verbose];
-  //  if AVR_ProjectOptions.AvrdudeCommand.BitClock = '' then begin
-  //    ComboBox_BitClock.Text := '1';
-  //  end else begin
-  //    ComboBox_BitClock.Text := AVR_ProjectOptions.AvrdudeCommand.BitClock;
-  //  end;
-  //
-  //  CheckBox_Disable_Auto_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase;
-  //  CheckBox_Chip_Erase.Checked := AVR_ProjectOptions.AvrdudeCommand.Chip_Erase;
-  //end;
-  //
-  //ChangeAVR_Typ;
 end;
 
 procedure TAVR_Project_Options_Form.Button_OkClick(Sender: TObject);
 begin
-  //AVR_ProjectOptions.AsmFile := CheckBox_AsmFile.Checked;
-  //
-  //AVR_ProjectOptions.AVR_SubArch := ComboBox_AVR_SubArch.Text;
-  //AVR_ProjectOptions.AVR_FPC_Typ := ComboBox_AVR_Typ_FPC.Text;
-  //
-  //AVR_ProjectOptions.AvrdudeCommand.Path := ComboBox_AvrdudePath.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.ConfigPath := ComboBox_AvrdudeConfigPath.Text;
-  //
-  //AVR_ProjectOptions.AvrdudeCommand.Programmer := ComboBox_Programmer.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.COM_Port := ComboBox_COMPort.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.Baud := ComboBox_COMPortBaud.Text;
-  //AVR_ProjectOptions.AvrdudeCommand.AVR_AVRDude_Typ := Edit_AVR_Typ_Avrdude.Text;
-  //
-  //AVR_ProjectOptions.AvrdudeCommand.Verbose := ComboBox_Verbose.ItemIndex;
-  //AVR_ProjectOptions.AvrdudeCommand.BitClock := ComboBox_BitClock.Text;
-  //
-  //AVR_ProjectOptions.AvrdudeCommand.Disable_Auto_Erase := CheckBox_Disable_Auto_Erase.Checked;
-  //AVR_ProjectOptions.AvrdudeCommand.Chip_Erase := CheckBox_Chip_Erase.Checked;
 end;
 
 procedure TAVR_Project_Options_Form.ComboBox_AVR_SubArchChange(Sender: TObject);
@@ -294,6 +227,7 @@ end;
 
 procedure TAVR_Project_Options_Form.DefaultMask;
 begin
+
   // FPC_Command
   ComboBox_AVR_SubArch.Text := 'AVR5';
   ComboBox_AVR_Typ_FPC.Text := 'ATMEGA328P';
@@ -335,83 +269,95 @@ end;
 
 procedure TAVR_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
-  FPC_Command: TFPCCommand;
-  AVRDude_Command: TAvrdudeCommand;
+  s,bc:String;
 begin
-  AVRDude_Command.SetPara(LazProject.LazCompilerOptions.ExecuteAfter.Command);
-  FPC_Command.SetPara(LazProject.LazCompilerOptions.CustomOptions);
 
   // FPC_Command
   with LazProject.LazCompilerOptions do begin
     ComboBox_AVR_SubArch.Text := TargetProcessor;
-    ComboBox_AVR_Typ_FPC.Text := FPC_Command.AVR_FPC_Typ;
-    CheckBox_AsmFile.Checked := FPC_Command.AsmFile;
+    s:=CustomOptions  ;
+    ComboBox_AVR_Typ_FPC.Text := FindPara(s, '-Wp');
+    CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
   end;
 
   // AVRDude_Command
-  ComboBox_AvrdudePath.Text := AVRDude_Command.Path;
-  ComboBox_AvrdudeConfigPath.Text := AVRDude_Command.ConfigPath;
+  s:=LazProject.LazCompilerOptions.ExecuteAfter.Command;
 
-  ComboBox_Programmer.Text := AVRDude_Command.Programmer;
+  ComboBox_AvrdudePath.Text := Copy(s, 0, pos(' ', s) - 1);
+  ComboBox_AvrdudeConfigPath.Text := FindPara(s, '-C');
+
+  ComboBox_Programmer.Text :=FindPara(s, '-c');
   with ComboBox_COMPort do begin
     Items.CommaText := GetSerialPortNames;
-    Text := AVRDude_Command.COM_Port;
+    Text := FindPara(s, '-P');
   end;
 
-  ComboBox_COMPortBaud.Text := AVRDude_Command.Baud;
-  Edit_AVR_Typ_Avrdude.Text := AVRDude_Command.AVR_AVRDude_Typ;
+  ComboBox_COMPortBaud.Text := FindPara(s, '-b');
+  Edit_AVR_Typ_Avrdude.Text := FindPara(s, '-p');
 
-  ComboBox_Verbose.Text := ComboBox_Verbose.Items[AVRDude_Command.Verbose];
-  if AVRDude_Command.BitClock = '' then begin
+  ComboBox_Verbose.Text := ComboBox_Verbose.Items[FindVerbose(s)];
+  bc:=FindPara(s, '-B');
+  if bc = '' then begin
     ComboBox_BitClock.Text := '1';
   end else begin
-    ComboBox_BitClock.Text := AVRDude_Command.BitClock;
+    ComboBox_BitClock.Text := bc;
   end;
 
-  CheckBox_Disable_Auto_Erase.Checked := AVRDude_Command.Disable_Auto_Erase;
-  CheckBox_Chip_Erase.Checked := AVRDude_Command.Chip_Erase;
+  CheckBox_Disable_Auto_Erase.Checked := pos('-D', s) > 0;
+  CheckBox_Chip_Erase.Checked := pos('-e', s) > 0;
 
   ChangeAVR_Typ;
 end;
 
 procedure TAVR_Project_Options_Form.MaskToLazProject(LazProject: TLazProject);
-var
-  FPC_Command: TFPCCommand;
-  AVRDude_Command: TAvrdudeCommand;
+var s,s1:String;
+  i: Integer;
 begin
 
   // FPC_Command
   LazProject.LazCompilerOptions.TargetProcessor := ComboBox_AVR_SubArch.Text;
-  FPC_Command.AsmFile := CheckBox_AsmFile.Checked;
-  FPC_Command.AVR_FPC_Typ := ComboBox_AVR_Typ_FPC.Text;
-
-  LazProject.LazCompilerOptions.CustomOptions := FPC_Command.GetPara;
+  s := '-Wp' + ComboBox_AVR_Typ_FPC.Text;
+  if CheckBox_AsmFile.Checked then begin
+    s += LineEnding + '-al';
+  end;
+  LazProject.LazCompilerOptions.CustomOptions := s;
 
   // AVRDude_Command
-  AVRDude_Command.Path := ComboBox_AvrdudePath.Text;
-  AVRDude_Command.ConfigPath := ComboBox_AvrdudeConfigPath.Text;
+    s := ComboBox_AvrdudePath.Text + ' ';
 
-  AVRDude_Command.Programmer := ComboBox_Programmer.Text;
-  AVRDude_Command.COM_Port := ComboBox_COMPort.Text;
-  AVRDude_Command.Baud := ComboBox_COMPortBaud.Text;
-  AVRDude_Command.AVR_AVRDude_Typ := Edit_AVR_Typ_Avrdude.Text;
+    s1:=ComboBox_AvrdudeConfigPath.Text;
+  if s1 <> '' then begin
+    s += '-C' + s1 + ' ';
+  end;
 
-  AVRDude_Command.Verbose := ComboBox_Verbose.ItemIndex;
-  AVRDude_Command.BitClock := ComboBox_BitClock.Text;
+  for i := 0 to ComboBox_Verbose.ItemIndex - 1 do begin
+    s += '-v ';
+  end;
 
-  AVRDude_Command.Disable_Auto_Erase := CheckBox_Disable_Auto_Erase.Checked;
-  AVRDude_Command.Chip_Erase := CheckBox_Chip_Erase.Checked;
-
-  LazProject.LazCompilerOptions.ExecuteAfter.Command := AVRDude_Command.GetPara + '-Uflash:w:' + LazProject.LazCompilerOptions.TargetFilename + '.hex:i';
-
-
-  //LazProject.LazCompilerOptions. do begin
-  //  ExecuteAfter.Command := '-Uflash:w:' + TargetFilename + '.hex:i';
-  //  TargetCPU := 'avr';
-  //  TargetOS := 'embedded';
-  //  //    TargetProcessor := AVR_SubArch;
+  s1:=ComboBox_Programmer.Text;
+  s += '-p' + Edit_AVR_Typ_Avrdude.Text + ' ' + '-c' + s1 + ' ';
+  s1 := upCase(s1);
+  if (s1 = 'ARDUINO') or (s1 = 'STK500V1') or (s1 = 'WIRING') or (s1 = 'AVR109') then begin
+    s += '-P' + ComboBox_COMPort.Text + ' ' + '-b' + ComboBox_COMPortBaud.Text + ' ';
+  end;
+  //if (pr = 'AVR109') then begin
+  //  s += '-P' + COM_Port + ' ';
   //end;
-  //
+
+  s1:=ComboBox_BitClock.Text;
+  if s1 <> '1' then begin
+    s += '-B' + s1 + ' ';
+  end;
+
+  if CheckBox_Disable_Auto_Erase.Checked then begin
+    s += '-D ';
+  end;
+
+  if CheckBox_Chip_Erase.Checked then begin
+    s += '-e ';
+  end;
+
+  LazProject.LazCompilerOptions.ExecuteAfter.Command := s + '-Uflash:w:' + LazProject.LazCompilerOptions.TargetFilename + '.hex:i';
 end;
 
 end.

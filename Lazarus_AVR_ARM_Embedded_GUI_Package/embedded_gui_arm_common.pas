@@ -100,7 +100,7 @@ begin
 
   s := AProject.LazCompilerOptions.ExecuteAfter.Command;
   stlink_Command.Path := Copy(s, 0, pos(' ', s) - 1);
-  ;
+
   stlink_Command.FlashBase := '0x' + Find(s, '0x');
 end;
 

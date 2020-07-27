@@ -104,6 +104,7 @@ type
   end;
 
 function FindPara(const Source: string; const Sub: string): string;
+function FindVerbose(Source: string): integer;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
 
@@ -189,6 +190,21 @@ begin
       Inc(Index);
     end;
   end;
+end;
+
+function FindVerbose(Source: string): integer;
+var
+  ofs: integer = 1;
+  p: integer;
+begin
+  Result := 0;
+  repeat
+    p := pos('-v', Source, ofs);
+    if p > 0 then begin
+      Inc(Result);
+      ofs := p + 2;
+    end;
+  until p = 0;
 end;
 
 function getParents(c: TWinControl): string;

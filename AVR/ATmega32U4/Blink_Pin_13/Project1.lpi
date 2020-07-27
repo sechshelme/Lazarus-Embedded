@@ -60,7 +60,7 @@
       <CustomOptions Value="-WpATMEGA32U4
 -al"/>
       <ExecuteAfter>
-        <Command Value="/home/tux/Programme/sloeber//arduinoPlugin/packages/arduino/tools/avrdude/6.3.0-arduino17/bin/avrdude -C/home/tux/Programme/sloeber//arduinoPlugin/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf -patmega32u4 -cavr109 -P/dev/ttyACM0 -b57600 -D -Uflash:w:Project1.hex:i"/>
+        <Command Value="avrdude -patmega32u4 -cavr109 -P/dev/ttyACM0 -b57600 -D -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>
