@@ -29,7 +29,7 @@ const
     %01111001, // = e
     %01110001, // = f
     %00000000, // = blank
-    %10000000  // = -
+    %10000000  // = .
     );
 type
   TSPIGPIO = bitpacked record
