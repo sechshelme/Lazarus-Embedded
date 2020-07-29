@@ -230,5 +230,5 @@ begin
     end;
 
 
-  until 1 = 2;
+  until False;
 end.
