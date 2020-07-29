@@ -40,6 +40,8 @@ type
     Draht, Start, m0, m1, m2, m3, Ende: boolean;
   end;
 
+  TLCD = array[0..3] of byte;
+
 var
   SPI_DDR: TSPIGPIO absolute DDRB;
   SPI_PORT: TSPIGPIO absolute PORTB;
@@ -51,53 +53,59 @@ var
   z: Int16 = 0;
   Data: array[0..3, 0..2] of byte;
 
+var
+  Counter: record
+    contact, timer, score: Int16;
+    run: boolean;
+  end;
 
-  //procedure disp_valnnnnn(vval: uint16);
-  //var
-  //  achr: uint8;
-  //  leer: boolean;
-  //begin
-  //  achr := 0;
-  //  leer := True;
-  //  while (vval >= 1000) do begin
-  //    Dec(vval, 1000);
-  //    Inc(achr);
-  //    leer := False;
-  //  end;
-  //  if leer then begin
-  //    achr := 16;
-  //  end;
-  //  Data[1] := achr;
-  //
-  //  achr := 0;
-  //  while (vval >= 100) do begin
-  //    Dec(vval, 100);
-  //    Inc(achr);
-  //    leer := False;
-  //  end;
-  //  if leer then begin
-  //    achr := 16;
-  //  end;
-  //  Data[1] := achr;
-  //
-  //  achr := 0;
-  //  while (vval >= 10) do begin
-  //    Dec(vval, 10);
-  //    Inc(achr);
-  //    leer := False;
-  //  end;
-  //  if leer then begin
-  //    achr := 16;
-  //  end;
-  //  Data[2] := achr;
-  //
-  //  achr := 0;
-  //  while (vval >= 1) do begin
-  //    Dec(vval);
-  //    Inc(achr);
-  //  end;
-  //  Data[3] := achr;
-  //end;
+
+  function disp_valnnnnn(vval: uint16): TLCD;
+  var
+    achr: uint8;
+    leer: boolean;
+  begin
+    achr := 0;
+    leer := True;
+    while (vval >= 1000) do begin
+      Dec(vval, 1000);
+      Inc(achr);
+      leer := False;
+    end;
+    if leer then begin
+      achr := 16;
+    end;
+    Result[0] := achr;
+
+    achr := 0;
+    while (vval >= 100) do begin
+      Dec(vval, 100);
+      Inc(achr);
+      leer := False;
+    end;
+    if leer then begin
+      achr := 16;
+    end;
+    Result[1] := achr;
+
+    achr := 0;
+    while (vval >= 10) do begin
+      Dec(vval, 10);
+      Inc(achr);
+      leer := False;
+    end;
+    if leer then begin
+      achr := 16;
+    end;
+    Result[2] := achr;
+
+    achr := 0;
+    while (vval >= 1) do begin
+      Dec(vval);
+      Inc(achr);
+    end;
+    Result[3] := achr;
+  end;
 
 
   procedure SPIWriteData(p: PByte; len: byte);
@@ -120,12 +128,50 @@ var
   procedure Timer0_Interrupt; public Name 'TIMER0_COMPA_ISR'; interrupt;
   const
     p: byte = 0;
-    z:Integer=0;
-  begin
-    inc(z);
-    if z<101 then exit;
-    z:=0;
+    z: int16 = 0;
+  var
+    temp_LCD: TLCD;
 
+  begin
+    Inc(z);
+    if z = 300 then begin
+      if Counter.timer < 9999 then begin
+        if Counter.run then begin
+          Inc(Counter.timer);
+        end;
+        z := 0;
+      end;
+    end;
+
+    with Counter do begin
+      score:=9999-(contact+timer)shl 4;
+
+      if score < 0 then score:=0;
+
+    end;
+
+    //  inc(  Counter.timer);
+
+    temp_LCD := disp_valnnnnn(Counter.contact);
+
+    Data[0, 0] := digits[temp_LCD[0]];
+    Data[1, 0] := digits[temp_LCD[1]];
+    Data[2, 0] := digits[temp_LCD[2]];
+    Data[3, 0] := digits[temp_LCD[3]];
+
+    temp_LCD := disp_valnnnnn(Counter.timer);
+
+    Data[0, 1] := digits[temp_LCD[0]];
+    Data[1, 1] := digits[temp_LCD[1]];
+    Data[2, 1] := digits[temp_LCD[2]] or %10000000;
+    Data[3, 1] := digits[temp_LCD[3]];
+
+    temp_LCD := disp_valnnnnn(Counter.score);
+
+    Data[0, 2] := digits[temp_LCD[0]];
+    Data[1, 2] := digits[temp_LCD[1]] or %10000000;
+    Data[2, 2] := digits[temp_LCD[2]];
+    Data[3, 2] := digits[temp_LCD[3]];
 
     p := p + 1;
     if (p > 3) then begin
@@ -137,7 +183,15 @@ var
     PORTD := PORTD or (%00100000 shr p);
   end;
 
+var
+  i: UInt16;
+
 begin
+  Counter.contact := 0;
+  Counter.timer := 0;
+  Counter.score := 0;
+  Counter.run := True;
+
   avr_cli();
   SPI_DDR.DataOut := True;
   SPI_DDR.Clock := True;
@@ -150,37 +204,31 @@ begin
 
   // -- Timer initialisieren
   TCCR0A := (1 shl WGM01);
-//  TCCR0B := TCCR0B or %101;
+  //  TCCR0B := TCCR0B or %101;
   TCCR0B := TCCR0B or %101;
   TIMSK := TIMSK or (1 shl OCIE0A);
   avr_sei();
   // --- Ende Timer
 
   repeat
-    //    disp_valnnnnn(z);
-
-    //    zahl[1] := d div 100;
-    //    zahl[2] := d mod 100 div 10;
-    //    zahl[3] := d mod 10;
-
-    //    Inc(z);
-    if not GPIOD_IN.Draht then begin
-      Inc(z);
+    if not GPIOD_IN.Start then begin
+      Counter.contact := 0;
+      Counter.timer := 0;
+      Counter.score := 0;
+    end else if not GPIOD_IN.Draht then begin
+      if Counter.contact < 9999 then begin
+        Inc(Counter.contact);
+        for i := 0 to 10 do begin
+        end;
+      end;
+    end;
+    if not GPIOD_IN.Ende then begin
+      Counter.run := False;
+      repeat
+      until not GPIOD_IN.Start;
+      Counter.run := True;
     end;
 
-    Data[0, 0] := digits[z];
-    Data[1, 0] := digits[2];
-    Data[2, 0] := digits[3];
-    Data[3, 0] := digits[4];
 
-    Data[0, 1] := digits[3];
-    Data[1, 1] := digits[4];
-    Data[2, 1] := digits[5];
-    Data[3, 1] := digits[6];
-
-    Data[0, 2] := digits[8];
-    Data[1, 2] := digits[7];
-    Data[2, 2] := digits[6];
-    Data[3, 2] := digits[5];
   until 1 = 2;
 end.

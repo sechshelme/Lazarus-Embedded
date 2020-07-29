@@ -43,6 +43,9 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
     </Units>
+    <Debugger>
+      <Backend Value="{D366BF71-1408-4997-8BE2-BD9D7803253A}"/>
+    </Debugger>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
