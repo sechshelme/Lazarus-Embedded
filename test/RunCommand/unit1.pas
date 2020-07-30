@@ -66,7 +66,7 @@ begin
   Sleep(500);
 
   //  SerSync(SerialHandle);
-  //  SerFlushOutput(SerialHandle);
+  //   SerFlushOutput(SerialHandle);
   SerClose(SerialHandle);
 
   //RunCommandForm.RunCommand('avrdude -patmega32u4 -cavr109 -P/dev/ttyACM0 -b57600 -D -Uflash:w:/home/tux/Dropbox/Sloeber_Projecte/sloeber-workspace/leonardo_test/Release/leonardo_test.hex:i');

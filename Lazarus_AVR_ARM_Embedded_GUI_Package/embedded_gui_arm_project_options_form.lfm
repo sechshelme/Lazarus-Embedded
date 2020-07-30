@@ -16,7 +16,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   LCLVersion = '2.1.0.0'
   object ComboBox_ARM_SubArch: TComboBox
     Left = 16
-    Height = 28
+    Height = 27
     Top = 48
     Width = 104
     ItemHeight = 0
@@ -59,18 +59,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     ModalResult = 2
     TabOrder = 7
   end
-  object OkButton: TButton
-    Left = 452
-    Height = 25
-    Top = 357
-    Width = 75
-    Anchors = [akRight, akBottom]
-    Caption = 'Ok'
-    Default = True
-    ModalResult = 1
-    OnClick = OkButtonClick
-    TabOrder = 8
-  end
   object Memo1: TMemo
     Left = 0
     Height = 47
@@ -89,13 +77,13 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Left = 144
     Height = 16
     Top = 24
-    Width = 84
+    Width = 83
     Caption = 'ARM FPC Typ:'
     ParentColor = False
   end
   object ComboBox_ARM_Typ_FPC: TComboBox
     Left = 144
-    Height = 28
+    Height = 27
     Top = 48
     Width = 168
     ItemHeight = 0
@@ -188,7 +176,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   end
   object ARM_FlashBase_ComboBox: TComboBox
     Left = 8
-    Height = 28
+    Height = 27
     Top = 288
     Width = 160
     ItemHeight = 0
@@ -211,6 +199,16 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Caption = 'CPU Info...'
     OnClick = CPU_InfoButtonClick
     TabOrder = 4
+  end
+  object Button1: TButton
+    Left = 447
+    Height = 25
+    Top = 357
+    Width = 77
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    ModalResult = 1
+    TabOrder = 8
   end
   object OpenDialog: TOpenDialog
     Left = 307

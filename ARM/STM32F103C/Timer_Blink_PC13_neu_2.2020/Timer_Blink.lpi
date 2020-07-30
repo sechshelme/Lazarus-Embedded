@@ -52,7 +52,7 @@
     <Other>
       <CustomOptions Value="-WpSTM32F103X8"/>
       <ExecuteAfter>
-        <Command Value="st-flash write Project1.bin 0x08000000"/>
+        <Command Value="/usr/local/bin/st-flash write Timer_Blink.bin 0x08000000"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

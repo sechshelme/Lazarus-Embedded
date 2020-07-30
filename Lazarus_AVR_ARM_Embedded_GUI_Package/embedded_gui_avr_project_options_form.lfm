@@ -1,12 +1,12 @@
 object AVR_Project_Options_Form: TAVR_Project_Options_Form
   Cursor = crDrag
   Left = 1950
-  Height = 656
+  Height = 641
   Top = 541
-  Width = 511
+  Width = 510
   Caption = 'AVR Embedded Project Options'
-  ClientHeight = 656
-  ClientWidth = 511
+  ClientHeight = 641
+  ClientWidth = 510
   Constraints.MinHeight = 490
   Constraints.MinWidth = 510
   OnActivate = FormActivate
@@ -15,22 +15,10 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   OnDestroy = FormDestroy
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
-  object Button_Ok: TButton
-    Left = 416
-    Height = 25
-    Top = 568
-    Width = 82
-    Anchors = [akRight, akBottom]
-    Caption = 'Ok'
-    Default = True
-    ModalResult = 1
-    OnClick = Button_OkClick
-    TabOrder = 15
-  end
   object Button_Cancel: TButton
-    Left = 304
+    Left = 303
     Height = 25
-    Top = 568
+    Top = 553
     Width = 82
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -51,7 +39,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 40
     Width = 168
     ItemHeight = 0
-    TabOrder = 1
+    TabOrder = 2
   end
   object CheckBox_AsmFile: TCheckBox
     Left = 15
@@ -59,7 +47,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Top = 88
     Width = 164
     Caption = 'ASM-File erzeugen (-al)'
-    TabOrder = 3
+    TabOrder = 4
   end
   object Label6: TLabel
     Left = 15
@@ -110,14 +98,14 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     ParentColor = False
   end
   object Button_Templates: TButton
-    Left = 416
+    Left = 415
     Height = 28
     Top = 24
     Width = 82
     Anchors = [akTop, akRight]
     Caption = 'Vorlagen...'
     OnClick = Button_TemplatesClick
-    TabOrder = 4
+    TabOrder = 0
   end
   object Edit_AVR_Typ_Avrdude: TEdit
     Left = 15
@@ -222,8 +210,8 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 609
-    Width = 511
+    Top = 594
+    Width = 510
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -240,7 +228,7 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Width = 100
     ItemHeight = 0
     OnChange = ComboBox_AVR_SubArchChange
-    TabOrder = 0
+    TabOrder = 1
   end
   object Label1: TLabel
     Left = 15
@@ -259,14 +247,14 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     TabOrder = 12
   end
   object Button_CPU_Info: TButton
-    Left = 416
+    Left = 415
     Height = 28
     Top = 64
     Width = 82
     Anchors = [akTop, akRight]
     Caption = 'CPU Info...'
     OnClick = Button_CPU_InfoClick
-    TabOrder = 2
+    TabOrder = 3
   end
   object Label2: TLabel
     Left = 18
@@ -307,5 +295,15 @@ object AVR_Project_Options_Form: TAVR_Project_Options_Form
     Width = 173
     Caption = 'Perform a chip erase. (-e)'
     TabOrder = 13
+  end
+  object Button1: TButton
+    Left = 415
+    Height = 25
+    Top = 553
+    Width = 82
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    ModalResult = 1
+    TabOrder = 15
   end
 end

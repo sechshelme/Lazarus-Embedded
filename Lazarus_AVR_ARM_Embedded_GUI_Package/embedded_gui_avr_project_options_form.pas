@@ -25,6 +25,7 @@ type
   { TAVR_Project_Options_Form }
 
   TAVR_Project_Options_Form = class(TForm)
+    Button1: TButton;
     CheckBox_AsmFile: TCheckBox;
     CheckBox_Chip_Erase: TCheckBox;
     ComboBox_AVR_Typ_FPC: TComboBox;
@@ -46,7 +47,6 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label9: TLabel;
-    Button_Ok: TButton;
     Button_Cancel: TButton;
     ComboBox_Programmer: TComboBox;
     Button_CPU_Info: TButton;
@@ -56,14 +56,12 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure Button_OkClick(Sender: TObject);
     procedure Button_TemplatesClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
     ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath: TFileNameComboBox;
     procedure ChangeAVR_Typ;
   public
-    procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
     procedure MaskToLazProject(LazProject: TLazProject);
   end;
@@ -82,7 +80,25 @@ implementation
 procedure TAVR_Project_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'AVR Project Options';
+  LoadFormPos_from_XML(Self);
 
+
+  // FPC_Command
+  with ComboBox_AVR_SubArch do begin
+    Items.CommaText := avr_SubArch_List;
+    //    ItemIndex := 3;                    // ???????????????
+    Text := 'AVR5';
+    Style := csOwnerDrawFixed;
+  end;
+
+  with ComboBox_AVR_Typ_FPC do begin
+    Sorted := True;
+    Text := 'ATMEGA328P';
+  end;
+
+  CheckBox_AsmFile.Checked := False;
+
+  // AVRDude_Command
   ComboBox_AvrdudePath := TFileNameComboBox.Create(Self, 'AVRDudePath');
   with ComboBox_AvrdudePath do begin
     Caption := 'AVRdude Pfad';
@@ -101,24 +117,11 @@ begin
     Top := 279 - 75;
   end;
 
-  LoadFormPos_from_XML(Self);
-
-  with ComboBox_AVR_SubArch do begin
-    Items.CommaText := avr_SubArch_List;
-    //    ItemIndex := 3;                    // ???????????????
-    Style := csOwnerDrawFixed;
-  end;
-
-  with ComboBox_AVR_Typ_FPC do begin
-    Sorted := True;
-  end;
-
-  CheckBox_AsmFile.Checked := False;
-
   Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
 
   with ComboBox_Programmer do begin
     Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109'], True);
+    Text := 'arduino';
   end;
 
   with ComboBox_COMPort do begin
@@ -128,29 +131,51 @@ begin
   with ComboBox_BitClock do begin
     Style := csOwnerDrawFixed;
     Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
+    Text := Items[0];
   end;
 
   with ComboBox_COMPortBaud do begin
     Items.AddStrings(['19200', '57600', '115200'], True);
+    Text := '57600';
   end;
 
   with ComboBox_Verbose do begin
     Style := csOwnerDrawFixed;
     Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
+    Text := Items[1];
+  end;
+
+  CheckBox_Disable_Auto_Erase.Checked := False;
+  CheckBox_Chip_Erase.Checked := False;
+end;
+
+procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
+begin
+  if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
+    ComboBox_AvrdudePath.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
+  end else begin
+    ComboBox_AvrdudePath.Text := '';
+  end;
+
+  if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
+    ComboBox_AvrdudeConfigPath.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
+  end else begin
+    ComboBox_AvrdudeConfigPath.Text := '';
+  end;
+
+  with ComboBox_COMPort do begin
+    Items.CommaText := GetSerialPortNames;
+    if Items.Count > 0 then begin
+      ComboBox_COMPort.Text := Items[0];
+    end else begin
+      ComboBox_COMPort.Text := 'no Comport';
+    end;
   end;
 end;
 
 procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   SaveFormPos_to_XML(Self);
-end;
-
-procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
-begin
-end;
-
-procedure TAVR_Project_Options_Form.Button_OkClick(Sender: TObject);
-begin
 end;
 
 procedure TAVR_Project_Options_Form.ComboBox_AVR_SubArchChange(Sender: TObject);
@@ -223,48 +248,6 @@ begin
   end else begin
     ComboBox_AVR_Typ_FPC.Items.CommaText := AVR_List[ind];
   end;
-end;
-
-procedure TAVR_Project_Options_Form.DefaultMask;
-begin
-
-  // FPC_Command
-  ComboBox_AVR_SubArch.Text := 'AVR5';
-  ComboBox_AVR_Typ_FPC.Text := 'ATMEGA328P';
-  CheckBox_AsmFile.Checked := False;
-
-  // AVRDude_Command
-  if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
-    ComboBox_AvrdudePath.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
-  end else begin
-    ComboBox_AvrdudePath.Text := '';
-  end;
-
-  if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
-    ComboBox_AvrdudeConfigPath.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
-  end else begin
-    ComboBox_AvrdudeConfigPath.Text := '';
-  end;
-
-  Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
-  ComboBox_Programmer.Text := 'arduino';
-  with ComboBox_COMPort do begin
-    Items.CommaText := GetSerialPortNames;
-    if Items.Count > 0 then begin
-      ComboBox_COMPort.Text := Items[0];
-    end else begin
-      ComboBox_COMPort.Text := 'no Comport';
-    end;
-  end;
-
-  ComboBox_COMPortBaud.Text := '57600';
-  ComboBox_BitClock.Text := ComboBox_BitClock.Items[0];
-  ComboBox_Verbose.Text := ComboBox_Verbose.Items[1];
-
-  CheckBox_Disable_Auto_Erase.Checked := False;
-  CheckBox_Chip_Erase.Checked := False;
-
-  ChangeAVR_Typ;
 end;
 
 procedure TAVR_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);

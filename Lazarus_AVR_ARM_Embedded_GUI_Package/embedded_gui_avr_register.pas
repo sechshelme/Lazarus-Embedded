@@ -95,7 +95,6 @@ end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
 begin
-  AVR_OptionsForm.DefaultMask;
   Result := AVR_OptionsForm.ShowModal;
 end;
 

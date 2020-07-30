@@ -163,7 +163,6 @@ begin
   Embedded_IDE_Options.Load_from_XML;
 
   RegisterProjectDescriptor(TProjectAVRApp.Create);
-
   RegisterProjectDescriptor(TProjectARMApp.Create);
 
   // Run ( without or with debugger ) hooks

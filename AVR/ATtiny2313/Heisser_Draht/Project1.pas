@@ -125,32 +125,16 @@ var
     SPI_PORT.SlaveSelect := True;
   end;
 
-  procedure Timer0_Interrupt; public Name 'TIMER0_COMPA_ISR'; interrupt;
-  const
-    p: byte = 0;
-    z: int16 = 0;
+  procedure UpDateData;
   var
     temp_LCD: TLCD;
-
   begin
-    Inc(z);
-    if z = 300 then begin
-      if Counter.timer < 9999 then begin
-        if Counter.run then begin
-          Inc(Counter.timer);
-        end;
-        z := 0;
+    with Counter do begin
+      score := 9999 - (contact + timer) shl 4;
+      if score < 0 then begin
+        score := 0;
       end;
     end;
-
-    with Counter do begin
-      score:=9999-(contact+timer)shl 4;
-
-      if score < 0 then score:=0;
-
-    end;
-
-    //  inc(  Counter.timer);
 
     temp_LCD := disp_valnnnnn(Counter.contact);
 
@@ -173,14 +157,38 @@ var
     Data[2, 2] := digits[temp_LCD[2]];
     Data[3, 2] := digits[temp_LCD[3]];
 
-    p := p + 1;
-    if (p > 3) then begin
-      p := 0;
+  end;
+
+  procedure Timer0_Interrupt; public Name 'TIMER0_COMPA_ISR'; interrupt;
+  const
+    p: byte = 0;
+    z: int16 = 0;
+    i: int16 = 0;
+
+  begin
+    Inc(z);
+    if z = 800 then begin
+      if Counter.timer < 9999 then begin
+        if Counter.run then begin
+          Inc(Counter.timer);
+        end;
+        z := 0;
+      end;
     end;
 
-    PORTD := PORTD and %11000011;
-    SPIWriteData(@Data[p], 3);
-    PORTD := PORTD or (%00100000 shr p);
+    Inc(i);
+    if i > 10 then begin
+      i := 0;
+
+      p := p + 1;
+      if (p > 3) then begin
+        p := 0;
+      end;
+
+      PORTD := PORTD and %11000011;
+      SPIWriteData(@Data[p], 3);
+      PORTD := PORTD or (%00100000 shr p);
+    end;
   end;
 
 var
@@ -218,17 +226,18 @@ begin
     end else if not GPIOD_IN.Draht then begin
       if Counter.contact < 9999 then begin
         Inc(Counter.contact);
-        for i := 0 to 10 do begin
+        for i := 0 to 5000 do begin
         end;
       end;
     end;
+    UpDateData;
+
     if not GPIOD_IN.Ende then begin
       Counter.run := False;
       repeat
       until not GPIOD_IN.Start;
       Counter.run := True;
     end;
-
 
   until False;
 end.

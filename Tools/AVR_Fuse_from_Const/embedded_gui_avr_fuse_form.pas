@@ -96,9 +96,9 @@ var
   s: string;
 begin
   with AVR_Fuse_Data[ComboBox1.ItemIndex] do begin
+    SetLength(FuseTabSheet, Length(Fuses));
     for i := 0 to Length(Fuses) - 1 do begin
 
-      SetLength(FuseTabSheet, i + 1);
       FuseTabSheet[i] := TFuseTabSheet.Create(Self);
       FuseTabSheet[i].Tag := i;
       FuseTabSheet[i].PageControl := PageControl1;
