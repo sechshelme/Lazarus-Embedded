@@ -42,7 +42,6 @@ type
     procedure ComboBox_ARM_SubArchChange(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
     procedure CPU_InfoButtonClick(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -98,6 +97,12 @@ end;
 
 procedure TARM_Project_Options_Form.DefaultMask;
 begin
+  if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
+    ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
+  end else begin
+    ComboBox_STLinkPath.Text := '';
+  end;
+
   with ComboBox_ARM_SubArch do begin
     Text := 'ARMV7M';
   end;
@@ -116,15 +121,6 @@ end;
 procedure TARM_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   SaveFormPos_to_XML(Self);
-end;
-
-procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
-begin
-  if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
-    ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
-  end else begin
-    ComboBox_STLinkPath.Text := '';
-  end;
 end;
 
 procedure TARM_Project_Options_Form.Button_to_FlashBase_Click(Sender: TObject);
@@ -146,8 +142,6 @@ begin
   ChangeARM_Typ;
 end;
 
-// private
-
 procedure TARM_Project_Options_Form.ChangeARM_Typ;
 var
   index: integer;
@@ -159,8 +153,6 @@ begin
     ComboBox_ARM_Typ_FPC.Items.CommaText := ARM_List[index];
   end;
 end;
-
-// public
 
 procedure TARM_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var

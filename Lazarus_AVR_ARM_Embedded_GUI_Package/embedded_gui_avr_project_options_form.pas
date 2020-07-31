@@ -151,6 +151,17 @@ begin
   CheckBox_AsmFile.Checked := False;
 
   // AVRDude_Command
+  if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
+    ComboBox_AvrdudePath.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
+  end else begin
+    ComboBox_AvrdudePath.Text := '';
+  end;
+
+  if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
+    ComboBox_AvrdudeConfigPath.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
+  end else begin
+    ComboBox_AvrdudeConfigPath.Text := '';
+  end;
 
   Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
 
@@ -178,22 +189,8 @@ begin
   CheckBox_Chip_Erase.Checked := False;
 end;
 
-
-
 procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
 begin
-  if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
-    ComboBox_AvrdudePath.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
-  end else begin
-    ComboBox_AvrdudePath.Text := '';
-  end;
-
-  if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
-    ComboBox_AvrdudeConfigPath.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
-  end else begin
-    ComboBox_AvrdudeConfigPath.Text := '';
-  end;
-
   with ComboBox_COMPort do begin
     Items.CommaText := GetSerialPortNames;
     if Items.Count > 0 then begin

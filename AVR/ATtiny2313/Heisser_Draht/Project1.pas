@@ -3,11 +3,10 @@ program Project1;
 uses
   intrinsics;
 
-{$O-}
+{$O+}
 
 const
   WGM01 = 1;
-  CS01 = 1;
 
 const
   digits: packed array[0..17] of byte = (
@@ -50,7 +49,6 @@ var
   GPIOD_DRR: TGPIOD absolute DDRD;
   GPIOD_PORT: TGPIOD absolute PORTD;
 
-  z: Int16 = 0;
   Data: array[0..3, 0..2] of byte;
 
 var
@@ -58,13 +56,17 @@ var
     contact, timer, score: Int16;
     run: boolean;
   end;
+         type
+TZeroMask=array[0..3] of Boolean;
 
 
-  function disp_valnnnnn(vval: uint16): TLCD;
+  function disp_valnnnnn(vval: uint16; zeroMask:TZeroMask): TLCD;
   var
     achr: uint8;
     leer: boolean;
+    oldvval:UInt16;
   begin
+    oldvval:=vval;
     achr := 0;
     leer := True;
     while (vval >= 1000) do begin
@@ -73,36 +75,59 @@ var
       leer := False;
     end;
     if leer then begin
-      achr := 16;
+      if zeroMask[0] or (oldvval >= 1000) then begin
+        achr := 0;
+      end else begin
+        achr := 16;
+      end;
     end;
     Result[0] := achr;
 
     achr := 0;
+    leer := True;
     while (vval >= 100) do begin
       Dec(vval, 100);
       Inc(achr);
       leer := False;
     end;
     if leer then begin
-      achr := 16;
+      if zeroMask[1] or (oldvval >= 100) then begin
+        achr := 0;
+      end else begin
+        achr := 16;
+      end;
     end;
     Result[1] := achr;
 
     achr := 0;
+    leer := True;
     while (vval >= 10) do begin
       Dec(vval, 10);
       Inc(achr);
       leer := False;
     end;
     if leer then begin
-      achr := 16;
+      if zeroMask[2] or (oldvval >= 10)  then begin
+        achr := 0;
+      end else begin
+        achr := 16;
+      end;
     end;
     Result[2] := achr;
 
     achr := 0;
+    leer := True;
     while (vval >= 1) do begin
       Dec(vval);
       Inc(achr);
+      leer := False;
+    end;
+    if leer then begin
+      if zeroMask[3] or (oldvval >= 1) then begin
+        achr := 0;
+      end else begin
+        achr := 16;
+      end;
     end;
     Result[3] := achr;
   end;
@@ -121,36 +146,46 @@ var
       until (USISR and (1 shl USIOIF)) <> 0;
 
     end;
-    SPI_PORT.SlaveSelect := False;
-    SPI_PORT.SlaveSelect := True;
   end;
 
   procedure UpDateData;
+  const
+    zm0:TZeroMask=(False,False,False,True);
+    zm1:TZeroMask=(False,False,True,True);
+    zm2:TZeroMask=(False,True,True,True);
+    zm3:TZeroMask=(True,True,True,True);
   var
     temp_LCD: TLCD;
+    c: Int32;
   begin
     with Counter do begin
-      score := 9999 - (contact + timer) shl 4;
-      if score < 0 then begin
+      c := contact + timer;
+      c := c shl 2;
+      if c > 9999 then begin
         score := 0;
+      end else begin
+        score := 9999 - c;
+        if score < 0 then begin
+          score := 0;
+        end;
       end;
     end;
 
-    temp_LCD := disp_valnnnnn(Counter.contact);
+    temp_LCD := disp_valnnnnn(Counter.contact, zm0);
 
     Data[0, 0] := digits[temp_LCD[0]];
     Data[1, 0] := digits[temp_LCD[1]];
     Data[2, 0] := digits[temp_LCD[2]];
     Data[3, 0] := digits[temp_LCD[3]];
 
-    temp_LCD := disp_valnnnnn(Counter.timer);
+    temp_LCD := disp_valnnnnn(Counter.timer, zm1);
 
     Data[0, 1] := digits[temp_LCD[0]];
     Data[1, 1] := digits[temp_LCD[1]];
     Data[2, 1] := digits[temp_LCD[2]] or %10000000;
     Data[3, 1] := digits[temp_LCD[3]];
 
-    temp_LCD := disp_valnnnnn(Counter.score);
+    temp_LCD := disp_valnnnnn(Counter.score, zm2);
 
     Data[0, 2] := digits[temp_LCD[0]];
     Data[1, 2] := digits[temp_LCD[1]] or %10000000;
@@ -185,8 +220,10 @@ var
         p := 0;
       end;
 
-      PORTD := PORTD and %11000011;
       SPIWriteData(@Data[p], 3);
+      PORTD := PORTD and %11000011;
+      SPI_PORT.SlaveSelect := False;
+      SPI_PORT.SlaveSelect := True;
       PORTD := PORTD or (%00100000 shr p);
     end;
   end;
@@ -226,7 +263,7 @@ begin
     end else if not GPIOD_IN.Draht then begin
       if Counter.contact < 9999 then begin
         Inc(Counter.contact);
-        for i := 0 to 5000 do begin
+        for i := 0 to 500 do begin
         end;
       end;
     end;
