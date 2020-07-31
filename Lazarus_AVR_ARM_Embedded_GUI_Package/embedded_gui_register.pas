@@ -22,6 +22,8 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Common,
   Embedded_GUI_ARM_Common,
+  Embedded_GUI_AVR_Project_Options_Form,
+  Embedded_GUI_ARM_Project_Options_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const,
   Embedded_GUI_Serial_Monitor_Form;
@@ -162,7 +164,10 @@ begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
   Embedded_IDE_Options.Load_from_XML;
 
+  AVR_Project_Options_Form := TAVR_Project_Options_Form.Create(nil);
   RegisterProjectDescriptor(TProjectAVRApp.Create);
+
+  ARM_Project_Options_Form := TARM_Project_Options_Form.Create(nil);
   RegisterProjectDescriptor(TProjectARMApp.Create);
 
   // Run ( without or with debugger ) hooks

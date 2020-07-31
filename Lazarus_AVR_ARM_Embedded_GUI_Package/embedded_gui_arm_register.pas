@@ -25,10 +25,8 @@ type
   { TProjectARMApp }
 
   TProjectARMApp = class(TProjectDescriptor)
-    private ARM_OptionsForm: TARM_Project_Options_Form;
   public
     constructor Create; override;
-    destructor Destroy; override;
     function GetLocalizedName: string; override;
     function GetLocalizedDescription: string; override;
     function InitProject(AProject: TLazProject): TModalResult; override;
@@ -44,30 +42,22 @@ implementation
 procedure ShowARMOptionsDialog(Sender: TObject);
 var
   LazProject: TLazProject;
-  ARM_OptionsForm: TARM_Project_Options_Form;
 begin
-  ARM_OptionsForm := TARM_Project_Options_Form.Create(nil);
-
   LazProject := LazarusIDE.ActiveProject;
 
   if (LazProject.LazCompilerOptions.TargetCPU <> 'arm') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
     if MessageDlg('Warnung', 'Es handelt sich nicht um ein ARM Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
-      ARM_OptionsForm.Free;
+      ARM_Project_Options_Form.Free;
       Exit;
     end;
   end;
 
-  ARM_OptionsForm.LazProjectToMask(LazProject);
+  ARM_Project_Options_Form.LazProjectToMask(LazProject);
 
-//  ARM_ProjectOptions.Load_from_Project(LazProject);
-//  ARM_OptionsForm.IsNewProject:=False;
-
-  if ARM_OptionsForm.ShowModal = mrOk then begin
-    ARM_OptionsForm.MaskToLazProject(LazProject);
+  if ARM_Project_Options_Form.ShowModal = mrOk then begin
+    ARM_Project_Options_Form.MaskToLazProject(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
   end;
-
-  ARM_OptionsForm.Free;
 end;
 
 { TProjectARMApp }
@@ -77,13 +67,6 @@ begin
   inherited Create;
   Name := Title + 'ARM-Project (STM32)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
-  ARM_OptionsForm := TARM_Project_Options_Form.Create(nil);
-end;
-
-destructor TProjectARMApp.Destroy;
-begin
-  ARM_OptionsForm.Free;
-  inherited Destroy;
 end;
 
 function TProjectARMApp.GetLocalizedName: string;
@@ -98,7 +81,8 @@ end;
 
 function TProjectARMApp.DoInitDescriptor: TModalResult;
 begin
-  Result := ARM_OptionsForm.ShowModal;
+  ARM_Project_Options_Form.DefaultMask;
+  Result := ARM_Project_Options_Form.ShowModal;
 end;
 
 function TProjectARMApp.InitProject(AProject: TLazProject): TModalResult;
@@ -137,7 +121,7 @@ begin
 
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
-  ARM_OptionsForm.MaskToLazProject(AProject);
+  ARM_Project_Options_Form.MaskToLazProject(AProject);
 
   Result := mrOk;
 end;

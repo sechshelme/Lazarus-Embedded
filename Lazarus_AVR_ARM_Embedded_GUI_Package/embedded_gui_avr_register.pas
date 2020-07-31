@@ -26,10 +26,8 @@ type
 
   TProjectAVRApp = class(TProjectDescriptor)
   private
-    AVR_OptionsForm: TAVR_Project_Options_Form;
   public
     constructor Create; override;
-    destructor Destroy; override;
     function GetLocalizedName: string; override;
     function GetLocalizedDescription: string; override;
     function InitProject(AProject: TLazProject): TModalResult; override;
@@ -44,27 +42,22 @@ implementation
 procedure ShowAVROptionsDialog(Sender: TObject);
 var
   LazProject: TLazProject;
-  AVR_OptionsForm: TAVR_Project_Options_Form;
 begin
-  AVR_OptionsForm := TAVR_Project_Options_Form.Create(nil);
-
   LazProject := LazarusIDE.ActiveProject;
 
   if (LazProject.LazCompilerOptions.TargetCPU <> 'avr') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
     if MessageDlg('Warnung', 'Es handelt sich nicht um ein AVR Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
-      AVR_OptionsForm.Free;
+      AVR_Project_Options_Form.Free;
       Exit;
     end;
   end;
 
-  AVR_OptionsForm.LazProjectToMask(LazProject);
+  AVR_Project_Options_Form.LazProjectToMask(LazProject);
 
-  if AVR_OptionsForm.ShowModal = mrOk then begin
-    AVR_OptionsForm.MaskToLazProject(LazProject);
+  if AVR_Project_Options_Form.ShowModal = mrOk then begin
+    AVR_Project_Options_Form.MaskToLazProject(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
   end;
-
-  AVR_OptionsForm.Free;
 end;
 
 { TProjectAVRApp }
@@ -74,13 +67,6 @@ begin
   inherited Create;
   Name := Title + 'AVR-Project (Arduino)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
-  AVR_OptionsForm := TAVR_Project_Options_Form.Create(nil);
-end;
-
-destructor TProjectAVRApp.Destroy;
-begin
-  AVR_OptionsForm.Free;
-  inherited Destroy;
 end;
 
 function TProjectAVRApp.GetLocalizedName: string;
@@ -95,7 +81,8 @@ end;
 
 function TProjectAVRApp.DoInitDescriptor: TModalResult;
 begin
-  Result := AVR_OptionsForm.ShowModal;
+  AVR_Project_Options_Form.DefaultMask;
+  Result := AVR_Project_Options_Form.ShowModal;
 end;
 
 function TProjectAVRApp.InitProject(AProject: TLazProject): TModalResult;
@@ -129,7 +116,7 @@ begin
 
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
-  AVR_OptionsForm.MaskToLazProject(AProject);
+  AVR_Project_Options_Form.MaskToLazProject(AProject);
 
   Result := mrOk;
 end;

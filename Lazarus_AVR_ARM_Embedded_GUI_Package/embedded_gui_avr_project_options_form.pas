@@ -62,6 +62,7 @@ type
     ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath: TFileNameComboBox;
     procedure ChangeAVR_Typ;
   public
+    procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
     procedure MaskToLazProject(LazProject: TLazProject);
   end;
@@ -82,18 +83,15 @@ begin
   Caption := Title + 'AVR Project Options';
   LoadFormPos_from_XML(Self);
 
-
   // FPC_Command
   with ComboBox_AVR_SubArch do begin
     Items.CommaText := avr_SubArch_List;
     //    ItemIndex := 3;                    // ???????????????
-    Text := 'AVR5';
     Style := csOwnerDrawFixed;
   end;
 
   with ComboBox_AVR_Typ_FPC do begin
     Sorted := True;
-    Text := 'ATMEGA328P';
   end;
 
   CheckBox_AsmFile.Checked := False;
@@ -121,6 +119,42 @@ begin
 
   with ComboBox_Programmer do begin
     Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109'], True);
+  end;
+
+  with ComboBox_BitClock do begin
+    Style := csOwnerDrawFixed;
+    Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
+  end;
+
+  with ComboBox_COMPortBaud do begin
+    Items.AddStrings(['19200', '57600', '115200'], True);
+  end;
+
+  with ComboBox_Verbose do begin
+    Style := csOwnerDrawFixed;
+    Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
+  end;
+
+end;
+
+procedure TAVR_Project_Options_Form.DefaultMask;
+begin
+    // FPC_Command
+  with ComboBox_AVR_SubArch do begin
+    Text := 'AVR5';
+  end;
+
+  with ComboBox_AVR_Typ_FPC do begin
+    Text := 'ATMEGA328P';
+  end;
+
+  CheckBox_AsmFile.Checked := False;
+
+  // AVRDude_Command
+
+  Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
+
+  with ComboBox_Programmer do begin
     Text := 'arduino';
   end;
 
@@ -129,25 +163,22 @@ begin
   end;
 
   with ComboBox_BitClock do begin
-    Style := csOwnerDrawFixed;
-    Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
     Text := Items[0];
   end;
 
   with ComboBox_COMPortBaud do begin
-    Items.AddStrings(['19200', '57600', '115200'], True);
     Text := '57600';
   end;
 
   with ComboBox_Verbose do begin
-    Style := csOwnerDrawFixed;
-    Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
     Text := Items[1];
   end;
 
   CheckBox_Disable_Auto_Erase.Checked := False;
   CheckBox_Chip_Erase.Checked := False;
 end;
+
+
 
 procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
 begin
@@ -240,13 +271,13 @@ end;
 
 procedure TAVR_Project_Options_Form.ChangeAVR_Typ;
 var
-  ind: integer;
+  index: integer;
 begin
-  ind := ComboBox_AVR_SubArch.ItemIndex;
-  if (ind < 0) or (ind >= Length(AVR_SubArch_List)) then begin
+  index := ComboBox_AVR_SubArch.ItemIndex;
+  if (index < 0) or (index >= Length(AVR_SubArch_List)) then begin
     ComboBox_AVR_Typ_FPC.Items.Text := '';
   end else begin
-    ComboBox_AVR_Typ_FPC.Items.CommaText := AVR_List[ind];
+    ComboBox_AVR_Typ_FPC.Items.CommaText := AVR_List[index];
   end;
 end;
 

@@ -67,10 +67,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpattiny2313a
+      <CustomOptions Value="-WpATTINY2313A
 -al"/>
       <ExecuteAfter>
-        <Command Value="avrdude -v -v -v -v -v -pattiny2313 -cusbasp -Uflash:w:Project1.hex:i"/>
+        <Command Value="/usr/bin/avrdude -C/etc/avrdude.conf -v -pattiny2313 -cusbasp -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

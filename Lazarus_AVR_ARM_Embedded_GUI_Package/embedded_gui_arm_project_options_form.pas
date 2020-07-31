@@ -51,9 +51,13 @@ type
     ComboBox_STLinkPath: TFileNameComboBox;
     procedure ChangeARM_Typ;
   public
+    procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
     procedure MaskToLazProject(LazProject: TLazProject);
   end;
+
+var
+  ARM_Project_Options_Form: TARM_Project_Options_Form;
 
 implementation
 
@@ -80,18 +84,30 @@ begin
   with ComboBox_ARM_SubArch do begin
     Items.CommaText := ARM_SubArch_List;
     Style := csOwnerDrawFixed;
-    Text := 'ARMV7M';
   end;
 
   with ComboBox_ARM_Typ_FPC do begin
     Sorted := True;
-    Text := 'STM32F103X8';
   end;
 
   with ARM_FlashBase_ComboBox do begin
     Sorted := True;
-    Text := '0x08000000';
     Items.AddStrings(['0x00000000', '0x08000000']);
+  end;
+end;
+
+procedure TARM_Project_Options_Form.DefaultMask;
+begin
+  with ComboBox_ARM_SubArch do begin
+    Text := 'ARMV7M';
+  end;
+
+  with ComboBox_ARM_Typ_FPC do begin
+    Text := 'STM32F103X8';
+  end;
+
+  with ARM_FlashBase_ComboBox do begin
+    Text := '0x08000000';
   end;
 
   CheckBox_ASMFile.Checked := False;
