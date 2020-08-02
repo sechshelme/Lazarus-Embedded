@@ -118,7 +118,7 @@ begin
   Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
 
   with ComboBox_Programmer do begin
-    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109'], True);
+    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109', 'jtag2updi'], True);
   end;
 
   with ComboBox_BitClock do begin
@@ -193,11 +193,11 @@ procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
 begin
   with ComboBox_COMPort do begin
     Items.CommaText := GetSerialPortNames;
-    if Items.Count > 0 then begin
-      ComboBox_COMPort.Text := Items[0];
-    end else begin
-      ComboBox_COMPort.Text := 'no Comport';
-    end;
+    //if Items.Count > 0 then begin
+    //  ComboBox_COMPort.Text := Items[0];
+    //end else begin
+    //  ComboBox_COMPort.Text := 'no Comport';
+    //end;
   end;
 end;
 
@@ -348,7 +348,7 @@ begin
   s1:=ComboBox_Programmer.Text;
   s += '-p' + Edit_AVR_Typ_Avrdude.Text + ' ' + '-c' + s1 + ' ';
   s1 := upCase(s1);
-  if (s1 = 'ARDUINO') or (s1 = 'STK500V1') or (s1 = 'WIRING') or (s1 = 'AVR109') then begin
+  if (s1 = 'ARDUINO') or (s1 = 'STK500V1') or (s1 = 'WIRING') or (s1 = 'AVR109') or (s1 = 'JTAG2UPDI') then begin
     s += '-P' + ComboBox_COMPort.Text + ' ' + '-b' + ComboBox_COMPortBaud.Text + ' ';
   end;
   //if (pr = 'AVR109') then begin

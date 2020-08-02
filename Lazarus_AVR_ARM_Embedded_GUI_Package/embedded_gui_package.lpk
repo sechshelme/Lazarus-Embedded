@@ -20,7 +20,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Major="1" Build="3"/>
+    <Version Major="1" Release="1"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_arm_common.pas"/>

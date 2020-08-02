@@ -75,6 +75,18 @@ const
     Disable_Auto_Erase: True;
     Chip_Erase: False; ), (
 
+    Name: 'Arduino Nano Every';
+    AVR_SubArch: 'AVR6';
+    AVR_FPC_Typ: 'atmega4808';
+    AVR_AVRDude_Typ: 'atmega4808';
+    Programmer: 'jtag2updi';
+    COM_Port: '/dev/ttyUSB0';
+    Baud: '115200';
+    BitClock: '1';
+    Verbose: 1;
+    Disable_Auto_Erase: True;
+    Chip_Erase: True; ), (
+
     Name: 'ATmega328P';
     AVR_SubArch: 'AVR5';
     AVR_FPC_Typ: 'atmega328p';
