@@ -30,13 +30,14 @@ object Form1: TForm1
     )
     TabOrder = 1
   end
-  object Button2: TButton
+  object Button_Reset: TButton
     Left = 283
     Height = 25
     Top = 200
     Width = 75
     Anchors = [akRight, akBottom]
-    Caption = 'Button2'
+    Caption = 'Reset'
+    OnClick = Button_ResetClick
     TabOrder = 2
   end
   object com: TButton
