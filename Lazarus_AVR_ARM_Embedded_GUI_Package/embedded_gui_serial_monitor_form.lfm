@@ -545,7 +545,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   end
   object ComboBox_SendString: TComboBox
     Left = 8
-    Height = 28
+    Height = 27
     Top = 10
     Width = 396
     Anchors = [akTop, akLeft, akRight]

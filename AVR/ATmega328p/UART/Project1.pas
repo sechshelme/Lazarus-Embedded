@@ -7,7 +7,7 @@ program Project1;
 const
   CPU_Clock = 16000000; // Taktfrequenz Arduino, default 16MHz.
   //  Baud = 230400;          // Baudrate
-  Baud = 4800;          // Baudrate
+  Baud = 9600;          // Baudrate
   UCSZ01 = 2;           // Gibt es nicht in der Unit Atmega328p.
   teiler = CPU_Clock div (16 * Baud) - 1;
 
@@ -97,7 +97,7 @@ var
   end;
 
 const
-  z = 987;
+  z: Int16 = 94;
 
 
 begin
@@ -112,14 +112,25 @@ begin
   UARTSendString(s);
   UARTSendString(#13#10);
 
-
   repeat
-    if UARTReadChar = #32 then begin
-      UARTSendString('Hello Welt !'#13#10);
-
-      IntToDigit(z);
-
-      UARTSendString(Digit);
+    Inc(z);
+    if z > 999 then begin
+      z := 0;
     end;
+    IntToDigit(z);
+
+    UARTSendString(Digit);
+    UARTSendString(#13#10);
+
+    //if UARTReadChar = #32 then begin
+    //  UARTSendString('Hello Welt !'#13#10);
+    //
+    //  IntToDigit(z);
+    //
+    //  UARTSendString(Digit);
+    //end else begin
+    //  UARTSendString('none');
+    //end;
+
   until 1 = 2;
 end.

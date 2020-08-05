@@ -45,7 +45,7 @@ begin
   //  if RunCommand('/bin/bash',['-c','echo $PATH'],s) then begin
   if RunCommand('avrdude', ['-patmega328p', '-cusbasp', '-v'], s) then begin
     // if RunCommand('avrdude', ['-patmega328p', '-cusbasp', '-v'], s, [poWaitOnExit]) then begin
-    Memo1.Lines.Add('geklappt');
+    Memo1.Lines.Add('geklappt ! ');
     Memo1.Lines.Add(s);
   end;
 end;
@@ -93,7 +93,9 @@ begin
   SerClose(SerialHandle);
   Sleep(500);
 
-  RunCommandForm.RunCommand('avrdude -patmega32u4 -v -cavr109 -P/dev/ttyACM0 -b57600 -D -Uflash:w:/home/tux/Dropbox/Sloeber_Projecte/sloeber-workspace/leonardo_test/Release/leonardo_test.hex:i');
+
+//  RunCommandForm.RunCommand('avrdude -patmega32u4 -v -cavr109 -P/dev/ttyACM0 -b57600 -D -Uflash:w:/home/tux/Dropbox/Sloeber_Projecte/sloeber-workspace/leonardo_test/Release/leonardo_test.hex:i');
+  RunCommandForm.RunCommand('/home/tux/.arduino15/packages/arduino/tools/bossac/1.6.1-arduino/bossac -i -d --port=ttyACM0 -U false -e -w -v -b /tmp/arduino_build_790238/Blink.ino.bin -R');
   Caption := RunCommandForm.ExitCode.ToString;
 end;
 

@@ -50,18 +50,41 @@ type
     procedure StopHandler(Sender: TObject);
 
     function RunBuilding(Sender: TObject): TModalResult;
-    procedure StopBuilding(Sender: TObject; BuildSuccessful: Boolean);
+    procedure StopBuilding(Sender: TObject; BuildSuccessful: boolean);
   end;
 
-procedure ResetCom;
+function TNewIDEHandle.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
+begin
+  Result := mrNone;
+end;
+
+function TNewIDEHandle.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
+begin
+  Result := mrNone;
+end;
+
+procedure TNewIDEHandle.StopHandler(Sender: TObject);
+begin
+end;
+
+function TNewIDEHandle.RunBuilding(Sender: TObject): TModalResult;
 var
   SerialHandle: TSerialHandle;
   LazProject: TLazProject;
 begin
+  if Assigned(Serial_Monitor_Form) then begin
+    if Serial_Monitor_Form.Timer1.Enabled then begin
+      Active := True;
+      Serial_Monitor_Form.CloseSerial;
+    end else begin
+      Active := False;
+    end;
+  end;
+
   LazProject := LazarusIDE.ActiveProject;
 
-  if UpCase(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-c'))= 'AVR109' then begin
-//    ShowMessage('Leonardo');
+  if UpCase(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-c')) = 'AVR109' then begin
+    //    ShowMessage('Leonardo');
     SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
@@ -71,37 +94,11 @@ begin
     SerClose(SerialHandle);
     Sleep(500);
   end;
+
+  Result := mrOk;
 end;
 
-function TNewIDEHandle.RunHandler(Sender: TObject; var Handled: boolean): TModalResult;
-begin
-//  ResetCom;
-  if Assigned(Serial_Monitor_Form) then begin
-    if Serial_Monitor_Form.Timer1.Enabled then begin
-      Active := True;
-      Serial_Monitor_Form.CloseSerial;
-    end else begin
-      Active := False;
-    end;
-  end;
-//  Result:=mrNone;
-end;
-
-function TNewIDEHandle.RunNoDebugHandler(Sender: TObject; var Handled: boolean): TModalResult;
-begin
-//  ResetCom;
-  if Assigned(Serial_Monitor_Form) then begin
-    if Serial_Monitor_Form.Timer1.Enabled then begin
-      Active := True;
-      Serial_Monitor_Form.CloseSerial;
-    end else begin
-      Active := False;
-    end;
-  end;
-//  Result:=mrNone;
-end;
-
-procedure TNewIDEHandle.StopHandler(Sender: TObject);
+procedure TNewIDEHandle.StopBuilding(Sender: TObject; BuildSuccessful: boolean);
 begin
   if Assigned(Serial_Monitor_Form) then begin
     if Active then begin
@@ -109,21 +106,6 @@ begin
     end;
   end;
 end;
-
-function TNewIDEHandle.RunBuilding(Sender: TObject): TModalResult;
-begin
-  ResetCom;
-  Result:=mrOK;
-
-end;
-
-procedure TNewIDEHandle.StopBuilding(Sender: TObject; BuildSuccessful: Boolean);
-begin
-  ResetCom;
-
-end;
-
-
 
 constructor TNewIDEHandle.Create;
 begin
@@ -173,14 +155,13 @@ begin
   // Run ( without or with debugger ) hooks
   NewIDEHandle := TNewIDEHandle.Create;
 
-  // Serialmonitor
-  LazarusIDE.AddHandlerOnRunDebug(@NewIDEHandle.RunHandler, False);
-  LazarusIDE.AddHandlerOnRunWithoutDebugInit(@NewIDEHandle.RunNoDebugHandler, False);
-  LazarusIDE.AddHandlerOnRunFinished(@NewIDEHandle.StopHandler, True);
-
-  // COM-Reset
+  // Für Serial zurücksetzen/stoppen/starten
   LazarusIDE.AddHandlerOnProjectBuilding(@NewIDEHandle.RunBuilding, False);
-//  LazarusIDE.AddHandlerOnProjectBuildingFinished(@NewIDEHandle.StopBuilding, True);
+  LazarusIDE.AddHandlerOnProjectBuildingFinished(@NewIDEHandle.StopBuilding, True);
+
+  //LazarusIDE.AddHandlerOnRunDebug(@NewIDEHandle.RunHandler, False);
+  //LazarusIDE.AddHandlerOnRunWithoutDebugInit(@NewIDEHandle.RunNoDebugHandler, False);
+  //LazarusIDE.AddHandlerOnRunFinished(@NewIDEHandle.StopHandler, True);
 
   // Werkzeuge --> Einstellungen --> Umgebung
   Embbed_IDE_OptionsFrameID :=

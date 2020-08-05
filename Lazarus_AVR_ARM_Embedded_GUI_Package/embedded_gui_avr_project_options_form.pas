@@ -139,7 +139,7 @@ end;
 
 procedure TAVR_Project_Options_Form.DefaultMask;
 begin
-    // FPC_Command
+  // FPC_Command
   with ComboBox_AVR_SubArch do begin
     Text := 'AVR5';
   end;
@@ -191,14 +191,7 @@ end;
 
 procedure TAVR_Project_Options_Form.FormActivate(Sender: TObject);
 begin
-  with ComboBox_COMPort do begin
-    Items.CommaText := GetSerialPortNames;
-    //if Items.Count > 0 then begin
-    //  ComboBox_COMPort.Text := Items[0];
-    //end else begin
-    //  ComboBox_COMPort.Text := 'no Comport';
-    //end;
-  end;
+  ComboBox_COMPort.Items.CommaText := GetSerialPortNames;
 end;
 
 procedure TAVR_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -280,24 +273,24 @@ end;
 
 procedure TAVR_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
-  s,bc:String;
+  s, bc: string;
 begin
 
   // FPC_Command
   with LazProject.LazCompilerOptions do begin
     ComboBox_AVR_SubArch.Text := TargetProcessor;
-    s:=CustomOptions  ;
+    s := CustomOptions;
     ComboBox_AVR_Typ_FPC.Text := FindPara(s, '-Wp');
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
   end;
 
   // AVRDude_Command
-  s:=LazProject.LazCompilerOptions.ExecuteAfter.Command;
+  s := LazProject.LazCompilerOptions.ExecuteAfter.Command;
 
   ComboBox_AvrdudePath.Text := Copy(s, 0, pos(' ', s) - 1);
   ComboBox_AvrdudeConfigPath.Text := FindPara(s, '-C');
 
-  ComboBox_Programmer.Text :=FindPara(s, '-c');
+  ComboBox_Programmer.Text := FindPara(s, '-c');
   with ComboBox_COMPort do begin
     Items.CommaText := GetSerialPortNames;
     Text := FindPara(s, '-P');
@@ -307,7 +300,7 @@ begin
   Edit_AVR_Typ_Avrdude.Text := FindPara(s, '-p');
 
   ComboBox_Verbose.Text := ComboBox_Verbose.Items[FindVerbose(s)];
-  bc:=FindPara(s, '-B');
+  bc := FindPara(s, '-B');
   if bc = '' then begin
     ComboBox_BitClock.Text := '1';
   end else begin
@@ -321,8 +314,9 @@ begin
 end;
 
 procedure TAVR_Project_Options_Form.MaskToLazProject(LazProject: TLazProject);
-var s,s1:String;
-  i: Integer;
+var
+  s, s1: string;
+  i: integer;
 begin
 
   // FPC_Command
@@ -334,9 +328,9 @@ begin
   LazProject.LazCompilerOptions.CustomOptions := s;
 
   // AVRDude_Command
-    s := ComboBox_AvrdudePath.Text + ' ';
+  s := ComboBox_AvrdudePath.Text + ' ';
 
-    s1:=ComboBox_AvrdudeConfigPath.Text;
+  s1 := ComboBox_AvrdudeConfigPath.Text;
   if s1 <> '' then begin
     s += '-C' + s1 + ' ';
   end;
@@ -345,17 +339,22 @@ begin
     s += '-v ';
   end;
 
-  s1:=ComboBox_Programmer.Text;
-  s += '-p' + Edit_AVR_Typ_Avrdude.Text + ' ' + '-c' + s1 + ' ';
-  s1 := upCase(s1);
-  if (s1 = 'ARDUINO') or (s1 = 'STK500V1') or (s1 = 'WIRING') or (s1 = 'AVR109') or (s1 = 'JTAG2UPDI') then begin
-    s += '-P' + ComboBox_COMPort.Text + ' ' + '-b' + ComboBox_COMPortBaud.Text + ' ';
-  end;
-  //if (pr = 'AVR109') then begin
-  //  s += '-P' + COM_Port + ' ';
-  //end;
+//  s1 := ComboBox_Programmer.Text;
+  s += '-p' + Edit_AVR_Typ_Avrdude.Text + ' ' + '-c' + ComboBox_Programmer.Text + ' ';
+  //  s1 := upCase(s1);
+  //  if (s1 = 'ARDUINO') or (s1 = 'STK500V1') or (s1 = 'WIRING') or (s1 = 'AVR109') or (s1 = 'JTAG2UPDI') then begin
+  //    s += '-P' + ComboBox_COMPort.Text + ' ' + '-b' + ComboBox_COMPortBaud.Text + ' ';
+  //  end;
 
-  s1:=ComboBox_BitClock.Text;
+  if ComboBox_COMPort.Text <> '' then begin
+    s += '-P' + ComboBox_COMPort.Text + ' ';
+  end;
+
+  if ComboBox_COMPortBaud.Text <> '' then begin
+    s += '-b' + ComboBox_COMPortBaud.Text + ' ';
+  end;
+
+  s1 := ComboBox_BitClock.Text;
   if s1 <> '1' then begin
     s += '-B' + s1 + ' ';
   end;

@@ -169,13 +169,13 @@ end;
 
 procedure TSerial_Monitor_Form.CloseSerial;
 begin
-  if SerialHandle <> 0 then begin
+//  if SerialHandle <> 0 then begin
     Timer1.Enabled := False;
     SerSync(SerialHandle);
     SerFlushOutput(SerialHandle);
     SerClose(SerialHandle);
     SerialHandle := 0;
-  end;
+//  end;
 end;
 
 procedure TSerial_Monitor_Form.Button_SendClick(Sender: TObject);
