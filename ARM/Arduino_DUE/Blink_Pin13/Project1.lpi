@@ -50,7 +50,8 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATSAM3X8E"/>
+      <CustomOptions Value="-WpATSAM3X8E
+-k-Ttext=0x00080000"/>
       <ExecuteAfter>
         <Command Value="/usr/local/bin/st-flash write Project1.bin 0x080000"/>
         <CompileReasons Compile="False" Build="False"/>

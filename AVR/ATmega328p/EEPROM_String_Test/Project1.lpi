@@ -61,7 +61,8 @@
     </Linking>
     <Other>
       <CustomOptions Value="-WpATMEGA328P
--al"/>
+-al
+-k-Ttext = 0x00000800"/>
       <ExecuteAfter>
         <Command Value="avrdude -patmega328p -cusbasp -B256 -e -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
