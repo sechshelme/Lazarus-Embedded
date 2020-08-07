@@ -9,7 +9,7 @@ uses
   var
     i: uint32;
   begin
-    for i := 0 to 1000000 do begin
+    for i := 0 to 10000000 do begin
       asm
                Nop end; // Leerbefehl
     end;
@@ -28,21 +28,18 @@ const
   led = 1 shl 27;
 
 begin
-  PIOB.PER := $FFFFFFFF;
-  PIOB.OER := $FFFFFFFF;
+  PMC.PCER0 := 1 shl 12;
+  PIOB.PER := 1 shl 27;
+  PIOB.OER := 1 shl 27;
 
-//  RTT.MR := 32768 div 1000;
-
-  PIOB.SODR := $ffffffff;
   repeat
     // Pin13 -- High
-    PIOB.SODR := $FFFFFFFF;
-    //    PortC.BSRR := 1 shl 13;
+    PIOB.SODR := 1 shl 27;
     Delay;
 
     // Pin13 -- Low
-    PIOB.CODR := $FFFFFFFF;
-    //    PortC.BRR := 1 shl 13;
+    PIOB.CODR := 1 shl 27;
     Delay;
   until False;
 end.
+

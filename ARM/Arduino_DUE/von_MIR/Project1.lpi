@@ -46,14 +46,12 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="False"/>
+        <DebugInfoType Value="dsDwarf2"/>
+        <UseLineInfoUnit Value="False"/>
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATSAM3X8E"/>
-      <ExecuteAfter>
-        <CompileReasons Compile="False" Build="False"/>
-      </ExecuteAfter>
+      <CustomOptions Value="-WpATSAM3X8E -godwarfcpp -O1"/>
     </Other>
   </CompilerOptions>
   <Debugging>
