@@ -51,7 +51,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATSAM3X8E -godwarfcpp -O1"/>
+      <CustomOptions Value="-WpATSAM3X8E -godwarfcpp -O1 -al"/>
+      <ExecuteAfter>
+        <Command Value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R"/>
+      </ExecuteAfter>
     </Other>
   </CompilerOptions>
   <Debugging>

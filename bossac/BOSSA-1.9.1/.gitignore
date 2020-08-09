@@ -1,0 +1,12 @@
+*.bin
+obj
+*.exe
+*~
+bossa
+bossac
+bin
+*.swp
+tags
+*.bak
+install/*.crt
+install/*.p12

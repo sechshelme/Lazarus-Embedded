@@ -13,8 +13,10 @@ type
   { TRun_Command_Form }
 
   TRun_Command_Form = class(TForm)
+    Button_Clear: TButton;
     Button_Close: TButton;
     Memo1: TMemo;
+    procedure Button_ClearClick(Sender: TObject);
     procedure Button_CloseClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -39,6 +41,11 @@ implementation
 procedure TRun_Command_Form.Button_CloseClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TRun_Command_Form.Button_ClearClick(Sender: TObject);
+begin
+  Memo1.Lines.Clear;
 end;
 
 procedure TRun_Command_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);

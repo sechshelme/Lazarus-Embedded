@@ -71,6 +71,7 @@ function TNewIDEHandle.RunBuilding(Sender: TObject): TModalResult;
 var
   SerialHandle: TSerialHandle;
   LazProject: TLazProject;
+  com: string;
 begin
   if Assigned(Serial_Monitor_Form) then begin
     if Serial_Monitor_Form.Timer1.Enabled then begin
@@ -83,9 +84,23 @@ begin
 
   LazProject := LazarusIDE.ActiveProject;
 
-  if UpCase(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-c')) = 'AVR109' then begin
-    //    ShowMessage('Leonardo');
+  com := LazProject.LazCompilerOptions.ExecuteAfter.Command;
+  if UpCase(FindPara(com, '-c')) = 'AVR109' then begin
+//    ShowMessage('Leonardo');
     SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
+    SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
+
+    SerSetDTR(SerialHandle, True);
+    SerSetDTR(SerialHandle, False);
+    Sleep(500);
+    SerClose(SerialHandle);
+    Sleep(500);
+  end;
+
+  if Pos('bossac', com) > 0 then begin
+//    ShowMessage('bossac');
+    //    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
+    SerialHandle := SerOpen('/dev/ttyACM0');
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
     SerSetDTR(SerialHandle, True);

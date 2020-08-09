@@ -1,7 +1,7 @@
 object Run_Command_Form: TRun_Command_Form
-  Left = 1428
+  Left = 1755
   Height = 264
-  Top = 515
+  Top = 230
   Width = 348
   Caption = 'Run_Command_Form'
   ClientHeight = 264
@@ -32,5 +32,15 @@ object Run_Command_Form: TRun_Command_Form
     Caption = 'Close'
     OnClick = Button_CloseClick
     TabOrder = 1
+  end
+  object Button_Clear: TButton
+    Left = 168
+    Height = 25
+    Top = 224
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Clear'
+    OnClick = Button_ClearClick
+    TabOrder = 2
   end
 end
