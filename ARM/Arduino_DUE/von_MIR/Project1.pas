@@ -1,8 +1,8 @@
 program Project1;
 
 const
-  d0 = 100000;
-  d1 = 500000;
+  d0 = 10000;
+  d1 = 50000;
 
 
   procedure Delay0;
