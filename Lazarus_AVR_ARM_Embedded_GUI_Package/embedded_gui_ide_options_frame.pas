@@ -43,7 +43,8 @@ type
     procedure Button_Color_GUI_DefaultClick(Sender: TObject);
     procedure Button_Color_CustomClick(Sender: TObject);
   private
-    ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPfad: TFileNameComboBox;
+    ComboBox_AVRdudePath, ComboBox_AVRdudeConf,
+      ComboBox_STFlashPath, ComboBox_BossacPath: TFileNameComboBox;
     SM_Interface_Frame: TSM_Interface_Frame;
     SM_Output_Frame: TSM_Output_Frame;
   public
@@ -101,6 +102,7 @@ var
 begin
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
+  // AVR
   ComboBox_AvrdudePath := TFileNameComboBox.Create(TabSheetAVR, 'AVRDudePath', False);
   with ComboBox_AvrdudePath do begin
     Caption := 'AVRdude Pfad';
@@ -119,8 +121,9 @@ begin
     Top := 104;
   end;
 
-  ComboBox_STFlashPfad := TFileNameComboBox.Create(TabSheetARM, 'STFlashPath', False);
-  with ComboBox_STFlashPfad do begin
+  // ARM
+  ComboBox_STFlashPath := TFileNameComboBox.Create(TabSheetARM, 'STFlashPath', False);
+  with ComboBox_STFlashPath do begin
     Caption := 'ST Flash Pfad';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
@@ -128,11 +131,21 @@ begin
     Top := 24;
   end;
 
+  ComboBox_BossacPath := TFileNameComboBox.Create(TabSheetARM, 'BossacPath', False);
+  with ComboBox_BossacPath do begin
+    Caption := 'Bassac Pfad';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 104;
+  end;
+
   with Embedded_IDE_Options do begin
 
     ComboBox_AVRdudePath.Items := AVR.avrdudePath;
     ComboBox_AVRdudeConf.Items := AVR.avrdudeConfigPath;
-    ComboBox_STFlashPfad.Items := ARM.STFlashPath;
+    ComboBox_STFlashPath.Items := ARM.STFlashPath;
+    ComboBox_BossacPath.Items := ARM.BossacPath;
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
@@ -197,7 +210,8 @@ begin
 
     AVR.avrdudePath.AddStrings(ComboBox_AVRdudePath.Items, True);
     AVR.avrdudeConfigPath.AddStrings(ComboBox_AVRdudeConf.Items, True);
-    ARM.STFlashPath.AddStrings(ComboBox_STFlashPfad.Items, True);
+    ARM.STFlashPath.AddStrings(ComboBox_STFlashPath.Items, True);
+    ARM.BossacPath.AddStrings(ComboBox_BossacPath.Items, True);
 
     Embedded_IDE_Options.Save_to_XML;
   end;

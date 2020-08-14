@@ -1,7 +1,7 @@
 program Project1;
 
 const
-  d0 = 10000;
+  d0 = 11000;
   d1 = 50000;
 
 

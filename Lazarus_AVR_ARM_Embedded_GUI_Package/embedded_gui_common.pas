@@ -10,7 +10,6 @@ uses
   BaseIDEIntf, LazConfigStorage,  // Bei Packages
   {$ELSE}
   Laz2_XMLCfg,  // Bei normalen Anwendungen
-  //  XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
   SysUtils, StdCtrls, Controls, Classes, Dialogs, ComCtrls, Graphics, Forms;
 
@@ -32,11 +31,13 @@ const
   Default_Avrdude_Path: TStringArray = ('c:\avrdude\avrdude.exe');
   Default_Avrdude_Conf_Path: TStringArray = ('c:\avrdude\avrdude.conf');
   Default_STFlash_Path: TStringArray = ('c:\st-link\st-flash.exe');
+  Default_Bassac_Path: TStringArray = ('c:\bossa\bossac.exe');
   UARTDefaultPort = 'COM8';
   {$ELSE}
   Default_Avrdude_Path: TStringArray = ('/usr/bin/avrdude', 'avrdude');
   Default_Avrdude_Conf_Path: TStringArray = ('/etc/avrdude.conf', '');
   Default_STFlash_Path: TStringArray = ('/usr/local/bin/st-flash', 'st-flash');
+  Default_Bassac_Path: TStringArray = ('/usr/bin/bossac', 'bossac');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
 
@@ -93,7 +94,7 @@ type
       avrdudePath, avrdudeConfigPath: TStringList;
     end;
     ARM: record
-      STFlashPath: TStringList;
+      STFlashPath, BossacPath: TStringList;
     end;
     SerialMonitor_Options: TSerialMonitor_Options;
     constructor Create;
@@ -135,12 +136,14 @@ const
 
   Key_IDE_Options = 'IDEOptions/';
   Key_IDE_Color = Key_IDE_Options + 'Color';
-  Key_AVRdude = Key_IDE_Options + 'avrdude/';
-  Key_Avrdude_Path = Key_AVRdude + 'pfad/';
-  Key_Avrdude_Conf_Path = Key_AVRdude + 'conf_pfad/';
 
-  Key_STFlash = Key_IDE_Options + 'st_flash/';
-  Key_STFlash_Path = Key_STFlash + 'pfad/';
+  Key_AVR = Key_IDE_Options + 'AVR/';
+  Key_Avrdude_Path = Key_AVR + 'avrdude_path/';
+  Key_Avrdude_Conf_Path = Key_AVR + 'avrdude_conf_path/';
+
+  Key_ARM = Key_IDE_Options + 'ARM/';
+  Key_STFlash_Path = Key_ARM + 'st_flash_path/';
+  Key_Bassac_Path = Key_ARM + 'bossac_path/';
 
   Key_ComPara = 'COMPortPara/';
   Key_Output = 'OutputScreenPara/';
@@ -489,6 +492,7 @@ begin
   AVR.avrdudePath := TStringList.Create;
   AVR.avrdudeConfigPath := TStringList.Create;
   ARM.STFlashPath := TStringList.Create;
+  ARM.BossacPath := TStringList.Create;
 end;
 
 destructor TEmbedded_IDE_Options.Destroy;
@@ -496,6 +500,7 @@ begin
   AVR.avrdudePath.Free;
   AVR.avrdudeConfigPath.Free;
   ARM.STFlashPath.Free;
+  ARM.BossacPath.Free;
   SerialMonitor_Options.Free;
   inherited Destroy;
 end;
@@ -504,7 +509,9 @@ procedure TEmbedded_IDE_Options.Load_from_XML;
 begin
   LoadStrings_from_XML(Key_Avrdude_Path, AVR.avrdudePath, Default_Avrdude_Path);
   LoadStrings_from_XML(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath, Default_Avrdude_Conf_Path);
+
   LoadStrings_from_XML(Key_STFlash_Path, ARM.STFlashPath, Default_STFlash_Path);
+  LoadStrings_from_XML(Key_Bassac_Path, ARM.BossacPath, Default_Bassac_Path);
 
   SerialMonitor_Options.Load_from_XML;
 end;
@@ -513,7 +520,9 @@ procedure TEmbedded_IDE_Options.Save_to_XML;
 begin
   SaveStrings_to_XML(Key_Avrdude_Path, AVR.avrdudePath);
   SaveStrings_to_XML(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath);
+
   SaveStrings_to_XML(Key_STFlash_Path, ARM.STFlashPath);
+  SaveStrings_to_XML(Key_Bassac_Path, ARM.BossacPath);
 
   SerialMonitor_Options.Save_to_XML;
 end;
