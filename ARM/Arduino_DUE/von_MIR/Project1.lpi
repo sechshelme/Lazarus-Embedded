@@ -46,14 +46,16 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
+        <GenerateDebugInfo Value="False"/>
         <DebugInfoType Value="dsDwarf2"/>
         <UseLineInfoUnit Value="False"/>
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATSAM3X8E -godwarfcpp -O1 -al"/>
+      <CustomOptions Value="-WpATSAM3X8E
+-al"/>
       <ExecuteAfter>
-        <Command Value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R"/>
+        <Command Value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  Project1.bin -R"/>
       </ExecuteAfter>
     </Other>
   </CompilerOptions>

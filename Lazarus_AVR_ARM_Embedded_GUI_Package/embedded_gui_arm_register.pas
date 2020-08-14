@@ -65,18 +65,18 @@ end;
 constructor TProjectARMApp.Create;
 begin
   inherited Create;
-  Name := Title + 'ARM-Project (STM32)';
+  Name := Title + 'ARM-Project (STM32 / Arduino DUE)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
 end;
 
 function TProjectARMApp.GetLocalizedName: string;
 begin
-  Result := Title + 'ARM-Project (STM32)';
+  Result := Title + 'ARM-Project (STM32 / Arduino DUE)';
 end;
 
 function TProjectARMApp.GetLocalizedDescription: string;
 begin
-  Result := Title + 'Erstellt ein ARM-Project (STM32)';
+  Result := Title + 'Erstellt ein ARM-Project (STM32 / Arduino DUE)';
 end;
 
 function TProjectARMApp.DoInitDescriptor: TModalResult;

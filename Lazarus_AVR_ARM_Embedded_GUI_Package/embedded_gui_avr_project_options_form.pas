@@ -135,6 +135,7 @@ begin
     Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
   end;
 
+  ChangeAVR_Typ;
 end;
 
 procedure TAVR_Project_Options_Form.DefaultMask;

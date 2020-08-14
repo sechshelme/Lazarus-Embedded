@@ -25,12 +25,13 @@ type
   { TARM_Project_Options_Form }
 
   TARM_Project_Options_Form = class(TForm)
+    ARM_FlashBase_ComboBox: TComboBox;
+    BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
     CheckBox_ASMFile: TCheckBox;
-    BitBtn1: TBitBtn;
-    ARM_FlashBase_ComboBox: TComboBox;
     CPU_InfoButton: TButton;
-    Label2: TLabel;
+    GroupBox_Programmer: TGroupBox;
+    Label_FlashBase: TLabel;
     OpenDialog: TOpenDialog;
     ComboBox_ARM_Typ_FPC: TComboBox;
     CancelButton: TButton;
@@ -38,6 +39,8 @@ type
     Label1: TLabel;
     Label5: TLabel;
     Memo1: TMemo;
+    RadioButton_Bossac: TRadioButton;
+    RadioButton_st_flash: TRadioButton;
     TemplatesButton: TButton;
     procedure ComboBox_ARM_SubArchChange(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
@@ -45,9 +48,10 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-    ComboBox_STLinkPath: TFileNameComboBox;
+    ComboBox_STLinkPath, ComboBox_BossacPath: TFileNameComboBox;
     procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
@@ -71,15 +75,6 @@ begin
   Caption := Title + 'ARM Project Options';
   LoadFormPos_from_XML(Self);
 
-  ComboBox_STLinkPath := TFileNameComboBox.Create(Self, 'STLinkPath');
-  with ComboBox_STLinkPath do begin
-    Caption := 'ST-Link Aufruf:';
-    Anchors := [akTop, akLeft, akRight];
-    Left := 5;
-    Width := Self.Width - 10;
-    Top := 192;
-  end;
-
   with ComboBox_ARM_SubArch do begin
     Items.CommaText := ARM_SubArch_List;
     Style := csOwnerDrawFixed;
@@ -89,10 +84,31 @@ begin
     Sorted := True;
   end;
 
+  // Programmer
+  ComboBox_STLinkPath := TFileNameComboBox.Create(GroupBox_Programmer, 'STLinkPath');
+  with ComboBox_STLinkPath do begin
+    Caption := 'ST-Link Pfad:';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5 + 43;
+    Width := GroupBox_Programmer.Width - 10 - 48;
+    Top := 40;
+  end;
+
   with ARM_FlashBase_ComboBox do begin
     Sorted := True;
     Items.AddStrings(['0x00000000', '0x08000000']);
   end;
+
+  ComboBox_BossacPath := TFileNameComboBox.Create(GroupBox_Programmer, 'BossacPath');
+  with ComboBox_BossacPath do begin
+    Caption := 'Bossac Pfad:';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5 + 43;
+    Width := GroupBox_Programmer.Width - 10 - 48;
+    Top := 216;
+  end;
+
+  ChangeARM_Typ;
 end;
 
 procedure TARM_Project_Options_Form.DefaultMask;
@@ -101,6 +117,12 @@ begin
     ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
   end else begin
     ComboBox_STLinkPath.Text := '';
+  end;
+
+  if Embedded_IDE_Options.ARM.BossacPath.Count > 0 then begin
+    ComboBox_BossacPath.Text := Embedded_IDE_Options.ARM.BossacPath[0];
+  end else begin
+    ComboBox_BossacPath.Text := '';
   end;
 
   with ComboBox_ARM_SubArch do begin
@@ -156,7 +178,7 @@ end;
 
 procedure TARM_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
-  s: string;
+  s, path, p: string;
 begin
   // FPC Command
   with LazProject.LazCompilerOptions do begin
@@ -166,10 +188,23 @@ begin
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
   end;
 
-  // ST-Link Command
+  // Programmer Command
   s := LazProject.LazCompilerOptions.ExecuteAfter.Command;
-  ComboBox_STLinkPath.Text := Copy(s, 0, pos(' ', s) - 1);
-  ARM_FlashBase_ComboBox.Text := '0x' + FindPara(s, '0x');
+  path := Copy(s, 0, pos(' ', s) - 1);
+
+  p := UpCase(ExtractFileName(path));
+  if Pos(UpCase('st-flash'), p) > 0 then begin
+    RadioButton_st_flash.Checked := True;
+    ComboBox_STLinkPath.Text := path;
+    ARM_FlashBase_ComboBox.Text := '0x' + FindPara(s, '0x');
+  end;
+
+  if Pos(UpCase('bossac'), p) > 0 then begin
+    RadioButton_Bossac.Checked := True;
+    ComboBox_BossacPath.Text := path;
+  end;
+
+  RadioButton_Programmer_Change(nil);
 end;
 
 procedure TARM_Project_Options_Form.MaskToLazProject(LazProject: TLazProject);
@@ -184,9 +219,17 @@ begin
   end;
   LazProject.LazCompilerOptions.CustomOptions := s;
 
-  // ST-Link Command
-  s := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ARM_FlashBase_ComboBox.Text;
-  LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+  // Programmer Command
+  if RadioButton_st_flash.Checked then begin
+    s := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ARM_FlashBase_ComboBox.Text;
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+  end;
+
+  if RadioButton_Bossac.Checked then begin
+// /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
+    s := ComboBox_BossacPath.Text + ' -e -w -v -b  ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+  end;
 end;
 
 procedure TARM_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
@@ -218,6 +261,21 @@ end;
 procedure TARM_Project_Options_Form.FormDestroy(Sender: TObject);
 begin
   ComboBox_STLinkPath.Free;
+  ComboBox_BossacPath.Free;
+end;
+
+procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
+var
+  e: boolean;
+begin
+  e := RadioButton_st_flash.Checked;
+  ComboBox_STLinkPath.Enabled := e;
+  Label_FlashBase.Enabled := e;
+  ARM_FlashBase_ComboBox.Enabled := e;
+  BitBtn_Auto_Flash_Base.Enabled := e;
+
+  e := RadioButton_Bossac.Checked;
+  ComboBox_BossacPath.Enabled := e;
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
