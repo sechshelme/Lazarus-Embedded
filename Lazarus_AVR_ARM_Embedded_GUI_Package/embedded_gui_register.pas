@@ -153,8 +153,6 @@ end;
 
 procedure Register;
 const
-  AVR_Title = Title + 'AVR-Optionen (Arduino)';
-  ARM_Title = Title + 'ARM-Optionen (STM32)';
   CPU_Info_Titel = Title + 'CPU-Info';
 
 begin

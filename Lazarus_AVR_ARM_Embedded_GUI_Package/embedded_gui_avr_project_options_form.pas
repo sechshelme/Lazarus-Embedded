@@ -83,7 +83,7 @@ begin
   Caption := Title + 'AVR Project Options';
   LoadFormPos_from_XML(Self);
 
-  // FPC_Command
+  // Compiler
   with ComboBox_AVR_SubArch do begin
     Items.CommaText := avr_SubArch_List;
     //    ItemIndex := 3;                    // ???????????????
@@ -134,15 +134,15 @@ begin
     Style := csOwnerDrawFixed;
     Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
   end;
-
-  ChangeAVR_Typ;
 end;
 
 procedure TAVR_Project_Options_Form.DefaultMask;
 begin
-  // FPC_Command
+  // Compiler
   with ComboBox_AVR_SubArch do begin
     Text := 'AVR5';
+    ItemIndex := Items.IndexOf(Text);
+    ChangeAVR_Typ;
   end;
 
   with ComboBox_AVR_Typ_FPC do begin
@@ -280,10 +280,14 @@ begin
   // FPC_Command
   with LazProject.LazCompilerOptions do begin
     ComboBox_AVR_SubArch.Text := TargetProcessor;
+    ComboBox_AVR_SubArch.ItemIndex := ComboBox_AVR_SubArch.Items.IndexOf(ComboBox_AVR_SubArch.Text);
+    ChangeAVR_Typ;
+
     s := CustomOptions;
     ComboBox_AVR_Typ_FPC.Text := FindPara(s, '-Wp');
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
   end;
+
 
   // AVRDude_Command
   s := LazProject.LazCompilerOptions.ExecuteAfter.Command;

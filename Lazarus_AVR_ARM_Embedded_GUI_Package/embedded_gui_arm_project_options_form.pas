@@ -89,6 +89,7 @@ begin
   Caption := Title + 'ARM Project Options';
   LoadFormPos_from_XML(Self);
 
+  // Compiler
   with ComboBox_ARM_SubArch do begin
     Items.CommaText := ARM_SubArch_List;
     Style := csOwnerDrawFixed;
@@ -121,12 +122,28 @@ begin
     Width := GroupBox_Bossac.Width - 10;
     Top := 10;
   end;
-
-  ChangeARM_Typ;
 end;
 
 procedure TARM_Project_Options_Form.DefaultMask;
 begin
+  // Compiler
+  with ComboBox_ARM_SubArch do begin
+    Text := 'ARMV7M';
+    ItemIndex := Items.IndexOf(Text);
+    ChangeARM_Typ;
+  end;
+
+  with ComboBox_ARM_Typ_FPC do begin
+    Text := 'STM32F103X8';
+  end;
+
+  with ARM_FlashBase_ComboBox do begin
+    Text := '0x08000000';
+  end;
+
+  CheckBox_ASMFile.Checked := False;
+
+  // Programmer
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
     ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
   end else begin
@@ -139,19 +156,7 @@ begin
     ComboBox_BossacPath.Text := '';
   end;
 
-  with ComboBox_ARM_SubArch do begin
-    Text := 'ARMV7M';
-  end;
-
-  with ComboBox_ARM_Typ_FPC do begin
-    Text := 'STM32F103X8';
-  end;
-
-  with ARM_FlashBase_ComboBox do begin
-    Text := '0x08000000';
-  end;
-
-  CheckBox_ASMFile.Checked := False;
+  RadioButton_Programmer_Change(nil);
 end;
 
 procedure TARM_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -197,6 +202,9 @@ begin
   // FPC Command
   with LazProject.LazCompilerOptions do begin
     ComboBox_ARM_SubArch.Text := TargetProcessor;
+    ComboBox_ARM_SubArch.ItemIndex := ComboBox_ARM_SubArch.Items.IndexOf(ComboBox_ARM_SubArch.Text);
+    ChangeARM_Typ;
+
     s := CustomOptions;
     ComboBox_ARM_Typ_FPC.Text := FindPara(s, '-Wp');
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
@@ -240,7 +248,7 @@ begin
   end;
 
   if RadioButton_Bossac.Checked then begin
-// /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
+    // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
     s := ComboBox_BossacPath.Text + ' -e -w -v -b  ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
@@ -279,21 +287,9 @@ begin
 end;
 
 procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
-var
-  e: boolean;
 begin
-  GroupBox_ST_Link.Enabled:=RadioButton_st_flash.Checked;
-  GroupBox_Bossac.Enabled:=RadioButton_Bossac.Checked;
-//
-//  e := RadioButton_st_flash.Checked;
-//
-//  ComboBox_STLinkPath.Enabled := e;
-//  Label_FlashBase.Enabled := e;
-//  ARM_FlashBase_ComboBox.Enabled := e;
-//  BitBtn_Auto_Flash_Base.Enabled := e;
-//
-//  e := RadioButton_Bossac.Checked;
-//  ComboBox_BossacPath.Enabled := e;
+  GroupBox_ST_Link.Enabled := RadioButton_st_flash.Checked;
+  GroupBox_Bossac.Enabled := RadioButton_Bossac.Checked;
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
