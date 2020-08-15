@@ -28,8 +28,22 @@ type
     ARM_FlashBase_ComboBox: TComboBox;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
+    CheckBox_Reset: TCheckBox;
+    CheckBox_force_USB_Port: TCheckBox;
+    CheckBox_Debug: TCheckBox;
+    CheckBox_Info: TCheckBox;
+    CheckBox_Security: TCheckBox;
+    CheckBox_UnLock: TCheckBox;
+    CheckBox_Lock: TCheckBox;
+    CheckBox_Brownout_Reset: TCheckBox;
+    CheckBox_Brownout_Detection: TCheckBox;
+    CheckBox_boot: TCheckBox;
+    CheckBox_Verify: TCheckBox;
+    CheckBox_Erase: TCheckBox;
     CheckBox_ASMFile: TCheckBox;
     CPU_InfoButton: TButton;
+    GroupBox_ST_Link: TGroupBox;
+    GroupBox_Bossac: TGroupBox;
     GroupBox_Programmer: TGroupBox;
     Label_FlashBase: TLabel;
     OpenDialog: TOpenDialog;
@@ -85,13 +99,13 @@ begin
   end;
 
   // Programmer
-  ComboBox_STLinkPath := TFileNameComboBox.Create(GroupBox_Programmer, 'STLinkPath');
+  ComboBox_STLinkPath := TFileNameComboBox.Create(GroupBox_ST_Link, 'STLinkPath');
   with ComboBox_STLinkPath do begin
     Caption := 'ST-Link Pfad:';
     Anchors := [akTop, akLeft, akRight];
-    Left := 5 + 43;
-    Width := GroupBox_Programmer.Width - 10 - 48;
-    Top := 40;
+    Left := 5;
+    Width := GroupBox_ST_Link.Width - 10;
+    Top := 10;
   end;
 
   with ARM_FlashBase_ComboBox do begin
@@ -99,13 +113,13 @@ begin
     Items.AddStrings(['0x00000000', '0x08000000']);
   end;
 
-  ComboBox_BossacPath := TFileNameComboBox.Create(GroupBox_Programmer, 'BossacPath');
+  ComboBox_BossacPath := TFileNameComboBox.Create(GroupBox_Bossac, 'BossacPath');
   with ComboBox_BossacPath do begin
     Caption := 'Bossac Pfad:';
     Anchors := [akTop, akLeft, akRight];
-    Left := 5 + 43;
-    Width := GroupBox_Programmer.Width - 10 - 48;
-    Top := 216;
+    Left := 5;
+    Width := GroupBox_Bossac.Width - 10;
+    Top := 10;
   end;
 
   ChangeARM_Typ;
@@ -268,14 +282,18 @@ procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObjec
 var
   e: boolean;
 begin
-  e := RadioButton_st_flash.Checked;
-  ComboBox_STLinkPath.Enabled := e;
-  Label_FlashBase.Enabled := e;
-  ARM_FlashBase_ComboBox.Enabled := e;
-  BitBtn_Auto_Flash_Base.Enabled := e;
-
-  e := RadioButton_Bossac.Checked;
-  ComboBox_BossacPath.Enabled := e;
+  GroupBox_ST_Link.Enabled:=RadioButton_st_flash.Checked;
+  GroupBox_Bossac.Enabled:=RadioButton_Bossac.Checked;
+//
+//  e := RadioButton_st_flash.Checked;
+//
+//  ComboBox_STLinkPath.Enabled := e;
+//  Label_FlashBase.Enabled := e;
+//  ARM_FlashBase_ComboBox.Enabled := e;
+//  BitBtn_Auto_Flash_Base.Enabled := e;
+//
+//  e := RadioButton_Bossac.Checked;
+//  ComboBox_BossacPath.Enabled := e;
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
