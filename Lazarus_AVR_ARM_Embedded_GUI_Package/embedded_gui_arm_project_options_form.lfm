@@ -1,11 +1,11 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 1333
-  Height = 911
-  Top = 190
-  Width = 645
+  Left = 1598
+  Height = 707
+  Top = 521
+  Width = 871
   Caption = 'ARM Embedded Project Options'
-  ClientHeight = 911
-  ClientWidth = 645
+  ClientHeight = 707
+  ClientWidth = 871
   Constraints.MinHeight = 350
   Constraints.MinWidth = 540
   OnClose = FormClose
@@ -13,25 +13,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   OnDestroy = FormDestroy
   Position = poDefaultPosOnly
   LCLVersion = '2.1.0.0'
-  object ComboBox_ARM_SubArch: TComboBox
-    Left = 16
-    Height = 27
-    Top = 48
-    Width = 104
-    ItemHeight = 0
-    OnChange = ComboBox_ARM_SubArchChange
-    TabOrder = 1
-  end
-  object Label1: TLabel
-    Left = 16
-    Height = 16
-    Top = 24
-    Width = 83
-    Caption = 'ARM SubArch'
-    ParentColor = False
-  end
   object TemplatesButton: TButton
-    Left = 544
+    Left = 774
     Height = 28
     Top = 32
     Width = 80
@@ -40,130 +23,140 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     OnClick = TemplatesButtonClick
     TabOrder = 0
   end
-  object CheckBox_ASMFile: TCheckBox
-    Left = 16
-    Height = 23
-    Top = 96
-    Width = 164
-    Caption = 'ASM-File erzeugen (-al)'
-    TabOrder = 4
-  end
   object CancelButton: TButton
-    Left = 449
+    Left = 674
     Height = 25
-    Top = 814
+    Top = 616
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
     ModalResult = 2
-    TabOrder = 6
+    TabOrder = 5
   end
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 864
-    Width = 645
+    Top = 660
+    Width = 871
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für ARM-Embedde erstellt wurde. Auch muss das ARM-SubArch stimmen.'
     )
     ReadOnly = True
-    TabOrder = 8
+    TabOrder = 3
     TabStop = False
   end
-  object Label5: TLabel
-    Left = 144
-    Height = 16
-    Top = 24
-    Width = 83
-    Caption = 'ARM FPC Typ:'
-    ParentColor = False
-  end
-  object ComboBox_ARM_Typ_FPC: TComboBox
-    Left = 144
-    Height = 27
-    Top = 48
-    Width = 168
-    ItemHeight = 0
-    TabOrder = 2
-  end
   object CPU_InfoButton: TButton
-    Left = 544
+    Left = 656
     Height = 28
-    Top = 80
+    Top = 32
     Width = 80
     Anchors = [akTop, akRight]
     Caption = 'CPU Info...'
     OnClick = CPU_InfoButtonClick
-    TabOrder = 3
+    TabOrder = 1
   end
   object Button1: TButton
-    Left = 552
+    Left = 777
     Height = 25
-    Top = 814
+    Top = 616
     Width = 77
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
     ModalResult = 1
-    TabOrder = 7
+    TabOrder = 4
   end
   object GroupBox_Programmer: TGroupBox
-    Left = 13
-    Height = 632
-    Top = 136
-    Width = 616
+    Left = 16
+    Height = 80
+    Top = 72
+    Width = 838
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Programmer'
-    ClientHeight = 615
-    ClientWidth = 614
-    TabOrder = 5
+    ClientHeight = 63
+    ClientWidth = 836
+    TabOrder = 2
     object RadioButton_st_flash: TRadioButton
-      Left = 8
+      Left = 7
       Height = 23
-      Top = 16
-      Width = 74
-      Caption = 'ST-flash'
+      Top = 8
+      Width = 76
+      Caption = 'ST-Flash'
       Checked = True
       OnChange = RadioButton_Programmer_Change
       TabOrder = 0
       TabStop = True
     end
     object RadioButton_Bossac: TRadioButton
-      Left = 16
+      Left = 8
       Height = 23
-      Top = 280
+      Top = 32
       Width = 128
       Caption = 'Bossac ( Beta !!! )'
       OnChange = RadioButton_Programmer_Change
-      TabOrder = 2
-    end
-    object GroupBox_ST_Link: TGroupBox
-      Left = 56
-      Height = 200
-      Top = 48
-      Width = 545
-      Anchors = [akTop, akLeft, akRight]
-      Caption = 'ST-Link'
-      ClientHeight = 183
-      ClientWidth = 543
       TabOrder = 1
-      object Label_FlashBase: TLabel
-        Left = 16
-        Height = 16
-        Top = 96
-        Width = 67
-        Caption = 'Flash Base:'
-        ParentColor = False
-      end
-      object ARM_FlashBase_ComboBox: TComboBox
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 16
+    Height = 444
+    Top = 160
+    Width = 839
+    ActivePage = TabSheet_Compiler
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 0
+    TabOrder = 6
+    object TabSheet_Compiler: TTabSheet
+      Caption = 'Compiler'
+      ClientHeight = 414
+      ClientWidth = 829
+      object ComboBox_ARM_SubArch: TComboBox
         Left = 16
         Height = 27
-        Top = 121
-        Width = 160
+        Top = 48
+        Width = 104
         ItemHeight = 0
+        OnChange = ComboBox_ARM_SubArchChange
         TabOrder = 0
       end
+      object Label1: TLabel
+        Left = 16
+        Height = 16
+        Top = 24
+        Width = 83
+        Caption = 'ARM SubArch'
+        ParentColor = False
+      end
+      object CheckBox_ASMFile: TCheckBox
+        Left = 16
+        Height = 23
+        Top = 96
+        Width = 164
+        Caption = 'ASM-File erzeugen (-al)'
+        TabOrder = 1
+      end
+      object Label5: TLabel
+        Left = 144
+        Height = 16
+        Top = 24
+        Width = 83
+        Caption = 'ARM FPC Typ:'
+        ParentColor = False
+      end
+      object ComboBox_ARM_Typ_FPC: TComboBox
+        Left = 144
+        Height = 27
+        Top = 48
+        Width = 168
+        ItemHeight = 0
+        TabOrder = 2
+      end
+    end
+    object TabSheet_st_link: TTabSheet
+      Caption = 'ST-Flash'
+      ClientHeight = 414
+      ClientWidth = 829
       object BitBtn_Auto_Flash_Base: TBitBtn
         Left = 208
         Height = 28
@@ -247,19 +240,29 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
         OnClick = Button_to_FlashBase_Click
+        TabOrder = 0
+      end
+      object ARM_FlashBase_ComboBox: TComboBox
+        Left = 16
+        Height = 27
+        Top = 121
+        Width = 160
+        ItemHeight = 0
         TabOrder = 1
       end
+      object Label_FlashBase: TLabel
+        Left = 16
+        Height = 16
+        Top = 96
+        Width = 67
+        Caption = 'Flash Base:'
+        ParentColor = False
+      end
     end
-    object GroupBox_Bossac: TGroupBox
-      Left = 56
-      Height = 288
-      Top = 312
-      Width = 545
-      Anchors = [akTop, akLeft, akRight]
+    object TabSheet_Bossac: TTabSheet
       Caption = 'Bossac'
-      ClientHeight = 271
-      ClientWidth = 543
-      TabOrder = 3
+      ClientHeight = 414
+      ClientWidth = 829
       object CheckBox_Erase: TCheckBox
         Left = 16
         Height = 23
@@ -268,21 +271,13 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Caption = 'Erase the entire flash (-e)'
         TabOrder = 0
       end
-      object CheckBox_Verify: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 80
-        Width = 254
-        Caption = 'Verify FILE matches flash contents (-v)'
-        TabOrder = 1
-      end
       object CheckBox_boot: TCheckBox
         Left = 16
         Height = 23
         Top = 104
         Width = 394
         Caption = 'Boot from FLASH (checked) / Boot from ROM (unchecked) (-b)'
-        TabOrder = 2
+        TabOrder = 1
       end
       object CheckBox_Brownout_Detection: TCheckBox
         Left = 16
@@ -290,15 +285,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 128
         Width = 168
         Caption = 'Brownout detection (-c)'
-        TabOrder = 3
-      end
-      object CheckBox_Brownout_Reset: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 128
-        Width = 143
-        Caption = 'Brownout Reset (-t)'
-        TabOrder = 4
+        TabOrder = 2
       end
       object CheckBox_Lock: TCheckBox
         Left = 16
@@ -306,15 +293,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 152
         Width = 180
         Caption = 'Lock the flash REGION (-l)'
-        TabOrder = 5
-      end
-      object CheckBox_UnLock: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 152
-        Width = 198
-        Caption = 'Unlock the flash REGION (-u)'
-        TabOrder = 6
+        TabOrder = 3
       end
       object CheckBox_Security: TCheckBox
         Left = 16
@@ -322,15 +301,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 176
         Width = 199
         Caption = 'Set the flash security flag (-s)'
-        TabOrder = 7
-      end
-      object CheckBox_Info: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 176
-        Width = 204
-        Caption = 'Display device information (-i)'
-        TabOrder = 8
+        TabOrder = 4
       end
       object CheckBox_Debug: TCheckBox
         Left = 16
@@ -338,15 +309,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 200
         Width = 181
         Caption = 'Print debug messages (-d)'
-        TabOrder = 9
-      end
-      object CheckBox_force_USB_Port: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 200
-        Width = 247
-        Caption = 'Override USB port autodetection (-U)'
-        TabOrder = 10
+        TabOrder = 5
       end
       object CheckBox_Reset: TCheckBox
         Left = 16
@@ -354,12 +317,52 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 224
         Width = 110
         Caption = 'Reset CPU (-R)'
+        TabOrder = 6
+      end
+      object CheckBox_Verify: TCheckBox
+        Left = 256
+        Height = 23
+        Top = 80
+        Width = 254
+        Caption = 'Verify FILE matches flash contents (-v)'
+        TabOrder = 7
+      end
+      object CheckBox_Brownout_Reset: TCheckBox
+        Left = 256
+        Height = 23
+        Top = 128
+        Width = 143
+        Caption = 'Brownout Reset (-t)'
+        TabOrder = 8
+      end
+      object CheckBox_UnLock: TCheckBox
+        Left = 256
+        Height = 23
+        Top = 152
+        Width = 198
+        Caption = 'Unlock the flash REGION (-u)'
+        TabOrder = 9
+      end
+      object CheckBox_Info: TCheckBox
+        Left = 256
+        Height = 23
+        Top = 176
+        Width = 204
+        Caption = 'Display device information (-i)'
+        TabOrder = 10
+      end
+      object CheckBox_force_USB_Port: TCheckBox
+        Left = 256
+        Height = 23
+        Top = 200
+        Width = 247
+        Caption = 'Override USB port autodetection (-U)'
         TabOrder = 11
       end
     end
   end
   object OpenDialog: TOpenDialog
-    Left = 307
-    Top = 41
+    Left = 480
+    Top = 32
   end
 end

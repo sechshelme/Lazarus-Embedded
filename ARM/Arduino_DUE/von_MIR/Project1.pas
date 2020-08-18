@@ -2,7 +2,7 @@ program Project1;
 
 const
   d0 = 11000;
-  d1 = 50000;
+  d1 = 51000;
 
 
   procedure Delay0;

@@ -5,7 +5,7 @@ unit Embedded_GUI_ARM_Project_Options_Form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, Buttons,
+  Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, Buttons, ComCtrls,
   //  LazConfigStorage, BaseIDEIntf,
   LazIDEIntf, ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
   IDEExternToolIntf,
@@ -28,33 +28,35 @@ type
     ARM_FlashBase_ComboBox: TComboBox;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
-    CheckBox_Reset: TCheckBox;
-    CheckBox_force_USB_Port: TCheckBox;
+    CheckBox_ASMFile: TCheckBox;
+    CheckBox_boot: TCheckBox;
+    CheckBox_Brownout_Detection: TCheckBox;
+    CheckBox_Brownout_Reset: TCheckBox;
     CheckBox_Debug: TCheckBox;
+    CheckBox_Erase: TCheckBox;
+    CheckBox_force_USB_Port: TCheckBox;
     CheckBox_Info: TCheckBox;
+    CheckBox_Lock: TCheckBox;
+    CheckBox_Reset: TCheckBox;
     CheckBox_Security: TCheckBox;
     CheckBox_UnLock: TCheckBox;
-    CheckBox_Lock: TCheckBox;
-    CheckBox_Brownout_Reset: TCheckBox;
-    CheckBox_Brownout_Detection: TCheckBox;
-    CheckBox_boot: TCheckBox;
     CheckBox_Verify: TCheckBox;
-    CheckBox_Erase: TCheckBox;
-    CheckBox_ASMFile: TCheckBox;
-    CPU_InfoButton: TButton;
-    GroupBox_ST_Link: TGroupBox;
-    GroupBox_Bossac: TGroupBox;
-    GroupBox_Programmer: TGroupBox;
-    Label_FlashBase: TLabel;
-    OpenDialog: TOpenDialog;
-    ComboBox_ARM_Typ_FPC: TComboBox;
-    CancelButton: TButton;
     ComboBox_ARM_SubArch: TComboBox;
+    ComboBox_ARM_Typ_FPC: TComboBox;
+    CPU_InfoButton: TButton;
+    GroupBox_Programmer: TGroupBox;
     Label1: TLabel;
     Label5: TLabel;
+    CancelButton: TButton;
+    Label_FlashBase: TLabel;
     Memo1: TMemo;
+    OpenDialog: TOpenDialog;
+    PageControl1: TPageControl;
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;
+    TabSheet_Compiler: TTabSheet;
+    TabSheet_st_link: TTabSheet;
+    TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
     procedure ComboBox_ARM_SubArchChange(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
@@ -100,12 +102,12 @@ begin
   end;
 
   // Programmer
-  ComboBox_STLinkPath := TFileNameComboBox.Create(GroupBox_ST_Link, 'STLinkPath');
+  ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_st_link, 'STLinkPath');
   with ComboBox_STLinkPath do begin
     Caption := 'ST-Link Pfad:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_ST_Link.Width - 10;
+    Width := TabSheet_st_link.Width - 10;
     Top := 10;
   end;
 
@@ -114,14 +116,16 @@ begin
     Items.AddStrings(['0x00000000', '0x08000000']);
   end;
 
-  ComboBox_BossacPath := TFileNameComboBox.Create(GroupBox_Bossac, 'BossacPath');
+  ComboBox_BossacPath := TFileNameComboBox.Create(TabSheet_Bossac, 'BossacPath');
   with ComboBox_BossacPath do begin
     Caption := 'Bossac Pfad:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_Bossac.Width - 10;
+    Width := TabSheet_Bossac.Width - 10;
     Top := 10;
   end;
+
+  PageControl1.PageIndex := 0;
 end;
 
 procedure TARM_Project_Options_Form.DefaultMask;
@@ -288,8 +292,8 @@ end;
 
 procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
 begin
-  GroupBox_ST_Link.Enabled := RadioButton_st_flash.Checked;
-  GroupBox_Bossac.Enabled := RadioButton_Bossac.Checked;
+  TabSheet_st_link.Enabled := RadioButton_st_flash.Checked;
+  TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
