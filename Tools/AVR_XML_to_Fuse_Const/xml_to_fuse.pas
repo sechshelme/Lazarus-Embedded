@@ -1,4 +1,4 @@
-unit Embedded_GUI_AVR_Fuse_Form;
+unit XML_To_Fuse;
 
 {$mode objfpc}{$H+}
 
@@ -8,6 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   ExtCtrls, FileUtil, LazFileUtils, laz2_XMLRead, laz2_DOM, SynEdit,
   SynHighlighterPas,
+  Insert_Default_Fuse,
   Embedded_GUI_AVR_Fuse_Const,
   Embedded_GUI_Common;
 
@@ -94,6 +95,7 @@ var
   s: string;
   doc: TXMLDocument;
   Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
+  DefaultFuse:TInsertDefaultFuse;
 
   procedure AddFuse(Node_Register: TDOMNode);
   var
@@ -150,6 +152,7 @@ const
   UName = 'Embedded_GUI_AVR_Fuse_Const';
 begin
   sl := TStringList.Create;
+  DefaultFuse:=TInsertDefaultFuse.Create;
   sl.Add('// Diese Unit wird durch das Tool "Tools/AVR_XML_to_Fuse_Const" generiert !');
   sl.Add('');
   sl.Add('unit ' + UName + ';');
@@ -244,10 +247,12 @@ begin
   sl.Add('begin');
   sl.Add('end.');
 
-  sl.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/' + LowerCase(UName) + '.pas');
+  sl.SaveToFile('../../Lazarus_AVR_ARM_Embedded_GUI_Package/' + LowerCase(UName) + '.pas');
   SynEdit1.Lines.Text := sl.Text;
 
   sl.Free;
+  DefaultFuse.Insert;
+  DefaultFuse.Free;
 end;
 
 procedure TForm_AVR_Fuse.FormDestroy(Sender: TObject);
