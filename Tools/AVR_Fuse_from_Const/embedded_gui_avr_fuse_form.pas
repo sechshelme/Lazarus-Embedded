@@ -141,7 +141,11 @@ begin
   l := Length(FuseTabSheet);
   for i := 0 to l - 1 do begin
     fuse := ' -U' + FuseTabSheet[i].FuseName + ':r:-:h';
-    Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + fuse);
+//    Run_Command_Form.RunCommand('avrdude -cusbasp -p' + avr + fuse);
+
+    Run_Command_Form.RunCommand('/home/tux/Programme/sloeber/arduinoPlugin/packages/arduino/tools/avrdude/6.3.0-arduino17/bin/avrdude -C/home/tux/Programme/sloeber/arduinoPlugin/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf '+
+    '-cjtag2updi -P/dev/ttyUSB0 -b115200 -p' + avr + fuse);
+
     if Run_Command_Form.ExitCode = 0 then begin
       j := Run_Command_Form.Memo1.Lines.Count - 1;
       while j >= 0 do begin

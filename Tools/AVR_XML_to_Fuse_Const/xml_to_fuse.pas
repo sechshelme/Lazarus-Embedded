@@ -91,8 +91,8 @@ end;
 procedure TForm_AVR_Fuse.Button_CreateConstClick(Sender: TObject);
 var
   fl, sl: TStringList;
-  ii: integer;
-  s: string;
+  i: integer;
+  s, path: string;
   doc: TXMLDocument;
   Node_Modules, Node_Module, Node_Register_group, Node_Register, Node_Bitfield: TDOMNode;
   DefaultFuse:TInsertDefaultFuse;
@@ -124,6 +124,7 @@ var
       end;
     end;
     sl.Add('      (Caption: '#39 +n + ' (' + FuseName + ')' + #39'; Name: '#39 + FuseName + #39'; ofs: $' + IntToHex(ofs, 2) + '; BitField:(');
+    DefaultFuse.Add(FuseName)
   end;
 
   procedure Read_Value_Group(const Attr_name: string; Node: TDOMNode);
@@ -181,14 +182,14 @@ begin
 
   fl := FindAllFiles('XML', '*.XML', False);
   fl.Sorted := True;
-  for ii := 0 to fl.Count - 1 do begin
-    ReadXMLFile(doc, fl[ii]);
-    s := ExtractFileName(fl[ii]);
-    s := ExtractFileNameWithoutExt(s);
+  for i := 0 to fl.Count - 1 do begin
+    ReadXMLFile(doc, fl[i]);
+    path := ExtractFileName(fl[i]);
+    path := ExtractFileNameWithoutExt(path);
 
     sl.Add('');
-    sl.Add('// ---------- ' + s + '-----------');
-    sl.Add('    (Name: '#39 + s + #39'; Fuses:(');
+    sl.Add('// ---------- ' + path + '-----------');
+    sl.Add('    (Name: '#39 + path + #39'; Fuses:(');
 
     Node_Modules := doc.DocumentElement.FindNode('modules');
     if Node_Modules <> nil then begin
@@ -235,6 +236,7 @@ begin
 
     doc.Free;
     sl[sl.Count - 1] := StringReplace(sl[sl.Count - 1], '),', '))),', []);
+    DefaultFuse.Insert(path);
   end;
 
   s := sl[sl.Count - 1];
@@ -251,7 +253,6 @@ begin
   SynEdit1.Lines.Text := sl.Text;
 
   sl.Free;
-  DefaultFuse.Insert;
   DefaultFuse.Free;
 end;
 
