@@ -5,7 +5,7 @@ program Project1;
   var
     i: Int16;
   begin
-    for i := 0 to 1999 do begin
+    for i := 0 to 1998 do begin
       asm
                Nop;
       end;
@@ -16,10 +16,10 @@ var
   i: integer;
 
 begin
-  // PD6 und PD7 auf Ausgang
+  // PD5 und PD6 auf Ausgang
   DDRD := %01100000;
 
-  // PD6 und PD7 als PWM
+  // PD5 und PD6 als PWM
   TCCR0A := (%10 shl COM0A) or (%10 shl COM0B) or (%01 shl WGM0);
 
   // Timer 0 aktivieren, Clock / 1024
