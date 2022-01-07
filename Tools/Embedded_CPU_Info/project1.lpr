@@ -7,8 +7,7 @@ uses
   cthreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-//  Forms, Embedded_GUI_SubArch_List, Embedded_GUI_CPU_Info_Form;
-Forms, Embedded_GUI_Embedded_List_Const, Embedded_GUI_CPU_Info_Form;
+  Forms, Embedded_GUI_Embedded_List_Const, Embedded_GUI_CPU_Info_Form;
 
 
 

@@ -25,6 +25,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="Embedded_GUI_Package"/>
+      </Item>
+      <Item>
         <PackageName Value="SynEdit"/>
       </Item>
       <Item>
@@ -44,6 +47,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_common_filecombobox.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Embedded_GUI_Common_FileComboBox"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -53,6 +61,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../../Lazarus_AVR_ARM_Embedded_GUI_Package"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

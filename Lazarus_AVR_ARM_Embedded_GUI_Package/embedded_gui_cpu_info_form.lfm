@@ -10,7 +10,7 @@ object CPU_InfoForm: TCPU_InfoForm
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object BitBtn_Ok: TBitBtn
     Left = 401
     Height = 30
@@ -36,8 +36,8 @@ object CPU_InfoForm: TCPU_InfoForm
   end
   object ComboBox1: TComboBox
     Left = 16
-    Height = 28
-    Top = 242
+    Height = 27
+    Top = 243
     Width = 120
     Anchors = [akLeft, akBottom]
     ItemHeight = 0

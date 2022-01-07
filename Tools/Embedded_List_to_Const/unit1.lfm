@@ -1,19 +1,19 @@
 object Form1: TForm1
-  Left = 415
-  Height = 225
-  Top = 211
-  Width = 562
+  Left = 322
+  Height = 559
+  Top = 190
+  Width = 635
   Caption = 'Form1'
-  ClientHeight = 225
-  ClientWidth = 562
+  ClientHeight = 559
+  ClientWidth = 635
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '2.3.0.0'
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 174
+    Height = 496
     Top = 0
-    Width = 562
+    Width = 635
     Align = alTop
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
@@ -511,9 +511,9 @@ object Form1: TForm1
     end
   end
   object Close_Btn: TBitBtn
-    Left = 451
+    Left = 524
     Height = 30
-    Top = 182
+    Top = 516
     Width = 94
     Anchors = [akRight, akBottom]
     DefaultCaption = True
@@ -522,30 +522,16 @@ object Form1: TForm1
     TabOrder = 1
   end
   object Generate_BitBtn: TBitBtn
-    Left = 264
+    Left = 392
     Height = 30
-    Top = 182
+    Top = 516
     Width = 120
-    Anchors = [akLeft, akBottom]
+    Anchors = [akRight, akBottom]
     Caption = 'Generate'
     Kind = bkRetry
     ModalResult = 4
     OnClick = Generate_BitBtnClick
     TabOrder = 2
-  end
-  object DirectoryEdit1: TDirectoryEdit
-    Left = 16
-    Height = 27
-    Top = 183
-    Width = 240
-    Directory = 'DirectoryEdit1'
-    ShowHidden = False
-    ButtonWidth = 23
-    NumGlyphs = 1
-    Anchors = [akLeft, akBottom]
-    MaxLength = 0
-    TabOrder = 3
-    Text = 'DirectoryEdit1'
   end
   object SynPasSyn1: TSynPasSyn
     Enabled = False

@@ -7,7 +7,8 @@ interface
 uses
   //  Embedded_GUI_SubArch_List,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
-  Buttons, FileUtil, SynEdit, SynHighlighterPas, IniFiles;
+  Buttons, FileUtil, SynEdit, SynHighlighterPas, IniFiles, Embedded_GUI_Common_FileComboBox;
+//  Embedded_GUI_Common_FileComboBox;
 
 type
 
@@ -16,13 +17,13 @@ type
   TForm1 = class(TForm)
     Close_Btn: TBitBtn;
     Generate_BitBtn: TBitBtn;
-    DirectoryEdit1: TDirectoryEdit;
     SynEdit1: TSynEdit;
     SynPasSyn1: TSynPasSyn;
     procedure Generate_BitBtnClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
+    tf:TFileNameComboBox;
     function FindText(s: string; var ofs: integer): string;
     function Comma(sl: TStringList): string;
     function ControllerDataType(s: string): string;
@@ -52,9 +53,19 @@ begin
   Width := ini.ReadInteger('pos', 'Width', 500);
   Top := ini.ReadInteger('pos', 'Top', 50);
   Height := ini.ReadInteger('pos', 'Height', 400);
-  DirectoryEdit1.Directory := ini.ReadString('options', 'path', '/home/tux/fpc.src/fpc');
-  ini.Free;
   SynEdit1.ScrollBars := ssAutoBoth;
+
+  tf := TFileNameComboBox.Create(Self, 'AVRDudeConfig');
+  with tf do begin
+    text :=  ini.ReadString('options', 'path', '/home/tux/fpc.src/fpc');
+    Directory:=True;
+    Caption := 'FPC-Sourcen Path';
+    Anchors := [akBottom, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 255;
+    Top := Self.Height - 65;
+  end;
+  ini.Free;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -66,7 +77,7 @@ begin
   ini.WriteInteger('pos', 'Width', Width);
   ini.WriteInteger('pos', 'Top', Top);
   ini.WriteInteger('pos', 'Height', Height);
-  ini.WriteString('options', 'path', DirectoryEdit1.Directory);
+  ini.WriteString('options', 'path', tf.Text);
   ini.Free;
 end;
 
@@ -333,10 +344,13 @@ const
   UName = 'Embedded_GUI_Embedded_List_Const';
 var
   i: integer;
-  CPU_SL, SubArchList: TStringList;
+  s: String;
+  CPU_SL, ArchList, SubArchList: TStringList;
+  sa: TStringArray;
 begin
   CPU_SL := TStringList.Create;
-  FindAllFiles(CPU_SL, DirectoryEdit1.Directory, 'cpuinfo.pas', True);
+//  FindAllFiles(CPU_SL, DirectoryEdit1.Directory, 'cpuinfo.pas', True);
+  FindAllFiles(CPU_SL, tf.Text, 'cpuinfo.pas', True);
   SynEdit1.Clear;
 
   SynEdit1.Lines.Add('');
@@ -348,6 +362,19 @@ begin
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
+  SynEdit1.Lines.Add('const');
+
+  ArchList := TStringList.Create;
+  for i := 0 to CPU_SL.Count - 1 do begin
+    sa := CPU_SL[i].Split('/');
+    if Length(sa) >= 2 then begin
+      ArchList.Add(sa[Length(sa) - 2]);
+    end;
+  end;
+  SynEdit1.Lines.Add('  ArchList =');
+  SynEdit1.Lines.Add('    ''' + ArchList.CommaText + ''';');
+  SynEdit1.Lines.Add('');
+  ArchList.Free;
 
   for i := 0 to CPU_SL.Count - 1 do begin
     SubArchList := AddSubArch(SynEdit1.Lines, CPU_SL[i]);
@@ -374,7 +401,6 @@ begin
   SynEdit1.Lines.Add('end.');
 
   SynEdit1.Lines.SaveToFile('../../Lazarus_AVR_ARM_Embedded_GUI_Package/' + LowerCase(UName) + '.pas');
-//  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/' + LowerCase(UName) + '.pas');
   CPU_SL.Free;
 end;
 

@@ -20,11 +20,13 @@ type
   TFileNameComboBox = class(TGroupBox)
   private
     IsXML: boolean;
+    FDialog: Boolean;
     FConfigFile: string;
     FmaxCount: integer;
     ComboBox: TComboBox;
     Button: TButton;
     OpenDialog: TOpenDialog;
+    OpenDirectory: TSelectDirectoryDialog;
     procedure ButtonClick(Sender: TObject);
     procedure ComboBoxEditingDone(Sender: TObject);
     procedure ComboBox_Insert_Text(cb: TComboBox);
@@ -38,6 +40,7 @@ type
     constructor Create(AParent: TWinControl; AName: string);
     constructor Create(AParent: TWinControl; AName: string; AIsXML: boolean);
     destructor Destroy; override;
+    property Directory: Boolean read FDialog write FDialog;
     property Items: TStrings read GetItems write SetItems;
     property Text: string read GetText write SetText;
     property ConfigFile: string read FConfigFile write FConfigFile;
@@ -79,6 +82,7 @@ end;
 constructor TFileNameComboBox.Create(AParent: TWinControl; AName: string; AIsXML: boolean);
 begin
   inherited Create(AParent);
+  Directory := False;
   if AName = '' then begin
     raise EComponentError.Create('TFileNameComboBox.Name ist zwingend');
   end;
@@ -125,6 +129,7 @@ begin
   end;
 
   OpenDialog := TOpenDialog.Create(Self);
+  OpenDirectory := TSelectDirectoryDialog.Create(Self);
 end;
 
 constructor TFileNameComboBox.Create(AParent: TWinControl; AName: string);
@@ -134,6 +139,7 @@ end;
 
 destructor TFileNameComboBox.Destroy;
 begin
+  OpenDirectory.Free;
   OpenDialog.Free;
   Button.Free;
   ComboBox.Free;
@@ -198,12 +204,23 @@ end;
 
 procedure TFileNameComboBox.ButtonClick(Sender: TObject);
 begin
-  OpenDialog.FileName := ComboBox.Text;
-  if OpenDialog.Execute then begin
-    ComboBox.Text := OpenDialog.FileName;
-    ComboBox_Insert_Text(ComboBox);
-    if IsXML then begin
-      SaveComboBox_to_XML(ComboBox);
+  if Directory then begin
+    OpenDirectory.FileName := ComboBox.Text;
+    if OpenDirectory.Execute then begin
+      ComboBox.Text := OpenDirectory.FileName;
+      ComboBox_Insert_Text(ComboBox);
+      if IsXML then begin
+        SaveComboBox_to_XML(ComboBox);
+      end;
+    end;
+  end else begin
+    OpenDialog.FileName := ComboBox.Text;
+    if OpenDialog.Execute then begin
+      ComboBox.Text := OpenDialog.FileName;
+      ComboBox_Insert_Text(ComboBox);
+      if IsXML then begin
+        SaveComboBox_to_XML(ComboBox);
+      end;
     end;
   end;
 end;

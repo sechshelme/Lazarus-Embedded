@@ -8,6 +8,10 @@ unit Embedded_GUI_Embedded_List_Const;
 interface
 
 const
+  ArchList =
+    'i8086,aarch64,powerpc64,avr,x86_64,riscv64,powerpc,arm,z80,wasm32,xtensa,riscv32,jvm,sparc,m68k,mips,i386,generic,sparc64';
+
+const
   i8086_SubArch_List = 
     '8086,80186,80286,80386,80486,PENTIUM,PENTIUM2,PENTIUM3,PENTIUM4,PENTIUMM';
 

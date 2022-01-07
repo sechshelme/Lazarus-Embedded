@@ -56,6 +56,7 @@ begin
 
   ComboBox1.Text := 'AVR';
   ComboBox1.Items.AddCommaText(Embedded_Systems);
+//  ComboBox1.Items.AddCommaText(ArchList);
   ComboBox1.ItemIndex := 0;
   ComboBox1Select(Sender);
 end;
