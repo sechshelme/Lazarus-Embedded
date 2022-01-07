@@ -351,7 +351,15 @@ begin
 
   for i := 0 to CPU_SL.Count - 1 do begin
     SubArchList := AddSubArch(SynEdit1.Lines, CPU_SL[i]);
-    AddCPUData(SynEdit1.Lines, SubArchList, CPU_SL[i]);
+    if pos('aarch64', CPU_SL[i]) = 0 then begin
+      AddCPUData(SynEdit1.Lines, SubArchList, CPU_SL[i]);
+    end else begin
+      SynEdit1.Lines.Add('');
+      SynEdit1.Lines.Add('// Warnung wurde (noch) nicht unterstütz !!!!!!');
+      SynEdit1.Lines.Add('// cpuinfp.pas von aarch64 ist anders aufgebaut, daher kann Embedded_GUI_Embedded_List_Const.pas nicht gebaut werden !!!!!!');
+      SynEdit1.Lines.Add('');
+    end;
+
     SubArchList.Free;
   end;
 

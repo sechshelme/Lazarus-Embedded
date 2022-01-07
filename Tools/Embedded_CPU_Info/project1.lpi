@@ -41,6 +41,13 @@
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_cpu_info_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CPU_InfoForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -50,10 +57,13 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../../Lazarus_Arduino_AVR_GUI_Package"/>
+      <OtherUnitFiles Value="../../Lazarus_Arduino_AVR_GUI_Package;../../Lazarus_AVR_ARM_Embedded_GUI_Package"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf2Set"/>
+      </Debugging>
       <Options>
         <Win32>
           <GraphicApplication Value="True"/>
