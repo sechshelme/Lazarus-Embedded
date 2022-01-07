@@ -23,7 +23,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
-    tf:TFileNameComboBox;
+    DirectoryEdit:TFileNameComboBox;
     function FindText(s: string; var ofs: integer): string;
     function Comma(sl: TStringList): string;
     function ControllerDataType(s: string): string;
@@ -55,8 +55,8 @@ begin
   Height := ini.ReadInteger('pos', 'Height', 400);
   SynEdit1.ScrollBars := ssAutoBoth;
 
-  tf := TFileNameComboBox.Create(Self, 'AVRDudeConfig');
-  with tf do begin
+  DirectoryEdit := TFileNameComboBox.Create(Self, 'AVRDudeConfig');
+  with DirectoryEdit do begin
     text :=  ini.ReadString('options', 'path', '/home/tux/fpc.src/fpc');
     Directory:=True;
     Caption := 'FPC-Sourcen Path';
@@ -77,7 +77,7 @@ begin
   ini.WriteInteger('pos', 'Width', Width);
   ini.WriteInteger('pos', 'Top', Top);
   ini.WriteInteger('pos', 'Height', Height);
-  ini.WriteString('options', 'path', tf.Text);
+  ini.WriteString('options', 'path', DirectoryEdit.Text);
   ini.Free;
 end;
 
@@ -343,14 +343,13 @@ procedure TForm1.Generate_BitBtnClick(Sender: TObject);
 const
   UName = 'Embedded_GUI_Embedded_List_Const';
 var
-  i: integer;
-  s: String;
+  i, c: integer;
   CPU_SL, ArchList, SubArchList: TStringList;
   sa: TStringArray;
 begin
   CPU_SL := TStringList.Create;
-//  FindAllFiles(CPU_SL, DirectoryEdit1.Directory, 'cpuinfo.pas', True);
-  FindAllFiles(CPU_SL, tf.Text, 'cpuinfo.pas', True);
+  ArchList := TStringList.Create;
+  FindAllFiles(CPU_SL, DirectoryEdit.Text, 'cpuinfo.pas', True);
   SynEdit1.Clear;
 
   SynEdit1.Lines.Add('');
@@ -362,19 +361,22 @@ begin
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('interface');
   SynEdit1.Lines.Add('');
-  SynEdit1.Lines.Add('const');
+  SynEdit1.Lines.Add('uses');
+  SynEdit1.Lines.Add('  SysUtils;');
+  SynEdit1.Lines.Add('');
 
-  ArchList := TStringList.Create;
   for i := 0 to CPU_SL.Count - 1 do begin
     sa := CPU_SL[i].Split('/');
     if Length(sa) >= 2 then begin
-      ArchList.Add(sa[Length(sa) - 2]);
+      if sa[Length(sa) - 2] <> 'generic' then begin
+        ArchList.Add(sa[Length(sa) - 2]);
+      end;
     end;
   end;
+  SynEdit1.Lines.Add('const');
   SynEdit1.Lines.Add('  ArchList =');
   SynEdit1.Lines.Add('    ''' + ArchList.CommaText + ''';');
   SynEdit1.Lines.Add('');
-  ArchList.Free;
 
   for i := 0 to CPU_SL.Count - 1 do begin
     SubArchList := AddSubArch(SynEdit1.Lines, CPU_SL[i]);
@@ -394,14 +396,37 @@ begin
     AddControllerDataList(SynEdit1.Lines, CPU_SL[i]);
   end;
 
+  SynEdit1.Lines.Add('Type');
+  SynEdit1.Lines.Add('    T2DStringArray = array of TStringArray;');
+  SynEdit1.Lines.Add('');
+  SynEdit1.Lines.Add('function GetListData(index: Integer): T2DStringArray;');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('implementation');
+  SynEdit1.Lines.Add('');
+
+  SynEdit1.Lines.Add('function GetListData(index: Integer): T2DStringArray;');
+  SynEdit1.Lines.Add('begin');
+  c := 0;
+  if ArchList.Count > 0 then begin
+    SynEdit1.Lines.Add('  case index of');
+    for i := 0 to ArchList.Count - 1 do begin
+      if ArchList[i] <> 'generic' then begin
+        SynEdit1.Lines.Add('    ' + IntToStr(c) + ': Result := ' + ArchList[i] + '_ControllerDataList;');
+        Inc(c);
+      end;
+    end;
+  end;
+  SynEdit1.Lines.Add('  end;');
+  SynEdit1.Lines.Add('end;');
+
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
   SynEdit1.Lines.SaveToFile('../../Lazarus_AVR_ARM_Embedded_GUI_Package/' + LowerCase(UName) + '.pas');
   CPU_SL.Free;
+  ArchList.Free;
 end;
 
 end.
+

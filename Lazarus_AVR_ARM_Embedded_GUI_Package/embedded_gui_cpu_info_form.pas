@@ -54,10 +54,11 @@ begin
   StringGrid1.AlternateColor := clMoneyGreen;
   StringGrid1.ColumnClickSorts := True;
 
-  ComboBox1.Text := 'AVR';
-  ComboBox1.Items.AddCommaText(Embedded_Systems);
-//  ComboBox1.Items.AddCommaText(ArchList);
-  ComboBox1.ItemIndex := 0;
+  ComboBox1.Text := 'avr';
+//  ComboBox1.Items.AddCommaText(Embedded_Systems);
+  ComboBox1.Items.AddCommaText(ArchList);
+
+  ComboBox1.ItemIndex := ComboBox1.Items.IndexOf('avr');
   ComboBox1Select(Sender);
 end;
 
@@ -95,23 +96,26 @@ end;
 
 procedure TCPU_InfoForm.ComboBox1Select(Sender: TObject);
 begin
-  case ComboBox1.ItemIndex of
-    0: begin
-      Load(AVR_ControllerDataList);
-    end;
-    1: begin
-      Load(ARM_ControllerDataList);
-    end;
-    2: begin
-      Load(Mips_ControllerDataList);
-    end;
-    3: begin
-      Load(Riscv32_ControllerDataList);
-    end;
-    4: begin
-      Load(XTensa_ControllerDataList);
-    end;
-  end;
+  Load(GetListData(ComboBox1.ItemIndex));
+  //Exit;
+  //
+  //case ComboBox1.ItemIndex of
+  //  0: begin
+  //    Load(AVR_ControllerDataList);
+  //  end;
+  //  1: begin
+  //    Load(ARM_ControllerDataList);
+  //  end;
+  //  2: begin
+  //    Load(Mips_ControllerDataList);
+  //  end;
+  //  3: begin
+  //    Load(Riscv32_ControllerDataList);
+  //  end;
+  //  4: begin
+  //    Load(XTensa_ControllerDataList);
+  //  end;
+  //end;
 end;
 
 procedure TCPU_InfoForm.BitBtn_OkClick(Sender: TObject);

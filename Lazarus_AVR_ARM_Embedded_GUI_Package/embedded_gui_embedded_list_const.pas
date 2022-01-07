@@ -7,9 +7,12 @@ unit Embedded_GUI_Embedded_List_Const;
 
 interface
 
+uses
+  SysUtils;
+
 const
   ArchList =
-    'i8086,aarch64,powerpc64,avr,x86_64,riscv64,powerpc,arm,z80,wasm32,xtensa,riscv32,jvm,sparc,m68k,mips,i386,generic,sparc64';
+    'i8086,aarch64,powerpc64,avr,x86_64,riscv64,powerpc,arm,z80,wasm32,xtensa,riscv32,jvm,sparc,m68k,mips,i386,sparc64';
 
 const
   i8086_SubArch_List = 
@@ -1325,8 +1328,36 @@ type
 const
   sparc64_ControllerDataList : Tsparc64_ControllerDataList = (
     ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
+Type
+    T2DStringArray = array of TStringArray;
+
+function GetListData(index: Integer): T2DStringArray;
 
 implementation
+
+function GetListData(index: Integer): T2DStringArray;
+begin
+  case index of
+    0: Result := i8086_ControllerDataList;
+    1: Result := aarch64_ControllerDataList;
+    2: Result := powerpc64_ControllerDataList;
+    3: Result := avr_ControllerDataList;
+    4: Result := x86_64_ControllerDataList;
+    5: Result := riscv64_ControllerDataList;
+    6: Result := powerpc_ControllerDataList;
+    7: Result := arm_ControllerDataList;
+    8: Result := z80_ControllerDataList;
+    9: Result := wasm32_ControllerDataList;
+    10: Result := xtensa_ControllerDataList;
+    11: Result := riscv32_ControllerDataList;
+    12: Result := jvm_ControllerDataList;
+    13: Result := sparc_ControllerDataList;
+    14: Result := m68k_ControllerDataList;
+    15: Result := mips_ControllerDataList;
+    16: Result := i386_ControllerDataList;
+    17: Result := sparc64_ControllerDataList;
+  end;
+end;
 
 begin
 end.
