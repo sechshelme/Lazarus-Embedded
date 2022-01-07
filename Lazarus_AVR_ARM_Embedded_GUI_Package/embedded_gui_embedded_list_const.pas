@@ -45,12 +45,10 @@ const
 
 const
   aarch64_SubArch_List = 
-    'ARMV8';
+    'ARMV8,ARMV8-A,ARMV8.1-A,ARMV8.2-A,ARMV8.3-A,ARMV8.4-A,ARMV8.5-A,ARMV8.6-A';
 
-  aarch64_List: array of string = (
-
-    // ARMV8
-    '');
+// Warnung wurde (noch) nicht unterstützt !!!!!!
+// cpuinfp.pas von aarch64 ist anders aufgebaut, daher kann Embedded_GUI_Embedded_List_Const.pas nicht gebaut werden !!!!!!
 
 const
   powerpc64_SubArch_List = 
@@ -208,9 +206,12 @@ const
 
 const
   arm_SubArch_List = 
-    'ARMV3,ARMV4,ARMV4T,ARMV5,ARMV5T,ARMV5TE,ARMV5TEJ,ARMV6,ARMV6K,ARMV6T2,ARMV6Z,ARMV6M,ARMV7,ARMV7A,ARMV7R,ARMV7M,ARMV7EM';
+    'ARMV2,ARMV3,ARMV4,ARMV4T,ARMV5T,ARMV5TE,ARMV5TEJ,ARMV6,ARMV6K,ARMV6T2,ARMV6Z,ARMV6M,ARMV7,ARMV7A,ARMV7R,ARMV7M,ARMV7EM';
 
   arm_List: array of string = (
+
+    // ARMV2
+    '',
 
     // ARMV3
     '',
@@ -221,9 +222,6 @@ const
     // ARMV4T
     'LPC2114,LPC2124,LPC2194,AT91SAM7S256,' +
     'AT91SAM7SE256,AT91SAM7X256,AT91SAM7XC256,SC32442B',
-
-    // ARMV5
-    '',
 
     // ARMV5T
     '',
@@ -350,7 +348,8 @@ const
     'MK22FN512VDC12,MK22FN512VLH12,MK22FN512VLL12,MK22FN512VMP12,' +
     'FREEDOM_K22F,MK64FN1M0VDC12,MK64FN1M0VLL12,FREEDOM_K64F,' +
     'MK64FN1M0VLQ12,MK64FN1M0VMD12,MK64FX512VDC12,MK64FX512VLL12,' +
-    'MK64FX512VLQ12,MK64FX512VMD12,NRF52832_XXAA,NRF52840_XXAA');
+    'MK64FX512VLQ12,MK64FX512VMD12,SAMD51P19A,WIO_TERMINAL,' +
+    'NRF52832_XXAA,NRF52840_XXAA');
 
 const
   z80_SubArch_List = 
@@ -362,6 +361,15 @@ const
     '',
 
     // EZ80
+    '');
+
+const
+  wasm32_SubArch_List = 
+    'WASM32';
+
+  wasm32_List: array of string = (
+
+    // WASM32
     '');
 
 const
@@ -553,7 +561,9 @@ type
 
 const
   aarch64_ControllerDataList : Taarch64_ControllerDataList = (
-    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'),
+    ('RASPI3', 'RASPI3', 'armv8a', 'vfp', '$00000000', '$00000000', '$00008000', '$10000000'),
+    ('RASPI4', 'RASPI4', 'armv8a', 'vfp', '$00000000', '$00000000', '$00008000', '$10000000'));
 
 type
   Tpowerpc64_ControllerDataList = array of array of String;
@@ -1172,8 +1182,10 @@ const
     ('MK64FX512VLQ12', 'MK64F12', 'armv7em', 'soft', '$00000000', '$00080000', '$20000000', '$00020000'),
     ('MK64FX512VMD12', 'MK64F12', 'armv7em', 'soft', '$00000000', '$00080000', '$20000000', '$00020000'),
     ('ATSAM3X8E', 'SAM3X8E', 'armv7m', 'soft', '$00080000', '$00040000', '$20000000', '$00010000'),
+    ('SAMD51P19A', 'SAMD51P19A', 'armv7em', 'fpv4_sp_d16', '$00000000', '$00080000', '$20000000', '$00030000'),
     ('ARDUINO_DUE', 'SAM3X8E', 'armv7m', 'soft', '$00080000', '$00040000', '$20000000', '$00010000'),
     ('FLIP_N_CLICK', 'SAM3X8E', 'armv7m', 'soft', '$00080000', '$00040000', '$20000000', '$00010000'),
+    ('WIO_TERMINAL', 'SAMD51P19A', 'armv7em', 'fpv4_sp_d16', '$00004000', '$0007C000', '$20000000', '$00030000'),
     ('NRF51422_XXAA', 'NRF51', 'armv6m', 'soft', '$00000000', '$00040000', '$20000000', '$00004000'),
     ('NRF51422_XXAB', 'NRF51', 'armv6m', 'soft', '$00000000', '$00020000', '$20000000', '$00004000'),
     ('NRF51422_XXAC', 'NRF51', 'armv6m', 'soft', '$00000000', '$00040000', '$20000000', '$00008000'),
@@ -1190,6 +1202,13 @@ type
 
 const
   z80_ControllerDataList : Tz80_ControllerDataList = (
+    ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
+
+type
+  Twasm32_ControllerDataList = array of array of String;
+
+const
+  wasm32_ControllerDataList : Twasm32_ControllerDataList = (
     ('controllertypestr', 'controllerunitstr', 'cputype', 'fputype', 'flashbase', 'flashsize', 'srambase', 'sramsize', 'eeprombase', 'eepromsize', 'bootbase', 'bootsize'));
 
 type

@@ -355,7 +355,7 @@ begin
       AddCPUData(SynEdit1.Lines, SubArchList, CPU_SL[i]);
     end else begin
       SynEdit1.Lines.Add('');
-      SynEdit1.Lines.Add('// Warnung wurde (noch) nicht unterstütz !!!!!!');
+      SynEdit1.Lines.Add('// Warnung wurde (noch) nicht unterstützt !!!!!!');
       SynEdit1.Lines.Add('// cpuinfp.pas von aarch64 ist anders aufgebaut, daher kann Embedded_GUI_Embedded_List_Const.pas nicht gebaut werden !!!!!!');
       SynEdit1.Lines.Add('');
     end;
@@ -373,7 +373,8 @@ begin
   SynEdit1.Lines.Add('begin');
   SynEdit1.Lines.Add('end.');
 
-  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/' + LowerCase(UName) + '.pas');
+  SynEdit1.Lines.SaveToFile('../../Lazarus_AVR_ARM_Embedded_GUI_Package/' + LowerCase(UName) + '.pas');
+//  SynEdit1.Lines.SaveToFile('../../Lazarus_Arduino_AVR_GUI_Package/' + LowerCase(UName) + '.pas');
   CPU_SL.Free;
 end;
 
