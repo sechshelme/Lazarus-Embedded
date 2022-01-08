@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
+<CONFIG test="sdfdsfsdafdsfasdf">
   <Form1>
-    <AVRDudeConfig Count="7">
+    <FormPos Left="322" Top="190" Width="793" Height="715"/>
+    <FPC_Source_Path Count="3">
       <Item0 value="/home/tux/fpcupdeluxe/fpcsrc"/>
-      <Item1 value="/home/tux/Musik"/>
-      <Item2 value="/home/tux/fpc.src/fpc"/>
-      <Item3 value="/home/tux/Bilder"/>
-      <Item4 value="/home/tux/fpcupdeluxe/fpcbootstrap"/>
-      <Item5 value="/home/tux/fpc.src"/>
-      <Item6 value=""/>
-    </AVRDudeConfig>
+      <Item1 value="/home/tux/fpc.src/fpc"/>
+      <Item2 value="/home/tux/fpcupdeluxe_android/fpcsrc"/>
+    </FPC_Source_Path>
   </Form1>
 </CONFIG>

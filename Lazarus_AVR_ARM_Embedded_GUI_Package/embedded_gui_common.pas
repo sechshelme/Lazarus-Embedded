@@ -111,6 +111,9 @@ function FindVerbose(Source: string): integer;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
 
+procedure LoadString_from_XML(Key: string; var s: String; default: String = '');
+procedure SaveString_to_XML(Key: string; var s: String);
+
 procedure LoadFormPos_from_XML(Form: TForm);
 procedure SaveFormPos_to_XML(Form: TForm);
 
@@ -242,6 +245,24 @@ begin
   end;
 
   cb.Text := s;
+end;
+
+procedure LoadString_from_XML(Key: string; var s: String; default: String = '');
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  s := Cfg.GetValue(Key, default);
+  Cfg.Free;
+end;
+
+procedure SaveString_to_XML(Key: string; var s: String);
+var
+  Cfg: TConfigStorage;
+begin
+  Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
+  Cfg.SetValue(Key, s);
+  Cfg.Free;
 end;
 
 procedure LoadFormPos_from_XML(Form: TForm);

@@ -9,7 +9,6 @@ uses
   BaseIDEIntf, LazConfigStorage,  // Bei Packages
   {$ELSE}
   Laz2_XMLCfg,  // Bei normalen Anwendungen
-  //  XMLConf,  // Bei normalen Anwendungen
   {$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
 

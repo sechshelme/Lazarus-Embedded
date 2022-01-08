@@ -7,7 +7,8 @@ interface
 uses
   //  Embedded_GUI_SubArch_List,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
-  Buttons, FileUtil, SynEdit, SynHighlighterPas, IniFiles, Embedded_GUI_Common_FileComboBox;
+  Buttons, FileUtil, SynEdit, SynHighlighterPas,
+  Embedded_GUI_Common, Embedded_GUI_Common_FileComboBox;
 //  Embedded_GUI_Common_FileComboBox;
 
 type
@@ -23,7 +24,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
-    DirectoryEdit:TFileNameComboBox;
+    DirectoryEdit: TFileNameComboBox;
     function FindText(s: string; var ofs: integer): string;
     function Comma(sl: TStringList): string;
     function ControllerDataType(s: string): string;
@@ -45,40 +46,26 @@ implementation
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
-var
-  ini: TIniFile;
 begin
-  ini := TIniFile.Create('config.ini');
-  Left := ini.ReadInteger('pos', 'Left', 100);
-  Width := ini.ReadInteger('pos', 'Width', 500);
-  Top := ini.ReadInteger('pos', 'Top', 50);
-  Height := ini.ReadInteger('pos', 'Height', 400);
+  LoadFormPos_from_XML(Self);
   SynEdit1.ScrollBars := ssAutoBoth;
 
-  DirectoryEdit := TFileNameComboBox.Create(Self, 'AVRDudeConfig');
+  DirectoryEdit := TFileNameComboBox.Create(Self, 'FPC_Source_Path');
   with DirectoryEdit do begin
-    text :=  ini.ReadString('options', 'path', '/home/tux/fpc.src/fpc');
-    Directory:=True;
+    //    text :=  '/home/tux/fpc.src/fpc';
+    Directory := True;
     Caption := 'FPC-Sourcen Path';
     Anchors := [akBottom, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 255;
     Top := Self.Height - 65;
   end;
-  ini.Free;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
-var
-  ini: TIniFile;
 begin
-  ini := TIniFile.Create('config.ini');
-  ini.WriteInteger('pos', 'Left', Left);
-  ini.WriteInteger('pos', 'Width', Width);
-  ini.WriteInteger('pos', 'Top', Top);
-  ini.WriteInteger('pos', 'Height', Height);
-  ini.WriteString('options', 'path', DirectoryEdit.Text);
-  ini.Free;
+  SaveFormPos_to_XML(Self);
+  DirectoryEdit.Free;
 end;
 
 function TForm1.Comma(sl: TStringList): string;
@@ -430,4 +417,3 @@ begin
 end;
 
 end.
-
