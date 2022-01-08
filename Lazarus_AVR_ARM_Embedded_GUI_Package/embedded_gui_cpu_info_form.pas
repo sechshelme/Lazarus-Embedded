@@ -25,8 +25,7 @@ type
     procedure ComboBox1Select(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure StringGrid1CompareCells(Sender: TObject;
-      ACol, ARow, BCol, BRow: integer; var Result: integer);
+    procedure StringGrid1CompareCells(Sender: TObject; ACol, ARow, BCol, BRow: integer; var Result: integer);
     procedure ToggleBox1Change(Sender: TObject);
   private
 
@@ -55,7 +54,7 @@ begin
   StringGrid1.ColumnClickSorts := True;
 
   ComboBox1.Text := 'avr';
-//  ComboBox1.Items.AddCommaText(Embedded_Systems);
+  //  ComboBox1.Items.AddCommaText(Embedded_Systems);
   ComboBox1.Items.AddCommaText(ArchList);
 
   ComboBox1.ItemIndex := ComboBox1.Items.IndexOf('avr');
@@ -67,13 +66,11 @@ begin
   SaveFormPos_to_XML(Self);
 end;
 
-procedure TCPU_InfoForm.StringGrid1CompareCells(Sender: TObject;
-  ACol, ARow, BCol, BRow: integer; var Result: integer);
+procedure TCPU_InfoForm.StringGrid1CompareCells(Sender: TObject; ACol, ARow, BCol, BRow: integer; var Result: integer);
 var
   i0, i1: integer;
 begin
-  if TryStrToInt(StringGrid1.Cells[ACol, ARow], i0) and
-    TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then begin
+  if TryStrToInt(StringGrid1.Cells[ACol, ARow], i0) and TryStrToInt(StringGrid1.Cells[BCol, BRow], i1) then begin
     Result := i0 - i1;
   end else begin
     Result := CompareStr(StringGrid1.Cells[ACol, ARow], StringGrid1.Cells[BCol, BRow]);
@@ -126,7 +123,7 @@ end;
 procedure TCPU_InfoForm.Load(var Table: array of TStringArray);
 var
   x, y, i: integer;
-  ui: UInt64;
+  ui: uint64;
 begin
   StringGrid1.RowCount := Length(Table);
   StringGrid1.ColCount := 0;

@@ -228,7 +228,7 @@ begin
 
           i := 0;
 
-          while UpCase(s2) <> UpCase(SubArchList[i]) do begin
+          while (UpCase(s2) <> UpCase(SubArchList[i])) do begin
             Inc(i);
           end;
 
@@ -386,7 +386,8 @@ begin
       SynEdit1.Lines.Add('');
       SynEdit1.Lines.Add('// Warnung wurde (noch) nicht unterstützt !!!!!!');
       SynEdit1.Lines.Add('// cpuinfp.pas von aarch64 ist anders aufgebaut, daher kann Embedded_GUI_Embedded_List_Const.pas nicht gebaut werden !!!!!!');
-      SynEdit1.Lines.Add('');
+      SynEdit1.Lines.Add('// Der Grund ist, Bei der const cputypestr, wurde ein "-" vor dem A eingefügt !');
+      SynEdit1.Lines.Add(' ');
     end;
 
     SubArchList.Free;

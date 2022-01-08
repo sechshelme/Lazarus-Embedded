@@ -56,7 +56,8 @@ const
 
 // Warnung wurde (noch) nicht unterstützt !!!!!!
 // cpuinfp.pas von aarch64 ist anders aufgebaut, daher kann Embedded_GUI_Embedded_List_Const.pas nicht gebaut werden !!!!!!
-
+// Der Grund ist, Bei der const cputypestr, wurde ein "-" vor dem A eingefügt !
+ 
 const
   powerpc64_SubArch_List = 
     '970';
