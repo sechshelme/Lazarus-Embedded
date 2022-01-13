@@ -18,12 +18,15 @@ uses
   // Embedded GUI ( Eigene Units )
   Embedded_GUI_AVR_Register,
   Embedded_GUI_ARM_Register,
+  Embedded_GUI_Xtensa_Register,
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_Common,
   Embedded_GUI_AVR_Common,
   Embedded_GUI_ARM_Common,
+  Embedded_GUI_Xtensa_Common,
   Embedded_GUI_AVR_Project_Options_Form,
   Embedded_GUI_ARM_Project_Options_Form,
+  Embedded_GUI_XTensa_Project_Options_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const,
   Embedded_GUI_Serial_Monitor_Form;
@@ -85,7 +88,7 @@ begin
   LazProject := LazarusIDE.ActiveProject;
 
   com := LazProject.LazCompilerOptions.ExecuteAfter.Command;
-  if UpCase(FindPara(com, '-c')) = 'AVR109' then begin
+  if UpCase(FindPara(com, '-c')) = 'AVR109' then begin // Arduino Leonardo
 //    ShowMessage('Leonardo');
     SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
@@ -165,6 +168,9 @@ begin
   ARM_Project_Options_Form := TARM_Project_Options_Form.Create(nil);
   RegisterProjectDescriptor(TProjectARMApp.Create);
 
+  Xtensa_Project_Options_Form := TXtensa_Project_Options_Form.Create(nil);
+  RegisterProjectDescriptor(TProjectARMApp.Create);
+
   // Run ( without or with debugger ) hooks
   NewIDEHandle := TNewIDEHandle.Create;
 
@@ -183,6 +189,7 @@ begin
   // Menu
   RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...', nil, @ShowAVROptionsDialog);
   RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, Xtensa_Title, Xtensa_Title + '...', nil, @ShowXtensaOptionsDialog);
 
   RegisterIdeMenuCommand(mnuTools, CPU_Info_Titel, CPU_Info_Titel + '...', nil, @ShowCPU_Info);
   RegisterIdeMenuCommand(mnuTools, Title + 'Serial-Monitor', Title + 'Serial-Monitor...', nil, @RegisterSerialMonitor);

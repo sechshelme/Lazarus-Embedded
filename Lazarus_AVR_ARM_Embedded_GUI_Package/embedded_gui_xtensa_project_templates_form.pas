@@ -1,4 +1,4 @@
-unit Embedded_GUI_ARM_Project_Templates_Form;
+unit Embedded_GUI_Xtensa_Project_Templates_Form;
 
 {$mode objfpc}{$H+}
 
@@ -10,11 +10,11 @@ uses
 
 type
 
-  { TARMProjectTemplatesForm }
+  { TXtensa_Project_Templates_Form }
 
-  TARMProjectTemplatesForm = class(TForm)
-    BitBtn_Ok: TBitBtn;
+  TXtensa_Project_Templates_Form = class(TForm)
     BitBtn_Cancel: TBitBtn;
+    BitBtn_Ok: TBitBtn;
     Label1: TLabel;
     ListBox_Template: TListBox;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -27,26 +27,28 @@ type
   end;
 
 var
-  ARMProjectTemplatesForm: TARMProjectTemplatesForm;
+  Xtensa_Project_Templates_Form: TXtensa_Project_Templates_Form;
 
 implementation
 
 {$R *.lfm}
 
-{ TARMProjectTemplatesForm }
+{ TXtensa_Project_Templates_Form }
 
-procedure TARMProjectTemplatesForm.FormCreate(Sender: TObject);
+procedure TXtensa_Project_Templates_Form.FormCreate(Sender: TObject);
 begin
-  Caption:=Title + 'ARM Vorlagen';
+  Caption:=Title + 'Xtensa Vorlagen';
   LoadFormPos_from_XML(Self);
 end;
 
-procedure TARMProjectTemplatesForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TXtensa_Project_Templates_Form.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
 begin
   SaveFormPos_to_XML(Self);
 end;
 
-procedure TARMProjectTemplatesForm.ListBox_TemplateDblClick(Sender: TObject);
+procedure TXtensa_Project_Templates_Form.ListBox_TemplateDblClick(
+  Sender: TObject);
 begin
   BitBtn_Ok.Click;
 end;

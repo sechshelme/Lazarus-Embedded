@@ -50,7 +50,6 @@ type
     CancelButton: TButton;
     Label_FlashBase: TLabel;
     Memo1: TMemo;
-    OpenDialog: TOpenDialog;
     PageControl1: TPageControl;
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;

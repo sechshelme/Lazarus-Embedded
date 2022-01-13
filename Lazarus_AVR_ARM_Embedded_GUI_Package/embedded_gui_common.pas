@@ -21,6 +21,7 @@ const
   Title = '[Embedded GUI] ';
   AVR_Title = Title + 'AVR-Optionen (Arduino)';
   ARM_Title = Title + 'ARM-Optionen (STM32)';
+  Xtensa_Title = Title + 'Xtensa-Optionen (ESP32)';
 
   Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
   {$IFDEF Packages}

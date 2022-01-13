@@ -1,0 +1,64 @@
+object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
+  Left = 1210
+  Height = 430
+  Top = 61
+  Width = 687
+  Caption = 'Xtensa_Project_Options_Form'
+  ClientHeight = 430
+  ClientWidth = 687
+  LCLVersion = '2.3.0.0'
+  object CPU_InfoButton: TButton
+    Left = 448
+    Height = 28
+    Top = 24
+    Width = 80
+    Anchors = [akTop, akRight]
+    Caption = 'CPU Info...'
+    OnClick = CPU_InfoButtonClick
+    TabOrder = 0
+  end
+  object TemplatesButton: TButton
+    Left = 566
+    Height = 28
+    Top = 24
+    Width = 80
+    Anchors = [akTop, akRight]
+    Caption = 'Vorlagen...'
+    OnClick = TemplatesButtonClick
+    TabOrder = 1
+  end
+  object CancelButton: TButton
+    Left = 488
+    Height = 25
+    Top = 338
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Abbrechen'
+    ModalResult = 2
+    TabOrder = 2
+  end
+  object Button1: TButton
+    Left = 591
+    Height = 25
+    Top = 338
+    Width = 77
+    Anchors = [akRight, akBottom]
+    Caption = 'Ok'
+    ModalResult = 1
+    TabOrder = 4
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 47
+    Top = 383
+    Width = 687
+    Align = alBottom
+    Color = clAqua
+    Lines.Strings = (
+      'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für Xtensa-freertos erstellt wurde. Auch muss das Xtensa-SubArch stimmen.'
+    )
+    ReadOnly = True
+    TabOrder = 3
+    TabStop = False
+  end
+end

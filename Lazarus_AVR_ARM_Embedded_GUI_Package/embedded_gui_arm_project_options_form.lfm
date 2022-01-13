@@ -1,20 +1,20 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 1598
-  Height = 707
-  Top = 521
-  Width = 871
+  Left = 2299
+  Height = 652
+  Top = 717
+  Width = 798
   Caption = 'ARM Embedded Project Options'
-  ClientHeight = 707
-  ClientWidth = 871
+  ClientHeight = 652
+  ClientWidth = 798
   Constraints.MinHeight = 350
   Constraints.MinWidth = 540
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poDefaultPosOnly
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
-    Left = 774
+    Left = 701
     Height = 28
     Top = 32
     Width = 80
@@ -24,9 +24,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 674
+    Left = 601
     Height = 25
-    Top = 616
+    Top = 561
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -36,8 +36,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 660
-    Width = 871
+    Top = 605
+    Width = 798
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -48,7 +48,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabStop = False
   end
   object CPU_InfoButton: TButton
-    Left = 656
+    Left = 583
     Height = 28
     Top = 32
     Width = 80
@@ -58,9 +58,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 777
+    Left = 704
     Height = 25
-    Top = 616
+    Top = 561
     Width = 77
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -71,11 +71,11 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Left = 16
     Height = 80
     Top = 72
-    Width = 838
+    Width = 765
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Programmer'
     ClientHeight = 63
-    ClientWidth = 836
+    ClientWidth = 763
     TabOrder = 2
     object RadioButton_st_flash: TRadioButton
       Left = 7
@@ -100,17 +100,17 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   end
   object PageControl1: TPageControl
     Left = 16
-    Height = 444
+    Height = 389
     Top = 160
-    Width = 839
-    ActivePage = TabSheet_Compiler
+    Width = 766
+    ActivePage = TabSheet_Bossac
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 6
     object TabSheet_Compiler: TTabSheet
       Caption = 'Compiler'
-      ClientHeight = 414
-      ClientWidth = 829
+      ClientHeight = 359
+      ClientWidth = 756
       object ComboBox_ARM_SubArch: TComboBox
         Left = 16
         Height = 27
@@ -126,7 +126,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 24
         Width = 83
         Caption = 'ARM SubArch'
-        ParentColor = False
       end
       object CheckBox_ASMFile: TCheckBox
         Left = 16
@@ -142,7 +141,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 24
         Width = 83
         Caption = 'ARM FPC Typ:'
-        ParentColor = False
       end
       object ComboBox_ARM_Typ_FPC: TComboBox
         Left = 144
@@ -155,8 +153,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     end
     object TabSheet_st_link: TTabSheet
       Caption = 'ST-Flash'
-      ClientHeight = 414
-      ClientWidth = 829
+      ClientHeight = 359
+      ClientWidth = 756
       object BitBtn_Auto_Flash_Base: TBitBtn
         Left = 208
         Height = 28
@@ -256,13 +254,12 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 96
         Width = 67
         Caption = 'Flash Base:'
-        ParentColor = False
       end
     end
     object TabSheet_Bossac: TTabSheet
       Caption = 'Bossac'
-      ClientHeight = 414
-      ClientWidth = 829
+      ClientHeight = 359
+      ClientWidth = 756
       object CheckBox_Erase: TCheckBox
         Left = 16
         Height = 23
@@ -360,9 +357,5 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         TabOrder = 11
       end
     end
-  end
-  object OpenDialog: TOpenDialog
-    Left = 480
-    Top = 32
   end
 end

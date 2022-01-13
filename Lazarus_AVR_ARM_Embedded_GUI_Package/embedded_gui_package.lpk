@@ -131,6 +131,22 @@
         <Filename Value="embedded_gui_embedded_list_const.pas"/>
         <UnitName Value="Embedded_GUI_Embedded_List_Const"/>
       </Item>
+      <Item>
+        <Filename Value="embedded_gui_xtensa_project_options_form.pas"/>
+        <UnitName Value="Embedded_GUI_XTensa_Project_Options_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_xtensa_common.pas"/>
+        <UnitName Value="Embedded_GUI_Xtensa_Common"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_xtensa_project_templates_form.pas"/>
+        <UnitName Value="Embedded_GUI_Xtensa_Project_Templates_Form"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_xtensa_register.pas"/>
+        <UnitName Value="embedded_gui_xtensa_register"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

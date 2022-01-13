@@ -20,7 +20,9 @@ uses
   Embedded_GUI_Serial_Monitor_Output_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Send_File_Form, 
   Embedded_GUI_Common_FileComboBox, Embedded_GUI_Common, 
-  Embedded_GUI_Embedded_List_Const, LazarusPackageIntf;
+  Embedded_GUI_Embedded_List_Const, Embedded_GUI_XTensa_Project_Options_Form, 
+  Embedded_GUI_Xtensa_Common, Embedded_GUI_Xtensa_Project_Templates_Form, 
+  Embedded_GUI_Xtensa_Register, LazarusPackageIntf;
 
 implementation
 

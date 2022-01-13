@@ -1,26 +1,26 @@
 object ARMProjectTemplatesForm: TARMProjectTemplatesForm
   Left = 2175
-  Height = 440
+  Height = 430
   Top = 623
-  Width = 390
+  Width = 409
   Caption = 'ARMProjectTemplatesForm'
-  ClientHeight = 440
-  ClientWidth = 390
+  ClientHeight = 430
+  ClientWidth = 409
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '2.1.0.0'
+  Position = poDefault
+  LCLVersion = '2.3.0.0'
   object Label1: TLabel
     Left = 16
     Height = 16
     Top = 8
     Width = 40
     Caption = 'Board:'
-    ParentColor = False
   end
   object BitBtn_Ok: TBitBtn
-    Left = 280
+    Left = 299
     Height = 30
-    Top = 390
+    Top = 380
     Width = 96
     Anchors = [akRight, akBottom]
     Default = True
@@ -30,9 +30,9 @@ object ARMProjectTemplatesForm: TARMProjectTemplatesForm
     TabOrder = 0
   end
   object BitBtn_Cancel: TBitBtn
-    Left = 160
+    Left = 179
     Height = 30
-    Top = 390
+    Top = 380
     Width = 99
     Anchors = [akRight, akBottom]
     Cancel = True
@@ -43,9 +43,9 @@ object ARMProjectTemplatesForm: TARMProjectTemplatesForm
   end
   object ListBox_Template: TListBox
     Left = 16
-    Height = 342
+    Height = 332
     Top = 32
-    Width = 360
+    Width = 379
     Anchors = [akTop, akLeft, akRight, akBottom]
     ItemHeight = 0
     OnDblClick = ListBox_TemplateDblClick
