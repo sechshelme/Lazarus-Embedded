@@ -169,7 +169,7 @@ begin
   RegisterProjectDescriptor(TProjectARMApp.Create);
 
   Xtensa_Project_Options_Form := TXtensa_Project_Options_Form.Create(nil);
-  RegisterProjectDescriptor(TProjectARMApp.Create);
+  RegisterProjectDescriptor(TProjectXtensaApp.Create);
 
   // Run ( without or with debugger ) hooks
   NewIDEHandle := TNewIDEHandle.Create;

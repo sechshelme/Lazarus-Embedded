@@ -11,7 +11,7 @@ uses
   Embedded_GUI_Embedded_List_Const; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
 type
-  TARM_TemplatesPara = record
+  TXtensa_TemplatesPara = record
     Name,
     Xtensa_SubArch,
     Xtensa_FPC_Typ,
@@ -19,7 +19,7 @@ type
   end;
 
 const
-  ARM_TemplatesPara: array of TARM_TemplatesPara = ((
+  Xtensa_TemplatesPara: array of TXtensa_TemplatesPara = ((
     Name: 'ESP32';
     Xtensa_SubArch: 'freertos';
     Xtensa_FPC_Typ: 'lx6';

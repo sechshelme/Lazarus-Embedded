@@ -36,7 +36,6 @@ type
 
 procedure ShowXtensaOptionsDialog(Sender: TObject);
 
-
 implementation
 
 procedure ShowXtensaOptionsDialog(Sender: TObject);
@@ -45,17 +44,18 @@ var
 begin
   LazProject := LazarusIDE.ActiveProject;
 
-  if (LazProject.LazCompilerOptions.TargetCPU <> 'arm') or (LazProject.LazCompilerOptions.TargetOS <> 'embedded') then begin
-    if MessageDlg('Warnung', 'Es handelt sich nicht um ein ARM Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
+  if (LazProject.LazCompilerOptions.TargetCPU <> 'xtensa') or (LazProject.LazCompilerOptions.TargetOS <> 'freertos') then begin
+    if MessageDlg('Warnung', 'Es handelt sich nicht um ein Xtensa Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' +
+      LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
       Xtensa_Project_Options_Form.Free;
       Exit;
     end;
   end;
 
-//  Xtensa_Project_Options_Form.LazProjectToMask(LazProject);
+  Xtensa_Project_Options_Form.LazProjectToMask(LazProject);
 
   if Xtensa_Project_Options_Form.ShowModal = mrOk then begin
-//    Xtensa_Project_Options_Form.MaskToLazProject(LazProject);
+    Xtensa_Project_Options_Form.MaskToLazProject(LazProject);
     LazProject.LazCompilerOptions.GenerateDebugInfo := False;
   end;
 end;
@@ -65,18 +65,18 @@ end;
 constructor TProjectXtensaApp.Create;
 begin
   inherited Create;
-  Name := Title + 'ARM-Project (STM32 / Arduino DUE)';
+  Name := Title + 'Xtensa-Project (ESP32 / ESP8266)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
 end;
 
 function TProjectXtensaApp.GetLocalizedName: string;
 begin
-  Result := Title + 'ARM-Project (STM32 / Arduino DUE)';
+  Result := Title + 'Xtensa-Project (ESP32 / ESP8266)';
 end;
 
 function TProjectXtensaApp.GetLocalizedDescription: string;
 begin
-  Result := Title + 'Erstellt ein ARM-Project (STM32 / Arduino DUE)';
+  Result := Title + 'Erstellt ein Xtensa-Project (ESP32 / ESP8266)';
 end;
 
 function TProjectXtensaApp.DoInitDescriptor: TModalResult;
@@ -96,7 +96,6 @@ const
 
 var
   MainFile: TLazProjectFile;
-
 begin
   inherited InitProject(AProject);
 
@@ -115,9 +114,9 @@ begin
 
   AProject.Flags := AProject.Flags + [pfRunnable];
 
-  AProject.LazCompilerOptions.TargetCPU := 'arm';
-  AProject.LazCompilerOptions.TargetOS := 'embedded';
-  AProject.LazCompilerOptions.TargetProcessor := 'ARMV7M';
+  AProject.LazCompilerOptions.TargetCPU := 'xtensa';
+  AProject.LazCompilerOptions.TargetOS := 'freertos';
+  AProject.LazCompilerOptions.TargetProcessor := 'lx6';
 
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 

@@ -103,9 +103,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Height = 389
     Top = 160
     Width = 766
-    ActivePage = TabSheet_Bossac
+    ActivePage = TabSheet_Compiler
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 6
     object TabSheet_Compiler: TTabSheet
       Caption = 'Compiler'

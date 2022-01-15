@@ -25,7 +25,6 @@ type
   { TProjectAVRApp }
 
   TProjectAVRApp = class(TProjectDescriptor)
-  private
   public
     constructor Create; override;
     function GetLocalizedName: string; override;
@@ -127,8 +126,4 @@ begin
 end;
 
 end.
-
-
-
-
 

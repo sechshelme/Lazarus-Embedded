@@ -1,14 +1,15 @@
 object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
-  Left = 1210
-  Height = 430
-  Top = 61
-  Width = 687
+  Left = 1598
+  Height = 458
+  Top = 53
+  Width = 695
   Caption = 'Xtensa_Project_Options_Form'
-  ClientHeight = 430
-  ClientWidth = 687
+  ClientHeight = 458
+  ClientWidth = 695
+  OnCreate = FormCreate
   LCLVersion = '2.3.0.0'
   object CPU_InfoButton: TButton
-    Left = 448
+    Left = 456
     Height = 28
     Top = 24
     Width = 80
@@ -18,7 +19,7 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     TabOrder = 0
   end
   object TemplatesButton: TButton
-    Left = 566
+    Left = 574
     Height = 28
     Top = 24
     Width = 80
@@ -28,9 +29,9 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     TabOrder = 1
   end
   object CancelButton: TButton
-    Left = 488
+    Left = 496
     Height = 25
-    Top = 338
+    Top = 366
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -38,9 +39,9 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     TabOrder = 2
   end
   object Button1: TButton
-    Left = 591
+    Left = 599
     Height = 25
-    Top = 338
+    Top = 366
     Width = 77
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -50,8 +51,8 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 383
-    Width = 687
+    Top = 411
+    Width = 695
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -60,5 +61,43 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     ReadOnly = True
     TabOrder = 3
     TabStop = False
+  end
+  object Label5: TLabel
+    Left = 144
+    Height = 16
+    Top = 16
+    Width = 79
+    Caption = 'AVR FPC Typ:'
+  end
+  object ComboBox_AVR_Typ_FPC: TComboBox
+    Left = 143
+    Height = 27
+    Top = 40
+    Width = 168
+    ItemHeight = 0
+    TabOrder = 5
+  end
+  object CheckBox_AsmFile: TCheckBox
+    Left = 15
+    Height = 23
+    Top = 88
+    Width = 164
+    Caption = 'ASM-File erzeugen (-al)'
+    TabOrder = 6
+  end
+  object ComboBox_AVR_SubArch: TComboBox
+    Left = 15
+    Height = 27
+    Top = 40
+    Width = 100
+    ItemHeight = 0
+    TabOrder = 7
+  end
+  object Label1: TLabel
+    Left = 15
+    Height = 16
+    Top = 16
+    Width = 79
+    Caption = 'AVR SubArch'
   end
 end
