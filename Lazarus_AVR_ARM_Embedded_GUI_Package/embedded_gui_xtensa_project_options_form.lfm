@@ -1,7 +1,7 @@
 object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
-  Left = 1598
+  Left = 1948
   Height = 458
-  Top = 53
+  Top = 66
   Width = 695
   Caption = 'Xtensa_Project_Options_Form'
   ClientHeight = 458
@@ -66,10 +66,10 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     Left = 144
     Height = 16
     Top = 16
-    Width = 79
-    Caption = 'AVR FPC Typ:'
+    Width = 95
+    Caption = 'Xtensa FPC Typ:'
   end
-  object ComboBox_AVR_Typ_FPC: TComboBox
+  object ComboBox_Xtensa_Typ_FPC: TComboBox
     Left = 143
     Height = 27
     Top = 40
@@ -85,7 +85,7 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     Caption = 'ASM-File erzeugen (-al)'
     TabOrder = 6
   end
-  object ComboBox_AVR_SubArch: TComboBox
+  object ComboBox_Xtensa_SubArch: TComboBox
     Left = 15
     Height = 27
     Top = 40
@@ -97,7 +97,7 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     Left = 15
     Height = 16
     Top = 16
-    Width = 79
-    Caption = 'AVR SubArch'
+    Width = 95
+    Caption = 'Xtensa SubArch'
   end
 end

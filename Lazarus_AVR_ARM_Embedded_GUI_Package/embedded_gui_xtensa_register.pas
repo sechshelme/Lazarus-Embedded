@@ -81,8 +81,8 @@ end;
 
 function TProjectXtensaApp.DoInitDescriptor: TModalResult;
 begin
-//  Xtensa_Project_Options_Form.DefaultMask;
-//  Result := Xtensa_Project_Options_Form.ShowModal;
+  Xtensa_Project_Options_Form.DefaultMask;
+  Result := Xtensa_Project_Options_Form.ShowModal;
 end;
 
 function TProjectXtensaApp.InitProject(AProject: TLazProject): TModalResult;
