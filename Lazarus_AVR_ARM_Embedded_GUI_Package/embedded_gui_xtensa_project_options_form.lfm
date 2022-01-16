@@ -91,6 +91,7 @@ object Xtensa_Project_Options_Form: TXtensa_Project_Options_Form
     Top = 40
     Width = 100
     ItemHeight = 0
+    OnChange = ComboBox_Xtensa_SubArchChange
     TabOrder = 7
   end
   object Label1: TLabel

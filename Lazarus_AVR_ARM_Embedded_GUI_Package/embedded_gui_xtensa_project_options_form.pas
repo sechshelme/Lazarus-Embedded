@@ -35,6 +35,7 @@ type
     Label5: TLabel;
     Memo1: TMemo;
     TemplatesButton: TButton;
+    procedure ComboBox_Xtensa_SubArchChange(Sender: TObject);
     procedure CPU_InfoButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
@@ -63,6 +64,12 @@ begin
   Form.Load(xtensa_ControllerDataList);
   Form.ShowModal;
   Form.Free;
+end;
+
+procedure TXtensa_Project_Options_Form.ComboBox_Xtensa_SubArchChange(
+  Sender: TObject);
+begin
+  ChangeXtensa_Typ;
 end;
 
 procedure TXtensa_Project_Options_Form.FormCreate(Sender: TObject);
