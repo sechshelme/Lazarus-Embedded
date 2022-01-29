@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <MainUnitHasScaledStatement Value="False"/>
+      </Flags>
+      <UseAppBundle Value="False"/>
+    </General>
+    <BuildModes Active="Raspberry Pi Pico">
+      <Item Name="Raspberry Pi Pico" Default="True"/>
+      <Item Name="Adafruit Feather RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/blinky"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-Wpfeather_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="Adafruit ItsyBitzy RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/blinky"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-Wpitzybitzy_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="Adafruit QTPY RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/blinky"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-Wpqtpy_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="Pimoroni Tiny 2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/blinky"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-Wptiny_2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="SparkFun Pro Micro RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/blinky"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-Wppromicro_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+      <Item Name="SparkFun Thing Plus RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/blinky"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-Wpthingplus_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
+    <Units>
+      <Unit>
+        <Filename Value="blinky.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="11" Y="14"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../units/pico_c.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="170"/>
+        <CursorPos X="63" Y="191"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../units/pico_gpio_c.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="16"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/home/tux/fpcupdeluxe_pico/fpcsrc/rtl/embedded/arm/rp2040.pp"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="636"/>
+        <CursorPos X="3" Y="672"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="1">
+      <Position>
+        <Filename Value="blinky.lpr"/>
+        <Caret Line="19" Column="64"/>
+      </Position>
+      <Position>
+        <Filename Value="blinky.lpr"/>
+        <Caret Line="14" Column="11"/>
+      </Position>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="bin/blinky"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../units"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <TargetProcessor Value="ARMV6M"/>
+      <TargetCPU Value="arm"/>
+      <TargetOS Value="embedded"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <DebugInfoType Value="dsDwarf2"/>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+    </Linking>
+    <Other>
+      <CustomOptions Value="-Wpraspi_pico
+-Xu"/>
+    </Other>
+  </CompilerOptions>
+</CONFIG>

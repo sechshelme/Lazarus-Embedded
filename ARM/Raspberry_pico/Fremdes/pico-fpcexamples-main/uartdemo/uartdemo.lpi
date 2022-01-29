@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <General>
+      <UseAppBundle Value="False"/>
+    </General>
+    <BuildModes Count="7">
+      <Item1 Name="Raspberry Pi Pico" Default="True"/>
+      <Item2 Name="Adafruit Feather RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/uartdemo"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="True"/>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="
+-Wpfeather_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="Adafruit ItsyBitzy RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/uartdemo"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="True"/>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="
+-Wpitzybitzy_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="Adafruit QTPY RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/uartdemo"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="True"/>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="
+-Wpqtpy_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item4>
+      <Item5 Name="Pimoroni Tiny 2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/uartdemo"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="True"/>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="
+-Wptiny_2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item5>
+      <Item6 Name="SparkFun Pro Micro RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/uartdemo"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="True"/>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="
+-Wppromicro_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item6>
+      <Item7 Name="SparkFun Thing Plus RP2040">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="bin/uartdemo"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="../units"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <TargetProcessor Value="armv6m"/>
+            <TargetCPU Value="arm"/>
+            <TargetOS Value="embedded"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="True"/>
+              <DebugInfoType Value="dsDwarf2"/>
+              <UseLineInfoUnit Value="False"/>
+            </Debugging>
+          </Linking>
+          <Other>
+            <CustomOptions Value="
+-Wpthingplus_rp2040
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+          </Other>
+        </CompilerOptions>
+      </Item7>
+    </BuildModes>
+    <Units>
+      <Unit>
+        <Filename Value="uartdemo.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="bin/uartdemo"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../units"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <TargetProcessor Value="armv6m"/>
+      <TargetCPU Value="arm"/>
+      <TargetOS Value="embedded"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="True"/>
+        <DebugInfoType Value="dsDwarf2"/>
+        <UseLineInfoUnit Value="False"/>
+      </Debugging>
+    </Linking>
+    <Other>
+      <CustomOptions Value="
+-Wpraspi_pico
+-godwarfsets
+-godwarfcpp
+-Xu"/>
+    </Other>
+  </CompilerOptions>
+</CONFIG>

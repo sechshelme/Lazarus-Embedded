@@ -1,0 +1,6 @@
+#Boardname       SubArch         Chipname (JLink) SVD File
+raspi_pico       armv6m          rp2040_m0_0      rp2040.svd
+tiny_2040        armv6m          rp2040_m0_0      rp2040.svd
+qtpy_rp2040      armv6m          rp2040_m0_0      rp2040.svd
+feather_rp2040   armv6m          rp2040_m0_0      rp2040.svd
+itzybitzy_rp2040 armv6m          rp2040_m0_0      rp2040.svd

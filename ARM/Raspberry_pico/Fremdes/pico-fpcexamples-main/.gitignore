@@ -1,0 +1,54 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+!units/*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+!units/*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.bin
+*.uf2
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+*.compiled
+*.res
+backup/
+bin/
+lib/
+.DS_Store
