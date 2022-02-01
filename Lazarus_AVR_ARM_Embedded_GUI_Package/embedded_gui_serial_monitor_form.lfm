@@ -12,7 +12,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poDefaultPosOnly
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.2.0.4'
   object Button_Send: TButton
     Left = 412
     Height = 28
@@ -582,6 +582,13 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     end
     object MenuItem_Options: TMenuItem
       Caption = 'Optionen'
+      object MenuItem_Rest: TMenuItem
+        Caption = 'Reset'
+        OnClick = MenuItem_RestClick
+      end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
       object MenuItem_Optionen: TMenuItem
         Caption = '&Optionen...'
         OnClick = MenuItem_OptionenClick

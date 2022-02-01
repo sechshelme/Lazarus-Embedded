@@ -32,6 +32,7 @@ type
     Close_Button: TButton;
     ComboBox_SendString: TComboBox;
     MenuItem3: TMenuItem;
+    MenuItem_Rest: TMenuItem;
     MenuItem_Options: TMenuItem;
     MenuItem_Optionen: TMenuItem;
     MenuItem_SendFile: TMenuItem;
@@ -39,6 +40,7 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    Separator1: TMenuItem;
     SynEdit1: TSynEdit;
     Timer1: TTimer;
     procedure Button_SendClick(Sender: TObject);
@@ -49,6 +51,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem_RestClick(Sender: TObject);
     procedure MenuItem_OptionenClick(Sender: TObject);
     procedure MenuItem_CloseClick(Sender: TObject);
     procedure ComboBoxChange(Sender: TObject);
@@ -286,6 +289,22 @@ end;
 procedure TSerial_Monitor_Form.MenuItem2Click(Sender: TObject);
 begin
   //  InputForm.Show;
+end;
+
+procedure TSerial_Monitor_Form.MenuItem_RestClick(Sender: TObject);
+var
+//  SerialHandle: TSerialHandle;
+  com: string;
+begin
+//    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
+//    SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
+
+    SerSetDTR(SerialHandle, True);
+    SerSetDTR(SerialHandle, False);
+    Sleep(500);
+    SerClose(SerialHandle);
+    Sleep(500);
+
 end;
 
 procedure TSerial_Monitor_Form.MenuItem_OptionenClick(Sender: TObject);

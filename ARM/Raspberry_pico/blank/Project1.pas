@@ -17,6 +17,9 @@ program Project1;
 
 {$MEMORY 10000,10000}
 
+//uses
+//  pico_gpio_c;
+
 procedure gpio_init(gpio:Byte);cdecl; external;
 procedure clocks_init; cdecl; external;
 
@@ -45,7 +48,7 @@ procedure Delay;
 var
   i:Integer;
 begin
-  for i:=0 to 600000 do;
+  for i:=0 to 500000 do;
 end;
 
 begin

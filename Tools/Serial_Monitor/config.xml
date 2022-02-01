@@ -9,9 +9,13 @@
   </SerialMonitor_SendFile_Form>
   <Serial_Monitor_Form>
     <FormPos Left="1163" Top="233" Width="659" Height="793"/>
+    <ComboBox_SendString Count="2">
+      <Item0 value="Hello World !"/>
+      <Item1 value="Hallo Welt !"/>
+    </ComboBox_SendString>
   </Serial_Monitor_Form>
   <Serial_Monitor_Config>
-    <COMPortPara Port="/dev/ttyUSB0" Baud="9600" Parity="none" Bits="8" StopBits="1" FlowControl="none" TimeOut="10" TimerInterval="200"/>
+    <COMPortPara Port="/dev/ttyACM0" Baud="9600" Parity="none" Bits="8" StopBits="1" FlowControl="none" TimeOut="10" TimerInterval="200"/>
     <OutputScreenPara LineBreak="0" AutoScroll="True" Wordwarp="False" maxRows="5000" BKColor="0">
       <Font Color="12632256" Name="Monospace" Size="10">
         <Style Bold="False" Italic="False" StrikeOut="False" UnderLine="False"/>
@@ -20,6 +24,6 @@
   </Serial_Monitor_Config>
   <SerialMonitor_Options_Form>
     <FormPos Left="1957" Top="418" Width="687" Height="410"/>
-    <PageControl_SM_Options PageIndex="1"/>
+    <PageControl_SM_Options PageIndex="0"/>
   </SerialMonitor_Options_Form>
 </CONFIG>

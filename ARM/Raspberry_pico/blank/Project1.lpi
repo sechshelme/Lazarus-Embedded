@@ -37,7 +37,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="c_obj"/>
+      <OtherUnitFiles Value="c_obj;../Fremdes/pico-fpcexamples-main/units"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
@@ -54,6 +54,9 @@
     <Other>
       <CustomOptions Value="-Wpraspi_pico
 -Xu"/>
+      <ExecuteAfter>
+        <Command Value="/bin/cp Project1.uf2 /media/tux/RPI-RP2/test.uf2"/>
+      </ExecuteAfter>
     </Other>
   </CompilerOptions>
   <Debugging>
