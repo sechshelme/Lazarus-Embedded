@@ -3,11 +3,16 @@
   <ProjectOptions>
     <Version Value="12"/>
     <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <MainUnitHasScaledStatement Value="False"/>
+      </Flags>
       <UseAppBundle Value="False"/>
     </General>
-    <BuildModes Count="7">
-      <Item1 Name="Raspberry Pi Pico" Default="True"/>
-      <Item2 Name="Adafruit Feather RP2040">
+    <BuildModes Active="Raspberry Pi Pico">
+      <Item Name="Raspberry Pi Pico" Default="True"/>
+      <Item Name="Adafruit Feather RP2040">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -25,21 +30,19 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <GenerateDebugInfo Value="True"/>
               <DebugInfoType Value="dsDwarf2"/>
               <UseLineInfoUnit Value="False"/>
             </Debugging>
           </Linking>
           <Other>
-            <CustomOptions Value="
--Wpfeather_rp2040
+            <CustomOptions Value="-Wpfeather_rp2040
 -godwarfsets
 -godwarfcpp
 -Xu"/>
           </Other>
         </CompilerOptions>
-      </Item2>
-      <Item3 Name="Adafruit ItsyBitzy RP2040">
+      </Item>
+      <Item Name="Adafruit ItsyBitzy RP2040">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -57,21 +60,19 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <GenerateDebugInfo Value="True"/>
               <DebugInfoType Value="dsDwarf2"/>
               <UseLineInfoUnit Value="False"/>
             </Debugging>
           </Linking>
           <Other>
-            <CustomOptions Value="
--Wpitzybitzy_rp2040
+            <CustomOptions Value="-Wpitzybitzy_rp2040
 -godwarfsets
 -godwarfcpp
 -Xu"/>
           </Other>
         </CompilerOptions>
-      </Item3>
-      <Item4 Name="Adafruit QTPY RP2040">
+      </Item>
+      <Item Name="Adafruit QTPY RP2040">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -89,21 +90,19 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <GenerateDebugInfo Value="True"/>
               <DebugInfoType Value="dsDwarf2"/>
               <UseLineInfoUnit Value="False"/>
             </Debugging>
           </Linking>
           <Other>
-            <CustomOptions Value="
--Wpqtpy_rp2040
+            <CustomOptions Value="-Wpqtpy_rp2040
 -godwarfsets
 -godwarfcpp
 -Xu"/>
           </Other>
         </CompilerOptions>
-      </Item4>
-      <Item5 Name="Pimoroni Tiny 2040">
+      </Item>
+      <Item Name="Pimoroni Tiny 2040">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -121,21 +120,19 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <GenerateDebugInfo Value="True"/>
               <DebugInfoType Value="dsDwarf2"/>
               <UseLineInfoUnit Value="False"/>
             </Debugging>
           </Linking>
           <Other>
-            <CustomOptions Value="
--Wptiny_2040
+            <CustomOptions Value="-Wptiny_2040
 -godwarfsets
 -godwarfcpp
 -Xu"/>
           </Other>
         </CompilerOptions>
-      </Item5>
-      <Item6 Name="SparkFun Pro Micro RP2040">
+      </Item>
+      <Item Name="SparkFun Pro Micro RP2040">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -153,21 +150,19 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <GenerateDebugInfo Value="True"/>
               <DebugInfoType Value="dsDwarf2"/>
               <UseLineInfoUnit Value="False"/>
             </Debugging>
           </Linking>
           <Other>
-            <CustomOptions Value="
--Wppromicro_rp2040
+            <CustomOptions Value="-Wppromicro_rp2040
 -godwarfsets
 -godwarfcpp
 -Xu"/>
           </Other>
         </CompilerOptions>
-      </Item6>
-      <Item7 Name="SparkFun Thing Plus RP2040">
+      </Item>
+      <Item Name="SparkFun Thing Plus RP2040">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -185,29 +180,111 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
-              <GenerateDebugInfo Value="True"/>
               <DebugInfoType Value="dsDwarf2"/>
               <UseLineInfoUnit Value="False"/>
             </Debugging>
           </Linking>
           <Other>
-            <CustomOptions Value="
--Wpthingplus_rp2040
+            <CustomOptions Value="-Wpthingplus_rp2040
 -godwarfsets
 -godwarfcpp
 -Xu"/>
           </Other>
         </CompilerOptions>
-      </Item7>
+      </Item>
     </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+    </RunParams>
     <Units>
       <Unit>
         <Filename Value="uartdemo.lpr"/>
         <IsPartOfProject Value="True"/>
+        <CursorPos X="22" Y="20"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <ComponentName Value="ARM_Project_Options_Form"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Embedded_GUI_ARM_Project_Options_Form"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="55"/>
+        <CursorPos X="42" Y="115"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_common.pas"/>
+        <UnitName Value="Embedded_GUI_ARM_Common"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="2"/>
+        <CursorPos X="25" Y="37"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/home/tux/fpcupdeluxe_pico/fpcsrc/rtl/objpas/classes/classesh.inc"/>
         <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="412"/>
+        <CursorPos X="23" Y="430"/>
+        <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
+    <JumpHistory HistoryIndex="10">
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="28" Column="14" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="29" Column="22" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="51" Column="16" TopLine="21"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="55" Column="25" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="61" Column="30" TopLine="32"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="113" Column="17" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="143" Column="17" TopLine="113"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="150" Column="38" TopLine="120"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="151" Column="65" TopLine="121"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_arm_project_options_form.pas"/>
+        <Caret Line="115" Column="42" TopLine="55"/>
+      </Position>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
@@ -226,17 +303,18 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="True"/>
         <DebugInfoType Value="dsDwarf2"/>
         <UseLineInfoUnit Value="False"/>
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="
--Wpraspi_pico
+      <CustomOptions Value="-Wpraspi_pico
 -godwarfsets
 -godwarfcpp
 -Xu"/>
+      <ExecuteAfter>
+        <Command Value="/bin/cp /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Raspberry_pico/Fremdes/pico-fpcexamples-main/uartdemo/bin/uartdemo.uf2 /media/tux/RPI-RP2/test.uf2"/>
+      </ExecuteAfter>
     </Other>
   </CompilerOptions>
 </CONFIG>

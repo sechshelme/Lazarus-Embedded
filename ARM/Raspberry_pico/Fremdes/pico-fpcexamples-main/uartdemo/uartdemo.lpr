@@ -8,7 +8,7 @@ uses
   pico_gpio_c,
   pico_timer_c;
 const
-  BAUD_RATE=115200;
+  BAUD_RATE=9600;
 begin
   gpio_init(TPicoPin.LED);
   gpio_set_dir(TPicoPin.LED,TGPIODirection.GPIO_OUT);
@@ -18,8 +18,8 @@ begin
   repeat
     gpio_put(TPicoPin.LED,true);
     uart_puts(uart, 'Hello, UART!'+#13+#10);
-    busy_wait_us_32(500000);    
+    busy_wait_us_32(500000);
     gpio_put(TPicoPin.LED,false);
-    busy_wait_us_32(500000);    
+    busy_wait_us_32(500000);
   until 1=0;
 end.

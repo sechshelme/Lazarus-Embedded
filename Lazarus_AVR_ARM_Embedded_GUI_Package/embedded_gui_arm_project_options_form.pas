@@ -28,6 +28,7 @@ type
     ARM_FlashBase_ComboBox: TComboBox;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
+    Button2: TButton;
     CheckBox_ASMFile: TCheckBox;
     CheckBox_boot: TCheckBox;
     CheckBox_Brownout_Detection: TCheckBox;
@@ -51,8 +52,10 @@ type
     Label_FlashBase: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
+    RadioButton_Raspi_Pico: TRadioButton;
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;
+    TabSheet_Raspi_Pico: TTabSheet;
     TabSheet_Compiler: TTabSheet;
     TabSheet_st_link: TTabSheet;
     TabSheet_Bossac: TTabSheet;
@@ -66,7 +69,8 @@ type
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-    ComboBox_STLinkPath, ComboBox_BossacPath: TFileNameComboBox;
+    ComboBox_STLinkPath, ComboBox_BossacPath,
+    ComboBox_UnitPath, ComboBox_cp_Path, ComboBox_mount_Path : TFileNameComboBox;
     procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
@@ -89,8 +93,9 @@ procedure TARM_Project_Options_Form.FormCreate(Sender: TObject);
 begin
   Caption := Title + 'ARM Project Options';
   LoadFormPos_from_XML(Self);
+  PageControl1.PageIndex := 0;
 
-  // Compiler
+  // --- Compiler
   with ComboBox_ARM_SubArch do begin
     Items.CommaText := ARM_SubArch_List;
     Style := csOwnerDrawFixed;
@@ -100,7 +105,9 @@ begin
     Sorted := True;
   end;
 
-  // Programmer
+  // --- Programmer
+  // ST-Link
+
   ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_st_link, 'STLinkPath');
   with ComboBox_STLinkPath do begin
     Caption := 'ST-Link Pfad:';
@@ -112,8 +119,10 @@ begin
 
   with ARM_FlashBase_ComboBox do begin
     Sorted := True;
-    Items.AddStrings(['0x00000000', '0x08000000']);
+    Items.AddStrings(['0x00000000', '0x00080000', '0x08000000']);
   end;
+
+  // Bossac ( Arduino Due )
 
   ComboBox_BossacPath := TFileNameComboBox.Create(TabSheet_Bossac, 'BossacPath');
   with ComboBox_BossacPath do begin
@@ -124,7 +133,37 @@ begin
     Top := 10;
   end;
 
-  PageControl1.PageIndex := 0;
+  // Rasberry PI Pico
+
+  ComboBox_UnitPath := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'UnitPath');
+  with ComboBox_UnitPath do begin
+    Caption := 'Unit Pfad:';
+    Directory := True;
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := TabSheet_Raspi_Pico.Width - 10;
+    Top := 10;
+  end;
+
+  ComboBox_cp_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'cpPath');
+  with ComboBox_cp_Path do begin
+    Caption := 'cp Pfad:';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := TabSheet_Raspi_Pico.Width - 10;
+    Top := 80;
+  end;
+
+  ComboBox_mount_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'mountPath');
+  with ComboBox_mount_Path do begin
+    Caption := 'Mount Pfad:';
+    Directory := True;
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := TabSheet_Raspi_Pico.Width - 10;
+    Top := 150;
+  end;
+
 end;
 
 procedure TARM_Project_Options_Form.DefaultMask;
@@ -285,14 +324,13 @@ end;
 
 procedure TARM_Project_Options_Form.FormDestroy(Sender: TObject);
 begin
-  ComboBox_STLinkPath.Free;
-  ComboBox_BossacPath.Free;
 end;
 
 procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
 begin
   TabSheet_st_link.Enabled := RadioButton_st_flash.Checked;
   TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
+  TabSheet_Raspi_Pico.Enabled := RadioButton_Raspi_Pico.Checked;
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
