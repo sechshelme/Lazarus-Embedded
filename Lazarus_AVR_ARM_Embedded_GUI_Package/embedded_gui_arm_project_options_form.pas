@@ -260,8 +260,9 @@ end;
 procedure TARM_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
   s, path, p: string;
+  sa: TStringArray;
 begin
-  // FPC Command
+  // --- FPC Command
   with LazProject.LazCompilerOptions do begin
     ComboBox_ARM_SubArch.Text := TargetProcessor;
     ComboBox_ARM_SubArch.ItemIndex := ComboBox_ARM_SubArch.Items.IndexOf(ComboBox_ARM_SubArch.Text);
@@ -272,11 +273,11 @@ begin
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
   end;
 
-  // Programmer Command
+  // --- Programmer Command
   s := LazProject.LazCompilerOptions.ExecuteAfter.Command;
   path := Copy(s, 0, pos(' ', s) - 1);
-
   p := UpCase(ExtractFileName(path));
+
   if Pos(UpCase('st-flash'), p) > 0 then begin
     RadioButton_st_flash.Checked := True;
     ComboBox_STLinkPath.Text := path;
@@ -289,16 +290,26 @@ begin
   end;
 
   // Rasberry PI Pico
-  ..
+  if Pos(UpCase('.uf2 '), s) > 0 then begin
+    RadioButton_Raspi_Pico.Checked := True;
+//    ComboBox_Raspi_Pico_UnitPath.Text := path;
+    ComboBox_Raspi_Pico_cp_Path.Text := path;
+    sa := s.Split(' ');
+    if Length(sa) >= 3 then begin
+      ComboBox_Raspi_Pico_mount_Path.Text := sa[2];
+    end else begin
+      ComboBox_Raspi_Pico_mount_Path.Text := '';
+    end;
+  end;
 
   RadioButton_Programmer_Change(nil);
 end;
 
 procedure TARM_Project_Options_Form.MaskToLazProject(LazProject: TLazProject);
 var
-  s: string;
+  s, sf: string;
 begin
-  // FPC_Command
+  // --- FPC_Command
   LazProject.LazCompilerOptions.TargetProcessor := ComboBox_ARM_SubArch.Text;
   s := '-Wp' + ComboBox_ARM_Typ_FPC.Text;
   if CheckBox_AsmFile.Checked then begin
@@ -306,15 +317,25 @@ begin
   end;
   LazProject.LazCompilerOptions.CustomOptions := s;
 
-  // Programmer Command
+  // --- Programmer Command
+  // ST-Link
   if RadioButton_st_flash.Checked then begin
     s := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ARM_FlashBase_ComboBox.Text;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 
+  // Bossac
   if RadioButton_Bossac.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
     s := ComboBox_BossacPath.Text + ' -e -w -v -b  ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+  end;
+
+  // Rasberry PI Pico
+  if RadioButton_Raspi_Pico.Checked then begin
+    // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
+    sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
+    s := ComboBox_Raspi_Pico_cp_Path.Text + ' ' + sf + ' ' + ComboBox_Raspi_Pico_mount_Path.Text + sf;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 end;

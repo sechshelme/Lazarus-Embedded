@@ -48,7 +48,7 @@ procedure Delay;
 var
   i:Integer;
 begin
-  for i:=0 to 700000 do;
+  for i:=0 to 500000 do;
 end;
 
 begin
