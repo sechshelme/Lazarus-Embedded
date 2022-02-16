@@ -35,12 +35,18 @@ const
   Default_Avrdude_Conf_Path: TStringArray = ('c:\avrdude\avrdude.conf');
   Default_STFlash_Path: TStringArray = ('c:\st-link\st-flash.exe');
   Default_Bassac_Path: TStringArray = ('c:\bossa\bossac.exe');
+  Default_Raspi_Pico_Unit_Path: TStringArray = ('..\Unit', '');
+  Default_Raspi_Pico_cp_Path: TStringArray = ('copy');
+  Default_Raspi_Pico_mount_Path: TStringArray = ('D:', 'E:', 'F:', 'G:');
   UARTDefaultPort = 'COM8';
   {$ELSE}
   Default_Avrdude_Path: TStringArray = ('/usr/bin/avrdude', 'avrdude');
   Default_Avrdude_Conf_Path: TStringArray = ('/etc/avrdude.conf', '');
   Default_STFlash_Path: TStringArray = ('/usr/local/bin/st-flash', 'st-flash');
   Default_Bassac_Path: TStringArray = ('/usr/bin/bossac', 'bossac');
+  Default_Raspi_Pico_Unit_Path: TStringArray = ('../Unit', '');
+  Default_Raspi_Pico_cp_Path: TStringArray = ('/bin/cp', 'cp');
+  Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
 
@@ -98,6 +104,9 @@ type
     end;
     ARM: record
       STFlashPath, BossacPath: TStringList;
+      Raspi_Pico: record
+        Unit_Path, cp_Path, mount_Path: TStringList;
+      end;
     end;
     SerialMonitor_Options: TSerialMonitor_Options;
     constructor Create;
@@ -150,6 +159,9 @@ const
   Key_ARM = Key_IDE_Options + 'ARM/';
   Key_STFlash_Path = Key_ARM + 'st_flash_path/';
   Key_Bassac_Path = Key_ARM + 'bossac_path/';
+  Key_Raspi_Pico_Unit_Path = Key_ARM + 'raspi_pico_Unit_Path/';
+  Key_Raspi_Pico_cp_Path = Key_ARM + 'raspi_pico_cp_Path/';
+  Key_Raspi_Pico_mount_Path = Key_ARM + 'raspi_pico_mount_Path/';
 
   Key_ComPara = 'COMPortPara/';
   Key_Output = 'OutputScreenPara/';
@@ -424,7 +436,6 @@ var
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   col := Cfg.GetValue(Key_IDE_Color, $E0F0E0);
-
   Cfg.Free;
 end;
 
@@ -434,7 +445,6 @@ var
 begin
   Cfg := GetIDEConfigStorage(Embedded_Options_File, True);
   Cfg.SetValue(Key_IDE_Color, col);
-
   Cfg.Free;
 end;
 
@@ -515,16 +525,25 @@ begin
 
   AVR.avrdudePath := TStringList.Create;
   AVR.avrdudeConfigPath := TStringList.Create;
+
   ARM.STFlashPath := TStringList.Create;
   ARM.BossacPath := TStringList.Create;
+  ARM.Raspi_Pico.Unit_Path := TStringList.Create;;
+  ARM.Raspi_Pico.cp_Path := TStringList.Create;;
+  ARM.Raspi_Pico.mount_Path := TStringList.Create;;
 end;
 
 destructor TEmbedded_IDE_Options.Destroy;
 begin
   AVR.avrdudePath.Free;
   AVR.avrdudeConfigPath.Free;
+
   ARM.STFlashPath.Free;
   ARM.BossacPath.Free;
+  ARM.Raspi_Pico.Unit_Path.Free;
+  ARM.Raspi_Pico.cp_Path.Free;
+  ARM.Raspi_Pico.mount_Path.Free;
+
   SerialMonitor_Options.Free;
   inherited Destroy;
 end;
@@ -537,6 +556,10 @@ begin
   LoadStrings_from_XML(Key_STFlash_Path, ARM.STFlashPath, Default_STFlash_Path);
   LoadStrings_from_XML(Key_Bassac_Path, ARM.BossacPath, Default_Bassac_Path);
 
+  LoadStrings_from_XML(Key_Raspi_Pico_Unit_Path, ARM.Raspi_Pico.Unit_Path, Default_Raspi_Pico_Unit_Path);
+  LoadStrings_from_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path, Default_Raspi_Pico_cp_Path);
+  LoadStrings_from_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path, Default_Raspi_Pico_mount_Path);
+
   SerialMonitor_Options.Load_from_XML;
 end;
 
@@ -547,6 +570,10 @@ begin
 
   SaveStrings_to_XML(Key_STFlash_Path, ARM.STFlashPath);
   SaveStrings_to_XML(Key_Bassac_Path, ARM.BossacPath);
+
+  SaveStrings_to_XML(Key_Raspi_Pico_Unit_Path, ARM.Raspi_Pico.Unit_Path);
+  SaveStrings_to_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path);
+  SaveStrings_to_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path);
 
   SerialMonitor_Options.Save_to_XML;
 end;

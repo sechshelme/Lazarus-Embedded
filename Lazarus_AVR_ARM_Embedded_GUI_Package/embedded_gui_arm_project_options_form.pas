@@ -104,7 +104,7 @@ begin
     Sorted := True;
   end;
 
-  // --- Programmer
+  // --- Programer
   // ST-Link
 
   ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_st_link, 'STLinkPath');
@@ -129,7 +129,6 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_Bossac.Width - 10;
-//    Width := Self.Width - 20;
     Top := 10;
   end;
 
@@ -141,7 +140,6 @@ begin
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-//    Width := TabSheet_Raspi_Pico.Width - 10;
     Width := Self.Width - 10;
     Top := 10;
   end;
@@ -151,7 +149,6 @@ begin
     Caption := 'cp Pfad:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-//    Width := TabSheet_Raspi_Pico.Width - 10;
     Width := Self.Width - 10;
     Top := 80;
   end;
@@ -162,7 +159,6 @@ begin
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-//    Width := TabSheet_Raspi_Pico.Width - 10;
     Width := Self.Width - 10;
     Top := 150;
   end;
@@ -171,7 +167,7 @@ end;
 
 procedure TARM_Project_Options_Form.DefaultMask;
 begin
-  // Compiler
+  // --- Compiler
   with ComboBox_ARM_SubArch do begin
     Text := 'ARMV7M';
     ItemIndex := Items.IndexOf(Text);
@@ -188,17 +184,38 @@ begin
 
   CheckBox_ASMFile.Checked := False;
 
-  // Programmer
+  // --- Programer
+  // ST-Link
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
     ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
   end else begin
     ComboBox_STLinkPath.Text := '';
   end;
 
+  // Bossac
   if Embedded_IDE_Options.ARM.BossacPath.Count > 0 then begin
     ComboBox_BossacPath.Text := Embedded_IDE_Options.ARM.BossacPath[0];
   end else begin
     ComboBox_BossacPath.Text := '';
+  end;
+
+  // Rasberry PI Pico
+  if Embedded_IDE_Options.ARM.Raspi_Pico.Unit_Path.Count > 0 then begin
+    ComboBox_Raspi_Pico_UnitPath.Text := Embedded_IDE_Options.ARM.Raspi_Pico.Unit_Path[0];
+  end else begin
+    ComboBox_Raspi_Pico_UnitPath.Text := '';
+  end;
+
+  if Embedded_IDE_Options.ARM.Raspi_Pico.cp_Path.Count > 0 then begin
+    ComboBox_Raspi_Pico_cp_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.cp_Path[0];
+  end else begin
+    ComboBox_Raspi_Pico_cp_Path.Text := '';
+  end;
+
+  if Embedded_IDE_Options.ARM.Raspi_Pico.mount_Path.Count > 0 then begin
+    ComboBox_Raspi_Pico_mount_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.mount_Path[0];
+  end else begin
+    ComboBox_Raspi_Pico_mount_Path.Text := '';
   end;
 
   RadioButton_Programmer_Change(nil);
@@ -270,6 +287,9 @@ begin
     RadioButton_Bossac.Checked := True;
     ComboBox_BossacPath.Text := path;
   end;
+
+  // Rasberry PI Pico
+  ..
 
   RadioButton_Programmer_Change(nil);
 end;
