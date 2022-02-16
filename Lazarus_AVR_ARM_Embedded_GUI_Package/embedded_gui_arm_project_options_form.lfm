@@ -101,8 +101,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       Left = 184
       Height = 23
       Top = 8
-      Width = 129
-      Caption = 'Raspberry Pi Pico'
+      Width = 197
+      Caption = 'Raspberry Pi Pico ( Alpha !!! )'
       TabOrder = 2
     end
   end
@@ -370,17 +370,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     end
     object TabSheet_Raspi_Pico: TTabSheet
       Caption = 'Raspberry Pico'
-      ClientHeight = 359
-      ClientWidth = 756
-      object Button2: TButton
-        Left = 125
-        Height = 25
-        Top = 76
-        Width = 75
-        Caption = 'Button2'
-        TabOrder = 0
-        Visible = False
-      end
     end
   end
 end

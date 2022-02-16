@@ -28,7 +28,6 @@ type
     ARM_FlashBase_ComboBox: TComboBox;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
-    Button2: TButton;
     CheckBox_ASMFile: TCheckBox;
     CheckBox_boot: TCheckBox;
     CheckBox_Brownout_Detection: TCheckBox;
@@ -70,7 +69,7 @@ type
     procedure TemplatesButtonClick(Sender: TObject);
   private
     ComboBox_STLinkPath, ComboBox_BossacPath,
-    ComboBox_UnitPath, ComboBox_cp_Path, ComboBox_mount_Path : TFileNameComboBox;
+    ComboBox_Raspi_Pico_UnitPath, ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path : TFileNameComboBox;
     procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
@@ -130,37 +129,41 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_Bossac.Width - 10;
+//    Width := Self.Width - 20;
     Top := 10;
   end;
 
   // Rasberry PI Pico
 
-  ComboBox_UnitPath := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'UnitPath');
-  with ComboBox_UnitPath do begin
+  ComboBox_Raspi_Pico_UnitPath := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'UnitPath');
+  with ComboBox_Raspi_Pico_UnitPath do begin
     Caption := 'Unit Pfad:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := TabSheet_Raspi_Pico.Width - 10;
+//    Width := TabSheet_Raspi_Pico.Width - 10;
+    Width := Self.Width - 10;
     Top := 10;
   end;
 
-  ComboBox_cp_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'cpPath');
-  with ComboBox_cp_Path do begin
+  ComboBox_Raspi_Pico_cp_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'cpPath');
+  with ComboBox_Raspi_Pico_cp_Path do begin
     Caption := 'cp Pfad:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := TabSheet_Raspi_Pico.Width - 10;
+//    Width := TabSheet_Raspi_Pico.Width - 10;
+    Width := Self.Width - 10;
     Top := 80;
   end;
 
-  ComboBox_mount_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'mountPath');
-  with ComboBox_mount_Path do begin
+  ComboBox_Raspi_Pico_mount_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'mountPath');
+  with ComboBox_Raspi_Pico_mount_Path do begin
     Caption := 'Mount Pfad:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := TabSheet_Raspi_Pico.Width - 10;
+//    Width := TabSheet_Raspi_Pico.Width - 10;
+    Width := Self.Width - 10;
     Top := 150;
   end;
 

@@ -99,6 +99,8 @@ end;
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 var
   col: TColor;
+  ComboBox_Raspi_Pico_UnitPath, ComboBox_Raspi_Pico_cp_Path,
+    ComboBox_Raspi_Pico_mount_Path: TFileNameComboBox;
 begin
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
@@ -121,7 +123,9 @@ begin
     Top := 104;
   end;
 
-  // ARM
+  // --- Programmer
+  // ST-Link
+
   ComboBox_STFlashPath := TFileNameComboBox.Create(TabSheetARM, 'STFlashPath', False);
   with ComboBox_STFlashPath do begin
     Caption := 'ST Flash Pfad';
@@ -131,6 +135,8 @@ begin
     Top := 24;
   end;
 
+  // Bossac ( Arduino Due )
+
   ComboBox_BossacPath := TFileNameComboBox.Create(TabSheetARM, 'BossacPath', False);
   with ComboBox_BossacPath do begin
     Caption := 'Bassac Pfad';
@@ -139,6 +145,38 @@ begin
     Width := Self.Width - 20;
     Top := 104;
   end;
+
+  // Rasberry PI Pico
+
+  ComboBox_Raspi_Pico_UnitPath := TFileNameComboBox.Create(TabSheetARM, 'UnitPath', False);
+  with ComboBox_Raspi_Pico_UnitPath do begin
+    Caption := 'Unit Pfad:';
+    Directory := True;
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 184;
+  end;
+
+  ComboBox_Raspi_Pico_cp_Path := TFileNameComboBox.Create(TabSheetARM, 'cpPath', False);
+  with ComboBox_Raspi_Pico_cp_Path do begin
+    Caption := 'cp Pfad:';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 264;
+  end;
+
+  ComboBox_Raspi_Pico_mount_Path := TFileNameComboBox.Create(TabSheetARM, 'mountPath', False);
+  with ComboBox_Raspi_Pico_mount_Path do begin
+    Caption := 'Mount Pfad:';
+    Directory := True;
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 344;
+  end;
+
 
   with Embedded_IDE_Options do begin
 
