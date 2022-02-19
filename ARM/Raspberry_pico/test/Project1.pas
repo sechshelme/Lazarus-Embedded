@@ -48,7 +48,7 @@ procedure Delay;
 var
   i:Integer;
 begin
-  for i:=0 to 600000 do;
+  for i:=0 to 200000 do;
 end;
 
 begin
@@ -59,5 +59,14 @@ begin
     sio.gpio_togl := 1 shl 25;
     Delay;
   until 1=0;
+end.
+
+
+
+begin
+  // Setup
+  repeat
+    // Loop;
+  until false;
 end.
 

@@ -315,6 +315,7 @@ begin
   if CheckBox_AsmFile.Checked then begin
     s += LineEnding + '-al';
   end;
+  s += LineEnding + '-Xu'; // Ändern auf nur Pico !!!
   LazProject.LazCompilerOptions.CustomOptions := s;
 
   // --- Programmer Command
@@ -335,7 +336,7 @@ begin
   if RadioButton_Raspi_Pico.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
     sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
-    s := ComboBox_Raspi_Pico_cp_Path.Text + ' ' + sf + ' ' + ComboBox_Raspi_Pico_mount_Path.Text + sf;
+    s := ComboBox_Raspi_Pico_cp_Path.Text + ' ' + sf + ' ' + ComboBox_Raspi_Pico_mount_Path.Text + DirectorySeparator + sf;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 end;
