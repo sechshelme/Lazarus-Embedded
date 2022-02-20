@@ -12,7 +12,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poDefaultPosOnly
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
     Left = 701
     Height = 28
@@ -111,9 +111,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Height = 389
     Top = 160
     Width = 766
-    ActivePage = TabSheet_Raspi_Pico
+    ActivePage = TabSheet_st_link
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 3
+    TabIndex = 1
     TabOrder = 6
     object TabSheet_Compiler: TTabSheet
       Caption = 'Compiler'
@@ -134,7 +134,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 24
         Width = 83
         Caption = 'ARM SubArch'
-        ParentColor = False
       end
       object CheckBox_ASMFile: TCheckBox
         Left = 16
@@ -150,7 +149,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 24
         Width = 83
         Caption = 'ARM FPC Typ:'
-        ParentColor = False
       end
       object ComboBox_ARM_Typ_FPC: TComboBox
         Left = 144
@@ -159,6 +157,14 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Width = 168
         ItemHeight = 0
         TabOrder = 2
+      end
+      object CheckBox_UF2File: TCheckBox
+        Left = 16
+        Height = 23
+        Top = 124
+        Width = 165
+        Caption = 'UF2-File erzeugen (-Xu)'
+        TabOrder = 3
       end
     end
     object TabSheet_st_link: TTabSheet
@@ -264,7 +270,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         Top = 96
         Width = 67
         Caption = 'Flash Base:'
-        ParentColor = False
       end
     end
     object TabSheet_Bossac: TTabSheet

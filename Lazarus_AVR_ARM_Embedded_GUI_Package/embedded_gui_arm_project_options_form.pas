@@ -29,6 +29,7 @@ type
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
     CheckBox_ASMFile: TCheckBox;
+    CheckBox_UF2File: TCheckBox;
     CheckBox_boot: TCheckBox;
     CheckBox_Brownout_Detection: TCheckBox;
     CheckBox_Brownout_Reset: TCheckBox;
@@ -183,6 +184,7 @@ begin
   end;
 
   CheckBox_ASMFile.Checked := False;
+  CheckBox_UF2File.Checked := False;
 
   // --- Programer
   // ST-Link
@@ -271,6 +273,7 @@ begin
     s := CustomOptions;
     ComboBox_ARM_Typ_FPC.Text := FindPara(s, '-Wp');
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
+    CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;
   end;
 
   // --- Programmer Command
@@ -315,7 +318,9 @@ begin
   if CheckBox_AsmFile.Checked then begin
     s += LineEnding + '-al';
   end;
-  s += LineEnding + '-Xu'; // Ändern auf nur Pico !!!
+  if CheckBox_UF2File.Checked then begin
+    s += LineEnding + '-Xu';
+  end;
   LazProject.LazCompilerOptions.CustomOptions := s;
 
   // --- Programmer Command
@@ -360,6 +365,8 @@ begin
 
     ComboBox_ARM_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
     ComboBox_ARM_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
+    CheckBox_UF2File.Checked:= ARM_TemplatesPara[i].Create_UF2_File;
+
     ARM_FlashBase_ComboBox.Text := ARM_TemplatesPara[i].FlashBase;
     ComboBox_ARM_SubArch.OnChange(Sender);
   end;

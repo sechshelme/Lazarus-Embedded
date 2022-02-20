@@ -21,9 +21,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure ListBox_TemplateDblClick(Sender: TObject);
   private
-
   public
-
   end;
 
 var
