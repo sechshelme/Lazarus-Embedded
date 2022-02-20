@@ -1,11 +1,11 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 2299
-  Height = 652
+  Left = 2398
+  Height = 502
   Top = 717
-  Width = 798
+  Width = 699
   Caption = 'ARM Embedded Project Options'
-  ClientHeight = 652
-  ClientWidth = 798
+  ClientHeight = 502
+  ClientWidth = 699
   Constraints.MinHeight = 350
   Constraints.MinWidth = 540
   OnClose = FormClose
@@ -14,7 +14,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   Position = poDefaultPosOnly
   LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
-    Left = 701
+    Left = 602
     Height = 28
     Top = 32
     Width = 80
@@ -24,9 +24,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 601
+    Left = 502
     Height = 25
-    Top = 561
+    Top = 411
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -36,8 +36,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 605
-    Width = 798
+    Top = 455
+    Width = 699
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -48,7 +48,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabStop = False
   end
   object CPU_InfoButton: TButton
-    Left = 583
+    Left = 504
     Height = 28
     Top = 32
     Width = 80
@@ -58,9 +58,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 704
+    Left = 605
     Height = 25
-    Top = 561
+    Top = 411
     Width = 77
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
@@ -71,11 +71,11 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     Left = 16
     Height = 80
     Top = 72
-    Width = 765
+    Width = 666
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Programmer'
     ClientHeight = 63
-    ClientWidth = 763
+    ClientWidth = 664
     TabOrder = 2
     object RadioButton_st_flash: TRadioButton
       Left = 7
@@ -97,28 +97,28 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       OnChange = RadioButton_Programmer_Change
       TabOrder = 1
     end
-    object RadioButton_Raspi_Pico: TRadioButton
+    object RadioButton_UF2: TRadioButton
       Left = 184
       Height = 23
       Top = 8
-      Width = 197
-      Caption = 'Raspberry Pi Pico ( Alpha !!! )'
+      Width = 118
+      Caption = 'UF2 ( Alpha !!! )'
       TabOrder = 2
     end
   end
   object PageControl1: TPageControl
     Left = 16
-    Height = 389
+    Height = 239
     Top = 160
-    Width = 766
-    ActivePage = TabSheet_st_link
+    Width = 667
+    ActivePage = TabSheet_UF2
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 1
+    TabIndex = 3
     TabOrder = 6
     object TabSheet_Compiler: TTabSheet
       Caption = 'Compiler'
-      ClientHeight = 359
-      ClientWidth = 756
+      ClientHeight = 209
+      ClientWidth = 657
       object ComboBox_ARM_SubArch: TComboBox
         Left = 16
         Height = 27
@@ -169,8 +169,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     end
     object TabSheet_st_link: TTabSheet
       Caption = 'ST-Flash'
-      ClientHeight = 359
-      ClientWidth = 756
+      ClientHeight = 209
+      ClientWidth = 657
       object BitBtn_Auto_Flash_Base: TBitBtn
         Left = 208
         Height = 28
@@ -274,8 +274,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     end
     object TabSheet_Bossac: TTabSheet
       Caption = 'Bossac'
-      ClientHeight = 359
-      ClientWidth = 756
+      ClientHeight = 209
+      ClientWidth = 657
       object CheckBox_Erase: TCheckBox
         Left = 16
         Height = 23
@@ -373,8 +373,19 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
         TabOrder = 11
       end
     end
-    object TabSheet_Raspi_Pico: TTabSheet
-      Caption = 'Raspberry Pico'
+    object TabSheet_UF2: TTabSheet
+      Caption = 'UF2'
+      ClientHeight = 209
+      ClientWidth = 657
+      object Button2: TButton
+        Left = 23
+        Height = 25
+        Top = 40
+        Width = 75
+        Caption = 'test'
+        TabOrder = 0
+        Visible = False
+      end
     end
   end
 end

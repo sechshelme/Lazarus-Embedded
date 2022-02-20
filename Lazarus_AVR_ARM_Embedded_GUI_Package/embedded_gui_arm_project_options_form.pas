@@ -28,6 +28,7 @@ type
     ARM_FlashBase_ComboBox: TComboBox;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
+    Button2: TButton;
     CheckBox_ASMFile: TCheckBox;
     CheckBox_UF2File: TCheckBox;
     CheckBox_boot: TCheckBox;
@@ -52,10 +53,10 @@ type
     Label_FlashBase: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
-    RadioButton_Raspi_Pico: TRadioButton;
+    RadioButton_UF2: TRadioButton;
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;
-    TabSheet_Raspi_Pico: TTabSheet;
+    TabSheet_UF2: TTabSheet;
     TabSheet_Compiler: TTabSheet;
     TabSheet_st_link: TTabSheet;
     TabSheet_Bossac: TTabSheet;
@@ -69,8 +70,7 @@ type
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-    ComboBox_STLinkPath, ComboBox_BossacPath,
-    ComboBox_Raspi_Pico_UnitPath, ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path : TFileNameComboBox;
+    ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
     procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
@@ -135,32 +135,35 @@ begin
 
   // Rasberry PI Pico
 
-  ComboBox_Raspi_Pico_UnitPath := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'UnitPath');
-  with ComboBox_Raspi_Pico_UnitPath do begin
+  ComboBox_UF2_UnitPath := TFileNameComboBox.Create(TabSheet_UF2, 'UnitPath');
+  with ComboBox_UF2_UnitPath do begin
     Caption := 'Unit Pfad:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := Self.Width - 10;
+    Width := TabSheet_UF2.Width - 10;
+//    Width := Self.Width - 10;
     Top := 10;
   end;
 
-  ComboBox_Raspi_Pico_cp_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'cpPath');
-  with ComboBox_Raspi_Pico_cp_Path do begin
+  ComboBox_UF2_cp_Path := TFileNameComboBox.Create(TabSheet_UF2, 'cpPath');
+  with ComboBox_UF2_cp_Path do begin
     Caption := 'cp Pfad:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := Self.Width - 10;
+    Width := TabSheet_UF2.Width - 10;
+//    Width := Self.Width - 10;
     Top := 80;
   end;
 
-  ComboBox_Raspi_Pico_mount_Path := TFileNameComboBox.Create(TabSheet_Raspi_Pico, 'mountPath');
-  with ComboBox_Raspi_Pico_mount_Path do begin
+  ComboBox_UF2_mount_Path := TFileNameComboBox.Create(TabSheet_UF2, 'mountPath');
+  with ComboBox_UF2_mount_Path do begin
     Caption := 'Mount Pfad:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := Self.Width - 10;
+    Width := TabSheet_UF2.Width - 10;
+//    Width := Self.Width - 10;
     Top := 150;
   end;
 
@@ -203,21 +206,21 @@ begin
 
   // Rasberry PI Pico
   if Embedded_IDE_Options.ARM.Raspi_Pico.Unit_Path.Count > 0 then begin
-    ComboBox_Raspi_Pico_UnitPath.Text := Embedded_IDE_Options.ARM.Raspi_Pico.Unit_Path[0];
+    ComboBox_UF2_UnitPath.Text := Embedded_IDE_Options.ARM.Raspi_Pico.Unit_Path[0];
   end else begin
-    ComboBox_Raspi_Pico_UnitPath.Text := '';
+    ComboBox_UF2_UnitPath.Text := '';
   end;
 
   if Embedded_IDE_Options.ARM.Raspi_Pico.cp_Path.Count > 0 then begin
-    ComboBox_Raspi_Pico_cp_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.cp_Path[0];
+    ComboBox_UF2_cp_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.cp_Path[0];
   end else begin
-    ComboBox_Raspi_Pico_cp_Path.Text := '';
+    ComboBox_UF2_cp_Path.Text := '';
   end;
 
   if Embedded_IDE_Options.ARM.Raspi_Pico.mount_Path.Count > 0 then begin
-    ComboBox_Raspi_Pico_mount_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.mount_Path[0];
+    ComboBox_UF2_mount_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.mount_Path[0];
   end else begin
-    ComboBox_Raspi_Pico_mount_Path.Text := '';
+    ComboBox_UF2_mount_Path.Text := '';
   end;
 
   RadioButton_Programmer_Change(nil);
@@ -294,14 +297,14 @@ begin
 
   // Rasberry PI Pico
   if Pos(UpCase('.uf2 '), s) > 0 then begin
-    RadioButton_Raspi_Pico.Checked := True;
-//    ComboBox_Raspi_Pico_UnitPath.Text := path;
-    ComboBox_Raspi_Pico_cp_Path.Text := path;
+    RadioButton_UF2.Checked := True;
+    //    ComboBox_UF2_UnitPath.Text := path;
+    ComboBox_UF2_cp_Path.Text := path;
     sa := s.Split(' ');
     if Length(sa) >= 3 then begin
-      ComboBox_Raspi_Pico_mount_Path.Text := sa[2];
+      ComboBox_UF2_mount_Path.Text := sa[2];
     end else begin
-      ComboBox_Raspi_Pico_mount_Path.Text := '';
+      ComboBox_UF2_mount_Path.Text := '';
     end;
   end;
 
@@ -338,10 +341,10 @@ begin
   end;
 
   // Rasberry PI Pico
-  if RadioButton_Raspi_Pico.Checked then begin
+  if RadioButton_UF2.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
     sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
-    s := ComboBox_Raspi_Pico_cp_Path.Text + ' ' + sf + ' ' + ComboBox_Raspi_Pico_mount_Path.Text + DirectorySeparator + sf;
+    s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 end;
@@ -365,10 +368,15 @@ begin
 
     ComboBox_ARM_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
     ComboBox_ARM_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
-    CheckBox_UF2File.Checked:= ARM_TemplatesPara[i].Create_UF2_File;
+    CheckBox_UF2File.Checked := ARM_TemplatesPara[i].Create_UF2_File;
 
     ARM_FlashBase_ComboBox.Text := ARM_TemplatesPara[i].FlashBase;
     ComboBox_ARM_SubArch.OnChange(Sender);
+
+
+    RadioButton_st_flash.Checked := ARM_TemplatesPara[i].Programmer = 'st-flash';
+    RadioButton_UF2.Checked := ARM_TemplatesPara[i].Programmer = 'uf2';
+    RadioButton_Bossac.Checked := ARM_TemplatesPara[i].Programmer = 'bossac';
   end;
 
   TemplatesForm.Free;
@@ -382,7 +390,7 @@ procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObjec
 begin
   TabSheet_st_link.Enabled := RadioButton_st_flash.Checked;
   TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
-  TabSheet_Raspi_Pico.Enabled := RadioButton_Raspi_Pico.Checked;
+  TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
 end;
 
 procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
