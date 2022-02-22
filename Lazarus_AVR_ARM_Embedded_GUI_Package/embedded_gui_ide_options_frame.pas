@@ -43,8 +43,8 @@ type
     procedure Button_Color_GUI_DefaultClick(Sender: TObject);
     procedure Button_Color_CustomClick(Sender: TObject);
   private
-    ComboBox_AVRdudePath, ComboBox_AVRdudeConf,
-      ComboBox_STFlashPath, ComboBox_BossacPath: TFileNameComboBox;
+    ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPath, ComboBox_BossacPath, ComboBox_Raspi_Pico_UnitPath, ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path: TFileNameComboBox;
+
     SM_Interface_Frame: TSM_Interface_Frame;
     SM_Output_Frame: TSM_Output_Frame;
   public
@@ -99,8 +99,6 @@ end;
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 var
   col: TColor;
-  ComboBox_Raspi_Pico_UnitPath, ComboBox_Raspi_Pico_cp_Path,
-    ComboBox_Raspi_Pico_mount_Path: TFileNameComboBox;
 begin
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
@@ -184,6 +182,9 @@ begin
     ComboBox_AVRdudeConf.Items := AVR.avrdudeConfigPath;
     ComboBox_STFlashPath.Items := ARM.STFlashPath;
     ComboBox_BossacPath.Items := ARM.BossacPath;
+    ComboBox_Raspi_Pico_UnitPath.Items := ARM.Raspi_Pico.Unit_Path;
+    ComboBox_Raspi_Pico_cp_Path.Items := ARM.Raspi_Pico.cp_Path;
+    ComboBox_Raspi_Pico_mount_Path.Items := ARM.Raspi_Pico.mount_Path;
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
@@ -250,6 +251,9 @@ begin
     AVR.avrdudeConfigPath.AddStrings(ComboBox_AVRdudeConf.Items, True);
     ARM.STFlashPath.AddStrings(ComboBox_STFlashPath.Items, True);
     ARM.BossacPath.AddStrings(ComboBox_BossacPath.Items, True);
+    ARM.Raspi_Pico.Unit_Path.AddStrings(ComboBox_Raspi_Pico_UnitPath.Items, True);
+    ARM.Raspi_Pico.cp_Path.AddStrings(ComboBox_Raspi_Pico_cp_Path.Items, True);
+    ARM.Raspi_Pico.mount_Path.AddStrings(ComboBox_Raspi_Pico_mount_Path.Items, True);
 
     Embedded_IDE_Options.Save_to_XML;
   end;
@@ -264,5 +268,3 @@ begin
 end;
 
 end.
-
-

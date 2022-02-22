@@ -346,6 +346,8 @@ begin
     sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
     s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+
+    LazProject.LazCompilerOptions.OtherUnitFiles:=ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
   end;
 end;
 
