@@ -116,8 +116,9 @@ const
 
   ProjectTextRaspi_Pico =
     'program Project1;' + LineEnding + LineEnding +
-    '{$H-,J-,O-}' +
-    LineEnding + LineEnding +
+    '{$MODE OBJFPC}' + LineEnding +
+    '{$H-,J-,O-}' + LineEnding +
+    '{$MEMORY 10000,10000}' + LineEnding + LineEnding +
     'uses' + LineEnding +
     '  pico_c, pico_gpio_c;' + LineEnding + LineEnding +
     'begin' + LineEnding +
