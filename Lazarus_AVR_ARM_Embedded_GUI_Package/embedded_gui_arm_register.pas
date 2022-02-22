@@ -88,24 +88,51 @@ end;
 function TProjectARMApp.InitProject(AProject: TLazProject): TModalResult;
 const
   ProjectText =
-    'program Project1;' + LineEnding + LineEnding + '{$H-,J-,O-}' +
-    LineEnding + LineEnding + 'uses' + LineEnding + '  cortexm3;' +
-    LineEnding + LineEnding + 'begin' + LineEnding + '  // Setup' +
-    LineEnding + '  repeat' + LineEnding + '    // Loop;' + LineEnding +
-    '  until false;' + LineEnding + 'end.';
+    'program Project1;' + LineEnding + LineEnding +
+    '{$H-,J-,O-}' +
+    LineEnding + LineEnding +
+    'begin' + LineEnding +
+    '  // Setup' +
+    LineEnding +
+    '  repeat' + LineEnding +
+    '    // Loop;' + LineEnding +
+    '  until false;' + LineEnding +
+    'end.';
+
+  ProjectTextARMV7M =
+    'program Project1;' + LineEnding + LineEnding +
+    '{$H-,J-,O-}' +
+    LineEnding + LineEnding +
+    'uses' + LineEnding +
+    '  cortexm3;' +
+    LineEnding + LineEnding +
+    'begin' + LineEnding +
+    '  // Setup' +
+    LineEnding +
+    '  repeat' + LineEnding +
+    '    // Loop;' + LineEnding +
+    '  until false;' + LineEnding +
+    'end.';
+
+  ProjectTextRaspi_Pico =
+    'program Project1;' + LineEnding + LineEnding +
+    '{$H-,J-,O-}' +
+    LineEnding + LineEnding +
+    'uses' + LineEnding +
+    '  pico_c, pico_gpio_c;' + LineEnding + LineEnding +
+    'begin' + LineEnding +
+    '  // Setup' +
+    LineEnding +
+    '  repeat' + LineEnding +
+    '    // Loop;' + LineEnding +
+    '  until false;' + LineEnding +
+    'end.';
 
 var
   MainFile: TLazProjectFile;
 
 begin
   inherited InitProject(AProject);
-
-  MainFile := AProject.CreateProjectFile('Project1.pas');
-  MainFile.IsPartOfProject := True;
-  AProject.AddFile(MainFile, False);
-
-  AProject.MainFileID := 0;
-  AProject.MainFile.SetSourceText(ProjectText, True);
 
   AProject.LazCompilerOptions.TargetFilename := 'Project1';
   AProject.LazCompilerOptions.Win32GraphicApp := False;
@@ -122,6 +149,22 @@ begin
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
   ARM_Project_Options_Form.MaskToLazProject(AProject);
+
+  MainFile := AProject.CreateProjectFile('Project1.pas');
+  MainFile.IsPartOfProject := True;
+  AProject.AddFile(MainFile, False);
+
+  AProject.MainFileID := 0;
+
+  if AProject.LazCompilerOptions.TargetProcessor = 'ARMV7M' then begin
+    AProject.MainFile.SetSourceText(ProjectTextARMV7M, True);
+  end else begin
+      if Pos('-WpRASPI_PICO',  AProject.LazCompilerOptions.CustomOptions)>0 then begin
+        AProject.MainFile.SetSourceText(ProjectTextRaspi_Pico, True);
+      end else begin
+        AProject.MainFile.SetSourceText(ProjectText, True);
+      end;
+  end;
 
   Result := mrOk;
 end;

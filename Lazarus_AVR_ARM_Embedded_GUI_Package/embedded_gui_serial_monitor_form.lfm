@@ -1,7 +1,7 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
-  Left = 1584
+  Left = 1602
   Height = 245
-  Top = 316
+  Top = 315
   Width = 497
   Caption = 'Serial_Monitor_Form'
   ClientHeight = 221
@@ -12,7 +12,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poDefaultPosOnly
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '2.3.0.0'
   object Button_Send: TButton
     Left = 412
     Height = 28
