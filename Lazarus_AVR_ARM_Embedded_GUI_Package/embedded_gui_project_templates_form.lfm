@@ -1,9 +1,9 @@
-object ARMProjectTemplatesForm: TARMProjectTemplatesForm
+object ProjectTemplatesForm: TProjectTemplatesForm
   Left = 2175
   Height = 430
   Top = 623
   Width = 409
-  Caption = 'ARMProjectTemplatesForm'
+  Caption = 'ProjectTemplatesForm'
   ClientHeight = 430
   ClientWidth = 409
   OnClose = FormClose

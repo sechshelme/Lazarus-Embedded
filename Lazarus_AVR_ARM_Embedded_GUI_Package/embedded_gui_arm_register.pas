@@ -120,7 +120,16 @@ const
     '{$H-,J-,O-}' + LineEnding +
     '{$MEMORY 10000,10000}' + LineEnding + LineEnding +
     'uses' + LineEnding +
-    '  pico_c, pico_gpio_c;' + LineEnding + LineEnding +
+    '  pico_c, ' + LineEnding +
+    '  pico_gpio_c,' + LineEnding +
+    '  pico_adc_c,' + LineEnding +
+    '  pico_clocks_c,' + LineEnding +
+    '  pico_uart_c,' + LineEnding +
+    '  pico_i2c_c,' + LineEnding +
+    '  pico_pio_c,' + LineEnding +
+    '  pico_spi_c,' + LineEnding +
+    '  pico_timer_c,' + LineEnding +
+    '  pico_time_c;' + LineEnding + LineEnding +
     'begin' + LineEnding +
     '  // Setup' +
     LineEnding +

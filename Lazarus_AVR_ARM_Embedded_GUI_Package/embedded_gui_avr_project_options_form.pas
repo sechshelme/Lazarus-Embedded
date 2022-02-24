@@ -16,7 +16,7 @@ uses
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_AVR_Common,
   Embedded_GUI_Common_FileComboBox,
-  Embedded_GUI_AVR_Project_Templates_Form,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const;
 
@@ -212,10 +212,11 @@ end;
 
 procedure TAVR_Project_Options_Form.Button_TemplatesClick(Sender: TObject);
 var
-  TemplatesForm: TAVRProjectTemplatesForm;
+  TemplatesForm: TProjectTemplatesForm;
   index: integer;
 begin
-  TemplatesForm := TAVRProjectTemplatesForm.Create(nil);
+  TemplatesForm := TProjectTemplatesForm.Create(nil);
+  TemplatesForm.Caption := Title + 'AVR Vorlagen';
 
   for index := 0 to Length(AVR_TemplatesPara) - 1 do begin
     TemplatesForm.ListBox_Template.Items.AddStrings(AVR_TemplatesPara[index].Name);

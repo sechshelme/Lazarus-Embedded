@@ -16,7 +16,7 @@ uses
   Embedded_GUI_Find_Comports,
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_ARM_Common,
-  Embedded_GUI_ARM_Project_Templates_Form,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const;
 
@@ -353,11 +353,12 @@ end;
 
 procedure TARM_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
 var
-  TemplatesForm: TARMProjectTemplatesForm;
+  TemplatesForm: TProjectTemplatesForm;
   i: integer;
 
 begin
-  TemplatesForm := TARMProjectTemplatesForm.Create(nil);
+  TemplatesForm := TProjectTemplatesForm.Create(nil);
+  TemplatesForm.Caption := Title + 'ARM Vorlagen';
 
   for i := 0 to Length(ARM_TemplatesPara) - 1 do begin
     TemplatesForm.ListBox_Template.Items.AddStrings(ARM_TemplatesPara[i].Name);

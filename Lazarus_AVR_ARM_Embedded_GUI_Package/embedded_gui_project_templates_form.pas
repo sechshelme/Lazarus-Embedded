@@ -1,4 +1,4 @@
-unit Embedded_GUI_ARM_Project_Templates_Form;
+unit Embedded_GUI_Project_Templates_Form;
 
 {$mode objfpc}{$H+}
 
@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TARMProjectTemplatesForm }
+  { TProjectTemplatesForm }
 
-  TARMProjectTemplatesForm = class(TForm)
+  TProjectTemplatesForm = class(TForm)
     BitBtn_Ok: TBitBtn;
     BitBtn_Cancel: TBitBtn;
     Label1: TLabel;
@@ -25,29 +25,27 @@ type
   end;
 
 var
-  ARMProjectTemplatesForm: TARMProjectTemplatesForm;
+  ProjectTemplatesForm: TProjectTemplatesForm;
 
 implementation
 
 {$R *.lfm}
 
-{ TARMProjectTemplatesForm }
+{ TProjectTemplatesForm }
 
-procedure TARMProjectTemplatesForm.FormCreate(Sender: TObject);
+procedure TProjectTemplatesForm.FormCreate(Sender: TObject);
 begin
-  Caption:=Title + 'ARM Vorlagen';
   LoadFormPos_from_XML(Self);
 end;
 
-procedure TARMProjectTemplatesForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TProjectTemplatesForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   SaveFormPos_to_XML(Self);
 end;
 
-procedure TARMProjectTemplatesForm.ListBox_TemplateDblClick(Sender: TObject);
+procedure TProjectTemplatesForm.ListBox_TemplateDblClick(Sender: TObject);
 begin
   BitBtn_Ok.Click;
 end;
 
 end.
-
