@@ -9,7 +9,7 @@ uses
   var
     i: uint32;
   begin
-    for i := 0 to 10000000 do begin
+    for i := 0 to 9000000 do begin
       asm
                Nop end; // Leerbefehl
     end;
