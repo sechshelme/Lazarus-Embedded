@@ -1,11 +1,11 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 2398
-  Height = 502
-  Top = 717
-  Width = 699
+  Left = 2061
+  Height = 715
+  Top = 123
+  Width = 540
   Caption = 'ARM Embedded Project Options'
-  ClientHeight = 502
-  ClientWidth = 699
+  ClientHeight = 715
+  ClientWidth = 540
   Constraints.MinHeight = 350
   Constraints.MinWidth = 540
   OnClose = FormClose
@@ -14,19 +14,19 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   Position = poDefaultPosOnly
   LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
-    Left = 602
-    Height = 28
-    Top = 32
-    Width = 80
-    Anchors = [akTop, akRight]
+    Left = 233
+    Height = 25
+    Top = 624
+    Width = 75
+    Anchors = [akRight, akBottom]
     Caption = 'Vorlagen...'
     OnClick = TemplatesButtonClick
     TabOrder = 0
   end
   object CancelButton: TButton
-    Left = 502
+    Left = 361
     Height = 25
-    Top = 411
+    Top = 624
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Abbrechen'
@@ -36,8 +36,8 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   object Memo1: TMemo
     Left = 0
     Height = 47
-    Top = 455
-    Width = 699
+    Top = 668
+    Width = 540
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
@@ -48,20 +48,20 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
     TabStop = False
   end
   object CPU_InfoButton: TButton
-    Left = 504
-    Height = 28
-    Top = 32
-    Width = 80
-    Anchors = [akTop, akRight]
+    Left = 145
+    Height = 25
+    Top = 624
+    Width = 75
+    Anchors = [akRight, akBottom]
     Caption = 'CPU Info...'
     OnClick = CPU_InfoButtonClick
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 605
+    Left = 446
     Height = 25
-    Top = 411
-    Width = 77
+    Top = 624
+    Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
     ModalResult = 1
@@ -69,13 +69,13 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   end
   object GroupBox_Programmer: TGroupBox
     Left = 16
-    Height = 80
-    Top = 72
-    Width = 666
-    Anchors = [akTop, akLeft, akRight]
+    Height = 405
+    Top = 208
+    Width = 508
+    Anchors = [akTop, akLeft, akRight, akBottom]
     Caption = 'Programmer'
-    ClientHeight = 63
-    ClientWidth = 664
+    ClientHeight = 388
+    ClientWidth = 506
     TabOrder = 2
     object RadioButton_st_flash: TRadioButton
       Left = 7
@@ -89,303 +89,309 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       TabStop = True
     end
     object RadioButton_Bossac: TRadioButton
-      Left = 8
+      Left = 112
       Height = 23
-      Top = 32
+      Top = 8
       Width = 128
       Caption = 'Bossac ( Beta !!! )'
       OnChange = RadioButton_Programmer_Change
       TabOrder = 1
     end
     object RadioButton_UF2: TRadioButton
-      Left = 184
+      Left = 262
       Height = 23
       Top = 8
-      Width = 118
-      Caption = 'UF2 ( Alpha !!! )'
+      Width = 50
+      Caption = 'UF2'
       TabOrder = 2
     end
+    object PageControl1: TPageControl
+      Left = 8
+      Height = 341
+      Top = 40
+      Width = 495
+      ActivePage = TabSheet_Bossac
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      TabIndex = 1
+      TabOrder = 3
+      object TabSheet_st_link: TTabSheet
+        Caption = 'ST-Flash'
+        ClientHeight = 311
+        ClientWidth = 485
+        object BitBtn_Auto_Flash_Base: TBitBtn
+          Left = 208
+          Height = 28
+          Top = 120
+          Width = 51
+          Caption = 'auto'
+          Glyph.Data = {
+            36090000424D3609000000000000360000002800000018000000180000000100
+            2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFFFFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF42924AFFFFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF6ABD72FF4292
+            4AFF3C8A43003C8A4300FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF6ABD
+            72FF42924AFF3C8A4300FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF93E8
+            9AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF0042924AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF4292
+            4AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF93E89AFF93E8
+            9AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFF
+            FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFF
+            FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFF
+            FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
+            9AFF93E89AFF93E89AFF6ABD72FF42924AFF42924A00FFFFFF00FFFFFF00FFFF
+            FF0042924AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF4292
+            4AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF93E89AFF93E8
+            9AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF93E8
+            9AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF6ABD
+            72FF42924AFF42924A00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF6ABD72FF4292
+            4AFF2062230620622300FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF42924AFFFFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF42924A00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+            FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
+          }
+          OnClick = Button_to_FlashBase_Click
+          TabOrder = 0
+        end
+        object ARM_FlashBase_ComboBox: TComboBox
+          Left = 16
+          Height = 27
+          Top = 121
+          Width = 160
+          ItemHeight = 0
+          TabOrder = 1
+        end
+        object Label_FlashBase: TLabel
+          Left = 16
+          Height = 16
+          Top = 96
+          Width = 67
+          Caption = 'Flash Base:'
+        end
+      end
+      object TabSheet_Bossac: TTabSheet
+        Caption = 'Bossac'
+        ClientHeight = 311
+        ClientWidth = 485
+        object CheckBox_Erase: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 80
+          Width = 175
+          Caption = 'Erase the entire flash (-e)'
+          TabOrder = 0
+        end
+        object CheckBox_boot: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 104
+          Width = 394
+          Caption = 'Boot from FLASH (checked) / Boot from ROM (unchecked) (-b)'
+          TabOrder = 1
+        end
+        object CheckBox_Brownout_Detection: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 128
+          Width = 168
+          Caption = 'Brownout detection (-c)'
+          TabOrder = 2
+        end
+        object CheckBox_Lock: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 152
+          Width = 180
+          Caption = 'Lock the flash REGION (-l)'
+          TabOrder = 3
+        end
+        object CheckBox_Security: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 176
+          Width = 199
+          Caption = 'Set the flash security flag (-s)'
+          TabOrder = 4
+        end
+        object CheckBox_Debug: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 200
+          Width = 181
+          Caption = 'Print debug messages (-d)'
+          TabOrder = 5
+        end
+        object CheckBox_Reset: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 224
+          Width = 110
+          Caption = 'Reset CPU (-R)'
+          TabOrder = 6
+        end
+        object CheckBox_Verify: TCheckBox
+          Left = 256
+          Height = 23
+          Top = 80
+          Width = 254
+          Caption = 'Verify FILE matches flash contents (-v)'
+          TabOrder = 7
+        end
+        object CheckBox_Brownout_Reset: TCheckBox
+          Left = 256
+          Height = 23
+          Top = 128
+          Width = 143
+          Caption = 'Brownout Reset (-t)'
+          TabOrder = 8
+        end
+        object CheckBox_UnLock: TCheckBox
+          Left = 256
+          Height = 23
+          Top = 152
+          Width = 198
+          Caption = 'Unlock the flash REGION (-u)'
+          TabOrder = 9
+        end
+        object CheckBox_Info: TCheckBox
+          Left = 256
+          Height = 23
+          Top = 176
+          Width = 204
+          Caption = 'Display device information (-i)'
+          TabOrder = 10
+        end
+        object CheckBox_force_USB_Port: TCheckBox
+          Left = 256
+          Height = 23
+          Top = 200
+          Width = 247
+          Caption = 'Override USB port autodetection (-U)'
+          TabOrder = 11
+        end
+      end
+      object TabSheet_UF2: TTabSheet
+        Caption = 'UF2'
+        ClientHeight = 311
+        ClientWidth = 485
+        object Button2: TButton
+          Left = 23
+          Height = 25
+          Top = 40
+          Width = 75
+          Caption = 'test'
+          TabOrder = 0
+          Visible = False
+        end
+      end
+    end
   end
-  object PageControl1: TPageControl
+  object GroupBox_Compiler: TGroupBox
     Left = 16
-    Height = 239
-    Top = 160
-    Width = 667
-    ActivePage = TabSheet_UF2
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 3
+    Height = 184
+    Top = 24
+    Width = 508
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Compiler'
+    ClientHeight = 167
+    ClientWidth = 506
     TabOrder = 6
-    object TabSheet_Compiler: TTabSheet
-      Caption = 'Compiler'
-      ClientHeight = 209
-      ClientWidth = 657
-      object ComboBox_ARM_SubArch: TComboBox
-        Left = 16
-        Height = 27
-        Top = 48
-        Width = 104
-        ItemHeight = 0
-        OnChange = ComboBox_ARM_SubArchChange
-        TabOrder = 0
-      end
-      object Label1: TLabel
-        Left = 16
-        Height = 16
-        Top = 24
-        Width = 83
-        Caption = 'ARM SubArch'
-      end
-      object CheckBox_ASMFile: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 96
-        Width = 164
-        Caption = 'ASM-File erzeugen (-al)'
-        TabOrder = 1
-      end
-      object Label5: TLabel
-        Left = 144
-        Height = 16
-        Top = 24
-        Width = 83
-        Caption = 'ARM FPC Typ:'
-      end
-      object ComboBox_ARM_Typ_FPC: TComboBox
-        Left = 144
-        Height = 27
-        Top = 48
-        Width = 168
-        ItemHeight = 0
-        TabOrder = 2
-      end
-      object CheckBox_UF2File: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 124
-        Width = 165
-        Caption = 'UF2-File erzeugen (-Xu)'
-        TabOrder = 3
-      end
+    object CheckBox_UF2File: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 124
+      Width = 165
+      Caption = 'UF2-File erzeugen (-Xu)'
+      TabOrder = 0
     end
-    object TabSheet_st_link: TTabSheet
-      Caption = 'ST-Flash'
-      ClientHeight = 209
-      ClientWidth = 657
-      object BitBtn_Auto_Flash_Base: TBitBtn
-        Left = 208
-        Height = 28
-        Top = 120
-        Width = 51
-        Caption = 'auto'
-        Glyph.Data = {
-          36090000424D3609000000000000360000002800000018000000180000000100
-          2000000000000009000064000000640000000000000000000000FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFFFFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF42924AFFFFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF6ABD72FF4292
-          4AFF3C8A43003C8A4300FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF6ABD
-          72FF42924AFF3C8A4300FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF93E8
-          9AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF0042924AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF4292
-          4AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF93E89AFF93E8
-          9AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFF
-          FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFF
-          FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFF
-          FF0042924AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E89AFF93E8
-          9AFF93E89AFF93E89AFF6ABD72FF42924AFF42924A00FFFFFF00FFFFFF00FFFF
-          FF0042924AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF4292
-          4AFF42924AFF42924AFF42924AFF42924AFF42924AFF42924AFF93E89AFF93E8
-          9AFF93E89AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF93E8
-          9AFF6ABD72FF42924AFFFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF93E89AFF6ABD
-          72FF42924AFF42924A00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF6ABD72FF4292
-          4AFF2062230620622300FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF42924AFFFFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0042924AFF42924A00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-          FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-        }
-        OnClick = Button_to_FlashBase_Click
-        TabOrder = 0
-      end
-      object ARM_FlashBase_ComboBox: TComboBox
-        Left = 16
-        Height = 27
-        Top = 121
-        Width = 160
-        ItemHeight = 0
-        TabOrder = 1
-      end
-      object Label_FlashBase: TLabel
-        Left = 16
-        Height = 16
-        Top = 96
-        Width = 67
-        Caption = 'Flash Base:'
-      end
+    object CheckBox_ASMFile: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 96
+      Width = 164
+      Caption = 'ASM-File erzeugen (-al)'
+      TabOrder = 1
     end
-    object TabSheet_Bossac: TTabSheet
-      Caption = 'Bossac'
-      ClientHeight = 209
-      ClientWidth = 657
-      object CheckBox_Erase: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 80
-        Width = 175
-        Caption = 'Erase the entire flash (-e)'
-        TabOrder = 0
-      end
-      object CheckBox_boot: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 104
-        Width = 394
-        Caption = 'Boot from FLASH (checked) / Boot from ROM (unchecked) (-b)'
-        TabOrder = 1
-      end
-      object CheckBox_Brownout_Detection: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 128
-        Width = 168
-        Caption = 'Brownout detection (-c)'
-        TabOrder = 2
-      end
-      object CheckBox_Lock: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 152
-        Width = 180
-        Caption = 'Lock the flash REGION (-l)'
-        TabOrder = 3
-      end
-      object CheckBox_Security: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 176
-        Width = 199
-        Caption = 'Set the flash security flag (-s)'
-        TabOrder = 4
-      end
-      object CheckBox_Debug: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 200
-        Width = 181
-        Caption = 'Print debug messages (-d)'
-        TabOrder = 5
-      end
-      object CheckBox_Reset: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 224
-        Width = 110
-        Caption = 'Reset CPU (-R)'
-        TabOrder = 6
-      end
-      object CheckBox_Verify: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 80
-        Width = 254
-        Caption = 'Verify FILE matches flash contents (-v)'
-        TabOrder = 7
-      end
-      object CheckBox_Brownout_Reset: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 128
-        Width = 143
-        Caption = 'Brownout Reset (-t)'
-        TabOrder = 8
-      end
-      object CheckBox_UnLock: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 152
-        Width = 198
-        Caption = 'Unlock the flash REGION (-u)'
-        TabOrder = 9
-      end
-      object CheckBox_Info: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 176
-        Width = 204
-        Caption = 'Display device information (-i)'
-        TabOrder = 10
-      end
-      object CheckBox_force_USB_Port: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 200
-        Width = 247
-        Caption = 'Override USB port autodetection (-U)'
-        TabOrder = 11
-      end
+    object ComboBox_ARM_Typ_FPC: TComboBox
+      Left = 144
+      Height = 27
+      Top = 48
+      Width = 168
+      ItemHeight = 0
+      TabOrder = 2
     end
-    object TabSheet_UF2: TTabSheet
-      Caption = 'UF2'
-      ClientHeight = 209
-      ClientWidth = 657
-      object Button2: TButton
-        Left = 23
-        Height = 25
-        Top = 40
-        Width = 75
-        Caption = 'test'
-        TabOrder = 0
-        Visible = False
-      end
+    object ComboBox_ARM_SubArch: TComboBox
+      Left = 16
+      Height = 27
+      Top = 48
+      Width = 104
+      ItemHeight = 0
+      OnChange = ComboBox_ARM_SubArchChange
+      TabOrder = 3
+    end
+    object Label1: TLabel
+      Left = 16
+      Height = 16
+      Top = 24
+      Width = 83
+      Caption = 'ARM SubArch'
+    end
+    object Label5: TLabel
+      Left = 144
+      Height = 16
+      Top = 24
+      Width = 83
+      Caption = 'ARM FPC Typ:'
     end
   end
 end

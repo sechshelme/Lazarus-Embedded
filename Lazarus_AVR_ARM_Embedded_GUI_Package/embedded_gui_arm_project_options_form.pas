@@ -30,7 +30,6 @@ type
     Button1: TButton;
     Button2: TButton;
     CheckBox_ASMFile: TCheckBox;
-    CheckBox_UF2File: TCheckBox;
     CheckBox_boot: TCheckBox;
     CheckBox_Brownout_Detection: TCheckBox;
     CheckBox_Brownout_Reset: TCheckBox;
@@ -41,15 +40,17 @@ type
     CheckBox_Lock: TCheckBox;
     CheckBox_Reset: TCheckBox;
     CheckBox_Security: TCheckBox;
+    CheckBox_UF2File: TCheckBox;
     CheckBox_UnLock: TCheckBox;
     CheckBox_Verify: TCheckBox;
     ComboBox_ARM_SubArch: TComboBox;
     ComboBox_ARM_Typ_FPC: TComboBox;
     CPU_InfoButton: TButton;
+    GroupBox_Compiler: TGroupBox;
     GroupBox_Programmer: TGroupBox;
+    CancelButton: TButton;
     Label1: TLabel;
     Label5: TLabel;
-    CancelButton: TButton;
     Label_FlashBase: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
@@ -57,7 +58,6 @@ type
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;
     TabSheet_UF2: TTabSheet;
-    TabSheet_Compiler: TTabSheet;
     TabSheet_st_link: TTabSheet;
     TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
