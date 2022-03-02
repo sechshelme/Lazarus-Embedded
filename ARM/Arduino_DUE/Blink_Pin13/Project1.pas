@@ -1,6 +1,8 @@
 program Project1;
 
 {$H-,J-,O-}
+{$MEMORY 2000,2000}
+
 
 uses
   cortexm3;
@@ -9,7 +11,7 @@ uses
   var
     i: uint32;
   begin
-    for i := 0 to 9000000 do begin
+    for i := 0 to 7000000 do begin
       asm
                Nop end; // Leerbefehl
     end;

@@ -1,7 +1,7 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 2061
+  Left = 2752
   Height = 715
-  Top = 123
+  Top = 527
   Width = 540
   Caption = 'ARM Embedded Project Options'
   ClientHeight = 715
@@ -352,7 +352,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       Top = 124
       Width = 165
       Caption = 'UF2-File erzeugen (-Xu)'
-      TabOrder = 0
+      TabOrder = 4
     end
     object CheckBox_ASMFile: TCheckBox
       Left = 16
@@ -360,38 +360,55 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       Top = 96
       Width = 164
       Caption = 'ASM-File erzeugen (-al)'
-      TabOrder = 1
+      TabOrder = 3
     end
-    object ComboBox_ARM_Typ_FPC: TComboBox
-      Left = 144
+    object ComboBox_Typ_FPC: TComboBox
+      Left = 272
       Height = 27
-      Top = 48
+      Top = 40
       Width = 168
       ItemHeight = 0
       TabOrder = 2
     end
-    object ComboBox_ARM_SubArch: TComboBox
-      Left = 16
+    object ComboBox_SubArch: TComboBox
+      Left = 144
       Height = 27
-      Top = 48
+      Top = 40
       Width = 104
       ItemHeight = 0
-      OnChange = ComboBox_ARM_SubArchChange
-      TabOrder = 3
+      OnChange = ComboBox_SubArchChange
+      TabOrder = 1
     end
     object Label1: TLabel
-      Left = 16
-      Height = 16
-      Top = 24
-      Width = 83
-      Caption = 'ARM SubArch'
-    end
-    object Label5: TLabel
       Left = 144
       Height = 16
-      Top = 24
-      Width = 83
-      Caption = 'ARM FPC Typ:'
+      Top = 16
+      Width = 51
+      Caption = 'SubArch'
+    end
+    object Label5: TLabel
+      Left = 272
+      Height = 16
+      Top = 16
+      Width = 51
+      Caption = 'FPC Typ:'
+    end
+    object ComboBox_Arch: TComboBox
+      Left = 16
+      Height = 27
+      Top = 40
+      Width = 104
+      ItemHeight = 0
+      OnChange = ComboBox_ArchChange
+      TabOrder = 0
+      Text = 'avr'
+    end
+    object Label2: TLabel
+      Left = 16
+      Height = 16
+      Top = 16
+      Width = 28
+      Caption = 'Arch'
     end
   end
 end

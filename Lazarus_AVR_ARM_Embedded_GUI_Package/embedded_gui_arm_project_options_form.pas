@@ -43,13 +43,15 @@ type
     CheckBox_UF2File: TCheckBox;
     CheckBox_UnLock: TCheckBox;
     CheckBox_Verify: TCheckBox;
-    ComboBox_ARM_SubArch: TComboBox;
-    ComboBox_ARM_Typ_FPC: TComboBox;
+    ComboBox_SubArch: TComboBox;
+    ComboBox_Arch: TComboBox;
+    ComboBox_Typ_FPC: TComboBox;
     CPU_InfoButton: TButton;
     GroupBox_Compiler: TGroupBox;
     GroupBox_Programmer: TGroupBox;
     CancelButton: TButton;
     Label1: TLabel;
+    Label2: TLabel;
     Label5: TLabel;
     Label_FlashBase: TLabel;
     Memo1: TMemo;
@@ -61,7 +63,8 @@ type
     TabSheet_st_link: TTabSheet;
     TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
-    procedure ComboBox_ARM_SubArchChange(Sender: TObject);
+    procedure ComboBox_ArchChange(Sender: TObject);
+    procedure ComboBox_SubArchChange(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
     procedure CPU_InfoButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -71,6 +74,8 @@ type
     procedure TemplatesButtonClick(Sender: TObject);
   private
     ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
+    SubArchList: string;
+    List: TStringArray;
     procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
@@ -96,12 +101,17 @@ begin
   PageControl1.PageIndex := 0;
 
   // --- Compiler
-  with ComboBox_ARM_SubArch do begin
+  with ComboBox_Arch do begin
+    Items.CommaText := 'avr, arm, xtensa';
+    Style := csOwnerDrawFixed;
+  end;
+
+  with ComboBox_SubArch do begin
     Items.CommaText := ARM_SubArch_List;
     Style := csOwnerDrawFixed;
   end;
 
-  with ComboBox_ARM_Typ_FPC do begin
+  with ComboBox_Typ_FPC do begin
     Sorted := True;
   end;
 
@@ -142,7 +152,7 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
-//    Width := Self.Width - 10;
+    //    Width := Self.Width - 10;
     Top := 10;
   end;
 
@@ -152,7 +162,7 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
-//    Width := Self.Width - 10;
+    //    Width := Self.Width - 10;
     Top := 80;
   end;
 
@@ -163,7 +173,7 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
-//    Width := Self.Width - 10;
+    //    Width := Self.Width - 10;
     Top := 150;
   end;
 
@@ -172,13 +182,19 @@ end;
 procedure TARM_Project_Options_Form.DefaultMask;
 begin
   // --- Compiler
-  with ComboBox_ARM_SubArch do begin
+  with ComboBox_Arch do begin
+    Text := 'avr';
+    ItemIndex := Items.IndexOf(Text);
+//    ChangeARM_Typ;
+  end;
+
+  with ComboBox_SubArch do begin
     Text := 'ARMV7M';
     ItemIndex := Items.IndexOf(Text);
     ChangeARM_Typ;
   end;
 
-  with ComboBox_ARM_Typ_FPC do begin
+  with ComboBox_Typ_FPC do begin
     Text := 'STM32F103X8';
   end;
 
@@ -237,7 +253,7 @@ var
   s: string;
 begin
   for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
-    if ARM_ControllerDataList[i, 0] = ComboBox_ARM_Typ_FPC.Text then begin
+    if ARM_ControllerDataList[i, 0] = ComboBox_Typ_FPC.Text then begin
       s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
       ARM_FlashBase_ComboBox.Text := '0x' + s;
       Break;
@@ -245,8 +261,26 @@ begin
   end;
 end;
 
-procedure TARM_Project_Options_Form.ComboBox_ARM_SubArchChange(Sender: TObject);
+procedure TARM_Project_Options_Form.ComboBox_SubArchChange(Sender: TObject);
 begin
+  ChangeARM_Typ;
+end;
+
+procedure TARM_Project_Options_Form.ComboBox_ArchChange(Sender: TObject);
+begin
+  if ComboBox_Arch.Text = 'avr' then begin
+    SubArchList := AVR_SubArch_List;
+    List:=avr_List;
+  end;
+  if ComboBox_Arch.Text = 'arm' then begin
+    SubArchList := ARM_SubArch_List;
+    List:=arm_List;
+  end;
+  if ComboBox_Arch.Text = 'xtensa' then begin
+    SubArchList := xtensa_SubArch_List;
+    List:=xtensa_List;
+  end;
+  ComboBox_SubArch.Items.CommaText := SubArchList;
   ChangeARM_Typ;
 end;
 
@@ -254,11 +288,16 @@ procedure TARM_Project_Options_Form.ChangeARM_Typ;
 var
   index: integer;
 begin
-  index := ComboBox_ARM_SubArch.ItemIndex;
-  if (index < 0) or (index >= Length(ARM_SubArch_List)) then begin
-    ComboBox_ARM_Typ_FPC.Items.CommaText := '';
+  index := ComboBox_SubArch.ItemIndex;
+  //if (index < 0) or (index >= Length(ARM_SubArch_List)) then begin
+  //  ComboBox_Typ_FPC.Items.CommaText := '';
+  //end else begin
+  //  ComboBox_Typ_FPC.Items.CommaText := ARM_List[index];
+  //end;
+  if (index < 0) or (index >= Length(List)) then begin
+    ComboBox_Typ_FPC.Items.CommaText := '';
   end else begin
-    ComboBox_ARM_Typ_FPC.Items.CommaText := ARM_List[index];
+    ComboBox_Typ_FPC.Items.CommaText := List[index];
   end;
 end;
 
@@ -269,12 +308,12 @@ var
 begin
   // --- FPC Command
   with LazProject.LazCompilerOptions do begin
-    ComboBox_ARM_SubArch.Text := TargetProcessor;
-    ComboBox_ARM_SubArch.ItemIndex := ComboBox_ARM_SubArch.Items.IndexOf(ComboBox_ARM_SubArch.Text);
+    ComboBox_SubArch.Text := TargetProcessor;
+    ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ChangeARM_Typ;
 
     s := CustomOptions;
-    ComboBox_ARM_Typ_FPC.Text := FindPara(s, '-Wp');
+    ComboBox_Typ_FPC.Text := FindPara(s, '-Wp');
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
     CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;
   end;
@@ -316,8 +355,8 @@ var
   s, sf: string;
 begin
   // --- FPC_Command
-  LazProject.LazCompilerOptions.TargetProcessor := ComboBox_ARM_SubArch.Text;
-  s := '-Wp' + ComboBox_ARM_Typ_FPC.Text;
+  LazProject.LazCompilerOptions.TargetProcessor := ComboBox_SubArch.Text;
+  s := '-Wp' + ComboBox_Typ_FPC.Text;
   if CheckBox_AsmFile.Checked then begin
     s += LineEnding + '-al';
   end;
@@ -346,7 +385,7 @@ begin
     s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
 
-    LazProject.LazCompilerOptions.OtherUnitFiles:=ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
+    LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
   end;
 end;
 
@@ -368,13 +407,14 @@ begin
   if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
-    ComboBox_ARM_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
-    ComboBox_ARM_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
+    ComboBox_Arch.Text:=ARM_TemplatesPara[i].Arch;
+    ComboBox_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
+    ComboBox_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
     CheckBox_UF2File.Checked := ARM_TemplatesPara[i].Create_UF2_File;
 
     ARM_FlashBase_ComboBox.Text := ARM_TemplatesPara[i].FlashBase;
-    ComboBox_ARM_SubArch.OnChange(Sender);
-
+//    ComboBox_SubArch.OnChange(Sender);
+//    ComboBox_Arch.OnChange(Sender);
 
     RadioButton_st_flash.Checked := ARM_TemplatesPara[i].Programmer = 'st-flash';
     RadioButton_UF2.Checked := ARM_TemplatesPara[i].Programmer = 'uf2';
