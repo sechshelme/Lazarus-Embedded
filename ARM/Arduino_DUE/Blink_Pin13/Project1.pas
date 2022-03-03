@@ -1,7 +1,7 @@
 program Project1;
 
 {$H-,J-,O-}
-{$MEMORY 2000,2000}
+// {$MEMORY 2000,2000}
 
 
 uses
@@ -11,7 +11,7 @@ uses
   var
     i: uint32;
   begin
-    for i := 0 to 7000000 do begin
+    for i := 0 to 6000000 do begin
       asm
                Nop end; // Leerbefehl
     end;

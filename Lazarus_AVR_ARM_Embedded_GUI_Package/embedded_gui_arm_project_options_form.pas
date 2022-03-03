@@ -69,7 +69,6 @@ type
     procedure CPU_InfoButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
@@ -102,7 +101,7 @@ begin
 
   // --- Compiler
   with ComboBox_Arch do begin
-    Items.CommaText := 'avr, arm, xtensa';
+    Items.CommaText := 'avr,arm,xtensa';
     Style := csOwnerDrawFixed;
   end;
 
@@ -183,7 +182,7 @@ procedure TARM_Project_Options_Form.DefaultMask;
 begin
   // --- Compiler
   with ComboBox_Arch do begin
-    Text := 'avr';
+    Text := 'arm';
     ItemIndex := Items.IndexOf(Text);
 //    ChangeARM_Typ;
   end;
@@ -268,6 +267,13 @@ end;
 
 procedure TARM_Project_Options_Form.ComboBox_ArchChange(Sender: TObject);
 begin
+  ChangeARM_Typ;
+end;
+
+procedure TARM_Project_Options_Form.ChangeARM_Typ;
+var
+  index: integer;
+begin
   if ComboBox_Arch.Text = 'avr' then begin
     SubArchList := AVR_SubArch_List;
     List:=avr_List;
@@ -281,13 +287,9 @@ begin
     List:=xtensa_List;
   end;
   ComboBox_SubArch.Items.CommaText := SubArchList;
-  ChangeARM_Typ;
-end;
 
-procedure TARM_Project_Options_Form.ChangeARM_Typ;
-var
-  index: integer;
-begin
+
+
   index := ComboBox_SubArch.ItemIndex;
   //if (index < 0) or (index >= Length(ARM_SubArch_List)) then begin
   //  ComboBox_Typ_FPC.Items.CommaText := '';
@@ -308,12 +310,15 @@ var
 begin
   // --- FPC Command
   with LazProject.LazCompilerOptions do begin
+    ComboBox_Arch.Text:=TargetCPU;
+    ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
     ComboBox_SubArch.Text := TargetProcessor;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ChangeARM_Typ;
 
     s := CustomOptions;
     ComboBox_Typ_FPC.Text := FindPara(s, '-Wp');
+    ComboBox_Typ_FPC.Items.IndexOf(ComboBox_Typ_FPC.Text);
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
     CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;
   end;
@@ -355,6 +360,7 @@ var
   s, sf: string;
 begin
   // --- FPC_Command
+  LazProject.LazCompilerOptions.TargetCPU := ComboBox_Arch.Text;
   LazProject.LazCompilerOptions.TargetProcessor := ComboBox_SubArch.Text;
   s := '-Wp' + ComboBox_Typ_FPC.Text;
   if CheckBox_AsmFile.Checked then begin
@@ -422,10 +428,6 @@ begin
   end;
 
   TemplatesForm.Free;
-end;
-
-procedure TARM_Project_Options_Form.FormDestroy(Sender: TObject);
-begin
 end;
 
 procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);

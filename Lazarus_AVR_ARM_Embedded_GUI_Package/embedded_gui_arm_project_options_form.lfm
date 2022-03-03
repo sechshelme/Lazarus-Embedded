@@ -10,7 +10,6 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
   Constraints.MinWidth = 540
   OnClose = FormClose
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   Position = poDefaultPosOnly
   LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
