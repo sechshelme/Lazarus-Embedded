@@ -75,7 +75,7 @@ type
     ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
-    procedure ChangeARM_Typ;
+//    procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
@@ -190,8 +190,10 @@ begin
   with ComboBox_SubArch do begin
     Text := 'ARMV7M';
     ItemIndex := Items.IndexOf(Text);
-    ChangeARM_Typ;
+//    ChangeARM_Typ;
   end;
+
+  ComboBox_ArchChange(nil);
 
   with ComboBox_Typ_FPC do begin
     Text := 'STM32F103X8';
@@ -260,19 +262,7 @@ begin
   end;
 end;
 
-procedure TARM_Project_Options_Form.ComboBox_SubArchChange(Sender: TObject);
-begin
-  ChangeARM_Typ;
-end;
-
 procedure TARM_Project_Options_Form.ComboBox_ArchChange(Sender: TObject);
-begin
-  ChangeARM_Typ;
-end;
-
-procedure TARM_Project_Options_Form.ChangeARM_Typ;
-var
-  index: integer;
 begin
   if ComboBox_Arch.Text = 'avr' then begin
     SubArchList := AVR_SubArch_List;
@@ -288,8 +278,14 @@ begin
   end;
   ComboBox_SubArch.Items.CommaText := SubArchList;
 
+  ComboBox_SubArchChange(Sender);
+//  ChangeARM_Typ;
+end;
 
-
+procedure TARM_Project_Options_Form.ComboBox_SubArchChange(Sender: TObject);
+var
+  index: integer;
+begin
   index := ComboBox_SubArch.ItemIndex;
   //if (index < 0) or (index >= Length(ARM_SubArch_List)) then begin
   //  ComboBox_Typ_FPC.Items.CommaText := '';
@@ -301,7 +297,43 @@ begin
   end else begin
     ComboBox_Typ_FPC.Items.CommaText := List[index];
   end;
+//  ChangeARM_Typ;
 end;
+
+//procedure TARM_Project_Options_Form.ChangeARM_Typ;
+//var
+//  index: integer;
+//begin
+//  if ComboBox_Arch.Text = 'avr' then begin
+//    SubArchList := AVR_SubArch_List;
+//    List:=avr_List;
+//  end;
+//  if ComboBox_Arch.Text = 'arm' then begin
+//    SubArchList := ARM_SubArch_List;
+//    List:=arm_List;
+//  end;
+//  if ComboBox_Arch.Text = 'xtensa' then begin
+//    SubArchList := xtensa_SubArch_List;
+//    List:=xtensa_List;
+//  end;
+//  ComboBox_SubArch.Items.CommaText := SubArchList;
+////  if ComboBox_SubArch.Items.Count>0 then ComboBox_SubArch.ItemIndex:=0;
+////  ShowMessage(SubArchList);
+//
+//
+//
+//  index := ComboBox_SubArch.ItemIndex;
+//  //if (index < 0) or (index >= Length(ARM_SubArch_List)) then begin
+//  //  ComboBox_Typ_FPC.Items.CommaText := '';
+//  //end else begin
+//  //  ComboBox_Typ_FPC.Items.CommaText := ARM_List[index];
+//  //end;
+//  if (index < 0) or (index >= Length(List)) then begin
+//    ComboBox_Typ_FPC.Items.CommaText := '';
+//  end else begin
+//    ComboBox_Typ_FPC.Items.CommaText := List[index];
+//  end;
+//end;
 
 procedure TARM_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
@@ -314,7 +346,8 @@ begin
     ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
     ComboBox_SubArch.Text := TargetProcessor;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
-    ChangeARM_Typ;
+//    ComboBox_ArchChange(nil);
+//    ChangeARM_Typ;
 
     s := CustomOptions;
     ComboBox_Typ_FPC.Text := FindPara(s, '-Wp');

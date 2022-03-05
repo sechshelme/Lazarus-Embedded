@@ -1,7 +1,7 @@
 object ARM_Project_Options_Form: TARM_Project_Options_Form
-  Left = 2752
+  Left = 2658
   Height = 715
-  Top = 527
+  Top = 558
   Width = 540
   Caption = 'ARM Embedded Project Options'
   ClientHeight = 715
