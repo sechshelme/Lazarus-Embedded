@@ -344,9 +344,11 @@ begin
   with LazProject.LazCompilerOptions do begin
     ComboBox_Arch.Text:=TargetCPU;
     ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
+    ComboBox_ArchChange(nil);
     ComboBox_SubArch.Text := TargetProcessor;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
-//    ComboBox_ArchChange(nil);
+    ComboBox_SubArchChange(nil);
+
 //    ChangeARM_Typ;
 
     s := CustomOptions;
