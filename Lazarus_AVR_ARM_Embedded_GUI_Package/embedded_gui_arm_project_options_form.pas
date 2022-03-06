@@ -287,53 +287,12 @@ var
   index: integer;
 begin
   index := ComboBox_SubArch.ItemIndex;
-  //if (index < 0) or (index >= Length(ARM_SubArch_List)) then begin
-  //  ComboBox_Typ_FPC.Items.CommaText := '';
-  //end else begin
-  //  ComboBox_Typ_FPC.Items.CommaText := ARM_List[index];
-  //end;
   if (index < 0) or (index >= Length(List)) then begin
     ComboBox_Typ_FPC.Items.CommaText := '';
   end else begin
     ComboBox_Typ_FPC.Items.CommaText := List[index];
   end;
-//  ChangeARM_Typ;
 end;
-
-//procedure TARM_Project_Options_Form.ChangeARM_Typ;
-//var
-//  index: integer;
-//begin
-//  if ComboBox_Arch.Text = 'avr' then begin
-//    SubArchList := AVR_SubArch_List;
-//    List:=avr_List;
-//  end;
-//  if ComboBox_Arch.Text = 'arm' then begin
-//    SubArchList := ARM_SubArch_List;
-//    List:=arm_List;
-//  end;
-//  if ComboBox_Arch.Text = 'xtensa' then begin
-//    SubArchList := xtensa_SubArch_List;
-//    List:=xtensa_List;
-//  end;
-//  ComboBox_SubArch.Items.CommaText := SubArchList;
-////  if ComboBox_SubArch.Items.Count>0 then ComboBox_SubArch.ItemIndex:=0;
-////  ShowMessage(SubArchList);
-//
-//
-//
-//  index := ComboBox_SubArch.ItemIndex;
-//  //if (index < 0) or (index >= Length(ARM_SubArch_List)) then begin
-//  //  ComboBox_Typ_FPC.Items.CommaText := '';
-//  //end else begin
-//  //  ComboBox_Typ_FPC.Items.CommaText := ARM_List[index];
-//  //end;
-//  if (index < 0) or (index >= Length(List)) then begin
-//    ComboBox_Typ_FPC.Items.CommaText := '';
-//  end else begin
-//    ComboBox_Typ_FPC.Items.CommaText := List[index];
-//  end;
-//end;
 
 procedure TARM_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
@@ -448,10 +407,20 @@ begin
   if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
-    ComboBox_Arch.Text:=ARM_TemplatesPara[i].Arch;
-    ComboBox_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
-    ComboBox_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
-    CheckBox_UF2File.Checked := ARM_TemplatesPara[i].Create_UF2_File;
+    //ComboBox_Arch.Text:=ARM_TemplatesPara[i].Arch;
+    //ComboBox_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
+    //ComboBox_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
+    //CheckBox_UF2File.Checked := ARM_TemplatesPara[i].Create_UF2_File;
+
+
+      ComboBox_Arch.Text:=ARM_TemplatesPara[i].Arch;;
+      ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
+      ComboBox_ArchChange(nil);
+      ComboBox_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
+      ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
+      ComboBox_SubArchChange(nil);
+      ComboBox_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
+
 
     ARM_FlashBase_ComboBox.Text := ARM_TemplatesPara[i].FlashBase;
 //    ComboBox_SubArch.OnChange(Sender);
