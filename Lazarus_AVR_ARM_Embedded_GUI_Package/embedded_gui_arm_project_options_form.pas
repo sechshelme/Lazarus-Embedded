@@ -75,7 +75,7 @@ type
     ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
-//    procedure ChangeARM_Typ;
+    //    procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
@@ -184,13 +184,13 @@ begin
   with ComboBox_Arch do begin
     Text := 'arm';
     ItemIndex := Items.IndexOf(Text);
-//    ChangeARM_Typ;
+    //    ChangeARM_Typ;
   end;
 
   with ComboBox_SubArch do begin
     Text := 'ARMV7M';
     ItemIndex := Items.IndexOf(Text);
-//    ChangeARM_Typ;
+    //    ChangeARM_Typ;
   end;
 
   ComboBox_ArchChange(nil);
@@ -266,20 +266,20 @@ procedure TARM_Project_Options_Form.ComboBox_ArchChange(Sender: TObject);
 begin
   if ComboBox_Arch.Text = 'avr' then begin
     SubArchList := AVR_SubArch_List;
-    List:=avr_List;
+    List := avr_List;
   end;
   if ComboBox_Arch.Text = 'arm' then begin
     SubArchList := ARM_SubArch_List;
-    List:=arm_List;
+    List := arm_List;
   end;
   if ComboBox_Arch.Text = 'xtensa' then begin
     SubArchList := xtensa_SubArch_List;
-    List:=xtensa_List;
+    List := xtensa_List;
   end;
   ComboBox_SubArch.Items.CommaText := SubArchList;
 
   ComboBox_SubArchChange(Sender);
-//  ChangeARM_Typ;
+  //  ChangeARM_Typ;
 end;
 
 procedure TARM_Project_Options_Form.ComboBox_SubArchChange(Sender: TObject);
@@ -301,14 +301,14 @@ var
 begin
   // --- FPC Command
   with LazProject.LazCompilerOptions do begin
-    ComboBox_Arch.Text:=TargetCPU;
+    ComboBox_Arch.Text := TargetCPU;
     ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
     ComboBox_ArchChange(nil);
     ComboBox_SubArch.Text := TargetProcessor;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ComboBox_SubArchChange(nil);
 
-//    ChangeARM_Typ;
+    //    ChangeARM_Typ;
 
     s := CustomOptions;
     ComboBox_Typ_FPC.Text := FindPara(s, '-Wp');
@@ -398,40 +398,37 @@ begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
   TemplatesForm.Caption := Title + 'ARM Vorlagen';
 
-  for i := 0 to Length(ARM_TemplatesPara) - 1 do begin
-    TemplatesForm.ListBox_Template.Items.AddStrings(ARM_TemplatesPara[i].Name);
+  for i := 0 to Length(TemplatesPara) - 1 do begin
+    TemplatesForm.ListBox_Template.Items.AddStrings(TemplatesPara[i].Name);
   end;
-  TemplatesForm.ListBox_Template.Caption := ARM_TemplatesPara[0].Name;
+  TemplatesForm.ListBox_Template.Caption := TemplatesPara[0].Name;
   TemplatesForm.ListBox_Template.ItemIndex := 0;
 
   if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
-    //ComboBox_Arch.Text:=ARM_TemplatesPara[i].Arch;
-    //ComboBox_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
-    //ComboBox_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
-    //CheckBox_UF2File.Checked := ARM_TemplatesPara[i].Create_UF2_File;
+    //ComboBox_Arch.Text:=TemplatesPara[i].Arch;
+    //ComboBox_SubArch.Text := TemplatesPara[i].ARM_SubArch;
+    //ComboBox_Typ_FPC.Text := TemplatesPara[i].ARM_FPC_Typ;
+    //CheckBox_UF2File.Checked := TemplatesPara[i].Create_UF2_File;
 
+    ComboBox_Arch.Text := TemplatesPara[i].Arch;
+    ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
+    ComboBox_ArchChange(nil);
+    ComboBox_SubArch.Text := TemplatesPara[i].ARM_SubArch;
+    ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
+    ComboBox_SubArchChange(nil);
+    ComboBox_Typ_FPC.Text := TemplatesPara[i].ARM_FPC_Typ;
 
-      ComboBox_Arch.Text:=ARM_TemplatesPara[i].Arch;;
-      ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
-      ComboBox_ArchChange(nil);
-      ComboBox_SubArch.Text := ARM_TemplatesPara[i].ARM_SubArch;
-      ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
-      ComboBox_SubArchChange(nil);
-      ComboBox_Typ_FPC.Text := ARM_TemplatesPara[i].ARM_FPC_Typ;
+    ARM_FlashBase_ComboBox.Text := TemplatesPara[i].FlashBase;
 
-
-    ARM_FlashBase_ComboBox.Text := ARM_TemplatesPara[i].FlashBase;
-//    ComboBox_SubArch.OnChange(Sender);
-//    ComboBox_Arch.OnChange(Sender);
-
-    RadioButton_st_flash.Checked := ARM_TemplatesPara[i].Programmer = 'st-flash';
-    RadioButton_UF2.Checked := ARM_TemplatesPara[i].Programmer = 'uf2';
-    RadioButton_Bossac.Checked := ARM_TemplatesPara[i].Programmer = 'bossac';
+    RadioButton_st_flash.Checked := TemplatesPara[i].Programmer = 'st-flash';
+    RadioButton_UF2.Checked := TemplatesPara[i].Programmer = 'uf2';
+    RadioButton_Bossac.Checked := TemplatesPara[i].Programmer = 'bossac';
   end;
 
   TemplatesForm.Free;
+//  ShowMessage(FindTemplateCaption);
 end;
 
 procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);

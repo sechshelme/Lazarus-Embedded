@@ -11,25 +11,31 @@ uses
   Embedded_GUI_Embedded_List_Const; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
 type
-  TARM_TemplatesPara = record
+  TTemplatesPara = record
     Name,
     Arch,
     ARM_SubArch,
     ARM_FPC_Typ,
     Programmer,
     FlashBase: string;
-    Create_UF2_File: Boolean;
+    Create_UF2_File: boolean;
   end;
 
 const
-  ARM_TemplatesPara: array of TARM_TemplatesPara = ((
+  NewTemplatesPara: TStringArray = (
+    'caption:STM32F103X8;arch:ARM;subarch:ARMV7M;controller:STM32F103X8;programmer:st-flash;flashbase:0x08000000;',
+    'caption:Rasberry Pico;arch:ARM;subarch:ARMV6M;controller:RASPI_PICO;programmer:uf2;uf2:true',
+    'caption:Arduino DUE;arch:ARM;subarch:ARMV7M;controller:ATSAM3X8E;programmer:bossac;flashbase:0x080000;'
+    );
+
+  TemplatesPara: array of TTemplatesPara = ((
     Name: 'STM32F103X8';
     Arch: 'ARM';
     ARM_SubArch: 'ARMV7M';
     ARM_FPC_Typ: 'STM32F103X8';
     Programmer: 'st-flash';
     FlashBase: '0x08000000';
-    Create_UF2_File: False;), (
+    Create_UF2_File: False; ), (
 
     Name: 'Rasberry Pico';
     Arch: 'ARM';
@@ -37,7 +43,7 @@ const
     ARM_FPC_Typ: 'RASPI_PICO';
     Programmer: 'uf2';
     FlashBase: '0x00000000';
-    Create_UF2_File: True;), (
+    Create_UF2_File: True; ), (
 
     Name: 'Arduino DUE';
     Arch: 'ARM';
@@ -45,8 +51,25 @@ const
     ARM_FPC_Typ: 'ATSAM3X8E';
     Programmer: 'bossac';
     FlashBase: '0x080000';
-    Create_UF2_File: False;));
+    Create_UF2_File: False; ));
+
+function FindTemplateCaption: string;
 
 implementation
+
+function FindTemplateCaption: string;
+var
+  s: string;
+  i, p: integer;
+begin
+  Result := '';
+  for i := 0 to Length(NewTemplatesPara) - 1 do begin
+    s := NewTemplatesPara[i];
+    p := Pos(';', s);
+    s := Copy(s, 9, p - 9);
+    Result += s + ',';
+  end;
+  Delete(Result, Length(Result), 1);
+end;
 
 end.
