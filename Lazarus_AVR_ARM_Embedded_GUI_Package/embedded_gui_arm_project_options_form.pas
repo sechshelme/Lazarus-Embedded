@@ -415,10 +415,12 @@ begin
     ComboBox_Arch.Text := TemplatesPara[i].Arch;
     ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
     ComboBox_ArchChange(nil);
-    ComboBox_SubArch.Text := TemplatesPara[i].ARM_SubArch;
+    ComboBox_SubArch.Text := TemplatesPara[i].SubArch;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ComboBox_SubArchChange(nil);
-    ComboBox_Typ_FPC.Text := TemplatesPara[i].ARM_FPC_Typ;
+    ComboBox_Typ_FPC.Text := TemplatesPara[i].Controller;
+
+    CheckBox_UF2File.Checked:=TemplatesPara[i].Programmer = 'uf2';
 
     ARM_FlashBase_ComboBox.Text := TemplatesPara[i].FlashBase;
 
