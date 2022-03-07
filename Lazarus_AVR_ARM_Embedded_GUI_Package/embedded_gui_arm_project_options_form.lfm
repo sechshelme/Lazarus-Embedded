@@ -109,9 +109,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       Height = 341
       Top = 40
       Width = 495
-      ActivePage = TabSheet_Bossac
+      ActivePage = TabSheet_st_link
       Anchors = [akTop, akLeft, akRight, akBottom]
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 3
       object TabSheet_st_link: TTabSheet
         Caption = 'ST-Flash'

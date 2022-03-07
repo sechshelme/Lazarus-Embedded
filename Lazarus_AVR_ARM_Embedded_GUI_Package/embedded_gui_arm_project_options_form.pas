@@ -407,11 +407,6 @@ begin
   if TemplatesForm.ShowModal = mrOk then begin
     i := TemplatesForm.ListBox_Template.ItemIndex;
 
-    //ComboBox_Arch.Text:=TemplatesPara[i].Arch;
-    //ComboBox_SubArch.Text := TemplatesPara[i].ARM_SubArch;
-    //ComboBox_Typ_FPC.Text := TemplatesPara[i].ARM_FPC_Typ;
-    //CheckBox_UF2File.Checked := TemplatesPara[i].Create_UF2_File;
-
     ComboBox_Arch.Text := TemplatesPara[i].Arch;
     ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
     ComboBox_ArchChange(nil);
@@ -422,7 +417,7 @@ begin
 
     CheckBox_UF2File.Checked:=TemplatesPara[i].Programmer = 'uf2';
 
-    ARM_FlashBase_ComboBox.Text := TemplatesPara[i].FlashBase;
+    ARM_FlashBase_ComboBox.Text := TemplatesPara[i].stlink.FlashBase;
 
     RadioButton_st_flash.Checked := TemplatesPara[i].Programmer = 'st-flash';
     RadioButton_UF2.Checked := TemplatesPara[i].Programmer = 'uf2';
@@ -430,7 +425,6 @@ begin
   end;
 
   TemplatesForm.Free;
-//  ShowMessage(FindTemplateCaption);
 end;
 
 procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
