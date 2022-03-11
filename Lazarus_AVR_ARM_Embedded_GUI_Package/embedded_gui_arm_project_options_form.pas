@@ -26,6 +26,7 @@ type
 
   TARM_Project_Options_Form = class(TForm)
     ARM_FlashBase_ComboBox: TComboBox;
+    BitBtn1: TBitBtn;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
     Button2: TButton;
@@ -33,7 +34,9 @@ type
     CheckBox_boot: TCheckBox;
     CheckBox_Brownout_Detection: TCheckBox;
     CheckBox_Brownout_Reset: TCheckBox;
+    CheckBox_Chip_Erase: TCheckBox;
     CheckBox_Debug: TCheckBox;
+    CheckBox_Disable_Auto_Erase: TCheckBox;
     CheckBox_Erase: TCheckBox;
     CheckBox_force_USB_Port: TCheckBox;
     CheckBox_Info: TCheckBox;
@@ -43,24 +46,38 @@ type
     CheckBox_UF2File: TCheckBox;
     CheckBox_UnLock: TCheckBox;
     CheckBox_Verify: TCheckBox;
+    ComboBox_BitClock: TComboBox;
+    ComboBox_COMPort: TComboBox;
+    ComboBox_COMPortBaud: TComboBox;
+    ComboBox_Programmer: TComboBox;
     ComboBox_SubArch: TComboBox;
     ComboBox_Arch: TComboBox;
     ComboBox_Typ_FPC: TComboBox;
+    ComboBox_Verbose: TComboBox;
     CPU_InfoButton: TButton;
+    Edit_AVR_Typ_Avrdude: TEdit;
     GroupBox_Compiler: TGroupBox;
     GroupBox_Programmer: TGroupBox;
     CancelButton: TButton;
     Label1: TLabel;
+    Label10: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label9: TLabel;
     Label_FlashBase: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
+    RadioButton_avrdude: TRadioButton;
     RadioButton_UF2: TRadioButton;
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;
+    TabSheet_avrdude: TTabSheet;
     TabSheet_UF2: TTabSheet;
-    TabSheet_st_link: TTabSheet;
+    TabSheet_stflash: TTabSheet;
     TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
     procedure ComboBox_ArchChange(Sender: TObject);
@@ -72,7 +89,7 @@ type
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-    ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
+    ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
     //    procedure ChangeARM_Typ;
@@ -115,14 +132,33 @@ begin
   end;
 
   // --- Programer
-  // ST-Link
 
-  ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_st_link, 'STLinkPath');
+  // AVRDude
+  ComboBox_AvrdudePath := TFileNameComboBox.Create(TabSheet_avrdude, 'AVRDudePath');
+  with ComboBox_AvrdudePath do begin
+    Caption := 'AVRdude Pfad';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := TabSheet_avrdude.Width - 10;
+    Top := 10;
+  end;
+
+  ComboBox_AvrdudeConfigPath := TFileNameComboBox.Create(TabSheet_avrdude, 'AVRDudeConfig');
+  with ComboBox_AvrdudeConfigPath do begin
+    Caption := 'AVRdude Config-Pfad ( Leer = default Konfig. )';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := TabSheet_avrdude.Width - 10;
+    Top := 80;
+  end;
+
+  // ST-Link
+  ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_stflash, 'STLinkPath');
   with ComboBox_STLinkPath do begin
     Caption := 'ST-Link Pfad:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := TabSheet_st_link.Width - 10;
+    Width := TabSheet_stflash.Width - 10;
     Top := 10;
   end;
 
@@ -132,7 +168,6 @@ begin
   end;
 
   // Bossac ( Arduino Due )
-
   ComboBox_BossacPath := TFileNameComboBox.Create(TabSheet_Bossac, 'BossacPath');
   with ComboBox_BossacPath do begin
     Caption := 'Bossac Pfad:';
@@ -143,7 +178,6 @@ begin
   end;
 
   // Rasberry PI Pico
-
   ComboBox_UF2_UnitPath := TFileNameComboBox.Create(TabSheet_UF2, 'UnitPath');
   with ComboBox_UF2_UnitPath do begin
     Caption := 'Unit Pfad:';
@@ -207,6 +241,20 @@ begin
   CheckBox_UF2File.Checked := False;
 
   // --- Programer
+
+  // AVRDude
+  if Embedded_IDE_Options.AVR.avrdudePath.Count > 0 then begin
+    ComboBox_AvrdudePath.Text := Embedded_IDE_Options.AVR.avrdudePath[0];
+  end else begin
+    ComboBox_AvrdudePath.Text := '';
+  end;
+
+  if Embedded_IDE_Options.AVR.avrdudeConfigPath.Count > 0 then begin
+    ComboBox_AvrdudeConfigPath.Text := Embedded_IDE_Options.AVR.avrdudeConfigPath[0];
+  end else begin
+    ComboBox_AvrdudeConfigPath.Text := '';
+  end;
+
   // ST-Link
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
     ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
@@ -322,12 +370,20 @@ begin
   path := Copy(s, 0, pos(' ', s) - 1);
   p := UpCase(ExtractFileName(path));
 
+  // AVRDude
+  if Pos(UpCase('avrdude'), p) > 0 then begin
+    ComboBox_AvrdudePath.Text := path;
+    ComboBox_AvrdudeConfigPath.Text := FindPara(s, '-C');
+  end;
+
+  // ST-Link
   if Pos(UpCase('st-flash'), p) > 0 then begin
     RadioButton_st_flash.Checked := True;
     ComboBox_STLinkPath.Text := path;
     ARM_FlashBase_ComboBox.Text := '0x' + FindPara(s, '0x');
   end;
 
+  // Bossac
   if Pos(UpCase('bossac'), p) > 0 then begin
     RadioButton_Bossac.Checked := True;
     ComboBox_BossacPath.Text := path;
@@ -351,7 +407,7 @@ end;
 
 procedure TARM_Project_Options_Form.MaskToLazProject(LazProject: TLazProject);
 var
-  s, sf: string;
+  s, s1, sf: string;
 begin
   // --- FPC_Command
   LazProject.LazCompilerOptions.TargetCPU := ComboBox_Arch.Text;
@@ -366,6 +422,18 @@ begin
   LazProject.LazCompilerOptions.CustomOptions := s;
 
   // --- Programmer Command
+
+  // AVRDude
+  if RadioButton_avrdude.Checked then begin
+    s := ComboBox_AvrdudePath.Text + ' ';
+
+    s1 := ComboBox_AvrdudeConfigPath.Text;
+    if s1 <> '' then begin
+      s += '-C' + s1 + ' ';
+    end;
+
+  end;
+
   // ST-Link
   if RadioButton_st_flash.Checked then begin
     s := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ARM_FlashBase_ComboBox.Text;
@@ -396,7 +464,7 @@ var
 
 begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
-  TemplatesForm.Caption := Title + 'ARM Vorlagen';
+  TemplatesForm.Caption := Title + 'Vorlagen';
 
   for i := 0 to Length(TemplatesPara) - 1 do begin
     TemplatesForm.ListBox_Template.Items.AddStrings(TemplatesPara[i].Name);
@@ -415,7 +483,7 @@ begin
     ComboBox_SubArchChange(nil);
     ComboBox_Typ_FPC.Text := TemplatesPara[i].Controller;
 
-    CheckBox_UF2File.Checked:=TemplatesPara[i].Programmer = 'uf2';
+    CheckBox_UF2File.Checked := TemplatesPara[i].Programmer = 'uf2';
 
     ARM_FlashBase_ComboBox.Text := TemplatesPara[i].stlink.FlashBase;
 
@@ -429,7 +497,8 @@ end;
 
 procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
 begin
-  TabSheet_st_link.Enabled := RadioButton_st_flash.Checked;
+  TabSheet_avrdude.Enabled := RadioButton_avrdude.Checked;
+  TabSheet_stflash.Enabled := RadioButton_st_flash.Checked;
   TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
   TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
 end;
