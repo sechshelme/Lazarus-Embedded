@@ -25,7 +25,7 @@ type
   { TARM_Project_Options_Form }
 
   TARM_Project_Options_Form = class(TForm)
-    ARM_FlashBase_ComboBox: TComboBox;
+    ComboBox_ARM_FlashBase: TComboBox;
     BitBtn1: TBitBtn;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
@@ -80,10 +80,12 @@ type
     TabSheet_stflash: TTabSheet;
     TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
+    procedure BitBtn1Click(Sender: TObject);
     procedure ComboBox_ArchChange(Sender: TObject);
     procedure ComboBox_SubArchChange(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
     procedure CPU_InfoButtonClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure RadioButton_Programmer_Change(Sender: TObject);
@@ -152,6 +154,26 @@ begin
     Top := 80;
   end;
 
+  Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
+
+  with ComboBox_Programmer do begin
+    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109', 'jtag2updi'], True);
+  end;
+
+  with ComboBox_BitClock do begin
+    Style := csOwnerDrawFixed;
+    Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
+  end;
+
+  with ComboBox_COMPortBaud do begin
+    Items.AddStrings(['19200', '57600', '115200'], True);
+  end;
+
+  with ComboBox_Verbose do begin
+    Style := csOwnerDrawFixed;
+    Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
+  end;
+
   // ST-Link
   ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_stflash, 'STLinkPath');
   with ComboBox_STLinkPath do begin
@@ -162,7 +184,7 @@ begin
     Top := 10;
   end;
 
-  with ARM_FlashBase_ComboBox do begin
+  with ComboBox_ARM_FlashBase do begin
     Sorted := True;
     Items.AddStrings(['0x00000000', '0x00080000', '0x08000000']);
   end;
@@ -218,13 +240,11 @@ begin
   with ComboBox_Arch do begin
     Text := 'arm';
     ItemIndex := Items.IndexOf(Text);
-    //    ChangeARM_Typ;
   end;
 
   with ComboBox_SubArch do begin
     Text := 'ARMV7M';
     ItemIndex := Items.IndexOf(Text);
-    //    ChangeARM_Typ;
   end;
 
   ComboBox_ArchChange(nil);
@@ -233,7 +253,7 @@ begin
     Text := 'STM32F103X8';
   end;
 
-  with ARM_FlashBase_ComboBox do begin
+  with ComboBox_ARM_FlashBase do begin
     Text := '0x08000000';
   end;
 
@@ -254,6 +274,31 @@ begin
   end else begin
     ComboBox_AvrdudeConfigPath.Text := '';
   end;
+
+  Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
+
+  with ComboBox_Programmer do begin
+    Text := 'arduino';
+  end;
+
+  with ComboBox_COMPort do begin
+    Items.CommaText := GetSerialPortNames;
+  end;
+
+  with ComboBox_BitClock do begin
+    Text := Items[0];  // Default = 1
+  end;
+
+  with ComboBox_COMPortBaud do begin
+    Text := '57600';
+  end;
+
+  with ComboBox_Verbose do begin
+    Text := Items[1];  // Default = einfache Genauigkeit
+  end;
+
+  CheckBox_Disable_Auto_Erase.Checked := False;
+  CheckBox_Chip_Erase.Checked := False;
 
   // ST-Link
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
@@ -296,6 +341,11 @@ begin
   SaveFormPos_to_XML(Self);
 end;
 
+procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
+begin
+  ComboBox_COMPort.Items.CommaText := GetSerialPortNames;
+end;
+
 procedure TARM_Project_Options_Form.Button_to_FlashBase_Click(Sender: TObject);
 var
   i: integer;
@@ -304,7 +354,7 @@ begin
   for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
     if ARM_ControllerDataList[i, 0] = ComboBox_Typ_FPC.Text then begin
       s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
-      ARM_FlashBase_ComboBox.Text := '0x' + s;
+      ComboBox_ARM_FlashBase.Text := '0x' + s;
       Break;
     end;
   end;
@@ -330,6 +380,11 @@ begin
   //  ChangeARM_Typ;
 end;
 
+procedure TARM_Project_Options_Form.BitBtn1Click(Sender: TObject);
+begin
+  Edit_AVR_Typ_Avrdude.Text := ComboBox_Typ_FPC.Text;
+end;
+
 procedure TARM_Project_Options_Form.ComboBox_SubArchChange(Sender: TObject);
 var
   index: integer;
@@ -344,7 +399,7 @@ end;
 
 procedure TARM_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
-  s, path, p: string;
+  s, path, p, bc: string;
   sa: TStringArray;
 begin
   // --- FPC Command
@@ -355,8 +410,6 @@ begin
     ComboBox_SubArch.Text := TargetProcessor;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ComboBox_SubArchChange(nil);
-
-    //    ChangeARM_Typ;
 
     s := CustomOptions;
     ComboBox_Typ_FPC.Text := FindPara(s, '-Wp');
@@ -374,13 +427,33 @@ begin
   if Pos(UpCase('avrdude'), p) > 0 then begin
     ComboBox_AvrdudePath.Text := path;
     ComboBox_AvrdudeConfigPath.Text := FindPara(s, '-C');
+
+    ComboBox_Programmer.Text := FindPara(s, '-c');
+    with ComboBox_COMPort do begin
+      Items.CommaText := GetSerialPortNames;
+      Text := FindPara(s, '-P');
+    end;
+
+    ComboBox_COMPortBaud.Text := FindPara(s, '-b');
+    Edit_AVR_Typ_Avrdude.Text := FindPara(s, '-p');
+
+    ComboBox_Verbose.Text := ComboBox_Verbose.Items[FindVerbose(s)];
+    bc := FindPara(s, '-B');
+    if bc = '' then begin
+      ComboBox_BitClock.Text := '1';
+    end else begin
+      ComboBox_BitClock.Text := bc;
+    end;
+
+    CheckBox_Disable_Auto_Erase.Checked := pos('-D', s) > 0;
+    CheckBox_Chip_Erase.Checked := pos('-e', s) > 0;
   end;
 
   // ST-Link
   if Pos(UpCase('st-flash'), p) > 0 then begin
     RadioButton_st_flash.Checked := True;
     ComboBox_STLinkPath.Text := path;
-    ARM_FlashBase_ComboBox.Text := '0x' + FindPara(s, '0x');
+    ComboBox_ARM_FlashBase.Text := '0x' + FindPara(s, '0x');
   end;
 
   // Bossac
@@ -408,6 +481,7 @@ end;
 procedure TARM_Project_Options_Form.MaskToLazProject(LazProject: TLazProject);
 var
   s, s1, sf: string;
+  i: Integer;
 begin
   // --- FPC_Command
   LazProject.LazCompilerOptions.TargetCPU := ComboBox_Arch.Text;
@@ -432,11 +506,44 @@ begin
       s += '-C' + s1 + ' ';
     end;
 
+    for i := 0 to ComboBox_Verbose.ItemIndex - 1 do begin
+      s += '-v ';
+    end;
+
+  //  s1 := ComboBox_Programmer.Text;
+    s += '-p' + Edit_AVR_Typ_Avrdude.Text + ' ' + '-c' + ComboBox_Programmer.Text + ' ';
+    //  s1 := upCase(s1);
+    //  if (s1 = 'ARDUINO') or (s1 = 'STK500V1') or (s1 = 'WIRING') or (s1 = 'AVR109') or (s1 = 'JTAG2UPDI') then begin
+    //    s += '-P' + ComboBox_COMPort.Text + ' ' + '-b' + ComboBox_COMPortBaud.Text + ' ';
+    //  end;
+
+    if ComboBox_COMPort.Text <> '' then begin
+      s += '-P' + ComboBox_COMPort.Text + ' ';
+    end;
+
+    if ComboBox_COMPortBaud.Text <> '' then begin
+      s += '-b' + ComboBox_COMPortBaud.Text + ' ';
+    end;
+
+    s1 := ComboBox_BitClock.Text;
+    if s1 <> '1' then begin
+      s += '-B' + s1 + ' ';
+    end;
+
+    if CheckBox_Disable_Auto_Erase.Checked then begin
+      s += '-D ';
+    end;
+
+    if CheckBox_Chip_Erase.Checked then begin
+      s += '-e ';
+    end;
+
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := s + '-Uflash:w:' + LazProject.LazCompilerOptions.TargetFilename + '.hex:i';
   end;
 
   // ST-Link
   if RadioButton_st_flash.Checked then begin
-    s := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ARM_FlashBase_ComboBox.Text;
+    s := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ComboBox_ARM_FlashBase.Text;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 
@@ -460,36 +567,52 @@ end;
 procedure TARM_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
 var
   TemplatesForm: TProjectTemplatesForm;
-  i: integer;
+  index: integer;
 
 begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
   TemplatesForm.Caption := Title + 'Vorlagen';
 
-  for i := 0 to Length(TemplatesPara) - 1 do begin
-    TemplatesForm.ListBox_Template.Items.AddStrings(TemplatesPara[i].Name);
+  for index := 0 to Length(TemplatesPara) - 1 do begin
+    TemplatesForm.ListBox_Template.Items.AddStrings(TemplatesPara[index].Name);
   end;
   TemplatesForm.ListBox_Template.Caption := TemplatesPara[0].Name;
   TemplatesForm.ListBox_Template.ItemIndex := 0;
 
   if TemplatesForm.ShowModal = mrOk then begin
-    i := TemplatesForm.ListBox_Template.ItemIndex;
+    index := TemplatesForm.ListBox_Template.ItemIndex;
 
-    ComboBox_Arch.Text := TemplatesPara[i].Arch;
+    // --- FPC_Command
+
+    ComboBox_Arch.Text := TemplatesPara[index].Arch;
     ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
     ComboBox_ArchChange(nil);
-    ComboBox_SubArch.Text := TemplatesPara[i].SubArch;
+    ComboBox_SubArch.Text := TemplatesPara[index].SubArch;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ComboBox_SubArchChange(nil);
-    ComboBox_Typ_FPC.Text := TemplatesPara[i].Controller;
+    ComboBox_Typ_FPC.Text := TemplatesPara[index].Controller;
 
-    CheckBox_UF2File.Checked := TemplatesPara[i].Programmer = 'uf2';
+    // --- Programmer Command
 
-    ARM_FlashBase_ComboBox.Text := TemplatesPara[i].stlink.FlashBase;
+    RadioButton_avrdude.Checked := TemplatesPara[index].Programmer = 'avrdude';
+    RadioButton_st_flash.Checked := TemplatesPara[index].Programmer = 'st-flash';
+    RadioButton_UF2.Checked := TemplatesPara[index].Programmer = 'uf2';
+    RadioButton_Bossac.Checked := TemplatesPara[index].Programmer = 'bossac';
 
-    RadioButton_st_flash.Checked := TemplatesPara[i].Programmer = 'st-flash';
-    RadioButton_UF2.Checked := TemplatesPara[i].Programmer = 'uf2';
-    RadioButton_Bossac.Checked := TemplatesPara[i].Programmer = 'bossac';
+    // AVRDude
+    Edit_AVR_Typ_Avrdude.Text := TemplatesPara[index].avrdude.Controller;
+    ComboBox_Programmer.Text := TemplatesPara[index].avrdude.Programmer;
+    ComboBox_COMPort.Text := TemplatesPara[index].avrdude.COM_Port;
+    ComboBox_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
+    CheckBox_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
+    CheckBox_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
+//    ComboBox_AVR_SubArch.OnChange(Sender);
+
+    // ST-Link
+    ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;
+
+    // Rasberry PI Pico
+    CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
   end;
 
   TemplatesForm.Free;
