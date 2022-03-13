@@ -8,20 +8,17 @@ unit Embedded_GUI_Package;
 interface
 
 uses
-  Embedded_GUI_ARM_Common, Embedded_GUI_ARM_Project_Options_Form, 
-  Embedded_GUI_Project_Templates_Form, Embedded_GUI_ARM_Register,
-  Embedded_GUI_AVR_Common, Embedded_GUI_AVR_Project_Options_Form, 
-  Embedded_GUI_AVR_Register, Embedded_GUI_CPU_Info_Form, 
-  Embedded_GUI_Find_Comports, Embedded_GUI_IDE_Options_Frame, 
-  Embedded_GUI_Register, Embedded_GUI_Serial_Monitor_Form, 
+  Embedded_GUI_Templates, Embedded_GUI_Project_Options_Form, 
+  Embedded_GUI_Project_Templates_Form, Embedded_GUI_Option_Dialog_Register, 
+  Embedded_GUI_CPU_Info_Form, Embedded_GUI_Find_Comports, 
+  Embedded_GUI_IDE_Options_Frame, Embedded_GUI_Register, 
+  Embedded_GUI_Serial_Monitor_Form, 
   Embedded_GUI_Serial_Monitor_Interface_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Options_Form, 
   Embedded_GUI_Serial_Monitor_Output_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Send_File_Form, 
   Embedded_GUI_Common_FileComboBox, Embedded_GUI_Common, 
-  Embedded_GUI_Embedded_List_Const, Embedded_GUI_XTensa_Project_Options_Form, 
-  Embedded_GUI_Xtensa_Common, Embedded_GUI_Xtensa_Project_Templates_Form, 
-  Embedded_GUI_Xtensa_Register, LazarusPackageIntf;
+  Embedded_GUI_Embedded_List_Const, LazarusPackageIntf;
 
 implementation
 

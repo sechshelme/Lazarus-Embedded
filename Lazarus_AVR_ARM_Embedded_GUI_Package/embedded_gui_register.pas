@@ -16,17 +16,11 @@ uses
   //  DefineTemplates,  // Als Test;
 
   // Embedded GUI ( Eigene Units )
-  Embedded_GUI_AVR_Register,
-  Embedded_GUI_ARM_Register,
-  Embedded_GUI_Xtensa_Register,
+  Embedded_GUI_Option_Dialog_Register,
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_Common,
-  Embedded_GUI_AVR_Common,
-  Embedded_GUI_ARM_Common,
-  Embedded_GUI_Xtensa_Common,
-  Embedded_GUI_AVR_Project_Options_Form,
-  Embedded_GUI_ARM_Project_Options_Form,
-  Embedded_GUI_XTensa_Project_Options_Form,
+  Embedded_GUI_Templates,
+  Embedded_GUI_Project_Options_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const,
   Embedded_GUI_Serial_Monitor_Form;
@@ -162,14 +156,8 @@ begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;
   Embedded_IDE_Options.Load_from_XML;
 
-  AVR_Project_Options_Form := TAVR_Project_Options_Form.Create(nil);
-  RegisterProjectDescriptor(TProjectAVRApp.Create);
-
-  ARM_Project_Options_Form := TARM_Project_Options_Form.Create(nil);
+  Project_Options_Form := TProject_Options_Form.Create(nil);
   RegisterProjectDescriptor(TProjectARMApp.Create);
-
-  Xtensa_Project_Options_Form := TXtensa_Project_Options_Form.Create(nil);
-  RegisterProjectDescriptor(TProjectXtensaApp.Create);
 
   // Run ( without or with debugger ) hooks
   NewIDEHandle := TNewIDEHandle.Create;
@@ -187,9 +175,7 @@ begin
     RegisterIDEOptionsEditor(GroupEnvironment, TEmbedded_IDE_Options_Frame, Embbed_IDE_OptionsFrameID)^.Index;
 
   // Menu
-  RegisterIdeMenuCommand(mnuProject, AVR_Title, AVR_Title + '...', nil, @ShowAVROptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, ARM_Title, ARM_Title + '...', nil, @ShowARMOptionsDialog);
-  RegisterIdeMenuCommand(mnuProject, Xtensa_Title, Xtensa_Title + '...', nil, @ShowXtensaOptionsDialog);
+  RegisterIdeMenuCommand(mnuProject, Options_Title, Options_Title + '...', nil, @ShowOptionsDialog);
 
   RegisterIdeMenuCommand(mnuTools, CPU_Info_Titel, CPU_Info_Titel + '...', nil, @ShowCPU_Info);
   RegisterIdeMenuCommand(mnuTools, Title + 'Serial-Monitor', Title + 'Serial-Monitor...', nil, @RegisterSerialMonitor);

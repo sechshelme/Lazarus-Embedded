@@ -1,4 +1,4 @@
-unit Embedded_GUI_ARM_Common;
+unit Embedded_GUI_Templates;
 
 {$mode objfpc}{$H+}
 

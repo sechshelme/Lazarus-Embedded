@@ -1,4 +1,4 @@
-unit Embedded_GUI_ARM_Project_Options_Form;
+unit Embedded_GUI_Project_Options_Form;
 
 {$mode objfpc}{$H+}
 
@@ -15,18 +15,18 @@ uses
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_IDE_Options_Frame,
-  Embedded_GUI_ARM_Common,
+  Embedded_GUI_Templates,
   Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const;
 
 type
 
-  { TARM_Project_Options_Form }
+  { TProject_Options_Form }
 
-  TARM_Project_Options_Form = class(TForm)
+  TProject_Options_Form = class(TForm)
     ComboBox_ARM_FlashBase: TComboBox;
-    BitBtn1: TBitBtn;
+    BitBtn1_Auto_avrdude_Controller: TBitBtn;
     BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
     Button2: TButton;
@@ -34,9 +34,9 @@ type
     CheckBox_boot: TCheckBox;
     CheckBox_Brownout_Detection: TCheckBox;
     CheckBox_Brownout_Reset: TCheckBox;
-    CheckBox_Chip_Erase: TCheckBox;
+    CheckBox_avrdude_Chip_Erase: TCheckBox;
     CheckBox_Debug: TCheckBox;
-    CheckBox_Disable_Auto_Erase: TCheckBox;
+    CheckBox_avrdude_Disable_Auto_Erase: TCheckBox;
     CheckBox_Erase: TCheckBox;
     CheckBox_force_USB_Port: TCheckBox;
     CheckBox_Info: TCheckBox;
@@ -46,16 +46,16 @@ type
     CheckBox_UF2File: TCheckBox;
     CheckBox_UnLock: TCheckBox;
     CheckBox_Verify: TCheckBox;
-    ComboBox_BitClock: TComboBox;
-    ComboBox_COMPort: TComboBox;
-    ComboBox_COMPortBaud: TComboBox;
-    ComboBox_Programmer: TComboBox;
+    ComboBox_avrrdude_BitClock: TComboBox;
+    ComboBox_avrdude_COMPort: TComboBox;
+    ComboBox_avrdude_COMPortBaud: TComboBox;
+    ComboBox_avrdude_Programmer: TComboBox;
     ComboBox_SubArch: TComboBox;
     ComboBox_Arch: TComboBox;
-    ComboBox_Typ_FPC: TComboBox;
-    ComboBox_Verbose: TComboBox;
+    ComboBox_Controller: TComboBox;
+    ComboBox_avrdude_Verbose: TComboBox;
     CPU_InfoButton: TButton;
-    Edit_AVR_Typ_Avrdude: TEdit;
+    Edit_avrdude_Controller: TEdit;
     GroupBox_Compiler: TGroupBox;
     GroupBox_Programmer: TGroupBox;
     CancelButton: TButton;
@@ -80,7 +80,7 @@ type
     TabSheet_stflash: TTabSheet;
     TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
-    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
     procedure ComboBox_ArchChange(Sender: TObject);
     procedure ComboBox_SubArchChange(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
@@ -94,7 +94,6 @@ type
     ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
-    //    procedure ChangeARM_Typ;
   public
     procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
@@ -102,19 +101,19 @@ type
   end;
 
 var
-  ARM_Project_Options_Form: TARM_Project_Options_Form;
+  Project_Options_Form: TProject_Options_Form;
 
 implementation
 
 {$R *.lfm}
 
-{ TARM_Project_Options_Form }
+{ TProject_Options_Form }
 
 // public
 
-procedure TARM_Project_Options_Form.FormCreate(Sender: TObject);
+procedure TProject_Options_Form.FormCreate(Sender: TObject);
 begin
-  Caption := Title + 'ARM Project Options';
+  Caption := Title + 'Project Options';
   LoadFormPos_from_XML(Self);
   PageControl1.PageIndex := 0;
 
@@ -129,7 +128,7 @@ begin
     Style := csOwnerDrawFixed;
   end;
 
-  with ComboBox_Typ_FPC do begin
+  with ComboBox_Controller do begin
     Sorted := True;
   end;
 
@@ -154,22 +153,22 @@ begin
     Top := 80;
   end;
 
-  Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
+  Edit_avrdude_Controller.Text := 'ATMEGA328P';
 
-  with ComboBox_Programmer do begin
+  with ComboBox_avrdude_Programmer do begin
     Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109', 'jtag2updi'], True);
   end;
 
-  with ComboBox_BitClock do begin
+  with ComboBox_avrrdude_BitClock do begin
     Style := csOwnerDrawFixed;
     Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
   end;
 
-  with ComboBox_COMPortBaud do begin
+  with ComboBox_avrdude_COMPortBaud do begin
     Items.AddStrings(['19200', '57600', '115200'], True);
   end;
 
-  with ComboBox_Verbose do begin
+  with ComboBox_avrdude_Verbose do begin
     Style := csOwnerDrawFixed;
     Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
   end;
@@ -234,7 +233,7 @@ begin
 
 end;
 
-procedure TARM_Project_Options_Form.DefaultMask;
+procedure TProject_Options_Form.DefaultMask;
 begin
   // --- Compiler
   with ComboBox_Arch do begin
@@ -249,7 +248,7 @@ begin
 
   ComboBox_ArchChange(nil);
 
-  with ComboBox_Typ_FPC do begin
+  with ComboBox_Controller do begin
     Text := 'STM32F103X8';
   end;
 
@@ -275,30 +274,30 @@ begin
     ComboBox_AvrdudeConfigPath.Text := '';
   end;
 
-  Edit_AVR_Typ_Avrdude.Text := 'ATMEGA328P';
+  Edit_avrdude_Controller.Text := 'ATMEGA328P';
 
-  with ComboBox_Programmer do begin
+  with ComboBox_avrdude_Programmer do begin
     Text := 'arduino';
   end;
 
-  with ComboBox_COMPort do begin
+  with ComboBox_avrdude_COMPort do begin
     Items.CommaText := GetSerialPortNames;
   end;
 
-  with ComboBox_BitClock do begin
+  with ComboBox_avrrdude_BitClock do begin
     Text := Items[0];  // Default = 1
   end;
 
-  with ComboBox_COMPortBaud do begin
+  with ComboBox_avrdude_COMPortBaud do begin
     Text := '57600';
   end;
 
-  with ComboBox_Verbose do begin
+  with ComboBox_avrdude_Verbose do begin
     Text := Items[1];  // Default = einfache Genauigkeit
   end;
 
-  CheckBox_Disable_Auto_Erase.Checked := False;
-  CheckBox_Chip_Erase.Checked := False;
+  CheckBox_avrdude_Disable_Auto_Erase.Checked := False;
+  CheckBox_avrdude_Chip_Erase.Checked := False;
 
   // ST-Link
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
@@ -336,23 +335,23 @@ begin
   RadioButton_Programmer_Change(nil);
 end;
 
-procedure TARM_Project_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+procedure TProject_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   SaveFormPos_to_XML(Self);
 end;
 
-procedure TARM_Project_Options_Form.FormActivate(Sender: TObject);
+procedure TProject_Options_Form.FormActivate(Sender: TObject);
 begin
-  ComboBox_COMPort.Items.CommaText := GetSerialPortNames;
+  ComboBox_avrdude_COMPort.Items.CommaText := GetSerialPortNames;
 end;
 
-procedure TARM_Project_Options_Form.Button_to_FlashBase_Click(Sender: TObject);
+procedure TProject_Options_Form.Button_to_FlashBase_Click(Sender: TObject);
 var
   i: integer;
   s: string;
 begin
   for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
-    if ARM_ControllerDataList[i, 0] = ComboBox_Typ_FPC.Text then begin
+    if ARM_ControllerDataList[i, 0] = ComboBox_Controller.Text then begin
       s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
       ComboBox_ARM_FlashBase.Text := '0x' + s;
       Break;
@@ -360,7 +359,7 @@ begin
   end;
 end;
 
-procedure TARM_Project_Options_Form.ComboBox_ArchChange(Sender: TObject);
+procedure TProject_Options_Form.ComboBox_ArchChange(Sender: TObject);
 begin
   if ComboBox_Arch.Text = 'avr' then begin
     SubArchList := AVR_SubArch_List;
@@ -380,24 +379,24 @@ begin
   //  ChangeARM_Typ;
 end;
 
-procedure TARM_Project_Options_Form.BitBtn1Click(Sender: TObject);
+procedure TProject_Options_Form.BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
 begin
-  Edit_AVR_Typ_Avrdude.Text := ComboBox_Typ_FPC.Text;
+  Edit_avrdude_Controller.Text := ComboBox_Controller.Text;
 end;
 
-procedure TARM_Project_Options_Form.ComboBox_SubArchChange(Sender: TObject);
+procedure TProject_Options_Form.ComboBox_SubArchChange(Sender: TObject);
 var
   index: integer;
 begin
   index := ComboBox_SubArch.ItemIndex;
   if (index < 0) or (index >= Length(List)) then begin
-    ComboBox_Typ_FPC.Items.CommaText := '';
+    ComboBox_Controller.Items.CommaText := '';
   end else begin
-    ComboBox_Typ_FPC.Items.CommaText := List[index];
+    ComboBox_Controller.Items.CommaText := List[index];
   end;
 end;
 
-procedure TARM_Project_Options_Form.LazProjectToMask(LazProject: TLazProject);
+procedure TProject_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
   s, path, p, bc: string;
   sa: TStringArray;
@@ -412,8 +411,8 @@ begin
     ComboBox_SubArchChange(nil);
 
     s := CustomOptions;
-    ComboBox_Typ_FPC.Text := FindPara(s, '-Wp');
-    ComboBox_Typ_FPC.Items.IndexOf(ComboBox_Typ_FPC.Text);
+    ComboBox_Controller.Text := FindPara(s, '-Wp');
+    ComboBox_Controller.Items.IndexOf(ComboBox_Controller.Text);
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
     CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;
   end;
@@ -428,25 +427,25 @@ begin
     ComboBox_AvrdudePath.Text := path;
     ComboBox_AvrdudeConfigPath.Text := FindPara(s, '-C');
 
-    ComboBox_Programmer.Text := FindPara(s, '-c');
-    with ComboBox_COMPort do begin
+    ComboBox_avrdude_Programmer.Text := FindPara(s, '-c');
+    with ComboBox_avrdude_COMPort do begin
       Items.CommaText := GetSerialPortNames;
       Text := FindPara(s, '-P');
     end;
 
-    ComboBox_COMPortBaud.Text := FindPara(s, '-b');
-    Edit_AVR_Typ_Avrdude.Text := FindPara(s, '-p');
+    ComboBox_avrdude_COMPortBaud.Text := FindPara(s, '-b');
+    Edit_avrdude_Controller.Text := FindPara(s, '-p');
 
-    ComboBox_Verbose.Text := ComboBox_Verbose.Items[FindVerbose(s)];
+    ComboBox_avrdude_Verbose.Text := ComboBox_avrdude_Verbose.Items[FindVerbose(s)];
     bc := FindPara(s, '-B');
     if bc = '' then begin
-      ComboBox_BitClock.Text := '1';
+      ComboBox_avrrdude_BitClock.Text := '1';
     end else begin
-      ComboBox_BitClock.Text := bc;
+      ComboBox_avrrdude_BitClock.Text := bc;
     end;
 
-    CheckBox_Disable_Auto_Erase.Checked := pos('-D', s) > 0;
-    CheckBox_Chip_Erase.Checked := pos('-e', s) > 0;
+    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos('-D', s) > 0;
+    CheckBox_avrdude_Chip_Erase.Checked := pos('-e', s) > 0;
   end;
 
   // ST-Link
@@ -478,7 +477,7 @@ begin
   RadioButton_Programmer_Change(nil);
 end;
 
-procedure TARM_Project_Options_Form.MaskToLazProject(LazProject: TLazProject);
+procedure TProject_Options_Form.MaskToLazProject(LazProject: TLazProject);
 var
   s, s1, sf: string;
   i: Integer;
@@ -486,7 +485,7 @@ begin
   // --- FPC_Command
   LazProject.LazCompilerOptions.TargetCPU := ComboBox_Arch.Text;
   LazProject.LazCompilerOptions.TargetProcessor := ComboBox_SubArch.Text;
-  s := '-Wp' + ComboBox_Typ_FPC.Text;
+  s := '-Wp' + ComboBox_Controller.Text;
   if CheckBox_AsmFile.Checked then begin
     s += LineEnding + '-al';
   end;
@@ -506,35 +505,30 @@ begin
       s += '-C' + s1 + ' ';
     end;
 
-    for i := 0 to ComboBox_Verbose.ItemIndex - 1 do begin
+    for i := 0 to ComboBox_avrdude_Verbose.ItemIndex - 1 do begin
       s += '-v ';
     end;
 
-  //  s1 := ComboBox_Programmer.Text;
-    s += '-p' + Edit_AVR_Typ_Avrdude.Text + ' ' + '-c' + ComboBox_Programmer.Text + ' ';
-    //  s1 := upCase(s1);
-    //  if (s1 = 'ARDUINO') or (s1 = 'STK500V1') or (s1 = 'WIRING') or (s1 = 'AVR109') or (s1 = 'JTAG2UPDI') then begin
-    //    s += '-P' + ComboBox_COMPort.Text + ' ' + '-b' + ComboBox_COMPortBaud.Text + ' ';
-    //  end;
+    s += '-p' + Edit_avrdude_Controller.Text + ' ' + '-c' + ComboBox_avrdude_Programmer.Text + ' ';
 
-    if ComboBox_COMPort.Text <> '' then begin
-      s += '-P' + ComboBox_COMPort.Text + ' ';
+    if ComboBox_avrdude_COMPort.Text <> '' then begin
+      s += '-P' + ComboBox_avrdude_COMPort.Text + ' ';
     end;
 
-    if ComboBox_COMPortBaud.Text <> '' then begin
-      s += '-b' + ComboBox_COMPortBaud.Text + ' ';
+    if ComboBox_avrdude_COMPortBaud.Text <> '' then begin
+      s += '-b' + ComboBox_avrdude_COMPortBaud.Text + ' ';
     end;
 
-    s1 := ComboBox_BitClock.Text;
+    s1 := ComboBox_avrrdude_BitClock.Text;
     if s1 <> '1' then begin
       s += '-B' + s1 + ' ';
     end;
 
-    if CheckBox_Disable_Auto_Erase.Checked then begin
+    if CheckBox_avrdude_Disable_Auto_Erase.Checked then begin
       s += '-D ';
     end;
 
-    if CheckBox_Chip_Erase.Checked then begin
+    if CheckBox_avrdude_Chip_Erase.Checked then begin
       s += '-e ';
     end;
 
@@ -564,7 +558,7 @@ begin
   end;
 end;
 
-procedure TARM_Project_Options_Form.TemplatesButtonClick(Sender: TObject);
+procedure TProject_Options_Form.TemplatesButtonClick(Sender: TObject);
 var
   TemplatesForm: TProjectTemplatesForm;
   index: integer;
@@ -590,7 +584,7 @@ begin
     ComboBox_SubArch.Text := TemplatesPara[index].SubArch;
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ComboBox_SubArchChange(nil);
-    ComboBox_Typ_FPC.Text := TemplatesPara[index].Controller;
+    ComboBox_Controller.Text := TemplatesPara[index].Controller;
 
     // --- Programmer Command
 
@@ -600,12 +594,12 @@ begin
     RadioButton_Bossac.Checked := TemplatesPara[index].Programmer = 'bossac';
 
     // AVRDude
-    Edit_AVR_Typ_Avrdude.Text := TemplatesPara[index].avrdude.Controller;
-    ComboBox_Programmer.Text := TemplatesPara[index].avrdude.Programmer;
-    ComboBox_COMPort.Text := TemplatesPara[index].avrdude.COM_Port;
-    ComboBox_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
-    CheckBox_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
-    CheckBox_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
+    Edit_avrdude_Controller.Text := TemplatesPara[index].avrdude.Controller;
+    ComboBox_avrdude_Programmer.Text := TemplatesPara[index].avrdude.Programmer;
+    ComboBox_avrdude_COMPort.Text := TemplatesPara[index].avrdude.COM_Port;
+    ComboBox_avrdude_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
+    CheckBox_avrdude_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
+    CheckBox_avrdude_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
 //    ComboBox_AVR_SubArch.OnChange(Sender);
 
     // ST-Link
@@ -618,7 +612,7 @@ begin
   TemplatesForm.Free;
 end;
 
-procedure TARM_Project_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
+procedure TProject_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
 begin
   TabSheet_avrdude.Enabled := RadioButton_avrdude.Checked;
   TabSheet_stflash.Enabled := RadioButton_st_flash.Checked;
@@ -626,7 +620,7 @@ begin
   TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
 end;
 
-procedure TARM_Project_Options_Form.CPU_InfoButtonClick(Sender: TObject);
+procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);
 var
   Form: TCPU_InfoForm;
 begin

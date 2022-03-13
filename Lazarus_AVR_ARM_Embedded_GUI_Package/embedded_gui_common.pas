@@ -15,15 +15,12 @@ uses
 
 const
   UARTBaudRates =
-    //    '300,600,1200,2400,9600,14400,19200,38400,57600,76800,115200,230400,250000,500000,1000000,2000000';
     '50,75,110,134,150,200,300,600,1200,1800,2400,4800,9600,19200,38400,57600,115200,230400,460800';
 
   Title = '[Embedded GUI] ';
-  AVR_Title = Title + 'AVR-Optionen (Arduino)';
-  ARM_Title = Title + 'ARM-Optionen (STM32)';
-  Xtensa_Title = Title + 'Xtensa-Optionen (ESP32)';
+  Options_Title = Title + 'Embedded-Optionen (Arduino, STM32, etc.)';
 
-  Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
+//  Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
   {$IFDEF Packages}
   Embedded_Options_File = 'embedded_gui_options.xml';
   {$ELSE}

@@ -1,9 +1,9 @@
-object ARM_Project_Options_Form: TARM_Project_Options_Form
+object Project_Options_Form: TProject_Options_Form
   Left = 1878
   Height = 962
   Top = 273
   Width = 789
-  Caption = 'ARM Embedded Project Options'
+  Caption = 'Embedded Project Options'
   ClientHeight = 962
   ClientWidth = 789
   Constraints.MinHeight = 350
@@ -108,9 +108,9 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       Height = 580
       Top = 40
       Width = 744
-      ActivePage = TabSheet_avrdude
+      ActivePage = TabSheet_Bossac
       Anchors = [akTop, akLeft, akRight, akBottom]
-      TabIndex = 0
+      TabIndex = 2
       TabOrder = 4
       object TabSheet_avrdude: TTabSheet
         Caption = 'AVRDude'
@@ -124,7 +124,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           Caption = 'Programmer (-c):'
           ParentColor = False
         end
-        object ComboBox_Programmer: TComboBox
+        object ComboBox_avrdude_Programmer: TComboBox
           Left = 17
           Height = 27
           Top = 176
@@ -132,7 +132,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           ItemHeight = 0
           TabOrder = 0
         end
-        object ComboBox_COMPort: TComboBox
+        object ComboBox_avrdude_COMPort: TComboBox
           Left = 160
           Height = 27
           Top = 176
@@ -148,7 +148,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           Caption = 'Connection port (-P):'
           ParentColor = False
         end
-        object ComboBox_COMPortBaud: TComboBox
+        object ComboBox_avrdude_COMPortBaud: TComboBox
           Left = 304
           Height = 27
           Top = 176
@@ -164,14 +164,14 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           Caption = 'RS232 baud rate (-b):'
           ParentColor = False
         end
-        object Edit_AVR_Typ_Avrdude: TEdit
+        object Edit_avrdude_Controller: TEdit
           Left = 17
           Height = 27
           Top = 248
           Width = 122
           TabOrder = 3
         end
-        object BitBtn1: TBitBtn
+        object BitBtn1_Auto_avrdude_Controller: TBitBtn
           Left = 160
           Height = 28
           Top = 248
@@ -253,7 +253,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
             FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
             FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
           }
-          OnClick = BitBtn1Click
+          OnClick = BitBtn1_Auto_avrdude_ControllerClick
           TabOrder = 4
         end
         object Label10: TLabel
@@ -264,7 +264,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           Caption = 'Required. Specify AVR device (-p):'
           ParentColor = False
         end
-        object CheckBox_Disable_Auto_Erase: TCheckBox
+        object CheckBox_avrdude_Disable_Auto_Erase: TCheckBox
           Left = 17
           Height = 23
           Top = 376
@@ -280,7 +280,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           Caption = 'Verbose output (-v):'
           ParentColor = False
         end
-        object ComboBox_Verbose: TComboBox
+        object ComboBox_avrdude_Verbose: TComboBox
           Left = 16
           Height = 27
           Top = 320
@@ -296,7 +296,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           Caption = 'Bit Clock(default = 1) (-B):'
           ParentColor = False
         end
-        object ComboBox_BitClock: TComboBox
+        object ComboBox_avrrdude_BitClock: TComboBox
           Left = 160
           Height = 27
           Top = 320
@@ -304,7 +304,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
           ItemHeight = 0
           TabOrder = 6
         end
-        object CheckBox_Chip_Erase: TCheckBox
+        object CheckBox_avrdude_Chip_Erase: TCheckBox
           Left = 16
           Height = 23
           Top = 408
@@ -573,7 +573,7 @@ object ARM_Project_Options_Form: TARM_Project_Options_Form
       Caption = 'ASM-File erzeugen (-al)'
       TabOrder = 3
     end
-    object ComboBox_Typ_FPC: TComboBox
+    object ComboBox_Controller: TComboBox
       Left = 272
       Height = 27
       Top = 40
