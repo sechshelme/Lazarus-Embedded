@@ -83,7 +83,6 @@ begin
 
   com := LazProject.LazCompilerOptions.ExecuteAfter.Command;
   if UpCase(FindPara(com, '-c')) = 'AVR109' then begin // Arduino Leonardo
-//    ShowMessage('Leonardo');
     SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
@@ -95,7 +94,6 @@ begin
   end;
 
   if Pos('bossac', com) > 0 then begin
-//    ShowMessage('bossac');
     //    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
     SerialHandle := SerOpen('/dev/ttyACM0');
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
@@ -157,7 +155,7 @@ begin
   Embedded_IDE_Options.Load_from_XML;
 
   Project_Options_Form := TProject_Options_Form.Create(nil);
-  RegisterProjectDescriptor(TProjectARMApp.Create);
+  RegisterProjectDescriptor(TProjectApp.Create);
 
   // Run ( without or with debugger ) hooks
   NewIDEHandle := TNewIDEHandle.Create;

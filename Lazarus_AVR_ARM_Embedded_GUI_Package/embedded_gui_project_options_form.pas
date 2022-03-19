@@ -237,19 +237,19 @@ procedure TProject_Options_Form.DefaultMask;
 begin
   // --- Compiler
   with ComboBox_Arch do begin
-    Text := 'arm';
+    Text := 'avr';
     ItemIndex := Items.IndexOf(Text);
   end;
 
   with ComboBox_SubArch do begin
-    Text := 'ARMV7M';
+    Text := 'AVR5';
     ItemIndex := Items.IndexOf(Text);
   end;
 
   ComboBox_ArchChange(nil);
 
   with ComboBox_Controller do begin
-    Text := 'STM32F103X8';
+    Text := 'atmega328p';
   end;
 
   with ComboBox_ARM_FlashBase do begin
@@ -332,7 +332,7 @@ begin
     ComboBox_UF2_mount_Path.Text := '';
   end;
 
-  RadioButton_Programmer_Change(nil);
+//  RadioButton_Programmer_Change(nil);
 end;
 
 procedure TProject_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -600,7 +600,6 @@ begin
     ComboBox_avrdude_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
     CheckBox_avrdude_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
     CheckBox_avrdude_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
-//    ComboBox_AVR_SubArch.OnChange(Sender);
 
     // ST-Link
     ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;

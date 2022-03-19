@@ -17,8 +17,8 @@ const
   UARTBaudRates =
     '50,75,110,134,150,200,300,600,1200,1800,2400,4800,9600,19200,38400,57600,115200,230400,460800';
 
-  Title = '[Embedded GUI] ';
-  Options_Title = Title + 'Embedded-Optionen (Arduino, STM32, etc.)';
+  Title = '[Embedded] ';
+  Options_Title = Title + 'Optionen (Arduino, STM32, etc.)';
 
 //  Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
   {$IFDEF Packages}

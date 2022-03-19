@@ -22,9 +22,9 @@ uses
 
 type
 
-  { TProjectARMApp }
+  { TProjectApp }
 
-  TProjectARMApp = class(TProjectDescriptor)
+  TProjectApp = class(TProjectDescriptor)
   public
     constructor Create; override;
     function GetLocalizedName: string; override;
@@ -60,32 +60,32 @@ begin
   end;
 end;
 
-{ TProjectARMApp }
+{ TProjectApp }
 
-constructor TProjectARMApp.Create;
+constructor TProjectApp.Create;
 begin
   inherited Create;
-  Name := Title + 'Embedded-Project (STM32 / Arduino DUE)';
+  Name := Title + 'Embedded-Project (Arduino, STM32, etc.)';
   Flags := DefaultProjectNoApplicationFlags - [pfRunnable];
 end;
 
-function TProjectARMApp.GetLocalizedName: string;
+function TProjectApp.GetLocalizedName: string;
 begin
-  Result := Title + 'Embedded-Project (STM32 / Arduino DUE)';
+  Result := Title + 'Embedded-Project (Arduino, STM32, etc.)';
 end;
 
-function TProjectARMApp.GetLocalizedDescription: string;
+function TProjectApp.GetLocalizedDescription: string;
 begin
-  Result := Title + 'Erstellt ein Embedded-Project (STM32 / Arduino DUE)';
+  Result := Title + 'Erstellt ein Embedded-Project (Arduino, STM32, etc.)';
 end;
 
-function TProjectARMApp.DoInitDescriptor: TModalResult;
+function TProjectApp.DoInitDescriptor: TModalResult;
 begin
   Project_Options_Form.DefaultMask;
   Result := Project_Options_Form.ShowModal;
 end;
 
-function TProjectARMApp.InitProject(AProject: TLazProject): TModalResult;
+function TProjectApp.InitProject(AProject: TLazProject): TModalResult;
 const
   ProjectText =
     'program Project1;' + LineEnding + LineEnding +
@@ -152,9 +152,9 @@ begin
 
   AProject.Flags := AProject.Flags + [pfRunnable];
 
-  AProject.LazCompilerOptions.TargetCPU := 'arm';
+  AProject.LazCompilerOptions.TargetCPU := 'avr';
   AProject.LazCompilerOptions.TargetOS := 'embedded';
-  AProject.LazCompilerOptions.TargetProcessor := 'ARMV7M';
+  AProject.LazCompilerOptions.TargetProcessor := 'AVR5';
 
   AProject.LazCompilerOptions.ExecuteAfter.CompileReasons := [crRun];
 
@@ -179,7 +179,7 @@ begin
   Result := mrOk;
 end;
 
-function TProjectARMApp.CreateStartFiles(AProject: TLazProject): TModalResult;
+function TProjectApp.CreateStartFiles(AProject: TLazProject): TModalResult;
 begin
   Result := LazarusIDE.DoOpenEditorFile(AProject.MainFile.Filename, -1, -1, [ofProjectLoading, ofRegularFile]);
 end;
