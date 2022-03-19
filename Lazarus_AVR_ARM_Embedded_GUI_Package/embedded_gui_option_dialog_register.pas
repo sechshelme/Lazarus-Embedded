@@ -47,7 +47,7 @@ begin
 
   if LazProject.LazCompilerOptions.TargetOS <> 'embedded' then begin
     if MessageDlg('Warnung', 'Es handelt sich nicht um ein Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
-      Project_Options_Form.Free;
+//      Project_Options_Form.Free;
       Exit;
     end;
   end;

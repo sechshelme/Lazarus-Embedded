@@ -124,7 +124,7 @@ begin
   end;
 
   with ComboBox_SubArch do begin
-    Items.CommaText := ARM_SubArch_List;
+//    Items.CommaText := AVR_SubArch_List;
     Style := csOwnerDrawFixed;
   end;
 
@@ -231,6 +231,7 @@ begin
     Top := 150;
   end;
 
+  DefaultMask;
 end;
 
 procedure TProject_Options_Form.DefaultMask;
@@ -243,10 +244,11 @@ begin
 
   with ComboBox_SubArch do begin
     Text := 'AVR5';
+    Items.CommaText := AVR_SubArch_List;
     ItemIndex := Items.IndexOf(Text);
   end;
 
-  ComboBox_ArchChange(nil);
+//  ComboBox_ArchChange(nil);
 
   with ComboBox_Controller do begin
     Text := 'atmega328p';
@@ -332,7 +334,7 @@ begin
     ComboBox_UF2_mount_Path.Text := '';
   end;
 
-//  RadioButton_Programmer_Change(nil);
+  RadioButton_Programmer_Change(nil);
 end;
 
 procedure TProject_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -577,7 +579,6 @@ begin
     index := TemplatesForm.ListBox_Template.ItemIndex;
 
     // --- FPC_Command
-
     ComboBox_Arch.Text := TemplatesPara[index].Arch;
     ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
     ComboBox_ArchChange(nil);
@@ -587,7 +588,6 @@ begin
     ComboBox_Controller.Text := TemplatesPara[index].Controller;
 
     // --- Programmer Command
-
     RadioButton_avrdude.Checked := TemplatesPara[index].Programmer = 'avrdude';
     RadioButton_st_flash.Checked := TemplatesPara[index].Programmer = 'st-flash';
     RadioButton_UF2.Checked := TemplatesPara[index].Programmer = 'uf2';

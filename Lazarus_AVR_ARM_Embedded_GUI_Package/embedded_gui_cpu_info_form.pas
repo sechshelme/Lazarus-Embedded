@@ -54,7 +54,6 @@ begin
   StringGrid1.ColumnClickSorts := True;
 
   ComboBox1.Text := 'avr';
-  //  ComboBox1.Items.AddCommaText(Embedded_Systems);
   ComboBox1.Items.AddCommaText(ArchList);
 
   ComboBox1.ItemIndex := ComboBox1.Items.IndexOf('avr');

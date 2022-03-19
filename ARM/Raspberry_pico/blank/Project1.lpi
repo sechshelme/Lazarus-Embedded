@@ -37,7 +37,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="c_obj;../Fremdes/pico-fpcexamples-main/units"/>
+      <OtherUnitFiles Value="/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Raspberry_pico/Fremdes/pico-fpcexamples-main/units/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
@@ -52,10 +52,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpraspi_pico
+      <CustomOptions Value="-WpRASPI_PICO
 -Xu"/>
       <ExecuteAfter>
-        <Command Value="/bin/cp Project1.uf2 /media/tux/RPI-RP2/test.uf2"/>
+        <Command Value="/bin/cp Project1.uf2 /media/tux/RPI-RP2/Project1.uf2"/>
       </ExecuteAfter>
     </Other>
   </CompilerOptions>

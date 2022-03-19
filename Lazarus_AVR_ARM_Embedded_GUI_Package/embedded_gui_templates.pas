@@ -34,7 +34,7 @@ type
 const
   TemplatesPara: array of TTemplatesPara = ((
     Name: 'STM32F103X8';
-    Arch: 'ARM';
+    Arch: 'arm';
     SubArch: 'ARMV7M';
     Controller: 'STM32F103X8';
     Programmer: 'st-flash';
@@ -49,7 +49,7 @@ const
       FlashBase: '0x08000000')), (
 
     Name: 'Rasberry Pico';
-    Arch: 'ARM';
+    Arch: 'arm';
     SubArch: 'ARMV6M';
     Controller: 'RASPI_PICO';
     Programmer: 'uf2';
@@ -64,7 +64,7 @@ const
       FlashBase: '0x00000000')), (
 
     Name: 'Arduino DUE';
-    Arch: 'ARM';
+    Arch: 'arm';
     SubArch: 'ARMV7M';
     Controller: 'ATSAM3X8E';
     Programmer: 'bossac';
@@ -79,7 +79,7 @@ const
       FlashBase: '0x080000')), (
 
       Name: 'Arduino UNO';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR5';
       Controller: 'atmega328p';
       Programmer: 'avrdude';
@@ -94,7 +94,7 @@ const
         FlashBase: '')), (
 
       Name: 'Arduino Nano (old Bootloader)';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR5';
       Controller: 'atmega328p';
       Programmer: 'avrdude';
@@ -109,7 +109,7 @@ const
         FlashBase: '')), (
 
       Name: 'Arduino Nano';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR5';
       Controller: 'atmega328p';
       Programmer: 'avrdude';
@@ -124,7 +124,7 @@ const
         FlashBase: '')), (
 
       Name: 'Arduino Mega';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR6';
       Controller: 'atmega2560';
       Programmer: 'avrdude';
@@ -139,7 +139,7 @@ const
         FlashBase: '')), (
 
       Name: 'Arduino Nano Every';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR6';
       Controller: 'atmega4808';
       Programmer: 'avrdude';
@@ -154,7 +154,7 @@ const
         FlashBase: '')), (
 
       Name: 'ATmega328P';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR5';
       Controller: 'atmega328p';
       Programmer: 'avrdude';
@@ -169,7 +169,7 @@ const
         FlashBase: '')), (
 
       Name: 'ATtiny2313A';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR25';
       Controller: 'attiny2313a';
       Programmer: 'avrdude';
@@ -184,7 +184,7 @@ const
         FlashBase: '')), (
 
       Name: 'ATtiny13A';
-      Arch: 'AVR';
+      Arch: 'avr';
       SubArch: 'AVR25';
       Controller: 'attiny13a';
       Programmer: 'avrdude';
