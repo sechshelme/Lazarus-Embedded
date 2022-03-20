@@ -124,7 +124,7 @@ begin
   end;
 
   with ComboBox_SubArch do begin
-//    Items.CommaText := AVR_SubArch_List;
+    //    Items.CommaText := AVR_SubArch_List;
     Style := csOwnerDrawFixed;
   end;
 
@@ -248,7 +248,7 @@ begin
     ItemIndex := Items.IndexOf(Text);
   end;
 
-//  ComboBox_ArchChange(nil);
+  //  ComboBox_ArchChange(nil);
 
   with ComboBox_Controller do begin
     Text := 'atmega328p';
@@ -284,14 +284,17 @@ begin
 
   with ComboBox_avrdude_COMPort do begin
     Items.CommaText := GetSerialPortNames;
-  end;
-
-  with ComboBox_avrrdude_BitClock do begin
-    Text := Items[0];  // Default = 1
+    if Items.Count > 0 then begin
+      Text := Items[0];
+    end;
   end;
 
   with ComboBox_avrdude_COMPortBaud do begin
     Text := '57600';
+  end;
+
+  with ComboBox_avrrdude_BitClock do begin
+    Text := Items[0];  // Default = 1
   end;
 
   with ComboBox_avrdude_Verbose do begin
@@ -482,7 +485,7 @@ end;
 procedure TProject_Options_Form.MaskToLazProject(LazProject: TLazProject);
 var
   s, s1, sf: string;
-  i: Integer;
+  i: integer;
 begin
   // --- FPC_Command
   LazProject.LazCompilerOptions.TargetCPU := ComboBox_Arch.Text;
