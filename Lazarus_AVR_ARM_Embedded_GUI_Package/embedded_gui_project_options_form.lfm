@@ -41,7 +41,7 @@ object Project_Options_Form: TProject_Options_Form
     Align = alBottom
     Color = clAqua
     Lines.Strings = (
-      'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für ARM-Embedde erstellt wurde. Auch muss das ARM-SubArch stimmen.'
+      'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für Embedde erstellt wurde. Auch muss das SubArch stimmen.'
     )
     ReadOnly = True
     TabOrder = 3
