@@ -1,7 +1,12 @@
+// Blink Pin 13
+
 program Project1;
+
+{$H-,J-,O-}
+
 const
   BP5 = 5; // Pin 13 des Arduino
-  sl = 21000;
+  sl = 20000;
 
   procedure mysleep(t: int32);
   var
@@ -22,5 +27,5 @@ begin
 
     PORTB := PORTB and not (1 shl BP5);
     mysleep(sl);
-  until 1 = 2;
+  until False;
 end.

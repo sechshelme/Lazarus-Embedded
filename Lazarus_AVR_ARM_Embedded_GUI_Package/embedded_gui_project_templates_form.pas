@@ -16,7 +16,9 @@ type
     BitBtn_Ok: TBitBtn;
     BitBtn_Cancel: TBitBtn;
     Label1: TLabel;
+    Label2: TLabel;
     ListBox_Template: TListBox;
+    ListBox_Example: TListBox;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure ListBox_TemplateDblClick(Sender: TObject);
