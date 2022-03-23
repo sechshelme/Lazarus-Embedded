@@ -51,7 +51,7 @@ SourceAVRATmega328Blink_Pin_13 =
   '' + LineEnding +
   'const' + LineEnding +
   '  BP5 = 5; // Pin 13 des Arduino' + LineEnding +
-  '  sl = 20000;' + LineEnding +
+  '  sl = 200000;' + LineEnding +
   '' + LineEnding +
   '  procedure mysleep(t: int32);' + LineEnding +
   '  var' + LineEnding +
