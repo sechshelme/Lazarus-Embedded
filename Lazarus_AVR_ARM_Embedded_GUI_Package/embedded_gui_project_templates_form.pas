@@ -21,9 +21,11 @@ type
     ListBox_Example: TListBox;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure ListBox_TemplateDblClick(Sender: TObject);
+    procedure ListBox_TemplateClick(Sender: TObject);
+    procedure ListBoxDblClick(Sender: TObject);
   private
   public
+    function getSource: string;
   end;
 
 var
@@ -37,7 +39,7 @@ implementation
 
 procedure TProjectTemplatesForm.FormCreate(Sender: TObject);
 var
-  index: Integer;
+  index: integer;
 begin
   LoadFormPos_from_XML(Self);
 
@@ -46,8 +48,27 @@ begin
   for index := 0 to Length(TemplatesPara) - 1 do begin
     ListBox_Template.Items.AddStrings(TemplatesPara[index].Name);
   end;
-  ListBox_Template.Caption := TemplatesPara[0].Name;
-  ListBox_Template.ItemIndex := 0;
+  if ListBox_Template.Count >= 1 then begin
+    ListBox_Template.ItemIndex := 0;
+  end;
+  ListBox_TemplateClick(Sender);
+end;
+
+procedure TProjectTemplatesForm.ListBox_TemplateClick(Sender: TObject);
+var
+  p, i, index: integer;
+  s: string;
+begin
+  index := ListBox_Template.ItemIndex;
+  ListBox_Example.Clear;
+  for i := 0 to Length(TemplatesPara[index].Examples) - 1 do begin
+    p := Pos(LineEnding, TemplatesPara[index].Examples[i]);
+    s := Copy(TemplatesPara[index].Examples[i], 3, p - 3);
+    ListBox_Example.Items.Add(s);
+  end;
+  if ListBox_Example.Count >= 2 then begin
+    ListBox_Example.ItemIndex := 1;
+  end;
 end;
 
 procedure TProjectTemplatesForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -55,9 +76,14 @@ begin
   SaveFormPos_to_XML(Self);
 end;
 
-procedure TProjectTemplatesForm.ListBox_TemplateDblClick(Sender: TObject);
+procedure TProjectTemplatesForm.ListBoxDblClick(Sender: TObject);
 begin
   BitBtn_Ok.Click;
+end;
+
+function TProjectTemplatesForm.getSource: string;
+begin
+  Result := TemplatesPara[ListBox_Template.ItemIndex].Examples[ListBox_Example.ItemIndex];
 end;
 
 end.

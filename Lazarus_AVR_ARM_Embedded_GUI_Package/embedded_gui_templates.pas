@@ -22,6 +22,12 @@ const
     '  until false;' + LineEnding +
     'end.';
 
+  SourceBlank =
+    '// Blank' + LineEnding + LineEnding +
+    'program Project1;' + LineEnding + LineEnding +
+    'begin' + LineEnding +
+    'end.';
+
 // --- AVR
 
 SourceAVRDefault =
@@ -329,7 +335,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR5';
     Controller := 'atmega328p';
-    Examples := [SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
+    Examples := [SourceBlank, SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'atmega328p';
@@ -347,7 +353,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR5';
     Controller := 'atmega328p';
-    Examples := [SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
+    Examples := [SourceBlank, SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'atmega328p';
@@ -365,7 +371,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR5';
     Controller := 'atmega328p';
-    Examples := [SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
+    Examples := [SourceBlank, SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'atmega328p';
@@ -383,7 +389,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR6';
     Controller := 'atmega2560';
-    Examples := [SourceAVRDefault];
+    Examples := [SourceBlank, SourceAVRDefault];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'atmega2560';
@@ -401,7 +407,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR6';
     Controller := 'atmega4808';
-    Examples := [SourceAVRDefault];
+    Examples := [SourceBlank, SourceAVRDefault];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'atmega4808';
@@ -419,7 +425,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR5';
     Controller := 'atmega328p';
-    Examples := [SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
+    Examples := [SourceBlank, SourceAVRDefault, SourceAVRATmega328Blink_Pin_13];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'atmega328p';
@@ -437,7 +443,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR25';
     Controller := 'attiny2313a';
-    Examples := [SourceAVRDefault];
+    Examples := [SourceBlank, SourceAVRDefault];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'attiny2313';
@@ -455,7 +461,7 @@ initialization
     Arch := 'avr';
     SubArch := 'AVR25';
     Controller := 'attiny13a';
-    Examples := [SourceAVRDefault];
+    Examples := [SourceBlank, SourceAVRDefault];
     Programmer := 'avrdude';
     with avrdude do begin
       Controller := 'attiny13';
@@ -476,7 +482,7 @@ initialization
     SubArch := 'ARMV7M';
     Controller := 'STM32F103X8';
     SetLength(Examples, 1);
-    Examples := [SourceARMV7MDefault];
+    Examples := [SourceBlank, SourceARMV7MDefault];
     Programmer := 'st-flash';
     with stlink do begin
       FlashBase := '0x08000000';
@@ -489,7 +495,7 @@ initialization
     Arch := 'arm';
     SubArch := 'ARMV6M';
     Controller := 'RASPI_PICO';
-    Examples := [SourceRaspi_PicoDefault];
+    Examples := [SourceBlank, SourceRaspi_PicoDefault];
     Programmer := 'uf2';
     with stlink do begin
       FlashBase := '0x00000000';
@@ -502,7 +508,7 @@ initialization
     Arch := 'arm';
     SubArch := 'ARMV7M';
     Controller := 'ATSAM3X8E';
-    Examples := [SourceDefault];
+    Examples := [SourceBlank, SourceDefault];
     Programmer := 'bossac';
     with stlink do begin
       FlashBase := '0x080000';

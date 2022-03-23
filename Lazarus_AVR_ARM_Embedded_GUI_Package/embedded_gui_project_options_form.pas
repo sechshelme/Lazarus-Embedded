@@ -94,7 +94,9 @@ type
     ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
+    FProjectSource: string;
   public
+    property ProjectSource: string read FProjectSource;
     procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
     procedure MaskToLazProject(LazProject: TLazProject);
@@ -602,6 +604,7 @@ begin
 
     // Rasberry PI Pico
     CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
+    FProjectSource := TemplatesForm.getSource;
   end;
 
   TemplatesForm.Free;

@@ -48,7 +48,7 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     Width = 420
     Anchors = [akTop, akLeft, akRight, akBottom]
     ItemHeight = 0
-    OnDblClick = ListBox_TemplateDblClick
+    OnDblClick = ListBoxDblClick
     ScrollWidth = 358
     TabOrder = 2
     TopIndex = -1
@@ -67,6 +67,8 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     Width = 208
     Anchors = [akTop, akLeft, akBottom]
     ItemHeight = 0
+    OnClick = ListBox_TemplateClick
+    OnDblClick = ListBoxDblClick
     TabOrder = 3
     TopIndex = -1
   end
