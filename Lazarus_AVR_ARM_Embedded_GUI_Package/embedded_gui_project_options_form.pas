@@ -570,13 +570,6 @@ var
 
 begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
-  TemplatesForm.Caption := Title + 'Vorlagen';
-
-  for index := 0 to Length(TemplatesPara) - 1 do begin
-    TemplatesForm.ListBox_Template.Items.AddStrings(TemplatesPara[index].Name);
-  end;
-  TemplatesForm.ListBox_Template.Caption := TemplatesPara[0].Name;
-  TemplatesForm.ListBox_Template.ItemIndex := 0;
 
   if TemplatesForm.ShowModal = mrOk then begin
     index := TemplatesForm.ListBox_Template.ItemIndex;

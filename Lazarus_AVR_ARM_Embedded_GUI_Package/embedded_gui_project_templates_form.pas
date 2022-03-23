@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  Embedded_GUI_Common;
+  Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const, Embedded_GUI_Templates;
 
 type
 
@@ -36,8 +36,18 @@ implementation
 { TProjectTemplatesForm }
 
 procedure TProjectTemplatesForm.FormCreate(Sender: TObject);
+var
+  index: Integer;
 begin
   LoadFormPos_from_XML(Self);
+
+  Caption := Title + 'Vorlagen';
+
+  for index := 0 to Length(TemplatesPara) - 1 do begin
+    ListBox_Template.Items.AddStrings(TemplatesPara[index].Name);
+  end;
+  ListBox_Template.Caption := TemplatesPara[0].Name;
+  ListBox_Template.ItemIndex := 0;
 end;
 
 procedure TProjectTemplatesForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
