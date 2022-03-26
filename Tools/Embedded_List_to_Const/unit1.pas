@@ -9,7 +9,6 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
   Buttons, FileUtil, SynEdit, SynHighlighterPas,
   Embedded_GUI_Common, Embedded_GUI_Common_FileComboBox;
-//  Embedded_GUI_Common_FileComboBox;
 
 type
 
@@ -341,8 +340,7 @@ begin
 
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('// Diese Unit wird automatisch durch das Tool "./Tool/Embedded_List_to_const" erzeugt.');
-  SynEdit1.Lines.Add('// Die Arrays werden aus "./fpc.src/fpc/compiler/avr/cpuinfo.pas" und');
-  SynEdit1.Lines.Add('// "./fpc.src/fpc/compiler/arm/cpuinfo.pas" importiert.');
+  SynEdit1.Lines.Add('// Die Arrays werden aus "./fpc.src/fpc/compiler/xxx/cpuinfo.pas" importiert.');
   SynEdit1.Lines.Add('');
   SynEdit1.Lines.Add('unit ' + UName + ';');
   SynEdit1.Lines.Add('');
