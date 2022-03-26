@@ -1,5 +1,5 @@
 
-<b>Lazarus Arduino/AVR / STM32/ARM GUI</b> (german)
+<b>Lazarus Arduino/ AVR / STM32 / ARM GUI</b> (german)
 
 Mit dieser Package wird Lazarus mit einer GUI für Arduino/AVR / STM32/ARM GUI erweitert.
 Damit werden alle Parameter für ein AVR/ARM-Projekt gesetzt, inklusive den AVRDude Aufruf.
@@ -13,7 +13,7 @@ Die Package befindet sich unter: Lazarus_Arduino_AVR_GUI_Package
 <br><br><br>
 
 
-<b> Lazarus Arduino / AVR / STM32 / ARM GUI </b> (german)
+<b> Lazarus Arduino/ AVR / STM32 / ARM GUI </b> (german)
 
 This package extends Lazarus with a GUI for Arduino / AVR / STM32 / ARM GUI.
 This sets all parameters for an AVR / ARM project, including the AVRDude call.
