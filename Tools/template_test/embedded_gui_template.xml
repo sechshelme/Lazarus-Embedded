@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Board Count="3">
+    <Item0 Caption="Arduino UNO" Arch="avr" SubArch="AVR5" Controller="atmega328p">
+      <Example Count="3">
+        <Item0 Caption="Blank" SourceFile="SourceBlank" />
+        <Item1 Caption="Default" SourceFile="SourceAVRDefault" />
+        <Item2 Caption="Blink Pin 133" SourceFile="SourceAVRATmega328Blink_Pin_13" />
+      </Example>
+      <Programmer Value="avrdude" />
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyACM0" Baud="115200" Disable_Auto_Erase="False" Chip_Erase="False" />
+    </Item0>
+    <Item1 Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p">
+      <Example Count="3">
+        <Item0 Caption="Blank" SourceFile="SourceBlank" />
+        <Item1 Caption="Default" SourceFile="SourceAVRDefault" />
+        <Item2 Caption="Blink Pin 133" SourceFile="SourceAVRATmega328Blink_Pin_13" />
+      </Example>
+      <Programmer Value="avrdude" />
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyUSB0" Baud="57600" Disable_Auto_Erase="False" Chip_Erase="False" />
+    </Item1>
+    <Item2 Caption="Arduino Nano" Arch="avr" SubArch="AVR5" Controller="atmega328p">
+      &gt;
+      <Example Count="3">
+        <Item0 Caption="Blank" SourceFile="SourceBlank" />
+        <Item1 Caption="Default" SourceFile="SourceAVRDefault" />
+        <Item2 Caption="Blink Pin 133" SourceFile="SourceAVRATmega328Blink_Pin_13" />
+      </Example>
+      <Programmer Value="avrdude" />
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyUSB0" Baud="115200" Disable_Auto_Erase="False" Chip_Erase="False" />
+    </Item2>
+  </Board>
+</CONFIG>
