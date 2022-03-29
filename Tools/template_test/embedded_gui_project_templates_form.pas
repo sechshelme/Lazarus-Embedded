@@ -8,6 +8,8 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
   Laz2_XMLCfg,  // Bei normalen Anwendungen
 
+  Laz2_DOM, Laz2_XMLRead, Laz2_XMLWrite,
+
   Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const, Embedded_GUI_Templates;
 
 type
@@ -43,6 +45,7 @@ procedure TProjectTemplatesForm.FormCreate(Sender: TObject);
 var
   i, j, index, xml_count: integer;
   Cfg: TXMLConfig;
+  s: string;
 begin
   LoadFormPos_from_XML(Self);
   Caption := Title + 'Vorlagen';
@@ -50,19 +53,38 @@ begin
   Cfg := TXMLConfig.Create(nil);
   Cfg.Filename := 'embedded_gui_template.xml';
 
-  xml_count := Cfg.GetValue('Board/Count', 0);
-  for i := 0 to xml_count - 1 do begin
-    WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Caption', 'x'));
-    WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Arch', 'x'));
-    WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/SubArch', 'x'));
-    WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Controller', 'x'));
+  //xml_count := Cfg.GetValue('Board/Count', 0);
+  //for i := 0 to xml_count - 1 do begin
+  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Caption', 'x'));
+  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Arch', 'x'));
+  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/SubArch', 'x'));
+  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Controller', 'x'));
+  //
+  //  for j := 0 to Cfg.GetValue('Board/Item' + i.ToString + '/Example/Count', 0) - 1 do begin
+  //    //    Write(Cfg.GetValue('Board/Item' + i.ToString + '/Example/Item' + j.ToString + '/Caption', 'abc'));
+  //    //      WriteLn(' ' + Cfg.GetValue('Board/Item' + i.ToString + '/Example/Item' + j.ToString + '/SourceFile', 'abc'));
+  //
+  //    //      s:= 'Board/Item' + i.ToString + '/Example/Item[' + j.ToString + ']/SourceFile';
+  //    s := 'Board/Item0/Example/Item[0]/SourceFile';
+  //    WriteLn(s);
+  //    WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+  //  end;
+  //end;
 
-    for j := 0 to Cfg.GetValue('Board/Item' + i.ToString + '/Example/Count', 0) - 1 do begin
-      Write(Cfg.GetValue('Board/Item' + i.ToString + '/Example/Item' + j.ToString + '/Caption', 'abc'));
-      WriteLn(' ' + Cfg.GetValue('Board/Item' + i.ToString + '/Example/Item' + j.ToString + '/SourceFile', 'abc'));
-    end;
-  end;
-  WriteLn(xml_count);
+  s := 'Board/Item0/Example/Item/SourceFile';
+  WriteLn(s);
+  WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+  s := 'Board/Item0/Example/Item/SourceFile';
+  WriteLn(s);
+  WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+  s := 'Board/Item0/Example/Item/SourceFile';
+  WriteLn(s);
+  WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+
+  //s := 'Board/Item0/Example/Item[0]/SourceFile';
+  //WriteLn(s);
+  //WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+
 
 
   Cfg.Free;
