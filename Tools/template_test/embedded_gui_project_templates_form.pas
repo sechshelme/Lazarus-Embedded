@@ -9,7 +9,6 @@ uses
   Laz2_XMLCfg,  // Bei normalen Anwendungen
 
   Laz2_DOM, Laz2_XMLRead, Laz2_XMLWrite,
-
   Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const, Embedded_GUI_Templates;
 
 type
@@ -43,7 +42,7 @@ implementation
 
 procedure TProjectTemplatesForm.FormCreate(Sender: TObject);
 var
-  i, j, index, xml_count: integer;
+  i, j, p, index, xml_count: integer;
   Cfg: TXMLConfig;
   s: string;
 begin
@@ -52,34 +51,64 @@ begin
 
   Cfg := TXMLConfig.Create(nil);
   Cfg.Filename := 'embedded_gui_template.xml';
+  Cfg.SetValue('Boards/Count', Length(TemplatesPara));
 
-  //xml_count := Cfg.GetValue('Board/Count', 0);
-  //for i := 0 to xml_count - 1 do begin
-  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Caption', 'x'));
-  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Arch', 'x'));
-  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/SubArch', 'x'));
-  //  WriteLn(Cfg.GetValue('Board/Item' + i.ToString + '/Controller', 'x'));
-  //
-  //  for j := 0 to Cfg.GetValue('Board/Item' + i.ToString + '/Example/Count', 0) - 1 do begin
-  //    //    Write(Cfg.GetValue('Board/Item' + i.ToString + '/Example/Item' + j.ToString + '/Caption', 'abc'));
-  //    //      WriteLn(' ' + Cfg.GetValue('Board/Item' + i.ToString + '/Example/Item' + j.ToString + '/SourceFile', 'abc'));
-  //
-  //    //      s:= 'Board/Item' + i.ToString + '/Example/Item[' + j.ToString + ']/SourceFile';
-  //    s := 'Board/Item0/Example/Item[0]/SourceFile';
-  //    WriteLn(s);
-  //    WriteLn(' ' + Cfg.GetValue(s, 'abc'));
-  //  end;
-  //end;
+  for i := 0 to Length(TemplatesPara) - 1 do begin
+//    Cfg.SetValue('Board/Item' + i.ToString, i);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/Caption', TemplatesPara[i].Name);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/Arch', TemplatesPara[i].Arch);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/SubArch', TemplatesPara[i].SubArch);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/Controller', TemplatesPara[i].Controller);
 
-  s := 'Board/Item0/Example/Item/SourceFile';
-  WriteLn(s);
-  WriteLn(' ' + Cfg.GetValue(s, 'abc'));
-  s := 'Board/Item0/Example/Item/SourceFile';
-  WriteLn(s);
-  WriteLn(' ' + Cfg.GetValue(s, 'abc'));
-  s := 'Board/Item0/Example/Item/SourceFile';
-  WriteLn(s);
-  WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+    Cfg.SetValue('Boards/Board' + i.ToString + '/Programmer', TemplatesPara[i].Programmer);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/avrdude/Controller', TemplatesPara[i].avrdude.Controller);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/avrdude/Programmer', TemplatesPara[i].avrdude.Programmer);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/avrdude/COM_Port', TemplatesPara[i].avrdude.COM_Port);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/avrdude/Baud', TemplatesPara[i].avrdude.Baud);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/avrdude/Disable_Auto_Erase', TemplatesPara[i].avrdude.Disable_Auto_Erase);
+    Cfg.SetValue('Boards/Board' + i.ToString + '/avrdude/Chip_Erase', TemplatesPara[i].avrdude.Chip_Erase);
+
+    Cfg.SetValue('Boards/Board' + i.ToString + '/stlink/FlashBase', TemplatesPara[i].stlink.FlashBase);
+
+    Cfg.SetValue('Boards/Board' + i.ToString + '/Examples/Count', Length(TemplatesPara[i].Examples));
+    for j := 0 to Length(TemplatesPara[i].Examples) - 1 do begin
+      p := Pos(LineEnding, TemplatesPara[i].Examples[j]);
+      s := Copy(TemplatesPara[i].Examples[j], 3, p - 3);
+      Cfg.SetValue('Boards/Board' + i.ToString + '/Examples/Example' + j.ToString + '/Caption', s);
+      Cfg.SetValue('Boards/Board' + i.ToString + '/Examples/Example' + j.ToString + '/SourceFile', s);
+    end;
+
+  end;
+
+
+
+  xml_count := Cfg.GetValue('Boards/Count', 0);
+  for i := 0 to xml_count - 1 do begin
+    WriteLn(Cfg.GetValue('Boards/Board' + i.ToString + '/Caption', 'x'));
+    WriteLn(Cfg.GetValue('Boards/Board' + i.ToString + '/Arch', 'x'));
+    WriteLn(Cfg.GetValue('Boards/Board' + i.ToString + '/SubArch', 'x'));
+    WriteLn(Cfg.GetValue('Boards/Board' + i.ToString + '/Controller', 'x'));
+
+    for j := 0 to Cfg.GetValue('Boards/Board' + i.ToString + '/Examples/Count', 0) - 1 do begin
+      //    Write(Cfg.GetValue('Boards/Board' + i.ToString + '/Example/Item' + j.ToString + '/Caption', 'abc'));
+      //      WriteLn(' ' + Cfg.GetValue('Boards/Board' + i.ToString + '/Example/Item' + j.ToString + '/SourceFile', 'abc'));
+
+      s := 'Boards/Board' + i.ToString + '/Examples/Example' + j.ToString + '/SourceFile';
+      //s := 'Boards/Board0/Example/Item[0]/SourceFile';
+      WriteLn(s);
+      WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+    end;
+  end;
+
+  //s := 'Board/Item0/Example/Item/SourceFile';
+  //WriteLn(s);
+  //WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+  //s := 'Board/Item0/Example/Item/SourceFile';
+  //WriteLn(s);
+  //WriteLn(' ' + Cfg.GetValue(s, 'abc'));
+  //s := 'Board/Item0/Example/Item/SourceFile';
+  //WriteLn(s);
+  //WriteLn(' ' + Cfg.GetValue(s, 'abc'));
 
   //s := 'Board/Item0/Example/Item[0]/SourceFile';
   //WriteLn(s);
