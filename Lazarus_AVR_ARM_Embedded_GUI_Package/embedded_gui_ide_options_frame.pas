@@ -33,6 +33,7 @@ type
     OpenDialog: TOpenDialog;
     PageControl_IDE_Options: TPageControl;
     Panel_Preview: TPanel;
+    TabSheetTemplates: TTabSheet;
     TabSheetAVR: TTabSheet;
     TabSheetARM: TTabSheet;
     TabSheet_SM_Interface: TTabSheet;
@@ -42,7 +43,8 @@ type
     procedure Button_Color_GUI_DefaultClick(Sender: TObject);
     procedure Button_Color_CustomClick(Sender: TObject);
   private
-    ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPath, ComboBox_BossacPath, ComboBox_Raspi_Pico_UnitPath, ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path: TFileNameComboBox;
+    ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPath, ComboBox_BossacPath, ComboBox_Raspi_Pico_UnitPath,
+      ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_TemplatesPath: TFileNameComboBox;
 
     SM_Interface_Frame: TSM_Interface_Frame;
     SM_Output_Frame: TSM_Output_Frame;
@@ -174,6 +176,17 @@ begin
     Top := 344;
   end;
 
+  // Templates
+
+  ComboBox_TemplatesPath := TFileNameComboBox.Create(TabSheetTemplates, 'xxamplespath', False);
+  with ComboBox_TemplatesPath do begin
+    Caption := 'Examples Path';
+    Directory := True;
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 24;
+  end;
 
   with Embedded_IDE_Options do begin
 
@@ -208,6 +221,8 @@ begin
         SM_Output_Frame.Label_Color.Font.Assign(Font);
       end;
     end;
+
+    ComboBox_TemplatesPath.Items := Templates_Path;
   end;
   Load_IDE_Color_from_XML(col);
   Panel_Preview.Color := col;
@@ -253,6 +268,8 @@ begin
     ARM.Raspi_Pico.Unit_Path.AddStrings(ComboBox_Raspi_Pico_UnitPath.Items, True);
     ARM.Raspi_Pico.cp_Path.AddStrings(ComboBox_Raspi_Pico_cp_Path.Items, True);
     ARM.Raspi_Pico.mount_Path.AddStrings(ComboBox_Raspi_Pico_mount_Path.Items, True);
+
+    Templates_Path.AddStrings(ComboBox_TemplatesPath.Items, True);
 
     Embedded_IDE_Options.Save_to_XML;
   end;

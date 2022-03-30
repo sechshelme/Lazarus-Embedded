@@ -120,7 +120,9 @@ type
     Arch,
     SubArch,
     Controller: string;
-    Examples: TStringArray;
+    Examples: array of record
+      Caption, SorceFile: String;
+    end;
     Programmer: string;
     avrdude: record
       Controller,
@@ -129,199 +131,199 @@ type
       Baud: string;
       Disable_Auto_Erase,
       Chip_Erase: boolean;
-      end;
+    end;
     stlink: record
       FlashBase: string;
-      end;
+    end;
   end;
 
-//var
-//  TemplatesPara: array of TTemplatesPara;
+var
+  TemplatesPara: array of TTemplatesPara;
 
 
-const
-  TemplatesPara: array of TTemplatesPara = ((
-
-// --- AVR
-
-    Name: 'Arduino UNO';
-    Arch: 'avr';
-    SubArch: 'AVR5';
-    Controller: 'atmega328p';
-    Examples: (SourceBlank, SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'atmega328p';
-      Programmer: 'arduino';
-      COM_Port: '/dev/ttyACM0';
-      Baud: '115200';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False);
-    stlink: (
-      FlashBase: '')), (
-
-    Name: 'Arduino Nano (old Bootloader)';
-    Arch: 'avr';
-    SubArch: 'AVR5';
-    Controller: 'atmega328p';
-    Examples: (SourceBlank,SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'atmega328p';
-      Programmer: 'arduino';
-      COM_Port: '/dev/ttyUSB0';
-      Baud: '57600';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False);
-    stlink: (
-      FlashBase: '')), (
-
-    Name: 'Arduino Nano';
-    Arch: 'avr';
-    SubArch: 'AVR5';
-    Controller: 'atmega328p';
-    Examples: (SourceBlank,SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'atmega328p';
-      Programmer: 'arduino';
-      COM_Port: '/dev/ttyUSB0';
-      Baud: '115200';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False; );
-    stlink: (
-      FlashBase: '')), (
-
-    Name: 'Arduino Mega';
-    Arch: 'avr';
-    SubArch: 'AVR6';
-    Controller: 'atmega2560';
-    Examples: (SourceBlank,SourceAVRDefault);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'atmega2560';
-      Programmer: 'wiring';
-      COM_Port: '/dev/ttyUSB0';
-      Baud: '115200';
-      Disable_Auto_Erase: True;
-      Chip_Erase: False; );
-    stlink: (
-      FlashBase: '')), (
-
-    Name: 'Arduino Nano Every';
-    Arch: 'avr';
-    SubArch: 'AVR6';
-    Controller: 'atmega4808';
-    Examples: (SourceBlank,SourceAVRDefault);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'atmega4808';
-      Programmer: 'jtag2updi';
-      COM_Port: '/dev/ttyUSB0';
-      Baud: '115200';
-      Disable_Auto_Erase: True;
-      Chip_Erase: True; );
-    stlink: (
-      FlashBase: '')), (
-
-    Name: 'ATmega328P';
-    Arch: 'avr';
-    SubArch: 'AVR5';
-    Controller: 'atmega328p';
-    Examples: (SourceBlank,SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'atmega328p';
-      Programmer: 'usbasp';
-      COM_Port: '';
-      Baud: '';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False; );
-    stlink: (
-      FlashBase: '')), (
-
-    Name: 'ATtiny2313A';
-    Arch: 'avr';
-    SubArch: 'AVR25';
-    Controller: 'attiny2313a';
-    Examples: (SourceBlank,SourceAVRDefault);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'attiny2313';
-      Programmer: 'usbasp';
-      COM_Port: '';
-      Baud: '';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False; );
-    stlink: (
-      FlashBase: '')), (
-
-    Name: 'ATtiny13A';
-    Arch: 'avr';
-    SubArch: 'AVR25';
-    Controller: 'attiny13a';
-    Examples: (SourceBlank,SourceAVRDefault);
-    Programmer: 'avrdude';
-    avrdude: (
-      Controller: 'attiny13';
-      Programmer: 'usbasp';
-      COM_Port: '';
-      Baud: '';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False; );
-    stlink: (
-      FlashBase: '')), (
-
-  // --- ARM
-
-    Name: 'STM32F103X8';
-    Arch: 'arm';
-    SubArch: 'ARMV7M';
-    Controller: 'STM32F103X8';
-    Examples: (SourceBlank,SourceARMV7MDefault);
-    Programmer: 'st-flash';
-    avrdude: (
-      Controller: '';
-      Programmer: '';
-      COM_Port: '';
-      Baud: '';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False);
-    stlink: (
-      FlashBase: '0x08000000')
-      ), (
-
-    Name: 'Rasberry Pico';
-    Arch: 'arm';
-    SubArch: 'ARMV6M';
-    Controller: 'RASPI_PICO';
-    Examples: (SourceBlank,SourceRaspi_PicoDefault);
-    Programmer: 'uf2';
-    avrdude: (
-      Controller: '';
-      Programmer: '';
-      COM_Port: '';
-      Baud: '';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False);
-    stlink: (
-      FlashBase: '0x00000000')), (
-
-    Name: 'Arduino DUE';
-    Arch: 'arm';
-    SubArch: 'ARMV7M';
-    Controller: 'ATSAM3X8E';
-    Examples: (SourceBlank,SourceDefault);
-    Programmer: 'bossac';
-    avrdude: (
-      Controller: '';
-      Programmer: '';
-      COM_Port: '';
-      Baud: '';
-      Disable_Auto_Erase: False;
-      Chip_Erase: False);
-    stlink: (
-      FlashBase: '0x080000')));
+//const
+//  TemplatesPara: array of TTemplatesPara = ((
+//
+//// --- AVR
+//
+//    Name: 'Arduino UNO';
+//    Arch: 'avr';
+//    SubArch: 'AVR5';
+//    Controller: 'atmega328p';
+//    Examples: (SourceBlank, SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'atmega328p';
+//      Programmer: 'arduino';
+//      COM_Port: '/dev/ttyACM0';
+//      Baud: '115200';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False);
+//    stlink: (
+//      FlashBase: '')), (
+//
+//    Name: 'Arduino Nano (old Bootloader)';
+//    Arch: 'avr';
+//    SubArch: 'AVR5';
+//    Controller: 'atmega328p';
+//    Examples: (SourceBlank,SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'atmega328p';
+//      Programmer: 'arduino';
+//      COM_Port: '/dev/ttyUSB0';
+//      Baud: '57600';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False);
+//    stlink: (
+//      FlashBase: '')), (
+//
+//    Name: 'Arduino Nano';
+//    Arch: 'avr';
+//    SubArch: 'AVR5';
+//    Controller: 'atmega328p';
+//    Examples: (SourceBlank,SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'atmega328p';
+//      Programmer: 'arduino';
+//      COM_Port: '/dev/ttyUSB0';
+//      Baud: '115200';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False; );
+//    stlink: (
+//      FlashBase: '')), (
+//
+//    Name: 'Arduino Mega';
+//    Arch: 'avr';
+//    SubArch: 'AVR6';
+//    Controller: 'atmega2560';
+//    Examples: (SourceBlank,SourceAVRDefault);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'atmega2560';
+//      Programmer: 'wiring';
+//      COM_Port: '/dev/ttyUSB0';
+//      Baud: '115200';
+//      Disable_Auto_Erase: True;
+//      Chip_Erase: False; );
+//    stlink: (
+//      FlashBase: '')), (
+//
+//    Name: 'Arduino Nano Every';
+//    Arch: 'avr';
+//    SubArch: 'AVR6';
+//    Controller: 'atmega4808';
+//    Examples: (SourceBlank,SourceAVRDefault);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'atmega4808';
+//      Programmer: 'jtag2updi';
+//      COM_Port: '/dev/ttyUSB0';
+//      Baud: '115200';
+//      Disable_Auto_Erase: True;
+//      Chip_Erase: True; );
+//    stlink: (
+//      FlashBase: '')), (
+//
+//    Name: 'ATmega328P';
+//    Arch: 'avr';
+//    SubArch: 'AVR5';
+//    Controller: 'atmega328p';
+//    Examples: (SourceBlank,SourceAVRDefault, SourceAVRATmega328Blink_Pin_13);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'atmega328p';
+//      Programmer: 'usbasp';
+//      COM_Port: '';
+//      Baud: '';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False; );
+//    stlink: (
+//      FlashBase: '')), (
+//
+//    Name: 'ATtiny2313A';
+//    Arch: 'avr';
+//    SubArch: 'AVR25';
+//    Controller: 'attiny2313a';
+//    Examples: (SourceBlank,SourceAVRDefault);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'attiny2313';
+//      Programmer: 'usbasp';
+//      COM_Port: '';
+//      Baud: '';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False; );
+//    stlink: (
+//      FlashBase: '')), (
+//
+//    Name: 'ATtiny13A';
+//    Arch: 'avr';
+//    SubArch: 'AVR25';
+//    Controller: 'attiny13a';
+//    Examples: (SourceBlank,SourceAVRDefault);
+//    Programmer: 'avrdude';
+//    avrdude: (
+//      Controller: 'attiny13';
+//      Programmer: 'usbasp';
+//      COM_Port: '';
+//      Baud: '';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False; );
+//    stlink: (
+//      FlashBase: '')), (
+//
+//  // --- ARM
+//
+//    Name: 'STM32F103X8';
+//    Arch: 'arm';
+//    SubArch: 'ARMV7M';
+//    Controller: 'STM32F103X8';
+//    Examples: (SourceBlank,SourceARMV7MDefault);
+//    Programmer: 'st-flash';
+//    avrdude: (
+//      Controller: '';
+//      Programmer: '';
+//      COM_Port: '';
+//      Baud: '';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False);
+//    stlink: (
+//      FlashBase: '0x08000000')
+//      ), (
+//
+//    Name: 'Rasberry Pico';
+//    Arch: 'arm';
+//    SubArch: 'ARMV6M';
+//    Controller: 'RASPI_PICO';
+//    Examples: (SourceBlank,SourceRaspi_PicoDefault);
+//    Programmer: 'uf2';
+//    avrdude: (
+//      Controller: '';
+//      Programmer: '';
+//      COM_Port: '';
+//      Baud: '';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False);
+//    stlink: (
+//      FlashBase: '0x00000000')), (
+//
+//    Name: 'Arduino DUE';
+//    Arch: 'arm';
+//    SubArch: 'ARMV7M';
+//    Controller: 'ATSAM3X8E';
+//    Examples: (SourceBlank,SourceDefault);
+//    Programmer: 'bossac';
+//    avrdude: (
+//      Controller: '';
+//      Programmer: '';
+//      COM_Port: '';
+//      Baud: '';
+//      Disable_Auto_Erase: False;
+//      Chip_Erase: False);
+//    stlink: (
+//      FlashBase: '0x080000')));
 
 implementation
 

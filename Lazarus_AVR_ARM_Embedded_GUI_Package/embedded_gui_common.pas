@@ -35,6 +35,7 @@ const
   Default_Raspi_Pico_Unit_Path: TStringArray = ('..\Unit', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('copy');
   Default_Raspi_Pico_mount_Path: TStringArray = ('D:', 'E:', 'F:', 'G:');
+  Default_Template_Path: TStringArray = ('c:\Daten\Examples');
   UARTDefaultPort = 'COM8';
   {$ELSE}
   Default_Avrdude_Path: TStringArray = ('/usr/bin/avrdude', 'avrdude');
@@ -44,6 +45,7 @@ const
   Default_Raspi_Pico_Unit_Path: TStringArray = ('../Unit', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('/bin/cp', 'cp');
   Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
+  Default_Template_Path: TStringArray = ('~/Examples');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
 
@@ -106,6 +108,7 @@ type
       end;
     end;
     SerialMonitor_Options: TSerialMonitor_Options;
+    Templates_Path: TStringList;
     constructor Create;
     destructor Destroy; override;
     procedure Save_to_XML;
@@ -159,6 +162,8 @@ const
   Key_Raspi_Pico_Unit_Path = Key_ARM + 'raspi_pico_Unit_Path/';
   Key_Raspi_Pico_cp_Path = Key_ARM + 'raspi_pico_cp_Path/';
   Key_Raspi_Pico_mount_Path = Key_ARM + 'raspi_pico_mount_Path/';
+
+  Key_Templates_Path = Key_IDE_Options + 'Templates_Path';
 
   Key_ComPara = 'COMPortPara/';
   Key_Output = 'OutputScreenPara/';
@@ -525,9 +530,11 @@ begin
 
   ARM.STFlashPath := TStringList.Create;
   ARM.BossacPath := TStringList.Create;
-  ARM.Raspi_Pico.Unit_Path := TStringList.Create;;
-  ARM.Raspi_Pico.cp_Path := TStringList.Create;;
-  ARM.Raspi_Pico.mount_Path := TStringList.Create;;
+  ARM.Raspi_Pico.Unit_Path := TStringList.Create;
+  ARM.Raspi_Pico.cp_Path := TStringList.Create;
+  ARM.Raspi_Pico.mount_Path := TStringList.Create;
+
+  Templates_Path := TStringList.Create;
 end;
 
 destructor TEmbedded_IDE_Options.Destroy;
@@ -540,6 +547,8 @@ begin
   ARM.Raspi_Pico.Unit_Path.Free;
   ARM.Raspi_Pico.cp_Path.Free;
   ARM.Raspi_Pico.mount_Path.Free;
+
+  Templates_Path.Free;
 
   SerialMonitor_Options.Free;
   inherited Destroy;
@@ -557,6 +566,8 @@ begin
   LoadStrings_from_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path, Default_Raspi_Pico_cp_Path);
   LoadStrings_from_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path, Default_Raspi_Pico_mount_Path);
 
+  LoadStrings_from_XML(Key_Templates_Path, Templates_Path, Default_Template_Path);
+
   SerialMonitor_Options.Load_from_XML;
 end;
 
@@ -571,6 +582,8 @@ begin
   SaveStrings_to_XML(Key_Raspi_Pico_Unit_Path, ARM.Raspi_Pico.Unit_Path);
   SaveStrings_to_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path);
   SaveStrings_to_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path);
+
+  SaveStrings_to_XML(Key_Templates_Path, Templates_Path);
 
   SerialMonitor_Options.Save_to_XML;
 end;

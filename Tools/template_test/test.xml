@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Boards Count="11">
+  <Boards Count="0">
     <Board0 Caption="Arduino UNO" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
       <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyACM0" Baud="115200" Disable_Auto_Erase="False" Chip_Erase="False"/>
       <stlink FlashBase=""/>

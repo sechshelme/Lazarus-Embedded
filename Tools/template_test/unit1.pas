@@ -34,10 +34,13 @@ implementation
 procedure TForm1.Button1Click(Sender: TObject);
 var
   f: TProjectTemplatesForm;
+  i: integer;
 begin
   f := TProjectTemplatesForm.Create(nil);
   if f.ShowModal = mrOk then begin
-    ShowMessage('ok');
+
+    i := f.ListBox_Template.ItemIndex;
+    ShowMessage(TemplatesPara[i].Controller);
   end;
   f.Free;
 end;
