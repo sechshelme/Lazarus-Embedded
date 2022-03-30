@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Boards Count="11">
+    <Board0 Caption="Arduino UNO" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyACM0" Baud="115200" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples Count="3">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+        <Example2 Caption=" Blink Pin 13" SourceFile=" Blink Pin 13"/>
+      </Examples>
+    </Board0>
+    <Board1 Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyUSB0" Baud="57600" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples Count="3">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+        <Example2 Caption=" Blink Pin 13" SourceFile=" Blink Pin 13"/>
+      </Examples>
+    </Board1>
+    <Board2 Caption="Arduino Nano" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyUSB0" Baud="115200" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples Count="3">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+        <Example2 Caption=" Blink Pin 13" SourceFile=" Blink Pin 13"/>
+      </Examples>
+    </Board2>
+    <Board3 Caption="Arduino Mega" Arch="avr" SubArch="AVR6" Controller="atmega2560" Programmer="avrdude">
+      <avrdude Controller="atmega2560" Programmer="wiring" COM_Port="/dev/ttyUSB0" Baud="115200" Disable_Auto_Erase="True" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples Count="2">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+      </Examples>
+    </Board3>
+    <Board4 Caption="Arduino Nano Every" Arch="avr" SubArch="AVR6" Controller="atmega4808" Programmer="avrdude">
+      <avrdude Controller="atmega4808" Programmer="jtag2updi" COM_Port="/dev/ttyUSB0" Baud="115200" Disable_Auto_Erase="True" Chip_Erase="True"/>
+      <stlink FlashBase=""/>
+      <Examples Count="2">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+      </Examples>
+    </Board4>
+    <Board5 Caption="ATmega328P" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples Count="3">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+        <Example2 Caption=" Blink Pin 13" SourceFile=" Blink Pin 13"/>
+      </Examples>
+    </Board5>
+    <Board6 Caption="ATtiny2313A" Arch="avr" SubArch="AVR25" Controller="attiny2313a" Programmer="avrdude">
+      <avrdude Controller="attiny2313" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples Count="2">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+      </Examples>
+    </Board6>
+    <Board7 Caption="ATtiny13A" Arch="avr" SubArch="AVR25" Controller="attiny13a" Programmer="avrdude">
+      <avrdude Controller="attiny13" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples Count="2">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+      </Examples>
+    </Board7>
+    <Board8 Caption="STM32F103X8" Arch="arm" SubArch="ARMV7M" Controller="STM32F103X8" Programmer="st-flash">
+      <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase="0x08000000"/>
+      <Examples Count="2">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+      </Examples>
+    </Board8>
+    <Board9 Caption="Rasberry Pico" Arch="arm" SubArch="ARMV6M" Controller="RASPI_PICO" Programmer="uf2">
+      <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase="0x00000000"/>
+      <Examples Count="2">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+      </Examples>
+    </Board9>
+    <Board10 Caption="Arduino DUE" Arch="arm" SubArch="ARMV7M" Controller="ATSAM3X8E" Programmer="bossac">
+      <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase="0x080000"/>
+      <Examples Count="2">
+        <Example0 Caption=" Blank" SourceFile=" Blank"/>
+        <Example1 Caption=" Default" SourceFile=" Default"/>
+      </Examples>
+    </Board10>
+  </Boards>
+  <tests>
+    <test/>
+    <test/>
+    <test/>
+    <test/>
+    <test value="5"/>
+    <test value="6"/>
+    <test value="7"/>
+    <test value="8"/>
+    <test value="9"/>
+    <test value="10"/>
+  </tests>
+</CONFIG>
