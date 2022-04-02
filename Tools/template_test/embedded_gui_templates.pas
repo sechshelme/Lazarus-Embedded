@@ -10,109 +10,109 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Embedded_List_Const; // Unit wird von "./Tools/Ebedded_List_to_const" generiert.
 
-const
-  SourceDefault =
-    '// Default' + LineEnding + LineEnding +
-    'program Project1;' + LineEnding + LineEnding +
-    '{$H-,J-,O-}' + LineEnding + LineEnding +
-    'begin' + LineEnding +
-    '  // Setup' + LineEnding +
-    '  repeat' + LineEnding +
-    '    // Loop;' + LineEnding +
-    '  until false;' + LineEnding +
-    'end.';
-
-  SourceBlank =
-    '// Blank' + LineEnding + LineEnding +
-    'program Project1;' + LineEnding + LineEnding +
-    'begin' + LineEnding +
-    'end.';
-
-// --- AVR
-
-SourceAVRDefault =
-  '// Default' + LineEnding + LineEnding +
-  'program Project1;' + LineEnding + LineEnding +
-  '{$H-,J-,O-}' + LineEnding + LineEnding +
-  'uses' + LineEnding +
-  '  intrinsics;' + LineEnding + LineEnding +
-  'begin' + LineEnding + '  // Setup' + LineEnding +
-  '  repeat' + LineEnding +
-  '    // Loop;' + LineEnding +
-  '  until false;' + LineEnding +
-  'end.';
-
-SourceAVRATmega328Blink_Pin_13 =
-  '// Blink Pin 13' + LineEnding +
-    '' + LineEnding +
-  'program Project1;' + LineEnding +
-    '' + LineEnding +
-  '{$H-,J-,O-}' + LineEnding +
-  '' + LineEnding +
-  'const' + LineEnding +
-  '  BP5 = 5; // Pin 13 des Arduino' + LineEnding +
-  '  sl = 200000;' + LineEnding +
-  '' + LineEnding +
-  '  procedure mysleep(t: int32);' + LineEnding +
-  '  var' + LineEnding +
-  '    i: Int32;' + LineEnding +
-  '  begin' + LineEnding +
-  '    for i := 0 to t do begin' + LineEnding +
-  '      asm' + LineEnding +
-  '               NOP;' + LineEnding +
-  '      end;' + LineEnding +
-  '    end;' + LineEnding +
-  '  end;' + LineEnding +
-  '' + LineEnding +
-  'begin' + LineEnding +
-  '  DDRB := DDRB or (1 shl BP5);' + LineEnding +
-  '  repeat' + LineEnding +
-  '    PORTB := PORTB or (1 shl BP5);' + LineEnding +
-  '    mysleep(sl);' + LineEnding +
-  '' + LineEnding +
-  '    PORTB := PORTB and not (1 shl BP5);' + LineEnding +
-  '    mysleep(sl);' + LineEnding +
-  '  until False;' + LineEnding +
-  'end.';
-
-  // --- ARM
-
-  SourceARMV7MDefault =
-    '// Default' + LineEnding + LineEnding +
-    'program Project1;' + LineEnding + LineEnding +
-    '{$H-,J-,O-}' +  LineEnding + LineEnding +
-    'uses' + LineEnding +
-    '  cortexm3;' + LineEnding + LineEnding +
-    'begin' + LineEnding +
-    '  // Setup' + LineEnding +
-    '  repeat' + LineEnding +
-    '    // Loop;' + LineEnding +
-    '  until false;' + LineEnding +
-    'end.';
-
-  SourceRaspi_PicoDefault =
-    '// Default' + LineEnding + LineEnding +
-    'program Project1;' + LineEnding + LineEnding +
-    '{$MODE OBJFPC}' + LineEnding +
-    '{$H-,J-,O-}' + LineEnding +
-    '{$MEMORY 10000,10000}' + LineEnding + LineEnding +
-    'uses' + LineEnding +
-    '  pico_c, ' + LineEnding +
-    '  pico_gpio_c,' + LineEnding +
-    '  pico_adc_c,' + LineEnding +
-    '  pico_clocks_c,' + LineEnding +
-    '  pico_uart_c,' + LineEnding +
-    '  pico_i2c_c,' + LineEnding +
-    '  pico_pio_c,' + LineEnding +
-    '  pico_spi_c,' + LineEnding +
-    '  pico_timer_c,' + LineEnding +
-    '  pico_time_c;' + LineEnding + LineEnding +
-    'begin' + LineEnding +
-    '  // Setup' + LineEnding +
-    '  repeat' + LineEnding +
-    '    // Loop;' + LineEnding +
-    '  until false;' + LineEnding +
-    'end.';
+//const
+//  SourceDefault =
+//    '// Default' + LineEnding + LineEnding +
+//    'program Project1;' + LineEnding + LineEnding +
+//    '{$H-,J-,O-}' + LineEnding + LineEnding +
+//    'begin' + LineEnding +
+//    '  // Setup' + LineEnding +
+//    '  repeat' + LineEnding +
+//    '    // Loop;' + LineEnding +
+//    '  until false;' + LineEnding +
+//    'end.';
+//
+//  SourceBlank =
+//    '// Blank' + LineEnding + LineEnding +
+//    'program Project1;' + LineEnding + LineEnding +
+//    'begin' + LineEnding +
+//    'end.';
+//
+//// --- AVR
+//
+//SourceAVRDefault =
+//  '// Default' + LineEnding + LineEnding +
+//  'program Project1;' + LineEnding + LineEnding +
+//  '{$H-,J-,O-}' + LineEnding + LineEnding +
+//  'uses' + LineEnding +
+//  '  intrinsics;' + LineEnding + LineEnding +
+//  'begin' + LineEnding + '  // Setup' + LineEnding +
+//  '  repeat' + LineEnding +
+//  '    // Loop;' + LineEnding +
+//  '  until false;' + LineEnding +
+//  'end.';
+//
+//SourceAVRATmega328Blink_Pin_13 =
+//  '// Blink Pin 13' + LineEnding +
+//    '' + LineEnding +
+//  'program Project1;' + LineEnding +
+//    '' + LineEnding +
+//  '{$H-,J-,O-}' + LineEnding +
+//  '' + LineEnding +
+//  'const' + LineEnding +
+//  '  BP5 = 5; // Pin 13 des Arduino' + LineEnding +
+//  '  sl = 200000;' + LineEnding +
+//  '' + LineEnding +
+//  '  procedure mysleep(t: int32);' + LineEnding +
+//  '  var' + LineEnding +
+//  '    i: Int32;' + LineEnding +
+//  '  begin' + LineEnding +
+//  '    for i := 0 to t do begin' + LineEnding +
+//  '      asm' + LineEnding +
+//  '               NOP;' + LineEnding +
+//  '      end;' + LineEnding +
+//  '    end;' + LineEnding +
+//  '  end;' + LineEnding +
+//  '' + LineEnding +
+//  'begin' + LineEnding +
+//  '  DDRB := DDRB or (1 shl BP5);' + LineEnding +
+//  '  repeat' + LineEnding +
+//  '    PORTB := PORTB or (1 shl BP5);' + LineEnding +
+//  '    mysleep(sl);' + LineEnding +
+//  '' + LineEnding +
+//  '    PORTB := PORTB and not (1 shl BP5);' + LineEnding +
+//  '    mysleep(sl);' + LineEnding +
+//  '  until False;' + LineEnding +
+//  'end.';
+//
+//  // --- ARM
+//
+//  SourceARMV7MDefault =
+//    '// Default' + LineEnding + LineEnding +
+//    'program Project1;' + LineEnding + LineEnding +
+//    '{$H-,J-,O-}' +  LineEnding + LineEnding +
+//    'uses' + LineEnding +
+//    '  cortexm3;' + LineEnding + LineEnding +
+//    'begin' + LineEnding +
+//    '  // Setup' + LineEnding +
+//    '  repeat' + LineEnding +
+//    '    // Loop;' + LineEnding +
+//    '  until false;' + LineEnding +
+//    'end.';
+//
+//  SourceRaspi_PicoDefault =
+//    '// Default' + LineEnding + LineEnding +
+//    'program Project1;' + LineEnding + LineEnding +
+//    '{$MODE OBJFPC}' + LineEnding +
+//    '{$H-,J-,O-}' + LineEnding +
+//    '{$MEMORY 10000,10000}' + LineEnding + LineEnding +
+//    'uses' + LineEnding +
+//    '  pico_c, ' + LineEnding +
+//    '  pico_gpio_c,' + LineEnding +
+//    '  pico_adc_c,' + LineEnding +
+//    '  pico_clocks_c,' + LineEnding +
+//    '  pico_uart_c,' + LineEnding +
+//    '  pico_i2c_c,' + LineEnding +
+//    '  pico_pio_c,' + LineEnding +
+//    '  pico_spi_c,' + LineEnding +
+//    '  pico_timer_c,' + LineEnding +
+//    '  pico_time_c;' + LineEnding + LineEnding +
+//    'begin' + LineEnding +
+//    '  // Setup' + LineEnding +
+//    '  repeat' + LineEnding +
+//    '    // Loop;' + LineEnding +
+//    '  until false;' + LineEnding +
+//    'end.';
 
 type
   TTemplatesPara = record

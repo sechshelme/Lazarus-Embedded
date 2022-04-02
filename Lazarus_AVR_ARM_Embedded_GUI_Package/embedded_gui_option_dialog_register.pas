@@ -86,19 +86,6 @@ begin
 end;
 
 function TProjectApp.InitProject(AProject: TLazProject): TModalResult;
-//const
-//  ProjectText =
-//    'program Project1;' + LineEnding + LineEnding + '{$H-,J-,O-}' + LineEnding + LineEnding + 'begin' + LineEnding + '  // Setup' + LineEnding + '  repeat' + LineEnding + '    // Loop;' + LineEnding + '  until false;' + LineEnding + 'end.';
-//
-//  ProjectTextARMV7M =
-//    'program Project1;' + LineEnding + LineEnding + '{$H-,J-,O-}' + LineEnding + LineEnding + 'uses' + LineEnding + '  cortexm3;' + LineEnding + LineEnding + 'begin' + LineEnding + '  // Setup' + LineEnding + '  repeat' +
-//    LineEnding + '    // Loop;' + LineEnding + '  until false;' + LineEnding + 'end.';
-//
-//  ProjectTextRaspi_Pico =
-//    'program Project1;' + LineEnding + LineEnding + '{$MODE OBJFPC}' + LineEnding + '{$H-,J-,O-}' + LineEnding + '{$MEMORY 10000,10000}' + LineEnding + LineEnding + 'uses' + LineEnding + '  pico_c, ' + LineEnding + '  pico_gpio_c,' +
-//    LineEnding + '  pico_adc_c,' + LineEnding + '  pico_clocks_c,' + LineEnding + '  pico_uart_c,' + LineEnding + '  pico_i2c_c,' + LineEnding + '  pico_pio_c,' + LineEnding + '  pico_spi_c,' + LineEnding + '  pico_timer_c,' +
-//    LineEnding + '  pico_time_c;' + LineEnding + LineEnding + 'begin' + LineEnding + '  // Setup' + LineEnding + '  repeat' + LineEnding + '    // Loop;' + LineEnding + '  until false;' + LineEnding + 'end.';
-//
 var
   MainFile: TLazProjectFile;
 
@@ -128,17 +115,6 @@ begin
   AProject.MainFileID := 0;
 
   AProject.MainFile.SetSourceText(Project_Options_Form.ProjectSource, True);
-
-  //
-  //  if AProject.LazCompilerOptions.TargetProcessor = 'ARMV7M' then begin
-  //    AProject.MainFile.SetSourceText(ProjectTextARMV7M, True);
-  //  end else begin
-  //      if Pos('-WpRASPI_PICO',  AProject.LazCompilerOptions.CustomOptions)>0 then begin
-  //        AProject.MainFile.SetSourceText(ProjectTextRaspi_Pico, True);
-  //      end else begin
-  //        AProject.MainFile.SetSourceText(ProjectText, True);
-  //      end;
-  //  end;
 
   Result := mrOk;
 end;

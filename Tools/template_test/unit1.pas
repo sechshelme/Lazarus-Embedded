@@ -40,7 +40,8 @@ begin
   if f.ShowModal = mrOk then begin
 
     i := f.ListBox_Template.ItemIndex;
-    ShowMessage(TemplatesPara[i].Controller);
+//    ShowMessage(TemplatesPara[i].Controller);
+    ShowMessage(f.getSource);
   end;
   f.Free;
 end;

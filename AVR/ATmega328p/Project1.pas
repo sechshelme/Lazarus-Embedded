@@ -6,11 +6,6 @@ uses
 const
   BP5 = 5; // Pin 13 des Arduino
 
-  procedure sei; assembler;
-  asm
-    Sei
-  end;
-
   procedure Timer2_Interrupt; alias: 'TIMER2_OVF_ISR'; interrupt; public;
   const
     zaehler: integer = 0;

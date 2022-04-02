@@ -7,9 +7,31 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
   Laz2_XMLCfg,  // Bei normalen Anwendungen
-  Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const, Embedded_GUI_Templates;
+  Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const;
+//, Embedded_GUI_Templates;
 
 type
+  TTemplatesPara = record
+    Name,
+    Arch,
+    SubArch,
+    Controller: string;
+    Examples: array of record
+      Caption, SorceFile: String;
+    end;
+    Programmer: string;
+    avrdude: record
+      Controller,
+      Programmer,
+      COM_Port,
+      Baud: string;
+      Disable_Auto_Erase,
+      Chip_Erase: boolean;
+    end;
+    stlink: record
+      FlashBase: string;
+    end;
+  end;
 
   { TProjectTemplatesForm }
 
@@ -31,6 +53,7 @@ type
 
 var
   ProjectTemplatesForm: TProjectTemplatesForm;
+  TemplatesPara: array of TTemplatesPara;
 
 implementation
 
@@ -78,7 +101,7 @@ begin
   //Cfg.Free;
 
   Cfg := TXMLConfig.Create(nil);
-  Cfg.Filename := 'embedded_gui_template.xml';
+  Cfg.Filename := '/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_AVR_ARM_Embedded_GUI_Package/Templates/embedded_gui_template.xml';
 
   l := cfg.GetChildCount('Boards');
   SetLength(TemplatesPara, l);
