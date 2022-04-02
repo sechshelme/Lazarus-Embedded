@@ -94,7 +94,7 @@
       <stlink FlashBase="0x00000000"/>
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
-        <Example Caption="Default" SourceFile="Rasperry_Pico_Default.pas"/>
+        <Example Caption="Default" SourceFile="ARM/Rasperry_Pico_Default.pas"/>
         <Example Caption="Error-Test" SourceFile="xxx.pas"/>
       </Examples>
     </Board>
