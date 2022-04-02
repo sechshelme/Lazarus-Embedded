@@ -1,31 +1,32 @@
 
 <b>Lazarus Arduino/ AVR / STM32 / ARM GUI</b> (german)
 
-Mit dieser Package wird Lazarus mit einer GUI für Arduino/AVR / STM32/ARM GUI erweitert.
-Damit werden alle Parameter für ein AVR/ARM-Projekt gesetzt, inklusive den AVRDude Aufruf.
+Mit dieser Package wird Lazarus mit einer GUI für Embedded Systeme erweitert.
+Damit kann man einfach Parameter für ein Embedded-Projekt setzen, inklusive den Flasher-Aufruf.
 
-Somit kann man mit <i>"Datei/neu.../Project/AVR-Project (Arduino)"</i> direkt ein AVR-Project erstellen.
-Nachträglich kann man mit <i>"Projekt/AVR-Optionen (Arduino)..."</i> die Parameter editieren.
+Somit kann man mit <i>"Datei->neu...->Projekt->Embedded-Project"</i> direkt ein Embedded-Project erstellen.
+Nachträglich kann man mit <i>"Projekt->Embedded-Optionen..."</i> die Parameter editieren.
 
-Voraussetzung ist ein funktionstüchtige AVR/ARM-Cross-Compiler.
+Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
 
-Die Package befindet sich unter: Lazarus_Arduino_AVR_GUI_Package
+Die Package befindet sich unter: <b>Lazarus_AVR_ARM_Embedded_GUI_Package</b>
 <br><br><br>
 
 
 <b> Lazarus Arduino/ AVR / STM32 / ARM GUI </b> (german)
 
-This package extends Lazarus with a GUI for Arduino / AVR / STM32 / ARM GUI.
-This sets all parameters for an AVR / ARM project, including the AVRDude call.
+With this package, Lazarus is extended with a GUI for embedded systems.
+With this you can easily set parameters for an embedded project, including the flasher call.
 
-So you can directly create an AVR project with <i> "File / new ... / Project / AVR-Project (Arduino)" </i>.
-You can edit the parameters later with <i> "Project / AVR options (Arduino) ..." </i>.
+So you can create an embedded project directly with <i>"File->New...->Project->Embedded-Project"</i>.
+You can edit the parameters afterwards with <i>"Project->Embedded-Options..."</i>.
 
-A working AVR / ARM cross compiler is required.
+A functional embedded cross compiler is required.
 
-The package is located at: Lazarus_Arduino_AVR_GUI_Package
+The package is located at: <b>Lazarus_AVR_ARM_Embedded_GUI_Package</b>
 <br><br><br>
 
-<img src="avr_package.png">
+<img src="Embedded_Project_Option.png">
+<img src="Embedded_Examples.png">
 <img src="avr_fuse.png">
 
