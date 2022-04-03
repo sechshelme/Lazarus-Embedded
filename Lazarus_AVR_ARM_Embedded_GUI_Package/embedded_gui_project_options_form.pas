@@ -575,38 +575,39 @@ begin
 
   if TemplatesForm.ShowModal = mrOk then begin
     index := TemplatesForm.ListBox_Template.ItemIndex;
+    if index >= 0 then begin
 
-    // --- FPC_Command
-    ComboBox_Arch.Text := TemplatesPara[index].Arch;
-    ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
-    ComboBox_ArchChange(nil);
-    ComboBox_SubArch.Text := TemplatesPara[index].SubArch;
-    ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
-    ComboBox_SubArchChange(nil);
-    ComboBox_Controller.Text := TemplatesPara[index].Controller;
+      // --- FPC_Command
+      ComboBox_Arch.Text := TemplatesPara[index].Arch;
+      ComboBox_Arch.ItemIndex := ComboBox_Arch.Items.IndexOf(ComboBox_Arch.Text);
+      ComboBox_ArchChange(nil);
+      ComboBox_SubArch.Text := TemplatesPara[index].SubArch;
+      ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
+      ComboBox_SubArchChange(nil);
+      ComboBox_Controller.Text := TemplatesPara[index].Controller;
 
-    // --- Programmer Command
-    RadioButton_avrdude.Checked := TemplatesPara[index].Programmer = 'avrdude';
-    RadioButton_st_flash.Checked := TemplatesPara[index].Programmer = 'st-flash';
-    RadioButton_UF2.Checked := TemplatesPara[index].Programmer = 'uf2';
-    RadioButton_Bossac.Checked := TemplatesPara[index].Programmer = 'bossac';
+      // --- Programmer Command
+      RadioButton_avrdude.Checked := TemplatesPara[index].Programmer = 'avrdude';
+      RadioButton_st_flash.Checked := TemplatesPara[index].Programmer = 'st-flash';
+      RadioButton_UF2.Checked := TemplatesPara[index].Programmer = 'uf2';
+      RadioButton_Bossac.Checked := TemplatesPara[index].Programmer = 'bossac';
 
-    // AVRDude
-    Edit_avrdude_Controller.Text := TemplatesPara[index].avrdude.Controller;
-    ComboBox_avrdude_Programmer.Text := TemplatesPara[index].avrdude.Programmer;
-    ComboBox_avrdude_COMPort.Text := TemplatesPara[index].avrdude.COM_Port;
-    ComboBox_avrdude_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
-    CheckBox_avrdude_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
-    CheckBox_avrdude_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
+      // AVRDude
+      Edit_avrdude_Controller.Text := TemplatesPara[index].avrdude.Controller;
+      ComboBox_avrdude_Programmer.Text := TemplatesPara[index].avrdude.Programmer;
+      ComboBox_avrdude_COMPort.Text := TemplatesPara[index].avrdude.COM_Port;
+      ComboBox_avrdude_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
+      CheckBox_avrdude_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
+      CheckBox_avrdude_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
 
-    // ST-Link
-    ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;
+      // ST-Link
+      ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;
 
-    // Rasberry PI Pico
-    CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
-    FProjectSource := TemplatesForm.getSource;
+      // Rasberry PI Pico
+      CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
+      FProjectSource := TemplatesForm.getSource;
+    end;
   end;
-
   TemplatesForm.Free;
 end;
 
