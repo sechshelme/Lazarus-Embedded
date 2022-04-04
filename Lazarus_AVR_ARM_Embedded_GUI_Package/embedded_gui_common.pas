@@ -33,7 +33,7 @@ const
   Default_STFlash_Path: TStringArray = ('c:\st-link\st-flash.exe');
   Default_Bassac_Path: TStringArray = ('c:\bossa\bossac.exe');
   Default_Raspi_Pico_Unit_Path: TStringArray = ('..\Unit', '');
-  Default_Raspi_Pico_cp_Path: TStringArray = ('copy');
+  Default_Raspi_Pico_cp_Path: TStringArray = ('c:\windows\system32\xcopy', 'c:\windows\system32\xcopy32', 'c:\windows\command\xcopy');
   Default_Raspi_Pico_mount_Path: TStringArray = ('D:', 'E:', 'F:', 'G:');
   Default_Template_Path: TStringArray = ('c:\Daten\Examples');
   UARTDefaultPort = 'COM8';
@@ -196,7 +196,6 @@ begin
   Result := TConfigStorage.Create(nil);
   Result.Filename := FileName;
 end;
-
 {$ENDIF}
 
 function FindPara(const Source: string; const Sub: string): string;

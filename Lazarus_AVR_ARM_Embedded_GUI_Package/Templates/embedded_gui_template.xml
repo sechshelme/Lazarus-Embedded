@@ -87,6 +87,7 @@
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
         <Example Caption="Default" SourceFile="ARM/ARMV7M_Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="ARM/ARMV7M/ArduinoDUE/Blink_Pin_13.pas"/>
       </Examples>
     </Board>
     <Board Caption="Rasberry Pico" Arch="arm" SubArch="ARMV6M" Controller="RASPI_PICO" Programmer="uf2">

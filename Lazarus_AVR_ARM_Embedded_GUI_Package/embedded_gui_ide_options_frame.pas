@@ -38,7 +38,7 @@ type
     TabSheetARM: TTabSheet;
     TabSheet_SM_Interface: TTabSheet;
     TabSheet_SM_Output: TTabSheet;
-    TabSheetEmbeddedGUI: TTabSheet;
+    TabSheetGUI: TTabSheet;
     procedure Button_Color_OS_DefaultClick(Sender: TObject);
     procedure Button_Color_GUI_DefaultClick(Sender: TObject);
     procedure Button_Color_CustomClick(Sender: TObject);
@@ -147,9 +147,9 @@ begin
 
   // Rasberry PI Pico
 
-  ComboBox_Raspi_Pico_UnitPath := TFileNameComboBox.Create(TabSheetARM, 'UnitPath', False);
+  ComboBox_Raspi_Pico_UnitPath := TFileNameComboBox.Create(TabSheetARM, 'RaspiPicoUnitPath', False);
   with ComboBox_Raspi_Pico_UnitPath do begin
-    Caption := 'Unit Pfad:';
+    Caption := 'Rasberry Pico - Unit Pfad:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;

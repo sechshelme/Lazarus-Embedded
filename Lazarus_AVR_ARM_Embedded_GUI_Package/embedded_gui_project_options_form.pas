@@ -617,6 +617,18 @@ begin
   TabSheet_stflash.Enabled := RadioButton_st_flash.Checked;
   TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
   TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
+  if RadioButton_avrdude.Checked then begin
+    PageControl1.PageIndex := 0;
+  end;
+  if RadioButton_st_flash.Checked then begin
+    PageControl1.PageIndex := 1;
+  end;
+  if RadioButton_Bossac.Checked then begin
+    PageControl1.PageIndex := 2;
+  end;
+  if RadioButton_UF2.Checked then begin
+    PageControl1.PageIndex := 3;
+  end;
 end;
 
 procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);

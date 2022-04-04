@@ -13,7 +13,7 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     Height = 641
     Top = 0
     Width = 803
-    ActivePage = TabSheetEmbeddedGUI
+    ActivePage = TabSheetGUI
     Align = alClient
     TabIndex = 4
     TabOrder = 0
@@ -29,8 +29,8 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     object TabSheet_SM_Output: TTabSheet
       Caption = 'Serial-Monitor-Output'
     end
-    object TabSheetEmbeddedGUI: TTabSheet
-      Caption = 'Ebedded GUI'
+    object TabSheetGUI: TTabSheet
+      Caption = 'GUI'
       ClientHeight = 611
       ClientWidth = 793
       object GroupBox1: TGroupBox

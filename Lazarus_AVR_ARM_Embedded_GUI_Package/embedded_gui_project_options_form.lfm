@@ -1,7 +1,7 @@
 object Project_Options_Form: TProject_Options_Form
-  Left = 1878
+  Left = 2434
   Height = 962
-  Top = 273
+  Top = 248
   Width = 789
   Caption = 'Embedded Project Options'
   ClientHeight = 962
