@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 997
+  Left = 1164
   Height = 575
-  Top = 140
+  Top = 150
   Width = 670
   Caption = 'Form1'
   ClientHeight = 575
@@ -16,6 +16,7 @@ object Form1: TForm1
     Lines.Strings = (
       'Memo1'
     )
+    ScrollBars = ssAutoBoth
     TabOrder = 0
   end
   object Button1: TButton
