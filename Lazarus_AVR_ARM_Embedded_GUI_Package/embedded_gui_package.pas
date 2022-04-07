@@ -28,5 +28,7 @@ begin
 end;
 
 initialization
+
   RegisterPackage('Embedded_GUI_Package', @Register);
+
 end.

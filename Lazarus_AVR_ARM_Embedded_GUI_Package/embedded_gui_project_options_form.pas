@@ -612,23 +612,24 @@ begin
 end;
 
 procedure TProject_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
+var
+  i, n: integer;
 begin
+  n := 0;
+  for i := 0 to GroupBox_Programmer.ControlCount - 1 do begin
+    if (GroupBox_Programmer.Controls[i] is TRadioButton) then begin
+      if TRadioButton(GroupBox_Programmer.Controls[i]).Checked then begin
+        PageControl1.PageIndex := n;
+        Caption:=n.ToString;
+      end;
+      Inc(n);
+    end;
+  end;
+
   TabSheet_avrdude.Enabled := RadioButton_avrdude.Checked;
   TabSheet_stflash.Enabled := RadioButton_st_flash.Checked;
   TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
   TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
-  if RadioButton_avrdude.Checked then begin
-    PageControl1.PageIndex := 0;
-  end;
-  if RadioButton_st_flash.Checked then begin
-    PageControl1.PageIndex := 1;
-  end;
-  if RadioButton_Bossac.Checked then begin
-    PageControl1.PageIndex := 2;
-  end;
-  if RadioButton_UF2.Checked then begin
-    PageControl1.PageIndex := 3;
-  end;
 end;
 
 procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);

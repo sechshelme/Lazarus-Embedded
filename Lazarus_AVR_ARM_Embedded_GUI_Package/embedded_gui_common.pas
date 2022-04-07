@@ -43,7 +43,7 @@ const
   Default_STFlash_Path: TStringArray = ('/usr/local/bin/st-flash', 'st-flash');
   Default_Bassac_Path: TStringArray = ('/usr/bin/bossac', 'bossac');
   Default_Raspi_Pico_Unit_Path: TStringArray = ('../Unit', '');
-  Default_Raspi_Pico_cp_Path: TStringArray = ('/bin/cp', 'cp');
+  Default_Raspi_Pico_cp_Path: TStringArray = ('/bin/cp', '/usr/bin/cp', 'cp');
   Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
   Default_Template_Path: TStringArray = ('~/Examples');
   UARTDefaultPort = '/dev/ttyUSB0';
