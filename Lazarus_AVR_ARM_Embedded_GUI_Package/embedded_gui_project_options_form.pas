@@ -620,7 +620,6 @@ begin
     if (GroupBox_Programmer.Controls[i] is TRadioButton) then begin
       if TRadioButton(GroupBox_Programmer.Controls[i]).Checked then begin
         PageControl1.PageIndex := n;
-        Caption:=n.ToString;
       end;
       Inc(n);
     end;

@@ -20,7 +20,7 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Major="1" Release="2"/>
+    <Version Major="2"/>
     <Files>
       <Item>
         <Filename Value="embedded_gui_templates.pas"/>
@@ -36,7 +36,7 @@
       </Item>
       <Item>
         <Filename Value="embedded_gui_option_dialog_register.pas"/>
-        <UnitName Value="embedded_gui_option_dialog_register"/>
+        <UnitName Value="Embedded_GUI_Option_Dialog_Register"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_cpu_info_form.pas"/>

@@ -1,23 +1,23 @@
 object Serial_Monitor_Form: TSerial_Monitor_Form
   Left = 1602
-  Height = 245
+  Height = 603
   Top = 315
-  Width = 497
+  Width = 750
   Caption = 'Serial_Monitor_Form'
-  ClientHeight = 221
-  ClientWidth = 497
+  ClientHeight = 579
+  ClientWidth = 750
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poDefaultPosOnly
-  LCLVersion = '2.3.0.0'
+  LCLVersion = '2.1.0.0'
   object Button_Send: TButton
-    Left = 412
-    Height = 28
-    Top = 10
-    Width = 80
+    Left = 528
+    Height = 27
+    Top = 8
+    Width = 100
     Anchors = [akTop, akRight]
     Caption = 'Senden'
     OnClick = Button_SendClick
@@ -25,9 +25,9 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 128
+    Height = 486
     Top = 48
-    Width = 497
+    Width = 750
     Anchors = [akTop, akLeft, akRight, akBottom]
     Font.Height = 13
     Font.Name = 'DejaVu Sans Mono'
@@ -464,9 +464,6 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     MouseActions = <>
     MouseTextActions = <>
     MouseSelActions = <>
-    Lines.Strings = (
-      'SynEdit1'
-    )
     VisibleSpecialChars = [vscSpace, vscTabAtLast]
     SelectedColor.BackPriority = 50
     SelectedColor.ForePriority = 50
@@ -523,9 +520,9 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     end
   end
   object Clear_Button: TButton
-    Left = 300
+    Left = 553
     Height = 25
-    Top = 184
+    Top = 542
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Clear'
@@ -533,9 +530,9 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
     TabOrder = 2
   end
   object Close_Button: TButton
-    Left = 396
+    Left = 649
     Height = 25
-    Top = 184
+    Top = 542
     Width = 83
     Anchors = [akRight, akBottom]
     Caption = 'Schliessen'
@@ -546,12 +543,22 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   object ComboBox_SendString: TComboBox
     Left = 8
     Height = 27
-    Top = 10
-    Width = 396
+    Top = 8
+    Width = 512
     Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     TabOrder = 4
     Text = 'Hello World !'
+  end
+  object Button_Send_LFCR: TButton
+    Left = 640
+    Height = 27
+    Top = 8
+    Width = 100
+    Anchors = [akTop, akRight]
+    Caption = 'Senden + CRLF'
+    OnClick = Button_Send_CRLFlick
+    TabOrder = 5
   end
   object Timer1: TTimer
     Enabled = False

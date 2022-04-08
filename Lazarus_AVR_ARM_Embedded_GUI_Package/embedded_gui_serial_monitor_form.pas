@@ -28,6 +28,7 @@ type
 
   TSerial_Monitor_Form = class(TForm)
     Button_Send: TButton;
+    Button_Send_LFCR: TButton;
     Clear_Button: TButton;
     Close_Button: TButton;
     ComboBox_SendString: TComboBox;
@@ -44,6 +45,7 @@ type
     SynEdit1: TSynEdit;
     Timer1: TTimer;
     procedure Button_SendClick(Sender: TObject);
+    procedure Button_Send_CRLFlick(Sender: TObject);
     procedure Clear_ButtonClick(Sender: TObject);
     procedure Close_ButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -186,6 +188,19 @@ var
   s: string;
 begin
   s := ComboBox_SendString.Text;
+  if Length(s) > 0 then begin
+    SerWrite(SerialHandle, s[1], Length(s));
+
+    ComboBox_Insert_Text(ComboBox_SendString);
+    SaveComboBox_to_XML(ComboBox_SendString);
+  end;
+end;
+
+procedure TSerial_Monitor_Form.Button_Send_CRLFlick(Sender: TObject);
+var
+  s: string;
+begin
+  s := ComboBox_SendString.Text + #13#10;
   if Length(s) > 0 then begin
     SerWrite(SerialHandle, s[1], Length(s));
 
