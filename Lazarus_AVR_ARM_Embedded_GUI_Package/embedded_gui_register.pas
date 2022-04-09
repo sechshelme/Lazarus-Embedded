@@ -148,7 +148,7 @@ end;
 
 procedure Register;
 const
-  CPU_Info_Titel = Title + 'CPU-Info';
+  CPU_Info_Titel = Title + 'CPU-Info ';
 
 begin
   Embedded_IDE_Options := TEmbedded_IDE_Options.Create;

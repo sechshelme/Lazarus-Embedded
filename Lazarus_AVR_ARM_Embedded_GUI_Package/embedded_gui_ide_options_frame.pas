@@ -7,8 +7,10 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, Dialogs, ComCtrls, EditBtn,
   Spin, ExtCtrls, Graphics,
+
   IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf,
-  ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
+  ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, PackageLinkIntf,
+
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common,
   Embedded_GUI_Common_FileComboBox,
@@ -100,7 +102,14 @@ end;
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 var
   col: TColor;
+
+  ThisPackage: TPackageLink;
 begin
+  ThisPackage:= PkgLinks.FindLinkWithPkgName('embedded_gui_package');
+//  TabSheetTemplates.Caption:=ThisPackage.LPKFilename;
+//  ShowMessage({$I %FILE%});
+
+
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
   // AVR

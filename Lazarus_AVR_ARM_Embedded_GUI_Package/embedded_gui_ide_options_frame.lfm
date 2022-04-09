@@ -13,9 +13,9 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     Height = 641
     Top = 0
     Width = 803
-    ActivePage = TabSheetGUI
+    ActivePage = TabSheetTemplates
     Align = alClient
-    TabIndex = 4
+    TabIndex = 5
     TabOrder = 0
     object TabSheetAVR: TTabSheet
       Caption = 'AVR'
