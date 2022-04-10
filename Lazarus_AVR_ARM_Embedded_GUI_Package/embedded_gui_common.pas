@@ -8,6 +8,7 @@ interface
 uses
   {$IFDEF Packages}
   BaseIDEIntf, LazConfigStorage,  // Bei Packages
+  PackageLinkIntf,
   {$ELSE}
   Laz2_XMLCfg,  // Bei normalen Anwendungen
   {$ENDIF}
@@ -20,7 +21,7 @@ const
   Title = '[Embedded] ';
   Options_Title = Title + 'Optionen (Arduino, STM32, etc.)';
 
-//  Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
+  //  Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
   {$IFDEF Packages}
   Embedded_Options_File = 'embedded_gui_options.xml';
   {$ELSE}
@@ -32,20 +33,20 @@ const
   Default_Avrdude_Conf_Path: TStringArray = ('c:\avrdude\avrdude.conf');
   Default_STFlash_Path: TStringArray = ('c:\st-link\st-flash.exe');
   Default_Bassac_Path: TStringArray = ('c:\bossa\bossac.exe');
-  Default_Raspi_Pico_Unit_Path: TStringArray = ('..\Unit', '');
+  Default_Raspi_Pico_Unit_Path: TStringArray = ('ARM_Units\Rasberry_Pico\units', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('c:\windows\system32\xcopy', 'c:\windows\system32\xcopy32', 'c:\windows\command\xcopy');
   Default_Raspi_Pico_mount_Path: TStringArray = ('D:', 'E:', 'F:', 'G:');
-  Default_Template_Path: TStringArray = ('c:\Daten\Examples');
+  Default_Template_Path: TStringArray = ('Examples');
   UARTDefaultPort = 'COM8';
   {$ELSE}
   Default_Avrdude_Path: TStringArray = ('/usr/bin/avrdude', 'avrdude');
   Default_Avrdude_Conf_Path: TStringArray = ('/etc/avrdude.conf', '');
   Default_STFlash_Path: TStringArray = ('/usr/local/bin/st-flash', 'st-flash');
   Default_Bassac_Path: TStringArray = ('/usr/bin/bossac', 'bossac');
-  Default_Raspi_Pico_Unit_Path: TStringArray = ('../Unit', '');
+  Default_Raspi_Pico_Unit_Path: TStringArray = ('ARM_Units/Rasberry_Pico/units', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('/bin/cp', '/usr/bin/cp', 'cp');
   Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
-  Default_Template_Path: TStringArray = ('~/Examples');
+  Default_Template_Path: TStringArray = ('Examples');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
 
@@ -80,14 +81,14 @@ type
     Com_Interface: record
       Port, Baud, Bits, Parity, StopBits, FlowControl: string;
       TimeOut, TimerInterval: integer;
-    end;
+      end;
     Output: record
       LineBreak: integer;
       AutoScroll, WordWarp: boolean;
       maxRows: integer;
       Font: TFont;
       BKColor: TColor;
-    end;
+      end;
     constructor Create;
     destructor Destroy; override;
     procedure Load_from_XML;
@@ -100,13 +101,13 @@ type
   public
     AVR: record
       avrdudePath, avrdudeConfigPath: TStringList;
-    end;
+      end;
     ARM: record
       STFlashPath, BossacPath: TStringList;
       Raspi_Pico: record
         Unit_Path, cp_Path, mount_Path: TStringList;
+        end;
       end;
-    end;
     SerialMonitor_Options: TSerialMonitor_Options;
     Templates_Path: TStringList;
     constructor Create;
@@ -121,8 +122,8 @@ function FindVerbose(Source: string): integer;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
 
-procedure LoadString_from_XML(Key: string; var s: String; default: String = '');
-procedure SaveString_to_XML(Key: string; var s: String);
+procedure LoadString_from_XML(Key: string; var s: string; default: string = '');
+procedure SaveString_to_XML(Key: string; var s: string);
 
 procedure LoadFormPos_from_XML(Form: TForm);
 procedure SaveFormPos_to_XML(Form: TForm);
@@ -196,6 +197,7 @@ begin
   Result := TConfigStorage.Create(nil);
   Result.Filename := FileName;
 end;
+
 {$ENDIF}
 
 function FindPara(const Source: string; const Sub: string): string;
@@ -261,7 +263,7 @@ begin
   cb.Text := s;
 end;
 
-procedure LoadString_from_XML(Key: string; var s: String; default: String = '');
+procedure LoadString_from_XML(Key: string; var s: string; default: string = '');
 var
   Cfg: TConfigStorage;
 begin
@@ -270,7 +272,7 @@ begin
   Cfg.Free;
 end;
 
-procedure SaveString_to_XML(Key: string; var s: String);
+procedure SaveString_to_XML(Key: string; var s: string);
 var
   Cfg: TConfigStorage;
 begin
@@ -554,18 +556,25 @@ begin
 end;
 
 procedure TEmbedded_IDE_Options.Load_from_XML;
+var
+  ThisPackage: TPackageLink;
+  PackagePath: string;
 begin
+  ThisPackage := PkgLinks.FindLinkWithPkgName('embedded_gui_package');
+  PackagePath := ThisPackage.LPKFilename;
+  PackagePath := ExtractFilePath(PackagePath);
+
   LoadStrings_from_XML(Key_Avrdude_Path, AVR.avrdudePath, Default_Avrdude_Path);
   LoadStrings_from_XML(Key_Avrdude_Conf_Path, AVR.avrdudeConfigPath, Default_Avrdude_Conf_Path);
 
   LoadStrings_from_XML(Key_STFlash_Path, ARM.STFlashPath, Default_STFlash_Path);
   LoadStrings_from_XML(Key_Bassac_Path, ARM.BossacPath, Default_Bassac_Path);
 
-  LoadStrings_from_XML(Key_Raspi_Pico_Unit_Path, ARM.Raspi_Pico.Unit_Path, Default_Raspi_Pico_Unit_Path);
+  LoadStrings_from_XML(Key_Raspi_Pico_Unit_Path, ARM.Raspi_Pico.Unit_Path, [PackagePath + Default_Raspi_Pico_Unit_Path[0]]);
   LoadStrings_from_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path, Default_Raspi_Pico_cp_Path);
   LoadStrings_from_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path, Default_Raspi_Pico_mount_Path);
 
-  LoadStrings_from_XML(Key_Templates_Path, Templates_Path, Default_Template_Path);
+  LoadStrings_from_XML(Key_Templates_Path, Templates_Path, [PackagePath + Default_Template_Path[0]]);
 
   SerialMonitor_Options.Load_from_XML;
 end;

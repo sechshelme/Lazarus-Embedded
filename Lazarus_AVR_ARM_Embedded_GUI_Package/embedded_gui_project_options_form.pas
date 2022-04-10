@@ -148,7 +148,7 @@ begin
 
   ComboBox_AvrdudeConfigPath := TFileNameComboBox.Create(TabSheet_avrdude, 'AVRDudeConfig');
   with ComboBox_AvrdudeConfigPath do begin
-    Caption := 'AVRdude Config-Pfad ( Leer = default Konfig. )';
+    Caption := 'AVRdude Config-Pfad ( Leer = default Config. )';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_avrdude.Width - 10;

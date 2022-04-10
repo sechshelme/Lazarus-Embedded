@@ -9,7 +9,7 @@ uses
   Spin, ExtCtrls, Graphics,
 
   IDEUtils, LazConfigStorage, BaseIDEIntf, LazIDEIntf,
-  ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf, PackageLinkIntf,
+  ProjectIntf, CompOptsIntf, IDEOptionsIntf, IDEOptEditorIntf,
 
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common,
@@ -103,9 +103,9 @@ procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions
 var
   col: TColor;
 
-  ThisPackage: TPackageLink;
+//  ThisPackage: TPackageLink;
 begin
-  ThisPackage:= PkgLinks.FindLinkWithPkgName('embedded_gui_package');
+  //ThisPackage:= PkgLinks.FindLinkWithPkgName('embedded_gui_package');
 //  TabSheetTemplates.Caption:=ThisPackage.LPKFilename;
 //  ShowMessage({$I %FILE%});
 
@@ -187,7 +187,7 @@ begin
 
   // Templates
 
-  ComboBox_TemplatesPath := TFileNameComboBox.Create(TabSheetTemplates, 'xxamplespath', False);
+  ComboBox_TemplatesPath := TFileNameComboBox.Create(TabSheetTemplates, 'examplespath', False);
   with ComboBox_TemplatesPath do begin
     Caption := 'Examples Path';
     Directory := True;
