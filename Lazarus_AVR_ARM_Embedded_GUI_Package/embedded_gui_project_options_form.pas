@@ -563,6 +563,10 @@ begin
 
     LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
   end;
+
+  // ESP8266
+  // /home/tux/.arduino15/packages/esp8266/tools/python3/3.7.2-post1/python3 -I /home/tux/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/upload.py --chip esp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /tmp/arduino_build_431650/Blink.ino.bin
+
 end;
 
 procedure TProject_Options_Form.TemplatesButtonClick(Sender: TObject);
