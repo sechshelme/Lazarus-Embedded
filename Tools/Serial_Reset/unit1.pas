@@ -33,12 +33,12 @@ implementation
 procedure TForm1.Button1Click(Sender: TObject);
 var
   SerialHandle: TSerialHandle;
-  com: string;
 begin
   SerialHandle := SerOpen('/dev/ttyACM0');
   SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
   SerSetDTR(SerialHandle, True);
+  Sleep(500);
   SerSetDTR(SerialHandle, False);
   Sleep(500);
   SerClose(SerialHandle);
