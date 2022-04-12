@@ -418,7 +418,7 @@ begin
     ComboBox_SubArchChange(nil);
 
     s := CustomOptions;
-    ComboBox_Controller.Text := FindPara(s, '-Wp');
+    ComboBox_Controller.Text := FindPara(s, '-Wp', False);
     ComboBox_Controller.Items.IndexOf(ComboBox_Controller.Text);
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
     CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;

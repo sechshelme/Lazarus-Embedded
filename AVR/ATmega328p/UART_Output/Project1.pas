@@ -51,7 +51,7 @@ begin
   UARTInit;
 
   repeat
-    UARTSendString('Hello Welt !'#13#10);
+    UARTSendString('Hello Welt !!'#13#10);
     Delay;
   until False;
 end.

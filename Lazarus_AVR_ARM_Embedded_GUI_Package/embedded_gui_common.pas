@@ -117,7 +117,8 @@ type
   private
   end;
 
-function FindPara(const Source: string; const Sub: string): string;
+  function FindPara(const Source: string; Sub: string; FirstSpace: boolean = True): string;
+//function FindPara(const Source: string; const Sub: string; FirstSpace: boolean = True): string;
 function FindVerbose(Source: string): integer;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
@@ -200,11 +201,34 @@ end;
 
 {$ENDIF}
 
-function FindPara(const Source: string; const Sub: string): string;
+//function FindPara(const Source: string; const Sub: string; FirstSpace: boolean
+//  ): string;
+//var
+//  p, Index: integer;
+//begin
+//  p := pos(Sub, Source);
+//  Result := '';
+//  if p > 0 then begin
+//    p += Length(Sub);
+//    Index := p;
+//    while (Index <= Length(Source)) and (Source[Index] > #32) do begin
+//      Result += Source[Index];
+//      Inc(Index);
+//    end;
+//  end;
+//end;
+
+function FindPara(const Source: string; Sub: string; FirstSpace: boolean): string;
 var
   p, Index: integer;
 begin
+  if FirstSpace then begin
+    sub := ' ' + Sub;
+  end;
   p := pos(Sub, Source);
+  while Copy(Source, p + Length(Sub), 1) = ' ' do begin
+    Inc(p);
+  end;
   Result := '';
   if p > 0 then begin
     p += Length(Sub);
@@ -215,6 +239,7 @@ begin
     end;
   end;
 end;
+
 
 function FindVerbose(Source: string): integer;
 var
