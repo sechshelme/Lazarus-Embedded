@@ -20,12 +20,8 @@
     </CompilerOptions>
     <Description Value="Embedded GUI for Lazarus"/>
     <License Value="GPL-2"/>
-    <Version Major="2"/>
+    <Version Major="2" Release="2"/>
     <Files>
-      <Item>
-        <Filename Value="embedded_gui_templates.pas"/>
-        <UnitName Value="Embedded_GUI_Templates"/>
-      </Item>
       <Item>
         <Filename Value="embedded_gui_project_options_form.pas"/>
         <UnitName Value="Embedded_GUI_Project_Options_Form"/>

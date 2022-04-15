@@ -15,7 +15,7 @@ uses
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_IDE_Options_Frame,
-  Embedded_GUI_Templates,
+//  Embedded_GUI_Templates,
   Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const;
@@ -25,6 +25,7 @@ type
   { TProject_Options_Form }
 
   TProject_Options_Form = class(TForm)
+    Button3: TButton;
     ComboBox_ARM_FlashBase: TComboBox;
     BitBtn1_Auto_avrdude_Controller: TBitBtn;
     BitBtn_Auto_Flash_Base: TBitBtn;
@@ -71,10 +72,12 @@ type
     Label_FlashBase: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
+    RadioButton_ESP: TRadioButton;
     RadioButton_avrdude: TRadioButton;
     RadioButton_UF2: TRadioButton;
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;
+    TabSheet_ESP: TTabSheet;
     TabSheet_avrdude: TTabSheet;
     TabSheet_UF2: TTabSheet;
     TabSheet_stflash: TTabSheet;
@@ -91,7 +94,8 @@ type
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-    ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path: TFileNameComboBox;
+    ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath,
+      ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path, ComboBox_ESP_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
     FProjectSource: string;
@@ -139,7 +143,7 @@ begin
   // AVRDude
   ComboBox_AvrdudePath := TFileNameComboBox.Create(TabSheet_avrdude, 'AVRDudePath');
   with ComboBox_AvrdudePath do begin
-    Caption := 'AVRdude Pfad';
+    Caption := 'AVRdude Path';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_avrdude.Width - 10;
@@ -148,7 +152,7 @@ begin
 
   ComboBox_AvrdudeConfigPath := TFileNameComboBox.Create(TabSheet_avrdude, 'AVRDudeConfig');
   with ComboBox_AvrdudeConfigPath do begin
-    Caption := 'AVRdude Config-Pfad ( Leer = default Config. )';
+    Caption := 'AVRdude Config-Path ( empty = default Config. )';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_avrdude.Width - 10;
@@ -178,7 +182,7 @@ begin
   // ST-Link
   ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_stflash, 'STLinkPath');
   with ComboBox_STLinkPath do begin
-    Caption := 'ST-Link Pfad:';
+    Caption := 'ST-Link Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_stflash.Width - 10;
@@ -193,7 +197,7 @@ begin
   // Bossac ( Arduino Due )
   ComboBox_BossacPath := TFileNameComboBox.Create(TabSheet_Bossac, 'BossacPath');
   with ComboBox_BossacPath do begin
-    Caption := 'Bossac Pfad:';
+    Caption := 'Bossac Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_Bossac.Width - 10;
@@ -203,7 +207,7 @@ begin
   // Rasberry PI Pico
   ComboBox_UF2_UnitPath := TFileNameComboBox.Create(TabSheet_UF2, 'UnitPath');
   with ComboBox_UF2_UnitPath do begin
-    Caption := 'Unit Pfad:';
+    Caption := 'Unit Path:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
@@ -214,7 +218,7 @@ begin
 
   ComboBox_UF2_cp_Path := TFileNameComboBox.Create(TabSheet_UF2, 'cpPath');
   with ComboBox_UF2_cp_Path do begin
-    Caption := 'cp Pfad:';
+    Caption := 'cp Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
@@ -224,13 +228,23 @@ begin
 
   ComboBox_UF2_mount_Path := TFileNameComboBox.Create(TabSheet_UF2, 'mountPath');
   with ComboBox_UF2_mount_Path do begin
-    Caption := 'Mount Pfad:';
+    Caption := 'Mount Path:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
     //    Width := Self.Width - 10;
     Top := 150;
+  end;
+
+  // ESP32 / ES8266
+  ComboBox_ESP_Path := TFileNameComboBox.Create(TabSheet_ESP, 'ESPToolPath');
+  with ComboBox_ESP_Path do begin
+    Caption := 'ESP Tools Path:';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := TabSheet_ESP.Width - 10;
+    Top := 10;
   end;
 
   DefaultMask;
@@ -249,8 +263,6 @@ begin
     Items.CommaText := AVR_SubArch_List;
     ItemIndex := Items.IndexOf(Text);
   end;
-
-  //  ComboBox_ArchChange(nil);
 
   with ComboBox_Controller do begin
     Text := 'atmega328p';
@@ -339,6 +351,13 @@ begin
     ComboBox_UF2_mount_Path.Text := '';
   end;
 
+  // ESP32 / ESP8266
+  if Embedded_IDE_Options.ESP.ESP_Path.Count > 0 then begin
+    ComboBox_ESP_Path.Text := Embedded_IDE_Options.ESP.ESP_Path[0];
+  end else begin
+    ComboBox_ESP_Path.Text := '';
+  end;
+
   RadioButton_Programmer_Change(nil);
 end;
 
@@ -383,7 +402,6 @@ begin
   ComboBox_SubArch.Items.CommaText := SubArchList;
 
   ComboBox_SubArchChange(Sender);
-  //  ChangeARM_Typ;
 end;
 
 procedure TProject_Options_Form.BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
@@ -481,6 +499,13 @@ begin
     end;
   end;
 
+  // ESP32 / ESP8266
+  if Pos(UpCase('UP_Loader'), p) > 0 then begin
+//    if Pos(UpCase('esptool'), p) > 0 then begin
+    RadioButton_ESP.Checked := True;
+    ComboBox_ESP_Path.Text := path;
+  end;
+
   RadioButton_Programmer_Change(nil);
 end;
 
@@ -564,8 +589,15 @@ begin
     LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
   end;
 
-  // ESP8266
-  // /home/tux/.arduino15/packages/esp8266/tools/python3/3.7.2-post1/python3 -I /home/tux/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/upload.py --chip esp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /tmp/arduino_build_431650/Blink.ino.bin
+  // ESP32 / ESP8266
+  if RadioButton_ESP.Checked then begin
+//    sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
+//    s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+    // /home/tux/.arduino15/packages/esp8266/tools/python3/3.7.2-post1/python3 -I /home/tux/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/upload.py --chip esp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /tmp/arduino_build_431650/Blink.ino.bin
+
+    LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
+  end;
 
 end;
 
@@ -610,6 +642,10 @@ begin
       // Rasberry PI Pico
       CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
       FProjectSource := TemplatesForm.getSource;
+
+      // ESP32 / ESP8266
+//      ComboBox_ESP_Path.Text := TemplatesPara[index].ESPTool.Path;
+
     end;
   end;
   TemplatesForm.Free;
@@ -633,6 +669,7 @@ begin
   TabSheet_stflash.Enabled := RadioButton_st_flash.Checked;
   TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
   TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
+  TabSheet_ESP.Enabled := RadioButton_ESP.Checked;
 end;
 
 procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);

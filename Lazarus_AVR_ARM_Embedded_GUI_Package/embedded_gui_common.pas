@@ -21,7 +21,6 @@ const
   Title = '[Embedded] ';
   Options_Title = Title + 'Optionen (Arduino, STM32, etc.)';
 
-  //  Embedded_Systems = 'AVR,ARM,Mips,Riscv32,XTensa';
   {$IFDEF Packages}
   Embedded_Options_File = 'embedded_gui_options.xml';
   {$ELSE}
@@ -36,6 +35,7 @@ const
   Default_Raspi_Pico_Unit_Path: TStringArray = ('ARM_Units\Rasberry_Pico\units', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('c:\windows\system32\xcopy', 'c:\windows\system32\xcopy32', 'c:\windows\command\xcopy');
   Default_Raspi_Pico_mount_Path: TStringArray = ('D:', 'E:', 'F:', 'G:');
+  Default_EPS_Path: TStringArray = ('..\Xtensa\ESP8266\UP_Loader\upload.py');
   Default_Template_Path: TStringArray = ('Examples');
   UARTDefaultPort = 'COM8';
   {$ELSE}
@@ -46,6 +46,7 @@ const
   Default_Raspi_Pico_Unit_Path: TStringArray = ('ARM_Units/Rasberry_Pico/units', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('/bin/cp', '/usr/bin/cp', 'cp');
   Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
+  Default_EPS_Path: TStringArray = ('../Xtensa/ESP8266/UP_Loader/upload.py');
   Default_Template_Path: TStringArray = ('Examples');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
@@ -63,7 +64,8 @@ const
   OutputDefaultAutoScroll = True;
   OutputDefaultWordWarp = False;
   OutputDefaultmaxRow = 5000;
-  OutputDefaultmaxRows = '0,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000,200000,500000';
+  OutputDefaultmaxRows =
+    '0,10,20,50,100,200,500,1000,2000,5000,10000,20000,50000,100000,200000,500000';
 
   UARTParitys = 'none,odd,even';
   UARTBitss = '5,6,7,8';
@@ -108,6 +110,9 @@ type
         Unit_Path, cp_Path, mount_Path: TStringList;
         end;
       end;
+    ESP: record
+      ESP_Path: TStringList;
+      end;
     SerialMonitor_Options: TSerialMonitor_Options;
     Templates_Path: TStringList;
     constructor Create;
@@ -117,7 +122,9 @@ type
   private
   end;
 
-  function FindPara(const Source: string; Sub: string; FirstSpace: boolean = True): string;
+function FindPara(const Source: string; Sub: string; InsertFirstSpace: boolean = True): string;
+function FindPara(const Source: string; Sub: TStringArray; InsertFirstSpace: boolean = True): string;
+
 //function FindPara(const Source: string; const Sub: string; FirstSpace: boolean = True): string;
 function FindVerbose(Source: string): integer;
 
@@ -164,6 +171,9 @@ const
   Key_Raspi_Pico_Unit_Path = Key_ARM + 'raspi_pico_Unit_Path/';
   Key_Raspi_Pico_cp_Path = Key_ARM + 'raspi_pico_cp_Path/';
   Key_Raspi_Pico_mount_Path = Key_ARM + 'raspi_pico_mount_Path/';
+
+  Key_ESP = Key_IDE_Options + 'ESP/';
+  Key_ESP_Flash_Path = Key_ESP + 'ESP_flash_path';
 
   Key_Templates_Path = Key_IDE_Options + 'Templates_Path';
 
@@ -218,26 +228,35 @@ end;
 //  end;
 //end;
 
-function FindPara(const Source: string; Sub: string; FirstSpace: boolean): string;
+function FindPara(const Source: string; Sub: TStringArray; InsertFirstSpace: boolean = True): string;
 var
-  p, Index: integer;
+  p, i, Index: integer;
 begin
-  if FirstSpace then begin
-    sub := ' ' + Sub;
-  end;
-  p := pos(Sub, Source);
-  while Copy(Source, p + Length(Sub), 1) = ' ' do begin
-    Inc(p);
-  end;
   Result := '';
-  if p > 0 then begin
-    p += Length(Sub);
-    Index := p;
-    while (Index <= Length(Source)) and (Source[Index] > #32) do begin
-      Result += Source[Index];
-      Inc(Index);
+  i := 0;
+  while (i < Length(Sub)) and (Result = '') do begin
+    if InsertFirstSpace then begin
+      sub[i] := ' ' + Sub[i];
     end;
+    p := pos(Sub[i], Source);
+    while Copy(Source, p + Length(Sub[i]), 1) = ' ' do begin
+      Inc(p);
+    end;
+    if p > 0 then begin
+      p += Length(Sub[i]);
+      Index := p;
+      while (Index <= Length(Source)) and (Source[Index] > #32) do begin
+        Result += Source[Index];
+        Inc(Index);
+      end;
+    end;
+    Inc(i);
   end;
+end;
+
+function FindPara(const Source: string; Sub: string; InsertFirstSpace: boolean = True): string;
+begin
+  Result := FindPara(Source, [Sub], InsertFirstSpace);
 end;
 
 
@@ -560,6 +579,8 @@ begin
   ARM.Raspi_Pico.cp_Path := TStringList.Create;
   ARM.Raspi_Pico.mount_Path := TStringList.Create;
 
+  ESP.ESP_Path := TStringList.Create;
+
   Templates_Path := TStringList.Create;
 end;
 
@@ -573,6 +594,8 @@ begin
   ARM.Raspi_Pico.Unit_Path.Free;
   ARM.Raspi_Pico.cp_Path.Free;
   ARM.Raspi_Pico.mount_Path.Free;
+
+  ESP.ESP_Path.Free;
 
   Templates_Path.Free;
 
@@ -599,6 +622,8 @@ begin
   LoadStrings_from_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path, Default_Raspi_Pico_cp_Path);
   LoadStrings_from_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path, Default_Raspi_Pico_mount_Path);
 
+  LoadStrings_from_XML(Key_ESP_Flash_Path, ESP.ESP_Path, Default_EPS_Path);
+
   LoadStrings_from_XML(Key_Templates_Path, Templates_Path, [PackagePath + Default_Template_Path[0]]);
 
   SerialMonitor_Options.Load_from_XML;
@@ -615,6 +640,8 @@ begin
   SaveStrings_to_XML(Key_Raspi_Pico_Unit_Path, ARM.Raspi_Pico.Unit_Path);
   SaveStrings_to_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path);
   SaveStrings_to_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path);
+
+  SaveStrings_to_XML(Key_ESP_Flash_Path, ESP.ESP_Path);
 
   SaveStrings_to_XML(Key_Templates_Path, Templates_Path);
 

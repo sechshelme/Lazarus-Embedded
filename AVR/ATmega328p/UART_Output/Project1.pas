@@ -11,7 +11,7 @@ const
   var
     i: Int32;
   begin
-    for i := 0 to 300000 do begin
+    for i := 0 to 300001 do begin
     end;
   end;
 

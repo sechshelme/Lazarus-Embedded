@@ -8,7 +8,7 @@ unit Embedded_GUI_Package;
 interface
 
 uses
-  Embedded_GUI_Templates, Embedded_GUI_Project_Options_Form, 
+  Embedded_GUI_Project_Options_Form,
   Embedded_GUI_Project_Templates_Form, Embedded_GUI_Option_Dialog_Register, 
   Embedded_GUI_CPU_Info_Form, Embedded_GUI_Find_Comports, 
   Embedded_GUI_IDE_Options_Frame, Embedded_GUI_Register, 
@@ -28,7 +28,5 @@ begin
 end;
 
 initialization
-
   RegisterPackage('Embedded_GUI_Package', @Register);
-
 end.

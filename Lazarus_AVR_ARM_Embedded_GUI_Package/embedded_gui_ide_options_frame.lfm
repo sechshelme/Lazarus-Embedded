@@ -13,15 +13,18 @@ object Embedded_IDE_Options_Frame: TEmbedded_IDE_Options_Frame
     Height = 641
     Top = 0
     Width = 803
-    ActivePage = TabSheetTemplates
+    ActivePage = TabSheetESP
     Align = alClient
-    TabIndex = 5
+    TabIndex = 2
     TabOrder = 0
     object TabSheetAVR: TTabSheet
       Caption = 'AVR'
     end
     object TabSheetARM: TTabSheet
       Caption = 'ARM'
+    end
+    object TabSheetESP: TTabSheet
+      Caption = 'ESPxx'
     end
     object TabSheet_SM_Interface: TTabSheet
       Caption = 'Serial-Monitor-Interface'

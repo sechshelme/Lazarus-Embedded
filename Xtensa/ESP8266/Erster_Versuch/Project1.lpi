@@ -52,6 +52,11 @@
       </Debugging>
     </Linking>
     <Other>
+      <CustomOptions Value="-WpESP8266
+-XPxtensa-lx106-elf
+-WP3.4
+-Tfreertos
+-O"/>
       <ExecuteAfter>
         <Command Value="/bin/python3 -I /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Xtensa/ESP8266/UP_Loader/upload.py --chip esp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Xtensa/ESP8266/Erster_Versuch/Project1.bin"/>
         <CompileReasons Compile="False" Build="False"/>

@@ -9,7 +9,6 @@ uses
   Laz2_XMLCfg,  // Bei normalen Anwendungen
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const;
-//, Embedded_GUI_Templates;
 
 type
   TTemplatesPara = record
@@ -74,7 +73,6 @@ begin
 
   Cfg := TXMLConfig.Create(nil);
   pfad := Embedded_IDE_Options.Templates_Path[0] + '/embedded_gui_template.xml';
-  //  Cfg.Filename := '/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_AVR_ARM_Embedded_GUI_Package/Templates/embedded_gui_template.xml';
   if not FileExists(pfad) then begin
     ShowMessage('Templates-Pfad nicht gefunden:' + LineEnding + pfad);
   end else begin

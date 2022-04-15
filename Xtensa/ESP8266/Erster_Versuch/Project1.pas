@@ -37,7 +37,7 @@ begin
 
   gpio_set_direction(LED, 2);
   repeat
-//    writeln('.');
+    writeln('.');
     gpio_set_level(LED, 0);
     vTaskDelay(100);
 //    writeln('*');

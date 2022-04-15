@@ -17,7 +17,7 @@ uses
   // Embedded ( Eigene Units )
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_Common,
-  Embedded_GUI_Templates,
+//  Embedded_GUI_Templates,
   Embedded_GUI_Project_Options_Form;
 
 type

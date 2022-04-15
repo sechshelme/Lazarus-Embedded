@@ -112,16 +112,26 @@ object Project_Options_Form: TProject_Options_Form
       Top = 8
       Width = 50
       Caption = 'UF2'
+      OnChange = RadioButton_Programmer_Change
       TabOrder = 3
+    end
+    object RadioButton_ESP: TRadioButton
+      Left = 432
+      Height = 23
+      Top = 8
+      Width = 96
+      Caption = 'ESP (Alpha)'
+      OnChange = RadioButton_Programmer_Change
+      TabOrder = 5
     end
     object PageControl1: TPageControl
       Left = 8
       Height = 580
       Top = 40
       Width = 744
-      ActivePage = TabSheet_Bossac
+      ActivePage = TabSheet_ESP
       Anchors = [akTop, akLeft, akRight, akBottom]
-      TabIndex = 2
+      TabIndex = 4
       TabOrder = 4
       object TabSheet_avrdude: TTabSheet
         Caption = 'AVRDude'
@@ -529,6 +539,20 @@ object Project_Options_Form: TProject_Options_Form
         ClientHeight = 550
         ClientWidth = 734
         object Button2: TButton
+          Left = 23
+          Height = 25
+          Top = 40
+          Width = 75
+          Caption = 'test'
+          TabOrder = 0
+          Visible = False
+        end
+      end
+      object TabSheet_ESP: TTabSheet
+        Caption = 'ESP'
+        ClientHeight = 550
+        ClientWidth = 734
+        object Button3: TButton
           Left = 23
           Height = 25
           Top = 40

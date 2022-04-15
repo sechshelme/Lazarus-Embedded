@@ -35,6 +35,7 @@ type
     OpenDialog: TOpenDialog;
     PageControl_IDE_Options: TPageControl;
     Panel_Preview: TPanel;
+    TabSheetESP: TTabSheet;
     TabSheetTemplates: TTabSheet;
     TabSheetAVR: TTabSheet;
     TabSheetARM: TTabSheet;
@@ -46,7 +47,7 @@ type
     procedure Button_Color_CustomClick(Sender: TObject);
   private
     ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPath, ComboBox_BossacPath, ComboBox_Raspi_Pico_UnitPath,
-      ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_TemplatesPath: TFileNameComboBox;
+      ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_ESP_Path, ComboBox_TemplatesPath: TFileNameComboBox;
 
     SM_Interface_Frame: TSM_Interface_Frame;
     SM_Output_Frame: TSM_Output_Frame;
@@ -102,14 +103,7 @@ end;
 procedure TEmbedded_IDE_Options_Frame.ReadSettings(AOptions: TAbstractIDEOptions);
 var
   col: TColor;
-
-//  ThisPackage: TPackageLink;
 begin
-  //ThisPackage:= PkgLinks.FindLinkWithPkgName('embedded_gui_package');
-//  TabSheetTemplates.Caption:=ThisPackage.LPKFilename;
-//  ShowMessage({$I %FILE%});
-
-
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
   // AVR
@@ -124,7 +118,7 @@ begin
 
   ComboBox_AVRdudeConf := TFileNameComboBox.Create(TabSheetAVR, 'AVRDudeConfig', False);
   with ComboBox_AVRdudeConf do begin
-    Caption := 'AVRdude Config-Pfad ( Leer = default Konfig. )';
+    Caption := 'AVRdude Config-Path ( empty = default Config. )';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
@@ -136,7 +130,7 @@ begin
 
   ComboBox_STFlashPath := TFileNameComboBox.Create(TabSheetARM, 'STFlashPath', False);
   with ComboBox_STFlashPath do begin
-    Caption := 'ST Flash Pfad';
+    Caption := 'ST Flash Path';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
@@ -147,7 +141,7 @@ begin
 
   ComboBox_BossacPath := TFileNameComboBox.Create(TabSheetARM, 'BossacPath', False);
   with ComboBox_BossacPath do begin
-    Caption := 'Bassac Pfad';
+    Caption := 'Bassac Path';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
@@ -158,7 +152,7 @@ begin
 
   ComboBox_Raspi_Pico_UnitPath := TFileNameComboBox.Create(TabSheetARM, 'RaspiPicoUnitPath', False);
   with ComboBox_Raspi_Pico_UnitPath do begin
-    Caption := 'Rasberry Pico - Unit Pfad:';
+    Caption := 'Rasberry Pico - Unit Path:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
@@ -168,7 +162,7 @@ begin
 
   ComboBox_Raspi_Pico_cp_Path := TFileNameComboBox.Create(TabSheetARM, 'cpPath', False);
   with ComboBox_Raspi_Pico_cp_Path do begin
-    Caption := 'cp Pfad:';
+    Caption := 'cp Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
@@ -177,12 +171,23 @@ begin
 
   ComboBox_Raspi_Pico_mount_Path := TFileNameComboBox.Create(TabSheetARM, 'mountPath', False);
   with ComboBox_Raspi_Pico_mount_Path do begin
-    Caption := 'Mount Pfad:';
+    Caption := 'Mount Path:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
     Top := 344;
+  end;
+
+  // ST-Link
+
+  ComboBox_ESP_Path := TFileNameComboBox.Create(TabSheetESP, 'ESPFlashPath', False);
+  with ComboBox_ESP_Path do begin
+    Caption := 'ESP Tools Path';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 24;
   end;
 
   // Templates
@@ -206,6 +211,7 @@ begin
     ComboBox_Raspi_Pico_UnitPath.Items := ARM.Raspi_Pico.Unit_Path;
     ComboBox_Raspi_Pico_cp_Path.Items := ARM.Raspi_Pico.cp_Path;
     ComboBox_Raspi_Pico_mount_Path.Items := ARM.Raspi_Pico.mount_Path;
+    ComboBox_ESP_Path.Items := ESP.ESP_Path;
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
@@ -277,6 +283,7 @@ begin
     ARM.Raspi_Pico.Unit_Path.AddStrings(ComboBox_Raspi_Pico_UnitPath.Items, True);
     ARM.Raspi_Pico.cp_Path.AddStrings(ComboBox_Raspi_Pico_cp_Path.Items, True);
     ARM.Raspi_Pico.mount_Path.AddStrings(ComboBox_Raspi_Pico_mount_Path.Items, True);
+    ESP.ESP_Path.AddStrings(ComboBox_ESP_Path.Items, True);
 
     Templates_Path.AddStrings(ComboBox_TemplatesPath.Items, True);
 
