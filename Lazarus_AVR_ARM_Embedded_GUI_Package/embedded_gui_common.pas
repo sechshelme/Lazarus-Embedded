@@ -28,13 +28,14 @@ const
   {$ENDIF}
 
   {$IFDEF MSWINDOWS}
-  Default_Avrdude_Path: TStringArray = ('c:\avrdude\avrdude.exe');
+  Default_Avrdude_Path: TStringArray = ('c:\avrdude\avrdude.exe', 'c:Programme\avrdude\avrdude.exe');
   Default_Avrdude_Conf_Path: TStringArray = ('c:\avrdude\avrdude.conf');
   Default_STFlash_Path: TStringArray = ('c:\st-link\st-flash.exe');
   Default_Bassac_Path: TStringArray = ('c:\bossa\bossac.exe');
   Default_Raspi_Pico_Unit_Path: TStringArray = ('ARM_Units\Rasberry_Pico\units', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('c:\windows\system32\xcopy', 'c:\windows\system32\xcopy32', 'c:\windows\command\xcopy');
   Default_Raspi_Pico_mount_Path: TStringArray = ('D:', 'E:', 'F:', 'G:');
+  Default_python3_Path: TStringArray = ('c:\Programme\python3\python3', 'c:\python3\python3);
   Default_EPS_Path: TStringArray = ('..\Xtensa\ESP8266\UP_Loader\upload.py');
   Default_Template_Path: TStringArray = ('Examples');
   UARTDefaultPort = 'COM8';
@@ -46,7 +47,8 @@ const
   Default_Raspi_Pico_Unit_Path: TStringArray = ('ARM_Units/Rasberry_Pico/units', '');
   Default_Raspi_Pico_cp_Path: TStringArray = ('/bin/cp', '/usr/bin/cp', 'cp');
   Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
-  Default_EPS_Path: TStringArray = ('../Xtensa/ESP8266/UP_Loader/upload.py');
+  Default_python3_Path: TStringArray = ('/bin/python3', '/usr/bin/python3', 'python3');
+  Default_EPS_Tool_Path: TStringArray = ('../Xtensa/ESP8266/UP_Loader/upload.py');
   Default_Template_Path: TStringArray = ('Examples');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
@@ -111,7 +113,8 @@ type
         end;
       end;
     ESP: record
-      ESP_Path: TStringList;
+      python3_Path,
+      ESP_Tool_Path: TStringList;
       end;
     SerialMonitor_Options: TSerialMonitor_Options;
     Templates_Path: TStringList;
@@ -173,7 +176,8 @@ const
   Key_Raspi_Pico_mount_Path = Key_ARM + 'raspi_pico_mount_Path/';
 
   Key_ESP = Key_IDE_Options + 'ESP/';
-  Key_ESP_Flash_Path = Key_ESP + 'ESP_flash_path';
+  Key_ESP_python3_Path = Key_ESP + 'python3_path';
+  Key_ESP_Tool_Path = Key_ESP + 'ESP_Tool_path';
 
   Key_Templates_Path = Key_IDE_Options + 'Templates_Path';
 
@@ -579,7 +583,8 @@ begin
   ARM.Raspi_Pico.cp_Path := TStringList.Create;
   ARM.Raspi_Pico.mount_Path := TStringList.Create;
 
-  ESP.ESP_Path := TStringList.Create;
+  ESP.python3_Path := TStringList.Create;
+  ESP.ESP_Tool_Path := TStringList.Create;
 
   Templates_Path := TStringList.Create;
 end;
@@ -595,7 +600,8 @@ begin
   ARM.Raspi_Pico.cp_Path.Free;
   ARM.Raspi_Pico.mount_Path.Free;
 
-  ESP.ESP_Path.Free;
+  ESP.python3_Path.Free;
+  ESP.ESP_Tool_Path.Free;
 
   Templates_Path.Free;
 
@@ -622,7 +628,8 @@ begin
   LoadStrings_from_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path, Default_Raspi_Pico_cp_Path);
   LoadStrings_from_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path, Default_Raspi_Pico_mount_Path);
 
-  LoadStrings_from_XML(Key_ESP_Flash_Path, ESP.ESP_Path, Default_EPS_Path);
+  LoadStrings_from_XML(Key_ESP_python3_Path, ESP.python3_Path, Default_python3_Path);
+  LoadStrings_from_XML(Key_ESP_Tool_Path, ESP.ESP_Tool_Path, Default_EPS_Tool_Path);
 
   LoadStrings_from_XML(Key_Templates_Path, Templates_Path, [PackagePath + Default_Template_Path[0]]);
 
@@ -641,7 +648,8 @@ begin
   SaveStrings_to_XML(Key_Raspi_Pico_cp_Path, ARM.Raspi_Pico.cp_Path);
   SaveStrings_to_XML(Key_Raspi_Pico_mount_Path, ARM.Raspi_Pico.mount_Path);
 
-  SaveStrings_to_XML(Key_ESP_Flash_Path, ESP.ESP_Path);
+  SaveStrings_to_XML(Key_ESP_python3_Path, ESP.python3_Path);
+  SaveStrings_to_XML(Key_ESP_Tool_Path, ESP.ESP_Tool_Path);
 
   SaveStrings_to_XML(Key_Templates_Path, Templates_Path);
 

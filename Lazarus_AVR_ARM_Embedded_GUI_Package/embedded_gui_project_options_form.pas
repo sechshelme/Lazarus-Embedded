@@ -15,7 +15,7 @@ uses
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_IDE_Options_Frame,
-//  Embedded_GUI_Templates,
+  //  Embedded_GUI_Templates,
   Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const;
@@ -25,7 +25,6 @@ type
   { TProject_Options_Form }
 
   TProject_Options_Form = class(TForm)
-    Button3: TButton;
     ComboBox_ARM_FlashBase: TComboBox;
     BitBtn1_Auto_avrdude_Controller: TBitBtn;
     BitBtn_Auto_Flash_Base: TBitBtn;
@@ -47,6 +46,8 @@ type
     CheckBox_UF2File: TCheckBox;
     CheckBox_UnLock: TCheckBox;
     CheckBox_Verify: TCheckBox;
+    ComboBox_ESPTool_COMPort: TComboBox;
+    ComboBox_ESPTool_COMPortBaud: TComboBox;
     ComboBox_avrrdude_BitClock: TComboBox;
     ComboBox_avrdude_COMPort: TComboBox;
     ComboBox_avrdude_COMPortBaud: TComboBox;
@@ -57,27 +58,31 @@ type
     ComboBox_avrdude_Verbose: TComboBox;
     CPU_InfoButton: TButton;
     Edit_avrdude_Controller: TEdit;
+    Edit_ESPTool_Chip: TEdit;
     GroupBox_Compiler: TGroupBox;
     GroupBox_Programmer: TGroupBox;
     CancelButton: TButton;
     Label1: TLabel;
     Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     Label9: TLabel;
     Label_FlashBase: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
-    RadioButton_ESP: TRadioButton;
+    RadioButton_ESP_Tool: TRadioButton;
     RadioButton_avrdude: TRadioButton;
     RadioButton_UF2: TRadioButton;
     RadioButton_Bossac: TRadioButton;
     RadioButton_st_flash: TRadioButton;
-    TabSheet_ESP: TTabSheet;
+    TabSheet_ESP_Tool: TTabSheet;
     TabSheet_avrdude: TTabSheet;
     TabSheet_UF2: TTabSheet;
     TabSheet_stflash: TTabSheet;
@@ -94,8 +99,7 @@ type
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-    ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath,
-      ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path, ComboBox_ESP_Path: TFileNameComboBox;
+    ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path, ComboBox_ESP_Tool_Path, ComboBox_ESP_python3_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
     FProjectSource: string;
@@ -179,6 +183,10 @@ begin
     Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
   end;
 
+  with ComboBox_ESPTool_COMPortBaud do begin
+    Items.AddStrings(['115200'], True);
+  end;
+
   // ST-Link
   ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_stflash, 'STLinkPath');
   with ComboBox_STLinkPath do begin
@@ -212,7 +220,6 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
-    //    Width := Self.Width - 10;
     Top := 10;
   end;
 
@@ -222,7 +229,6 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
-    //    Width := Self.Width - 10;
     Top := 80;
   end;
 
@@ -233,18 +239,26 @@ begin
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_UF2.Width - 10;
-    //    Width := Self.Width - 10;
     Top := 150;
   end;
 
   // ESP32 / ES8266
-  ComboBox_ESP_Path := TFileNameComboBox.Create(TabSheet_ESP, 'ESPToolPath');
-  with ComboBox_ESP_Path do begin
+  ComboBox_ESP_Tool_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPToolPath');
+  with ComboBox_ESP_Tool_Path do begin
     Caption := 'ESP Tools Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := TabSheet_ESP.Width - 10;
+    Width := TabSheet_ESP_Tool.Width - 10;
     Top := 10;
+  end;
+
+  ComboBox_ESP_python3_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPpython3Path');
+  with ComboBox_ESP_Tool_Path do begin
+    Caption := 'python3 Path:';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := TabSheet_ESP_Tool.Width - 10;
+    Top := 80;
   end;
 
   DefaultMask;
@@ -352,10 +366,29 @@ begin
   end;
 
   // ESP32 / ESP8266
-  if Embedded_IDE_Options.ESP.ESP_Path.Count > 0 then begin
-    ComboBox_ESP_Path.Text := Embedded_IDE_Options.ESP.ESP_Path[0];
+  if Embedded_IDE_Options.ESP.python3_Path.Count > 0 then begin
+    ComboBox_ESP_python3_Path.Text := Embedded_IDE_Options.ESP.ESP_Tool_Path[0];
   end else begin
-    ComboBox_ESP_Path.Text := '';
+    ComboBox_ESP_python3_Path.Text := '';
+  end;
+
+  if Embedded_IDE_Options.ESP.ESP_Tool_Path.Count > 0 then begin
+    ComboBox_ESP_Tool_Path.Text := Embedded_IDE_Options.ESP.ESP_Tool_Path[0];
+  end else begin
+    ComboBox_ESP_Tool_Path.Text := '';
+  end;
+
+  Edit_ESPTool_Chip.Text := 'esp8266';
+
+  with ComboBox_ESPTool_COMPort do begin
+    Items.CommaText := GetSerialPortNames;
+    if Items.Count > 0 then begin
+      Text := Items[0];
+    end;
+  end;
+
+  with ComboBox_ESPTool_COMPortBaud do begin
+    Text := '115200';
   end;
 
   RadioButton_Programmer_Change(nil);
@@ -449,6 +482,7 @@ begin
 
   // AVRDude
   if Pos(UpCase('avrdude'), p) > 0 then begin
+    RadioButton_avrdude.Checked := True;
     ComboBox_AvrdudePath.Text := path;
     ComboBox_AvrdudeConfigPath.Text := FindPara(s, '-C');
 
@@ -487,7 +521,7 @@ begin
   end;
 
   // Rasberry PI Pico
-  if Pos(UpCase('.uf2 '), s) > 0 then begin
+  if Pos(UpCase('.uf2 '), UpCase(s)) > 0 then begin
     RadioButton_UF2.Checked := True;
     //    ComboBox_UF2_UnitPath.Text := path;
     ComboBox_UF2_cp_Path.Text := path;
@@ -501,9 +535,17 @@ begin
 
   // ESP32 / ESP8266
   if Pos(UpCase('UP_Loader'), p) > 0 then begin
-//    if Pos(UpCase('esptool'), p) > 0 then begin
-    RadioButton_ESP.Checked := True;
-    ComboBox_ESP_Path.Text := path;
+    //    if Pos(UpCase('esptool'), p) > 0 then begin
+    RadioButton_ESP_Tool.Checked := True;
+    ComboBox_ESP_Tool_Path.Text := path;
+
+    Edit_ESPTool_Chip.Text := FindPara(s, '-c');
+
+    with ComboBox_ESPTool_COMPort do begin
+      Items.CommaText := GetSerialPortNames;
+      Text := FindPara(s, '-p');
+    end;
+    ComboBox_ESPTool_COMPortBaud.Text := FindPara(s, '-b');
   end;
 
   RadioButton_Programmer_Change(nil);
@@ -515,6 +557,11 @@ var
   i: integer;
 begin
   // --- FPC_Command
+  if UpCase(ComboBox_Arch.Text) = 'XTENSA' then begin
+    LazProject.LazCompilerOptions.TargetOS := 'FreeRTOS';
+  end else begin
+    LazProject.LazCompilerOptions.TargetOS := 'Embedded';
+  end;
   LazProject.LazCompilerOptions.TargetCPU := ComboBox_Arch.Text;
   LazProject.LazCompilerOptions.TargetProcessor := ComboBox_SubArch.Text;
   s := '-Wp' + ComboBox_Controller.Text;
@@ -590,9 +637,9 @@ begin
   end;
 
   // ESP32 / ESP8266
-  if RadioButton_ESP.Checked then begin
-//    sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
-//    s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
+  if RadioButton_ESP_Tool.Checked then begin
+    //    sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
+    //    s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
     // /home/tux/.arduino15/packages/esp8266/tools/python3/3.7.2-post1/python3 -I /home/tux/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/upload.py --chip esp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /tmp/arduino_build_431650/Blink.ino.bin
 
@@ -627,6 +674,7 @@ begin
       RadioButton_st_flash.Checked := TemplatesPara[index].Programmer = 'st-flash';
       RadioButton_UF2.Checked := TemplatesPara[index].Programmer = 'uf2';
       RadioButton_Bossac.Checked := TemplatesPara[index].Programmer = 'bossac';
+      RadioButton_ESP_Tool.Checked := TemplatesPara[index].Programmer = 'ESPTool';
 
       // AVRDude
       Edit_avrdude_Controller.Text := TemplatesPara[index].avrdude.Controller;
@@ -644,8 +692,9 @@ begin
       FProjectSource := TemplatesForm.getSource;
 
       // ESP32 / ESP8266
-//      ComboBox_ESP_Path.Text := TemplatesPara[index].ESPTool.Path;
-
+      Edit_ESPTool_Chip.Text := TemplatesPara[index].ESPTool.Controller;
+      ComboBox_ESPTool_COMPort.Text := TemplatesPara[index].ESPTool.COM_Port;
+      ComboBox_ESPTool_COMPortBaud.Text := TemplatesPara[index].ESPTool.Baud;
     end;
   end;
   TemplatesForm.Free;
@@ -669,7 +718,7 @@ begin
   TabSheet_stflash.Enabled := RadioButton_st_flash.Checked;
   TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
   TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
-  TabSheet_ESP.Enabled := RadioButton_ESP.Checked;
+  TabSheet_ESP_Tool.Enabled := RadioButton_ESP_Tool.Checked;
 end;
 
 procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);

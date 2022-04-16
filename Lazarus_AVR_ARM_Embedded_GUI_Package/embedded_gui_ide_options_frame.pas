@@ -47,7 +47,7 @@ type
     procedure Button_Color_CustomClick(Sender: TObject);
   private
     ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPath, ComboBox_BossacPath, ComboBox_Raspi_Pico_UnitPath,
-      ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_ESP_Path, ComboBox_TemplatesPath: TFileNameComboBox;
+      ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_ESP_python3_Path, ComboBox_ESP_Tool_Path, ComboBox_TemplatesPath: TFileNameComboBox;
 
     SM_Interface_Frame: TSM_Interface_Frame;
     SM_Output_Frame: TSM_Output_Frame;
@@ -106,6 +106,7 @@ var
 begin
   LoadPageControl_from_XML(PageControl_IDE_Options);
 
+  // --- Programmer
   // AVR
   ComboBox_AvrdudePath := TFileNameComboBox.Create(TabSheetAVR, 'AVRDudePath', False);
   with ComboBox_AvrdudePath do begin
@@ -125,9 +126,7 @@ begin
     Top := 104;
   end;
 
-  // --- Programmer
   // ST-Link
-
   ComboBox_STFlashPath := TFileNameComboBox.Create(TabSheetARM, 'STFlashPath', False);
   with ComboBox_STFlashPath do begin
     Caption := 'ST Flash Path';
@@ -138,7 +137,6 @@ begin
   end;
 
   // Bossac ( Arduino Due )
-
   ComboBox_BossacPath := TFileNameComboBox.Create(TabSheetARM, 'BossacPath', False);
   with ComboBox_BossacPath do begin
     Caption := 'Bassac Path';
@@ -149,7 +147,6 @@ begin
   end;
 
   // Rasberry PI Pico
-
   ComboBox_Raspi_Pico_UnitPath := TFileNameComboBox.Create(TabSheetARM, 'RaspiPicoUnitPath', False);
   with ComboBox_Raspi_Pico_UnitPath do begin
     Caption := 'Rasberry Pico - Unit Path:';
@@ -179,15 +176,24 @@ begin
     Top := 344;
   end;
 
-  // ST-Link
+  // ESP Tool
 
-  ComboBox_ESP_Path := TFileNameComboBox.Create(TabSheetESP, 'ESPFlashPath', False);
-  with ComboBox_ESP_Path do begin
-    Caption := 'ESP Tools Path';
+  ComboBox_ESP_python3_Path := TFileNameComboBox.Create(TabSheetESP, 'ESPpython3Path', False);
+  with ComboBox_ESP_python3_Path do begin
+    Caption := 'python3 Path';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
     Top := 24;
+  end;
+
+  ComboBox_ESP_Tool_Path := TFileNameComboBox.Create(TabSheetESP, 'ESPToolhPath', False);
+  with ComboBox_ESP_Tool_Path do begin
+    Caption := 'ESP Tools Path';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 104;
   end;
 
   // Templates
@@ -211,7 +217,8 @@ begin
     ComboBox_Raspi_Pico_UnitPath.Items := ARM.Raspi_Pico.Unit_Path;
     ComboBox_Raspi_Pico_cp_Path.Items := ARM.Raspi_Pico.cp_Path;
     ComboBox_Raspi_Pico_mount_Path.Items := ARM.Raspi_Pico.mount_Path;
-    ComboBox_ESP_Path.Items := ESP.ESP_Path;
+    ComboBox_ESP_python3_Path.Items := ESP.python3_Path;
+    ComboBox_ESP_Tool_Path.Items := ESP.ESP_Tool_Path;
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
@@ -283,7 +290,8 @@ begin
     ARM.Raspi_Pico.Unit_Path.AddStrings(ComboBox_Raspi_Pico_UnitPath.Items, True);
     ARM.Raspi_Pico.cp_Path.AddStrings(ComboBox_Raspi_Pico_cp_Path.Items, True);
     ARM.Raspi_Pico.mount_Path.AddStrings(ComboBox_Raspi_Pico_mount_Path.Items, True);
-    ESP.ESP_Path.AddStrings(ComboBox_ESP_Path.Items, True);
+    ESP.python3_Path.AddStrings(ComboBox_ESP_python3_Path.Items, True);
+    ESP.ESP_Tool_Path.AddStrings(ComboBox_ESP_Tool_Path.Items, True);
 
     Templates_Path.AddStrings(ComboBox_TemplatesPath.Items, True);
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  Laz2_XMLCfg,  // Bei normalen Anwendungen
+  Laz2_XMLCfg,
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const;
 
@@ -30,6 +30,11 @@ type
       end;
     stlink: record
       FlashBase: string;
+      end;
+    ESPTool: record
+      Controller,
+      COM_Port,
+      Baud: string
       end;
   end;
 
@@ -98,8 +103,16 @@ begin
           Chip_Erase := Cfg.GetValue(PKey + 'Chip_Erase', False);
         end;
         with stlink do begin
+          PKey := BoardKey + 'stlink/';
           FlashBase := Cfg.GetValue(PKey + 'FlashBase', 'x');
         end;
+        with ESPTool do begin
+          PKey := BoardKey + 'ESPTool/';
+          Controller := Cfg.GetValue(PKey + 'Chip', 'xxxxxxchip');
+          COM_Port := Cfg.GetValue(PKey + 'COM_Port', 'xxxxxxcom');
+          Baud := Cfg.GetValue(PKey + 'Baud', 'xxxxxxbaus');
+        end;
+
         l := Cfg.GetChildCount(BoardKey + 'Examples');
         SetLength(Examples, l);
         for j := 1 to l do begin

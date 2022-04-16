@@ -9,6 +9,8 @@
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
         <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
@@ -19,6 +21,8 @@
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
         <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
@@ -29,6 +33,8 @@
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
         <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Mega" Arch="avr" SubArch="AVR6" Controller="atmega2560" Programmer="avrdude">
@@ -37,6 +43,7 @@
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega2560/Blink_Pin_13.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano Every" Arch="avr" SubArch="AVR6" Controller="atmega4808" Programmer="avrdude">
@@ -55,6 +62,8 @@
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
         <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
       </Examples>
     </Board>
     <Board Caption="ATtiny2313A" Arch="avr" SubArch="AVR25" Controller="attiny2313a" Programmer="avrdude">
@@ -87,6 +96,7 @@
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
         <Example Caption="Default" SourceFile="ARM/ARMV7M_Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="ARM/ARMV7M/ArduinoDUE/Blink_Pin_13.pas"/>
       </Examples>
     </Board>
     <Board Caption="Rasberry Pico" Arch="arm" SubArch="ARMV6M" Controller="RASPI_PICO" Programmer="uf2">
@@ -94,7 +104,7 @@
       <stlink FlashBase="0x00000000"/>
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
-        <Example Caption="Default" SourceFile="Rasperry_Pico_Default.pas"/>
+        <Example Caption="Default" SourceFile="ARM/Rasperry_Pico_Default.pas"/>
         <Example Caption="Error-Test" SourceFile="xxx.pas"/>
       </Examples>
     </Board>

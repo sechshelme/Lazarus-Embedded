@@ -55,7 +55,7 @@
       <CustomOptions Value="-WpRASPI_PICO
 -Xu"/>
       <ExecuteAfter>
-        <Command Value="/bin/cp Project1.uf2 /media/tux/RPI-RP2/Project1.uf2"/>
+        <Command Value="/bin/cp Project1.uf2 /media/tux/RPI-RP2/Project1.uf2/Project1.uf2"/>
       </ExecuteAfter>
     </Other>
   </CompilerOptions>
