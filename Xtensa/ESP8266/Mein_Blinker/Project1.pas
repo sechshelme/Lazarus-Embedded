@@ -38,10 +38,10 @@ begin
   
   gpio_set_direction(LED, 2);
   repeat
-    writeln('.');
+    writeln('Hello ');
     gpio_set_level(LED, 0);
     vTaskDelay(10);
-    writeln('*');
+    writeln('World ! ');
     gpio_set_level(LED, 1);
     vTaskDelay(10);
   until false;
