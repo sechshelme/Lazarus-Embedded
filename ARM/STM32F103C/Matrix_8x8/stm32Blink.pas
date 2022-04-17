@@ -5,7 +5,8 @@ program GPIO_Write;
     i: uint32;
   begin
     for i := 0 to 1500 do begin
-      asm Nop end;
+      asm
+               Nop end;
     end;
   end;
 
@@ -102,19 +103,20 @@ var
 
 begin
   // Ports einschalten
-  RCC.APB2ENR := RCC.APB2ENR or (%111 shl 2);
+  RCC.APB2ENR := RCC.APB2ENR or (1 shl 4); // Clock für GPIOC freigeben.
+  RCC.APB2ENR := RCC.APB2ENR or (1 shl 3); // Clock für GPIOB freigeben.
+  RCC.APB2ENR := RCC.APB2ENR or (1 shl 2); // Clock für GPIOA freigeben.
 
   // Ports auf Ausgabe schalten
-  gpioA.CRL := $33333333;
-  gpioA.CRH := $33333333;
+  PortA.CRL := $33333333;
+  PortA.CRH := $33333333;
+  PortB.CRL := $33333333;
+  PortB.CRH := $33333333;
+  PortC.CRL := $33333333;
+  PortC.CRH := $33333333;
 
-  gpioB.CRL := $33333333;
-  gpioB.CRH := $33333333;
-
-  gpioC.CRL := $33333333;
-  gpioC.CRH := $33333333;
-
-  Zahl := 2;
+  Zahl := 5;
+  p := 0;
 
   while True do begin
     Inc(Zaehler);
@@ -122,8 +124,13 @@ begin
       Zaehler := 0;
     end;
 
+    if Zaehler < 300 then begin
+      PortC.BSRR := 1 shl 13;
+    end else begin
+      PortC.BRR := 1 shl 13;
+    end;
+
     if Zaehler = 0 then begin
-      gpioC.ODR := not gpioC.ODR;
       Inc(Zahl);
       if Zahl >= 10 then begin
         Zahl := 0;
@@ -135,9 +142,10 @@ begin
       p := 0;
     end;
 
-    gpioA.ODR := 1 shl p;
-    gpioB.ODR := (Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5)) shl 8;
+    PortA.ODR := 1 shl p;
+    PortB.ODR := (Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5)) shl 8;
 
     Delay;
   end;
 end.
+

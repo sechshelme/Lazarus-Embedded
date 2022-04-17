@@ -1,4 +1,4 @@
-program blink;
+program Project1;
  
 type
   Tgpio_config = record
