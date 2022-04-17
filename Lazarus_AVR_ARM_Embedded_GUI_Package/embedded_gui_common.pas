@@ -49,7 +49,7 @@ const
   Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
   Default_python3_Path: TStringArray = ('/bin/python3', '/usr/bin/python3', 'python3');
   Default_EPS_Tool_Path: TStringArray = ('../Xtensa/ESP8266/UP_Loader/upload.py');
-  Default_Template_Path: TStringArray = ('Examples');
+  Default_Template_Path: TStringArray = ('Templates');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
 

@@ -107,15 +107,16 @@
         <Example Caption="Default" SourceFile="ARM/Rasperry_Pico_Default.pas"/>
       </Examples>
     </Board>
-    <Board Caption="ESP8266" Arch="arm" SubArch="lx106" Controller="" Programmer="ESPTool">
+    <Board Caption="ESP8266" Arch="xtensa" SubArch="lx106" Controller="esp8266" Programmer="ESPTool">
       <stlink FlashBase="0x00000000"/>
       <ESPTool Chip="esp8266" COM_Port="/dev/ttyUSB0" Baud="115200"/>
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
         <Example Caption="Default" SourceFile="Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="/Xtensa/ESP8266/Blink_Pin_13.pas"/>
       </Examples>
     </Board>
-    <Board Caption="ESP8266 test" Arch="arm" SubArch="lx106" Controller="" Programmer="ESPTool">
+    <Board Caption="ESP8266 test" Arch="xtensa" SubArch="lx106" Controller="esp8266" Programmer="ESPTool">
       <ESPTool Chip="esp12346" COM_Port="/dev/ttyUSB20" Baud="9600"/>
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>

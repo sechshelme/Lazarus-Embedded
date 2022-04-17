@@ -134,7 +134,6 @@ begin
   end;
 
   with ComboBox_SubArch do begin
-    //    Items.CommaText := AVR_SubArch_List;
     Style := csOwnerDrawFixed;
   end;
 
@@ -243,18 +242,18 @@ begin
   end;
 
   // ESP32 / ES8266
-  ComboBox_ESP_Tool_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPToolPath');
-  with ComboBox_ESP_Tool_Path do begin
-    Caption := 'ESP Tools Path:';
+  ComboBox_ESP_python3_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPpython3Path');
+  with ComboBox_ESP_python3_Path do begin
+    Caption := 'python3 Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_ESP_Tool.Width - 10;
     Top := 10;
   end;
 
-  ComboBox_ESP_python3_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPpython3Path');
+  ComboBox_ESP_Tool_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPToolPath');
   with ComboBox_ESP_Tool_Path do begin
-    Caption := 'python3 Path:';
+    Caption := 'ESP Tools Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_ESP_Tool.Width - 10;
@@ -367,7 +366,7 @@ begin
 
   // ESP32 / ESP8266
   if Embedded_IDE_Options.ESP.python3_Path.Count > 0 then begin
-    ComboBox_ESP_python3_Path.Text := Embedded_IDE_Options.ESP.ESP_Tool_Path[0];
+    ComboBox_ESP_python3_Path.Text := Embedded_IDE_Options.ESP.python3_Path[0];
   end else begin
     ComboBox_ESP_python3_Path.Text := '';
   end;
@@ -623,7 +622,7 @@ begin
   // Bossac
   if RadioButton_Bossac.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
-    s := ComboBox_BossacPath.Text + ' -e -w -v -b  ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+    s := ComboBox_BossacPath.Text + ' -e -w -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 
@@ -638,12 +637,8 @@ begin
 
   // ESP32 / ESP8266
   if RadioButton_ESP_Tool.Checked then begin
-    //    sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
-    //    s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
+    s := ComboBox_ESP_python3_Path.Text + ' -I ' + ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
-    // /home/tux/.arduino15/packages/esp8266/tools/python3/3.7.2-post1/python3 -I /home/tux/.arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/upload.py --chip esp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /tmp/arduino_build_431650/Blink.ino.bin
-
-    LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
   end;
 
 end;
