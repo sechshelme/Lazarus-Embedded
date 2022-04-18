@@ -17,7 +17,7 @@ uses
   // Embedded ( Eigene Units )
   Embedded_GUI_IDE_Options_Frame,
   Embedded_GUI_Common,
-//  Embedded_GUI_Templates,
+  //  Embedded_GUI_Templates,
   Embedded_GUI_Project_Options_Form;
 
 type
@@ -45,7 +45,7 @@ var
 begin
   LazProject := LazarusIDE.ActiveProject;
 
-  if LazProject.LazCompilerOptions.TargetOS <> 'embedded' then begin
+  if (LazProject.LazCompilerOptions.TargetOS <> 'embedded') or (LazProject.LazCompilerOptions.TargetOS <> 'FreeRTOS') then begin
     if MessageDlg('Warnung', 'Es handelt sich nicht um ein Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
       //      Project_Options_Form.Free;
       Exit;

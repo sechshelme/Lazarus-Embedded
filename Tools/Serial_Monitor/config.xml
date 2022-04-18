@@ -24,6 +24,6 @@
   </Serial_Monitor_Config>
   <SerialMonitor_Options_Form>
     <FormPos Left="1957" Top="418" Width="687" Height="410"/>
-    <PageControl_SM_Options PageIndex="1"/>
+    <PageControl_SM_Options PageIndex="0"/>
   </SerialMonitor_Options_Form>
 </CONFIG>

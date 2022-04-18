@@ -1,7 +1,7 @@
 object Project_Options_Form: TProject_Options_Form
-  Left = 2434
+  Left = 2120
   Height = 962
-  Top = 248
+  Top = 375
   Width = 789
   Caption = 'Embedded Project Options'
   ClientHeight = 962
@@ -119,8 +119,8 @@ object Project_Options_Form: TProject_Options_Form
       Left = 432
       Height = 23
       Top = 8
-      Width = 126
-      Caption = 'ESP Tool (Alpha)'
+      Width = 79
+      Caption = 'ESP Tool'
       OnChange = RadioButton_Programmer_Change
       TabOrder = 5
     end
@@ -556,7 +556,7 @@ object Project_Options_Form: TProject_Options_Form
         end
       end
       object TabSheet_ESP_Tool: TTabSheet
-        Caption = 'ESP Tool (Alpha )'
+        Caption = 'ESP Tool'
         ClientHeight = 550
         ClientWidth = 734
         object Label8: TLabel

@@ -99,7 +99,7 @@ type
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
-    ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path, ComboBox_ESP_Tool_Path, ComboBox_ESP_python3_Path: TFileNameComboBox;
+    ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path, ComboBox_ESP_Bootloader_Path, ComboBox_ESP_Tool_Path: TFileNameComboBox;
     SubArchList: string;
     List: TStringArray;
     FProjectSource: string;
@@ -242,18 +242,18 @@ begin
   end;
 
   // ESP32 / ES8266
-  ComboBox_ESP_python3_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPpython3Path');
-  with ComboBox_ESP_python3_Path do begin
-    Caption := 'python3 Path:';
+  ComboBox_ESP_Tool_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPToolPath');
+  with ComboBox_ESP_Tool_Path do begin
+    Caption := 'ESP Tools Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_ESP_Tool.Width - 10;
     Top := 10;
   end;
 
-  ComboBox_ESP_Tool_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPToolPath');
-  with ComboBox_ESP_Tool_Path do begin
-    Caption := 'ESP Tools Path:';
+  ComboBox_ESP_Bootloader_Path := TFileNameComboBox.Create(TabSheet_ESP_Tool, 'ESPBootloaderPath');
+  with ComboBox_ESP_Bootloader_Path do begin
+    Caption := 'Bootloader Path (boootloader.bin, partitions_singleapp.bin)';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := TabSheet_ESP_Tool.Width - 10;
@@ -365,16 +365,16 @@ begin
   end;
 
   // ESP32 / ESP8266
-  if Embedded_IDE_Options.ESP.python3_Path.Count > 0 then begin
-    ComboBox_ESP_python3_Path.Text := Embedded_IDE_Options.ESP.python3_Path[0];
-  end else begin
-    ComboBox_ESP_python3_Path.Text := '';
-  end;
-
-  if Embedded_IDE_Options.ESP.ESP_Tool_Path.Count > 0 then begin
-    ComboBox_ESP_Tool_Path.Text := Embedded_IDE_Options.ESP.ESP_Tool_Path[0];
+  if Embedded_IDE_Options.ESP.Tools_Path.Count > 0 then begin
+    ComboBox_ESP_Tool_Path.Text := Embedded_IDE_Options.ESP.Tools_Path[0];
   end else begin
     ComboBox_ESP_Tool_Path.Text := '';
+  end;
+
+  if Embedded_IDE_Options.ESP.Bootloader_Path.Count > 0 then begin
+    ComboBox_ESP_Bootloader_Path.Text := Embedded_IDE_Options.ESP.Bootloader_Path[0];
+  end else begin
+    ComboBox_ESP_Bootloader_Path.Text := '';
   end;
 
   Edit_ESPTool_Chip.Text := 'esp8266';
@@ -455,7 +455,7 @@ end;
 
 procedure TProject_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
-  s, path, p, bc: string;
+  s, path, path2, p, bc: string;
   sa: TStringArray;
 begin
   // --- FPC Command
@@ -468,7 +468,7 @@ begin
     ComboBox_SubArchChange(nil);
 
     s := CustomOptions;
-    ComboBox_Controller.Text := FindPara(s, '-Wp', False);
+    ComboBox_Controller.Text := FindPara(s, ['-Wp'], False);
     ComboBox_Controller.Items.IndexOf(ComboBox_Controller.Text);
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
     CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;
@@ -483,19 +483,19 @@ begin
   if Pos(UpCase('avrdude'), p) > 0 then begin
     RadioButton_avrdude.Checked := True;
     ComboBox_AvrdudePath.Text := path;
-    ComboBox_AvrdudeConfigPath.Text := FindPara(s, '-C');
+    ComboBox_AvrdudeConfigPath.Text := FindPara(s, ['-C']);
 
-    ComboBox_avrdude_Programmer.Text := FindPara(s, '-c');
+    ComboBox_avrdude_Programmer.Text := FindPara(s, ['-c']);
     with ComboBox_avrdude_COMPort do begin
       Items.CommaText := GetSerialPortNames;
-      Text := FindPara(s, '-P');
+      Text := FindPara(s, ['-P']);
     end;
 
-    ComboBox_avrdude_COMPortBaud.Text := FindPara(s, '-b');
-    Edit_avrdude_Controller.Text := FindPara(s, '-p');
+    ComboBox_avrdude_COMPortBaud.Text := FindPara(s, ['-b']);
+    Edit_avrdude_Controller.Text := FindPara(s, ['-p']);
 
     ComboBox_avrdude_Verbose.Text := ComboBox_avrdude_Verbose.Items[FindVerbose(s)];
-    bc := FindPara(s, '-B');
+    bc := FindPara(s, ['-B']);
     if bc = '' then begin
       ComboBox_avrrdude_BitClock.Text := '1';
     end else begin
@@ -510,7 +510,7 @@ begin
   if Pos(UpCase('st-flash'), p) > 0 then begin
     RadioButton_st_flash.Checked := True;
     ComboBox_STLinkPath.Text := path;
-    ComboBox_ARM_FlashBase.Text := '0x' + FindPara(s, '0x');
+    ComboBox_ARM_FlashBase.Text := '0x' + FindPara(s, ['0x']);
   end;
 
   // Bossac
@@ -537,14 +537,15 @@ begin
     //    if Pos(UpCase('esptool'), p) > 0 then begin
     RadioButton_ESP_Tool.Checked := True;
     ComboBox_ESP_Tool_Path.Text := path;
+    //    ComboBox_ESP_Bootloader_Path.Text := path; ??????????????????
 
-    Edit_ESPTool_Chip.Text := FindPara(s, '-c');
+    Edit_ESPTool_Chip.Text := FindPara(s, ['-c']);
 
     with ComboBox_ESPTool_COMPort do begin
       Items.CommaText := GetSerialPortNames;
-      Text := FindPara(s, '-p');
+      Text := FindPara(s, ['-p']);
     end;
-    ComboBox_ESPTool_COMPortBaud.Text := FindPara(s, '-b');
+    ComboBox_ESPTool_COMPortBaud.Text := FindPara(s, ['-b']);
   end;
 
   RadioButton_Programmer_Change(nil);
@@ -637,7 +638,10 @@ begin
 
   // ESP32 / ESP8266
   if RadioButton_ESP_Tool.Checked then begin
-    s := ComboBox_ESP_python3_Path.Text + ' -I ' + ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
+//    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
+//      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin';
+    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
+      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 

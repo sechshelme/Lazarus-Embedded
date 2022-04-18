@@ -10,7 +10,8 @@ type
   end;
  
 const
-  // GPIO pin number for pin connected to LED
+
+// GPIO pin number for pin connected to LED
   LED = 2;  // NodeMCU LED on ESP-12E module
  
 // Return value is error code, 0 = success
@@ -37,10 +38,11 @@ begin
  
   gpio_set_direction(LED, 2);
   repeat
-    writeln('.');
+    WriteLn('.');
     gpio_set_level(LED, 0);
     vTaskDelay(100);
-    writeln('*');
+
+    WriteLn('*');
     gpio_set_level(LED, 1);
     vTaskDelay(100);
   until false;

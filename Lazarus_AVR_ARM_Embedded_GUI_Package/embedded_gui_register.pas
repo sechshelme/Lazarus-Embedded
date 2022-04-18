@@ -82,8 +82,8 @@ begin
   LazProject := LazarusIDE.ActiveProject;
 
   com := LazProject.LazCompilerOptions.ExecuteAfter.Command;
-  if UpCase(FindPara(com, '-c')) = 'AVR109' then begin // Arduino Leonardo
-    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
+  if UpCase(FindPara(com, ['-c'])) = 'AVR109' then begin // Arduino Leonardo
+    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, ['-P']));
     SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
 
     SerSetDTR(SerialHandle, True);
