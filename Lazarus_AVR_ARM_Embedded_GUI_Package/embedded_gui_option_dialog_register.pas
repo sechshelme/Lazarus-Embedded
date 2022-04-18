@@ -45,9 +45,8 @@ var
 begin
   LazProject := LazarusIDE.ActiveProject;
 
-  if (LazProject.LazCompilerOptions.TargetOS <> 'embedded') and (LazProject.LazCompilerOptions.TargetOS <> 'FreeRTOS') then begin
-    if MessageDlg('Warnung', 'Es handelt sich nicht um ein Embedded Project.' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
-      //      Project_Options_Form.Free;
+  if (LazProject.LazCompilerOptions.TargetOS <> 'embedded') and (LazProject.LazCompilerOptions.TargetOS <> 'freertos') then begin
+    if MessageDlg('Warnung', 'Es handelt sich nicht um ein Embedded Project. ('+LazProject.LazCompilerOptions.TargetOS+')' + LineEnding + 'Diese Funktion kann aktuelles Projekt zerstören' + LineEnding + LineEnding + 'Trotzdem ausführen ?', mtWarning, [mbYes, mbNo], 0) = mrNo then begin
       Exit;
     end;
   end;
