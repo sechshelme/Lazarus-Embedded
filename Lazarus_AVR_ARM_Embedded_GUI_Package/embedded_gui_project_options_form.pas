@@ -533,7 +533,7 @@ begin
   end;
 
   // ESP32 / ESP8266
-  if Pos(UpCase('UP_Loader'), p) > 0 then begin
+  if Pos(UpCase('esptool'), p) > 0 then begin
     //    if Pos(UpCase('esptool'), p) > 0 then begin
     RadioButton_ESP_Tool.Checked := True;
     ComboBox_ESP_Tool_Path.Text := path;
