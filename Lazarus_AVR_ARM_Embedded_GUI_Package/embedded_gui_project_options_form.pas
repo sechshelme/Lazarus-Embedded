@@ -623,7 +623,8 @@ begin
   // Bossac
   if RadioButton_Bossac.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
-    s := ComboBox_BossacPath.Text + ' -e -w -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+//    s := ComboBox_BossacPath.Text + ' -e -w -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+    s := ComboBox_BossacPath.Text + ' --port=ttyACM0 -e -w -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 
