@@ -88,39 +88,85 @@ begin
       BoardKey := 'Boards/Board[' + i.ToString + ']/';
 
       with TemplatesPara[i - 1] do begin
-        Name := Cfg.GetValue(BoardKey + 'Caption', 'x');
-        Arch := Cfg.GetValue(BoardKey + 'Arch', 'x');
-        SubArch := Cfg.GetValue(BoardKey + 'SubArch', 'x');
-        Controller := Cfg.GetValue(BoardKey + 'Controller', 'x');
-        Programmer := Cfg.GetValue(BoardKey + 'Programmer', 'x');
+        Name := Cfg.GetValue(BoardKey + 'Caption', '');
+        Arch := Cfg.GetValue(BoardKey + 'Arch', '');
+        SubArch := Cfg.GetValue(BoardKey + 'SubArch', '');
+        Controller := Cfg.GetValue(BoardKey + 'Controller', '');
+        Programmer := Cfg.GetValue(BoardKey + 'Programmer', '');
         with avrdude do begin
           PKey := BoardKey + 'avrdude/';
-          Controller := Cfg.GetValue(PKey + 'Controller', 'x');
-          Programmer := Cfg.GetValue(PKey + 'Programmer', 'x');
-          COM_Port := Cfg.GetValue(PKey + 'COM_Port', 'x');
-          Baud := Cfg.GetValue(PKey + 'Baud', 'x');
+          Controller := Cfg.GetValue(PKey + 'Controller', '');
+          Programmer := Cfg.GetValue(PKey + 'Programmer', '');
+          COM_Port := Cfg.GetValue(PKey + 'COM_Port', '');
+          Baud := Cfg.GetValue(PKey + 'Baud', '');
           Disable_Auto_Erase := Cfg.GetValue(PKey + 'Disable_Auto_Erase', False);
           Chip_Erase := Cfg.GetValue(PKey + 'Chip_Erase', False);
         end;
         with stlink do begin
           PKey := BoardKey + 'stlink/';
-          FlashBase := Cfg.GetValue(PKey + 'FlashBase', 'x');
+          FlashBase := Cfg.GetValue(PKey + 'FlashBase', '');
         end;
         with ESPTool do begin
           PKey := BoardKey + 'ESPTool/';
-          Controller := Cfg.GetValue(PKey + 'Chip', 'xxxxxxchip');
-          COM_Port := Cfg.GetValue(PKey + 'COM_Port', 'xxxxxxcom');
-          Baud := Cfg.GetValue(PKey + 'Baud', 'xxxxxxbaus');
+          Controller := Cfg.GetValue(PKey + 'Chip', '');
+          COM_Port := Cfg.GetValue(PKey + 'COM_Port', '');
+          Baud := Cfg.GetValue(PKey + 'Baud', '');
         end;
 
         l := Cfg.GetChildCount(BoardKey + 'Examples');
         SetLength(Examples, l);
         for j := 1 to l do begin
-          Examples[j - 1].Caption := Cfg.GetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/Caption', '[error]');
-          Examples[j - 1].SorceFile := Cfg.GetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/SourceFile', '[error]');
+          Examples[j - 1].Caption := Cfg.GetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/Caption', '');
+          Examples[j - 1].SorceFile := Cfg.GetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/SourceFile', '');
         end;
       end;
     end;
+
+    // --- Schreibe für Testzwecke
+    pfad := Embedded_IDE_Options.Templates_Path[0] + '/test.xml';
+    Cfg.Filename := pfad;
+
+    //    l := cfg.GetChildCount('Boards');
+    //    SetLength(TemplatesPara, l);
+    for i := 1 to Length(TemplatesPara) do begin
+      BoardKey := 'Boards/Board[' + i.ToString + ']/';
+
+      with TemplatesPara[i - 1] do begin
+        Cfg.SetValue(BoardKey + 'Caption', Name);
+        Cfg.SetValue(BoardKey + 'Arch', Arch);
+        Cfg.SetValue(BoardKey + 'SubArch', SubArch);
+        Cfg.SetValue(BoardKey + 'Controller', Controller);
+        Cfg.SetValue(BoardKey + 'Programmer', Programmer);
+        with avrdude do begin
+          PKey := BoardKey + 'avrdude/';
+          Cfg.SetValue(PKey + 'Controller', Controller);
+          Cfg.SetValue(PKey + 'Programmer', Programmer);
+          Cfg.SetValue(PKey + 'COM_Port', COM_Port);
+          Cfg.SetValue(PKey + 'Baud', Baud);
+          Cfg.SetValue(PKey + 'Disable_Auto_Erase', Disable_Auto_Erase);
+          Cfg.SetValue(PKey + 'Chip_Erase', Chip_Erase);
+        end;
+        with stlink do begin
+          PKey := BoardKey + 'stlink/';
+          Cfg.SetValue(PKey + 'FlashBase', FlashBase);
+        end;
+        with ESPTool do begin
+          PKey := BoardKey + 'ESPTool/';
+          Cfg.SetValue(PKey + 'Chip', Controller);
+          Cfg.SetValue(PKey + 'COM_Port', COM_Port);
+          Cfg.SetValue(PKey + 'Baud', Baud);
+        end;
+
+        //        l Cfg.SetChildCount(BoardKey + 'Examples');
+        //        SetLength(Examples, l);
+        for j := 1 to Length(Examples) do begin
+          Cfg.SetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/Caption', Examples[j - 1].Caption);
+          Cfg.SetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/SourceFile', Examples[j - 1].SorceFile);
+        end;
+      end;
+    end;
+
+
 
     for index := 0 to Length(TemplatesPara) - 1 do begin
       ListBox_Template.Items.AddStrings(TemplatesPara[index].Name);
