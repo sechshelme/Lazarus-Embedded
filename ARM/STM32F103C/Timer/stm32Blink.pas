@@ -156,7 +156,7 @@ const
   end;
 
 // procedure Timer1_Interrupt; public Name 'Timer2_interrupt'; interrupt;
-  procedure Timer1_Interrupt; public Name 'TIM2_global_interrupt'; interrupt;
+  procedure Timer2_Interrupt; public Name 'TIM2_global_interrupt'; interrupt;
   begin
     Timer2.SR := Timer2.SR and not TIM_SR_CC1IF; //clear CC1IF
     multi;

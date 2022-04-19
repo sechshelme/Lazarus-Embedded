@@ -1,12 +1,15 @@
 program stm32Blink;
 
+uses
+  cortexm3;
+
 {$O-}
 
   procedure Delay;
   var
     i: uint32;
   begin
-    for i := 0 to 100000 do
+    for i := 0 to 400000 do
     begin
       asm
                NOP
@@ -15,11 +18,11 @@ program stm32Blink;
   end;
 
 begin
-  RCC.APB2ENR := RCC.APB2ENR or (1 shl 4); // Clock für GPIOC freigeben.
-  RCC.APB2ENR := RCC.APB2ENR or (1 shl 3); // Clock für GPIOB freigeben.
-  RCC.APB2ENR := RCC.APB2ENR or (1 shl 2); // Clock für GPIOA freigeben.
+  RCC.APB2ENR := RCC.APB2ENR or (1 shl 4); // Clock für PortC freigeben.
+  RCC.APB2ENR := RCC.APB2ENR or (1 shl 3); // Clock für PortB freigeben.
+  RCC.APB2ENR := RCC.APB2ENR or (1 shl 2); // Clock für PortA freigeben.
 
-  // Pin P13 von PortC aud Output.
+  // Pin P13 von PortC auf Output.
   PortC.CRH := $00300000;
 
   // Hinweis: Die LED leuchtet bei LOW.
@@ -32,5 +35,5 @@ begin
     // Pin13 -- Low
     PortC.BRR := 1 shl 13;
     Delay;
-  until 1=2;
+  until False;
 end.
