@@ -121,8 +121,8 @@ const
       p := 0;
     end;
 
-    gpioA.ODR := 1 shl p;
-    gpioB.ODR := (Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5)) shl 8;
+    PortA.ODR := 1 shl p;
+    PortB.ODR := (Ziffern[Zahl, p] or ((Ziffern[(Zahl + 2) mod 10, p]) shr 5)) shl 8;
   end;
 
   procedure Timer2Init;
@@ -132,32 +132,33 @@ const
 
     ////Timer settings ----------------
     //Various settings in default
-    Tim2.CR1 := $0000; //Control register 1; Wait with timer enable until settings complete
-    Tim2.CR2 := $0000; //Control register 2
-    Tim2.CCMR1 := $0000; //Capture/compare mode register
-    Tim2.CCER := $0000; //Capture/compare enable register
+    Timer2.CR1 := $0000; //Control register 1; Wait with timer enable until settings complete
+    Timer2.CR2 := $0000; //Control register 2
+    Timer2.CCMR1 := $0000; //Capture/compare mode register
+    Timer2.CCER := $0000; //Capture/compare enable register
 
     //Prescaler
-    Tim2.PSC := 2000;
+    Timer2.PSC := 2000;
     //AutoReload value
-    Tim2.Arr := 10;
+    Timer2.Arr := 10;
 
     //DMA and Interrupt control register
-    Tim2.DIER := TIM_DIER_CC1IE; //Compare 1 interrupt enable
+    Timer2.DIER := TIM_DIER_CC1IE; //Compare 1 interrupt enable
     //---------------------------------
 
     // NVIC configuration
-    NVIC.IP[TIM2_IRQn] := $20;     //IRQ-Priority, right 4bits always to be zero
-    NVIC.ISER[TIM2_IRQn shr 5] := 1 shl (TIM2_IRQn and $1F); //Enable Interrupt
+    NVIC.IP[Tim2_IRQn] := $20;     //IRQ-Priority, right 4bits always to be zero
+    NVIC.ISER[Tim2_IRQn shr 5] := 1 shl (Tim2_IRQn and $1F); //Enable Interrupt
 
     //Enable Counter
-    Tim2.CR1 := Tim2.CR1 or TIM_CR1_CEN;
+    Timer2.CR1 := Timer2.CR1 or TIM_CR1_CEN;
 
   end;
 
-  procedure Timer1_Interrupt; public Name 'TIM2_interrupt'; interrupt;
+// procedure Timer1_Interrupt; public Name 'Timer2_interrupt'; interrupt;
+  procedure Timer1_Interrupt; public Name 'TIM2_global_interrupt'; interrupt;
   begin
-    Tim2.SR := Tim2.SR and not TIM_SR_CC1IF; //clear CC1IF
+    Timer2.SR := Timer2.SR and not TIM_SR_CC1IF; //clear CC1IF
     multi;
   end;
 
@@ -167,16 +168,16 @@ begin
   RCC.APB2ENR := RCC.APB2ENR or (%111 shl 2);
 
   // Ports auf Ausgabe schalten
-  gpioA.CRL := $33333333;
-  gpioA.CRH := $33333333;
+  PortA.CRL := $33333333;
+  PortA.CRH := $33333333;
 
-  gpioB.CRL := $33333333;
-  gpioB.CRH := $33333333;
+  PortB.CRL := $33333333;
+  PortB.CRH := $33333333;
 
-  gpioC.CRL := $33333333;
-  gpioC.CRH := $33333333;
+  PortC.CRL := $33333333;
+  PortC.CRH := $33333333;
 
-  Zahl := 2;
+  Zahl := 3;
 
   // Timer
   Timer2Init;
@@ -188,7 +189,7 @@ begin
     end;
 
     if Zaehler = 0 then begin
-      gpioC.ODR := not gpioC.ODR;
+      PortC.ODR := not PortC.ODR;
       Inc(Zahl);
       if Zahl >= 10 then begin
         Zahl := 0;

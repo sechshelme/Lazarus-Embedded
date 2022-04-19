@@ -51,9 +51,9 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpesp8266"/>
+      <CustomOptions Value="-WpESP8266"/>
       <ExecuteAfter>
-        <Command Value="/bin/esptool -cesp8266 -p /dev/ttyUSB0 -b115200 --before default_reset --after hard_reset write_flash 0x0 bootloader.bin 0x10000 Project1.bin 0x8000 partitions_singleapp.bin"/>
+        <Command Value="/usr/share/esptool/esptool.py -cesp8266 -p /dev/ttyUSB0 -b115200 --before default_reset --after hard_reset write_flash 0x0 /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_AVR_ARM_Embedded_GUI_Package/Tools/ESP/bootloader.bin 0x8000 /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Lazarus_AVR_ARM_Embedded_GUI_Package/Tools/ESP/partitions_singleapp.bin 0x10000 Project1.bin"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>
