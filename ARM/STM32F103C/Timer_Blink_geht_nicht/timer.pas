@@ -12,7 +12,6 @@ type
   { TTimer }
 
   PTIM_Registers = ^TTIM_Registers;
-
   TTimer = object
   private
     fTim: PTIM_Registers; // TTIM_Registers;

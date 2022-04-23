@@ -115,7 +115,7 @@ begin
   PortC.CRL := $33333333;
   PortC.CRH := $33333333;
 
-  Zahl := 5;
+  Zahl := 3;
   p := 0;
 
   while True do begin
