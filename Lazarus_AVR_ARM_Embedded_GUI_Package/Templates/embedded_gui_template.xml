@@ -54,7 +54,33 @@
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
       </Examples>
     </Board>
-    <Board Caption="ATmega328P" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+    <Board Caption="ATtiny 13A" Arch="avr" SubArch="AVR25" Controller="attiny13a" Programmer="avrdude">
+      <avrdude Controller="attiny13" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ATtiny 5" Arch="avr" SubArch="AVRtiny" Controller="attiny5" Programmer="avrdude">
+      <avrdude Controller="attiny5" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink" SourceFile="AVR/ATtiny5/Blink.pas"/>
+        <Example Caption="Blink Timer" SourceFile="AVR/ATtiny5/Blink_Timer.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ATtiny 2313A" Arch="avr" SubArch="AVR25" Controller="attiny2313a" Programmer="avrdude">
+      <avrdude Controller="attiny2313" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ATmega 328P" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
       <avrdude Controller="atmega328p" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
       <stlink FlashBase=""/>
       <Examples>
@@ -64,22 +90,6 @@
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
-      </Examples>
-    </Board>
-    <Board Caption="ATtiny2313A" Arch="avr" SubArch="AVR25" Controller="attiny2313a" Programmer="avrdude">
-      <avrdude Controller="attiny2313" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
-      <stlink FlashBase=""/>
-      <Examples>
-        <Example Caption="Blank" SourceFile="Blank.pas"/>
-        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
-      </Examples>
-    </Board>
-    <Board Caption="ATtiny13A" Arch="avr" SubArch="AVR25" Controller="attiny13a" Programmer="avrdude">
-      <avrdude Controller="attiny13" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
-      <stlink FlashBase=""/>
-      <Examples>
-        <Example Caption="Blank" SourceFile="Blank.pas"/>
-        <Example Caption="Default" SourceFile="Default.pas"/>
       </Examples>
     </Board>
     <Board Caption="STM32F103X8" Arch="arm" SubArch="ARMV7M" Controller="STM32F103X8" Programmer="st-flash">
