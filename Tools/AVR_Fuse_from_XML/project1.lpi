@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="7">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -67,6 +67,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Embedded_GUI_AVR_Fuse_TabSheet"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_common.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Embedded_GUI_Common"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -76,10 +81,13 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../../Lazarus_Arduino_AVR_GUI_Package"/>
+      <OtherUnitFiles Value="../../Lazarus_Arduino_AVR_GUI_Package;../../Lazarus_AVR_ARM_Embedded_GUI_Package"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf3"/>
+      </Debugging>
       <Options>
         <Win32>
           <GraphicApplication Value="True"/>

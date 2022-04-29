@@ -8,7 +8,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   Forms,
   Embedded_GUI_AVR_Fuse_Form,
   Embedded_GUI_AVR_Fuse_Common,
-Embedded_GUI_AVR_Fuse_TabSheet;
+Embedded_GUI_AVR_Fuse_TabSheet, Embedded_GUI_Common;
 
 {$R *.res}
 
