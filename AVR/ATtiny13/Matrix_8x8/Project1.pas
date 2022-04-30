@@ -5,51 +5,52 @@ uses
 
 {$O-,J-}
 
+//const
+//  Smily: array[0..1, 0..7] of byte = ((
+//    %11111111,
+//    %11111111,
+//    %11111111,
+//    %11111111,
+//    %11111111,
+//    %11111111,
+//    %11111111,
+//    %11111111), (
+//
+//    %00000000,
+//    %00000000,
+//    %00000000,
+//    %00000000,
+//    %00000000,
+//    %00000000,
+//    %00000000,
+//    %00000000));
+
 const
   Smily: array[0..1, 0..7] of byte = ((
-    %11111111,
-    %11111111,
-    %11111111,
-    %11111111,
-    %11111111,
-    %11111111,
-    %11111111,
-    %11111111), (
+    %00111100,
+    %01000010,
+    %10100101,
+    %10000001,
+    %11000011,
+    %10111101,
+    %01000010,
+    %00111100), (
 
-    %00000000,
-    %00000000,
-    %00000000,
-    %00000000,
-    %00000000,
-    %00000000,
-    %00000000,
-    %00000000));
-
-  //const
-  //  Smily: array[0..1] of TMaske = ((
-  //    %00111100,
-  //    %01000010,
-  //    %10100101,
-  //    %10000001,
-  //    %11000011,
-  //    %10111101,
-  //    %01000010,
-  //    %00111100), (
-  //
-  //    %00111100,
-  //    %01000010,
-  //    %10100101,
-  //    %10000001,
-  //    %10111101,
-  //    %11000011,
-  //    %01000010,
-  //    %00111100));
+    %00111100,
+    %01000010,
+    %10100101,
+    %10000001,
+    %10111101,
+    %11000011,
+    %01000010,
+    %00111100));
 
 
 
 type
   TSPIGPIO = bitpacked record
-    DataOut, Clock, SlaveSelect, p3, p4, p5, p6, p7: boolean;
+    //    DataOut, Clock, SlaveSelect, p3, p4, p5, p6, p7: boolean;
+    DataIn, DataOut, Clock, SlaveSelect, p0, p1, p2, p3: boolean;
   end;
 
 var
@@ -86,24 +87,24 @@ begin
     //end;
 
 
-        Inc(p);
-        if p >= 8 then begin
-          p := 0;
-        end;
+    Inc(p);
+    if p >= 8 then begin
+      p := 0;
+    end;
 
-        Data[0] := 1 shl p;
-        if Counter > 300 then begin
-          Data[1] := Smily[0, p];
-    //      Data[1] := %1010101010;
-        end else begin
-          Data[1] := Smily[1, p];
-    //      Data[1] := %0101010101;
-        end;
+    Data[0] := 1 shl p;
+    if Counter > 300 then begin
+      Data[1] := Smily[0, p];
+      //      Data[1] := %1010101010;
+    end else begin
+      Data[1] := Smily[1, p];
+      //      Data[1] := %0101010101;
+    end;
 
-        Inc(Counter);
-        if Counter >= 600 then begin
-          Counter := 0;
-        end;
+    Inc(Counter);
+    if Counter >= 600 then begin
+      Counter := 0;
+    end;
 
     SPI_Port.SlaveSelect := False;
     for j := 1 downto 0 do begin
