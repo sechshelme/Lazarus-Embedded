@@ -53,7 +53,7 @@
     <Other>
       <CustomOptions Value="-WpATTINY5"/>
       <ExecuteAfter>
-        <Command Value="/bin/avrdude -C/etc/avrdude.conf -v -pATTINY5 -cusbasp -Uflash:w:Project1.hex:i"/>
+        <Command Value="/bin/avrdude -C/etc/avrdude.conf -v -pATTINY5 -cusbasp -B4 -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

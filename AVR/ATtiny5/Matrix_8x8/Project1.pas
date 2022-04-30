@@ -3,21 +3,49 @@ program Project1;
 uses
   intrinsics;
 
-{$O-}
-
-type
-  TMaske = array[0..7] of byte;
+{$O-,J-}
 
 const
-  Smily: TMaske = (
-    %00111100,
-    %01000010,
-    %10100101,
-    %10000001,
-    %11000011,
-    %10111101,
-    %01000010,
-    %00111100);
+  Smily: array[0..1, 0..7] of byte = ((
+    %11111111,
+    %11111111,
+    %11111111,
+    %11111111,
+    %11111111,
+    %11111111,
+    %11111111,
+    %11111111), (
+
+    %00000000,
+    %00000000,
+    %00000000,
+    %00000000,
+    %00000000,
+    %00000000,
+    %00000000,
+    %00000000));
+
+  //const
+  //  Smily: array[0..1] of TMaske = ((
+  //    %00111100,
+  //    %01000010,
+  //    %10100101,
+  //    %10000001,
+  //    %11000011,
+  //    %10111101,
+  //    %01000010,
+  //    %00111100), (
+  //
+  //    %00111100,
+  //    %01000010,
+  //    %10100101,
+  //    %10000001,
+  //    %10111101,
+  //    %11000011,
+  //    %01000010,
+  //    %00111100));
+
+
 
 type
   TSPIGPIO = bitpacked record
@@ -28,48 +56,46 @@ var
   SPI_PORT: TSPIGPIO absolute PORTB;
   SPI_DDR: TSPIGPIO absolute DDRB;
 
-var
-  p: integer;
-
-// ATtiny13 hat kein Hardware SPI, daher ein SoftwareWrite.
-
-  procedure Timer0_Interrupt; public Name 'TIM0_COMPA_ISR'; interrupt;
-  var
-    i, j: byte;
-  begin
-    TCNT0 := 70;
-
-    Inc(p);
-    if p >= 8 then begin
-      p := 0;
-    end;
-
-    SPI_Port.SlaveSelect := False;
-    for j := 1 downto 0 do begin
-      for i := 7 downto 0 do begin
-        SPI_Port.DataOut := (Smily[j] and (1 shl i)) <> 0;
-
-        SPI_Port.Clock := True;
-        SPI_Port.Clock := False;
-      end;
-    end;
-    SPI_Port.SlaveSelect := True;
-  end;
+  i, j: byte;
+  p: uint16 = 0;
+  Counter: uint16 = 0;
+  Data: array[0..1] of byte;
 
 begin
   SPI_DDR.DataOut := True;
   SPI_DDR.Clock := True;
   SPI_DDR.SlaveSelect := True;
 
-  // -- Interupt unterbinden.
-  avr_cli;
-  // -- Timer0 initialisieren.
-  TCCR0A := 0;
-  TCCR0B := %001;
-  TIMSK0 := TIMSK0 or (1 shl OCIE0A); // Timer0 soll Interrupt auslösen.
-
-  // -- Interrupt aktivieren.
-  avr_sei;
   repeat
+    Inc(p);
+    if p >= 8 then begin
+      p := 0;
+    end;
+
+    Data[0] := 1 shl p;
+    if Counter > 300 then begin
+      Data[1] := Smily[0, p];
+//      Data[1] := %1010101010;
+    end else begin
+      Data[1] := Smily[1, p];
+//      Data[1] := %0101010101;
+    end;
+
+    Inc(Counter);
+    if Counter >= 600 then begin
+      Counter := 0;
+    end;
+
+    SPI_Port.SlaveSelect := False;
+    for j := 1 downto 0 do begin
+      for i := 7 downto 0 do begin
+        SPI_Port.DataOut := (Data[j] and (1 shl i)) <> 0;
+
+        SPI_Port.Clock := True;
+        SPI_Port.Clock := False;
+      end;
+    end;
+    SPI_Port.SlaveSelect := True;
+
   until False;
 end.

@@ -7,7 +7,7 @@ uses
 
   procedure Timer0_Interrupt; public Name 'TIM0_COMPA_ISR'; interrupt;
   begin
-    TCNT0 := 128;
+    TCNT0 := 127;
     PORTB := not PORTB;
   end;
 
