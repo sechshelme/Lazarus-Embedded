@@ -18,7 +18,7 @@ type
     Controller: string;
     Examples: array of record
       Caption, SorceFile: string;
-      end;
+    end;
     Programmer: string;
     avrdude: record
       Controller,
@@ -27,15 +27,29 @@ type
       Baud: string;
       Disable_Auto_Erase,
       Chip_Erase: boolean;
-      end;
+    end;
     stlink: record
       FlashBase: string;
-      end;
+    end;
+    Bossac: record
+      Erase_Flash,
+      Boot_from_FLASH,
+      Brownout_Detection,
+      Lock_Flash_Region,
+      Flash_Security_Flag,
+      Print_Debug,
+      Reset_CPU,
+      Verify_File,
+      Brownout_Reset,
+      Unlock_Flash_Region,
+      Display_Device_Info,
+      Override_USB_Port_Autodetection: boolean;
+    end;
     ESPTool: record
       Controller,
       COM_Port,
       Baud: string
-      end;
+    end;
   end;
 
   { TProjectTemplatesForm }

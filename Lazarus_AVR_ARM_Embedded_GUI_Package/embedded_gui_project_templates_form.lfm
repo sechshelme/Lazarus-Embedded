@@ -9,7 +9,7 @@ object ProjectTemplatesForm: TProjectTemplatesForm
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefault
-  LCLVersion = '2.3.0.0'
+  LCLVersion = '2.1.0.0'
   object Label1: TLabel
     Left = 16
     Height = 16
@@ -50,7 +50,7 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     Anchors = [akTop, akLeft, akRight, akBottom]
     ItemHeight = 0
     OnDblClick = ListBoxDblClick
-    ScrollWidth = 358
+    ScrollWidth = 418
     TabOrder = 2
     TopIndex = -1
   end
@@ -71,6 +71,7 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     ItemHeight = 0
     OnClick = ListBox_TemplateClick
     OnDblClick = ListBoxDblClick
+    ScrollWidth = 206
     TabOrder = 3
     TopIndex = -1
   end

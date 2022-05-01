@@ -31,21 +31,22 @@ type
     Button1: TButton;
     Button2: TButton;
     CheckBox_ASMFile: TCheckBox;
-    CheckBox_boot: TCheckBox;
-    CheckBox_Brownout_Detection: TCheckBox;
-    CheckBox_Brownout_Reset: TCheckBox;
+    CheckBox_Bossac_boot_Flash: TCheckBox;
+    CheckBox_Bossac_Brownout_Detection: TCheckBox;
+    CheckBox_Bossac_Brownout_Reset: TCheckBox;
     CheckBox_avrdude_Chip_Erase: TCheckBox;
-    CheckBox_Debug: TCheckBox;
+    CheckBox_Bossac_Print_Debug: TCheckBox;
     CheckBox_avrdude_Disable_Auto_Erase: TCheckBox;
-    CheckBox_Erase: TCheckBox;
-    CheckBox_force_USB_Port: TCheckBox;
-    CheckBox_Info: TCheckBox;
-    CheckBox_Lock: TCheckBox;
-    CheckBox_Reset: TCheckBox;
-    CheckBox_Security: TCheckBox;
+    CheckBox_Bossac_Erase_Flash: TCheckBox;
+    CheckBox_Bossac_Override_USB_Port_Autodetection: TCheckBox;
+    CheckBox_Bossac_Display_Device_Info: TCheckBox;
+    CheckBox_Bossac_Lock_Flash_Region: TCheckBox;
+    CheckBox_Bossac_Reset_CPU: TCheckBox;
+    CheckBox_Bossac_Flash_Security_Flag: TCheckBox;
     CheckBox_UF2File: TCheckBox;
-    CheckBox_UnLock: TCheckBox;
-    CheckBox_Verify: TCheckBox;
+    CheckBox_Bossac_Unlock_Flash_Region: TCheckBox;
+    CheckBox_Bossac_Verify_File: TCheckBox;
+    ComboBox_bossac_COMPort: TComboBox;
     ComboBox_ESPTool_COMPort: TComboBox;
     ComboBox_ESPTool_COMPortBaud: TComboBox;
     ComboBox_avrrdude_BitClock: TComboBox;
@@ -66,6 +67,7 @@ type
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
+    Label13: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -182,10 +184,6 @@ begin
     Items.AddStrings(['0 kein', '1 einfach', '2 mittel', '3 genau', '4 sehr genau', '5 Ultra genau'], True);
   end;
 
-  with ComboBox_ESPTool_COMPortBaud do begin
-    Items.AddStrings(['115200'], True);
-  end;
-
   // ST-Link
   ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_stflash, 'STLinkPath');
   with ComboBox_STLinkPath do begin
@@ -258,6 +256,10 @@ begin
     Left := 5;
     Width := TabSheet_ESP_Tool.Width - 10;
     Top := 80;
+  end;
+
+  with ComboBox_ESPTool_COMPortBaud do begin
+    Items.AddStrings(['115200'], True);
   end;
 
   DefaultMask;
@@ -343,6 +345,13 @@ begin
     ComboBox_BossacPath.Text := Embedded_IDE_Options.ARM.BossacPath[0];
   end else begin
     ComboBox_BossacPath.Text := '';
+  end;
+
+  with ComboBox_bossac_COMPort do begin
+    Items.CommaText := GetSerialPortNames;
+    if Items.Count > 0 then begin
+      Text := Items[0];
+    end;
   end;
 
   // Rasberry PI Pico
@@ -502,7 +511,7 @@ begin
       ComboBox_avrrdude_BitClock.Text := bc;
     end;
 
-    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos('-D', s) > 0;
+    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos('-D', s) > 0;   // Space vor -D ?????
     CheckBox_avrdude_Chip_Erase.Checked := pos('-e', s) > 0;
   end;
 
@@ -517,6 +526,21 @@ begin
   if Pos(UpCase('bossac'), p) > 0 then begin
     RadioButton_Bossac.Checked := True;
     ComboBox_BossacPath.Text := path;
+
+//    ComboBox_bossac_COMPort:=
+
+    //CheckBox_Bossac_Erase_Flash. := FindPara(s, ['-e', '--erase']);
+    //CheckBox_Bossac_boot_Flash := FindPara(s, ['-b', '--boot']);   // [=BOOL]
+    //CheckBox_Bossac_Brownout_Detection := FindPara(s, ['-c', '--bod']); // [=BOOL]
+    //CheckBox_Bossac_Lock_Flash_Region := FindPara(s, ['-l', '--lock']); // [=REGION]
+    //CheckBox_Bossac_Flash_Security_Flag := FindPara(s, ['-s', '--security']);
+    //CheckBox_Bossac_Print_Debug := FindPara(s, ['-d', '--debug']);
+    //CheckBox_Bossac_Reset_CPU := FindPara(s, ['-R', '--reset']);
+    //CheckBox_Bossac_Verify_File := FindPara(s, ['-v', '--verify']);
+    //CheckBox_Bossac_Brownout_Reset := FindPara(s, ['-t', '--bor']);
+    //CheckBox_Bossac_Unlock_Flash_Region := FindPara(s, ['-u', '--unlock']);
+    //CheckBox_Bossac_Display_Device_Info := FindPara(s, ['-i', '--info']);
+    //CheckBox_Bossac_Override_USB_Port_Autodetection := FindPara(s, ['-U', '--usb-port']);
   end;
 
   // Rasberry PI Pico
@@ -539,13 +563,13 @@ begin
     ComboBox_ESP_Tool_Path.Text := path;
     //    ComboBox_ESP_Bootloader_Path.Text := path; ??????????????????
 
-    Edit_ESPTool_Chip.Text := FindPara(s, ['-c']);
+    Edit_ESPTool_Chip.Text := FindPara(s, ['-c', '--chip']);
 
     with ComboBox_ESPTool_COMPort do begin
       Items.CommaText := GetSerialPortNames;
-      Text := FindPara(s, ['-p']);
+      Text := FindPara(s, ['-p', '--port']);
     end;
-    ComboBox_ESPTool_COMPortBaud.Text := FindPara(s, ['-b']);
+    ComboBox_ESPTool_COMPortBaud.Text := FindPara(s, ['-b', '--baud']);
   end;
 
   RadioButton_Programmer_Change(nil);
