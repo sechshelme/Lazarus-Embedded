@@ -37,8 +37,6 @@ begin
   SPI_DDR.SlaveSelect := True;
   Data[0] := %11001100;
   Data[1] := %10101010;
-//  Data[0] := 0;
-//  Data[1] := 255;
 
   repeat
     Inc(z);
