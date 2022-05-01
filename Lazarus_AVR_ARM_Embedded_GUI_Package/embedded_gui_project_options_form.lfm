@@ -543,7 +543,7 @@ object Project_Options_Form: TProject_Options_Form
         object ComboBox_bossac_COMPort: TComboBox
           Left = 16
           Height = 27
-          Top = 112
+          Top = 120
           Width = 144
           ItemHeight = 0
           TabOrder = 12
@@ -551,9 +551,9 @@ object Project_Options_Form: TProject_Options_Form
         object Label13: TLabel
           Left = 16
           Height = 16
-          Top = 80
-          Width = 123
-          Caption = 'Connection port (-p):'
+          Top = 88
+          Width = 281
+          Caption = 'Connection port (-p)  ( alpha, geht noch nicht ! )'
           ParentColor = False
         end
       end
