@@ -34,7 +34,7 @@ type
     Bossac: record
       COM_Port: string;
       Erase_Flash,
-      Boot_from_FLASH,
+      Boot_from_Flash,
       Brownout_Detection,
       Lock_Flash_Region,
       Flash_Security_Flag,
@@ -125,7 +125,7 @@ begin
           PKey := BoardKey + 'bossac/';
           COM_Port := Cfg.GetValue(PKey + 'COM_Port', '');
           Erase_Flash := Cfg.GetValue(PKey + 'Erase_Flash', False);
-          Boot_from_FLASH := Cfg.GetValue(PKey + 'Boot_from_FLASH', False);
+          Boot_from_Flash := Cfg.GetValue(PKey + 'Boot_from_FLASH', False);
           Brownout_Detection := Cfg.GetValue(PKey + 'Brownout_Detection', False);
           Lock_Flash_Region := Cfg.GetValue(PKey + 'Lock_Flash_Region', False);
           Flash_Security_Flag := Cfg.GetValue(PKey + 'Flash_Security_Flag', False);
@@ -184,7 +184,7 @@ begin
           PKey := BoardKey + 'bossac/';
           Cfg.SetValue(PKey + 'COM_Port', COM_Port);
           Cfg.SetValue(PKey + 'Erase_Flash', Erase_Flash);
-          Cfg.SetValue(PKey + 'Boot_from_FLASH', Boot_from_FLASH);
+          Cfg.SetValue(PKey + 'Boot_from_FLASH', Boot_from_Flash);
           Cfg.SetValue(PKey + 'Brownout_Detection', Brownout_Detection);
           Cfg.SetValue(PKey + 'Lock_Flash_Region', Lock_Flash_Region);
           Cfg.SetValue(PKey + 'Flash_Security_Flag', Flash_Security_Flag);

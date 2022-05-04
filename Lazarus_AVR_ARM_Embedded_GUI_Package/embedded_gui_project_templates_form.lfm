@@ -9,13 +9,14 @@ object ProjectTemplatesForm: TProjectTemplatesForm
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefault
-  LCLVersion = '2.3.0.0'
+  LCLVersion = '2.1.0.0'
   object Label1: TLabel
     Left = 16
     Height = 16
     Top = 8
     Width = 107
     Caption = 'Board/Controller:'
+    ParentColor = False
   end
   object BitBtn_Ok: TBitBtn
     Left = 564
@@ -59,6 +60,7 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     Top = 8
     Width = 55
     Caption = 'Example:'
+    ParentColor = False
   end
   object ListBox_Template: TListBox
     Left = 16

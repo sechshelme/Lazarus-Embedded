@@ -46,7 +46,7 @@ type
     CheckBox_UF2File: TCheckBox;
     CheckBox_Bossac_Unlock_Flash_Region: TCheckBox;
     CheckBox_Bossac_Verify_File: TCheckBox;
-    ComboBox_bossac_COMPort: TComboBox;
+    ComboBox_Bossac_COMPort: TComboBox;
     ComboBox_ESPTool_COMPort: TComboBox;
     ComboBox_ESPTool_COMPortBaud: TComboBox;
     ComboBox_avrrdude_BitClock: TComboBox;
@@ -347,7 +347,7 @@ begin
     ComboBox_BossacPath.Text := '';
   end;
 
-  with ComboBox_bossac_COMPort do begin
+  with ComboBox_Bossac_COMPort do begin
     Items.CommaText := GetSerialPortNames;
     if Items.Count > 0 then begin
       Text := Items[0];
@@ -527,15 +527,17 @@ begin
     RadioButton_Bossac.Checked := True;
     ComboBox_BossacPath.Text := path;
 
-    with ComboBox_bossac_COMPort do begin
+    with ComboBox_Bossac_COMPort do begin
       Items.CommaText := GetSerialPortNames;
-      Text := FindPara(s, ['-p','--port']);
+      Text := FindPara(s, ['-p', '--port']);
       {$IFDEF UNIX}
-      Text := '/dev/'+Text;
+      if Text <> '' then begin
+        Text := '/dev/' + Text;
+      end;
       {$ENDIF}
     end;
 
-//    ComboBox_bossac_COMPort:=
+    //    ComboBox_Bossac_COMPort:=
 
     //CheckBox_Bossac_Erase_Flash. := FindPara(s, ['-e', '--erase']);
     //CheckBox_Bossac_boot_Flash := FindPara(s, ['-b', '--boot']);   // [=BOOL]
@@ -655,8 +657,56 @@ begin
   // Bossac
   if RadioButton_Bossac.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
-//    s := ComboBox_BossacPath.Text + ' -e -w -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
-    s := ComboBox_BossacPath.Text + ' --port=ttyACM0 -e -w -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+    //    s := ComboBox_BossacPath.Text + sf + ' -w -e -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+
+
+// /bin/bossac -e -b -s -R -v -w Project1.bin
+
+    s := ComboBox_BossacPath.Text;
+
+    if ComboBox_Bossac_COMPort.Text <> '' then begin
+      s := s + ' --port=' + ExtractFileName(ComboBox_Bossac_COMPort.Text);
+    end;
+
+    if CheckBox_Bossac_Erase_Flash.Checked then begin
+      s := s + ' -e';
+    end;
+    if CheckBox_Bossac_boot_Flash.Checked then begin
+      s := s + ' -b';
+    end;
+    if CheckBox_Bossac_Brownout_Detection.Checked then begin
+      s := s + ' -c';
+    end;
+    if CheckBox_Bossac_Lock_Flash_Region.Checked then begin
+      s := s + ' -l';
+    end;
+    if CheckBox_Bossac_Flash_Security_Flag.Checked then begin
+      s := s + ' -s';
+    end;
+    if CheckBox_Bossac_Print_Debug.Checked then begin
+      s := s + ' -d';
+    end;
+    if CheckBox_Bossac_Reset_CPU.Checked then begin
+      s := s + ' -R';
+    end;
+    if CheckBox_Bossac_Verify_File.Checked then begin
+      s := s + ' -v';
+    end;
+    if CheckBox_Bossac_Brownout_Reset.Checked then begin
+      s := s + ' -t';
+    end;
+    if CheckBox_Bossac_Unlock_Flash_Region.Checked then begin
+      s := s + ' -u';
+    end;
+    if CheckBox_Bossac_Display_Device_Info.Checked then begin
+      s := s + ' -i';
+    end;
+    if CheckBox_Bossac_Override_USB_Port_Autodetection.Checked then begin
+      s := s + ' -U';
+    end;
+
+    s := s + ' -w ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
+
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 
@@ -671,10 +721,10 @@ begin
 
   // ESP32 / ESP8266
   if RadioButton_ESP_Tool.Checked then begin
-//    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
-//      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin';
-    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
-      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
+    //    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
+    //      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin';
+    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' + ComboBox_ESP_Bootloader_Path.Text +
+      '/bootloader.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
     LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
   end;
 
@@ -718,6 +768,22 @@ begin
 
       // ST-Link
       ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;
+
+      // Bossac
+      ComboBox_Bossac_COMPort.Text := TemplatesPara[index].Bossac.COM_Port;
+
+      CheckBox_Bossac_Erase_Flash.Checked := TemplatesPara[index].Bossac.Erase_Flash;
+      CheckBox_Bossac_boot_Flash.Checked := TemplatesPara[index].Bossac.Boot_from_Flash;
+      CheckBox_Bossac_Brownout_Detection.Checked := TemplatesPara[index].Bossac.Brownout_Detection;
+      CheckBox_Bossac_Lock_Flash_Region.Checked := TemplatesPara[index].Bossac.Lock_Flash_Region;
+      CheckBox_Bossac_Flash_Security_Flag.Checked := TemplatesPara[index].Bossac.Flash_Security_Flag;
+      CheckBox_Bossac_Print_Debug.Checked := TemplatesPara[index].Bossac.Print_Debug;
+      CheckBox_Bossac_Reset_CPU.Checked := TemplatesPara[index].Bossac.Reset_CPU;
+      CheckBox_Bossac_Verify_File.Checked := TemplatesPara[index].Bossac.Verify_File;
+      CheckBox_Bossac_Brownout_Reset.Checked := TemplatesPara[index].Bossac.Brownout_Reset;
+      CheckBox_Bossac_Unlock_Flash_Region.Checked := TemplatesPara[index].Bossac.Unlock_Flash_Region;
+      CheckBox_Bossac_Display_Device_Info.Checked := TemplatesPara[index].Bossac.Display_Device_Info;
+      CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := TemplatesPara[index].Bossac.Override_USB_Port_Autodetection;
 
       // Rasberry PI Pico
       CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';

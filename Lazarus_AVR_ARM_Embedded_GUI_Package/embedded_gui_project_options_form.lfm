@@ -540,7 +540,7 @@ object Project_Options_Form: TProject_Options_Form
           Caption = 'Override USB port autodetection (-U)'
           TabOrder = 10
         end
-        object ComboBox_bossac_COMPort: TComboBox
+        object ComboBox_Bossac_COMPort: TComboBox
           Left = 16
           Height = 27
           Top = 112

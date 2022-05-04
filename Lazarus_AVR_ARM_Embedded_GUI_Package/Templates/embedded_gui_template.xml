@@ -125,7 +125,7 @@
     <Board Caption="Arduino DUE" Arch="arm" SubArch="ARMV7M" Controller="ATSAM3X8E" Programmer="bossac">
       <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
       <stlink FlashBase="0x080000"/>
-      <bossac Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False"/>
+      <bossac Erase_Flash="True" Boot_from_FLASH="True" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="True" Print_Debug="False" Reset_CPU="True" Verify_File="True" Brownout_Reset="False" Unlock_Flash_Region="True" Display_Device_Info="False" Override_USB_Port_Autodetection="False"/>
       <ESPTool Chip="" COM_Port="" Baud=""/>
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
@@ -136,7 +136,7 @@
     <Board Caption="Rasberry Pico" Arch="arm" SubArch="ARMV6M" Controller="RASPI_PICO" Programmer="uf2">
       <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
       <stlink FlashBase="0x00000000"/>
-      <bossac COM_Port="/dev/ttyACM0" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False"/>
+      <bossac COM_Port="/dev/ttyACM0" Erase_Flash="False" Boot_from_FLASH="True" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False"/>
       <ESPTool Chip="" COM_Port="" Baud=""/>
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
