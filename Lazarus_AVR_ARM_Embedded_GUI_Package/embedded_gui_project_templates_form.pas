@@ -18,7 +18,7 @@ type
     Controller: string;
     Examples: array of record
       Caption, SorceFile: string;
-    end;
+      end;
     Programmer: string;
     avrdude: record
       Controller,
@@ -27,11 +27,12 @@ type
       Baud: string;
       Disable_Auto_Erase,
       Chip_Erase: boolean;
-    end;
+      end;
     stlink: record
       FlashBase: string;
-    end;
+      end;
     Bossac: record
+      COM_Port: string;
       Erase_Flash,
       Boot_from_FLASH,
       Brownout_Detection,
@@ -44,12 +45,12 @@ type
       Unlock_Flash_Region,
       Display_Device_Info,
       Override_USB_Port_Autodetection: boolean;
-    end;
+      end;
     ESPTool: record
       Controller,
       COM_Port,
       Baud: string
-    end;
+      end;
   end;
 
   { TProjectTemplatesForm }
@@ -120,6 +121,22 @@ begin
           PKey := BoardKey + 'stlink/';
           FlashBase := Cfg.GetValue(PKey + 'FlashBase', '');
         end;
+        with Bossac do begin
+          PKey := BoardKey + 'bossac/';
+          COM_Port := Cfg.GetValue(PKey + 'COM_Port', '');
+          Erase_Flash := Cfg.GetValue(PKey + 'Erase_Flash', False);
+          Boot_from_FLASH := Cfg.GetValue(PKey + 'Boot_from_FLASH', False);
+          Brownout_Detection := Cfg.GetValue(PKey + 'Brownout_Detection', False);
+          Lock_Flash_Region := Cfg.GetValue(PKey + 'Lock_Flash_Region', False);
+          Flash_Security_Flag := Cfg.GetValue(PKey + 'Flash_Security_Flag', False);
+          Print_Debug := Cfg.GetValue(PKey + 'Print_Debug', False);
+          Reset_CPU := Cfg.GetValue(PKey + 'Reset_CPU', False);
+          Verify_File := Cfg.GetValue(PKey + 'Verify_File', False);
+          Brownout_Reset := Cfg.GetValue(PKey + 'Brownout_Reset', False);
+          Unlock_Flash_Region := Cfg.GetValue(PKey + 'Unlock_Flash_Region', False);
+          Display_Device_Info := Cfg.GetValue(PKey + 'Display_Device_Info', False);
+          Override_USB_Port_Autodetection := Cfg.GetValue(PKey + 'Override_USB_Port_Autodetection', False);
+        end;
         with ESPTool do begin
           PKey := BoardKey + 'ESPTool/';
           Controller := Cfg.GetValue(PKey + 'Chip', '');
@@ -139,9 +156,8 @@ begin
     // --- Schreibe für Testzwecke
     pfad := Embedded_IDE_Options.Templates_Path[0] + '/test.xml';
     Cfg.Filename := pfad;
+    Cfg.Clear;
 
-    //    l := cfg.GetChildCount('Boards');
-    //    SetLength(TemplatesPara, l);
     for i := 1 to Length(TemplatesPara) do begin
       BoardKey := 'Boards/Board[' + i.ToString + ']/';
 
@@ -164,6 +180,22 @@ begin
           PKey := BoardKey + 'stlink/';
           Cfg.SetValue(PKey + 'FlashBase', FlashBase);
         end;
+        with Bossac do begin
+          PKey := BoardKey + 'bossac/';
+          Cfg.SetValue(PKey + 'COM_Port', COM_Port);
+          Cfg.SetValue(PKey + 'Erase_Flash', Erase_Flash);
+          Cfg.SetValue(PKey + 'Boot_from_FLASH', Boot_from_FLASH);
+          Cfg.SetValue(PKey + 'Brownout_Detection', Brownout_Detection);
+          Cfg.SetValue(PKey + 'Lock_Flash_Region', Lock_Flash_Region);
+          Cfg.SetValue(PKey + 'Flash_Security_Flag', Flash_Security_Flag);
+          Cfg.SetValue(PKey + 'Print_Debug', Print_Debug);
+          Cfg.SetValue(PKey + 'Reset_CPU', Reset_CPU);
+          Cfg.SetValue(PKey + 'Verify_File', Verify_File);
+          Cfg.SetValue(PKey + 'Brownout_Reset', Brownout_Reset);
+          Cfg.SetValue(PKey + 'Unlock_Flash_Region', Unlock_Flash_Region);
+          Cfg.SetValue(PKey + 'Display_Device_Info', Display_Device_Info);
+          Cfg.SetValue(PKey + 'Override_USB_Port_Autodetection', Override_USB_Port_Autodetection);
+        end;
         with ESPTool do begin
           PKey := BoardKey + 'ESPTool/';
           Cfg.SetValue(PKey + 'Chip', Controller);
@@ -171,15 +203,12 @@ begin
           Cfg.SetValue(PKey + 'Baud', Baud);
         end;
 
-        //        l Cfg.SetChildCount(BoardKey + 'Examples');
-        //        SetLength(Examples, l);
         for j := 1 to Length(Examples) do begin
           Cfg.SetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/Caption', Examples[j - 1].Caption);
           Cfg.SetValue(BoardKey + 'Examples/Example[' + j.ToString + ']/SourceFile', Examples[j - 1].SorceFile);
         end;
       end;
     end;
-
 
 
     for index := 0 to Length(TemplatesPara) - 1 do begin

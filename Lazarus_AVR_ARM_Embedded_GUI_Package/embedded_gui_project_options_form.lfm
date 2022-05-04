@@ -313,8 +313,8 @@ object Project_Options_Form: TProject_Options_Form
           Left = 160
           Height = 16
           Top = 296
-          Width = 153
-          Caption = 'Bit Clock(default = 1) (-B):'
+          Width = 156
+          Caption = 'Bit Clock (default = 1) (-B):'
           ParentColor = False
         end
         object ComboBox_avrrdude_BitClock: TComboBox
@@ -543,8 +543,8 @@ object Project_Options_Form: TProject_Options_Form
         object ComboBox_bossac_COMPort: TComboBox
           Left = 16
           Height = 27
-          Top = 120
-          Width = 144
+          Top = 112
+          Width = 181
           ItemHeight = 0
           TabOrder = 12
         end
@@ -552,8 +552,8 @@ object Project_Options_Form: TProject_Options_Form
           Left = 16
           Height = 16
           Top = 88
-          Width = 281
-          Caption = 'Connection port (-p)  ( alpha, geht noch nicht ! )'
+          Width = 401
+          Caption = 'Connection port (-p) (first Port = empty )  ( alpha, geht noch nicht ! )'
           ParentColor = False
         end
       end

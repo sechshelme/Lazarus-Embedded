@@ -527,6 +527,14 @@ begin
     RadioButton_Bossac.Checked := True;
     ComboBox_BossacPath.Text := path;
 
+    with ComboBox_bossac_COMPort do begin
+      Items.CommaText := GetSerialPortNames;
+      Text := FindPara(s, ['-p','--port']);
+      {$IFDEF UNIX}
+      Text := '/dev/'+Text;
+      {$ENDIF}
+    end;
+
 //    ComboBox_bossac_COMPort:=
 
     //CheckBox_Bossac_Erase_Flash. := FindPara(s, ['-e', '--erase']);
