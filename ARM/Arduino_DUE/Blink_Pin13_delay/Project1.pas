@@ -34,6 +34,8 @@ begin
   PIOB.PER := 1 shl 27;
   PIOB.OER := 1 shl 27;
 
+  WDT.CR := 0; // Watchdog deaktivieren
+
   repeat
     // Pin13 -- High
     PIOB.SODR := 1 shl 27;
