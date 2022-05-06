@@ -556,6 +556,14 @@ object Project_Options_Form: TProject_Options_Form
           Caption = 'Connection port (-p) (first Port = empty )  ( alpha, geht noch nicht ! )'
           ParentColor = False
         end
+        object CheckBox_Bossac_Arduino_Erase: TCheckBox
+          Left = 256
+          Height = 23
+          Top = 304
+          Width = 312
+          Caption = 'Erase and reset via Arduino 1200 baud hack (-a)'
+          TabOrder = 13
+        end
       end
       object TabSheet_UF2: TTabSheet
         Caption = 'UF2'

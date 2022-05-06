@@ -18,7 +18,7 @@ type
     Controller: string;
     Examples: array of record
       Caption, SorceFile: string;
-      end;
+    end;
     Programmer: string;
     avrdude: record
       Controller,
@@ -27,10 +27,10 @@ type
       Baud: string;
       Disable_Auto_Erase,
       Chip_Erase: boolean;
-      end;
+    end;
     stlink: record
       FlashBase: string;
-      end;
+    end;
     Bossac: record
       COM_Port: string;
       Erase_Flash,
@@ -44,13 +44,14 @@ type
       Brownout_Reset,
       Unlock_Flash_Region,
       Display_Device_Info,
-      Override_USB_Port_Autodetection: boolean;
-      end;
+      Override_USB_Port_Autodetection,
+      Arduino_Erase: boolean;
+    end;
     ESPTool: record
       Controller,
       COM_Port,
       Baud: string
-      end;
+    end;
   end;
 
   { TProjectTemplatesForm }
@@ -136,6 +137,7 @@ begin
           Unlock_Flash_Region := Cfg.GetValue(PKey + 'Unlock_Flash_Region', False);
           Display_Device_Info := Cfg.GetValue(PKey + 'Display_Device_Info', False);
           Override_USB_Port_Autodetection := Cfg.GetValue(PKey + 'Override_USB_Port_Autodetection', False);
+          Arduino_Erase := Cfg.GetValue(PKey + 'Arduino_Erase', False);
         end;
         with ESPTool do begin
           PKey := BoardKey + 'ESPTool/';
@@ -195,6 +197,7 @@ begin
           Cfg.SetValue(PKey + 'Unlock_Flash_Region', Unlock_Flash_Region);
           Cfg.SetValue(PKey + 'Display_Device_Info', Display_Device_Info);
           Cfg.SetValue(PKey + 'Override_USB_Port_Autodetection', Override_USB_Port_Autodetection);
+          Cfg.SetValue(PKey + 'Arduino_Erase', Arduino_Erase);
         end;
         with ESPTool do begin
           PKey := BoardKey + 'ESPTool/';

@@ -93,17 +93,17 @@ begin
     Sleep(500);
   end;
 
-  if Pos('bossac', com) > 0 then begin
-    //    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
-    SerialHandle := SerOpen('/dev/ttyACM0');
-    SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
-
-    SerSetDTR(SerialHandle, True);
-    SerSetDTR(SerialHandle, False);
-    Sleep(500);
-    SerClose(SerialHandle);
-    Sleep(500);
-  end;
+  //if Pos('bossac', com) > 0 then begin
+  //  //    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
+  //  SerialHandle := SerOpen('/dev/ttyACM0');
+  //  SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
+  //
+  //  SerSetDTR(SerialHandle, True);
+  //  SerSetDTR(SerialHandle, False);
+  //  Sleep(500);
+  //  SerClose(SerialHandle);
+  //  Sleep(500);
+  //end;
 
   Result := mrOk;
 end;

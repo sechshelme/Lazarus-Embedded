@@ -25,6 +25,7 @@ type
   { TProject_Options_Form }
 
   TProject_Options_Form = class(TForm)
+    CheckBox_Bossac_Arduino_Erase: TCheckBox;
     ComboBox_ARM_FlashBase: TComboBox;
     BitBtn1_Auto_avrdude_Controller: TBitBtn;
     BitBtn_Auto_Flash_Base: TBitBtn;
@@ -551,6 +552,7 @@ begin
     //CheckBox_Bossac_Unlock_Flash_Region := FindPara(s, ['-u', '--unlock']);
     //CheckBox_Bossac_Display_Device_Info := FindPara(s, ['-i', '--info']);
     //CheckBox_Bossac_Override_USB_Port_Autodetection := FindPara(s, ['-U', '--usb-port']);
+    //CheckBox_Bossac_Arduino_Erase := FindPara(s, ['-a', '--arduino-erase']);
   end;
 
   // Rasberry PI Pico
@@ -671,38 +673,41 @@ begin
     if CheckBox_Bossac_Erase_Flash.Checked then begin
       s := s + ' -e';
     end;
+    if CheckBox_Bossac_Verify_File.Checked then begin
+      s := s + ' -v';
+    end;
     if CheckBox_Bossac_boot_Flash.Checked then begin
       s := s + ' -b';
     end;
     if CheckBox_Bossac_Brownout_Detection.Checked then begin
       s := s + ' -c';
     end;
-    if CheckBox_Bossac_Lock_Flash_Region.Checked then begin
-      s := s + ' -l';
-    end;
-    if CheckBox_Bossac_Flash_Security_Flag.Checked then begin
-      s := s + ' -s';
-    end;
-    if CheckBox_Bossac_Print_Debug.Checked then begin
-      s := s + ' -d';
-    end;
-    if CheckBox_Bossac_Reset_CPU.Checked then begin
-      s := s + ' -R';
-    end;
-    if CheckBox_Bossac_Verify_File.Checked then begin
-      s := s + ' -v';
-    end;
     if CheckBox_Bossac_Brownout_Reset.Checked then begin
       s := s + ' -t';
+    end;
+    if CheckBox_Bossac_Lock_Flash_Region.Checked then begin
+      s := s + ' -l';
     end;
     if CheckBox_Bossac_Unlock_Flash_Region.Checked then begin
       s := s + ' -u';
     end;
+    if CheckBox_Bossac_Flash_Security_Flag.Checked then begin
+      s := s + ' -s';
+    end;
     if CheckBox_Bossac_Display_Device_Info.Checked then begin
       s := s + ' -i';
     end;
+    if CheckBox_Bossac_Print_Debug.Checked then begin
+      s := s + ' -d';
+    end;
     if CheckBox_Bossac_Override_USB_Port_Autodetection.Checked then begin
       s := s + ' -U';
+    end;
+    if CheckBox_Bossac_Reset_CPU.Checked then begin
+      s := s + ' -R';
+    end;
+    if CheckBox_Bossac_Arduino_Erase.Checked then begin
+      s := s + ' -a';
     end;
 
     s := s + ' -w ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
@@ -784,6 +789,7 @@ begin
       CheckBox_Bossac_Unlock_Flash_Region.Checked := TemplatesPara[index].Bossac.Unlock_Flash_Region;
       CheckBox_Bossac_Display_Device_Info.Checked := TemplatesPara[index].Bossac.Display_Device_Info;
       CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := TemplatesPara[index].Bossac.Override_USB_Port_Autodetection;
+      CheckBox_Bossac_Arduino_Erase.Checked := TemplatesPara[index].Bossac.Arduino_Erase;
 
       // Rasberry PI Pico
       CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
