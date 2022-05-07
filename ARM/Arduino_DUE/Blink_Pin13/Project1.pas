@@ -9,7 +9,7 @@ uses
   var
     i: uint32;
   begin
-    for i := 0 to 10000 do begin
+    for i := 0 to 100000 do begin
       asm
                Nop // Leerbefehl
       end;
@@ -23,10 +23,13 @@ begin
   PIOB.PER := led;
   PIOB.OER := led;
 
-  WDT.CR := 0; // Watchdog deaktivieren
+//  WDT.MR := 1 shl 15; // Watchdog deaktivieren
+
 
   repeat
     // Pin13 -- High
+    WDT.CR:= $A5000001;
+
     PIOB.SODR := led;
     Delay;
 

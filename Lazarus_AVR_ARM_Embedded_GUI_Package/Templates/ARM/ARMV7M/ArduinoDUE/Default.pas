@@ -10,7 +10,7 @@ uses
 begin
   // Setup
 
-  WDT.CR := 0; // Watchdog deaktivieren
+  WDT.MR := 1 shl 15;  // Watchdog deaktivieren
 
   repeat
     // Loop;

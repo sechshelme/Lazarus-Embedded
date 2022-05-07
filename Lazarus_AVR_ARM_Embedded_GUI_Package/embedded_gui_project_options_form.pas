@@ -512,8 +512,8 @@ begin
       ComboBox_avrrdude_BitClock.Text := bc;
     end;
 
-    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos('-D', s) > 0;   // Space vor -D ?????
-    CheckBox_avrdude_Chip_Erase.Checked := pos('-e', s) > 0;
+    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos(' -D', s) > 0;   // Space vor -D ?????
+    CheckBox_avrdude_Chip_Erase.Checked := pos(' -e', s) > 0;
   end;
 
   // ST-Link
@@ -538,21 +538,33 @@ begin
       {$ENDIF}
     end;
 
-    //    ComboBox_Bossac_COMPort:=
+    CheckBox_Bossac_Erase_Flash.Checked := (Pos(' -e', s) > 0) or (Pos(' --erase', s) > 0);
+    CheckBox_Bossac_Verify_File.Checked := (Pos(' -v', s) > 9) or (Pos(' --verify', s) > 0);
+    CheckBox_Bossac_boot_Flash.Checked := (Pos(' -b', s) > 9) or (Pos(' --boot=1', s) > 0);
+    CheckBox_Bossac_Brownout_Detection.Checked := (Pos(' -c', s) > 9) or (Pos(' --bod=1', s) > 0);
+    CheckBox_Bossac_Brownout_Reset.Checked := (Pos(' -t', s) > 9) or (Pos(' --bor=1', s) > 0);
+    CheckBox_Bossac_Lock_Flash_Region.Checked := (Pos(' -l', s) > 9) or (Pos(' --lock', s) > 0); // [=REGION]
+    CheckBox_Bossac_Unlock_Flash_Region.Checked := (Pos(' -u', s) > 9) or (Pos(' --unlock', s) > 0); // [=REGION]
+    CheckBox_Bossac_Flash_Security_Flag.Checked := (Pos(' -s', s) > 9) or (Pos(' --security', s) > 0);
+    CheckBox_Bossac_Display_Device_Info.Checked := (Pos(' -i', s) > 9) or (Pos(' --info', s) > 0);
+    CheckBox_Bossac_Print_Debug.Checked := (Pos(' -d', s) > 9) or (Pos(' --debug', s) > 0);
+    CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := (Pos(' -U', s) > 9) or (Pos(' --usb-port=1', s) > 0);
+    CheckBox_Bossac_Reset_CPU.Checked := (Pos(' -R', s) > 9) or (Pos(' --reset', s) > 0);
+    CheckBox_Bossac_Arduino_Erase.Checked := (Pos(' -a', s) > 9) or (Pos(' --arduino-erase', s) > 0);
 
-    //CheckBox_Bossac_Erase_Flash. := FindPara(s, ['-e', '--erase']);
-    //CheckBox_Bossac_boot_Flash := FindPara(s, ['-b', '--boot']);   // [=BOOL]
-    //CheckBox_Bossac_Brownout_Detection := FindPara(s, ['-c', '--bod']); // [=BOOL]
-    //CheckBox_Bossac_Lock_Flash_Region := FindPara(s, ['-l', '--lock']); // [=REGION]
-    //CheckBox_Bossac_Flash_Security_Flag := FindPara(s, ['-s', '--security']);
-    //CheckBox_Bossac_Print_Debug := FindPara(s, ['-d', '--debug']);
-    //CheckBox_Bossac_Reset_CPU := FindPara(s, ['-R', '--reset']);
-    //CheckBox_Bossac_Verify_File := FindPara(s, ['-v', '--verify']);
-    //CheckBox_Bossac_Brownout_Reset := FindPara(s, ['-t', '--bor']);
-    //CheckBox_Bossac_Unlock_Flash_Region := FindPara(s, ['-u', '--unlock']);
-    //CheckBox_Bossac_Display_Device_Info := FindPara(s, ['-i', '--info']);
-    //CheckBox_Bossac_Override_USB_Port_Autodetection := FindPara(s, ['-U', '--usb-port']);
-    //CheckBox_Bossac_Arduino_Erase := FindPara(s, ['-a', '--arduino-erase']);
+    //
+    //        CheckBox_Bossac_Brownout_Detection.Checked := FindPara(s, ['-c', '--bod']); // [=BOOL]
+    //
+    //    CheckBox_Bossac_boot_Flash.Checked := FindPara(s, ['-b', '--boot']);   // [=BOOL]
+    //    CheckBox_Bossac_Lock_Flash_Region.Checked := FindPara(s, ['-l', '--lock']); // [=REGION]
+    //    CheckBox_Bossac_Flash_Security_Flag.Checked := FindPara(s, ['-s', '--security']);
+    //    CheckBox_Bossac_Print_Debug.Checked := FindPara(s, ['-d', '--debug']);
+    //    CheckBox_Bossac_Reset_CPU.Checked := FindPara(s, ['-R', '--reset']);
+    //    CheckBox_Bossac_Brownout_Reset.Checked := FindPara(s, ['-t', '--bor']);
+    //    CheckBox_Bossac_Unlock_Flash_Region.Checked := FindPara(s, ['-u', '--unlock']);
+    //    CheckBox_Bossac_Display_Device_Info.Checked := FindPara(s, ['-i', '--info']);
+    //    CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := FindPara(s, ['-U', '--usb-port']);
+    //    CheckBox_Bossac_Arduino_Erase.Checked := FindPara(s, ['-a', '--arduino-erase']);
   end;
 
   // Rasberry PI Pico
@@ -661,8 +673,7 @@ begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
     //    s := ComboBox_BossacPath.Text + sf + ' -w -e -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
 
-
-// /bin/bossac -e -b -s -R -v -w Project1.bin
+    // /bin/bossac -e -b -s -R -v -w Project1.bin
 
     s := ComboBox_BossacPath.Text;
 

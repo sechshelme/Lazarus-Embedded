@@ -23,7 +23,7 @@ begin
   PIOB.PER := led;
   PIOB.OER := led;
 
-  WDT.CR := 0; // Watchdog deaktivieren
+  WDT.MR := 1 shl 15;  // Watchdog deaktivieren
 
   repeat
     // Pin13 --> High
