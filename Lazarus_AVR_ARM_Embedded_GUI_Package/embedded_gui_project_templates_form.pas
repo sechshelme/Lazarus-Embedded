@@ -34,17 +34,17 @@ type
     Bossac: record
       COM_Port: string;
       Erase_Flash,
+      Verify_File,
       Boot_from_Flash,
       Brownout_Detection,
-      Lock_Flash_Region,
-      Flash_Security_Flag,
-      Print_Debug,
-      Reset_CPU,
-      Verify_File,
       Brownout_Reset,
+      Lock_Flash_Region,
       Unlock_Flash_Region,
+      Flash_Security_Flag,
       Display_Device_Info,
+      Print_Debug,
       Override_USB_Port_Autodetection,
+      Reset_CPU,
       Arduino_Erase: boolean;
     end;
     ESPTool: record
@@ -126,17 +126,17 @@ begin
           PKey := BoardKey + 'bossac/';
           COM_Port := Cfg.GetValue(PKey + 'COM_Port', '');
           Erase_Flash := Cfg.GetValue(PKey + 'Erase_Flash', False);
+          Verify_File := Cfg.GetValue(PKey + 'Verify_File', False);
           Boot_from_Flash := Cfg.GetValue(PKey + 'Boot_from_FLASH', False);
           Brownout_Detection := Cfg.GetValue(PKey + 'Brownout_Detection', False);
-          Lock_Flash_Region := Cfg.GetValue(PKey + 'Lock_Flash_Region', False);
-          Flash_Security_Flag := Cfg.GetValue(PKey + 'Flash_Security_Flag', False);
-          Print_Debug := Cfg.GetValue(PKey + 'Print_Debug', False);
-          Reset_CPU := Cfg.GetValue(PKey + 'Reset_CPU', False);
-          Verify_File := Cfg.GetValue(PKey + 'Verify_File', False);
           Brownout_Reset := Cfg.GetValue(PKey + 'Brownout_Reset', False);
+          Lock_Flash_Region := Cfg.GetValue(PKey + 'Lock_Flash_Region', False);
           Unlock_Flash_Region := Cfg.GetValue(PKey + 'Unlock_Flash_Region', False);
+          Flash_Security_Flag := Cfg.GetValue(PKey + 'Flash_Security_Flag', False);
           Display_Device_Info := Cfg.GetValue(PKey + 'Display_Device_Info', False);
+          Print_Debug := Cfg.GetValue(PKey + 'Print_Debug', False);
           Override_USB_Port_Autodetection := Cfg.GetValue(PKey + 'Override_USB_Port_Autodetection', False);
+          Reset_CPU := Cfg.GetValue(PKey + 'Reset_CPU', False);
           Arduino_Erase := Cfg.GetValue(PKey + 'Arduino_Erase', False);
         end;
         with ESPTool do begin
@@ -186,17 +186,17 @@ begin
           PKey := BoardKey + 'bossac/';
           Cfg.SetValue(PKey + 'COM_Port', COM_Port);
           Cfg.SetValue(PKey + 'Erase_Flash', Erase_Flash);
+          Cfg.SetValue(PKey + 'Verify_File', Verify_File);
           Cfg.SetValue(PKey + 'Boot_from_FLASH', Boot_from_Flash);
+          Cfg.SetValue(PKey + 'Brownout_Reset', Brownout_Reset);
           Cfg.SetValue(PKey + 'Brownout_Detection', Brownout_Detection);
           Cfg.SetValue(PKey + 'Lock_Flash_Region', Lock_Flash_Region);
-          Cfg.SetValue(PKey + 'Flash_Security_Flag', Flash_Security_Flag);
-          Cfg.SetValue(PKey + 'Print_Debug', Print_Debug);
-          Cfg.SetValue(PKey + 'Reset_CPU', Reset_CPU);
-          Cfg.SetValue(PKey + 'Verify_File', Verify_File);
-          Cfg.SetValue(PKey + 'Brownout_Reset', Brownout_Reset);
           Cfg.SetValue(PKey + 'Unlock_Flash_Region', Unlock_Flash_Region);
+          Cfg.SetValue(PKey + 'Flash_Security_Flag', Flash_Security_Flag);
           Cfg.SetValue(PKey + 'Display_Device_Info', Display_Device_Info);
+          Cfg.SetValue(PKey + 'Print_Debug', Print_Debug);
           Cfg.SetValue(PKey + 'Override_USB_Port_Autodetection', Override_USB_Port_Autodetection);
+          Cfg.SetValue(PKey + 'Reset_CPU', Reset_CPU);
           Cfg.SetValue(PKey + 'Arduino_Erase', Arduino_Erase);
         end;
         with ESPTool do begin

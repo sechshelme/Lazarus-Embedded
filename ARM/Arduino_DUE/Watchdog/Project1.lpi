@@ -50,7 +50,8 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATSAM3X8E"/>
+      <CustomOptions Value="-WpATSAM3X8E
+-al"/>
       <ExecuteAfter>
         <Command Value="/bin/bossac -v -b -s -R -a -w Project1.bin"/>
         <CompileReasons Compile="False" Build="False"/>

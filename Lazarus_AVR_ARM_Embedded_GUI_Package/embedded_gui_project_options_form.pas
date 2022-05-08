@@ -478,7 +478,7 @@ begin
     ComboBox_SubArchChange(nil);
 
     s := CustomOptions;
-    ComboBox_Controller.Text := FindPara(s, ['-Wp'], False);
+    ComboBox_Controller.Text := FindFPCPara(s, '-Wp');
     ComboBox_Controller.Items.IndexOf(ComboBox_Controller.Text);
     CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
     CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;
@@ -672,7 +672,6 @@ begin
   if RadioButton_Bossac.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
     //    s := ComboBox_BossacPath.Text + sf + ' -w -e -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
-
     // /bin/bossac -e -b -s -R -v -w Project1.bin
 
     s := ComboBox_BossacPath.Text;
@@ -680,7 +679,6 @@ begin
     if ComboBox_Bossac_COMPort.Text <> '' then begin
       s := s + ' --port=' + ExtractFileName(ComboBox_Bossac_COMPort.Text);
     end;
-
     if CheckBox_Bossac_Erase_Flash.Checked then begin
       s := s + ' -e';
     end;
@@ -789,17 +787,17 @@ begin
       ComboBox_Bossac_COMPort.Text := TemplatesPara[index].Bossac.COM_Port;
 
       CheckBox_Bossac_Erase_Flash.Checked := TemplatesPara[index].Bossac.Erase_Flash;
+      CheckBox_Bossac_Verify_File.Checked := TemplatesPara[index].Bossac.Verify_File;
       CheckBox_Bossac_boot_Flash.Checked := TemplatesPara[index].Bossac.Boot_from_Flash;
       CheckBox_Bossac_Brownout_Detection.Checked := TemplatesPara[index].Bossac.Brownout_Detection;
-      CheckBox_Bossac_Lock_Flash_Region.Checked := TemplatesPara[index].Bossac.Lock_Flash_Region;
-      CheckBox_Bossac_Flash_Security_Flag.Checked := TemplatesPara[index].Bossac.Flash_Security_Flag;
-      CheckBox_Bossac_Print_Debug.Checked := TemplatesPara[index].Bossac.Print_Debug;
-      CheckBox_Bossac_Reset_CPU.Checked := TemplatesPara[index].Bossac.Reset_CPU;
-      CheckBox_Bossac_Verify_File.Checked := TemplatesPara[index].Bossac.Verify_File;
       CheckBox_Bossac_Brownout_Reset.Checked := TemplatesPara[index].Bossac.Brownout_Reset;
+      CheckBox_Bossac_Lock_Flash_Region.Checked := TemplatesPara[index].Bossac.Lock_Flash_Region;
       CheckBox_Bossac_Unlock_Flash_Region.Checked := TemplatesPara[index].Bossac.Unlock_Flash_Region;
+      CheckBox_Bossac_Flash_Security_Flag.Checked := TemplatesPara[index].Bossac.Flash_Security_Flag;
       CheckBox_Bossac_Display_Device_Info.Checked := TemplatesPara[index].Bossac.Display_Device_Info;
+      CheckBox_Bossac_Print_Debug.Checked := TemplatesPara[index].Bossac.Print_Debug;
       CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := TemplatesPara[index].Bossac.Override_USB_Port_Autodetection;
+      CheckBox_Bossac_Reset_CPU.Checked := TemplatesPara[index].Bossac.Reset_CPU;
       CheckBox_Bossac_Arduino_Erase.Checked := TemplatesPara[index].Bossac.Arduino_Erase;
 
       // Rasberry PI Pico

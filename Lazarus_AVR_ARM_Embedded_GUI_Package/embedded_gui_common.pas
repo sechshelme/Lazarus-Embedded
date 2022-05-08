@@ -85,14 +85,14 @@ type
     Com_Interface: record
       Port, Baud, Bits, Parity, StopBits, FlowControl: string;
       TimeOut, TimerInterval: integer;
-      end;
+    end;
     Output: record
       LineBreak: integer;
       AutoScroll, WordWarp: boolean;
       maxRows: integer;
       Font: TFont;
       BKColor: TColor;
-      end;
+    end;
     constructor Create;
     destructor Destroy; override;
     procedure Load_from_XML;
@@ -106,17 +106,16 @@ type
   public
     AVR: record
       avrdudePath, avrdudeConfigPath: TStringList;
-      end;
+    end;
     ARM: record
       STFlashPath, BossacPath: TStringList;
       Raspi_Pico: record
         Unit_Path, cp_Path, mount_Path: TStringList;
-        end;
       end;
+    end;
     ESP: record
-      Bootloader_Path,
-      Tools_Path: TStringList;
-      end;
+      Bootloader_Path, Tools_Path: TStringList;
+    end;
     SerialMonitor_Options: TSerialMonitor_Options;
     Templates_Path: TStringList;
     constructor Create;
@@ -125,9 +124,11 @@ type
     procedure Load_from_XML;
   private
   end;
+
   {$ENDIF}
 
-function FindPara(const Source: string; Sub: TStringArray; InsertFirstSpace: boolean = True): string;
+function FindFPCPara(const Source: string; const Sub: string): string;
+function FindPara(const Source: string; Sub: TStringArray): string;
 
 //function FindPara(const Source: string; const Sub: string; FirstSpace: boolean = True): string;
 function FindVerbose(Source: string): integer;
@@ -216,33 +217,32 @@ end;
 
 {$ENDIF}
 
-//function FindPara(const Source: string; const Sub: string; FirstSpace: boolean
-//  ): string;
-//var
-//  p, Index: integer;
-//begin
-//  p := pos(Sub, Source);
-//  Result := '';
-//  if p > 0 then begin
-//    p += Length(Sub);
-//    Index := p;
-//    while (Index <= Length(Source)) and (Source[Index] > #32) do begin
-//      Result += Source[Index];
-//      Inc(Index);
-//    end;
-//  end;
-//end;
+function FindFPCPara(const Source: string; const Sub: string): string;
+var
+  p, Index: integer;
+begin
+  p := pos(Sub, Source);
+  Result := '';
+  if p > 0 then begin
+    p += Length(Sub);
+    Index := p;
+    while (Index <= Length(Source)) and (Source[Index] > #32) do begin
+      Result += Source[Index];
+      Inc(Index);
+    end;
+  end;
+end;
 
-function FindPara(const Source: string; Sub: TStringArray; InsertFirstSpace: boolean = True): string;
+function FindPara(const Source: string; Sub: TStringArray): string;
 var
   p, i, Index: integer;
 begin
   Result := '';
   i := 0;
   while (i < Length(Sub)) and (Result = '') do begin
-    if InsertFirstSpace then begin
+//    if InsertFirstSpace then begin
       sub[i] := ' ' + Sub[i];
-    end;
+//    end;
     p := pos(Sub[i], Source);
     while Copy(Source, p + Length(Sub[i]), 1) = ' ' do begin
       Inc(p);
@@ -651,6 +651,7 @@ begin
 
   SerialMonitor_Options.Save_to_XML;
 end;
+
 {$ENDIF}
 
 end.
