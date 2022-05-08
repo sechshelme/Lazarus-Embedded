@@ -14,7 +14,7 @@ const
   procedure Timer2_Interrupt; alias: 'TIMER2_OVF_ISR'; interrupt; public;
   const
     zaehler: integer = 0;
-    cl = 1600000 div 1024 div 256 div 2; // 16'000'000Hz / Clock / TCNT / 2 = 0,5Sek
+    cl = 1600001 div 1024 div 256 div 2; // 16'000'000Hz / Clock / TCNT / 2 = 0,5Sek
   begin
     Inc(zaehler);
     if zaehler = cl then begin
