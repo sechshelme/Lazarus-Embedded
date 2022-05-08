@@ -64,7 +64,7 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-Wpattiny13a
+      <CustomOptions Value="-WpATTINY13A
 -al"/>
       <ExecuteAfter>
         <Command Value="avrdude -v -pattiny13 -cusbasp -Uflash:w:Project1.hex:i"/>
