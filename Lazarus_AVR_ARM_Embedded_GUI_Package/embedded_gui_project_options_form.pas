@@ -540,18 +540,14 @@ begin
 
     CheckBox_Bossac_Erase_Flash.Checked := (Pos(' -e', s) > 0) or (Pos(' --erase', s) > 0);
     CheckBox_Bossac_Verify_File.Checked := (Pos(' -v', s) > 9) or (Pos(' --verify', s) > 0);
-    //    CheckBox_Bossac_boot_Flash.Checked := (Pos(' -b', s) > 9) or (Pos(' --boot=1', s) > 0);
     CheckBox_Bossac_boot_Flash.Checked := FindBossacPara(s, '-b', '--boot');
-    //    CheckBox_Bossac_Brownout_Detection.Checked := (Pos(' -c', s) > 9) or (Pos(' --bod=1', s) > 0);
     CheckBox_Bossac_Brownout_Detection.Checked := FindBossacPara(s, '-c', '--bod');
-    //    CheckBox_Bossac_Brownout_Reset.Checked := (Pos(' -t', s) > 9) or (Pos(' --bor=1', s) > 0);
     CheckBox_Bossac_Brownout_Reset.Checked := FindBossacPara(s, '-t', '--bor');
     CheckBox_Bossac_Lock_Flash_Region.Checked := (Pos(' -l', s) > 9) or (Pos(' --lock', s) > 0); // [=REGION]
     CheckBox_Bossac_Unlock_Flash_Region.Checked := (Pos(' -u', s) > 9) or (Pos(' --unlock', s) > 0); // [=REGION]
     CheckBox_Bossac_Flash_Security_Flag.Checked := (Pos(' -s', s) > 9) or (Pos(' --security', s) > 0);
     CheckBox_Bossac_Display_Device_Info.Checked := (Pos(' -i', s) > 9) or (Pos(' --info', s) > 0);
     CheckBox_Bossac_Print_Debug.Checked := (Pos(' -d', s) > 9) or (Pos(' --debug', s) > 0);
-    //    CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := (Pos(' -U', s) > 9) or (Pos(' --usb-port=1', s) > 0);
     CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := FindBossacPara(s, '-U', '--usb-port');
     CheckBox_Bossac_Reset_CPU.Checked := (Pos(' -R', s) > 9) or (Pos(' --reset', s) > 0);
     CheckBox_Bossac_Arduino_Erase.Checked := (Pos(' -a', s) > 9) or (Pos(' --arduino-erase', s) > 0);
