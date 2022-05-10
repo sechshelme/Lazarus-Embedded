@@ -57,9 +57,19 @@ begin
   Result := '*' + Result + '*';
 end;
 
-function FindPara(const Source: string; Sub: String; InsertFirstSpace: boolean = True): string;
+function FindPara(const Source: string; Sub: string; InsertFirstSpace: boolean = True): string;
 begin
-  Result:= FindPara(Source, [Sub], InsertFirstSpace);
+  Result := FindPara(Source, [Sub], InsertFirstSpace);
+end;
+
+function FindBossacPara(Source, SubShort, SubLong: string): boolean;
+begin
+  Source := Source + ' ';
+  if (Pos(SubShort + ' ', Source) > 0) or (Pos(SubLong + '=1 ', Source) > 0) or (Pos(SubLong + ' ', Source) > 0) then begin
+    Result := True;
+  end else begin
+    Result := False;
+  end;
 end;
 
 { TForm1 }
@@ -68,7 +78,9 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   Memo1.Clear;
   Edit1.Text := '/usr/bin/avrdude -C/etc/av-prdude.conf -v -x           -p           atmega328p -c arduino -P/dev/ttyACM0 -b115200 -U flash:w:Project1.hex:i';
-  Edit1.Text := '/bin/python3 -yhallo -I /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Xtensa/ESP8266/UP_Loader/upload.py --chipesp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Xtensa/ESP8266/Erster_Versuch/Project1.bin';
+  Edit1.Text :=
+    '/bin/python3 -yhallo -I /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Xtensa/ESP8266/UP_Loader/upload.py --chipesp8266 --port /dev/ttyUSB0 --baud 115200 --before default_reset --after hard_reset write_flash 0x0 /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Xtensa/ESP8266/Erster_Versuch/Project1.bin';
+  Edit1.Text := '/bin/bossac -v --boot=1 -s -R -a -w Project1.bin';
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -84,9 +96,20 @@ begin
   Memo1.Lines.Add(FindPara(s, ['-U']));
   Memo1.Lines.Add(FindPara(s, ['-x']));
   Memo1.Lines.Add(FindPara(s, ['--chip', '-c']));
-  Memo1.Lines.Add(FindPara(s, [ '-c','--chip']));
+  Memo1.Lines.Add(FindPara(s, ['-c', '--chip']));
   Memo1.Lines.Add(FindPara(s, ['--port', '-p']));
   Memo1.Lines.Add(FindPara(s, ['--baud', '-b']));
+
+  if FindBossacPara(s, '-b', '--boot') then begin
+    Memo1.Lines.Add('True');
+  end else begin
+    Memo1.Lines.Add('False');
+  end;
+  if FindBossacPara(s, '-c', '--bod') then begin
+    Memo1.Lines.Add('True');
+  end else begin
+    Memo1.Lines.Add('False');
+  end;
 end;
 
 

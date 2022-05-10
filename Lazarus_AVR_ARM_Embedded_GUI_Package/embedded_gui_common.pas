@@ -85,14 +85,14 @@ type
     Com_Interface: record
       Port, Baud, Bits, Parity, StopBits, FlowControl: string;
       TimeOut, TimerInterval: integer;
-    end;
+      end;
     Output: record
       LineBreak: integer;
       AutoScroll, WordWarp: boolean;
       maxRows: integer;
       Font: TFont;
       BKColor: TColor;
-    end;
+      end;
     constructor Create;
     destructor Destroy; override;
     procedure Load_from_XML;
@@ -106,16 +106,16 @@ type
   public
     AVR: record
       avrdudePath, avrdudeConfigPath: TStringList;
-    end;
+      end;
     ARM: record
       STFlashPath, BossacPath: TStringList;
       Raspi_Pico: record
         Unit_Path, cp_Path, mount_Path: TStringList;
+        end;
       end;
-    end;
     ESP: record
       Bootloader_Path, Tools_Path: TStringList;
-    end;
+      end;
     SerialMonitor_Options: TSerialMonitor_Options;
     Templates_Path: TStringList;
     constructor Create;
@@ -129,8 +129,8 @@ type
 
 function FindFPCPara(const Source: string; const Sub: string): string;
 function FindPara(const Source: string; Sub: TStringArray): string;
+function FindBossacPara(Source, SubShort, SubLong: string): boolean;
 
-//function FindPara(const Source: string; const Sub: string; FirstSpace: boolean = True): string;
 function FindVerbose(Source: string): integer;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
@@ -240,9 +240,7 @@ begin
   Result := '';
   i := 0;
   while (i < Length(Sub)) and (Result = '') do begin
-//    if InsertFirstSpace then begin
-      sub[i] := ' ' + Sub[i];
-//    end;
+    sub[i] := ' ' + Sub[i];
     p := pos(Sub[i], Source);
     while Copy(Source, p + Length(Sub[i]), 1) = ' ' do begin
       Inc(p);
@@ -258,6 +256,19 @@ begin
     Inc(i);
   end;
 end;
+
+function FindBossacPara(Source, SubShort, SubLong: string): boolean;
+begin
+  Source := Source + ' ';
+  SubShort := ' ' + SubShort;
+  SubLong := ' ' + SubLong;
+  if (Pos(SubShort + ' ', Source) > 0) or (Pos(SubLong + '=1 ', Source) > 0) or (Pos(SubLong + ' ', Source) > 0) then begin
+    Result := True;
+  end else begin
+    Result := False;
+  end;
+end;
+
 
 function FindVerbose(Source: string): integer;
 var
