@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="12"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <MainUnitHasScaledStatement Value="False"/>
+        <CompatibilityMode Value="True"/>
+      </Flags>
+      <SessionStorage Value="InProjectDir"/>
+      <Title Value="Project1"/>
+      <UseAppBundle Value="False"/>
+      <ResourceType Value="res"/>
+    </General>
+    <CustomData Count="2">
+      <Item0 Name="COM_Port"/>
+      <Item1 Name="SerialMonitorPort"/>
+    </CustomData>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="1">
+        <Mode0 Name="default"/>
+      </Modes>
+    </RunParams>
+    <Units Count="1">
+      <Unit0>
+        <Filename Value="Project1.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="Project1"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="/tmp"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <TargetProcessor Value="AVR51"/>
+      <TargetCPU Value="avr"/>
+      <TargetOS Value="embedded"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <DebugInfoType Value="dsDwarf3"/>
+      </Debugging>
+    </Linking>
+    <Other>
+      <CustomOptions Value="-WpATMEGA128A
+-al"/>
+      <ExecuteAfter>
+        <Command Value="/usr/bin/avrdude -C/etc/avrdude.conf -v -pATMEGA128 -cstk500v1 -P/dev/ttyUSB0 -b19200 -B16 -e -Uflash:w:Project1.hex:i"/>
+        <CompileReasons Compile="False" Build="False"/>
+      </ExecuteAfter>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
