@@ -12,7 +12,7 @@ object Project_Options_Form: TProject_Options_Form
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
     Left = 482
     Height = 25

@@ -465,7 +465,7 @@ end;
 
 procedure TProject_Options_Form.LazProjectToMask(LazProject: TLazProject);
 var
-  s, path, path2, p, bc: string;
+  cmd, PrgPath, PrgName, bc: string;
   sa: TStringArray;
 begin
   // --- FPC Command
@@ -477,60 +477,61 @@ begin
     ComboBox_SubArch.ItemIndex := ComboBox_SubArch.Items.IndexOf(ComboBox_SubArch.Text);
     ComboBox_SubArchChange(nil);
 
-    s := CustomOptions;
-    ComboBox_Controller.Text := FindFPCPara(s, '-Wp');
+    cmd := CustomOptions;
+    ComboBox_Controller.Text := FindFPCPara(cmd, '-Wp');
     ComboBox_Controller.Items.IndexOf(ComboBox_Controller.Text);
-    CheckBox_AsmFile.Checked := Pos('-al', s) > 0;
-    CheckBox_UF2File.Checked := Pos('-Xu', s) > 0;
+    CheckBox_AsmFile.Checked := Pos('-al', cmd) > 0;
+    CheckBox_UF2File.Checked := Pos('-Xu', cmd) > 0;
   end;
 
   // --- Programmer Command
-  s := LazProject.LazCompilerOptions.ExecuteAfter.Command;
-  path := Copy(s, 0, pos(' ', s) - 1);
-  p := UpCase(ExtractFileName(path));
+  cmd := LazProject.LazCompilerOptions.ExecuteAfter.Command;
+  cmd := StringReplace(cmd, '"', '',[rfIgnoreCase, rfReplaceAll]);
+  PrgPath := Copy(cmd, 0, pos(' ', cmd) - 1);
+  PrgName := UpCase(ExtractFileName(PrgPath));
 
   // AVRDude
-  if Pos(UpCase('avrdude'), p) > 0 then begin
+  if Pos(UpCase('avrdude'), PrgName) > 0 then begin
     RadioButton_avrdude.Checked := True;
-    ComboBox_AvrdudePath.Text := path;
-    ComboBox_AvrdudeConfigPath.Text := FindPara(s, ['-C']);
+    ComboBox_AvrdudePath.Text := PrgPath;
+    ComboBox_AvrdudeConfigPath.Text := FindPara(cmd, ['-C']);
 
-    ComboBox_avrdude_Programmer.Text := FindPara(s, ['-c']);
+    ComboBox_avrdude_Programmer.Text := FindPara(cmd, ['-c']);
     with ComboBox_avrdude_COMPort do begin
       Items.CommaText := GetSerialPortNames;
-      Text := FindPara(s, ['-P']);
+      Text := FindPara(cmd, ['-P']);
     end;
 
-    ComboBox_avrdude_COMPortBaud.Text := FindPara(s, ['-b']);
-    Edit_avrdude_Controller.Text := FindPara(s, ['-p']);
+    ComboBox_avrdude_COMPortBaud.Text := FindPara(cmd, ['-b']);
+    Edit_avrdude_Controller.Text := FindPara(cmd, ['-p']);
 
-    ComboBox_avrdude_Verbose.Text := ComboBox_avrdude_Verbose.Items[FindVerbose(s)];
-    bc := FindPara(s, ['-B']);
+    ComboBox_avrdude_Verbose.Text := ComboBox_avrdude_Verbose.Items[FindVerbose(cmd)];
+    bc := FindPara(cmd, ['-B']);
     if bc = '' then begin
       ComboBox_avrrdude_BitClock.Text := '1';
     end else begin
       ComboBox_avrrdude_BitClock.Text := bc;
     end;
 
-    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos(' -D', s) > 0;   // Space vor -D ?????
-    CheckBox_avrdude_Chip_Erase.Checked := pos(' -e', s) > 0;
+    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos(' -D', cmd) > 0;   // Space vor -D ?????
+    CheckBox_avrdude_Chip_Erase.Checked := pos(' -e', cmd) > 0;
   end;
 
   // ST-Link
-  if Pos(UpCase('st-flash'), p) > 0 then begin
+  if Pos(UpCase('st-flash'), PrgName) > 0 then begin
     RadioButton_st_flash.Checked := True;
-    ComboBox_STLinkPath.Text := path;
-    ComboBox_ARM_FlashBase.Text := '0x' + FindPara(s, ['0x']);
+    ComboBox_STLinkPath.Text := PrgPath;
+    ComboBox_ARM_FlashBase.Text := '0x' + FindPara(cmd, ['0x']);
   end;
 
   // Bossac
-  if Pos(UpCase('bossac'), p) > 0 then begin
+  if Pos(UpCase('bossac'), PrgName) > 0 then begin
     RadioButton_Bossac.Checked := True;
-    ComboBox_BossacPath.Text := path;
+    ComboBox_BossacPath.Text := PrgPath;
 
     with ComboBox_Bossac_COMPort do begin
       Items.CommaText := GetSerialPortNames;
-      Text := FindPara(s, ['-p', '--port']);
+      Text := FindPara(cmd, ['-p', '--port']);
       {$IFDEF UNIX}
       if Text <> '' then begin
         Text := '/dev/' + Text;
@@ -538,27 +539,27 @@ begin
       {$ENDIF}
     end;
 
-    CheckBox_Bossac_Erase_Flash.Checked := (Pos(' -e', s) > 0) or (Pos(' --erase', s) > 0);
-    CheckBox_Bossac_Verify_File.Checked := (Pos(' -v', s) > 9) or (Pos(' --verify', s) > 0);
-    CheckBox_Bossac_boot_Flash.Checked := FindBossacPara(s, '-b', '--boot');
-    CheckBox_Bossac_Brownout_Detection.Checked := FindBossacPara(s, '-c', '--bod');
-    CheckBox_Bossac_Brownout_Reset.Checked := FindBossacPara(s, '-t', '--bor');
-    CheckBox_Bossac_Lock_Flash_Region.Checked := (Pos(' -l', s) > 9) or (Pos(' --lock', s) > 0); // [=REGION]
-    CheckBox_Bossac_Unlock_Flash_Region.Checked := (Pos(' -u', s) > 9) or (Pos(' --unlock', s) > 0); // [=REGION]
-    CheckBox_Bossac_Flash_Security_Flag.Checked := (Pos(' -s', s) > 9) or (Pos(' --security', s) > 0);
-    CheckBox_Bossac_Display_Device_Info.Checked := (Pos(' -i', s) > 9) or (Pos(' --info', s) > 0);
-    CheckBox_Bossac_Print_Debug.Checked := (Pos(' -d', s) > 9) or (Pos(' --debug', s) > 0);
-    CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := FindBossacPara(s, '-U', '--usb-port');
-    CheckBox_Bossac_Reset_CPU.Checked := (Pos(' -R', s) > 9) or (Pos(' --reset', s) > 0);
-    CheckBox_Bossac_Arduino_Erase.Checked := (Pos(' -a', s) > 9) or (Pos(' --arduino-erase', s) > 0);
+    CheckBox_Bossac_Erase_Flash.Checked := (Pos(' -e', cmd) > 0) or (Pos(' --erase', cmd) > 0);
+    CheckBox_Bossac_Verify_File.Checked := (Pos(' -v', cmd) > 9) or (Pos(' --verify', cmd) > 0);
+    CheckBox_Bossac_boot_Flash.Checked := FindBossacPara(cmd, '-b', '--boot');
+    CheckBox_Bossac_Brownout_Detection.Checked := FindBossacPara(cmd, '-c', '--bod');
+    CheckBox_Bossac_Brownout_Reset.Checked := FindBossacPara(cmd, '-t', '--bor');
+    CheckBox_Bossac_Lock_Flash_Region.Checked := (Pos(' -l', cmd) > 9) or (Pos(' --lock', cmd) > 0); // [=REGION]
+    CheckBox_Bossac_Unlock_Flash_Region.Checked := (Pos(' -u', cmd) > 9) or (Pos(' --unlock', cmd) > 0); // [=REGION]
+    CheckBox_Bossac_Flash_Security_Flag.Checked := (Pos(' -s', cmd) > 9) or (Pos(' --security', cmd) > 0);
+    CheckBox_Bossac_Display_Device_Info.Checked := (Pos(' -i', cmd) > 9) or (Pos(' --info', cmd) > 0);
+    CheckBox_Bossac_Print_Debug.Checked := (Pos(' -d', cmd) > 9) or (Pos(' --debug', cmd) > 0);
+    CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := FindBossacPara(cmd, '-U', '--usb-port');
+    CheckBox_Bossac_Reset_CPU.Checked := (Pos(' -R', cmd) > 9) or (Pos(' --reset', cmd) > 0);
+    CheckBox_Bossac_Arduino_Erase.Checked := (Pos(' -a', cmd) > 9) or (Pos(' --arduino-erase', cmd) > 0);
   end;
 
   // Rasberry PI Pico
-  if Pos(UpCase('.uf2 '), UpCase(s)) > 0 then begin
+  if Pos(UpCase('.uf2 '), UpCase(cmd)) > 0 then begin
     RadioButton_UF2.Checked := True;
-    //    ComboBox_UF2_UnitPath.Text := path;
-    ComboBox_UF2_cp_Path.Text := path;
-    sa := s.Split(' ');
+    //    ComboBox_UF2_UnitPath.Text := PrgPath;
+    ComboBox_UF2_cp_Path.Text := PrgPath;
+    sa := cmd.Split(' ');
     if Length(sa) >= 3 then begin
       ComboBox_UF2_mount_Path.Text := sa[2];
     end else begin
@@ -567,19 +568,19 @@ begin
   end;
 
   // ESP32 / ESP8266
-  if Pos(UpCase('esptool'), p) > 0 then begin
-    //    if Pos(UpCase('esptool'), p) > 0 then begin
+  if Pos(UpCase('esptool'), PrgName) > 0 then begin
+    //    if Pos(UpCase('esptool'), PrgName) > 0 then begin
     RadioButton_ESP_Tool.Checked := True;
-    ComboBox_ESP_Tool_Path.Text := path;
-    //    ComboBox_ESP_Bootloader_Path.Text := path; ??????????????????
+    ComboBox_ESP_Tool_Path.Text := PrgPath;
+    //    ComboBox_ESP_Bootloader_Path.Text := PrgPath; ??????????????????
 
-    Edit_ESPTool_Chip.Text := FindPara(s, ['-c', '--chip']);
+    Edit_ESPTool_Chip.Text := FindPara(cmd, ['-c', '--chip']);
 
     with ComboBox_ESPTool_COMPort do begin
       Items.CommaText := GetSerialPortNames;
-      Text := FindPara(s, ['-p', '--port']);
+      Text := FindPara(cmd, ['-p', '--port']);
     end;
-    ComboBox_ESPTool_COMPortBaud.Text := FindPara(s, ['-b', '--baud']);
+    ComboBox_ESPTool_COMPortBaud.Text := FindPara(cmd, ['-b', '--baud']);
   end;
 
   RadioButton_Programmer_Change(nil);
@@ -587,7 +588,7 @@ end;
 
 procedure TProject_Options_Form.MaskToLazProject(LazProject: TLazProject);
 var
-  s, s1, sf: string;
+  cmd, s1, sf: string;
   i: integer;
 begin
   // --- FPC_Command
@@ -598,134 +599,135 @@ begin
   end;
   LazProject.LazCompilerOptions.TargetCPU := ComboBox_Arch.Text;
   LazProject.LazCompilerOptions.TargetProcessor := ComboBox_SubArch.Text;
-  s := '-Wp' + ComboBox_Controller.Text;
+  cmd := '-Wp' + ComboBox_Controller.Text;
   if CheckBox_AsmFile.Checked then begin
-    s += LineEnding + '-al';
+    cmd += LineEnding + '-al';
   end;
   if CheckBox_UF2File.Checked then begin
-    s += LineEnding + '-Xu';
+    cmd += LineEnding + '-Xu';
   end;
-  LazProject.LazCompilerOptions.CustomOptions := s;
+  LazProject.LazCompilerOptions.CustomOptions := cmd;
 
   // --- Programmer Command
 
   // AVRDude
   if RadioButton_avrdude.Checked then begin
-    s := ComboBox_AvrdudePath.Text + ' ';
+    cmd := ComboBox_AvrdudePath.Text + ' ';
 
     s1 := ComboBox_AvrdudeConfigPath.Text;
     if s1 <> '' then begin
-      s += '-C' + s1 + ' ';
+      cmd += '-C' + s1 + ' ';
     end;
 
     for i := 0 to ComboBox_avrdude_Verbose.ItemIndex - 1 do begin
-      s += '-v ';
+      cmd += '-v ';
     end;
 
-    s += '-p' + Edit_avrdude_Controller.Text + ' ' + '-c' + ComboBox_avrdude_Programmer.Text + ' ';
+    cmd += '-p' + Edit_avrdude_Controller.Text + ' ' + '-c' + ComboBox_avrdude_Programmer.Text + ' ';
 
     if ComboBox_avrdude_COMPort.Text <> '' then begin
-      s += '-P' + ComboBox_avrdude_COMPort.Text + ' ';
+      cmd += '-P' + ComboBox_avrdude_COMPort.Text + ' ';
     end;
 
     if ComboBox_avrdude_COMPortBaud.Text <> '' then begin
-      s += '-b' + ComboBox_avrdude_COMPortBaud.Text + ' ';
+      cmd += '-b' + ComboBox_avrdude_COMPortBaud.Text + ' ';
     end;
 
     s1 := ComboBox_avrrdude_BitClock.Text;
     if s1 <> '1' then begin
-      s += '-B' + s1 + ' ';
+      cmd += '-B' + s1 + ' ';
     end;
 
     if CheckBox_avrdude_Disable_Auto_Erase.Checked then begin
-      s += '-D ';
+      cmd += '-D ';
     end;
 
     if CheckBox_avrdude_Chip_Erase.Checked then begin
-      s += '-e ';
+      cmd += '-e ';
     end;
 
-    LazProject.LazCompilerOptions.ExecuteAfter.Command := s + '-Uflash:w:' + LazProject.LazCompilerOptions.TargetFilename + '.hex:i';
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd + '-Uflash:w:' + LazProject.LazCompilerOptions.TargetFilename + '.hex:i';
   end;
 
   // ST-Link
   if RadioButton_st_flash.Checked then begin
-    s := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ComboBox_ARM_FlashBase.Text;
-    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+    cmd := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ComboBox_ARM_FlashBase.Text;
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
   end;
 
   // Bossac
   if RadioButton_Bossac.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
-    //    s := ComboBox_BossacPath.Text + sf + ' -w -e -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
-    // /bin/bossac -e -b -s -R -v -w Project1.bin
+    //    cmd := ComboBox_BossacPath.Text + sf + ' -w -e -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
+    // /bin/bossac -e -b -cmd -R -v -w Project1.bin
 
-    s := ComboBox_BossacPath.Text;
+    cmd := ComboBox_BossacPath.Text;
 
     if ComboBox_Bossac_COMPort.Text <> '' then begin
-      s := s + ' --port=' + ExtractFileName(ComboBox_Bossac_COMPort.Text);
+      cmd := cmd + ' --port=' + ExtractFileName(ComboBox_Bossac_COMPort.Text);
     end;
     if CheckBox_Bossac_Erase_Flash.Checked then begin
-      s := s + ' -e';
+      cmd := cmd + ' -e';
     end;
     if CheckBox_Bossac_Verify_File.Checked then begin
-      s := s + ' -v';
+      cmd := cmd + ' -v';
     end;
     if CheckBox_Bossac_boot_Flash.Checked then begin
-      s := s + ' -b';
+      cmd := cmd + ' -b';
     end;
     if CheckBox_Bossac_Brownout_Detection.Checked then begin
-      s := s + ' -c';
+      cmd := cmd + ' -c';
     end;
     if CheckBox_Bossac_Brownout_Reset.Checked then begin
-      s := s + ' -t';
+      cmd := cmd + ' -t';
     end;
     if CheckBox_Bossac_Lock_Flash_Region.Checked then begin
-      s := s + ' -l';
+      cmd := cmd + ' -l';
     end;
     if CheckBox_Bossac_Unlock_Flash_Region.Checked then begin
-      s := s + ' -u';
+      cmd := cmd + ' -u';
     end;
     if CheckBox_Bossac_Flash_Security_Flag.Checked then begin
-      s := s + ' -s';
+      cmd := cmd + ' -s';
     end;
     if CheckBox_Bossac_Display_Device_Info.Checked then begin
-      s := s + ' -i';
+      cmd := cmd + ' -i';
     end;
     if CheckBox_Bossac_Print_Debug.Checked then begin
-      s := s + ' -d';
+      cmd := cmd + ' -d';
     end;
     if CheckBox_Bossac_Override_USB_Port_Autodetection.Checked then begin
-      s := s + ' -U';
+      cmd := cmd + ' -U';
     end;
     if CheckBox_Bossac_Reset_CPU.Checked then begin
-      s := s + ' -R';
+      cmd := cmd + ' -R';
     end;
     if CheckBox_Bossac_Arduino_Erase.Checked then begin
-      s := s + ' -a';
+      cmd := cmd + ' -a';
     end;
 
-    s := s + ' -w ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
+    cmd := cmd + ' -w ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
 
-    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
   end;
 
   // Rasberry PI Pico
   if RadioButton_UF2.Checked then begin
     sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
-    s := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
-    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+    cmd := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
 
     LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
   end;
 
   // ESP32 / ESP8266
+//  https://github.com/espressif/esptool/blob/master/esptool/__init__.py
   if RadioButton_ESP_Tool.Checked then begin
-    //    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
+    //    cmd := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
     //      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin';
-    s := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' + ComboBox_ESP_Bootloader_Path.Text +
+    cmd := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' + ComboBox_ESP_Bootloader_Path.Text +
       '/bootloader.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
-    LazProject.LazCompilerOptions.ExecuteAfter.Command := s;
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
   end;
 
 end;
