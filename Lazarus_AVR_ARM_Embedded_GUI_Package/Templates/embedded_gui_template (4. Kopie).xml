@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Boards>
+    <Board Caption="Arduino UNO" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyACM0" Baud="115200" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
+        <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyUSB0" Baud="57600" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
+        <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="Arduino Nano" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="arduino" COM_Port="/dev/ttyUSB0" Baud="115200" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
+        <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="Arduino Mega" Arch="avr" SubArch="AVR6" Controller="atmega2560" Programmer="avrdude">
+      <avrdude Controller="atmega2560" Programmer="wiring" COM_Port="/dev/ttyUSB0" Baud="115200" Disable_Auto_Erase="True" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega2560/Blink_Pin_13.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="Arduino Nano Every" Arch="avr" SubArch="AVR6" Controller="atmega4808" Programmer="avrdude">
+      <avrdude Controller="atmega4808" Programmer="jtag2updi" COM_Port="/dev/ttyUSB0" Baud="115200" Disable_Auto_Erase="True" Chip_Erase="True"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ATtiny 13A" Arch="avr" SubArch="AVR25" Controller="attiny13a" Programmer="avrdude">
+      <avrdude Controller="attiny13" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ATtiny 5" Arch="avr" SubArch="AVRtiny" Controller="attiny5" Programmer="avrdude">
+      <avrdude Controller="attiny5" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink" SourceFile="AVR/ATtiny5/Blink.pas"/>
+        <Example Caption="Blink Timer" SourceFile="AVR/ATtiny5/Blink_Timer.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ATtiny 2313A" Arch="avr" SubArch="AVR25" Controller="attiny2313a" Programmer="avrdude">
+      <avrdude Controller="attiny2313" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ATmega 328P" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
+      <avrdude Controller="atmega328p" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase=""/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="AVR/ATmega328/Blink_Pin_13.pas"/>
+        <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
+        <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
+        <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="STM32F103X8" Arch="arm" SubArch="ARMV7M" Controller="STM32F103X8" Programmer="st-flash">
+      <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase="0x08000000"/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="ARM/ARMV7M/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="ARM/ARMV7M/STM32F103C/Blink_Pin_13.pas"/>
+        <Example Caption="Blink Pin 13 Timer" SourceFile="ARM/ARMV7M/STM32F103C/Blink_Pin_13_Timer.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="Arduino DUE" Arch="arm" SubArch="ARMV7M" Controller="ATSAM3X8E" Programmer="bossac">
+      <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase="0x080000"/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="True" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="True" Print_Debug="False" Reset_CPU="True" Verify_File="True" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="True"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="ARM/ARMV7M/ArduinoDUE/Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="ARM/ARMV7M/ArduinoDUE/Blink_Pin_13.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="Rasberry Pico" Arch="arm" SubArch="ARMV6M" Controller="RASPI_PICO" Programmer="uf2">
+      <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase="0x00000000"/>
+      <bossac COM_Port="/dev/ttyACM0" Erase_Flash="False" Boot_from_FLASH="True" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="" COM_Port="" Baud=""/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="ARM/ARMV6M/Rasperry_Pico/Default.pas"/>
+      </Examples>
+    </Board>
+    <Board Caption="ESP8266" Arch="xtensa" SubArch="lx106" Controller="esp8266" Programmer="ESPTool">
+      <avrdude Controller="" Programmer="" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False"/>
+      <stlink FlashBase="0x00000000"/>
+      <bossac COM_Port="" Erase_Flash="False" Boot_from_FLASH="False" Brownout_Detection="False" Lock_Flash_Region="False" Flash_Security_Flag="False" Print_Debug="False" Reset_CPU="False" Verify_File="False" Brownout_Reset="False" Unlock_Flash_Region="False" Display_Device_Info="False" Override_USB_Port_Autodetection="False" Arduino_Erase="False"/>
+      <ESPTool Chip="esp8266" COM_Port="/dev/ttyUSB0" Baud="115200"/>
+      <Examples>
+        <Example Caption="Blank" SourceFile="Blank.pas"/>
+        <Example Caption="Default" SourceFile="Default.pas"/>
+        <Example Caption="Blink Pin 13" SourceFile="/Xtensa/ESP8266/Blink_Pin_13.pas"/>
+      </Examples>
+    </Board>
+  </Boards>
+</CONFIG>

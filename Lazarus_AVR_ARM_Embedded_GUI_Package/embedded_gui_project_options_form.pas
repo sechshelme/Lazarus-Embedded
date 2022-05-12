@@ -25,6 +25,7 @@ type
   { TProject_Options_Form }
 
   TProject_Options_Form = class(TForm)
+    CheckBox_avrdude_Override_signature_check: TCheckBox;
     CheckBox_Bossac_Arduino_Erase: TCheckBox;
     ComboBox_ARM_FlashBase: TComboBox;
     BitBtn1_Auto_avrdude_Controller: TBitBtn;
@@ -333,6 +334,7 @@ begin
 
   CheckBox_avrdude_Disable_Auto_Erase.Checked := False;
   CheckBox_avrdude_Chip_Erase.Checked := False;
+  CheckBox_avrdude_Override_signature_check.Checked := False;
 
   // ST-Link
   if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
@@ -513,8 +515,9 @@ begin
       ComboBox_avrrdude_BitClock.Text := bc;
     end;
 
-    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos(' -D', cmd) > 0;   // Space vor -D ?????
+    CheckBox_avrdude_Disable_Auto_Erase.Checked := pos(' -D', cmd) > 0;
     CheckBox_avrdude_Chip_Erase.Checked := pos(' -e', cmd) > 0;
+    CheckBox_avrdude_Override_signature_check.Checked := pos(' -F', cmd) > 0;
   end;
 
   // ST-Link
@@ -646,6 +649,10 @@ begin
       cmd += '-e ';
     end;
 
+    if CheckBox_avrdude_Override_signature_check.Checked then begin
+      cmd += '-F ';
+    end;
+
     LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd + '-Uflash:w:' + LazProject.LazCompilerOptions.TargetFilename + '.hex:i';
   end;
 
@@ -767,6 +774,7 @@ begin
       ComboBox_avrdude_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
       CheckBox_avrdude_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
       CheckBox_avrdude_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
+      CheckBox_avrdude_Override_signature_check.Checked := TemplatesPara[index].avrdude.Override_Signature_Check;
 
       // ST-Link
       ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;

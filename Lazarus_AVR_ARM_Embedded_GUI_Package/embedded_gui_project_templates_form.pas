@@ -26,7 +26,8 @@ type
       COM_Port,
       Baud: string;
       Disable_Auto_Erase,
-      Chip_Erase: boolean;
+      Chip_Erase,
+      Override_Signature_Check: boolean;
     end;
     stlink: record
       FlashBase: string;
@@ -117,6 +118,7 @@ begin
           Baud := Cfg.GetValue(PKey + 'Baud', '');
           Disable_Auto_Erase := Cfg.GetValue(PKey + 'Disable_Auto_Erase', False);
           Chip_Erase := Cfg.GetValue(PKey + 'Chip_Erase', False);
+          Override_Signature_Check := Cfg.GetValue(PKey + 'Override_Signature_Check', False);
         end;
         with stlink do begin
           PKey := BoardKey + 'stlink/';
@@ -177,6 +179,7 @@ begin
           Cfg.SetValue(PKey + 'Baud', Baud);
           Cfg.SetValue(PKey + 'Disable_Auto_Erase', Disable_Auto_Erase);
           Cfg.SetValue(PKey + 'Chip_Erase', Chip_Erase);
+          Cfg.SetValue(PKey + 'Override_Signature_Check', Override_Signature_Check);
         end;
         with stlink do begin
           PKey := BoardKey + 'stlink/';

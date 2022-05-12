@@ -6,13 +6,14 @@ program Project1;
 
 const
   BP5 = 5; // Pin 13 des Arduino
-  sl = 20001;
+  sl = 2001;
 
   procedure mysleep(t: int32);
   var
-    i: Int32;
+    i: int32;
   begin
-    for i := 0 to t do begin
+    for i := 0 to t do
+    begin
       asm
                NOP;
       end;
@@ -20,24 +21,24 @@ const
   end;
 
 begin
-//  DDRB := DDRB or (1 shl BP5);
-//  ddra:=$FF;
-//  ddrb:=$FF;
-//  ddrc:=$FF;
-  ddra:=$FF;
+  //  DDRB := DDRB or (1 shl BP5);
+  //  ddra:=$FF;
+  //  ddrb:=$FF;
+  //  ddrc:=$FF;
+  DDRA := $FF;
   repeat
-//    PORTB := PORTB or (1 shl BP5);
-//    porta:=$FF;
-//    portb:=$FF;
-//    portc:=$FF;
-    porta:=%10101010;
+    //    PORTB := PORTB or (1 shl BP5);
+    //    porta:=$FF;
+    //    portb:=$FF;
+    //    portc:=$FF;
+    PORTA := %10101010;
     mysleep(sl);
 
-//    PORTB := PORTB and not (1 shl BP5);
-//    porta:=$00;
-//    portb:=$00;
-//    portc:=$00;
-porta:=%01010101;
+    //    PORTB := PORTB and not (1 shl BP5);
+    //    porta:=$00;
+    //    portb:=$00;
+    //    portc:=$00;
+    PORTA := %01010101;
     mysleep(sl);
   until False;
 end.

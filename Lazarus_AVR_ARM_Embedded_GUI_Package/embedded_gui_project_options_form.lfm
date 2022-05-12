@@ -12,7 +12,7 @@ object Project_Options_Form: TProject_Options_Form
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefaultPosOnly
-  LCLVersion = '2.3.0.0'
+  LCLVersion = '2.1.0.0'
   object TemplatesButton: TButton
     Left = 482
     Height = 25
@@ -129,9 +129,9 @@ object Project_Options_Form: TProject_Options_Form
       Height = 580
       Top = 40
       Width = 744
-      ActivePage = TabSheet_stflash
+      ActivePage = TabSheet_avrdude
       Anchors = [akTop, akLeft, akRight, akBottom]
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 4
       object TabSheet_avrdude: TTabSheet
         Caption = 'AVRDude'
@@ -332,6 +332,14 @@ object Project_Options_Form: TProject_Options_Form
           Width = 173
           Caption = 'Perform a chip erase. (-e)'
           TabOrder = 8
+        end
+        object CheckBox_avrdude_Override_signature_check: TCheckBox
+          Left = 16
+          Height = 23
+          Top = 440
+          Width = 242
+          Caption = 'Override invalid signature check. (-F)'
+          TabOrder = 9
         end
       end
       object TabSheet_stflash: TTabSheet
