@@ -47,7 +47,7 @@
       <UnitOutputDirectory Value="/tmp"/>
     </SearchPaths>
     <CodeGeneration>
-      <TargetProcessor Value="AVR51"/>
+      <TargetProcessor Value="AVR5"/>
       <TargetCPU Value="avr"/>
       <TargetOS Value="embedded"/>
     </CodeGeneration>
@@ -58,10 +58,10 @@
       </Debugging>
     </Linking>
     <Other>
-      <CustomOptions Value="-WpATMEGA128A
+      <CustomOptions Value="-WpATMEGA64
 -al"/>
       <ExecuteAfter>
-        <Command Value="/usr/bin/avrdude -C/etc/avrdude.conf -v -pATMEGA128 -cstk500v1 -P/dev/ttyUSB0 -b19200 -B16 -e -Uflash:w:Project1.hex:i"/>
+        <Command Value="/usr/bin/avrdude -C/etc/avrdude.conf -v -pATMEGA64 -cusbasp -B16 -e -Uflash:w:Project1.hex:i"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>
