@@ -5,14 +5,14 @@ unit Embedded_GUI_Project_Templates_Form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons, LCLType,
   Laz2_XMLCfg,
   Embedded_GUI_IDE_Options_Frame,
-  Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const;
+  Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const, Types;
 
 type
   TTemplatesPara = record
-    Name,
+    Caption:String;
     Arch,
     SubArch,
     Controller: string;
@@ -105,7 +105,7 @@ begin
       BoardKey := 'Boards/Board[' + i.ToString + ']/';
 
       with TemplatesPara[i - 1] do begin
-        Name := Cfg.GetValue(BoardKey + 'Caption', '');
+        Caption := Cfg.GetValue(BoardKey + 'Caption', '');
         Arch := Cfg.GetValue(BoardKey + 'Arch', '');
         SubArch := Cfg.GetValue(BoardKey + 'SubArch', '');
         Controller := Cfg.GetValue(BoardKey + 'Controller', '');
@@ -166,7 +166,7 @@ begin
       BoardKey := 'Boards/Board[' + i.ToString + ']/';
 
       with TemplatesPara[i - 1] do begin
-        Cfg.SetValue(BoardKey + 'Caption', Name);
+        Cfg.SetValue(BoardKey + 'Caption', Caption);
         Cfg.SetValue(BoardKey + 'Arch', Arch);
         Cfg.SetValue(BoardKey + 'SubArch', SubArch);
         Cfg.SetValue(BoardKey + 'Controller', Controller);
@@ -218,7 +218,7 @@ begin
 
 
     for index := 0 to Length(TemplatesPara) - 1 do begin
-      ListBox_Template.Items.AddStrings(TemplatesPara[index].Name);
+      ListBox_Template.Items.AddStrings(TemplatesPara[index].Caption);
     end;
     if ListBox_Template.Count >= 1 then begin
       ListBox_Template.ItemIndex := 0;

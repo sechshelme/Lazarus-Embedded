@@ -110,15 +110,15 @@
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
       </Examples>
     </Board>
-    <Board Caption="ATmega 128A" Arch="avr" SubArch="AVR51" Controller="atmega128a" Programmer="avrdude">
-      <avrdude Controller="atmega128" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False" Override_Signature_Check="True"/>
+    <Board Caption="ATmega 64" Arch="avr" SubArch="AVR51" Controller="atmega64" Programmer="avrdude">
+      <avrdude Controller="atmega64" Programmer="usbasp" COM_Port="" Baud="" Disable_Auto_Erase="False" Chip_Erase="False" Override_Signature_Check="False"/>
       <stlink FlashBase=""/>
       <bossac COM_Port="" Erase_Flash="False" Verify_File="False" Boot_from_FLASH="False" Brownout_Reset="False" Brownout_Detection="False" Lock_Flash_Region="False" Unlock_Flash_Region="False" Flash_Security_Flag="False" Display_Device_Info="False" Print_Debug="False" Override_USB_Port_Autodetection="False" Reset_CPU="False" Arduino_Erase="False"/>
       <ESPTool Chip="" COM_Port="" Baud=""/>
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
-        <Example Caption="Blink Pin D3/D4" SourceFile="/AVR/ATmega128/Blink_Pin_D3_D4.pas"/>
+        <Example Caption="Blink Pin A0/A1" SourceFile="/AVR/ATmega64/Blink_Pin_A0_A1.pas"/>
       </Examples>
     </Board>
     <Board Caption="STM32F103X8" Arch="arm" SubArch="ARMV7M" Controller="STM32F103X8" Programmer="st-flash">

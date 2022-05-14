@@ -1,12 +1,11 @@
-// Blink Pin D3/D4
+// Blink Pin A0/A1
 
 program Project1;
 
 {$H-,J-,O-}
 
 const
-  BP5 = 5; // Pin 13 des Arduino
-  sl = 2001;
+  sl = 2000;
 
   procedure mysleep(t: int32);
   var
@@ -20,25 +19,18 @@ const
     end;
   end;
 
+var
+  Pin: bitpacked array  [0..7] of boolean absolute PORTA;
+
 begin
-  //  DDRB := DDRB or (1 shl BP5);
-  //  ddra:=$FF;
-  //  ddrb:=$FF;
-  //  ddrc:=$FF;
-  DDRA := $FF;
+  DDRA := %11;
   repeat
-    //    PORTB := PORTB or (1 shl BP5);
-    //    porta:=$FF;
-    //    portb:=$FF;
-    //    portc:=$FF;
-    PORTA := %10101010;
+    Pin[0] := True;
+    Pin[1] := False;
     mysleep(sl);
 
-    //    PORTB := PORTB and not (1 shl BP5);
-    //    porta:=$00;
-    //    portb:=$00;
-    //    portc:=$00;
-    PORTA := %01010101;
+    Pin[0] := False;
+    Pin[1] := True;
     mysleep(sl);
   until False;
 end.

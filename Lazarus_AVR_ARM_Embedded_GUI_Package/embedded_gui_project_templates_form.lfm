@@ -1,7 +1,7 @@
 object ProjectTemplatesForm: TProjectTemplatesForm
-  Left = 2175
+  Left = 2533
   Height = 548
-  Top = 623
+  Top = 58
   Width = 674
   Caption = 'ProjectTemplatesForm'
   ClientHeight = 548
