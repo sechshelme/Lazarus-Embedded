@@ -5,8 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Laz2_DOM, laz2_XMLRead;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Grids,
+  Laz2_DOM, laz2_XMLRead, Types;
 
 type
 
@@ -15,7 +15,10 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Memo1: TMemo;
+    StringGrid1: TStringGrid;
     procedure Button1Click(Sender: TObject);
+    procedure StringGrid1DrawCell(Sender: TObject; aCol, aRow: integer; aRect: TRect; aState: TGridDrawState);
+    procedure StringGrid1PrepareCanvas(Sender: TObject; aCol, aRow: integer; aState: TGridDrawState);
   private
 
   public
@@ -36,9 +39,12 @@ var
   xml: TXMLDocument;
   n, signalDOMNode, instanceDOMNode, moduleDOMNode, DOMNode: TDOMNode;
   Attribut: TDOMNamedNodeMap;
-  i, c: integer;
+  index, i, c: integer;
   s: string;
+  cellText: TStringList;
 begin
+  index := 0;
+  cellText := TStringList.Create;
   ReadXMLFile(xml, 'ATmega328.xml');
   DOMNode := xml.DocumentElement.FindNode('variants');
   DOMNode := DOMNode.FindNode('variant');
@@ -61,6 +67,7 @@ begin
 
   while moduleDOMNode <> nil do begin
     if moduleDOMNode.HasAttributes then begin
+      cellText.Add(moduleDOMNode.Attributes.Item[0].NodeValue);
       Memo1.Lines.Add('module: ' + moduleDOMNode.Attributes.Item[0].NodeValue);
     end;
 
@@ -85,8 +92,9 @@ begin
               s := s + '     ' + n.NodeName + ': ' + n.NodeValue;
 
             end;
-            Memo1.Lines.Add(s);
+            cellText.Add(s);
 
+            Memo1.Lines.Add(s);
           end;
 
           signalDOMNode := signalDOMNode.NextSibling;
@@ -97,9 +105,32 @@ begin
     end;
 
     moduleDOMNode := moduleDOMNode.NextSibling;
-  end;
 
+    StringGrid1.ColWidths[0] := 500;
+    StringGrid1.RowHeights[index] := cellText.Count * 20;
+    StringGrid1.RowCount := StringGrid1.RowCount + 1;
+    StringGrid1.Rows[index].Add(cellText.Text);
+    cellText.Clear;
+    Inc(index);
+  end;
+  Caption := StringGrid1.Canvas.Font.Height.ToString;
+
+  cellText.Free;
   xml.Free;
+end;
+
+procedure TForm1.StringGrid1DrawCell(Sender: TObject; aCol, aRow: integer; aRect: TRect; aState: TGridDrawState);
+begin
+  //  StringGrid1.Rows[2].;
+  //   StringGrid1.Canvas.Line(aRect.Left,aRect.Top,aRect.Right,aRect.Bottom);
+end;
+
+procedure TForm1.StringGrid1PrepareCanvas(Sender: TObject; aCol, aRow: integer; aState: TGridDrawState);
+begin
+  with StringGrid1.Canvas.TextStyle do begin
+    SingleLine := False;
+    Wordbreak := False;
+  end;
 end;
 
 end.
