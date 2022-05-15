@@ -43,9 +43,10 @@ var
   s: string;
   cellText: TStringList;
 begin
-  index := 0;
+  index := 1;
   cellText := TStringList.Create;
-  ReadXMLFile(xml, 'ATmega328.xml');
+  ReadXMLFile(xml, '/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Tools/AVR_XML_to_Fuse_Const/XML/ATmega328P.xml');
+  ReadXMLFile(xml, '/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Tools/AVR_XML_to_Fuse_Const/XML/ATmega2560.xml');
   DOMNode := xml.DocumentElement.FindNode('variants');
   DOMNode := DOMNode.FindNode('variant');
 
@@ -74,6 +75,14 @@ begin
     instanceDOMNode := moduleDOMNode.FindNode('instance');
 
     while instanceDOMNode <> nil do begin
+
+      if instanceDOMNode.HasAttributes then begin
+        cellText.Add('  ' + instanceDOMNode.Attributes.Item[0].NodeValue);
+        Memo1.Lines.Add('instance: ' + instanceDOMNode.Attributes.Item[0].NodeValue);
+      end;
+
+
+
       c := instanceDOMNode.ChildNodes.Count;
       Memo1.Lines.Add('  instance: ' + c.ToString);
 
@@ -85,7 +94,7 @@ begin
           Memo1.Lines.Add('    signal: ' + c.ToString);
 
           if signalDOMNode.HasAttributes then begin
-            s := '';
+            s := '  ';
             Attribut := signalDOMNode.Attributes;
             for i := 0 to Attribut.Length - 1 do begin
               n := Attribut.Item[i];
@@ -107,7 +116,7 @@ begin
     moduleDOMNode := moduleDOMNode.NextSibling;
 
     StringGrid1.ColWidths[0] := 500;
-    StringGrid1.RowHeights[index] := cellText.Count * 20;
+    StringGrid1.RowHeights[index] := cellText.Count * 16;
     StringGrid1.RowCount := StringGrid1.RowCount + 1;
     StringGrid1.Rows[index].Add(cellText.Text);
     cellText.Clear;
