@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <Form_AVR_Fuse>
-    <FormPos Left="1417" Top="394" Width="961" Height="723"/>
+    <FormPos Left="1417" Top="119" Width="1243" Height="998"/>
   </Form_AVR_Fuse>
   <Form_AVR_Fuse_Burn>
     <FormPos Left="542" Top="428" Width="541" Height="458"/>

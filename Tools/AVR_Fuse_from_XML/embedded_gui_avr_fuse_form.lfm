@@ -8,7 +8,7 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
   ClientWidth = 657
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.2.0.4'
   object PageControl1: TPageControl
     Left = 0
     Height = 470
@@ -21,7 +21,8 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
     Left = 16
     Height = 27
     Top = 8
-    Width = 328
+    Width = 632
+    Anchors = [akTop, akLeft, akRight]
     ItemHeight = 0
     OnChange = ComboBox1Change
     TabOrder = 1
@@ -33,7 +34,6 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
     Top = 527
     Width = 1
     Anchors = [akLeft, akBottom]
-    ParentColor = False
   end
   object Button_Close: TButton
     Left = 571

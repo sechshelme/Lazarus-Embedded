@@ -9,7 +9,7 @@ uses
   ExtCtrls, FileUtil, LazFileUtils, laz2_XMLRead, laz2_DOM, SynEdit,
   SynHighlighterPas,
   Insert_Default_Fuse,
-  Embedded_GUI_AVR_Fuse_Const,
+//  Embedded_GUI_AVR_Fuse_Const,
   Embedded_GUI_Common;
 
 type
@@ -180,7 +180,8 @@ begin
   sl.Add('const');
   sl.Add('  AVR_Fuse_Data: TAVR_Fuse_Data = (');
 
-  fl := FindAllFiles('XML', '*.XML', False);
+//  fl := FindAllFiles('XML', '*.XML', False);
+  fl := FindAllFiles('/n4800/Download/Linux/Atmel', '*.atdf', True);
   fl.Sorted := True;
   for i := 0 to fl.Count - 1 do begin
     ReadXMLFile(doc, fl[i]);
@@ -232,11 +233,17 @@ begin
         end;
         Node_Module := Node_Module.NextSibling;
       end;
+
     end;
 
-    doc.Free;
     sl[sl.Count - 1] := StringReplace(sl[sl.Count - 1], '),', '))),', []);
-    DefaultFuse.Insert(path);
+
+    if Pos('Fuses:(', sl[sl.Count - 1]) > 0 then begin
+      sl[sl.Count - 1] := sl[sl.Count - 1] + '{leer})),';
+    end;
+
+//    DefaultFuse.Insert(path);
+    doc.Free;
   end;
 
   s := sl[sl.Count - 1];

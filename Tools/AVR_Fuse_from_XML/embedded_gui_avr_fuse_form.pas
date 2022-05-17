@@ -121,7 +121,8 @@ begin
   ComboBox1.Sorted := True;
   ComboBox1.Style := csOwnerDrawFixed;
 
-  fl := FindAllFiles('../AVR_XML_to_Fuse_Const/XML', '*.XML', False);
+//  fl := FindAllFiles('../AVR_XML_to_Fuse_Const/XML', '*.XML', False);
+  fl := FindAllFiles('/n4800/Download/Linux/Atmel', '*.atdf', True);
   for i := 0 to fl.Count - 1 do begin
     ComboBox1.Items.Add(fl[i]);
   end;
