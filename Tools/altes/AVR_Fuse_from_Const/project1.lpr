@@ -6,9 +6,9 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   cthreads, {$ENDIF} {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  XML_To_Fuse,
-  Embedded_GUI_AVR_Fuse_Common, Embedded_GUI_AVR_Default_Fuse_Const,
-Insert_Default_Fuse;
+  Embedded_GUI_AVR_Fuse_Form,
+  Embedded_GUI_AVR_Fuse_Common,
+Embedded_GUI_AVR_Fuse_TabSheet, Embedded_GUI_Common;
 
 {$R *.res}
 

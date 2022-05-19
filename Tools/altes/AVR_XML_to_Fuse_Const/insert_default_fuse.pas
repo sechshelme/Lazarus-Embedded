@@ -23,11 +23,11 @@ type
 
 implementation
 
-uses
-  Embedded_GUI_AVR_Default_Fuse_Const;
+//uses
+//  Embedded_GUI_AVR_Default_Fuse_Const;
 
 const
-  UName = '../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_avr_default_fuse_const.pas';
+  UName = 'embedded_gui_avr_default_fuse_const.pas';
 
 { TInsertDefaultFuse }
 

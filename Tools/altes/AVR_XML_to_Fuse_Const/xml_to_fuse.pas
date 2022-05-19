@@ -181,7 +181,7 @@ begin
   sl.Add('  AVR_Fuse_Data: TAVR_Fuse_Data = (');
 
 //  fl := FindAllFiles('XML', '*.XML', False);
-  fl := FindAllFiles('/n4800/Download/Linux/Atmel', '*.atdf', True);
+  fl := FindAllFiles('../../AVR_Fuse_from_XML/XML', '*.atdf', True);
   fl.Sorted := True;
   for i := 0 to fl.Count - 1 do begin
     ReadXMLFile(doc, fl[i]);
@@ -242,7 +242,7 @@ begin
       sl[sl.Count - 1] := sl[sl.Count - 1] + '{leer})),';
     end;
 
-//    DefaultFuse.Insert(path);
+    DefaultFuse.Insert(path);
     doc.Free;
   end;
 
@@ -256,7 +256,7 @@ begin
   sl.Add('begin');
   sl.Add('end.');
 
-  sl.SaveToFile('../../Lazarus_AVR_ARM_Embedded_GUI_Package/' + LowerCase(UName) + '.pas');
+  sl.SaveToFile(LowerCase(UName) + '.pas');
   SynEdit1.Lines.Text := sl.Text;
 
   sl.Free;

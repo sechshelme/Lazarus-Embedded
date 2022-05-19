@@ -26,60 +26,48 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="1">
       <Item1>
-        <PackageName Value="SynEdit"/>
-      </Item1>
-      <Item2>
         <PackageName Value="LCL"/>
-      </Item2>
+      </Item1>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="7">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="embedded_gui_avr_fuse_burn_form.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form_AVR_Fuse_Burn"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Embedded_GUI_AVR_Fuse_Burn_Form"/>
-      </Unit1>
-      <Unit2>
         <Filename Value="embedded_gui_avr_fuse_common.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Embedded_GUI_AVR_Fuse_Common"/>
-      </Unit2>
-      <Unit3>
-        <Filename Value="xml_to_fuse.pas"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="embedded_gui_avr_fuse_form.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form_AVR_Fuse"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="XML_To_Fuse"/>
-      </Unit3>
-      <Unit4>
+        <UnitName Value="Embedded_GUI_AVR_Fuse_Form"/>
+      </Unit2>
+      <Unit3>
         <Filename Value="embedded_gui_avr_fuse_tabsheet.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Embedded_GUI_AVR_Fuse_TabSheet"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../AVR_XML_to_Fuse_Const/embedded_gui_avr_default_fuse_const.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="embedded_gui_avr_default_fuse_const.pas"/>
+        <Filename Value="../AVR_XML_to_Fuse_Const/embedded_gui_avr_fuse_const.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Embedded_GUI_AVR_Default_Fuse_Const"/>
+        <UnitName Value="Embedded_GUI_AVR_Fuse_Const"/>
       </Unit5>
       <Unit6>
-        <Filename Value="insert_default_fuse.pas"/>
+        <Filename Value="../../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_common.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Insert_Default_Fuse"/>
+        <UnitName Value="Embedded_GUI_Common"/>
       </Unit6>
-      <Unit7>
-        <Filename Value="../../Lazarus_AVR_ARM_Embedded_GUI_Package/embedded_gui_avr_default_fuse_const.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Embedded_GUI_AVR_Default_Fuse_Const"/>
-      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -89,7 +77,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="../../Lazarus_AVR_ARM_Embedded_GUI_Package"/>
+      <OtherUnitFiles Value="../../Lazarus_Arduino_AVR_GUI_Package;../../Lazarus_AVR_ARM_Embedded_GUI_Package;../AVR_XML_to_Fuse_Const;../../../Lazarus_AVR_ARM_Embedded_GUI_Package"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

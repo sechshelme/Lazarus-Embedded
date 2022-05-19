@@ -8,14 +8,13 @@ object Form_AVR_Fuse: TForm_AVR_Fuse
   ClientWidth = 393
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.2.0.4'
   object Label1: TLabel
     Left = 45
     Height = 1
     Top = 151
     Width = 1
     Anchors = [akLeft, akBottom]
-    ParentColor = False
   end
   object Button_Close: TButton
     Left = 307
