@@ -48,6 +48,8 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  Shape1.Brush.Color := clGreen;
+  Chart1.DoubleBuffered := True;
   Randomize;
   Chart1.DoubleBuffered := True;
   Chart1.BottomAxis.Intervals.MaxLength := 100;
@@ -84,7 +86,7 @@ begin
   Timer1.Enabled := ToggleBox1.Checked;
 end;
 
-function TForm1.GetVoltage: single;
+function TForm1.GetVoltage: single; // Simuliert eine Spannungsmessung
 const
   LastVoltage: single = 10.0;
 begin
