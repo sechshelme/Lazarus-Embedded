@@ -1,0 +1,88 @@
+object Form1: TForm1
+  Left = 2139
+  Height = 324
+  Top = 479
+  Width = 346
+  Caption = 'Form1'
+  ClientHeight = 324
+  ClientWidth = 346
+  OnCreate = FormCreate
+  Position = poDefault
+  LCLVersion = '2.2.0.4'
+  object Chart1: TChart
+    Left = 16
+    Height = 240
+    Top = 16
+    Width = 264
+    AxisList = <    
+      item
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelFont.Orientation = 900
+        Title.LabelBrush.Style = bsClear
+      end    
+      item
+        Alignment = calBottom
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelBrush.Style = bsClear
+      end>
+    Title.Text.Strings = (
+      'TAChart'
+    )
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    object Chart1LineSeries1: TLineSeries
+    end
+  end
+  object ToggleBox1: TToggleBox
+    Left = 141
+    Height = 25
+    Top = 280
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Messen'
+    OnClick = ToggleBox1Click
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 254
+    Height = 25
+    Top = 280
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Beenden'
+    ModalResult = 11
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Shape1: TShape
+    Left = 288
+    Height = 41
+    Top = 32
+    Width = 41
+    Anchors = [akTop, akRight]
+    Shape = stCircle
+  end
+  object Panel1: TPanel
+    Left = 24
+    Height = 35
+    Top = 272
+    Width = 96
+    Caption = '0.00V'
+    Color = clBlack
+    Font.Color = clYellow
+    Font.Height = -27
+    Font.Name = 'Ubuntu Mono'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Timer1Timer
+    Left = 288
+    Top = 104
+  end
+end
