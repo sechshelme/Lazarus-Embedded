@@ -68,6 +68,7 @@ object Form1: TForm1
     Height = 35
     Top = 272
     Width = 96
+    Anchors = [akLeft, akBottom]
     Caption = '0.00V'
     Color = clBlack
     Font.Color = clYellow
