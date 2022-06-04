@@ -5,7 +5,7 @@ program Project1;
 {$H-,J-,O-}
 
 const
-  sl = 2000;
+  sl = 20000;
 
   procedure mysleep(t: int32);
   var
@@ -20,7 +20,7 @@ const
   end;
 
 var
-  Pin: bitpacked array  [0..7] of boolean absolute PORTA;
+  Pin: bitpacked array [0..7] of boolean absolute PORTA;
 
 begin
   DDRA := %11;
