@@ -13,7 +13,7 @@ Die Package befindet sich unter: <b>Lazarus_AVR_ARM_Embedded_GUI_Package</b>
 <br><br><br>
 
 
-<b> Lazarus Arduino/ AVR / STM32 / ARM GUI </b> (german)
+<b> Lazarus Arduino/ AVR / STM32 / ARM GUI </b> (english)
 
 With this package, Lazarus is extended with a GUI for embedded systems.
 With this you can easily set parameters for an embedded project, including the flasher call.
