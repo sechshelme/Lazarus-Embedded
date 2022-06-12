@@ -14,6 +14,9 @@
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
         <Example Caption="Multi Functions Shield - 4LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED.pas"/>
+        <Example Caption="Multi Functions Shield - 4LED with array" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED_array.pas"/>
+        <Example Caption="Multi Functions Shield - 4LED with record" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED_record.pas"/>
+        <Example Caption="Multi Functions Shield - 4LED with set" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED_Set.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">

@@ -9,12 +9,13 @@ uses
 
 const
   sl = 100000;
-  BP2 = 2;
-  BP3 = 3;
-  BP4 = 4;
-  BP5 = 5;
+
+type
+  TSetLed = set of (BP0, BP1, BP2, BP3, BP4, BP5, BP6, BP7);
 
 var
+  LedPORT: TSetLed absolute PORTB;
+  LedDDR: TSetLed absolute DDRB;
   i: byte;
 
   procedure mysleep(t: int32);
@@ -32,25 +33,19 @@ begin
   // BP2 = D4, BP3 = D3, BP4 = D2, BP5 = D1
   // LED schalten inventiert, da Anode an VCC !
 
-  DDRB := (1 shl BP2) or (1 shl BP3) or (1 shl BP4) or (1 shl BP5);
-  PORTB := (1 shl BP2) or (1 shl BP3) or (1 shl BP4) or (1 shl BP5);
-
+  LedDDR := [BP2, BP3, BP4, BP5];
   repeat
     for i := 0 to 3 do begin
-      PORTB := PORTB or (1 shl BP5);
-      PORTB := PORTB and not (1 shl BP2);
+      LedPORT := [BP2, BP3, BP4];
       mysleep(sl);
 
-      PORTB := PORTB or (1 shl BP2);
-      PORTB := PORTB and not (1 shl BP3);
+      LedPORT := [BP2, BP3, BP5];
       mysleep(sl);
 
-      PORTB := PORTB or (1 shl BP3);
-      PORTB := PORTB and not (1 shl BP4);
+      LedPORT := [BP2, BP4, BP5];
       mysleep(sl);
 
-      PORTB := PORTB or (1 shl BP4);
-      PORTB := PORTB and not (1 shl BP5);
+      LedPORT := [BP3, BP4, BP5];
       mysleep(sl);
     end;
   until False;
