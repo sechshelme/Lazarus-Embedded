@@ -13,6 +13,7 @@
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+        <Example Caption="Multi Functions Shield - 4LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
