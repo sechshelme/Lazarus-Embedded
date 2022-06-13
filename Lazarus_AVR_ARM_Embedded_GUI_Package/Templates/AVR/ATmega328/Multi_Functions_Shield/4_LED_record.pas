@@ -16,7 +16,7 @@ type
   end;
 
 var
-  ddr: TPin absolute DDRB;
+  ddr:  TPin absolute DDRB;
   port: TPin absolute PORTB;
 
   i: byte;

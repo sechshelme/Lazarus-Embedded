@@ -32,7 +32,7 @@ begin
   // BP2 = D4, BP3 = D3, BP4 = D2, BP5 = D1
   // LED schalten inventiert, da Anode an VCC !
 
-  DDRB := (1 shl BP2) or (1 shl BP3) or (1 shl BP4) or (1 shl BP5);
+  DDRB  := (1 shl BP2) or (1 shl BP3) or (1 shl BP4) or (1 shl BP5);
   PORTB := (1 shl BP2) or (1 shl BP3) or (1 shl BP4) or (1 shl BP5);
 
   repeat

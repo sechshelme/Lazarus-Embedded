@@ -11,7 +11,7 @@ const
   sl = 100000;
 
 var
-  ddr: bitpacked array[0..7] of boolean absolute DDRB;
+  ddr:  bitpacked array[0..7] of boolean absolute DDRB;
   port: bitpacked array[0..7] of boolean absolute PORTB;
 
   i: byte;
@@ -31,15 +31,15 @@ begin
   // LED schalten inventiert, da Anode an VCC !
 
   for i := 2 to 5 do begin
-    ddr[i] := True;
+    ddr[i]  := True;
     port[i] := True;
   end;
 
   repeat
-    for i := 0 to 3 do begin
-      port[i + 2] := False;
+    for i := 2 to 5 do begin
+      port[i] := False;
       mysleep(sl);
-      port[i + 2] := True;
+      port[i] := True;
     end;
   until False;
 end.

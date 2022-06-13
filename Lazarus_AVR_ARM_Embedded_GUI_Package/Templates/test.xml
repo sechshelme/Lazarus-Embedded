@@ -13,10 +13,12 @@
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
-        <Example Caption="Multi Functions Shield - 4LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED.pas"/>
-        <Example Caption="Multi Functions Shield - 4LED with array" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED_array.pas"/>
-        <Example Caption="Multi Functions Shield - 4LED with record" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED_record.pas"/>
-        <Example Caption="Multi Functions Shield - 4LED with set" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4LED_Set.pas"/>
+        <Example Caption="Multi Functions Shield - 4 LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/_4LED.pas"/>
+        <Example Caption="Multi Functions Shield - 4 LED with array" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4_LED_array.pas"/>
+        <Example Caption="Multi Functions Shield - 4 LED with record" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4_LED_record.pas"/>
+        <Example Caption="Multi Functions Shield - 4 LED with set" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4_LED_Set.pas"/>
+        <Example Caption="Multi Functions Shield - 3 Button" SourceFile="AVR/ATmega328/Multi_Functions_Shield/3_Button.pas"/>
+        <Example Caption="Multi Functions Shield - 3 Timer -> LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/LED_3_Timer.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">

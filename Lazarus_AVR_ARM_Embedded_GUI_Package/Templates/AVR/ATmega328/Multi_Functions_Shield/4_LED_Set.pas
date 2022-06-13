@@ -15,7 +15,7 @@ type
 
 var
   LedPORT: TSetLed absolute PORTB;
-  LedDDR: TSetLed absolute DDRB;
+  LedDDR:  TSetLed absolute DDRB;
   i: byte;
 
   procedure mysleep(t: int32);
