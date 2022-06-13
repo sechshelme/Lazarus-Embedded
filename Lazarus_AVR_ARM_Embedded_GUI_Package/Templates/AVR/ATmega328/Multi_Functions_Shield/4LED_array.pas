@@ -30,33 +30,16 @@ var
 begin
   // LED schalten inventiert, da Anode an VCC !
 
-  ddr[2] := True;
-  ddr[3] := True;
-  ddr[4] := True;
-  ddr[5] := True;
-
-  port[2] := True;
-  port[3] := True;
-  port[4] := True;
-  port[5] := True;
+  for i := 2 to 5 do begin
+    ddr[i] := True;
+    port[i] := True;
+  end;
 
   repeat
     for i := 0 to 3 do begin
-      port[5] := True;
-      port[2] := False;
+      port[i + 2] := False;
       mysleep(sl);
-
-      port[2] := True;
-      port[3] := False;
-      mysleep(sl);
-
-      port[3] := True;
-      port[4] := False;
-      mysleep(sl);
-
-      port[4] := True;
-      port[5] := False;
-      mysleep(sl);
+      port[i + 2] := True;
     end;
   until False;
 end.
