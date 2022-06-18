@@ -13,7 +13,7 @@ type
   end;
 
 var
-  ddr: TPin absolute DDRB;
+  ddr:  TPin absolute DDRB;
   port: TPin absolute PORTB;
 
   procedure Timer0_Interrupt; public Name 'TIMER0_OVF_ISR'; interrupt;
@@ -35,10 +35,9 @@ var
   procedure Timer1_Interrupt; public Name 'TIMER1_OVF_ISR'; interrupt;
   const
     zaehler: integer = 0;
-    //    cl = 64 shr 1; // 4194304 shr 16 shr 1 ;
-    //    cl = 16000000 div 1024 div 256 div 256; // 16'000'000Hz / Clock / TCNT / 2 = 0,5Sek
-    cl = 2;
+    cl = 16000000 div 1024 div 256; // 16'000'000Hz / Clock / TCNT / 2 = 0,5Sek
   begin
+    TCNT1:=64000;
 
     Inc(zaehler);
     if zaehler = cl then begin
@@ -55,7 +54,7 @@ var
     zaehler: integer = 0;
     cl = 16000000 div 1024 div 256; // 16'000'000Hz / Clock / TCNT / 2 = 0,5Sek
   begin
-    //  TCNT2 := 240;
+    TCNT2 := 240;
 
     Inc(zaehler);
     if zaehler = cl then begin
@@ -92,5 +91,6 @@ begin
   end;
 
   repeat
+    // Mache irgend etwas
   until False;
 end.

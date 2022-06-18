@@ -19,6 +19,7 @@
         <Example Caption="Multi Functions Shield - 4 LED with set" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4_LED_Set.pas"/>
         <Example Caption="Multi Functions Shield - 3 Button" SourceFile="AVR/ATmega328/Multi_Functions_Shield/3_Button.pas"/>
         <Example Caption="Multi Functions Shield - 3 Timer -> LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/LED_3_Timer.pas"/>
+        <Example Caption="Multi Functions Shield - Pin Change Interrupt" SourceFile="AVR/ATmega328/Multi_Functions_Shield/Pin_Change_Interrupt.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">

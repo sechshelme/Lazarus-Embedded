@@ -41,7 +41,7 @@ begin
 
   // INT0 aktivieren
   EICRA := %11;    // set INT0 to trigger on ANY logic change
-  EIMSK := %01;     // Turns on INT0
+  EIMSK := %01;    // Turns on INT0
   // Interrupt aktivieren
   asm           Sei end;
   repeat
@@ -50,9 +50,9 @@ end.
 
 
 
-ISC11 o. ISC01	ISC10 o. ISC00	Beschreibung
-0	0	Low-Level am Pin löst den Interrupt aus
-0	1	Jede Änderung am Pin löst den Interrupt aus
-1	0	Eine fallende Flanke löst den Interrupt aus
-1	1	Eine steigende Flanke löst den Interrupt aus
+// ISC11 o. ISC01	ISC10 o. ISC00	Beschreibung
+// 0	0	Low-Level am Pin löst den Interrupt aus
+// 0	1	Jede Änderung am Pin löst den Interrupt aus
+// 1	0	Eine fallende Flanke löst den Interrupt aus
+// 1	1	Eine steigende Flanke löst den Interrupt aus
 
