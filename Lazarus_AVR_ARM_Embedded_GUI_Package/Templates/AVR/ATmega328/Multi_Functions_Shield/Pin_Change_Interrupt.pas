@@ -31,7 +31,7 @@ begin
   // LED schalten inventiert, da Anode an VCC !
 
   PCICR:=%010;
-  PCMSK1:=%00001010;
+  PCMSK1:=%00001110;
 
   avr_sei;
 
