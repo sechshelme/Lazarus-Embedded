@@ -1,4 +1,4 @@
-// Blink Pin 13
+// Watchdog
 
 program Project1;
 
@@ -13,12 +13,9 @@ const
   teiler = CPU_Clock div (16 * Baud) - 1;
 
   BP5 = 5;        // Pin 13 des Arduino
+  sl = 200000;
 
   WDP3 = 5;
-
-var
-  sl: int32;
-  s: string[10];
 
   procedure mysleep(t: int32);
   var
@@ -57,24 +54,18 @@ var
   end;
 
 
-  procedure WDT_ISR_Interrupt; public Name 'WDT_ISR'; interrupt;
-  begin
-    UARTSendString('Watchdog ISR');
-    sl := 1000;
-  end;
-
-
 begin
   UARTInit;
   UARTSendString('Reset');
   avr_cli;
-  avr_wdr;
+  asm
+      Wdr
+  end;
   WDTCSR := WDTCSR or (1 shl WDCE) or (1 shl WDE);
-  WDTCSR := (1 shl WDIE) or (1 shl WDP3); // 4s / interrupt, system reset
+  WDTCSR := (1 shl WDE) or (1 shl WDP3); // 4s / interrupt, system reset
   avr_sei;
 
   DDRB := DDRB or (1 shl BP5);
-  sl := 1000;
   repeat
     UARTSendString('LED on');
     PORTB := PORTB or (1 shl BP5);
@@ -83,8 +74,5 @@ begin
     UARTSendString('LED off');
     PORTB := PORTB and not (1 shl BP5);
     mysleep(sl);
-
-    sl := sl + 100000;
-    avr_wdr;
   until False;
 end.
