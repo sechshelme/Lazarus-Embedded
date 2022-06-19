@@ -1,0 +1,19 @@
+0000 =  1 min  0010 =  5 min  0001 = 12 min  0011 = 20 min  
+1000 =  2 min  1010 =  6 min  1001 = 14 min  1011 = 22 min  
+0100 =  3 min  0110 =  8 min  0101 = 16 min  0111 = 25 min  
+1100 =  4 min  1110 = 10 min  1101 = 18 min  1111 = 30 min
+
+
+00 = 2 sec  
+10 = 3 sec  
+01 = 4 sec  
+11 = 6 sec  
+
+
+
+
+
+
+Hänni, Bendicht
+Dorfplatz 1A
+3647 Reutigen/BE

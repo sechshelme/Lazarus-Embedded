@@ -1,0 +1,14 @@
+Rot/Gelb  Gelb     Saugdauer
+0 = 5s    0 = 5s   000 = 50s  100 = 18s        1
+1 = 3s    1 = 3s   001 = 38s  101 = 15s
+                   010 = 28s  110 = 12s        0
+                   011 = 22s  111 = 10s
+
+
+
+
+
+
+Hänni, Bendicht
+Dorfplatz 1A
+3647 Reutigen/BE
