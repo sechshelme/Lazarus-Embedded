@@ -30,6 +30,7 @@ const
     %00000000, // = blank
     %10000000  // = .
     );
+
 type
   TSPIGPIO = bitpacked record
     p0, p1, p2, p3, SlaveSelect, DataInt, DataOut, Clock: boolean;
@@ -56,17 +57,17 @@ var
     contact, timer, score: Int16;
     run: boolean;
   end;
-         type
-TZeroMask=array[0..3] of Boolean;
+type
+  TZeroMask = array[0..3] of boolean;
 
 
-  function disp_valnnnnn(vval: uint16; zeroMask:TZeroMask): TLCD;
+  function disp_valnnnnn(vval: uint16; zeroMask: TZeroMask): TLCD;
   var
     achr: uint8;
     leer: boolean;
-    oldvval:UInt16;
+    oldvval: UInt16;
   begin
-    oldvval:=vval;
+    oldvval := vval;
     achr := 0;
     leer := True;
     while (vval >= 1000) do begin
@@ -107,7 +108,7 @@ TZeroMask=array[0..3] of Boolean;
       leer := False;
     end;
     if leer then begin
-      if zeroMask[2] or (oldvval >= 10)  then begin
+      if zeroMask[2] or (oldvval >= 10) then begin
         achr := 0;
       end else begin
         achr := 16;
@@ -150,10 +151,10 @@ TZeroMask=array[0..3] of Boolean;
 
   procedure UpDateData;
   const
-    zm0:TZeroMask=(False,False,False,True);
-    zm1:TZeroMask=(False,False,True,True);
-    zm2:TZeroMask=(False,True,True,True);
-    zm3:TZeroMask=(True,True,True,True);
+    zm0: TZeroMask = (False, False, False, True);
+    zm1: TZeroMask = (False, False, True, True);
+    zm2: TZeroMask = (False, True, True, True);
+    zm3: TZeroMask = (True, True, True, True);
   var
     temp_LCD: TLCD;
     c: Int32;
