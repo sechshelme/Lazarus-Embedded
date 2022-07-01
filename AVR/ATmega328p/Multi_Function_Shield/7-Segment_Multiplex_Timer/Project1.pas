@@ -35,6 +35,15 @@ var
   OutPinB: TPin absolute PORTB;
   OutPinD: TPin absolute PORTD;
 
+  procedure mysleep(t: int32);
+  var
+    i: int32;
+  begin
+    for i := 0 to t do begin
+      avr_nop;
+    end;
+  end;
+
   procedure shiftOut595(val: byte);
   var
     i: byte;
@@ -51,27 +60,12 @@ var
   end;
 
 var
-  n: byte;
   c: integer = 9900;
   p: byte = 0;
-  d: byte = 0;
+  n: byte;
 
-begin
-  // Anzeige ist auf gemeinsamer Anode !
-
-  ModePinB[dataOutPin] := True;
-  ModePinD[latchPin] := True;
-  ModePinD[clockPin] := True;
-
-  repeat
-    Inc(d);
-    if d > 100 then begin
-      d := 0;
-      Inc(c);
-      if c > 9999 then begin
-        c := 0;
-      end;
-    end;
+  procedure Timer0_Interrupt; public Name 'TIMER0_OVF_ISR'; interrupt;
+  begin
 
     Inc(p);
     if (p > 3) then begin
@@ -87,9 +81,47 @@ begin
       n := c mod 10;
     end;
 
+    //case p of
+    //  0: begin
+    //    n := c div 1000;
+    //  end;
+    //  1: begin
+    //    n := c div 100 mod 10;
+    //  end;
+    //  2: begin
+    //    n := c div 10 mod 10;
+    //  end;
+    //  3: begin
+    //    n := c mod 10;
+    //  end;
+    //end;
+
+
     OutPinD[latchPin] := False;
     OutPinD[latchPin] := True;
     shiftOut595(not digits[n]);
     shiftOut595(1 shl p);
+  end;
+
+begin
+  // Anzeige ist auf gemeinsamer Anode !
+
+  ModePinB[dataOutPin] := True;
+  ModePinD[latchPin] := True;
+  ModePinD[clockPin] := True;
+
+  // Timer 0
+  TCCR0A := %00;               // Normaler Timer
+  TCCR0B := %100;              // Clock / 256
+  TIMSK0 := (1 shl TOIE0);     // Enable Timer0 Interrupt.
+
+  avr_sei;
+
+  repeat
+    Inc(c);
+    if c > 9999 then begin
+      c := 0;
+    end;
+    mysleep(40000);
   until False;
 end.

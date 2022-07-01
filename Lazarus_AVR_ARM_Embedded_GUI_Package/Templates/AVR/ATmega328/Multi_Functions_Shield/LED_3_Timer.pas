@@ -86,9 +86,7 @@ begin
   TCCR2B := %111;              // Clock / 1024
   TIMSK2 := (1 shl TOIE2);     // Enable Timer2 Interrupt.
 
-  asm
-      Sei                      // Interrupts einschalten.
-  end;
+  avr_sei;                     // Interrupts einschalten.
 
   repeat
     // Mache irgend etwas

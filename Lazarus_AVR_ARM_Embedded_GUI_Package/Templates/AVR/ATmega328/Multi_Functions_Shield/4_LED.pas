@@ -22,9 +22,7 @@ var
     i: int32;
   begin
     for i := 0 to t do begin
-      asm
-               Nop;
-      end;
+      avr_nop;
     end;
   end;
 

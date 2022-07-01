@@ -23,8 +23,8 @@ const
 
 const
   dataOutPin = 0;
-  clockPin = 7;
-  latchPin = 4;
+  clockPin   = 7;
+  latchPin   = 4;
 
 type
   TPin = bitpacked array[0..7] of boolean;
@@ -32,8 +32,8 @@ type
 var
   ModePinB: TPin absolute DDRB;
   ModePinD: TPin absolute DDRD;
-  OutPinB: TPin absolute PORTB;
-  OutPinD: TPin absolute PORTD;
+  OutPinB:  TPin absolute PORTB;
+  OutPinD:  TPin absolute PORTD;
 
   procedure shiftOut595(val: byte);
   var
@@ -60,8 +60,8 @@ begin
   // Anzeige ist auf gemeinsamer Anode !
 
   ModePinB[dataOutPin] := True;
-  ModePinD[latchPin] := True;
-  ModePinD[clockPin] := True;
+  ModePinD[latchPin]   := True;
+  ModePinD[clockPin]   := True;
 
   repeat
     Inc(d);

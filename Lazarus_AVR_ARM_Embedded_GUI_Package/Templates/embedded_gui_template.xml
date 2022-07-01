@@ -21,6 +21,8 @@
         <Example Caption="Multi Functions Shield - 3 Timer -> LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/LED_3_Timer.pas"/>
         <Example Caption="Multi Functions Shield - Pin Change Interrupt" SourceFile="AVR/ATmega328/Multi_Functions_Shield/Pin_Change_Interrupt.pas"/>
         <Example Caption="Multi Functions Shield - Watchdog Totmann" SourceFile="AVR/ATmega328/Multi_Functions_Shield/Watchdog_Totmann.pas"/>
+        <Example Caption="Multi Functions Shield - 7-Segment" SourceFile="AVR/ATmega328/Multi_Functions_Shield/7-Segment_Multiplex.pas"/>
+        <Example Caption="Multi Functions Shield - 7-Segment Timer" SourceFile="AVR/ATmega328/Multi_Functions_Shield/7-Segment_Multiplex_Timer.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano (old Bootloader)" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
