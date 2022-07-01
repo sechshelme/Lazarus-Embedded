@@ -2,6 +2,9 @@ program Project1;
 
 {$H-,J-,O-}
 
+uses
+  intrinsics;
+
 const
   CPU_Clock = 16000000; // Taktfrequenz Arduino, default 16MHz.
   Baud      = 9600;     // Baudrate

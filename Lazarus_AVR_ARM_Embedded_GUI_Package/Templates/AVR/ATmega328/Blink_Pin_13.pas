@@ -16,9 +16,7 @@ const
     i: Int32;
   begin
     for i := 0 to t do begin
-      asm
-        NOP;
-      end;
+      avr_nop;
     end;
   end;
 

@@ -52,7 +52,7 @@ var
 
 var
   n: byte;
-  c: integer = 9900;
+  c: integer = 99;
   p: byte = 0;
   d: byte = 0;
 
@@ -77,14 +77,30 @@ begin
     if (p > 3) then begin
       p := 0;
     end;
-    if p = 0 then begin
-      n := c div 1000;
-    end else if p = 1 then begin
-      n := c div 100 mod 10;
-    end else if p = 2 then begin
-      n := c div 10 mod 10;
-    end else if p = 3 then begin
-      n := c mod 10;
+
+    //if p = 0 then begin
+    //  n := c div 1000;
+    //end else if p = 1 then begin
+    //  n := c div 100 mod 10;
+    //end else if p = 2 then begin
+    //  n := c div 10 mod 10;
+    //end else if p = 3 then begin
+    //  n := c mod 10;
+    //end;
+
+    case p of
+      0: begin
+        n := c div 1000;
+      end;
+      1: begin
+        n := c div 100 mod 10;
+      end;
+      2: begin
+        n := c div 10 mod 10;
+      end;
+      3: begin
+        n := c mod 10;
+      end;
     end;
 
     OutPinD[latchPin] := False;

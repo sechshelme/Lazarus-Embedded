@@ -2,10 +2,13 @@ program Project1;
 
 {$H-,J-,O-}
 
+uses
+  intrinsics;
+
 const
   CPU_Clock = 16000000; // Taktfrequenz Arduino, default 16MHz.
   Baud      = 9600;     // Baudrate
-  teiler = CPU_Clock div (16 * Baud) - 1;
+  teiler    = CPU_Clock div (16 * Baud) - 1;
 
   procedure UARTInit;
   begin

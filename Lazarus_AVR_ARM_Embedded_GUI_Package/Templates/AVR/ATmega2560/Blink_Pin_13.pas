@@ -2,6 +2,9 @@ program Project1;
 
 {$H-,J-,O-}
 
+uses
+  intrinsics;
+
 const
   BP7 = 7; // Pin 13 des Arduino
   sl  = 60000;
@@ -11,9 +14,7 @@ const
     i: Int32;
   begin
     for i := 0 to t do begin
-      asm
-               NOP;
-      end;
+      avr_nop;
     end;
   end;
 

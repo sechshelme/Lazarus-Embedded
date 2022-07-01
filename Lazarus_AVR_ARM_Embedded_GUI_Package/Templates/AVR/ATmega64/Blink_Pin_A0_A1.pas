@@ -4,6 +4,9 @@ program Project1;
 
 {$H-,J-,O-}
 
+uses
+  intrinsics;
+
 const
   sl = 20000;
 
@@ -11,11 +14,8 @@ const
   var
     i: int32;
   begin
-    for i := 0 to t do
-    begin
-      asm
-               NOP;
-      end;
+    for i := 0 to t do begin
+      avr_nop;
     end;
   end;
 
