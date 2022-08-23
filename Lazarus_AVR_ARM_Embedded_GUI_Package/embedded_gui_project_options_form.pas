@@ -169,7 +169,7 @@ begin
   Edit_avrdude_Controller.Text := 'ATMEGA328P';
 
   with ComboBox_avrdude_Programmer do begin
-    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109', 'jtag2updi', 'jtag1'], True);
+    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109', 'usbtiny', 'jtag2updi', 'jtag1'], True);
   end;
 
   with ComboBox_avrrdude_BitClock do begin

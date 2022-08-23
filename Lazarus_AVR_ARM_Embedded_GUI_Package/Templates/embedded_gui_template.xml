@@ -82,6 +82,8 @@
       <Examples>
         <Example Caption="Blank" SourceFile="Blank.pas"/>
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
+        <Example Caption="Blink" SourceFile="AVR/ATtiny13/Blink.pas"/>
+        <Example Caption="Blink Timer" SourceFile="AVR/ATtiny13/Blink_Timer.pas"/>
       </Examples>
     </Board>
     <Board Caption="ATtiny 5" Arch="avr" SubArch="AVRtiny" Controller="attiny5" Programmer="avrdude">
