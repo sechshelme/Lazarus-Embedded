@@ -27,8 +27,6 @@ const
     %01000010,
     %00111100));
 
-
-
 type
   TSPIGPIO = bitpacked record
     DataIn, DataOut, Clock, SlaveSelect, p0, p1, p2, p3: boolean;
@@ -36,16 +34,16 @@ type
 
 var
   SPI_PORT: TSPIGPIO absolute PORTB;
-  SPI_DDR: TSPIGPIO absolute DDRB;
+  SPI_DDR:  TSPIGPIO absolute DDRB;
 
-  i, j: byte;
-  p: uint16 = 0;
+  i, j:    byte;
+  p:       uint16 = 0;
   Counter: uint16 = 0;
-  Data: array[0..1] of byte;
+  Data:    array[0..1] of byte;
 
 begin
-  SPI_DDR.DataOut := True;
-  SPI_DDR.Clock := True;
+  SPI_DDR.DataOut     := True;
+  SPI_DDR.Clock       := True;
   SPI_DDR.SlaveSelect := True;
 
   repeat

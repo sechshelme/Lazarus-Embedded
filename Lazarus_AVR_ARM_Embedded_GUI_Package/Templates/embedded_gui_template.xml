@@ -84,6 +84,8 @@
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
         <Example Caption="Blink" SourceFile="AVR/ATtiny13/Blink.pas"/>
         <Example Caption="Blink Timer" SourceFile="AVR/ATtiny13/Blink_Timer.pas"/>
+        <Example Caption="Matrix 8x8 mit Smily" SourceFile="AVR/ATtiny13/Matrix_8x8_Smily.pas"/>
+        <Example Caption="Matrix 8x8 Timer mit Smily" SourceFile="AVR/ATtiny13/Matrix_8x8_Timer_Smily.pas"/>
       </Examples>
     </Board>
     <Board Caption="ATtiny 5" Arch="avr" SubArch="AVRtiny" Controller="attiny5" Programmer="avrdude">
