@@ -4,7 +4,7 @@
 Mit dieser Package wird Lazarus mit einer GUI für Embedded Systeme erweitert.
 Damit kann man einfach Parameter für ein Embedded-Projekt setzen, inklusive den Flasher-Aufruf.
 
-Somit kann man mit <i>"Datei->neu...->Projekt->Embedded-Project"</i> direkt ein Embedded-Project erstellen.
+Somit kann man mit <i>"Datei->Neu...->Projekt->Embedded-Project"</i> direkt ein Embedded-Project erstellen.
 Nachträglich kann man mit <i>"Projekt->Embedded-Optionen..."</i> die Parameter editieren.
 
 Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
