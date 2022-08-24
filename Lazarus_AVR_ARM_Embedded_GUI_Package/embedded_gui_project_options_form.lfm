@@ -14,9 +14,9 @@ object Project_Options_Form: TProject_Options_Form
   Position = poDefaultPosOnly
   LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
-    Left = 482
+    Left = 408
     Height = 25
-    Top = 871
+    Top = 872
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'Vorlagen...'
@@ -24,7 +24,7 @@ object Project_Options_Form: TProject_Options_Form
     TabOrder = 6
   end
   object CancelButton: TButton
-    Left = 610
+    Left = 608
     Height = 25
     Top = 871
     Width = 75
@@ -48,9 +48,9 @@ object Project_Options_Form: TProject_Options_Form
     TabStop = False
   end
   object CPU_InfoButton: TButton
-    Left = 394
+    Left = 320
     Height = 25
-    Top = 871
+    Top = 872
     Width = 75
     Anchors = [akRight, akBottom]
     Caption = 'CPU Info...'
@@ -148,7 +148,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_avrdude_Programmer: TComboBox
           Left = 17
-          Height = 27
+          Height = 28
           Top = 176
           Width = 112
           ItemHeight = 0
@@ -156,7 +156,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_avrdude_COMPort: TComboBox
           Left = 144
-          Height = 27
+          Height = 28
           Top = 176
           Width = 144
           ItemHeight = 0
@@ -173,7 +173,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_avrdude_COMPortBaud: TComboBox
           Left = 304
-          Height = 27
+          Height = 28
           Top = 176
           Width = 112
           ItemHeight = 0
@@ -190,7 +190,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object Edit_avrdude_Controller: TEdit
           Left = 17
-          Height = 27
+          Height = 28
           Top = 248
           Width = 122
           TabOrder = 3
@@ -308,7 +308,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_avrdude_Verbose: TComboBox
           Left = 16
-          Height = 27
+          Height = 28
           Top = 320
           Width = 113
           ItemHeight = 0
@@ -325,7 +325,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_avrrdude_BitClock: TComboBox
           Left = 160
-          Height = 27
+          Height = 28
           Top = 320
           Width = 154
           ItemHeight = 0
@@ -363,7 +363,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_ARM_FlashBase: TComboBox
           Left = 16
-          Height = 27
+          Height = 28
           Top = 121
           Width = 160
           ItemHeight = 0
@@ -481,7 +481,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_Bossac_COMPort: TComboBox
           Left = 16
-          Height = 27
+          Height = 28
           Top = 112
           Width = 181
           ItemHeight = 0
@@ -543,7 +543,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_ESPTool_COMPort: TComboBox
           Left = 152
-          Height = 27
+          Height = 28
           Top = 176
           Width = 136
           ItemHeight = 0
@@ -551,7 +551,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object ComboBox_ESPTool_COMPortBaud: TComboBox
           Left = 304
-          Height = 27
+          Height = 28
           Top = 176
           Width = 112
           ItemHeight = 0
@@ -568,7 +568,7 @@ object Project_Options_Form: TProject_Options_Form
         end
         object Edit_ESPTool_Chip: TEdit
           Left = 17
-          Height = 27
+          Height = 28
           Top = 176
           Width = 122
           TabOrder = 2
@@ -604,7 +604,7 @@ object Project_Options_Form: TProject_Options_Form
     end
     object ComboBox_Controller: TComboBox
       Left = 272
-      Height = 27
+      Height = 28
       Top = 40
       Width = 168
       ItemHeight = 0
@@ -612,7 +612,7 @@ object Project_Options_Form: TProject_Options_Form
     end
     object ComboBox_SubArch: TComboBox
       Left = 144
-      Height = 27
+      Height = 28
       Top = 40
       Width = 104
       ItemHeight = 0
@@ -639,7 +639,7 @@ object Project_Options_Form: TProject_Options_Form
     end
     object ComboBox_Arch: TComboBox
       Left = 8
-      Height = 27
+      Height = 28
       Top = 40
       Width = 104
       ItemHeight = 0
@@ -656,5 +656,15 @@ object Project_Options_Form: TProject_Options_Form
       Color = clDefault
       ParentColor = False
     end
+  end
+  object ButtonHelp: TButton
+    Left = 520
+    Height = 25
+    Top = 871
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Hilfe...'
+    OnClick = ButtonHelpClick
+    TabOrder = 7
   end
 end

@@ -25,6 +25,7 @@ type
   { TProject_Options_Form }
 
   TProject_Options_Form = class(TForm)
+    ButtonHelp: TButton;
     CheckBox_avrdude_Override_signature_check: TCheckBox;
     CheckBox_Bossac_Arduino_Erase: TCheckBox;
     ComboBox_ARM_FlashBase: TComboBox;
@@ -93,6 +94,7 @@ type
     TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
     procedure BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
+    procedure ButtonHelpClick(Sender: TObject);
     procedure ComboBox_ArchChange(Sender: TObject);
     procedure ComboBox_SubArchChange(Sender: TObject);
     procedure Button_to_FlashBase_Click(Sender: TObject);
@@ -453,6 +455,17 @@ begin
   Edit_avrdude_Controller.Text := ComboBox_Controller.Text;
 end;
 
+procedure TProject_Options_Form.ButtonHelpClick(Sender: TObject);
+begin
+  ShowMessage('Für folgende Programmer muss folgende Baud eingestellt werden:' + LineEnding + LineEnding +
+  'Arduino UNO: 1152000' + LineEnding +
+  'Arduino Nano old: 57600' + LineEnding +
+  'Arduino Nano: 1152000' + LineEnding +
+  'Arduino Mega: 1152000' + LineEnding +
+  'STK500v1: ???' + LineEnding +
+  'usbas, usbtiny, avr109: Braucht kein Baud');
+end;
+
 procedure TProject_Options_Form.ComboBox_SubArchChange(Sender: TObject);
 var
   index: integer;
@@ -488,7 +501,7 @@ begin
 
   // --- Programmer Command
   cmd := LazProject.LazCompilerOptions.ExecuteAfter.Command;
-  cmd := StringReplace(cmd, '"', '',[rfIgnoreCase, rfReplaceAll]);
+  cmd := StringReplace(cmd, '"', '', [rfIgnoreCase, rfReplaceAll]);
   PrgPath := Copy(cmd, 0, pos(' ', cmd) - 1);
   PrgName := UpCase(ExtractFileName(PrgPath));
 
@@ -728,7 +741,7 @@ begin
   end;
 
   // ESP32 / ESP8266
-//  https://github.com/espressif/esptool/blob/master/esptool/__init__.py
+  //  https://github.com/espressif/esptool/blob/master/esptool/__init__.py
   if RadioButton_ESP_Tool.Checked then begin
     //    cmd := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
     //      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin';
