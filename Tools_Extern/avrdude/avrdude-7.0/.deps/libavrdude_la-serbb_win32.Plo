@@ -1,0 +1,4 @@
+libavrdude_la-serbb_win32.lo: serbb_win32.c /usr/include/stdc-predef.h \
+ avrdude.h
+/usr/include/stdc-predef.h:
+avrdude.h:

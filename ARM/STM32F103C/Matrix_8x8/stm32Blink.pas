@@ -100,6 +100,8 @@ const
 var
   Zaehler: integer = 0;
   p, Zahl: integer;
+const
+  Zae=300;
 
 begin
   // Ports einschalten
@@ -120,11 +122,11 @@ begin
 
   while True do begin
     Inc(Zaehler);
-    if Zaehler >= 600 then begin
+    if Zaehler >= Zae shl 1 then begin
       Zaehler := 0;
     end;
 
-    if Zaehler < 300 then begin
+    if Zaehler < Zae then begin
       PortC.BSRR := 1 shl 13;
     end else begin
       PortC.BRR := 1 shl 13;

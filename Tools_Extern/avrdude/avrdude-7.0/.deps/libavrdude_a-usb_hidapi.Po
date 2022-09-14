@@ -1,0 +1,4 @@
+libavrdude_a-usb_hidapi.o: usb_hidapi.c /usr/include/stdc-predef.h \
+ ac_cfg.h
+/usr/include/stdc-predef.h:
+ac_cfg.h:

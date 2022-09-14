@@ -1,0 +1,4 @@
+libavrdude_la-usb_libusb.lo: usb_libusb.c /usr/include/stdc-predef.h \
+ ac_cfg.h
+/usr/include/stdc-predef.h:
+ac_cfg.h:

@@ -1,0 +1,3 @@
+libavrdude_la-crc16.lo: crc16.c /usr/include/stdc-predef.h crc16.h
+/usr/include/stdc-predef.h:
+crc16.h:

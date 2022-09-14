@@ -54,7 +54,7 @@
     <Other>
       <CustomOptions Value="-WpSTM32F103X8"/>
       <ExecuteAfter>
-        <Command Value="st-flash write stm32Blink.bin 0x8000000"/>
+        <Command Value="/n4800/DATEN/Programmierung/mit_GIT/Lazarus/Tutorial/Embedded/Tools_Extern/stlink/stlink-1.7.0/build/Release/bin/st-flash write stm32Blink.bin 0x8000000"/>
         <CompileReasons Compile="False" Build="False"/>
       </ExecuteAfter>
     </Other>

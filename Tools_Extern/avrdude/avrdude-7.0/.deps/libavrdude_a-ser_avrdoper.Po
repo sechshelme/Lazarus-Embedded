@@ -1,0 +1,4 @@
+libavrdude_a-ser_avrdoper.o: ser_avrdoper.c /usr/include/stdc-predef.h \
+ ac_cfg.h
+/usr/include/stdc-predef.h:
+ac_cfg.h:

@@ -1,0 +1,4 @@
+libavrdude_la-ser_win32.lo: ser_win32.c /usr/include/stdc-predef.h \
+ ac_cfg.h
+/usr/include/stdc-predef.h:
+ac_cfg.h:
