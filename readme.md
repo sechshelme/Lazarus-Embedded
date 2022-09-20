@@ -9,7 +9,7 @@ Nachträglich kann man mit <i>"Projekt->Embedded-Optionen..."</i> die Parameter 
 
 Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
 
-Die Package befindet sich unter: <b>Lazarus_AVR_ARM_Embedded_GUI_Package</b>
+Die Package befindet sich unter: <b>Lazarus_Embedded_GUI_Package</b>
 <br><br><br>
 
 
@@ -23,7 +23,7 @@ You can edit the parameters afterwards with <i>"Project->Embedded-Options..."</i
 
 A functional embedded cross compiler is required.
 
-The package is located at: <b>Lazarus_AVR_ARM_Embedded_GUI_Package</b>
+The package is located at: <b>Lazarus_Embedded_GUI_Package</b>
 <br><br><br>
 
 <img src="Embedded_Project_Option.png">
