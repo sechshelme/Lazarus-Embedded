@@ -82,5 +82,5 @@ begin
     Data[3] := (Ziffern[(Zahl + 4) mod 10, p]) or ((Ziffern[(Zahl + 6) mod 10, p]) shr 5);
 
     SPIWriteData(@Data, Length(Data));
-  until 1 = 2;
+  until False;
 end.

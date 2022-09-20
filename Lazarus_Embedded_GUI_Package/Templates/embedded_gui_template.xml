@@ -13,6 +13,8 @@
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+        <Example Caption="Matrix 8x8 with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Smily.pas"/>
+        <Example Caption="Matrix 8x8 Timer with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Timer_Smily.pas"/>
         <Example Caption="Multi Functions Shield - 4 LED" SourceFile="AVR/ATmega328/Multi_Functions_Shield/_4LED.pas"/>
         <Example Caption="Multi Functions Shield - 4 LED with array" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4_LED_array.pas"/>
         <Example Caption="Multi Functions Shield - 4 LED with record" SourceFile="AVR/ATmega328/Multi_Functions_Shield/4_LED_record.pas"/>
@@ -37,6 +39,8 @@
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+        <Example Caption="Matrix 8x8 with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Smily.pas"/>
+        <Example Caption="Matrix 8x8 Timer with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Timer_Smily.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Nano" Arch="avr" SubArch="AVR5" Controller="atmega328p" Programmer="avrdude">
@@ -51,6 +55,8 @@
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+        <Example Caption="Matrix 8x8 with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Smily.pas"/>
+        <Example Caption="Matrix 8x8 Timer with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Timer_Smily.pas"/>
       </Examples>
     </Board>
     <Board Caption="Arduino Mega" Arch="avr" SubArch="AVR6" Controller="atmega2560" Programmer="avrdude">
@@ -84,8 +90,8 @@
         <Example Caption="Default" SourceFile="AVR/Default.pas"/>
         <Example Caption="Blink" SourceFile="AVR/ATtiny13/Blink.pas"/>
         <Example Caption="Blink Timer" SourceFile="AVR/ATtiny13/Blink_Timer.pas"/>
-        <Example Caption="Matrix 8x8 mit Smily" SourceFile="AVR/ATtiny13/Matrix_8x8_Smily.pas"/>
-        <Example Caption="Matrix 8x8 Timer mit Smily" SourceFile="AVR/ATtiny13/Matrix_8x8_Timer_Smily.pas"/>
+        <Example Caption="Matrix 8x8 with Smily" SourceFile="AVR/ATtiny13/Matrix_8x8_Smily.pas"/>
+        <Example Caption="Matrix 8x8 Timer with Smily" SourceFile="AVR/ATtiny13/Matrix_8x8_Timer_Smily.pas"/>
       </Examples>
     </Board>
     <Board Caption="ATtiny 5" Arch="avr" SubArch="AVRtiny" Controller="attiny5" Programmer="avrdude">
@@ -122,6 +128,8 @@
         <Example Caption="Blink Pin 13 Timer" SourceFile="AVR/ATmega328/Blink_Pin_13_Timer.pas"/>
         <Example Caption="UART Output" SourceFile="AVR/ATmega328/UART_Output.pas"/>
         <Example Caption="UART Input/Output" SourceFile="AVR/ATmega328/UART_Input_and_Output.pas"/>
+        <Example Caption="Matrix 8x8 with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Smily.pas"/>
+        <Example Caption="Matrix 8x8 Timer with Smily" SourceFile="AVR/ATmega328/Matrix_8x8_Timer_Smily.pas"/>
       </Examples>
     </Board>
     <Board Caption="ATmega 64" Arch="avr" SubArch="AVR51" Controller="atmega64" Programmer="avrdude">

@@ -1,17 +1,17 @@
 program Project1;
 
+{$O-}
+
 uses
   intrinsics;
-
-{$O-}
 
 // Die Matrix wird über 2 Stück 74HC595 angesteuert.
 
 type
-  TMaske = array[0..7] of byte;
+  TMask = array[0..7] of byte;
 
 const
-  Smily: array[0..1] of TMaske = ((
+  Smily: array[0..1] of TMask = ((
     %00111100,
     %01000010,
     %10100101,

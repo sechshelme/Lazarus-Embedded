@@ -11,6 +11,7 @@ type
   TMask = array[0..7] of byte;
 
 const
+  maxCounter = 300;
   Smily: array[0..1] of TMask = ((
     %00111100,
     %01000010,
@@ -32,7 +33,7 @@ const
 
 type
   TSPIGPIO = bitpacked record
-    DataIn, DataOut, Clock, SlaveSelect, p0, p1, p2, p3: boolean;
+    p0, p1, SlaveSelect, MOSI, MISO, Clock, p6, p7: boolean;
   end;
 
 var
@@ -45,7 +46,7 @@ var
   Data:    array[0..1] of byte;
 
 begin
-  SPI_DDR.DataOut     := True;
+  SPI_DDR.MOSI        := True;
   SPI_DDR.Clock       := True;
   SPI_DDR.SlaveSelect := True;
 
@@ -56,21 +57,21 @@ begin
     end;
 
     Data[0] := 1 shl p;
-    if Counter > 300 then begin
+    if Counter > maxCounter then begin
       Data[1] := Smily[0, p];
     end else begin
       Data[1] := Smily[1, p];
     end;
 
     Inc(Counter);
-    if Counter >= 600 then begin
+    if Counter >= maxCounter shl 1 then begin
       Counter := 0;
     end;
 
     SPI_Port.SlaveSelect := False;
     for j := 1 downto 0 do begin
       for i := 7 downto 0 do begin
-        SPI_Port.DataOut := (Data[j] and (1 shl i)) <> 0;
+        SPI_Port.MOSI := (Data[j] and (1 shl i)) <> 0;
 
         SPI_Port.Clock := True;
         SPI_Port.Clock := False;
