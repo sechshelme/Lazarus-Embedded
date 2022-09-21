@@ -2,7 +2,7 @@
 
 program Project1;
 
-{$H-,J-,O-}
+{$O-}
 
 uses
   intrinsics;

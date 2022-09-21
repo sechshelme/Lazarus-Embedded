@@ -1,11 +1,18 @@
-program Project1;
+// -- Ansteuerung einer 8x8 LED Matrix über Software SPI --
+
+// Dies ist nötig, da der Atiny13 kein Hardware  USI/SPI besitzt.
+
+// Der Ablauf läuft über das Polling Verfahren.
+// Das hat den Nachteil, das die CPU keine andere Aufgabe parallel ausführen kann, 
+// ohne das die Anzeige ins Wanken kommt.
+
+// Die Matrix wird über 2 Stück Schieberegister 74HC595 angesteuert, 
+// welche an der SPI-Schnittstelle angeschlossen sind.program Project1;
 
 {$O-}
 
 uses
   intrinsics;
-
-// Die Matrix wird über 2 Stück 74HC595 angesteuert.
 
 type
   TMask = array[0..7] of byte;
