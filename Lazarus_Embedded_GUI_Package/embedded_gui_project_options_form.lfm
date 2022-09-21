@@ -1,7 +1,7 @@
 object Project_Options_Form: TProject_Options_Form
-  Left = 2512
+  Left = 1966
   Height = 962
-  Top = 251
+  Top = 271
   Width = 789
   Caption = 'Embedded Project Options'
   ClientHeight = 962
@@ -19,7 +19,7 @@ object Project_Options_Form: TProject_Options_Form
     Top = 872
     Width = 75
     Anchors = [akRight, akBottom]
-    Caption = 'Vorlagen...'
+    Caption = 'Templates...'
     OnClick = TemplatesButtonClick
     TabOrder = 6
   end
@@ -29,7 +29,7 @@ object Project_Options_Form: TProject_Options_Form
     Top = 871
     Width = 75
     Anchors = [akRight, akBottom]
-    Caption = 'Abbrechen'
+    Caption = 'Cancel'
     ModalResult = 2
     TabOrder = 4
   end
@@ -663,7 +663,7 @@ object Project_Options_Form: TProject_Options_Form
     Top = 871
     Width = 75
     Anchors = [akRight, akBottom]
-    Caption = 'Hilfe...'
+    Caption = 'Help...'
     OnClick = ButtonHelpClick
     TabOrder = 7
   end
