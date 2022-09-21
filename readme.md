@@ -1,4 +1,4 @@
-## german:
+## GERMAN:
 ### Lazarus Embedded GUI 
 
 Mit dieser GUI für Lazarus hat man den Vorteil, das man sehr einfach Projekte für Embedded System entwickeln kann.
@@ -22,14 +22,14 @@ Anschliessend diese Datei öffnen, kompilieren und installieren. ./Lazarus_Embed
 kann dann ein Arduino UNO Project erstellt werden.
 Wen man zu Laufzeit noch was ändern will, kann man über "Project --> [Embedded] Optionen" die Werte editieren.
 
-### Schlusswort:
+#### Schlusswort:
 Die Package wird unter Linux entwickelt, daher kann es unter Windows noch Fehler haben.
 Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
 Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548 oder bei den Issus gepostet werden ;)
 
 
 
-## english:
+## ENGLISH:
 ### Lazarus Embedded GUI
 
 With this GUI for Lazarus you have the advantage that you can easily develop projects for embedded systems.
