@@ -1,8 +1,9 @@
 ## Lazarus Embedded GUI (german)
 
-Ich bin schon seit längerem an einer GUI am entwickeln, mit der man sehr einfach Programme für Embedded Systeme erstellen kann.
+Mit dieser GUI für Lazarus hat man den Vorteil, das man sehr einfach Projekte für Embedded System entwickeln kann.
 Der Vorteil der Package, es werden einem fast alle Einstellung für Compiler und Programmer abgenommen.
 
+### Stand der Entwicklung 21.09.2022
 Die AVRs werden schon sehr gut unterstützt, vor allem die gewöhnlichen Arduinos.
 Für den Arduino UNO hat es schon recht viele Beispiele.
 Es werden immer mehr, auch für nicht Arduino.
@@ -25,11 +26,14 @@ Die Package wird unter Linux entwickelt, daher kann es unter Windows noch Fehler
 Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
 Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548 oder bei den Issus gepostet werden ;)
 
+
+
 ## Lazarus Embedded GUI (english)
 
-I've been developing a GUI for a long time, with which you can easily create programs for embedded systems.
+With this GUI for Lazarus you have the advantage that you can easily develop projects for embedded systems.
 The advantage of the package, almost all settings for compilers and programmers are taken care of.
 
+### State of development 09/21/2022
 The AVRs are already very well supported, especially the ordinary Arduinos.
 There are quite a few examples for the Arduino UNO.
 There are more and more, even for non-Arduino.
@@ -51,7 +55,6 @@ If you want to change something at runtime, you can edit the values ​​via "P
 The package is developed under Linux, so it may still have bugs under Windows.
 A functional embedded cross compiler is required.
 I'm always grateful for feedback, regardless of whether it's posted directly in the forum https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548 or in the Issus ;)
-
 
 <img src="Embedded_Project_Option.png">
 <img src="Embedded_Examples.png">
