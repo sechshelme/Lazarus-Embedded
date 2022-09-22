@@ -623,8 +623,8 @@ object Project_Options_Form: TProject_Options_Form
       Left = 144
       Height = 16
       Top = 16
-      Width = 51
-      Caption = 'SubArch'
+      Width = 81
+      Caption = 'SubArch (-Cp)'
       Color = clDefault
       ParentColor = False
     end
@@ -632,8 +632,8 @@ object Project_Options_Form: TProject_Options_Form
       Left = 272
       Height = 16
       Top = 16
-      Width = 51
-      Caption = 'FPC Typ:'
+      Width = 85
+      Caption = 'FPC Typ: (-Wp)'
       Color = clDefault
       ParentColor = False
     end
@@ -651,8 +651,8 @@ object Project_Options_Form: TProject_Options_Form
       Left = 8
       Height = 16
       Top = 16
-      Width = 28
-      Caption = 'Arch'
+      Width = 51
+      Caption = 'Arch (-P)'
       Color = clDefault
       ParentColor = False
     end

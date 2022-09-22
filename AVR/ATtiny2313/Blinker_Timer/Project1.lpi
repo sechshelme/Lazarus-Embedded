@@ -22,13 +22,13 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <LaunchingApplication Use="True" PathPlusParams="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
+        <LaunchingApplication PathPlusParams=""/>
       </local>
       <FormatVersion Value="2"/>
       <Modes Count="1">
         <Mode0 Name="default">
           <local>
-            <LaunchingApplication Use="True" PathPlusParams="/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/bin/avrdude -C/home/tux/Programme/arduino-1.8.5/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b57600 -D -Uflash:w:Project1.hex:i"/>
+            <LaunchingApplication PathPlusParams=""/>
           </local>
         </Mode0>
       </Modes>
@@ -57,6 +57,7 @@
     <Linking>
       <Debugging>
         <GenerateDebugInfo Value="False"/>
+        <DebugInfoType Value="dsDwarf2Set"/>
       </Debugging>
     </Linking>
     <Other>
