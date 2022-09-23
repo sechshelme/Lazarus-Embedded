@@ -11,6 +11,7 @@ object Project_Options_Form: TProject_Options_Form
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poDefaultPosOnly
   LCLVersion = '2.3.0.0'
   object TemplatesButton: TButton
@@ -129,9 +130,9 @@ object Project_Options_Form: TProject_Options_Form
       Height = 580
       Top = 40
       Width = 744
-      ActivePage = TabSheet_avrdude
+      ActivePage = TabSheet_ESP_Tool
       Anchors = [akTop, akLeft, akRight, akBottom]
-      TabIndex = 0
+      TabIndex = 4
       TabOrder = 4
       object TabSheet_avrdude: TTabSheet
         Caption = 'AVRDude'
@@ -566,11 +567,12 @@ object Project_Options_Form: TProject_Options_Form
           Color = clDefault
           ParentColor = False
         end
-        object Edit_ESPTool_Chip: TEdit
+        object ComboBox_ESPTool: TComboBox
           Left = 17
           Height = 28
           Top = 176
-          Width = 122
+          Width = 119
+          ItemHeight = 0
           TabOrder = 2
         end
       end

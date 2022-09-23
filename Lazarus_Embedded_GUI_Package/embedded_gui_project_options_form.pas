@@ -28,6 +28,7 @@ type
     ButtonHelp: TButton;
     CheckBox_avrdude_Override_signature_check: TCheckBox;
     CheckBox_Bossac_Arduino_Erase: TCheckBox;
+    ComboBox_ESPTool: TComboBox;
     ComboBox_ARM_FlashBase: TComboBox;
     BitBtn1_Auto_avrdude_Controller: TBitBtn;
     BitBtn_Auto_Flash_Base: TBitBtn;
@@ -62,7 +63,6 @@ type
     ComboBox_avrdude_Verbose: TComboBox;
     CPU_InfoButton: TButton;
     Edit_avrdude_Controller: TEdit;
-    Edit_ESPTool_Chip: TEdit;
     GroupBox_Compiler: TGroupBox;
     GroupBox_Programmer: TGroupBox;
     CancelButton: TButton;
@@ -102,15 +102,18 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure RadioButton_Programmer_Change(Sender: TObject);
     procedure TemplatesButtonClick(Sender: TObject);
   private
     ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath, ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path, ComboBox_ESP_Bootloader_Path, ComboBox_ESP_Tool_Path: TFileNameComboBox;
+    FIsNewProject: Boolean;
     SubArchList: string;
     List: TStringArray;
     FProjectSource: string;
   public
     property ProjectSource: string read FProjectSource;
+    property IsNewProject: Boolean write FIsNewProject;
     procedure DefaultMask;
     procedure LazProjectToMask(LazProject: TLazProject);
     procedure MaskToLazProject(LazProject: TLazProject);
@@ -129,7 +132,6 @@ implementation
 
 procedure TProject_Options_Form.FormCreate(Sender: TObject);
 begin
-  Caption := Title + 'Project Options';
   LoadFormPos_from_XML(Self);
   PageControl1.PageIndex := 0;
 
@@ -262,11 +264,21 @@ begin
     Top := 80;
   end;
 
+  with ComboBox_ESPTool do begin
+    Items.AddStrings(['auto','esp32','esp8266'], True);
+  end;
+
   with ComboBox_ESPTool_COMPortBaud do begin
     Items.AddStrings(['115200'], True);
   end;
 
   DefaultMask;
+end;
+
+procedure TProject_Options_Form.FormShow(Sender: TObject);
+begin
+  if FIsNewProject then
+  Caption := Title + 'New Project'else   Caption := Title + 'Project Options';
 end;
 
 procedure TProject_Options_Form.DefaultMask;
@@ -391,7 +403,7 @@ begin
     ComboBox_ESP_Bootloader_Path.Text := '';
   end;
 
-  Edit_ESPTool_Chip.Text := 'esp8266';
+  ComboBox_ESPTool.Text := 'esp8266';
 
   with ComboBox_ESPTool_COMPort do begin
     Items.CommaText := GetSerialPortNames;
@@ -590,7 +602,7 @@ begin
     ComboBox_ESP_Tool_Path.Text := PrgPath;
     //    ComboBox_ESP_Bootloader_Path.Text := PrgPath; ??????????????????
 
-    Edit_ESPTool_Chip.Text := FindPara(cmd, ['-c', '--chip']);
+    ComboBox_ESPTool.Text := FindPara(cmd, ['-c', '--chip']);
 
     with ComboBox_ESPTool_COMPort do begin
       Items.CommaText := GetSerialPortNames;
@@ -745,7 +757,7 @@ begin
   if RadioButton_ESP_Tool.Checked then begin
     //    cmd := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' +
     //      ComboBox_ESP_Bootloader_Path.Text + '/bootloader.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin';
-    cmd := ComboBox_ESP_Tool_Path.Text + ' -c' + Edit_ESPTool_Chip.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' + ComboBox_ESP_Bootloader_Path.Text +
+    cmd := ComboBox_ESP_Tool_Path.Text + ' -c' + ComboBox_ESPTool.Text + ' -p ' + ComboBox_ESPTool_COMPort.Text + ' -b' + ComboBox_ESPTool_COMPortBaud.Text + ' --before default_reset --after hard_reset write_flash 0x0 ' + ComboBox_ESP_Bootloader_Path.Text +
       '/bootloader.bin 0x8000 ' + ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin 0x10000 ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
     LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
   end;
@@ -759,9 +771,10 @@ var
 
 begin
   TemplatesForm := TProjectTemplatesForm.Create(nil);
+  TemplatesForm.IsNewProject := FIsNewProject;
 
   if TemplatesForm.ShowModal = mrOk then begin
-    index := TemplatesForm.ListBox_Template.ItemIndex;
+    index := TemplatesForm.ListBox_Board.ItemIndex;
     if index >= 0 then begin
 
       // --- FPC_Command
@@ -814,7 +827,7 @@ begin
       FProjectSource := TemplatesForm.getSource;
 
       // ESP32 / ESP8266
-      Edit_ESPTool_Chip.Text := TemplatesPara[index].ESPTool.Controller;
+      ComboBox_ESPTool.Text := TemplatesPara[index].ESPTool.Controller;
       ComboBox_ESPTool_COMPort.Text := TemplatesPara[index].ESPTool.COM_Port;
       ComboBox_ESPTool_COMPortBaud.Text := TemplatesPara[index].ESPTool.Baud;
     end;

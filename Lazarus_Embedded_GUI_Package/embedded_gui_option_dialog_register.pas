@@ -52,6 +52,7 @@ begin
   end;
 
   Project_Options_Form.LazProjectToMask(LazProject);
+  Project_Options_Form.IsNewProject := False;
 
   if Project_Options_Form.ShowModal = mrOk then begin
     Project_Options_Form.MaskToLazProject(LazProject);
@@ -81,6 +82,8 @@ end;
 function TProjectApp.DoInitDescriptor: TModalResult;
 begin
   Project_Options_Form.DefaultMask;
+
+  Project_Options_Form.IsNewProject := True;
   Result := Project_Options_Form.ShowModal;
 end;
 

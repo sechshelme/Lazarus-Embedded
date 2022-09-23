@@ -8,14 +8,16 @@ object ProjectTemplatesForm: TProjectTemplatesForm
   ClientWidth = 674
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poDefault
-  LCLVersion = '2.1.0.0'
-  object Label1: TLabel
+  LCLVersion = '2.3.0.0'
+  object Label_Board: TLabel
     Left = 16
     Height = 16
     Top = 8
     Width = 107
     Caption = 'Board/Controller:'
+    Color = clDefault
     ParentColor = False
   end
   object BitBtn_Ok: TBitBtn
@@ -54,22 +56,23 @@ object ProjectTemplatesForm: TProjectTemplatesForm
     TabOrder = 2
     TopIndex = -1
   end
-  object Label2: TLabel
+  object Label_Examples: TLabel
     Left = 240
     Height = 16
     Top = 8
     Width = 55
     Caption = 'Example:'
+    Color = clDefault
     ParentColor = False
   end
-  object ListBox_Template: TListBox
+  object ListBox_Board: TListBox
     Left = 16
     Height = 450
     Top = 32
     Width = 208
     Anchors = [akTop, akLeft, akBottom]
     ItemHeight = 0
-    OnClick = ListBox_TemplateClick
+    OnClick = ListBox_BoardClick
     OnDblClick = ListBoxDblClick
     ScrollWidth = 206
     TabOrder = 3
