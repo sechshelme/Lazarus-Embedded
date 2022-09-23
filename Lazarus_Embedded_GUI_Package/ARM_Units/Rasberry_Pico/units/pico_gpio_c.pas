@@ -168,7 +168,7 @@ const
   end;
   {$ENDIF}
 
-//  var
+  var
   {$IF DEFINED(FPC_MCU_TINY_2040)}
     uart : TUART_Registers absolute UART0_BASE;
     spi  : TSPI_Registers absolute SPI0_BASE;
