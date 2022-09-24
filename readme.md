@@ -1,8 +1,9 @@
 ## GERMAN:
 ### Lazarus Embedded GUI 
 
-Mit dieser GUI für Lazarus hat man den Vorteil, das man sehr einfach Projekte für Embedded System entwickeln kann.
+Mit dieser GUI für Lazarus hat man den Vorteil, das man sehr einfach Projekte für Embedded Systeme entwickeln kann.
 Der Vorteil der Package, es werden einem fast alle Einstellung für Compiler und Programmer abgenommen.
+Ein Serial-Monitor ist auch eingebaut.
 
 #### Stand der Entwicklung 21.09.2022
 Die AVRs werden schon sehr gut unterstützt, vor allem die gewöhnlichen Arduinos.
@@ -34,6 +35,7 @@ Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://foru
 
 With this GUI for Lazarus you have the advantage that you can easily develop projects for embedded systems.
 The advantage of the package, almost all settings for compilers and programmers are taken care of.
+A serial monitor is also built in.
 
 #### State of development 09/21/2022
 The AVRs are already very well supported, especially the ordinary Arduinos.

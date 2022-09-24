@@ -190,7 +190,12 @@ const
     spi  : TSPI_Registers absolute SPI0_BASE;
     i2c  : TI2C_Registers absolute I2C0_BASE;
   {$ENDIF}
-    
+
+  uart : TUART_Registers absolute UART0_BASE;
+  spi  : TSPI_Registers absolute SPI0_BASE;
+  i2c  : TI2C_Registers absolute I2C0_BASE;
+
+
 type
   TGPIODirection = (
     GPIO_IN=0,
