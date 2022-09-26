@@ -76,7 +76,8 @@ end;
 
 function TProjectApp.GetLocalizedDescription: string;
 begin
-  Result := Title + 'Erstellt ein Embedded-Project (Arduino, STM32, etc.)';
+  Result := 'Erstellt ein Embedded-Project (Arduino, STM32, etc.), bei dem man auch den Programmer mit seine Parameter angeben kann.' +
+    ' Die Parameter können auch nachträglich modifiziert werden.';
 end;
 
 function TProjectApp.DoInitDescriptor: TModalResult;
@@ -90,7 +91,6 @@ end;
 function TProjectApp.InitProject(AProject: TLazProject): TModalResult;
 var
   MainFile: TLazProjectFile;
-
 begin
   inherited InitProject(AProject);
 
