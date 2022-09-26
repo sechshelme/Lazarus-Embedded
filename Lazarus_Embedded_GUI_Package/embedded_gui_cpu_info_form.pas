@@ -18,11 +18,11 @@ type
 
   TCPU_InfoForm = class(TForm)
     BitBtn_Ok: TBitBtn;
-    ComboBox1: TComboBox;
+    ComboBox_Controller: TComboBox;
     StringGrid1: TStringGrid;
     ToggleBox1: TToggleBox;
     procedure BitBtn_OkClick(Sender: TObject);
-    procedure ComboBox1Select(Sender: TObject);
+    procedure ComboBox_ControllerSelect(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid1CompareCells(Sender: TObject; ACol, ARow, BCol, BRow: integer; var Result: integer);
@@ -53,11 +53,11 @@ begin
   StringGrid1.AlternateColor := clMoneyGreen;
   StringGrid1.ColumnClickSorts := True;
 
-  ComboBox1.Text := 'avr';
-  ComboBox1.Items.AddCommaText(ArchList);
+  ComboBox_Controller.Text := 'avr';
+  ComboBox_Controller.Items.AddCommaText(ArchList);
 
-  ComboBox1.ItemIndex := ComboBox1.Items.IndexOf('avr');
-  ComboBox1Select(Sender);
+  ComboBox_Controller.ItemIndex := ComboBox_Controller.Items.IndexOf('avr');
+  ComboBox_ControllerSelect(Sender);
 end;
 
 procedure TCPU_InfoForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -87,31 +87,12 @@ end;
 
 procedure TCPU_InfoForm.ToggleBox1Change(Sender: TObject);
 begin
-  ComboBox1Select(Sender);
+  ComboBox_ControllerSelect(Sender);
 end;
 
-procedure TCPU_InfoForm.ComboBox1Select(Sender: TObject);
+procedure TCPU_InfoForm.ComboBox_ControllerSelect(Sender: TObject);
 begin
-  Load(GetListData(ComboBox1.ItemIndex));
-  //Exit;
-  //
-  //case ComboBox1.ItemIndex of
-  //  0: begin
-  //    Load(AVR_ControllerDataList);
-  //  end;
-  //  1: begin
-  //    Load(ARM_ControllerDataList);
-  //  end;
-  //  2: begin
-  //    Load(Mips_ControllerDataList);
-  //  end;
-  //  3: begin
-  //    Load(Riscv32_ControllerDataList);
-  //  end;
-  //  4: begin
-  //    Load(XTensa_ControllerDataList);
-  //  end;
-  //end;
+  Load(GetListData(ComboBox_Controller.ItemIndex));
 end;
 
 procedure TCPU_InfoForm.BitBtn_OkClick(Sender: TObject);

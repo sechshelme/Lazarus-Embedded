@@ -858,12 +858,16 @@ end;
 
 procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);
 var
-  Form: TCPU_InfoForm;
+  CPU_InfoForm: TCPU_InfoForm;
+  s: String;
 begin
-  Form := TCPU_InfoForm.Create(nil);
-  Form.Load(ARM_ControllerDataList);
-  Form.ShowModal;
-  Form.Free;
+  CPU_InfoForm := TCPU_InfoForm.Create(nil);
+  s := ComboBox_Arch.Text;
+  CPU_InfoForm.ComboBox_Controller.ItemIndex := CPU_InfoForm.ComboBox_Controller.Items.IndexOf(s);
+  CPU_InfoForm.ComboBox_Controller.Text := s;
+  CPU_InfoForm.ComboBox_ControllerSelect(Sender);
+  CPU_InfoForm.ShowModal;
+  CPU_InfoForm.Free;
 end;
 
 end.

@@ -116,14 +116,16 @@ var
 
 procedure ShowCPU_Info(Sender: TObject);
 var
-  Form: TCPU_InfoForm;
+  CPU_InfoForm: TCPU_InfoForm;
+  s:String;
 begin
-  Form := TCPU_InfoForm.Create(nil);
-  //  Form.Load(AVR_ControllerDataList);        // Lazarus auslesen ??????????
-  Form.ComboBox1.ItemIndex := 0;
-  Form.ComboBox1Select(Sender);
-  Form.ShowModal;
-  Form.Free;
+  CPU_InfoForm := TCPU_InfoForm.Create(nil);
+  s := LazarusIDE.ActiveProject.LazCompilerOptions.TargetCPU;
+  CPU_InfoForm.ComboBox_Controller.ItemIndex := CPU_InfoForm.ComboBox_Controller.Items.IndexOf(s);
+  CPU_InfoForm.ComboBox_Controller.Text := s;
+  CPU_InfoForm.ComboBox_ControllerSelect(Sender);
+  CPU_InfoForm.ShowModal;
+  CPU_InfoForm.Free;
 end;
 
 procedure RegisterSerialMonitor(Sender: TObject);
