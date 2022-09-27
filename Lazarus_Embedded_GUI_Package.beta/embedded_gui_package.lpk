@@ -99,6 +99,10 @@
         <Filename Value="embedded_gui_frame_esptool.pas"/>
         <UnitName Value="embedded_gui_frame_esptool"/>
       </Item>
+      <Item>
+        <Filename Value="embedded_gui_frame_avrdude.pas"/>
+        <UnitName Value="embedded_gui_frame_avrdude"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>

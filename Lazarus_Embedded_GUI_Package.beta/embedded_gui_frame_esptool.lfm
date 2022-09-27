@@ -1,33 +1,33 @@
 object Frame_ESPTool: TFrame_ESPTool
   Left = 0
-  Height = 394
+  Height = 253
   Top = 0
-  Width = 548
-  ClientHeight = 394
-  ClientWidth = 548
+  Width = 465
+  ClientHeight = 253
+  ClientWidth = 465
   TabOrder = 0
-  DesignLeft = 2471
-  DesignTop = 227
+  DesignLeft = 2657
+  DesignTop = 116
   object GroupBox_ESPTool: TGroupBox
     Left = 0
-    Height = 394
+    Height = 253
     Top = 0
-    Width = 548
+    Width = 465
     Align = alClient
     Caption = 'ESPTool'
-    ClientHeight = 377
-    ClientWidth = 546
+    ClientHeight = 236
+    ClientWidth = 463
     TabOrder = 0
     object ScrollBox1: TScrollBox
       Left = 0
-      Height = 377
+      Height = 236
       Top = 0
-      Width = 546
+      Width = 463
       HorzScrollBar.Page = 429
       VertScrollBar.Page = 204
       Align = alClient
-      ClientHeight = 375
-      ClientWidth = 544
+      ClientHeight = 234
+      ClientWidth = 461
       TabOrder = 0
       object ComboBox_ESPTool: TComboBox
         Left = 17

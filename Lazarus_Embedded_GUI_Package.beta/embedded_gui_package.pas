@@ -17,8 +17,8 @@ uses
   Embedded_GUI_Serial_Monitor_Output_Options_Frame, 
   Embedded_GUI_Serial_Monitor_Send_File_Form, 
   Embedded_GUI_Common_FileComboBox, Embedded_GUI_Common, 
-  Embedded_GUI_Embedded_List_Const, embedded_gui_frame_esptool,
-  LazarusPackageIntf;
+  Embedded_GUI_Embedded_List_Const, Embedded_GUI_Frame_ESPTool, 
+  Embedded_GUI_Frame_AVRDude, LazarusPackageIntf;
 
 implementation
 

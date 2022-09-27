@@ -18,7 +18,7 @@ type
   TMask = array[0..7] of byte;
 
 const
-  maxCounter = 300;
+  maxCounter = 3000;
   Smily: array[0..1] of TMask = ((
     %00111100,
     %01000010,

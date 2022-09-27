@@ -6,7 +6,6 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, StdCtrls,
-
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
