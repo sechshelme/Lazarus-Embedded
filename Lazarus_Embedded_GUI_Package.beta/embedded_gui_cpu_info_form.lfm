@@ -1,0 +1,57 @@
+object CPU_InfoForm: TCPU_InfoForm
+  Left = 2534
+  Height = 295
+  Top = 918
+  Width = 522
+  Anchors = [akTop, akLeft, akBottom]
+  Caption = 'Embedded CPU Info'
+  ClientHeight = 295
+  ClientWidth = 522
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDefaultPosOnly
+  LCLVersion = '2.3.0.0'
+  object BitBtn_Ok: TBitBtn
+    Left = 418
+    Height = 30
+    Top = 255
+    Width = 96
+    Anchors = [akRight, akBottom]
+    DefaultCaption = True
+    Kind = bkClose
+    ModalResult = 11
+    OnClick = BitBtn_OkClick
+    TabOrder = 0
+  end
+  object StringGrid1: TStringGrid
+    Left = 0
+    Height = 242
+    Top = 0
+    Width = 522
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabOrder = 1
+    OnCompareCells = StringGrid1CompareCells
+  end
+  object ToggleBox1: TToggleBox
+    Left = 160
+    Height = 30
+    Top = 255
+    Width = 75
+    Anchors = [akLeft, akBottom]
+    Caption = 'Hex'
+    OnChange = ToggleBox1Change
+    TabOrder = 2
+  end
+  object ComboBox_Controller: TComboBox
+    Left = 16
+    Height = 28
+    Top = 255
+    Width = 100
+    Anchors = [akLeft, akBottom]
+    ItemHeight = 0
+    OnSelect = ComboBox_ControllerSelect
+    TabOrder = 3
+    Text = 'ComboBox_Controller'
+  end
+end
