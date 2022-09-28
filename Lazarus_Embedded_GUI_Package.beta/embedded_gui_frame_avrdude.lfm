@@ -7,8 +7,8 @@ object Frame_AVRDude: TFrame_AVRDude
   ClientWidth = 467
   OnEnter = FrameEnter
   TabOrder = 0
-  DesignLeft = 2527
-  DesignTop = 594
+  DesignLeft = 1981
+  DesignTop = 701
   object GroupBox_AVRDude: TGroupBox
     Left = 0
     Height = 503
@@ -170,7 +170,7 @@ object Frame_AVRDude: TFrame_AVRDude
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
           FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
         }
-        OnClick = BitBtn1_Auto_avrdude_ControllerClick
+        OnClick = BitBtn_Auto_avrdude_ControllerClick
         TabOrder = 4
       end
       object Label10: TLabel

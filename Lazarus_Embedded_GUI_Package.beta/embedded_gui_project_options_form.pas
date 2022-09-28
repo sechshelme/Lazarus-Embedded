@@ -21,6 +21,9 @@ uses
   Embedded_GUI_Embedded_List_Const, Types,
 
   Embedded_GUI_Frame_AVRDude,
+  Embedded_GUI_Frame_STFlash,
+  Embedded_GUI_Frame_Bossac,
+  Embedded_GUI_Frame_UF2,
   Embedded_GUI_Frame_ESPTool;
 
 type
@@ -29,26 +32,10 @@ type
 
   TProject_Options_Form = class(TForm)
     ButtonHelp: TButton;
-    CheckBox_Bossac_Arduino_Erase: TCheckBox;
-    ComboBox_ARM_FlashBase: TComboBox;
-    BitBtn_Auto_Flash_Base: TBitBtn;
     Button1: TButton;
     Button2: TButton;
     CheckBox_ASMFile: TCheckBox;
-    CheckBox_Bossac_boot_Flash: TCheckBox;
-    CheckBox_Bossac_Brownout_Detection: TCheckBox;
-    CheckBox_Bossac_Brownout_Reset: TCheckBox;
-    CheckBox_Bossac_Print_Debug: TCheckBox;
-    CheckBox_Bossac_Erase_Flash: TCheckBox;
-    CheckBox_Bossac_Override_USB_Port_Autodetection: TCheckBox;
-    CheckBox_Bossac_Display_Device_Info: TCheckBox;
-    CheckBox_Bossac_Lock_Flash_Region: TCheckBox;
-    CheckBox_Bossac_Reset_CPU: TCheckBox;
-    CheckBox_Bossac_Flash_Security_Flag: TCheckBox;
     CheckBox_UF2File: TCheckBox;
-    CheckBox_Bossac_Unlock_Flash_Region: TCheckBox;
-    CheckBox_Bossac_Verify_File: TCheckBox;
-    ComboBox_Bossac_COMPort: TComboBox;
     ComboBox_SubArch: TComboBox;
     ComboBox_Arch: TComboBox;
     ComboBox_Controller: TComboBox;
@@ -57,17 +44,16 @@ type
     GroupBox_Programmer: TGroupBox;
     CancelButton: TButton;
     Label1: TLabel;
-    Label13: TLabel;
     Label2: TLabel;
     Label5: TLabel;
-    Label_FlashBase: TLabel;
     Memo1: TMemo;
     PageControl1: TPageControl;
+    Radio_None: TRadioButton;
     RadioButton_ESP_Tool: TRadioButton;
-    RadioButton_avrdude: TRadioButton;
+    RadioButton_AVRDude: TRadioButton;
     RadioButton_UF2: TRadioButton;
     RadioButton_Bossac: TRadioButton;
-    RadioButton_st_flash: TRadioButton;
+    RadioButton_ST_Flash: TRadioButton;
     TabSheet_ESP_Tool: TTabSheet;
     TabSheet_avrdude: TTabSheet;
     TabSheet_UF2: TTabSheet;
@@ -89,8 +75,10 @@ type
     procedure TemplatesButtonClick(Sender: TObject);
   private
     Frame_AVRDude:TFrame_AVRDude;
+    Frame_STFlash:TFrame_STFlash;
+    Frame_Bossac:TFrame_Bossac;
+    Frame_UF2:TFrame_UF2;
     Frame_ESPTool:TFrame_ESPTool;
-    ComboBox_STLinkPath, ComboBox_BossacPath, ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path : TFileNameComboBox;
     FIsNewProject: Boolean;
     SubArchList: string;
     List: TStringArray;
@@ -143,59 +131,25 @@ begin
   Frame_AVRDude.Align:=alBottom;
 
   // ST-Link
-  ComboBox_STLinkPath := TFileNameComboBox.Create(TabSheet_stflash, 'STLinkPath');
-  with ComboBox_STLinkPath do begin
-    Caption := 'ST-Link Path:';
-    Anchors := [akTop, akLeft, akRight];
-    Left := 5;
-    Width := TabSheet_stflash.Width - 10;
-    Top := 10;
-  end;
-
-  with ComboBox_ARM_FlashBase do begin
-    Sorted := True;
-    Items.AddStrings(['0x00000000', '0x00080000', '0x08000000']);
-  end;
+  Frame_STFlash:=TFrame_STFlash.Create(GroupBox_Programmer);
+  Frame_STFlash.Parent:=GroupBox_Programmer;
+  Frame_STFlash.Anchors:=[akBottom,akLeft,akRight,akTop];
+  Frame_STFlash.Top:=35;
+  Frame_STFlash.Align:=alBottom;
 
   // Bossac ( Arduino Due )
-  ComboBox_BossacPath := TFileNameComboBox.Create(TabSheet_Bossac, 'BossacPath');
-  with ComboBox_BossacPath do begin
-    Caption := 'Bossac Path:';
-    Anchors := [akTop, akLeft, akRight];
-    Left := 5;
-    Width := TabSheet_Bossac.Width - 10;
-    Top := 10;
-  end;
+  Frame_Bossac:=TFrame_Bossac.Create(GroupBox_Programmer);
+  Frame_Bossac.Parent:=GroupBox_Programmer;
+  Frame_Bossac.Anchors:=[akBottom,akLeft,akRight,akTop];
+  Frame_Bossac.Top:=35;
+  Frame_Bossac.Align:=alBottom;
 
   // Rasberry PI Pico
-  ComboBox_UF2_UnitPath := TFileNameComboBox.Create(TabSheet_UF2, 'UnitPath');
-  with ComboBox_UF2_UnitPath do begin
-    Caption := 'Unit Path:';
-    Directory := True;
-    Anchors := [akTop, akLeft, akRight];
-    Left := 5;
-    Width := TabSheet_UF2.Width - 10;
-    Top := 10;
-  end;
-
-  ComboBox_UF2_cp_Path := TFileNameComboBox.Create(TabSheet_UF2, 'cpPath');
-  with ComboBox_UF2_cp_Path do begin
-    Caption := 'cp Path:';
-    Anchors := [akTop, akLeft, akRight];
-    Left := 5;
-    Width := TabSheet_UF2.Width - 10;
-    Top := 80;
-  end;
-
-  ComboBox_UF2_mount_Path := TFileNameComboBox.Create(TabSheet_UF2, 'mountPath');
-  with ComboBox_UF2_mount_Path do begin
-    Caption := 'Mount Path:';
-    Directory := True;
-    Anchors := [akTop, akLeft, akRight];
-    Left := 5;
-    Width := TabSheet_UF2.Width - 10;
-    Top := 150;
-  end;
+  Frame_UF2:=TFrame_UF2.Create(GroupBox_Programmer);
+  Frame_UF2.Parent:=GroupBox_Programmer;
+  Frame_UF2.Anchors:=[akBottom,akLeft,akRight,akTop];
+  Frame_UF2.Top:=35;
+  Frame_UF2.Align:=alBottom;
 
   // ESP32 / ES8266
   Frame_ESPTool:=TFrame_ESPTool.Create(GroupBox_Programmer);
@@ -232,10 +186,6 @@ begin
     Frame_AVRDude.Controller := Text;;
   end;
 
-  with ComboBox_ARM_FlashBase do begin
-    Text := '0x08000000';
-  end;
-
   CheckBox_ASMFile.Checked := False;
   CheckBox_UF2File.Checked := False;
 
@@ -245,44 +195,13 @@ begin
   Frame_AVRDude.DefaultMask;
 
   // ST-Link
-  if Embedded_IDE_Options.ARM.STFlashPath.Count > 0 then begin
-    ComboBox_STLinkPath.Text := Embedded_IDE_Options.ARM.STFlashPath[0];
-  end else begin
-    ComboBox_STLinkPath.Text := '';
-  end;
+  Frame_STFlash.DefaultMask;
 
   // Bossac
-  if Embedded_IDE_Options.ARM.BossacPath.Count > 0 then begin
-    ComboBox_BossacPath.Text := Embedded_IDE_Options.ARM.BossacPath[0];
-  end else begin
-    ComboBox_BossacPath.Text := '';
-  end;
-
-  with ComboBox_Bossac_COMPort do begin
-    Items.CommaText := GetSerialPortNames;
-    if Items.Count > 0 then begin
-      Text := Items[0];
-    end;
-  end;
+  Frame_Bossac.DefaultMask;
 
   // Rasberry PI Pico
-  if Embedded_IDE_Options.ARM.Raspi_Pico.Unit_Path.Count > 0 then begin
-    ComboBox_UF2_UnitPath.Text := Embedded_IDE_Options.ARM.Raspi_Pico.Unit_Path[0];
-  end else begin
-    ComboBox_UF2_UnitPath.Text := '';
-  end;
-
-  if Embedded_IDE_Options.ARM.Raspi_Pico.cp_Path.Count > 0 then begin
-    ComboBox_UF2_cp_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.cp_Path[0];
-  end else begin
-    ComboBox_UF2_cp_Path.Text := '';
-  end;
-
-  if Embedded_IDE_Options.ARM.Raspi_Pico.mount_Path.Count > 0 then begin
-    ComboBox_UF2_mount_Path.Text := Embedded_IDE_Options.ARM.Raspi_Pico.mount_Path[0];
-  end else begin
-    ComboBox_UF2_mount_Path.Text := '';
-  end;
+  Frame_UF2.DefaultMask;
 
   // ESP32 / ESP8266
   Frame_ESPTool.DefaultMask;
@@ -306,13 +225,13 @@ var
   i: integer;
   s: string;
 begin
-  for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
-    if ARM_ControllerDataList[i, 0] = ComboBox_Controller.Text then begin
-      s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
-      ComboBox_ARM_FlashBase.Text := '0x' + s;
-      Break;
-    end;
-  end;
+  //for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
+  //  if ARM_ControllerDataList[i, 0] = ComboBox_Controller.Text then begin
+  //    s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
+  //    ComboBox_ARM_FlashBase.Text := '0x' + s;
+  //    Break;
+  //  end;
+  //end;
 end;
 
 procedure TProject_Options_Form.ComboBox_ArchChange(Sender: TObject);
@@ -337,6 +256,7 @@ end;
 procedure TProject_Options_Form.ComboBox_ControllerChange(Sender: TObject);
 begin
   Frame_AVRDude.Controller := ComboBox_Controller.Text;;
+  Frame_STFlash.Controller := ComboBox_Controller.Text;;
 end;
 
 procedure TProject_Options_Form.BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
@@ -397,7 +317,7 @@ begin
   // AVRDude
   with Frame_AVRDude do begin
   if Pos(UpCase('avrdude'), ProgrammerName) > 0 then begin
-    RadioButton_avrdude.Checked := True;
+    RadioButton_AVRDude.Checked := True;
     ComboBox_AvrdudePath.Text := ProgrammerPath;
     ComboBox_AvrdudeConfigPath.Text := FindPara(cmd, ['-C']);
 
@@ -425,13 +345,16 @@ begin
   end;
 
   // ST-Link
+  with Frame_STFlash do begin
   if Pos(UpCase('st-flash'), ProgrammerName) > 0 then begin
-    RadioButton_st_flash.Checked := True;
+    RadioButton_ST_Flash.Checked := True;
     ComboBox_STLinkPath.Text := ProgrammerPath;
     ComboBox_ARM_FlashBase.Text := '0x' + FindPara(cmd, ['0x']);
   end;
+  end;
 
   // Bossac
+  with Frame_Bossac do begin
   if Pos(UpCase('bossac'), ProgrammerName) > 0 then begin
     RadioButton_Bossac.Checked := True;
     ComboBox_BossacPath.Text := ProgrammerPath;
@@ -460,8 +383,10 @@ begin
     CheckBox_Bossac_Reset_CPU.Checked := (Pos(' -R', cmd) > 9) or (Pos(' --reset', cmd) > 0);
     CheckBox_Bossac_Arduino_Erase.Checked := (Pos(' -a', cmd) > 9) or (Pos(' --arduino-erase', cmd) > 0);
   end;
+  end;
 
   // Rasberry PI Pico
+  with Frame_UF2 do begin
   if Pos(UpCase('.uf2 '), UpCase(cmd)) > 0 then begin
     RadioButton_UF2.Checked := True;
     //    ComboBox_UF2_UnitPath.Text := ProgrammerPath;
@@ -472,6 +397,7 @@ begin
     end else begin
       ComboBox_UF2_mount_Path.Text := '';
     end;
+  end;
   end;
 
   // ESP32 / ESP8266
@@ -521,7 +447,7 @@ begin
 
   // AVRDude
   with Frame_AVRDude do begin
-  if RadioButton_avrdude.Checked then begin
+  if RadioButton_AVRDude.Checked then begin
     cmd := ComboBox_AvrdudePath.Text + ' ';
 
     s1 := ComboBox_AvrdudeConfigPath.Text;
@@ -565,12 +491,15 @@ begin
   end;
 
   // ST-Link
-  if RadioButton_st_flash.Checked then begin
+  with Frame_STFlash do begin
+  if RadioButton_ST_Flash.Checked then begin
     cmd := ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ComboBox_ARM_FlashBase.Text;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
   end;
+  end;
 
   // Bossac
+  with Frame_Bossac do begin
   if RadioButton_Bossac.Checked then begin
     // /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/bossac/BOSSA-1.7.0/bin/bossac -e -w -v -b  /n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/ARM/Arduino_DUE/von_MIR/Project1.bin -R
     //    cmd := ComboBox_BossacPath.Text + sf + ' -w -e -v -b ' + LazProject.LazCompilerOptions.TargetFilename + '.bin -R';
@@ -624,15 +553,18 @@ begin
     cmd := cmd + ' -w ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
 
     LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
+    end;
   end;
 
   // Rasberry PI Pico
+  with Frame_UF2 do begin
   if RadioButton_UF2.Checked then begin
     sf := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
     cmd := ComboBox_UF2_cp_Path.Text + ' ' + sf + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + sf;
     LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
 
     LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
+  end;
   end;
 
   // ESP32 / ESP8266
@@ -672,8 +604,8 @@ begin
       ComboBox_Controller.Text := TemplatesPara[index].Controller;
 
       // --- Programmer Command
-      RadioButton_avrdude.Checked := TemplatesPara[index].Programmer = 'avrdude';
-      RadioButton_st_flash.Checked := TemplatesPara[index].Programmer = 'st-flash';
+      RadioButton_AVRDude.Checked := TemplatesPara[index].Programmer = 'avrdude';
+      RadioButton_ST_Flash.Checked := TemplatesPara[index].Programmer = 'st-flash';
       RadioButton_UF2.Checked := TemplatesPara[index].Programmer = 'uf2';
       RadioButton_Bossac.Checked := TemplatesPara[index].Programmer = 'bossac';
       RadioButton_ESP_Tool.Checked := TemplatesPara[index].Programmer = 'ESPTool';
@@ -690,9 +622,12 @@ begin
       end;
 
       // ST-Link
+      with Frame_STFlash do begin
       ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;
+      end;
 
       // Bossac
+      with Frame_Bossac do begin
       ComboBox_Bossac_COMPort.Text := TemplatesPara[index].Bossac.COM_Port;
 
       CheckBox_Bossac_Erase_Flash.Checked := TemplatesPara[index].Bossac.Erase_Flash;
@@ -708,6 +643,7 @@ begin
       CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := TemplatesPara[index].Bossac.Override_USB_Port_Autodetection;
       CheckBox_Bossac_Reset_CPU.Checked := TemplatesPara[index].Bossac.Reset_CPU;
       CheckBox_Bossac_Arduino_Erase.Checked := TemplatesPara[index].Bossac.Arduino_Erase;
+      end;
 
       // Rasberry PI Pico
       CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
@@ -738,15 +674,11 @@ begin
     end;
   end;
 
-  Frame_AVRDude.Visible := RadioButton_avrdude.Checked;
-  Frame_ESPTool.Enabled := RadioButton_ESP_Tool.Checked;
-
-
-  TabSheet_avrdude.Enabled := RadioButton_avrdude.Checked;
-  TabSheet_stflash.Enabled := RadioButton_st_flash.Checked;
-  TabSheet_Bossac.Enabled := RadioButton_Bossac.Checked;
-  TabSheet_UF2.Enabled := RadioButton_UF2.Checked;
-  TabSheet_ESP_Tool.Enabled := RadioButton_ESP_Tool.Checked;
+  Frame_AVRDude.Visible := RadioButton_AVRDude.Checked;
+  Frame_STFlash.Visible := RadioButton_ST_Flash.Checked;
+  Frame_Bossac.Visible := RadioButton_Bossac.Checked;
+  Frame_UF2.Visible := RadioButton_UF2.Checked;
+  Frame_ESPTool.Visible := RadioButton_ESP_Tool.Checked;
 end;
 
 procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);

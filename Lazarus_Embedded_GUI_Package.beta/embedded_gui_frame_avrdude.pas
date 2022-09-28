@@ -34,7 +34,7 @@ type
     Label7: TLabel;
     Label9: TLabel;
     ScrollBox1: TScrollBox;
-    procedure BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
+    procedure BitBtn_Auto_avrdude_ControllerClick(Sender: TObject);
     procedure FrameEnter(Sender: TObject);
   private
     FController: String;
@@ -57,7 +57,7 @@ begin
   ComboBox_avrdude_COMPort.Items.CommaText := GetSerialPortNames;
 end;
 
-procedure TFrame_AVRDude.BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
+procedure TFrame_AVRDude.BitBtn_Auto_avrdude_ControllerClick(Sender: TObject);
 begin
 //  Edit_avrdude_Controller.Text := ComboBox_Controller.Text;
   Edit_avrdude_Controller.Text := FController;

@@ -18,7 +18,8 @@ uses
   Embedded_GUI_Serial_Monitor_Send_File_Form, 
   Embedded_GUI_Common_FileComboBox, Embedded_GUI_Common, 
   Embedded_GUI_Embedded_List_Const, Embedded_GUI_Frame_ESPTool, 
-  Embedded_GUI_Frame_AVRDude, LazarusPackageIntf;
+  Embedded_GUI_Frame_AVRDude, Embedded_GUI_Frame_Bossac, 
+  Embedded_GUI_Frame_STFlash, Embedded_GUI_Frame_UF2, LazarusPackageIntf;
 
 implementation
 

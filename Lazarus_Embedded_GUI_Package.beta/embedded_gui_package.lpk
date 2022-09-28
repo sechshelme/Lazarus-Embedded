@@ -97,11 +97,23 @@
       </Item>
       <Item>
         <Filename Value="embedded_gui_frame_esptool.pas"/>
-        <UnitName Value="embedded_gui_frame_esptool"/>
+        <UnitName Value="Embedded_GUI_Frame_ESPTool"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_frame_avrdude.pas"/>
-        <UnitName Value="embedded_gui_frame_avrdude"/>
+        <UnitName Value="Embedded_GUI_Frame_AVRDude"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_frame_bossac.pas"/>
+        <UnitName Value="Embedded_GUI_Frame_Bossac"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_frame_stflash.pas"/>
+        <UnitName Value="Embedded_GUI_Frame_STFlash"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_frame_uf2.pas"/>
+        <UnitName Value="embedded_gui_frame_uf2"/>
       </Item>
     </Files>
     <i18n>

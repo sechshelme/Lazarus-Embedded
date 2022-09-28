@@ -1,7 +1,7 @@
 object Project_Options_Form: TProject_Options_Form
-  Left = 1479
+  Left = 1733
   Height = 962
-  Top = 259
+  Top = 324
   Width = 789
   Caption = 'Embedded Project Options'
   ClientHeight = 962
@@ -78,7 +78,7 @@ object Project_Options_Form: TProject_Options_Form
     ClientHeight = 627
     ClientWidth = 755
     TabOrder = 1
-    object RadioButton_avrdude: TRadioButton
+    object RadioButton_AVRDude: TRadioButton
       Left = 8
       Height = 23
       Top = 8
@@ -89,7 +89,7 @@ object Project_Options_Form: TProject_Options_Form
       TabOrder = 0
       TabStop = True
     end
-    object RadioButton_st_flash: TRadioButton
+    object RadioButton_ST_Flash: TRadioButton
       Left = 104
       Height = 23
       Top = 8
@@ -130,169 +130,18 @@ object Project_Options_Form: TProject_Options_Form
       Height = 236
       Top = 384
       Width = 744
-      ActivePage = TabSheet_avrdude
+      ActivePage = TabSheet_stflash
       Anchors = [akTop, akLeft, akRight, akBottom]
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 4
       object TabSheet_avrdude: TTabSheet
         Caption = 'AVRDude'
       end
       object TabSheet_stflash: TTabSheet
         Caption = 'ST-Flash'
-        ClientHeight = 206
-        ClientWidth = 734
-        object BitBtn_Auto_Flash_Base: TBitBtn
-          Left = 208
-          Height = 28
-          Top = 120
-          Width = 72
-          Caption = '➔ auto'
-          OnClick = Button_to_FlashBase_Click
-          TabOrder = 0
-        end
-        object ComboBox_ARM_FlashBase: TComboBox
-          Left = 16
-          Height = 28
-          Top = 121
-          Width = 160
-          ItemHeight = 0
-          TabOrder = 1
-        end
-        object Label_FlashBase: TLabel
-          Left = 16
-          Height = 16
-          Top = 96
-          Width = 67
-          Caption = 'Flash Base:'
-          Color = clDefault
-          ParentColor = False
-        end
       end
       object TabSheet_Bossac: TTabSheet
         Caption = 'Bossac'
-        ClientHeight = 206
-        ClientWidth = 734
-        object CheckBox_Bossac_Erase_Flash: TCheckBox
-          Left = 16
-          Height = 23
-          Top = 160
-          Width = 175
-          Caption = 'Erase the entire flash (-e)'
-          TabOrder = 0
-        end
-        object CheckBox_Bossac_boot_Flash: TCheckBox
-          Left = 16
-          Height = 23
-          Top = 184
-          Width = 394
-          Caption = 'Boot from FLASH (checked) / Boot from ROM (unchecked) (-b)'
-          TabOrder = 2
-        end
-        object CheckBox_Bossac_Brownout_Detection: TCheckBox
-          Left = 16
-          Height = 23
-          Top = 208
-          Width = 168
-          Caption = 'Brownout detection (-c)'
-          TabOrder = 3
-        end
-        object CheckBox_Bossac_Lock_Flash_Region: TCheckBox
-          Left = 16
-          Height = 23
-          Top = 232
-          Width = 180
-          Caption = 'Lock the flash REGION (-l)'
-          TabOrder = 5
-        end
-        object CheckBox_Bossac_Flash_Security_Flag: TCheckBox
-          Left = 16
-          Height = 23
-          Top = 256
-          Width = 199
-          Caption = 'Set the flash security flag (-s)'
-          TabOrder = 7
-        end
-        object CheckBox_Bossac_Print_Debug: TCheckBox
-          Left = 16
-          Height = 23
-          Top = 280
-          Width = 181
-          Caption = 'Print debug messages (-d)'
-          TabOrder = 9
-        end
-        object CheckBox_Bossac_Reset_CPU: TCheckBox
-          Left = 16
-          Height = 23
-          Top = 304
-          Width = 110
-          Caption = 'Reset CPU (-R)'
-          TabOrder = 11
-        end
-        object CheckBox_Bossac_Verify_File: TCheckBox
-          Left = 256
-          Height = 23
-          Top = 160
-          Width = 254
-          Caption = 'Verify FILE matches flash contents (-v)'
-          TabOrder = 1
-        end
-        object CheckBox_Bossac_Brownout_Reset: TCheckBox
-          Left = 256
-          Height = 23
-          Top = 208
-          Width = 143
-          Caption = 'Brownout Reset (-t)'
-          TabOrder = 4
-        end
-        object CheckBox_Bossac_Unlock_Flash_Region: TCheckBox
-          Left = 256
-          Height = 23
-          Top = 232
-          Width = 198
-          Caption = 'Unlock the flash REGION (-u)'
-          TabOrder = 6
-        end
-        object CheckBox_Bossac_Display_Device_Info: TCheckBox
-          Left = 256
-          Height = 23
-          Top = 256
-          Width = 204
-          Caption = 'Display device information (-i)'
-          TabOrder = 8
-        end
-        object CheckBox_Bossac_Override_USB_Port_Autodetection: TCheckBox
-          Left = 256
-          Height = 23
-          Top = 280
-          Width = 247
-          Caption = 'Override USB port autodetection (-U)'
-          TabOrder = 10
-        end
-        object ComboBox_Bossac_COMPort: TComboBox
-          Left = 16
-          Height = 28
-          Top = 112
-          Width = 181
-          ItemHeight = 0
-          TabOrder = 12
-        end
-        object Label13: TLabel
-          Left = 16
-          Height = 16
-          Top = 88
-          Width = 240
-          Caption = 'Connection port (-p) (first Port = empty )'
-          Color = clDefault
-          ParentColor = False
-        end
-        object CheckBox_Bossac_Arduino_Erase: TCheckBox
-          Left = 256
-          Height = 23
-          Top = 304
-          Width = 312
-          Caption = 'Erase and reset via Arduino 1200 baud hack (-a)'
-          TabOrder = 13
-        end
       end
       object TabSheet_UF2: TTabSheet
         Caption = 'UF2'
@@ -311,6 +160,14 @@ object Project_Options_Form: TProject_Options_Form
       object TabSheet_ESP_Tool: TTabSheet
         Caption = 'ESP Tool'
       end
+    end
+    object Radio_None: TRadioButton
+      Left = 472
+      Height = 23
+      Top = 8
+      Width = 100
+      Caption = 'Radio_None'
+      TabOrder = 6
     end
   end
   object GroupBox_Compiler: TGroupBox
