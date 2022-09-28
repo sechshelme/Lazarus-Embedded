@@ -21,7 +21,7 @@ object Project_Options_Form: TProject_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Templates...'
     OnClick = TemplatesButtonClick
-    TabOrder = 3
+    TabOrder = 7
   end
   object CancelButton: TButton
     Left = 608
@@ -44,7 +44,7 @@ object Project_Options_Form: TProject_Options_Form
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für Embedde erstellt wurde. Auch muss das SubArch stimmen.'
     )
     ReadOnly = True
-    TabOrder = 7
+    TabOrder = 3
     TabStop = False
   end
   object CPU_InfoButton: TButton

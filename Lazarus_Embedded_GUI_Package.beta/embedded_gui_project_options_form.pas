@@ -15,7 +15,6 @@ uses
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Frame_IDE_Options,
-  //  Embedded_GUI_Templates,
   Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const, Types,
@@ -94,6 +93,7 @@ implementation
 // public
 
 procedure TProject_Options_Form.FormCreate(Sender: TObject);
+const FrameTop=40;
 begin
   LoadFormPos_from_XML(Self);
 
@@ -111,41 +111,41 @@ begin
     Sorted := True;
   end;
 
-  // --- Programer
+  // --- Programmer
 
   // AVRDude
   Frame_AVRDude:=TFrame_AVRDude.Create(GroupBox_Programmer);
   Frame_AVRDude.Parent:=GroupBox_Programmer;
   Frame_AVRDude.Anchors:=[akBottom,akLeft,akRight,akTop];
-  Frame_AVRDude.Top:=35;
+  Frame_AVRDude.Top:=FrameTop;
   Frame_AVRDude.Align:=alBottom;
 
   // ST-Link
   Frame_STFlash:=TFrame_STFlash.Create(GroupBox_Programmer);
   Frame_STFlash.Parent:=GroupBox_Programmer;
   Frame_STFlash.Anchors:=[akBottom,akLeft,akRight,akTop];
-  Frame_STFlash.Top:=35;
+  Frame_STFlash.Top:=FrameTop;
   Frame_STFlash.Align:=alBottom;
 
   // Bossac ( Arduino Due )
   Frame_Bossac:=TFrame_Bossac.Create(GroupBox_Programmer);
   Frame_Bossac.Parent:=GroupBox_Programmer;
   Frame_Bossac.Anchors:=[akBottom,akLeft,akRight,akTop];
-  Frame_Bossac.Top:=35;
+  Frame_Bossac.Top:=FrameTop;
   Frame_Bossac.Align:=alBottom;
 
   // Rasberry PI Pico
   Frame_UF2:=TFrame_UF2.Create(GroupBox_Programmer);
   Frame_UF2.Parent:=GroupBox_Programmer;
   Frame_UF2.Anchors:=[akBottom,akLeft,akRight,akTop];
-  Frame_UF2.Top:=35;
+  Frame_UF2.Top:=FrameTop;
   Frame_UF2.Align:=alBottom;
 
   // ESP32 / ES8266
   Frame_ESPTool:=TFrame_ESPTool.Create(GroupBox_Programmer);
   Frame_ESPTool.Parent:=GroupBox_Programmer;
   Frame_ESPTool.Anchors:=[akBottom,akLeft,akRight,akTop];
-  Frame_ESPTool.Top:=35;
+  Frame_ESPTool.Top:=FrameTop;
   Frame_ESPTool.Align:=alBottom;
 
   DefaultMask;
