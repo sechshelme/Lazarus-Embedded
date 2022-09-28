@@ -14,17 +14,17 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Find_Comports,
-  Embedded_GUI_IDE_Options_Frame,
+  Embedded_GUI_Frame_IDE_Options,
   //  Embedded_GUI_Templates,
   Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const, Types,
 
-  Embedded_GUI_Frame_AVRDude,
-  Embedded_GUI_Frame_STFlash,
-  Embedded_GUI_Frame_Bossac,
-  Embedded_GUI_Frame_UF2,
-  Embedded_GUI_Frame_ESPTool;
+  Embedded_GUI_Frame_Programmer_AVRDude,
+  Embedded_GUI_Frame_Programmer_STFlash,
+  Embedded_GUI_Frame_Programmer_Bossac,
+  Embedded_GUI_Frame_Programmer_UF2,
+  Embedded_GUI_Frame_Programmer_ESPTool;
 
 type
 
@@ -33,7 +33,6 @@ type
   TProject_Options_Form = class(TForm)
     ButtonHelp: TButton;
     Button1: TButton;
-    Button2: TButton;
     CheckBox_ASMFile: TCheckBox;
     CheckBox_UF2File: TCheckBox;
     ComboBox_SubArch: TComboBox;
@@ -47,27 +46,19 @@ type
     Label2: TLabel;
     Label5: TLabel;
     Memo1: TMemo;
-    PageControl1: TPageControl;
     Radio_None: TRadioButton;
     RadioButton_ESP_Tool: TRadioButton;
     RadioButton_AVRDude: TRadioButton;
     RadioButton_UF2: TRadioButton;
     RadioButton_Bossac: TRadioButton;
     RadioButton_ST_Flash: TRadioButton;
-    TabSheet_ESP_Tool: TTabSheet;
-    TabSheet_avrdude: TTabSheet;
-    TabSheet_UF2: TTabSheet;
-    TabSheet_stflash: TTabSheet;
-    TabSheet_Bossac: TTabSheet;
     TemplatesButton: TButton;
     procedure BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
     procedure ButtonHelpClick(Sender: TObject);
     procedure ComboBox_ArchChange(Sender: TObject);
     procedure ComboBox_ControllerChange(Sender: TObject);
     procedure ComboBox_SubArchChange(Sender: TObject);
-    procedure Button_to_FlashBase_Click(Sender: TObject);
     procedure CPU_InfoButtonClick(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -105,7 +96,6 @@ implementation
 procedure TProject_Options_Form.FormCreate(Sender: TObject);
 begin
   LoadFormPos_from_XML(Self);
-  PageControl1.PageIndex := 0;
 
   // --- Compiler
   with ComboBox_Arch do begin
@@ -213,25 +203,6 @@ end;
 procedure TProject_Options_Form.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   SaveFormPos_to_XML(Self);
-end;
-
-procedure TProject_Options_Form.FormActivate(Sender: TObject);
-begin
-//  ComboBox_avrdude_COMPort.Items.CommaText := GetSerialPortNames;
-end;
-
-procedure TProject_Options_Form.Button_to_FlashBase_Click(Sender: TObject);
-var
-  i: integer;
-  s: string;
-begin
-  //for i := 1 to Length(ARM_ControllerDataList) - 1 do begin
-  //  if ARM_ControllerDataList[i, 0] = ComboBox_Controller.Text then begin
-  //    s := ARM_ControllerDataList[i, 4].ToInteger.ToHexString(8);
-  //    ComboBox_ARM_FlashBase.Text := '0x' + s;
-  //    Break;
-  //  end;
-  //end;
 end;
 
 procedure TProject_Options_Form.ComboBox_ArchChange(Sender: TObject);
@@ -661,19 +632,7 @@ begin
 end;
 
 procedure TProject_Options_Form.RadioButton_Programmer_Change(Sender: TObject);
-var
-  i, n: integer;
 begin
-  n := 0;
-  for i := 0 to GroupBox_Programmer.ControlCount - 1 do begin
-    if (GroupBox_Programmer.Controls[i] is TRadioButton) then begin
-      if TRadioButton(GroupBox_Programmer.Controls[i]).Checked then begin
-        PageControl1.PageIndex := n;
-      end;
-      Inc(n);
-    end;
-  end;
-
   Frame_AVRDude.Visible := RadioButton_AVRDude.Checked;
   Frame_STFlash.Visible := RadioButton_ST_Flash.Checked;
   Frame_Bossac.Visible := RadioButton_Bossac.Checked;

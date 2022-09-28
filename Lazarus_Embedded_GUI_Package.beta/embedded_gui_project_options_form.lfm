@@ -8,7 +8,6 @@ object Project_Options_Form: TProject_Options_Form
   ClientWidth = 789
   Constraints.MinHeight = 350
   Constraints.MinWidth = 540
-  OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
@@ -22,7 +21,7 @@ object Project_Options_Form: TProject_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Templates...'
     OnClick = TemplatesButtonClick
-    TabOrder = 6
+    TabOrder = 3
   end
   object CancelButton: TButton
     Left = 608
@@ -32,7 +31,7 @@ object Project_Options_Form: TProject_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Cancel'
     ModalResult = 2
-    TabOrder = 4
+    TabOrder = 5
   end
   object Memo1: TMemo
     Left = 0
@@ -45,7 +44,7 @@ object Project_Options_Form: TProject_Options_Form
       'Hinweis: Folgende Funktionen funktionieren nur, wen ein FPC-Crosscompiler für Embedde erstellt wurde. Auch muss das SubArch stimmen.'
     )
     ReadOnly = True
-    TabOrder = 3
+    TabOrder = 7
     TabStop = False
   end
   object CPU_InfoButton: TButton
@@ -66,7 +65,7 @@ object Project_Options_Form: TProject_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Ok'
     ModalResult = 1
-    TabOrder = 5
+    TabOrder = 6
   end
   object GroupBox_Programmer: TGroupBox
     Left = 16
@@ -123,51 +122,15 @@ object Project_Options_Form: TProject_Options_Form
       Width = 79
       Caption = 'ESP Tool'
       OnChange = RadioButton_Programmer_Change
-      TabOrder = 5
-    end
-    object PageControl1: TPageControl
-      Left = 8
-      Height = 236
-      Top = 384
-      Width = 744
-      ActivePage = TabSheet_stflash
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      TabIndex = 1
       TabOrder = 4
-      object TabSheet_avrdude: TTabSheet
-        Caption = 'AVRDude'
-      end
-      object TabSheet_stflash: TTabSheet
-        Caption = 'ST-Flash'
-      end
-      object TabSheet_Bossac: TTabSheet
-        Caption = 'Bossac'
-      end
-      object TabSheet_UF2: TTabSheet
-        Caption = 'UF2'
-        ClientHeight = 206
-        ClientWidth = 734
-        object Button2: TButton
-          Left = 23
-          Height = 25
-          Top = 40
-          Width = 75
-          Caption = 'test'
-          TabOrder = 0
-          Visible = False
-        end
-      end
-      object TabSheet_ESP_Tool: TTabSheet
-        Caption = 'ESP Tool'
-      end
     end
     object Radio_None: TRadioButton
       Left = 472
       Height = 23
       Top = 8
-      Width = 100
-      Caption = 'Radio_None'
-      TabOrder = 6
+      Width = 57
+      Caption = 'none'
+      TabOrder = 5
     end
   end
   object GroupBox_Compiler: TGroupBox
@@ -260,6 +223,6 @@ object Project_Options_Form: TProject_Options_Form
     Anchors = [akRight, akBottom]
     Caption = 'Help...'
     OnClick = ButtonHelpClick
-    TabOrder = 7
+    TabOrder = 4
   end
 end

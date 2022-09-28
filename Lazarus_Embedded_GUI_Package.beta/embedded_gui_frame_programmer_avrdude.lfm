@@ -188,7 +188,7 @@ object Frame_AVRDude: TFrame_AVRDude
         Top = 376
         Width = 267
         Caption = 'Disable auto erase for flash memory (-D)'
-        TabOrder = 5
+        TabOrder = 7
       end
       object Label3: TLabel
         Left = 20
@@ -205,7 +205,7 @@ object Frame_AVRDude: TFrame_AVRDude
         Top = 320
         Width = 113
         ItemHeight = 0
-        TabOrder = 6
+        TabOrder = 5
       end
       object Label4: TLabel
         Left = 160
@@ -222,7 +222,7 @@ object Frame_AVRDude: TFrame_AVRDude
         Top = 320
         Width = 154
         ItemHeight = 0
-        TabOrder = 7
+        TabOrder = 6
       end
       object CheckBox_avrdude_Chip_Erase: TCheckBox
         Left = 16

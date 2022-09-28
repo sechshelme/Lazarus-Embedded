@@ -1,4 +1,4 @@
-unit Embedded_GUI_IDE_Options_Frame;
+unit Embedded_GUI_Frame_IDE_Options;
 
 {$mode objfpc}{$H+}
 
@@ -15,8 +15,8 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Serial_Monitor_Options_Form,
-  Embedded_GUI_Serial_Monitor_Interface_Options_Frame,
-  Embedded_GUI_Serial_Monitor_Output_Options_Frame;
+  Embedded_GUI_Frame_Serial_Monitor_Interface_Options,
+  Embedded_GUI_Frame_Serial_Monitor_Output_Options;
 
 var
   Embedded_IDE_Options: TEmbedded_IDE_Options;
@@ -49,8 +49,8 @@ type
     ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPath, ComboBox_BossacPath, ComboBox_Raspi_Pico_UnitPath,
       ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_ESP_Tool_Path, ComboBox_ESP_Bootloader_Path, ComboBox_TemplatesPath: TFileNameComboBox;
 
-    SM_Interface_Frame: TSM_Interface_Frame;
-    SM_Output_Frame: TSM_Output_Frame;
+    Frame_SerialMonitor_Interface: TFrame_SerialMonitor_Interface;
+    SM_Output_Frame: TFrame_SerialMonitor_Output;
   public
     function GetTitle: string; override;
     procedure Setup(ADialog: TAbstractOptionsEditorDialog); override;
@@ -90,12 +90,12 @@ end;
 
 procedure TEmbedded_IDE_Options_Frame.Setup(ADialog: TAbstractOptionsEditorDialog);
 begin
-  if not Assigned(SM_Interface_Frame) then begin
-    SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
-    SM_Interface_Frame.Parent := Self.TabSheet_SM_Interface;
+  if not Assigned(Frame_SerialMonitor_Interface) then begin
+    Frame_SerialMonitor_Interface := TFrame_SerialMonitor_Interface.Create(Self);
+    Frame_SerialMonitor_Interface.Parent := Self.TabSheet_SM_Interface;
   end;
   if not Assigned(SM_Output_Frame) then begin
-    SM_Output_Frame := TSM_Output_Frame.Create(Self);
+    SM_Output_Frame := TFrame_SerialMonitor_Output.Create(Self);
     SM_Output_Frame.Parent := Self.TabSheet_SM_Output;
   end;
 end;
@@ -222,15 +222,15 @@ begin
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
-        SM_Interface_Frame.ComboBox_Port.Text := Port;
-        SM_Interface_Frame.ComboBox_Baud.Text := Baud;
-        SM_Interface_Frame.ComboBox_Parity.Text := Parity;
-        SM_Interface_Frame.ComboBox_Bits.Text := Bits;
-        SM_Interface_Frame.ComboBox_StopBits.Text := StopBits;
-        SM_Interface_Frame.ComboBox_FlowControl.Text := FlowControl;
+        Frame_SerialMonitor_Interface.ComboBox_Port.Text := Port;
+        Frame_SerialMonitor_Interface.ComboBox_Baud.Text := Baud;
+        Frame_SerialMonitor_Interface.ComboBox_Parity.Text := Parity;
+        Frame_SerialMonitor_Interface.ComboBox_Bits.Text := Bits;
+        Frame_SerialMonitor_Interface.ComboBox_StopBits.Text := StopBits;
+        Frame_SerialMonitor_Interface.ComboBox_FlowControl.Text := FlowControl;
 
-        SM_Interface_Frame.SpinEdit_TimeOut.Value := TimeOut;
-        SM_Interface_Frame.SpinEdit_TimerInterval.Value := TimerInterval;
+        Frame_SerialMonitor_Interface.SpinEdit_TimeOut.Value := TimeOut;
+        Frame_SerialMonitor_Interface.SpinEdit_TimerInterval.Value := TimerInterval;
       end;
 
       with Output do begin
@@ -261,15 +261,15 @@ begin
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
-        Port := SM_Interface_Frame.ComboBox_Port.Text;
-        Baud := SM_Interface_Frame.ComboBox_Baud.Text;
-        Parity := SM_Interface_Frame.ComboBox_Parity.Text;
-        Bits := SM_Interface_Frame.ComboBox_Bits.Text;
-        StopBits := SM_Interface_Frame.ComboBox_StopBits.Text;
-        FlowControl := SM_Interface_Frame.ComboBox_FlowControl.Text;
+        Port := Frame_SerialMonitor_Interface.ComboBox_Port.Text;
+        Baud := Frame_SerialMonitor_Interface.ComboBox_Baud.Text;
+        Parity := Frame_SerialMonitor_Interface.ComboBox_Parity.Text;
+        Bits := Frame_SerialMonitor_Interface.ComboBox_Bits.Text;
+        StopBits := Frame_SerialMonitor_Interface.ComboBox_StopBits.Text;
+        FlowControl := Frame_SerialMonitor_Interface.ComboBox_FlowControl.Text;
 
-        TimeOut := SM_Interface_Frame.SpinEdit_TimeOut.Value;
-        TimerInterval := SM_Interface_Frame.SpinEdit_TimerInterval.Value;
+        TimeOut := Frame_SerialMonitor_Interface.SpinEdit_TimeOut.Value;
+        TimerInterval := Frame_SerialMonitor_Interface.SpinEdit_TimerInterval.Value;
       end;
 
       with Output do begin

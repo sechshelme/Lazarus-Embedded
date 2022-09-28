@@ -52,7 +52,7 @@ object Frame_ESPTool: TFrame_ESPTool
         Top = 176
         Width = 112
         ItemHeight = 0
-        TabOrder = 1
+        TabOrder = 2
       end
       object ComboBox_ESPTool_COMPort: TComboBox
         Left = 152
@@ -60,7 +60,7 @@ object Frame_ESPTool: TFrame_ESPTool
         Top = 176
         Width = 136
         ItemHeight = 0
-        TabOrder = 2
+        TabOrder = 1
       end
       object Label11: TLabel
         Left = 304

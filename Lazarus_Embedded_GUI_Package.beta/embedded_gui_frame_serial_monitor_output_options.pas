@@ -1,4 +1,4 @@
-unit Embedded_GUI_Serial_Monitor_Output_Options_Frame;
+unit Embedded_GUI_Frame_Serial_Monitor_Output_Options;
 
 {$mode objfpc}{$H+}
 
@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TSM_Output_Frame }
+  { TFrame_SerialMonitor_Output }
 
-  TSM_Output_Frame = class(TFrame)
+  TFrame_SerialMonitor_Output = class(TFrame)
     Button_Color: TButton;
     Button_BKColor: TButton;
     Button_Font: TButton;
@@ -38,9 +38,9 @@ implementation
 
 {$R *.lfm}
 
-{ TSM_Output_Frame }
+{ TFrame_SerialMonitor_Output }
 
-constructor TSM_Output_Frame.Create(TheOwner: TComponent);
+constructor TFrame_SerialMonitor_Output.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
 
@@ -55,7 +55,7 @@ begin
 
 end;
 
-procedure TSM_Output_Frame.Button_FontClick(Sender: TObject);
+procedure TFrame_SerialMonitor_Output.Button_FontClick(Sender: TObject);
 begin
   FontDialog1.Font := Label_Color.Font;
   if FontDialog1.Execute then begin
@@ -63,7 +63,7 @@ begin
   end;
 end;
 
-procedure TSM_Output_Frame.Button_BKColorClick(Sender: TObject);
+procedure TFrame_SerialMonitor_Output.Button_BKColorClick(Sender: TObject);
 begin
   ColorDialog1.Color := Label_Color.Color;
   if ColorDialog1.Execute then begin
@@ -71,7 +71,7 @@ begin
   end;
 end;
 
-procedure TSM_Output_Frame.Button_ColorClick(Sender: TObject);
+procedure TFrame_SerialMonitor_Output.Button_ColorClick(Sender: TObject);
 begin
   ColorDialog1.Color := Label_Color.Font.Color;
   if ColorDialog1.Execute then begin

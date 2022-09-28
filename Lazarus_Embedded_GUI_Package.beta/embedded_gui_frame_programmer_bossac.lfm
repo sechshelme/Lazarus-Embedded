@@ -35,7 +35,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 160
         Width = 175
         Caption = 'Erase the entire flash (-e)'
-        TabOrder = 0
+        TabOrder = 1
       end
       object CheckBox_Bossac_boot_Flash: TCheckBox
         Left = 16
@@ -43,7 +43,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 184
         Width = 394
         Caption = 'Boot from FLASH (checked) / Boot from ROM (unchecked) (-b)'
-        TabOrder = 1
+        TabOrder = 3
       end
       object CheckBox_Bossac_Brownout_Detection: TCheckBox
         Left = 16
@@ -51,7 +51,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 208
         Width = 168
         Caption = 'Brownout detection (-c)'
-        TabOrder = 2
+        TabOrder = 4
       end
       object CheckBox_Bossac_Lock_Flash_Region: TCheckBox
         Left = 16
@@ -59,7 +59,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 232
         Width = 180
         Caption = 'Lock the flash REGION (-l)'
-        TabOrder = 3
+        TabOrder = 6
       end
       object CheckBox_Bossac_Flash_Security_Flag: TCheckBox
         Left = 16
@@ -67,7 +67,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 256
         Width = 199
         Caption = 'Set the flash security flag (-s)'
-        TabOrder = 4
+        TabOrder = 8
       end
       object CheckBox_Bossac_Print_Debug: TCheckBox
         Left = 16
@@ -75,7 +75,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 280
         Width = 181
         Caption = 'Print debug messages (-d)'
-        TabOrder = 5
+        TabOrder = 10
       end
       object CheckBox_Bossac_Reset_CPU: TCheckBox
         Left = 16
@@ -83,7 +83,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 304
         Width = 110
         Caption = 'Reset CPU (-R)'
-        TabOrder = 6
+        TabOrder = 12
       end
       object CheckBox_Bossac_Verify_File: TCheckBox
         Left = 256
@@ -91,7 +91,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 160
         Width = 254
         Caption = 'Verify FILE matches flash contents (-v)'
-        TabOrder = 7
+        TabOrder = 2
       end
       object CheckBox_Bossac_Brownout_Reset: TCheckBox
         Left = 256
@@ -99,7 +99,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 208
         Width = 143
         Caption = 'Brownout Reset (-t)'
-        TabOrder = 8
+        TabOrder = 5
       end
       object CheckBox_Bossac_Unlock_Flash_Region: TCheckBox
         Left = 256
@@ -107,7 +107,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 232
         Width = 198
         Caption = 'Unlock the flash REGION (-u)'
-        TabOrder = 9
+        TabOrder = 7
       end
       object CheckBox_Bossac_Display_Device_Info: TCheckBox
         Left = 256
@@ -115,7 +115,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 256
         Width = 204
         Caption = 'Display device information (-i)'
-        TabOrder = 10
+        TabOrder = 9
       end
       object CheckBox_Bossac_Override_USB_Port_Autodetection: TCheckBox
         Left = 256
@@ -131,7 +131,7 @@ object Frame_Bossac: TFrame_Bossac
         Top = 112
         Width = 181
         ItemHeight = 0
-        TabOrder = 12
+        TabOrder = 0
       end
       object Label13: TLabel
         Left = 16

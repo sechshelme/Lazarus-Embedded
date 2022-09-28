@@ -13,8 +13,8 @@ uses
   {$ENDIF}
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
-  Embedded_GUI_Serial_Monitor_Interface_Options_Frame,
-  Embedded_GUI_Serial_Monitor_Output_Options_Frame;
+  Embedded_GUI_Frame_Serial_Monitor_Interface_Options,
+  Embedded_GUI_Frame_Serial_Monitor_Output_Options;
 
 type
 
@@ -33,8 +33,8 @@ type
     procedure FormHide(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    SM_Interface_Frame: TSM_Interface_Frame;
-    SM_Output_Frame: TSM_Output_Frame;
+    Frame_SerialMonitor_Interface: TFrame_SerialMonitor_Interface;
+    Frame_SerialMonitor_SM_Output: TFrame_SerialMonitor_Output;
   public
   end;
 
@@ -56,10 +56,10 @@ begin
   LoadFormPos_from_XML(Self);
   LoadPageControl_from_XML(PageControl_SM_Options);
 
-  SM_Interface_Frame := TSM_Interface_Frame.Create(Self);
-  SM_Interface_Frame.Parent := Self.TabSheet1;
-  SM_Output_Frame := TSM_Output_Frame.Create(Self);
-  SM_Output_Frame.Parent := Self.TabSheet2;
+  Frame_SerialMonitor_Interface := TFrame_SerialMonitor_Interface.Create(Self);
+  Frame_SerialMonitor_Interface.Parent := Self.TabSheet1;
+  Frame_SerialMonitor_SM_Output := TFrame_SerialMonitor_Output.Create(Self);
+  Frame_SerialMonitor_SM_Output.Parent := Self.TabSheet2;
 end;
 
 procedure TSerialMonitor_Options_Form.FormHide(Sender: TObject);
@@ -78,23 +78,23 @@ procedure TSerialMonitor_Options_Form.Btn_ApplyClick(Sender: TObject);
 begin
   with Serial_Monitor_Form.SerialMonitor_Options do begin
     with Com_Interface do begin
-      Port := SM_Interface_Frame.ComboBox_Port.Text;
-      Baud := SM_Interface_Frame.ComboBox_Baud.Text;
-      Bits := SM_Interface_Frame.ComboBox_Bits.Text;
-      Parity := SM_Interface_Frame.ComboBox_Parity.Text;
-      StopBits := SM_Interface_Frame.ComboBox_StopBits.Text;
-      FlowControl := SM_Interface_Frame.ComboBox_FlowControl.Text;
-      TimeOut := SM_Interface_Frame.SpinEdit_TimeOut.Value;
-      TimerInterval := SM_Interface_Frame.SpinEdit_TimerInterval.Value;
+      Port := Frame_SerialMonitor_Interface.ComboBox_Port.Text;
+      Baud := Frame_SerialMonitor_Interface.ComboBox_Baud.Text;
+      Bits := Frame_SerialMonitor_Interface.ComboBox_Bits.Text;
+      Parity := Frame_SerialMonitor_Interface.ComboBox_Parity.Text;
+      StopBits := Frame_SerialMonitor_Interface.ComboBox_StopBits.Text;
+      FlowControl := Frame_SerialMonitor_Interface.ComboBox_FlowControl.Text;
+      TimeOut := Frame_SerialMonitor_Interface.SpinEdit_TimeOut.Value;
+      TimerInterval := Frame_SerialMonitor_Interface.SpinEdit_TimerInterval.Value;
     end;
 
     with Output do begin
-      LineBreak := SM_Output_Frame.RadioGroup_LineBreak.ItemIndex;
-      AutoScroll := SM_Output_Frame.CheckBox_AutoScroll.Checked;
-      WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
-      maxRows := StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
-      BKColor:=SM_Output_Frame.Label_Color.Color;
-      Font.Assign(SM_Output_Frame.Label_Color.Font);
+      LineBreak := Frame_SerialMonitor_SM_Output.RadioGroup_LineBreak.ItemIndex;
+      AutoScroll := Frame_SerialMonitor_SM_Output.CheckBox_AutoScroll.Checked;
+      WordWarp := Frame_SerialMonitor_SM_Output.CheckBox_WordWarp.Checked;
+      maxRows := StrToInt(Frame_SerialMonitor_SM_Output.ComboBox_maxRows.Text);
+      BKColor:=Frame_SerialMonitor_SM_Output.Label_Color.Color;
+      Font.Assign(Frame_SerialMonitor_SM_Output.Label_Color.Font);
 
       Serial_Monitor_Form.SynEdit1.Font.Assign(Font);
       Serial_Monitor_Form.SynEdit1.Color := BKColor;
@@ -112,24 +112,24 @@ procedure TSerialMonitor_Options_Form.FormShow(Sender: TObject);
 begin
   with Serial_Monitor_Form.SerialMonitor_Options do begin
     with Com_Interface do begin
-      SM_Interface_Frame.ComboBox_Port.Text := Port;
-      SM_Interface_Frame.ComboBox_Baud.Text := Baud;
-      SM_Interface_Frame.ComboBox_Bits.Text := Bits;
-      SM_Interface_Frame.ComboBox_Parity.Text := Parity;
-      SM_Interface_Frame.ComboBox_StopBits.Text := StopBits;
-      SM_Interface_Frame.ComboBox_FlowControl.Text := FlowControl;
-      SM_Interface_Frame.SpinEdit_TimeOut.Value := TimeOut;
-      SM_Interface_Frame.SpinEdit_TimerInterval.Value := TimerInterval;
+      Frame_SerialMonitor_Interface.ComboBox_Port.Text := Port;
+      Frame_SerialMonitor_Interface.ComboBox_Baud.Text := Baud;
+      Frame_SerialMonitor_Interface.ComboBox_Bits.Text := Bits;
+      Frame_SerialMonitor_Interface.ComboBox_Parity.Text := Parity;
+      Frame_SerialMonitor_Interface.ComboBox_StopBits.Text := StopBits;
+      Frame_SerialMonitor_Interface.ComboBox_FlowControl.Text := FlowControl;
+      Frame_SerialMonitor_Interface.SpinEdit_TimeOut.Value := TimeOut;
+      Frame_SerialMonitor_Interface.SpinEdit_TimerInterval.Value := TimerInterval;
     end;
 
     with Output do begin
-      SM_Output_Frame.RadioGroup_LineBreak.ItemIndex := LineBreak;
-      SM_Output_Frame.CheckBox_AutoScroll.Checked := AutoScroll;
-      SM_Output_Frame.CheckBox_WordWarp.Checked := WordWarp;
-      SM_Output_Frame.ComboBox_maxRows.Text := IntToStr(maxRows);
+      Frame_SerialMonitor_SM_Output.RadioGroup_LineBreak.ItemIndex := LineBreak;
+      Frame_SerialMonitor_SM_Output.CheckBox_AutoScroll.Checked := AutoScroll;
+      Frame_SerialMonitor_SM_Output.CheckBox_WordWarp.Checked := WordWarp;
+      Frame_SerialMonitor_SM_Output.ComboBox_maxRows.Text := IntToStr(maxRows);
 
-      SM_Output_Frame.Label_Color.Color:=BKColor;
-      SM_Output_Frame.Label_Color.Font.Assign(Font);
+      Frame_SerialMonitor_SM_Output.Label_Color.Color:=BKColor;
+      Frame_SerialMonitor_SM_Output.Label_Color.Font.Assign(Font);
     end;
   end;
 end;

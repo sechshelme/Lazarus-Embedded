@@ -1,4 +1,4 @@
-unit Embedded_GUI_Frame_STFlash;
+unit Embedded_GUI_Frame_Programmer_STFlash;
 
 {$mode objfpc}{$H+}
 
@@ -10,7 +10,7 @@ uses
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Embedded_List_Const,
-  Embedded_GUI_IDE_Options_Frame;
+  Embedded_GUI_Frame_IDE_Options;
 
 type
 

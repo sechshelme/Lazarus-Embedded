@@ -1,4 +1,4 @@
-unit Embedded_GUI_Serial_Monitor_Interface_Options_Frame;
+unit Embedded_GUI_Frame_Serial_Monitor_Interface_Options;
 
 {$mode objfpc}{$H+}
 
@@ -12,9 +12,9 @@ uses
 
 type
 
-  { TSM_Interface_Frame }
+  { TFrame_SerialMonitor_Interface }
 
-  TSM_Interface_Frame = class(TFrame)
+  TFrame_SerialMonitor_Interface = class(TFrame)
     ComboBox_Baud: TComboBox;
     ComboBox_Bits: TComboBox;
     ComboBox_FlowControl: TComboBox;
@@ -41,9 +41,9 @@ implementation
 
 {$R *.lfm}
 
-{ TSM_Interface_Frame }
+{ TFrame_SerialMonitor_Interface }
 
-constructor TSM_Interface_Frame.Create(TheOwner: TComponent);
+constructor TFrame_SerialMonitor_Interface.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
 

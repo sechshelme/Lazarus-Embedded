@@ -1,4 +1,4 @@
-object SM_Interface_Frame: TSM_Interface_Frame
+object Frame_SerialMonitor_Interface: TFrame_SerialMonitor_Interface
   Left = 0
   Height = 348
   Top = 0
@@ -7,8 +7,8 @@ object SM_Interface_Frame: TSM_Interface_Frame
   ClientHeight = 348
   ClientWidth = 680
   TabOrder = 0
-  DesignLeft = 1539
-  DesignTop = 95
+  DesignLeft = 1041
+  DesignTop = 108
   object Label4: TLabel
     Left = 8
     Height = 16
