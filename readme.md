@@ -1,5 +1,5 @@
-[![Release version](https://img.shields.io/github/v/release/unattended-ch/sechshelme?color=blue&label=&style=for-the-badge)](https://github.com/sechshelme/Lazarus-Embedded/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/unattended-ch/sechshelme/total?style=for-the-badge&color=blue)](https://github.com/sechshelme/Lazarus-Embedded/releases/latest)
+[![Release version](https://img.shields.io/github/v/release/sechshelme/Lazarus-Embedded?color=blue&label=&style=for-the-badge)](https://github.com/sechshelme/Lazarus-Embedded/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/sechshelme/Lazarus-Embedded/total?style=for-the-badge&color=blue)](https://github.com/sechshelme/Lazarus-Embedded/releases/latest)
 
 ## GERMAN:
 ### Lazarus Embedded GUI 
