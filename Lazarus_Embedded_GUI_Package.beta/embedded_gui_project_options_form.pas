@@ -52,7 +52,6 @@ type
     RadioButton_Bossac: TRadioButton;
     RadioButton_ST_Flash: TRadioButton;
     TemplatesButton: TButton;
-    procedure BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
     procedure ButtonHelpClick(Sender: TObject);
     procedure ComboBox_ArchChange(Sender: TObject);
     procedure ComboBox_ControllerChange(Sender: TObject);
@@ -230,11 +229,6 @@ begin
   Frame_STFlash.Controller := ComboBox_Controller.Text;;
 end;
 
-procedure TProject_Options_Form.BitBtn1_Auto_avrdude_ControllerClick(Sender: TObject);
-begin
-//  Edit_avrdude_Controller.Text := ComboBox_Controller.Text;
-end;
-
 procedure TProject_Options_Form.ButtonHelpClick(Sender: TObject);
 begin
   ShowMessage('Für folgende Programmer muss folgende Baud eingestellt werden:' + LineEnding + LineEnding +
@@ -283,11 +277,16 @@ begin
   cmd := LazProject.LazCompilerOptions.ExecuteAfter.Command;
   cmd := StringReplace(cmd, '"', '', [rfIgnoreCase, rfReplaceAll]);
   ProgrammerPath := Copy(cmd, 0, pos(' ', cmd) - 1);
-  ProgrammerName := UpCase(ExtractFileName(ProgrammerPath));
+  cmd := Copy(cmd, pos(' ', cmd) - 1);
+  ProgrammerName := ExtractFileName(ProgrammerPath);
 
   // AVRDude
   with Frame_AVRDude do begin
-  if Pos(UpCase('avrdude'), ProgrammerName) > 0 then begin
+  if Pos('avrdude', ProgrammerName) > 0 then begin
+
+//    Frame_AVRDude.LazProjectToMask(ProgrammerPath, cmd);
+
+
     RadioButton_AVRDude.Checked := True;
     ComboBox_AvrdudePath.Text := ProgrammerPath;
     ComboBox_AvrdudeConfigPath.Text := FindPara(cmd, ['-C']);
@@ -317,7 +316,7 @@ begin
 
   // ST-Link
   with Frame_STFlash do begin
-  if Pos(UpCase('st-flash'), ProgrammerName) > 0 then begin
+  if Pos('st-flash', ProgrammerName) > 0 then begin
     RadioButton_ST_Flash.Checked := True;
     ComboBox_STLinkPath.Text := ProgrammerPath;
     ComboBox_ARM_FlashBase.Text := '0x' + FindPara(cmd, ['0x']);
@@ -326,7 +325,7 @@ begin
 
   // Bossac
   with Frame_Bossac do begin
-  if Pos(UpCase('bossac'), ProgrammerName) > 0 then begin
+  if Pos('bossac', ProgrammerName) > 0 then begin
     RadioButton_Bossac.Checked := True;
     ComboBox_BossacPath.Text := ProgrammerPath;
 
@@ -373,7 +372,7 @@ begin
 
   // ESP32 / ESP8266
   with Frame_ESPTool do begin
-  if Pos(UpCase('esptool'), ProgrammerName) > 0 then begin
+  if Pos('esptool', ProgrammerName) > 0 then begin
     //    if Pos(UpCase('esptool'), ProgrammerName) > 0 then begin
     RadioButton_ESP_Tool.Checked := True;
     ComboBox_ESP_Tool_Path.Text := ProgrammerPath;

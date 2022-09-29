@@ -43,6 +43,7 @@ type
     property Controller: String write FController;
     constructor Create(TheOwner: TComponent); override;
     procedure DefaultMask;
+    procedure LazProjectToMask(var prg, cmd: string);
   end;
 
 implementation
@@ -158,6 +159,11 @@ begin
   CheckBox_avrdude_Disable_Auto_Erase.Checked := False;
   CheckBox_avrdude_Chip_Erase.Checked := False;
   CheckBox_avrdude_Override_signature_check.Checked := False;
+end;
+
+procedure TFrame_AVRDude.LazProjectToMask(var prg, cmd: string);
+begin
+
 end;
 
 initialization
