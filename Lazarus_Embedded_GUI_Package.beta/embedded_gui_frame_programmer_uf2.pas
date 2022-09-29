@@ -6,6 +6,9 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, StdCtrls, Buttons,
+
+  ProjectIntf,
+
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
@@ -24,6 +27,8 @@ type
     ComboBox_UF2_UnitPath, ComboBox_UF2_cp_Path, ComboBox_UF2_mount_Path : TFileNameComboBox;
     constructor Create(TheOwner: TComponent); override;
     procedure DefaultMask;
+    procedure LazProjectToMask(var prg, cmd: string);
+    procedure MaskToLazProject(LazProject: TLazProject);
   end;
 
 implementation
@@ -84,6 +89,31 @@ begin
   end else begin
     ComboBox_UF2_mount_Path.Text := '';
   end;
+end;
+
+procedure TFrame_UF2.LazProjectToMask(var prg, cmd: string);
+var
+  sa: TStringArray;
+begin
+  //    ComboBox_UF2_UnitPath.Text := ProgrammerPath;
+  ComboBox_UF2_cp_Path.Text := prg;
+  sa := cmd.Split(' ');
+  if Length(sa) >= 3 then begin
+    ComboBox_UF2_mount_Path.Text := sa[2];
+  end else begin
+    ComboBox_UF2_mount_Path.Text := '';
+  end;
+end;
+
+procedure TFrame_UF2.MaskToLazProject(LazProject: TLazProject);
+var
+  cmd: String;
+begin
+  cmd := LazProject.LazCompilerOptions.TargetFilename + '.uf2';
+  cmd := ComboBox_UF2_cp_Path.Text + ' ' + cmd + ' ' + ComboBox_UF2_mount_Path.Text + DirectorySeparator + cmd;
+  LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
+
+  LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
 end;
 
 initialization

@@ -6,6 +6,9 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, StdCtrls, Buttons,
+
+  ProjectIntf,
+
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
@@ -30,6 +33,8 @@ type
     property Controller: String write FController;
     constructor Create(TheOwner: TComponent); override;
     procedure DefaultMask;
+    procedure LazProjectToMask(var prg, cmd: string);
+    procedure MaskToLazProject(LazProject: TLazProject);
   end;
 
 implementation
@@ -68,7 +73,6 @@ begin
     Sorted := True;
     Items.AddStrings(['0x00000000', '0x00080000', '0x08000000']);
   end;
-
 end;
 
 procedure TFrame_STFlash.DefaultMask;
@@ -82,6 +86,18 @@ begin
   end else begin
     ComboBox_STLinkPath.Text := '';
   end;
+end;
+
+procedure TFrame_STFlash.LazProjectToMask(var prg, cmd: string);
+begin
+  ComboBox_STLinkPath.Text := prg;
+  ComboBox_ARM_FlashBase.Text := '0x' + FindPara(cmd, ['0x']);
+end;
+
+procedure TFrame_STFlash.MaskToLazProject(LazProject: TLazProject);
+begin
+  LazProject.LazCompilerOptions.ExecuteAfter.Command :=
+    ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ComboBox_ARM_FlashBase.Text;
 end;
 
 initialization

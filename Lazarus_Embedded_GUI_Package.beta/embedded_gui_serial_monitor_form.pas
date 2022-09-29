@@ -240,8 +240,8 @@ end;
 procedure TSerial_Monitor_Form.Timer1Timer(Sender: TObject);
 var
   bufCount, SLCount: integer;
-const
-  maxPuffer: integer = 0;
+//const
+//  maxPuffer: integer = 0;
 begin
   Timer1.Enabled := False;
   try
@@ -307,9 +307,6 @@ begin
 end;
 
 procedure TSerial_Monitor_Form.MenuItem_RestClick(Sender: TObject);
-var
-//  SerialHandle: TSerialHandle;
-  com: string;
 begin
 //    SerialHandle := SerOpen(FindPara(LazProject.LazCompilerOptions.ExecuteAfter.Command, '-P'));
 //    SerSetParams(SerialHandle, 1200, 8, NoneParity, 1, []);
@@ -319,7 +316,6 @@ begin
     Sleep(500);
     SerClose(SerialHandle);
     Sleep(500);
-
 end;
 
 procedure TSerial_Monitor_Form.MenuItem_OptionenClick(Sender: TObject);

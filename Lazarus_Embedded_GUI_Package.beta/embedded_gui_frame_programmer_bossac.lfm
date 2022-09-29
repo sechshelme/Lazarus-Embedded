@@ -6,8 +6,8 @@ object Frame_Bossac: TFrame_Bossac
   ClientHeight = 369
   ClientWidth = 622
   TabOrder = 0
-  DesignLeft = 2504
-  DesignTop = 424
+  DesignLeft = 2346
+  DesignTop = 760
   object GroupBox_Bossac: TGroupBox
     Left = 0
     Height = 369
