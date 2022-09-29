@@ -1,3 +1,6 @@
+[![Release version](https://img.shields.io/github/v/release/unattended-ch/sechshelme?color=blue&label=&style=for-the-badge)](https://github.com/unattended-ch/sechshelme/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/unattended-ch/sechshelme/total?style=for-the-badge&color=blue)](https://github.com/unattended-ch/admm/sechshelme/latest)
+
 ## GERMAN:
 ### Lazarus Embedded GUI 
 
