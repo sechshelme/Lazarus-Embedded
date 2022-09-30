@@ -50,7 +50,7 @@ type
       ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_ESP_Tool_Path, ComboBox_ESP_Bootloader_Path, ComboBox_TemplatesPath: TFileNameComboBox;
 
     Frame_SerialMonitor_Interface: TFrame_SerialMonitor_Interface;
-    SM_Output_Frame: TFrame_SerialMonitor_Output;
+    Frame_SerialMonitor_Output: TFrame_SerialMonitor_Output;
   public
     function GetTitle: string; override;
     procedure Setup(ADialog: TAbstractOptionsEditorDialog); override;
@@ -94,9 +94,9 @@ begin
     Frame_SerialMonitor_Interface := TFrame_SerialMonitor_Interface.Create(Self);
     Frame_SerialMonitor_Interface.Parent := Self.TabSheet_SM_Interface;
   end;
-  if not Assigned(SM_Output_Frame) then begin
-    SM_Output_Frame := TFrame_SerialMonitor_Output.Create(Self);
-    SM_Output_Frame.Parent := Self.TabSheet_SM_Output;
+  if not Assigned(Frame_SerialMonitor_Output) then begin
+    Frame_SerialMonitor_Output := TFrame_SerialMonitor_Output.Create(Self);
+    Frame_SerialMonitor_Output.Parent := Self.TabSheet_SM_Output;
   end;
 end;
 
@@ -234,13 +234,13 @@ begin
       end;
 
       with Output do begin
-        SM_Output_Frame.RadioGroup_LineBreak.ItemIndex := LineBreak;
-        SM_Output_Frame.CheckBox_AutoScroll.Checked := AutoScroll;
-        SM_Output_Frame.CheckBox_WordWarp.Checked := WordWarp;
-        SM_Output_Frame.ComboBox_maxRows.Text := IntToStr(maxRows);
+        Frame_SerialMonitor_Output.RadioGroup_LineBreak.ItemIndex := LineBreak;
+        Frame_SerialMonitor_Output.CheckBox_AutoScroll.Checked := AutoScroll;
+        Frame_SerialMonitor_Output.CheckBox_WordWarp.Checked := WordWarp;
+        Frame_SerialMonitor_Output.ComboBox_maxRows.Text := IntToStr(maxRows);
 
-        SM_Output_Frame.Label_Color.Color := BKColor;
-        SM_Output_Frame.Label_Color.Font.Assign(Font);
+        Frame_SerialMonitor_Output.Label_Color.Color := BKColor;
+        Frame_SerialMonitor_Output.Label_Color.Font.Assign(Font);
       end;
     end;
 
@@ -273,13 +273,13 @@ begin
       end;
 
       with Output do begin
-        LineBreak := SM_Output_Frame.RadioGroup_LineBreak.ItemIndex;
-        AutoScroll := SM_Output_Frame.CheckBox_AutoScroll.Checked;
-        WordWarp := SM_Output_Frame.CheckBox_WordWarp.Checked;
-        maxRows := StrToInt(SM_Output_Frame.ComboBox_maxRows.Text);
+        LineBreak := Frame_SerialMonitor_Output.RadioGroup_LineBreak.ItemIndex;
+        AutoScroll := Frame_SerialMonitor_Output.CheckBox_AutoScroll.Checked;
+        WordWarp := Frame_SerialMonitor_Output.CheckBox_WordWarp.Checked;
+        maxRows := StrToInt(Frame_SerialMonitor_Output.ComboBox_maxRows.Text);
 
-        BKColor := SM_Output_Frame.Label_Color.Color;
-        Font.Assign(SM_Output_Frame.Label_Color.Font);
+        BKColor := Frame_SerialMonitor_Output.Label_Color.Color;
+        Font.Assign(Frame_SerialMonitor_Output.Label_Color.Font);
       end;
     end;
 

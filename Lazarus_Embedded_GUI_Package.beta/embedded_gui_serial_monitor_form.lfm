@@ -12,7 +12,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poDefaultPosOnly
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object Button_Send: TButton
     Left = 528
     Height = 27
@@ -542,7 +542,7 @@ object Serial_Monitor_Form: TSerial_Monitor_Form
   end
   object ComboBox_SendString: TComboBox
     Left = 8
-    Height = 27
+    Height = 28
     Top = 8
     Width = 512
     Anchors = [akTop, akLeft, akRight]
