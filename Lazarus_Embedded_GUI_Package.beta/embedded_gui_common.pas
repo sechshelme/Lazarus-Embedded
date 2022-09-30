@@ -49,6 +49,8 @@ const
   Default_Raspi_Pico_mount_Path: TStringArray = ('/media/tux/RPI-RP2');
   Default_EPS_Tool_Path: TStringArray = ('/bin/esptool', '/usr/bin/esptool', 'usr/local/bin/esptool');
   Default_ESP_Bootloader_Path: TStringArray = ('Tools/ESP');
+  Default_CustomPrg_Tool_Path: TStringArray = ('/bin/xxx', '/usr/bin/xxx', 'usr/local/bin/xxx');
+  Default_CustomPrg_Tool_Command: TStringArray = ('-x');
   Default_Template_Path: TStringArray = ('Templates');
   UARTDefaultPort = '/dev/ttyUSB0';
   {$ENDIF}
@@ -116,6 +118,9 @@ type
     ESP: record
       Bootloader_Path, Tools_Path: TStringList;
       end;
+    CustomProgrammer: record
+      Path, Command: TStringList;
+    end;
     SerialMonitor_Options: TSerialMonitor_Options;
     Templates_Path: TStringList;
     constructor Create;
@@ -180,6 +185,10 @@ const
   Key_ESP = Key_IDE_Options + 'ESP/';
   Key_ESP_Bootloader_Path = Key_ESP + 'ESP_Bootloader_path';
   Key_ESP_Tool_Path = Key_ESP + 'ESP_Tool_path';
+
+  Key_CustomPrg = Key_IDE_Options + 'CustomPrg/';
+  Key_CustomPrg_Path = Key_CustomPrg + 'Path';
+  Key_CustomPrg_Command = Key_CustomPrg + 'Command';
 
   Key_Templates_Path = Key_IDE_Options + 'Templates_Path';
 
@@ -593,6 +602,9 @@ begin
   ESP.Tools_Path := TStringList.Create;
   ESP.Bootloader_Path := TStringList.Create;
 
+  CustomProgrammer.Path := TStringList.Create;
+  CustomProgrammer.Command := TStringList.Create;
+
   Templates_Path := TStringList.Create;
 end;
 
@@ -609,6 +621,9 @@ begin
 
   ESP.Tools_Path.Free;
   ESP.Bootloader_Path.Free;
+
+  CustomProgrammer.Path.Free;
+  CustomProgrammer.Command.Free;
 
   Templates_Path.Free;
 
@@ -637,6 +652,9 @@ begin
 
   LoadStrings_from_XML(Key_ESP_Tool_Path, ESP.Tools_Path, Default_EPS_Tool_Path);
   LoadStrings_from_XML(Key_ESP_Bootloader_Path, ESP.Bootloader_Path, [PackagePath + Default_ESP_Bootloader_Path[0]]);
+
+  LoadStrings_from_XML(Key_CustomPrg_Path, CustomProgrammer.Path, Default_CustomPrg_Tool_Path);
+  LoadStrings_from_XML(Key_CustomPrg_Command, CustomProgrammer.Command, Default_CustomPrg_Tool_Command);
 
   LoadStrings_from_XML(Key_Templates_Path, Templates_Path, [PackagePath + Default_Template_Path[0]]);
 

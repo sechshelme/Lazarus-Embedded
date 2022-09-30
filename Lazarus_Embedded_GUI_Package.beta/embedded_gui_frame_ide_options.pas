@@ -35,6 +35,7 @@ type
     OpenDialog: TOpenDialog;
     PageControl_IDE_Options: TPageControl;
     Panel_Preview: TPanel;
+    TabSheetCustomPrg: TTabSheet;
     TabSheetXtensa: TTabSheet;
     TabSheetTemplates: TTabSheet;
     TabSheetAVR: TTabSheet;
@@ -47,7 +48,8 @@ type
     procedure Button_Color_CustomClick(Sender: TObject);
   private
     ComboBox_AVRdudePath, ComboBox_AVRdudeConf, ComboBox_STFlashPath, ComboBox_BossacPath, ComboBox_Raspi_Pico_UnitPath,
-      ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_ESP_Tool_Path, ComboBox_ESP_Bootloader_Path, ComboBox_TemplatesPath: TFileNameComboBox;
+    ComboBox_Raspi_Pico_cp_Path, ComboBox_Raspi_Pico_mount_Path, ComboBox_ESP_Tool_Path, ComboBox_ESP_Bootloader_Path,
+    ComboBox_Custom_Programmer_Path,ComboBox_Custom_Programmer_Command, ComboBox_TemplatesPath: TFileNameComboBox;
 
     Frame_SerialMonitor_Interface: TFrame_SerialMonitor_Interface;
     Frame_SerialMonitor_Output: TFrame_SerialMonitor_Output;
@@ -139,7 +141,7 @@ begin
   // Bossac ( Arduino Due )
   ComboBox_BossacPath := TFileNameComboBox.Create(TabSheetARM, 'BossacPath', False);
   with ComboBox_BossacPath do begin
-    Caption := 'Bassac Path';
+    Caption := 'Bossac Path';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
@@ -159,7 +161,7 @@ begin
 
   ComboBox_Raspi_Pico_cp_Path := TFileNameComboBox.Create(TabSheetARM, 'cpPath', False);
   with ComboBox_Raspi_Pico_cp_Path do begin
-    Caption := 'cp Path:';
+    Caption := 'Rasberry Pico - cp Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
@@ -168,7 +170,7 @@ begin
 
   ComboBox_Raspi_Pico_mount_Path := TFileNameComboBox.Create(TabSheetARM, 'mountPath', False);
   with ComboBox_Raspi_Pico_mount_Path do begin
-    Caption := 'Mount Path:';
+    Caption := 'Rasberry Pico - Mount Path:';
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
@@ -190,6 +192,26 @@ begin
   ComboBox_ESP_Bootloader_Path := TFileNameComboBox.Create(TabSheetXtensa, 'ESPBootloaderPath', False);
   with ComboBox_ESP_Bootloader_Path do begin
     Caption := 'Bootloader Path (boootloader.bin, partitions_singleapp.bin)';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 104;
+  end;
+
+  // Custom Programmer
+
+  ComboBox_Custom_Programmer_Path := TFileNameComboBox.Create(TabSheetCustomPrg, 'CustomPrgPath', False);
+  with ComboBox_Custom_Programmer_Path do begin
+    Caption := 'Custom Programmer Path';
+    Anchors := [akTop, akLeft, akRight];
+    Left := 5;
+    Width := Self.Width - 20;
+    Top := 24;
+  end;
+
+  ComboBox_Custom_Programmer_Command := TFileNameComboBox.Create(TabSheetCustomPrg, 'CustomPrgCmd', False);
+  with ComboBox_Custom_Programmer_Command do begin
+    Caption := 'Custom Programmer Command';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
     Width := Self.Width - 20;
@@ -219,6 +241,8 @@ begin
     ComboBox_Raspi_Pico_mount_Path.Items := ARM.Raspi_Pico.mount_Path;
     ComboBox_ESP_Tool_Path.Items := ESP.Tools_Path;
     ComboBox_ESP_Bootloader_Path.Items := ESP.Bootloader_Path;
+    ComboBox_Custom_Programmer_Path.Items := CustomProgrammer.Path;
+    ComboBox_Custom_Programmer_Command.Items := CustomProgrammer.Command;
 
     with SerialMonitor_Options do begin
       with Com_Interface do begin
@@ -292,6 +316,8 @@ begin
     ARM.Raspi_Pico.mount_Path.AddStrings(ComboBox_Raspi_Pico_mount_Path.Items, True);
     ESP.Tools_Path.AddStrings(ComboBox_ESP_Tool_Path.Items, True);
     ESP.Bootloader_Path.AddStrings(ComboBox_ESP_Bootloader_Path.Items, True);
+    CustomProgrammer.Path.AddStrings(ComboBox_Custom_Programmer_Path.Items, True);
+    CustomProgrammer.Command.AddStrings(ComboBox_Custom_Programmer_Command.Items, True);
 
     Templates_Path.AddStrings(ComboBox_TemplatesPath.Items, True);
 
