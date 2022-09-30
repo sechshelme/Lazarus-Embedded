@@ -33,7 +33,6 @@ type
     CheckBox_Bossac_Unlock_Flash_Region: TCheckBox;
     CheckBox_Bossac_Verify_File: TCheckBox;
     ComboBox_Bossac_COMPort: TComboBox;
-    GroupBox_Bossac: TGroupBox;
     Label13: TLabel;
     ScrollBox1: TScrollBox;
   private
@@ -61,7 +60,7 @@ begin
     Caption := 'Bossac Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_Bossac.Width - 10;
+    Width := ScrollBox1.Width - 10;
     Top := 10;
   end;
 end;

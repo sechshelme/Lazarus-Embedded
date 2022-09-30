@@ -8,148 +8,137 @@ object Frame_Bossac: TFrame_Bossac
   TabOrder = 0
   DesignLeft = 2346
   DesignTop = 760
-  object GroupBox_Bossac: TGroupBox
+  object ScrollBox1: TScrollBox
     Left = 0
     Height = 369
     Top = 0
     Width = 622
+    HorzScrollBar.Page = 568
+    VertScrollBar.Page = 327
     Align = alClient
-    Caption = 'Bossac'
-    ClientHeight = 352
+    ClientHeight = 367
     ClientWidth = 620
     TabOrder = 0
-    object ScrollBox1: TScrollBox
-      Left = 0
-      Height = 352
-      Top = 0
-      Width = 620
-      HorzScrollBar.Page = 568
-      VertScrollBar.Page = 327
-      Align = alClient
-      ClientHeight = 350
-      ClientWidth = 618
+    object CheckBox_Bossac_Erase_Flash: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 160
+      Width = 175
+      Caption = 'Erase the entire flash (-e)'
+      TabOrder = 1
+    end
+    object CheckBox_Bossac_boot_Flash: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 184
+      Width = 394
+      Caption = 'Boot from FLASH (checked) / Boot from ROM (unchecked) (-b)'
+      TabOrder = 3
+    end
+    object CheckBox_Bossac_Brownout_Detection: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 208
+      Width = 168
+      Caption = 'Brownout detection (-c)'
+      TabOrder = 4
+    end
+    object CheckBox_Bossac_Lock_Flash_Region: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 232
+      Width = 180
+      Caption = 'Lock the flash REGION (-l)'
+      TabOrder = 6
+    end
+    object CheckBox_Bossac_Flash_Security_Flag: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 256
+      Width = 199
+      Caption = 'Set the flash security flag (-s)'
+      TabOrder = 8
+    end
+    object CheckBox_Bossac_Print_Debug: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 280
+      Width = 181
+      Caption = 'Print debug messages (-d)'
+      TabOrder = 10
+    end
+    object CheckBox_Bossac_Reset_CPU: TCheckBox
+      Left = 16
+      Height = 23
+      Top = 304
+      Width = 110
+      Caption = 'Reset CPU (-R)'
+      TabOrder = 12
+    end
+    object CheckBox_Bossac_Verify_File: TCheckBox
+      Left = 256
+      Height = 23
+      Top = 160
+      Width = 254
+      Caption = 'Verify FILE matches flash contents (-v)'
+      TabOrder = 2
+    end
+    object CheckBox_Bossac_Brownout_Reset: TCheckBox
+      Left = 256
+      Height = 23
+      Top = 208
+      Width = 143
+      Caption = 'Brownout Reset (-t)'
+      TabOrder = 5
+    end
+    object CheckBox_Bossac_Unlock_Flash_Region: TCheckBox
+      Left = 256
+      Height = 23
+      Top = 232
+      Width = 198
+      Caption = 'Unlock the flash REGION (-u)'
+      TabOrder = 7
+    end
+    object CheckBox_Bossac_Display_Device_Info: TCheckBox
+      Left = 256
+      Height = 23
+      Top = 256
+      Width = 204
+      Caption = 'Display device information (-i)'
+      TabOrder = 9
+    end
+    object CheckBox_Bossac_Override_USB_Port_Autodetection: TCheckBox
+      Left = 256
+      Height = 23
+      Top = 280
+      Width = 247
+      Caption = 'Override USB port autodetection (-U)'
+      TabOrder = 11
+    end
+    object ComboBox_Bossac_COMPort: TComboBox
+      Left = 16
+      Height = 28
+      Top = 112
+      Width = 181
+      ItemHeight = 0
       TabOrder = 0
-      object CheckBox_Bossac_Erase_Flash: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 160
-        Width = 175
-        Caption = 'Erase the entire flash (-e)'
-        TabOrder = 1
-      end
-      object CheckBox_Bossac_boot_Flash: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 184
-        Width = 394
-        Caption = 'Boot from FLASH (checked) / Boot from ROM (unchecked) (-b)'
-        TabOrder = 3
-      end
-      object CheckBox_Bossac_Brownout_Detection: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 208
-        Width = 168
-        Caption = 'Brownout detection (-c)'
-        TabOrder = 4
-      end
-      object CheckBox_Bossac_Lock_Flash_Region: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 232
-        Width = 180
-        Caption = 'Lock the flash REGION (-l)'
-        TabOrder = 6
-      end
-      object CheckBox_Bossac_Flash_Security_Flag: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 256
-        Width = 199
-        Caption = 'Set the flash security flag (-s)'
-        TabOrder = 8
-      end
-      object CheckBox_Bossac_Print_Debug: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 280
-        Width = 181
-        Caption = 'Print debug messages (-d)'
-        TabOrder = 10
-      end
-      object CheckBox_Bossac_Reset_CPU: TCheckBox
-        Left = 16
-        Height = 23
-        Top = 304
-        Width = 110
-        Caption = 'Reset CPU (-R)'
-        TabOrder = 12
-      end
-      object CheckBox_Bossac_Verify_File: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 160
-        Width = 254
-        Caption = 'Verify FILE matches flash contents (-v)'
-        TabOrder = 2
-      end
-      object CheckBox_Bossac_Brownout_Reset: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 208
-        Width = 143
-        Caption = 'Brownout Reset (-t)'
-        TabOrder = 5
-      end
-      object CheckBox_Bossac_Unlock_Flash_Region: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 232
-        Width = 198
-        Caption = 'Unlock the flash REGION (-u)'
-        TabOrder = 7
-      end
-      object CheckBox_Bossac_Display_Device_Info: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 256
-        Width = 204
-        Caption = 'Display device information (-i)'
-        TabOrder = 9
-      end
-      object CheckBox_Bossac_Override_USB_Port_Autodetection: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 280
-        Width = 247
-        Caption = 'Override USB port autodetection (-U)'
-        TabOrder = 11
-      end
-      object ComboBox_Bossac_COMPort: TComboBox
-        Left = 16
-        Height = 28
-        Top = 112
-        Width = 181
-        ItemHeight = 0
-        TabOrder = 0
-      end
-      object Label13: TLabel
-        Left = 16
-        Height = 16
-        Top = 88
-        Width = 240
-        Caption = 'Connection port (-p) (first Port = empty )'
-        Color = clDefault
-        ParentColor = False
-      end
-      object CheckBox_Bossac_Arduino_Erase: TCheckBox
-        Left = 256
-        Height = 23
-        Top = 304
-        Width = 312
-        Caption = 'Erase and reset via Arduino 1200 baud hack (-a)'
-        TabOrder = 13
-      end
+    end
+    object Label13: TLabel
+      Left = 16
+      Height = 16
+      Top = 88
+      Width = 240
+      Caption = 'Connection port (-p) (first Port = empty )'
+      Color = clDefault
+      ParentColor = False
+    end
+    object CheckBox_Bossac_Arduino_Erase: TCheckBox
+      Left = 256
+      Height = 23
+      Top = 304
+      Width = 312
+      Caption = 'Erase and reset via Arduino 1200 baud hack (-a)'
+      TabOrder = 13
     end
   end
 end

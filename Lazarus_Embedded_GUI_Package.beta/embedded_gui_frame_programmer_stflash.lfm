@@ -8,53 +8,42 @@ object Frame_STFlash: TFrame_STFlash
   TabOrder = 0
   DesignLeft = 2763
   DesignTop = 351
-  object GroupBox_STFlash: TGroupBox
+  object ScrollBox1: TScrollBox
     Left = 0
     Height = 264
     Top = 0
     Width = 491
+    HorzScrollBar.Page = 280
+    VertScrollBar.Page = 149
     Align = alClient
-    Caption = 'ST-Flash'
-    ClientHeight = 247
+    ClientHeight = 262
     ClientWidth = 489
     TabOrder = 0
-    object ScrollBox1: TScrollBox
-      Left = 0
-      Height = 247
-      Top = 0
-      Width = 489
-      HorzScrollBar.Page = 280
-      VertScrollBar.Page = 149
-      Align = alClient
-      ClientHeight = 245
-      ClientWidth = 487
+    object BitBtn_Auto_Flash_Base: TBitBtn
+      Left = 208
+      Height = 28
+      Top = 120
+      Width = 72
+      Caption = '➔ auto'
+      OnClick = BitBtn_Auto_Flash_BaseClick
+      TabOrder = 1
+    end
+    object ComboBox_ARM_FlashBase: TComboBox
+      Left = 16
+      Height = 28
+      Top = 121
+      Width = 160
+      ItemHeight = 0
       TabOrder = 0
-      object BitBtn_Auto_Flash_Base: TBitBtn
-        Left = 208
-        Height = 28
-        Top = 120
-        Width = 72
-        Caption = '➔ auto'
-        OnClick = BitBtn_Auto_Flash_BaseClick
-        TabOrder = 1
-      end
-      object ComboBox_ARM_FlashBase: TComboBox
-        Left = 16
-        Height = 28
-        Top = 121
-        Width = 160
-        ItemHeight = 0
-        TabOrder = 0
-      end
-      object Label_FlashBase: TLabel
-        Left = 16
-        Height = 16
-        Top = 96
-        Width = 67
-        Caption = 'Flash Base:'
-        Color = clDefault
-        ParentColor = False
-      end
+    end
+    object Label_FlashBase: TLabel
+      Left = 16
+      Height = 16
+      Top = 96
+      Width = 67
+      Caption = 'Flash Base:'
+      Color = clDefault
+      ParentColor = False
     end
   end
 end

@@ -29,7 +29,6 @@ type
     ComboBox_avrdude_Verbose: TComboBox;
     ComboBox_avrrdude_BitClock: TComboBox;
     Edit_avrdude_Controller: TEdit;
-    GroupBox_AVRDude: TGroupBox;
     Label10: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -75,7 +74,7 @@ begin
     Caption := 'AVRdude Path';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_AVRDude.Width - 10;
+    Width := ScrollBox1.Width - 10;
     Top := 10;
   end;
 
@@ -84,21 +83,19 @@ begin
     Caption := 'AVRdude Config-Path ( empty = default Config. )';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_AVRDude.Width - 10;
+    Width := ScrollBox1.Width - 10;
     Top := 80;
   end;
 
   Edit_avrdude_Controller.Text := 'ATMEGA328P';
 
   with ComboBox_avrdude_Programmer do begin
-    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring',
-      'avr109', 'usbtiny', 'jtag2updi', 'jtag1'], True);
+    Items.AddStrings(['arduino', 'usbasp', 'stk500v1', 'wiring', 'avr109', 'usbtiny', 'jtag2updi', 'jtag1'], True);
   end;
 
   with ComboBox_avrrdude_BitClock do begin
     Style := csOwnerDrawFixed;
-    Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128',
-      '256', '512', '1024'], True);
+    Items.AddStrings(['1', '2', '4', '8', '16', '32', '64', '128', '256', '512', '1024'], True);
   end;
 
   with ComboBox_avrdude_COMPortBaud do begin

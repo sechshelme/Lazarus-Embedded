@@ -22,7 +22,6 @@ type
   TFrame_STFlash = class(TFrame)
     BitBtn_Auto_Flash_Base: TBitBtn;
     ComboBox_ARM_FlashBase: TComboBox;
-    GroupBox_STFlash: TGroupBox;
     Label_FlashBase: TLabel;
     ScrollBox1: TScrollBox;
     procedure BitBtn_Auto_Flash_BaseClick(Sender: TObject);
@@ -65,7 +64,7 @@ begin
     Caption := 'ST-Link Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_STFlash.Width - 10;
+    Width := ScrollBox1.Width - 10;
     Top := 10;
   end;
 

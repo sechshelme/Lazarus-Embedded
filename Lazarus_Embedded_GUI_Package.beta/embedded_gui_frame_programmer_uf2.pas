@@ -19,7 +19,6 @@ type
   { TFrame_UF2 }
 
   TFrame_UF2 = class(TFrame)
-    GroupBox_UF2: TGroupBox;
     ScrollBox1: TScrollBox;
   private
 
@@ -46,7 +45,7 @@ begin
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_UF2.Width - 10;
+    Width := ScrollBox1.Width - 10;
     Top := 10;
   end;
 
@@ -55,7 +54,7 @@ begin
     Caption := 'cp Path:';
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_UF2.Width - 10;
+    Width := ScrollBox1.Width - 10;
     Top := 80;
   end;
 
@@ -65,7 +64,7 @@ begin
     Directory := True;
     Anchors := [akTop, akLeft, akRight];
     Left := 5;
-    Width := GroupBox_UF2.Width - 10;
+    Width := ScrollBox1.Width - 10;
     Top := 150;
   end;
 end;
