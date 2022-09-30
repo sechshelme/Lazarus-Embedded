@@ -1,0 +1,21 @@
+object FrameCustomPrg: TFrameCustomPrg
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
+  TabOrder = 0
+  DesignLeft = 2114
+  DesignTop = 87
+  object ScrollBox1: TScrollBox
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    HorzScrollBar.Page = 1
+    VertScrollBar.Page = 1
+    Align = alClient
+    TabOrder = 0
+  end
+end

@@ -115,6 +115,10 @@
         <Filename Value="embedded_gui_frame_programmer_uf2.pas"/>
         <UnitName Value="Embedded_GUI_Frame_Programmer_UF2"/>
       </Item>
+      <Item>
+        <Filename Value="embedded_gui_frame_programmer_customprg.pas"/>
+        <UnitName Value="embedded_gui_frame_programmer_customprg"/>
+      </Item>
     </Files>
     <i18n>
       <EnableI18N Value="True"/>
