@@ -14,9 +14,9 @@ uses
 
 type
 
-  { TFrameCustomPrg }
+  { TFrame_CustomPrg }
 
-  TFrameCustomPrg = class(TFrame)
+  TFrame_CustomPrg = class(TFrame)
     ScrollBox1: TScrollBox;
   private
 
@@ -33,9 +33,9 @@ implementation
 
 {$R *.lfm}
 
-{ TFrameCustomPrg }
+{ TFrame_CustomPrg }
 
-constructor TFrameCustomPrg.Create(TheOwner: TComponent);
+constructor TFrame_CustomPrg.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
 
@@ -60,17 +60,17 @@ begin
 
 end;
 
-procedure TFrameCustomPrg.DefaultMask;
+procedure TFrame_CustomPrg.DefaultMask;
 begin
 
 end;
 
-procedure TFrameCustomPrg.LazProjectToMask(var prg, cmd: string);
+procedure TFrame_CustomPrg.LazProjectToMask(var prg, cmd: string);
 begin
 
 end;
 
-procedure TFrameCustomPrg.MaskToLazProject(LazProject: TLazProject);
+procedure TFrame_CustomPrg.MaskToLazProject(LazProject: TLazProject);
 begin
 
 end;

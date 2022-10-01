@@ -22,7 +22,8 @@ uses
   Embedded_GUI_Frame_Programmer_STFlash,
   Embedded_GUI_Frame_Programmer_Bossac,
   Embedded_GUI_Frame_Programmer_UF2,
-  Embedded_GUI_Frame_Programmer_ESPTool;
+  Embedded_GUI_Frame_Programmer_ESPTool,
+  Embedded_GUI_Frame_Programmer_CustomPrg;
 
 type
 
@@ -44,7 +45,8 @@ type
     Label2: TLabel;
     Label5: TLabel;
     Memo1: TMemo;
-    Radio_None: TRadioButton;
+    RadioButton_Custom: TRadioButton;
+    RadioButton_None: TRadioButton;
     RadioButton_ESP_Tool: TRadioButton;
     RadioButton_AVRDude: TRadioButton;
     RadioButton_UF2: TRadioButton;
@@ -67,6 +69,7 @@ type
     Frame_Bossac:TFrame_Bossac;
     Frame_UF2:TFrame_UF2;
     Frame_ESPTool:TFrame_ESPTool;
+    Frame_CustomPrg: TFrame_CustomPrg;
     FIsNewProject: Boolean;
     SubArchList: string;
     List: TStringArray;
@@ -146,6 +149,13 @@ begin
   Frame_ESPTool.Top:=FrameTop;
   Frame_ESPTool.Align:=alBottom;
 
+  // Custom Programmer
+  Frame_CustomPrg:=TFrame_CustomPrg.Create(GroupBox_Programmer);
+  Frame_CustomPrg.Parent:=GroupBox_Programmer;
+  Frame_CustomPrg.Anchors:=[akBottom,akLeft,akRight,akTop];
+  Frame_CustomPrg.Top:=FrameTop;
+  Frame_CustomPrg.Align:=alBottom;
+
   DefaultMask;
 end;
 
@@ -193,6 +203,9 @@ begin
 
   // ESP32 / ESP8266
   Frame_ESPTool.DefaultMask;
+
+  // Custom Prgrammer
+  Frame_CustomPrg.DefaultMask;
 
 
   RadioButton_Programmer_Change(nil);
@@ -278,6 +291,11 @@ begin
   cmd := Copy(cmd, pos(' ', cmd) - 1);
   ProgrammerName := ExtractFileName(ProgrammerPath);
 
+  // none
+  if ProgrammerName = '' then begin
+    RadioButton_None.Checked := True;
+  end;
+
   // AVRDude
   if Pos('avrdude', ProgrammerName) > 0 then begin
     RadioButton_AVRDude.Checked := True;
@@ -307,6 +325,13 @@ begin
     RadioButton_ESP_Tool.Checked := True;
     Frame_ESPTool.LazProjectToMask(ProgrammerPath, cmd);
   end;
+  //else begin
+  //
+  //// Custom Programmer
+  //  RadioButton_Custom.Checked := True;
+  //  Frame_CustomPrg.LazProjectToMask(ProgrammerPath, cmd);
+  //end;
+
 
   RadioButton_Programmer_Change(nil);
 end;
@@ -357,6 +382,11 @@ begin
   // ESP32 / ESP8266
   if RadioButton_ESP_Tool.Checked then begin
     Frame_ESPTool.MaskToLazProject(LazProject);
+  end;
+
+  // ESP32 / ESP8266
+  if RadioButton_Custom.Checked then begin
+    Frame_CustomPrg.MaskToLazProject(LazProject);
   end;
 
 end;
@@ -447,6 +477,7 @@ begin
   Frame_Bossac.Visible := RadioButton_Bossac.Checked;
   Frame_UF2.Visible := RadioButton_UF2.Checked;
   Frame_ESPTool.Visible := RadioButton_ESP_Tool.Checked;
+  Frame_CustomPrg.Visible := RadioButton_Custom.Checked;
 end;
 
 procedure TProject_Options_Form.CPU_InfoButtonClick(Sender: TObject);

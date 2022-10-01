@@ -1,4 +1,4 @@
-object FrameCustomPrg: TFrameCustomPrg
+object Frame_CustomPrg: TFrame_CustomPrg
   Left = 0
   Height = 240
   Top = 0
@@ -6,8 +6,8 @@ object FrameCustomPrg: TFrameCustomPrg
   ClientHeight = 240
   ClientWidth = 320
   TabOrder = 0
-  DesignLeft = 2114
-  DesignTop = 87
+  DesignLeft = 2069
+  DesignTop = 37
   object ScrollBox1: TScrollBox
     Left = 0
     Height = 240

@@ -89,7 +89,7 @@ object Project_Options_Form: TProject_Options_Form
       TabStop = True
     end
     object RadioButton_ST_Flash: TRadioButton
-      Left = 104
+      Left = 96
       Height = 23
       Top = 8
       Width = 76
@@ -98,7 +98,7 @@ object Project_Options_Form: TProject_Options_Form
       TabOrder = 1
     end
     object RadioButton_Bossac: TRadioButton
-      Left = 209
+      Left = 180
       Height = 23
       Top = 8
       Width = 68
@@ -107,7 +107,7 @@ object Project_Options_Form: TProject_Options_Form
       TabOrder = 2
     end
     object RadioButton_UF2: TRadioButton
-      Left = 304
+      Left = 256
       Height = 23
       Top = 8
       Width = 50
@@ -116,7 +116,7 @@ object Project_Options_Form: TProject_Options_Form
       TabOrder = 3
     end
     object RadioButton_ESP_Tool: TRadioButton
-      Left = 377
+      Left = 312
       Height = 23
       Top = 8
       Width = 79
@@ -124,12 +124,20 @@ object Project_Options_Form: TProject_Options_Form
       OnChange = RadioButton_Programmer_Change
       TabOrder = 4
     end
-    object Radio_None: TRadioButton
-      Left = 472
+    object RadioButton_None: TRadioButton
+      Left = 480
       Height = 23
       Top = 8
       Width = 57
       Caption = 'none'
+      TabOrder = 6
+    end
+    object RadioButton_Custom: TRadioButton
+      Left = 400
+      Height = 23
+      Top = 8
+      Width = 72
+      Caption = 'Custom'
       TabOrder = 5
     end
   end
