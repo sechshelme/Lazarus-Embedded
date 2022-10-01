@@ -10,6 +10,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_Frame_IDE_Options;
 
 type
@@ -62,17 +63,29 @@ end;
 
 procedure TFrame_CustomPrg.DefaultMask;
 begin
+  if Embedded_IDE_Options.CustomProgrammer.Path.Count > 0 then begin
+    ComboBox_Custom_Programmer_Path.Text := Embedded_IDE_Options.CustomProgrammer.Path[0];
+  end else begin
+    ComboBox_Custom_Programmer_Path.Text := '';
+  end;
 
+  if Embedded_IDE_Options.CustomProgrammer.Command.Count > 0 then begin
+    ComboBox_Custom_Programmer_Command.Text := Embedded_IDE_Options.CustomProgrammer.Command[0];
+  end else begin
+    ComboBox_Custom_Programmer_Path.Text := '';
+  end;
 end;
 
 procedure TFrame_CustomPrg.LazProjectToMask(var prg, cmd: string);
 begin
-
+  ComboBox_Custom_Programmer_Path.Text := prg;
+  ComboBox_Custom_Programmer_Command.Text := cmd;
 end;
 
 procedure TFrame_CustomPrg.MaskToLazProject(LazProject: TLazProject);
 begin
-
+  LazProject.LazCompilerOptions.ExecuteAfter.Command :=
+    ComboBox_Custom_Programmer_Path.Text + ' ' + ComboBox_Custom_Programmer_Command.Text;
 end;
 
 initialization

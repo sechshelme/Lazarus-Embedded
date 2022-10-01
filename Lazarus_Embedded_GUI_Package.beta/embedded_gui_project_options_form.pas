@@ -294,43 +294,42 @@ begin
   // none
   if ProgrammerName = '' then begin
     RadioButton_None.Checked := True;
-  end;
+  end else
 
   // AVRDude
   if Pos('avrdude', ProgrammerName) > 0 then begin
     RadioButton_AVRDude.Checked := True;
     Frame_AVRDude.LazProjectToMask(ProgrammerPath, cmd);
-  end;
+  end else
 
   // ST-Link
   if Pos('st-flash', ProgrammerName) > 0 then begin
     RadioButton_ST_Flash.Checked := True;
     Frame_STFlash.LazProjectToMask(ProgrammerPath, cmd);
-  end;
+  end else
 
   // Bossac
   if Pos('bossac', ProgrammerName) > 0 then begin
     RadioButton_Bossac.Checked := True;
     Frame_Bossac.LazProjectToMask(ProgrammerPath, cmd);
-  end;
+  end else
 
   // Rasberry PI Pico
   if Pos(UpCase('.uf2 '), UpCase(cmd)) > 0 then begin
     RadioButton_UF2.Checked := True;
     Frame_UF2.LazProjectToMask(ProgrammerPath, cmd);
-  end;
+  end else
 
   // ESP32 / ESP8266
   if Pos('esptool', ProgrammerName) > 0 then begin
     RadioButton_ESP_Tool.Checked := True;
     Frame_ESPTool.LazProjectToMask(ProgrammerPath, cmd);
+  end else begin
+
+  // Custom Programmer
+    RadioButton_Custom.Checked := True;
+    Frame_CustomPrg.LazProjectToMask(ProgrammerPath, cmd);
   end;
-  //else begin
-  //
-  //// Custom Programmer
-  //  RadioButton_Custom.Checked := True;
-  //  Frame_CustomPrg.LazProjectToMask(ProgrammerPath, cmd);
-  //end;
 
 
   RadioButton_Programmer_Change(nil);
@@ -384,9 +383,14 @@ begin
     Frame_ESPTool.MaskToLazProject(LazProject);
   end;
 
-  // ESP32 / ESP8266
+  // Custom Programmer
   if RadioButton_Custom.Checked then begin
     Frame_CustomPrg.MaskToLazProject(LazProject);
+  end;
+
+  // none
+  if RadioButton_None.Checked then begin
+    LazProject.LazCompilerOptions.ExecuteAfter.Command := '';
   end;
 
 end;
@@ -420,51 +424,24 @@ begin
       RadioButton_Bossac.Checked := TemplatesPara[index].Programmer = 'bossac';
       RadioButton_ESP_Tool.Checked := TemplatesPara[index].Programmer = 'ESPTool';
 
-      // AVRDude
-      with Frame_AVRDude do begin
-      Edit_avrdude_Controller.Text := TemplatesPara[index].avrdude.Controller;
-      ComboBox_avrdude_Programmer.Text := TemplatesPara[index].avrdude.Programmer;
-      ComboBox_avrdude_COMPort.Text := TemplatesPara[index].avrdude.COM_Port;
-      ComboBox_avrdude_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
-      CheckBox_avrdude_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
-      CheckBox_avrdude_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
-      CheckBox_avrdude_Override_signature_check.Checked := TemplatesPara[index].avrdude.Override_Signature_Check;
-      end;
-
-      // ST-Link
-      with Frame_STFlash do begin
-      ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;
-      end;
-
-      // Bossac
-      with Frame_Bossac do begin
-      ComboBox_Bossac_COMPort.Text := TemplatesPara[index].Bossac.COM_Port;
-
-      CheckBox_Bossac_Erase_Flash.Checked := TemplatesPara[index].Bossac.Erase_Flash;
-      CheckBox_Bossac_Verify_File.Checked := TemplatesPara[index].Bossac.Verify_File;
-      CheckBox_Bossac_boot_Flash.Checked := TemplatesPara[index].Bossac.Boot_from_Flash;
-      CheckBox_Bossac_Brownout_Detection.Checked := TemplatesPara[index].Bossac.Brownout_Detection;
-      CheckBox_Bossac_Brownout_Reset.Checked := TemplatesPara[index].Bossac.Brownout_Reset;
-      CheckBox_Bossac_Lock_Flash_Region.Checked := TemplatesPara[index].Bossac.Lock_Flash_Region;
-      CheckBox_Bossac_Unlock_Flash_Region.Checked := TemplatesPara[index].Bossac.Unlock_Flash_Region;
-      CheckBox_Bossac_Flash_Security_Flag.Checked := TemplatesPara[index].Bossac.Flash_Security_Flag;
-      CheckBox_Bossac_Display_Device_Info.Checked := TemplatesPara[index].Bossac.Display_Device_Info;
-      CheckBox_Bossac_Print_Debug.Checked := TemplatesPara[index].Bossac.Print_Debug;
-      CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := TemplatesPara[index].Bossac.Override_USB_Port_Autodetection;
-      CheckBox_Bossac_Reset_CPU.Checked := TemplatesPara[index].Bossac.Reset_CPU;
-      CheckBox_Bossac_Arduino_Erase.Checked := TemplatesPara[index].Bossac.Arduino_Erase;
-      end;
-
-      // Rasberry PI Pico
       CheckBox_UF2File.Checked := TemplatesPara[index].Programmer = 'uf2';
       FProjectSource := TemplatesForm.getSource;
 
+      // AVRDude
+      Frame_AVRDude.TemplateToMask(index);
+
+      // ST-Link
+      Frame_STFlash.TemplateToMask(index);
+
+      // Bossac
+      Frame_Bossac.TemplateToMask(index);
+
+      // Rasberry PI Pico
+      Frame_UF2.TemplateToMask(index);
+
       // ESP32 / ESP8266
-      with Frame_ESPTool do begin
-        ComboBox_ESPTool.Text := TemplatesPara[index].ESPTool.Controller;
-        ComboBox_ESPTool_COMPort.Text := TemplatesPara[index].ESPTool.COM_Port;
-        ComboBox_ESPTool_COMPortBaud.Text := TemplatesPara[index].ESPTool.Baud;
-      end;
+      Frame_ESPTool.TemplateToMask(index);
+
     end;
   end;
   TemplatesForm.Free;

@@ -39,10 +39,6 @@
         <UnitName Value="Embedded_GUI_CPU_Info_Form"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_cpu_info_form.lfm"/>
-        <Type Value="LFM"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_find_comports.pas"/>
         <UnitName Value="Embedded_GUI_Find_Comports"/>
       </Item>
@@ -96,12 +92,12 @@
         <UnitName Value="Embedded_GUI_Embedded_List_Const"/>
       </Item>
       <Item>
-        <Filename Value="embedded_gui_frame_programmer_esptool.pas"/>
-        <UnitName Value="Embedded_GUI_Frame_Programmer_ESPTool"/>
-      </Item>
-      <Item>
         <Filename Value="embedded_gui_frame_programmer_avrdude.pas"/>
         <UnitName Value="Embedded_GUI_Frame_Programmer_AVRDude"/>
+      </Item>
+      <Item>
+        <Filename Value="embedded_gui_frame_programmer_esptool.pas"/>
+        <UnitName Value="Embedded_GUI_Frame_Programmer_ESPTool"/>
       </Item>
       <Item>
         <Filename Value="embedded_gui_frame_programmer_bossac.pas"/>
@@ -117,7 +113,7 @@
       </Item>
       <Item>
         <Filename Value="embedded_gui_frame_programmer_customprg.pas"/>
-        <UnitName Value="embedded_gui_frame_programmer_customprg"/>
+        <UnitName Value="Embedded_GUI_Frame_Programmer_CustomPrg"/>
       </Item>
     </Files>
     <i18n>

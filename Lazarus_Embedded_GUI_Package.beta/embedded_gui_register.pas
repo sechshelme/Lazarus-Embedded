@@ -120,6 +120,7 @@ var
 begin
   CPU_InfoForm := TCPU_InfoForm.Create(nil);
   s := LazarusIDE.ActiveProject.LazCompilerOptions.TargetCPU;
+  if s = '' then s := 'avr';
   CPU_InfoForm.ComboBox_Controller.ItemIndex := CPU_InfoForm.ComboBox_Controller.Items.IndexOf(s);
   CPU_InfoForm.ComboBox_Controller.Text := s;
   CPU_InfoForm.ComboBox_ControllerSelect(Sender);

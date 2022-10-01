@@ -130,6 +130,7 @@ object Project_Options_Form: TProject_Options_Form
       Top = 8
       Width = 57
       Caption = 'none'
+      OnChange = RadioButton_Programmer_Change
       TabOrder = 6
     end
     object RadioButton_Custom: TRadioButton
@@ -138,6 +139,7 @@ object Project_Options_Form: TProject_Options_Form
       Top = 8
       Width = 72
       Caption = 'Custom'
+      OnChange = RadioButton_Programmer_Change
       TabOrder = 5
     end
   end

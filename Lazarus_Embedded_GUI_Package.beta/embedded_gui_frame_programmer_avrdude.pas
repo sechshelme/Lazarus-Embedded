@@ -12,6 +12,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_Frame_IDE_Options;
 
 type
@@ -47,6 +48,7 @@ type
     procedure DefaultMask;
     procedure LazProjectToMask(var prg, cmd: string);
     procedure MaskToLazProject(LazProject: TLazProject);
+    procedure TemplateToMask(index: Integer);
   end;
 
 implementation
@@ -228,6 +230,17 @@ begin
 
   cmd := cmd + '-Uflash:w:' + LazProject.LazCompilerOptions.TargetFilename + '.hex:i';
   LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
+end;
+
+procedure TFrame_AVRDude.TemplateToMask(index: Integer);
+begin
+  Edit_avrdude_Controller.Text := TemplatesPara[index].avrdude.Controller;
+  ComboBox_avrdude_Programmer.Text := TemplatesPara[index].avrdude.Programmer;
+  ComboBox_avrdude_COMPort.Text := TemplatesPara[index].avrdude.COM_Port;
+  ComboBox_avrdude_COMPortBaud.Text := TemplatesPara[index].avrdude.Baud;
+  CheckBox_avrdude_Disable_Auto_Erase.Checked := TemplatesPara[index].avrdude.Disable_Auto_Erase;
+  CheckBox_avrdude_Chip_Erase.Checked := TemplatesPara[index].avrdude.Chip_Erase;
+  CheckBox_avrdude_Override_signature_check.Checked := TemplatesPara[index].avrdude.Override_Signature_Check;
 end;
 
 end.

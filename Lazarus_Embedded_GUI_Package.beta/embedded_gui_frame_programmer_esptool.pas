@@ -10,6 +10,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_Frame_IDE_Options;
 
 type
@@ -31,6 +32,7 @@ type
     procedure DefaultMask;
     procedure LazProjectToMask(var prg, cmd: string);
     procedure MaskToLazProject(LazProject: TLazProject);
+    procedure TemplateToMask(index: Integer);
   end;
 
 implementation
@@ -129,6 +131,13 @@ begin
     ComboBox_ESP_Bootloader_Path.Text + '/partitions_singleapp.bin 0x10000 ' +
     LazProject.LazCompilerOptions.TargetFilename + '.bin';
   LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
+end;
+
+procedure TFrame_ESPTool.TemplateToMask(index: Integer);
+begin
+  ComboBox_ESPTool.Text := TemplatesPara[index].ESPTool.Controller;
+  ComboBox_ESPTool_COMPort.Text := TemplatesPara[index].ESPTool.COM_Port;
+  ComboBox_ESPTool_COMPortBaud.Text := TemplatesPara[index].ESPTool.Baud;
 end;
 
 initialization

@@ -13,6 +13,7 @@ uses
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
   Embedded_GUI_Embedded_List_Const,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_Frame_IDE_Options;
 
 type
@@ -34,6 +35,7 @@ type
     procedure DefaultMask;
     procedure LazProjectToMask(var prg, cmd: string);
     procedure MaskToLazProject(LazProject: TLazProject);
+    procedure TemplateToMask(index: Integer);
   end;
 
 implementation
@@ -97,6 +99,11 @@ procedure TFrame_STFlash.MaskToLazProject(LazProject: TLazProject);
 begin
   LazProject.LazCompilerOptions.ExecuteAfter.Command :=
     ComboBox_STLinkPath.Text + ' write ' + LazProject.LazCompilerOptions.TargetFilename + '.bin ' + ComboBox_ARM_FlashBase.Text;
+end;
+
+procedure TFrame_STFlash.TemplateToMask(index: Integer);
+begin
+  ComboBox_ARM_FlashBase.Text := TemplatesPara[index].stlink.FlashBase;
 end;
 
 initialization

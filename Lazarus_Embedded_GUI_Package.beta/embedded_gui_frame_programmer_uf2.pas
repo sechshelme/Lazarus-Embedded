@@ -12,6 +12,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_Frame_IDE_Options;
 
 type
@@ -28,6 +29,7 @@ type
     procedure DefaultMask;
     procedure LazProjectToMask(var prg, cmd: string);
     procedure MaskToLazProject(LazProject: TLazProject);
+    procedure TemplateToMask(index: Integer);
   end;
 
 implementation
@@ -113,6 +115,11 @@ begin
   LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd;
 
   LazProject.LazCompilerOptions.OtherUnitFiles := ComboBox_UF2_UnitPath.Text;// Was passiert bei mehreren Pfaden ???????
+end;
+
+procedure TFrame_UF2.TemplateToMask(index: Integer);
+begin
+
 end;
 
 initialization

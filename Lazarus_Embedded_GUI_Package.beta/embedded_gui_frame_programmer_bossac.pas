@@ -12,6 +12,7 @@ uses
   Embedded_GUI_Common,
   Embedded_GUI_Find_Comports,
   Embedded_GUI_Common_FileComboBox,
+  Embedded_GUI_Project_Templates_Form,
   Embedded_GUI_Frame_IDE_Options;
 
 type
@@ -43,6 +44,7 @@ type
     procedure DefaultMask;
     procedure LazProjectToMask(var prg, cmd: string);
     procedure MaskToLazProject(LazProject: TLazProject);
+    procedure TemplateToMask(index: Integer);
   end;
 
 implementation
@@ -160,6 +162,25 @@ begin
   end;
 
   LazProject.LazCompilerOptions.ExecuteAfter.Command := cmd + ' -w ' + LazProject.LazCompilerOptions.TargetFilename + '.bin';
+end;
+
+procedure TFrame_Bossac.TemplateToMask(index: Integer);
+begin
+  ComboBox_Bossac_COMPort.Text := TemplatesPara[index].Bossac.COM_Port;
+
+  CheckBox_Bossac_Erase_Flash.Checked := TemplatesPara[index].Bossac.Erase_Flash;
+  CheckBox_Bossac_Verify_File.Checked := TemplatesPara[index].Bossac.Verify_File;
+  CheckBox_Bossac_boot_Flash.Checked := TemplatesPara[index].Bossac.Boot_from_Flash;
+  CheckBox_Bossac_Brownout_Detection.Checked := TemplatesPara[index].Bossac.Brownout_Detection;
+  CheckBox_Bossac_Brownout_Reset.Checked := TemplatesPara[index].Bossac.Brownout_Reset;
+  CheckBox_Bossac_Lock_Flash_Region.Checked := TemplatesPara[index].Bossac.Lock_Flash_Region;
+  CheckBox_Bossac_Unlock_Flash_Region.Checked := TemplatesPara[index].Bossac.Unlock_Flash_Region;
+  CheckBox_Bossac_Flash_Security_Flag.Checked := TemplatesPara[index].Bossac.Flash_Security_Flag;
+  CheckBox_Bossac_Display_Device_Info.Checked := TemplatesPara[index].Bossac.Display_Device_Info;
+  CheckBox_Bossac_Print_Debug.Checked := TemplatesPara[index].Bossac.Print_Debug;
+  CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := TemplatesPara[index].Bossac.Override_USB_Port_Autodetection;
+  CheckBox_Bossac_Reset_CPU.Checked := TemplatesPara[index].Bossac.Reset_CPU;
+  CheckBox_Bossac_Arduino_Erase.Checked := TemplatesPara[index].Bossac.Arduino_Erase;
 end;
 
 initialization
