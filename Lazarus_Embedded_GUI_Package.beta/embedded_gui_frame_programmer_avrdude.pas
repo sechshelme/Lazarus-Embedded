@@ -41,6 +41,7 @@ type
     procedure FrameEnter(Sender: TObject);
   private
     FController: String;
+    function FindVerbose(Source: string): integer;
   public
     ComboBox_AvrdudePath, ComboBox_AvrdudeConfigPath: TFileNameComboBox;
     property Controller: String write FController;
@@ -56,6 +57,21 @@ implementation
 {$R *.lfm}
 
 { TFrame_AVRDude }
+
+function TFrame_AVRDude.FindVerbose(Source: string): integer;
+var
+  ofs: integer = 1;
+  p: integer;
+begin
+  Result := 0;
+  repeat
+    p := pos('-v', Source, ofs);
+    if p > 0 then begin
+      Inc(Result);
+      ofs := p + 2;
+    end;
+  until p = 0;
+end;
 
 procedure TFrame_AVRDude.FrameEnter(Sender: TObject);
 begin

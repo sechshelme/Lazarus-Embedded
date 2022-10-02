@@ -134,9 +134,6 @@ type
 
 function FindFPCPara(const Source: string; const Sub: string): string;
 function FindPara(const Source: string; Sub: TStringArray): string;
-function FindBossacPara(Source, SubShort, SubLong: string): boolean;
-
-function FindVerbose(Source: string): integer;
 
 procedure ComboBox_Insert_Text(cb: TComboBox);
 
@@ -264,34 +261,6 @@ begin
     end;
     Inc(i);
   end;
-end;
-
-function FindBossacPara(Source, SubShort, SubLong: string): boolean;
-begin
-  Source := Source + ' ';
-  SubShort := ' ' + SubShort;
-  SubLong := ' ' + SubLong;
-  if (Pos(SubShort + ' ', Source) > 0) or (Pos(SubLong + '=1 ', Source) > 0) or (Pos(SubLong + ' ', Source) > 0) then begin
-    Result := True;
-  end else begin
-    Result := False;
-  end;
-end;
-
-
-function FindVerbose(Source: string): integer;
-var
-  ofs: integer = 1;
-  p: integer;
-begin
-  Result := 0;
-  repeat
-    p := pos('-v', Source, ofs);
-    if p > 0 then begin
-      Inc(Result);
-      ofs := p + 2;
-    end;
-  until p = 0;
 end;
 
 function getParents(c: TWinControl): string;

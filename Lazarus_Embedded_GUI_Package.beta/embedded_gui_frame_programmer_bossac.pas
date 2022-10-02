@@ -37,7 +37,7 @@ type
     Label13: TLabel;
     ScrollBox1: TScrollBox;
   private
-
+    function FindBossacPara(Source, SubShort, SubLong: string): boolean;
   public
     ComboBox_BossacPath: TFileNameComboBox;
     constructor Create(TheOwner: TComponent); override;
@@ -53,6 +53,18 @@ implementation
 
 
 { TFrame_Bossac }
+
+function TFrame_Bossac.FindBossacPara(Source, SubShort, SubLong: string): boolean;
+begin
+  Source := Source + ' ';
+  SubShort := ' ' + SubShort;
+  SubLong := ' ' + SubLong;
+  if (Pos(SubShort + ' ', Source) > 0) or (Pos(SubLong + '=1 ', Source) > 0) or (Pos(SubLong + ' ', Source) > 0) then begin
+    Result := True;
+  end else begin
+    Result := False;
+  end;
+end;
 
 constructor TFrame_Bossac.Create(TheOwner: TComponent);
 begin
@@ -98,18 +110,18 @@ begin
   end;
 
   CheckBox_Bossac_Erase_Flash.Checked := (Pos(' -e', cmd) > 0) or (Pos(' --erase', cmd) > 0);
-  CheckBox_Bossac_Verify_File.Checked := (Pos(' -v', cmd) > 9) or (Pos(' --verify', cmd) > 0);
+  CheckBox_Bossac_Verify_File.Checked := (Pos(' -v', cmd) > 0) or (Pos(' --verify', cmd) > 0);
   CheckBox_Bossac_boot_Flash.Checked := FindBossacPara(cmd, '-b', '--boot');
   CheckBox_Bossac_Brownout_Detection.Checked := FindBossacPara(cmd, '-c', '--bod');
   CheckBox_Bossac_Brownout_Reset.Checked := FindBossacPara(cmd, '-t', '--bor');
-  CheckBox_Bossac_Lock_Flash_Region.Checked := (Pos(' -l', cmd) > 9) or (Pos(' --lock', cmd) > 0); // [=REGION]
-  CheckBox_Bossac_Unlock_Flash_Region.Checked := (Pos(' -u', cmd) > 9) or (Pos(' --unlock', cmd) > 0); // [=REGION]
-  CheckBox_Bossac_Flash_Security_Flag.Checked := (Pos(' -s', cmd) > 9) or (Pos(' --security', cmd) > 0);
-  CheckBox_Bossac_Display_Device_Info.Checked := (Pos(' -i', cmd) > 9) or (Pos(' --info', cmd) > 0);
-  CheckBox_Bossac_Print_Debug.Checked := (Pos(' -d', cmd) > 9) or (Pos(' --debug', cmd) > 0);
+  CheckBox_Bossac_Lock_Flash_Region.Checked := (Pos(' -l', cmd) > 0) or (Pos(' --lock', cmd) > 0); // [=REGION]
+  CheckBox_Bossac_Unlock_Flash_Region.Checked := (Pos(' -u', cmd) > 0) or (Pos(' --unlock', cmd) > 0); // [=REGION]
+  CheckBox_Bossac_Flash_Security_Flag.Checked := (Pos(' -s', cmd) > 0) or (Pos(' --security', cmd) > 0);
+  CheckBox_Bossac_Display_Device_Info.Checked := (Pos(' -i', cmd) > 0) or (Pos(' --info', cmd) > 0);
+  CheckBox_Bossac_Print_Debug.Checked := (Pos(' -d', cmd) > 0) or (Pos(' --debug', cmd) > 0);
   CheckBox_Bossac_Override_USB_Port_Autodetection.Checked := FindBossacPara(cmd, '-U', '--usb-port');
-  CheckBox_Bossac_Reset_CPU.Checked := (Pos(' -R', cmd) > 9) or (Pos(' --reset', cmd) > 0);
-  CheckBox_Bossac_Arduino_Erase.Checked := (Pos(' -a', cmd) > 9) or (Pos(' --arduino-erase', cmd) > 0);
+  CheckBox_Bossac_Reset_CPU.Checked := (Pos(' -R', cmd) > 0) or (Pos(' --reset', cmd) > 0);
+  CheckBox_Bossac_Arduino_Erase.Checked := (Pos(' -a', cmd) > 0) or (Pos(' --arduino-erase', cmd) > 0);
 end;
 
 procedure TFrame_Bossac.MaskToLazProject(LazProject: TLazProject);
