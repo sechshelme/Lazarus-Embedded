@@ -30,13 +30,26 @@ Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://foru
 
 ### Was kann das Tool und sollte es noch können:
 
-- [x] AVR
-- [x] STM32
-- [ ] ARM
-- [x] ESPxxx
+#### In Package:
+- [x] Unterstüzung von mehreren Mikrokontroller
+ - [x] Neues Projekt
+ - [x] Projekt Parameter modifizieren
+ - [x] Beispiel Projekte
+ - [x] AVR
+ - [ ] ARM
+  - [x] STM32
+  - [x] SAM3x7E Arduino Due 
+ - [x] ESPxxx
+  - [x] ESP32
+  - [x] ESP8266
+ - [ ] User definierte Parameter
+- [x] Serial Monitor
+- [ ] Fuse Editor für AVR
+
+#### Als Extra Tool:
 
 - [x] Fuse Editor
-  - [ ] Eingebaut in Package
+- [x] Serial Monitor
 
 
 ## ENGLISH:
