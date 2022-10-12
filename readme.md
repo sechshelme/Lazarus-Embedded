@@ -32,11 +32,11 @@ Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://foru
 
 #### In Package:
 - [x] Unterstüzung von mehreren Mikrokontroller
- - [x] Neues Projekt
- - [x] Projekt Parameter modifizieren
- - [x] Beispiel Projekte
- - [x] AVR
- - [ ] ARM
+   - [x] Neues Projekt
+   - [x] Projekt Parameter modifizieren
+   - [x] Beispiel Projekte
+   - [x] AVR
+   - [ ] ARM
   - [x] STM32
   - [x] SAM3x7E Arduino Due 
  - [x] ESPxxx
