@@ -28,6 +28,12 @@ Die Package wird unter Linux entwickelt, daher kann es unter Windows noch Fehler
 Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
 Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548 oder bei den Issus gepostet werden ;)
 
+### Was kann das Tool und sollte es noch können:
+
+
+
+[x] Fuse Editor
+- [ ] Eingebaut in Package
 
 
 ## ENGLISH:
