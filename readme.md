@@ -16,7 +16,7 @@ https://github.com/sechshelme/Lazarus-Embedded
 
 ### Installation:
 Bei Lazarus bei "Package/Package Datei (.lpi) offnen .../"
-Anschliessend diese Datei öffnen, kompilieren und installieren. ./Lazarus_Embedded_GUI_Package/embedded_gui_package.lpk
+Anschliessend diese Datei öffnen, kompilieren und installieren. *./Lazarus_Embedded_GUI_Package/embedded_gui_package.lpk*
 
 ### Beispiel für einen Arduino:
 Über "Datei --> Neu... --> Project --> [Embedded] Embedded-Project --> Vorlagen... --> Arduino UNO --> Blink Pin 13 --> Ok --> Ok"
