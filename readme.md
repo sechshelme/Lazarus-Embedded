@@ -30,13 +30,13 @@ Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://foru
 
 ### Was kann das Tool und sollte es noch können:
 
-[x] AVR
-[x] STM32
-[O] ARM
-[x] Fuse Editor
-[o] ESPxxx
+- [x] AVR
+- [x] STM32
+- [O] ARM
+- [x] Fuse Editor
+- [o] ESPxxx
 
-[x] Fuse Editor
+- [x] Fuse Editor
 - [ ] Eingebaut in Package
 
 
