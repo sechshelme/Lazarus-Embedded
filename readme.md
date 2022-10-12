@@ -40,7 +40,7 @@ Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://foru
   - [x] STM32
   - [x] SAM3x7E Arduino Due 
  - [x] ESPxxx
-  - [x] ESP32
+   - [x] ESP32
   - [x] ESP8266
  - [ ] User definierte Parameter
 - [x] Serial Monitor
