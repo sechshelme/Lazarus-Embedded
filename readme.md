@@ -36,12 +36,14 @@ Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://foru
   - [x] Projekt Parameter modifizieren
   - [x] Beispiel Projekte
   - [x] AVR
-  - [ ] ARM
-  - [x] STM32
+  - [x] ARM
+    - [x] STM32
     - [x] SAM3x7E Arduino Due 
+    - [ ] Noch andere ARMs
   - [x] ESPxxx
     - [x] ESP32
     - [x] ESP8266
+  - [ ] PIC
 - [ ] User definierte Parameter
 - [x] CPU Info
 - [x] Serial Monitor
