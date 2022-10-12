@@ -26,7 +26,7 @@ Wen man zu Laufzeit noch was ändern will, kann man über "Project --> [Embedded
 ### Schlusswort:
 Die Package wird unter Linux entwickelt, daher kann es unter Windows noch Fehler haben.
 Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
-Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548 oder bei den Issus gepostet werden ;)
+Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum [Lazarus Forum Englisch](https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548) oder bei den Issus gepostet werden ;)
 
 ### Was kann das Tool und was ist noch geplant:
 
