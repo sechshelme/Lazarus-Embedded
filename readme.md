@@ -43,13 +43,20 @@ Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum https://foru
     - [x] ESP32
     - [x] ESP8266
 - [ ] User definierte Parameter
+- [x] CPU Info
 - [x] Serial Monitor
 - [ ] Fuse Editor für AVR
 
 #### Als Extra Tool:
 
-- [x] Fuse Editor
+- [x] CPU Info
 - [x] Serial Monitor
+- [x] Fuse Editor
+- [x] Diverse fremd Flashtool 
+  - [x] AVRDude
+  - [x] ST-Link
+  - [x] Bossac
+  - [x] ESPTools
 
 
 ## ENGLISH:
