@@ -12,14 +12,14 @@ Es werden immer mehr, auch für nicht Arduino.
 STM-32, Arduino DUO, ESPxxx und Rasberry Pico gehen auch, nur fehlen (noch) die Beispiele.
 
 ### Download:
-https://github.com/sechshelme/Lazarus-Embedded
+[https://github.com/sechshelme/Lazarus-Embedded Lazarus Embedded GUI]
 
 ### Installation:
 Bei Lazarus bei "Package/Package Datei (.lpi) offnen .../"
-Anschliessend diese Datei öffnen, kompilieren und installieren. *./Lazarus_Embedded_GUI_Package/embedded_gui_package.lpk*
+Anschliessend diese Datei öffnen, kompilieren und installieren. `./Lazarus_Embedded_GUI_Package/embedded_gui_package.lpk`
 
 ### Beispiel für einen Arduino:
-Über "Datei --> Neu... --> Project --> [Embedded] Embedded-Project --> Vorlagen... --> Arduino UNO --> Blink Pin 13 --> Ok --> Ok"
+Über "`Datei` --> `Neu...` --> `Project` --> `[Embedded] Embedded-Project` --> `Vorlagen`... --> `Arduino UNO` --> `Blink Pin 13` --> `Ok` --> `Ok`"
 kann dann ein Arduino UNO Project erstellt werden.
 Wen man zu Laufzeit noch was ändern will, kann man über "Project --> [Embedded] Optionen" die Werte editieren.
 
