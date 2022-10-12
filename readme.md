@@ -74,21 +74,53 @@ There are more and more, even for non-Arduino.
 STM-32, Arduino DUO, ESPxxx and Rasberry Pico also work, only the examples are (still) missing.
 
 ### Downloads:
-https://github.com/sechshelme/Lazarus-Embedded
+[Lazarus Embedded GUI](https://github.com/sechshelme/Lazarus-Embedded)
 
 ### Installation:
 At Lazarus at "Open Package/Package File (.lpi) .../"
-Then open this file, compile and install it. ./Lazarus_Embedded_GUI_Package/embedded_gui_package.lpk
+Then open this file, compile and install it. `./Lazarus_Embedded_GUI_Package/embedded_gui_package.lpk`
 
 ### Example for an Arduino:
-Via "File --> New... --> Project --> [Embedded] Embedded-Project --> Templates... --> Arduino UNO --> Blink Pin 13 --> Ok --> Ok"
+Via "`File` --> `New...` --> `Project` --> `[Embedded] Embedded-Project` --> `Templates`... --> `Arduino UNO` --> `Blink pin 13` --> `Ok` --> `Ok`"
 an Arduino UNO Project can then be created.
 If you want to change something at runtime, you can edit the values ​​via "Project --> [Embedded] Options".
 
 ### Closing words:
 The package is developed under Linux, so it may still have bugs under Windows.
 A functional embedded cross compiler is required.
-I'm always grateful for feedback, regardless of whether it's posted directly in the forum https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548 or in the Issus ;)
+I'm always grateful for feedback, whether it's posted directly in the forum [Lazarus Forum Englisch](https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548) or in the Issus ;)
+
+### What can the tool do and what else is planned:
+
+#### Inside Package:
+- [x] Multiple microcontroller support
+  - [x] New project
+  - [x] Modify project parameters
+  - [x] example projects
+  - [x] AVR
+  - [x] ARM
+    - [x]STM32
+    - [x] SAM3x7E Arduino Due
+    - [ ] Still other ARMs
+  - [x] ESPxxx
+    - [x]ESP32
+    - [x]ESP8266
+  - [ ] PIC
+- [ ] User defined parameters
+- [x] CPU Info
+- [x] Serial Monitor
+- [ ] Fuse Editor for AVR
+
+#### As an extra tool:
+
+- [x] CPU Info
+- [x] Serial Monitor
+- [x] Fuse Editor
+- [x] Various foreign flash tools
+  - [x] AVRDude
+  - [x] ST link
+  - [x] Bossac
+  - [x] ESPTools
 
 <img src="Embedded_Project_Option.png">
 <img src="Embedded_Examples.png">
