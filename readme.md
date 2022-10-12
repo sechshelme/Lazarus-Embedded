@@ -12,7 +12,7 @@ Es werden immer mehr, auch für nicht Arduino.
 STM-32, Arduino DUO, ESPxxx und Rasberry Pico gehen auch, nur fehlen (noch) die Beispiele.
 
 ### Download:
-([Lazarus Embedded GUI](https://github.com/sechshelme/Lazarus-Embedded))
+[Lazarus Embedded GUI](https://github.com/sechshelme/Lazarus-Embedded)
 
 ### Installation:
 Bei Lazarus bei "Package/Package Datei (.lpi) offnen .../"
