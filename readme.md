@@ -28,38 +28,6 @@ Die Package wird unter Linux entwickelt, daher kann es unter Windows noch Fehler
 Voraussetzung ist ein funktionstüchtige Embedded-Cross-Compiler.
 Für Feedbacks bin ich immer dankbar, egal, ob sie direkt ins Forum [Lazarus Forum Englisch](https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548) oder bei den Issus gepostet werden ;)
 
-### Was kann das Tool und was ist noch geplant:
-
-#### In Package:
-- [x] Unterstüzung von mehreren Mikrokontroller
-  - [x] Neues Projekt
-  - [x] Projekt Parameter modifizieren
-  - [x] Beispiel Projekte
-  - [x] AVR
-  - [x] ARM
-    - [x] STM32
-    - [x] SAM3x7E Arduino Due 
-    - [ ] Noch andere ARMs
-  - [x] ESPxxx
-    - [x] ESP32
-    - [x] ESP8266
-  - [ ] PIC
-- [ ] User definierte Parameter
-- [x] CPU Info
-- [x] Serial Monitor
-- [ ] Fuse Editor für AVR
-
-#### Als Extra Tool:
-
-- [x] CPU Info
-- [x] Serial Monitor
-- [x] Fuse Editor
-- [x] Diverse fremd Flashtool 
-  - [x] AVRDude
-  - [x] ST-Link
-  - [x] Bossac
-  - [x] ESPTools
-
 
 ## ENGLISH:
 
@@ -89,38 +57,6 @@ If you want to change something at runtime, you can edit the values ​​via "P
 The package is developed under Linux, so it may still have bugs under Windows.
 A functional embedded cross compiler is required.
 I'm always grateful for feedback, whether it's posted directly in the forum [Lazarus Forum Englisch](https://forum.lazarus.freepascal.org/index.php?topic=60667.msg454548#msg454548) or in the Issus ;)
-
-### What can the tool do and what else is planned:
-
-#### Inside Package:
-- [x] Multiple microcontroller support
-  - [x] New project
-  - [x] Modify project parameters
-  - [x] example projects
-  - [x] AVR
-  - [x] ARM
-    - [x]STM32
-    - [x] SAM3x7E Arduino Due
-    - [ ] Still other ARMs
-  - [x] ESPxxx
-    - [x]ESP32
-    - [x]ESP8266
-  - [ ] PIC
-- [ ] User defined parameters
-- [x] CPU Info
-- [x] Serial Monitor
-- [ ] Fuse Editor for AVR
-
-#### As an extra tool:
-
-- [x] CPU Info
-- [x] Serial Monitor
-- [x] Fuse Editor
-- [x] Various foreign flash tools
-  - [x] AVRDude
-  - [x] ST link
-  - [x] Bossac
-  - [x] ESPTools
 
 ## Images:
 <img src="Embedded_Project_Option.png">
