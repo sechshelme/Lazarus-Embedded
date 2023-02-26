@@ -99,7 +99,7 @@ begin
     Inc(BytesRead, n);
   until n <= 0;
   if BytesRead > 0 then begin
-    WriteLn;
+//    WriteLn;
   end;
   ms.SetSize(BytesRead);
 
