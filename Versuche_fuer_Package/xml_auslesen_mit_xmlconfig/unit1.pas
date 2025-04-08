@@ -45,8 +45,7 @@ var
 begin
   index := 1;
   cellText := TStringList.Create;
-  ReadXMLFile(xml, '/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Tools/AVR_XML_to_Fuse_Const/XML/ATmega328P.xml');
-  ReadXMLFile(xml, '/n4800/DATEN/Programmierung/Lazarus/Tutorials/Embedded/Tools/AVR_XML_to_Fuse_Const/XML/ATmega2560.xml');
+  ReadXMLFile(xml, '/n4800/DATEN/Programmierung/mit_GIT/Lazarus/Tutorial/Embedded/Versuche_fuer_Package/xml_auslesen_mit_xmlconfig/ATmega328.xml');
   DOMNode := xml.DocumentElement.FindNode('variants');
   DOMNode := DOMNode.FindNode('variant');
 

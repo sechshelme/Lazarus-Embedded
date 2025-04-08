@@ -17,9 +17,8 @@ uses
 
   // Embedded GUI ( Eigene Units )
   Embedded_GUI_Option_Dialog_Register,
-  Embedded_GUI_IDE_Options_Frame,
+  Embedded_GUI_Frame_IDE_Options,
   Embedded_GUI_Common,
-//  Embedded_GUI_Templates,
   Embedded_GUI_Project_Options_Form,
   Embedded_GUI_CPU_Info_Form,
   Embedded_GUI_Embedded_List_Const,
@@ -121,6 +120,7 @@ var
 begin
   CPU_InfoForm := TCPU_InfoForm.Create(nil);
   s := LazarusIDE.ActiveProject.LazCompilerOptions.TargetCPU;
+  if s = '' then s := 'avr';
   CPU_InfoForm.ComboBox_Controller.ItemIndex := CPU_InfoForm.ComboBox_Controller.Items.IndexOf(s);
   CPU_InfoForm.ComboBox_Controller.Text := s;
   CPU_InfoForm.ComboBox_ControllerSelect(Sender);

@@ -6,7 +6,7 @@ object Form1: TForm1
   Caption = 'Form1'
   ClientHeight = 663
   ClientWidth = 1048
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '4.99.0.0'
   object Memo1: TMemo
     Left = 40
     Height = 549
@@ -26,8 +26,8 @@ object Form1: TForm1
     Width = 75
     Anchors = [akLeft, akBottom]
     Caption = 'Button1'
-    OnClick = Button1Click
     TabOrder = 1
+    OnClick = Button1Click
   end
   object StringGrid1: TStringGrid
     Left = 384

@@ -13,6 +13,8 @@ project1
 *.o
 *.or
 *.a
+*.res
+
 
 *.bin
 *.elf

@@ -5,10 +5,11 @@ unit Embedded_GUI_Project_Templates_Form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons, LCLType,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons, LCLType, Types,
   Laz2_XMLCfg,
-  Embedded_GUI_IDE_Options_Frame,
-  Embedded_GUI_Common, Embedded_GUI_Embedded_List_Const, Types;
+  Embedded_GUI_Frame_IDE_Options,
+  Embedded_GUI_Common,
+  Embedded_GUI_Embedded_List_Const;
 
 type
   TTemplatesPara = record
