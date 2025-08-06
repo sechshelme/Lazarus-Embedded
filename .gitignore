@@ -16,7 +16,7 @@ project1
 *.res
 
 
-*.bin
+#*.bin
 *.elf
 *.hex
 
